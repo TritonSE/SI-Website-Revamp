@@ -5,19 +5,28 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const logger = require("morgan");
+const db = require("./db/configDB")
 const config = require("./config");
+const populateTables = require("./seeds/initializeTables");
 
-// MongoDB Connection via Mongoose
-// mongoose.set("useUnifiedTopology", true);
-// mongoose.set("useNewUrlParser", true);
-// mongoose.connect(config.db.uri);
-// mongoose.connection.once("open", async () => {
-//   console.log("Established connection to MySQL Database.");
-//   // console.log(config.db.uri);
-//   console.log(`Server starting at Port: ${config.app.port}`);
-// });
+// test connection to database
+db.authenticate().then(() => {
+  // successful
+  console.log(`Connection has been established successfully to database ${config.db.name}.`);
+  console.log(`Server starting at Port: ${config.app.port}\n`);
+}).catch((error) => {
+  // error
+  console.error('Unable to connect to the database:', error);
+});
 
-console.log(`Server starting at Port: ${config.app.port}`);
+// Sync all models to reflect newest updates (automatic table creation/deletion/update)
+db.sync({force: true, logging: false}).then(() => {
+  console.log("Populating Tables...");
+  populateTables();
+
+}).catch((err) => {
+  console.error(err);
+});
 
 const app = express();
 
@@ -32,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ methods: ["GET", "POST", "PUT", "DELETE"] }));
 
 // Routers
-app.use("/index", require("./routes/index"));
+app.use("/sample", require("./routes/sample"));
 
 
 app.get("/", (req, res) => {
