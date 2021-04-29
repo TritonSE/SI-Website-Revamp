@@ -10,7 +10,7 @@ router.get('/',
 ],
 async function(req, res, next) {
   const entries = await getAll();
-  res.status(200).json({"sample": entries});
+  return res.status(200).json(entries);
 });
 
 module.exports = router;
