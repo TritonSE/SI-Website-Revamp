@@ -34,6 +34,9 @@ const generalRules = {
 
   // Not necessary for some APIs (consistency reasons)
   "import/prefer-default-export": "off",
+
+  // Stylistic rules.
+  "lines-between-class-members": "off",
 };
 
 const reactRules = {
