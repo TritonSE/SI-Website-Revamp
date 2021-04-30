@@ -1,0 +1,17 @@
+.carousel{
+    max-width: 100%;
+    
+}
+.control-arrow {
+    color: green;
+}
+.Slideshow_arrowleft{
+    width: 50px !important;
+    margin-left: 60px;
+    z-index: 2;
+}
+.Slideshow_arrowright{
+    width: 50px !important;
+    margin-right: 60px;
+    z-index: 2;
+}
