@@ -4,7 +4,7 @@ export default function EPublications() {
     return(
         <div>
             <p> This is the E-Publications Page </p>
-            <Slideshow maxHeight="400px">
+            <Slideshow height="400px" width="100%">
                 <div>
                     <img style={{width: "100vw", height: "400px"}} alt="cat" src="https://api.timeforkids.com/wp-content/uploads/2020/08/animalVoting.jpg?w=1024" />
                 </div>
@@ -16,6 +16,15 @@ export default function EPublications() {
                 </div>
                 
             </Slideshow>
+            <p>text</p>
+            <p>text</p>
+            <p>text</p>
+            <p>text</p>
+            <p>text</p>
+            <p>text</p>
+            <p>text</p>
+            <p>text</p>
+            <p>text</p>
         </div>
     );
 };

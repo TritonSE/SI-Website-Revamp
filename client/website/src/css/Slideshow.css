@@ -1,6 +1,10 @@
-.carousel > div{
-    max-width: 100%; 
-    height: inherit;
+.Slideshow{
+    overflow: hidden;
+    display: block;
+    position: block;
+}
+.react-slideshow-container{
+    height: 100%;
 }
 .Slideshow_arrowleft{
     width: 50px !important;
@@ -14,12 +18,15 @@
     z-index: 2;
     cursor: pointer;
 }
+
 .indicators{
-    position: relative;
+    margin: 0 !important;
     padding: 0;
     z-index: 100;
+    width: 100%;
+    
+    position: relative;
     bottom: 64px;
-    margin: 0 !important;
 }
 .indicator{
     width: 18px;
