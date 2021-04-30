@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Directories containing Node.js projects to be linted.
-node_dirs=(. client)
+node_dirs=(. client/admin-tool client/website)
 
 # Command to run in each directory specified in node_dirs.
 lint_command=(npm run lint-check)
 
 # Uncomment the line below to disable linting.
-#lint_command=(true)
+#lint_command=(pwd)
 
 log() {
 	echo "${0}:" "${@}" >&2
@@ -68,18 +68,25 @@ lint_check() {
 				"Edit this script and change 'node_dirs'."
 			return 1
 		fi
+	done
 
+	local lint_status=0
+	for dir in "${node_dirs[@]}"; do
 		if ! (cd "${dir}" && "${lint_command[@]}"); then
-			log "Lint check failed." \
-				"Run 'npm run lint-fix', then manually fix any remaining errors," \
-				"and stage those changes." \
-				"To skip this lint check, use 'git commit --no-verify'."
-			return 1
+			lint_status=1
 		fi
 	done
 
-	log "Lint check passed."
-	return 0
+	if (( lint_status )); then
+		log "Lint check failed." \
+			"Run 'npm run lint-fix', then manually fix any remaining errors," \
+			"and stage those changes." \
+			"To skip this lint check, use 'git commit --no-verify'."
+	else
+		log "Lint check passed."
+	fi
+
+	return "${lint_status}"
 }
 
 main() {
