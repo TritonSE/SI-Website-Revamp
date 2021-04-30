@@ -1,9 +1,9 @@
 import React from "react";
 
 export default function Newsletters() {
-    return(
+    return (
         <div>
             <p> This is the Newsletters Page </p>
         </div>
     );
-};
+}
