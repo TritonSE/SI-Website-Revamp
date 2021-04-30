@@ -1,5 +1,5 @@
 import React from "react";
-import Slideshow from "../../components/Main/Slideshow.js"
+import Slideshow from "../../components/Slideshow.js"
 export default function EPublications() {
     return(
         <div>

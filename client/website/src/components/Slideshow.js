@@ -1,15 +1,22 @@
+/** 
+ * Slideshow component built with react-slideshow-image. Takes in children
+ * components (should be divs) and renders them in a slideshow with custom
+ * arrows and indicators. The slideshow requires height and width props, that
+ * update the size of the component, BUT THE SLIDES MUST BE THE SAME SIZE or
+ * else you will have padding issues.
+ * @author PatrickBrown1
+ */
+
 import React from "react";
 import 'react-slideshow-image/dist/styles.css'
 import { Fade } from 'react-slideshow-image';
-import LeftArrow from '../../media/leftarrow.svg';
-import RightArrow from '../../media/rightarrow.svg';
+import LeftArrow from '../media/leftarrow.svg';
+import RightArrow from '../media/rightarrow.svg';
 
-import "../../css/Slideshow.css";
+import "../css/Slideshow.css";
 
 const Slideshow = (props) => {
-    // required props height and width
-    // This determines the height and width of the container slideshow
-    // if the props passed in are larger, then 
+    // required props: height, width
     return(
         <Fade 
             autoPlay={true}
