@@ -1,0 +1,29 @@
+.Footer-Main-Container {
+    width: 100%;
+    background-color: #8477B9;
+    height: 5vw;
+}
+
+.Footer-Pages {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+.Footer-Pages a {
+    color: #FFFFFF;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.Footer-Bottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Footer-Social-Media{
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+}
