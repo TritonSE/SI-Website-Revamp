@@ -1,7 +1,7 @@
 const Sample = require("../models/sample");
 
 async function getAll() {
-    return await Sample.findAll();
+    return Sample.findAll();
 }
 
 module.exports = {

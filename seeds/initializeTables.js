@@ -1,6 +1,8 @@
+const initSample = require("./models/sample");
+
 module.exports = () => {
     Promise.all([
-        require("./models/sample")(),
+        initSample(),
 
         // add new seeds here
     ])

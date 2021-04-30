@@ -1,17 +1,18 @@
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 import { SITE_PAGES } from "./constants/links";
 import PageLayout from "./components/PageLayout";
 import NewsEventsSlider from "./pages/Home/NewsEventsSlider";
-import { default as HomeIntro } from "./pages/Home/Introduction";
+import HomeIntro from "./pages/Home/Introduction";
 import BranchesChapters from "./pages/Home/BranchesChapters";
-import { default as HomeAddSection } from "./pages/Home/AddSection";
+import HomeAddSection from "./pages/Home/AddSection";
 import Newsletters from "./pages/Resources/Newsletters";
 import EPublications from "./pages/Resources/EPublications";
 import BuddhistCulture from "./pages/Resources/BuddhistCulture";
 import OrdinationIssue from "./pages/Resources/OrdinationIssue";
-import { default as AboutEditSections } from "./pages/About/EditSections";
+import AboutEditSections from "./pages/About/EditSections";
 import ExecCommittee from "./pages/About/ExecCommittee";
 import Login from "./pages/Accounts/Login";
 import Register from "./pages/Accounts/Register";
