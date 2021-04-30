@@ -9,27 +9,12 @@ import 'react-slideshow-image/dist/styles.css'
 import { Fade } from 'react-slideshow-image';
 import LeftArrow from '../../media/leftarrow.svg';
 import RightArrow from '../../media/rightarrow.svg';
+import Dot from '../../media/dot.svg';
+
 import "../../css/Slideshow.css";
 
-const renderPrevArrow = (e) => {
-    console.log(e);
-    return (
-        <div>
-            <img className="Slideshow_arrow" src={LeftArrow} alt="left arrow"/>
-        </div>
-    )
-}
-const renderNextArrow = (e) => {
-    console.log(e);
-    return (
-        <div>
-            <img className="Slideshow_arrow" src={RightArrow} alt="right arrow"/>
-        </div>
-    )
-}
 const Slideshow = (props) => {
     return(
-        <span className="carousel">
         <Fade 
             // transitionTime={3000}
             autoPlay={true}
@@ -37,12 +22,12 @@ const Slideshow = (props) => {
             transitionDuration={500}
             prevArrow={<div style={{width: "50px", marginRight: "-50px"}}><img className="Slideshow_arrowleft" src={LeftArrow} alt="left arrow"/></div>}
             nextArrow={<div style={{width: "50px", marginLeft: "-100px"}}><img className="Slideshow_arrowright" src={RightArrow} alt="right arrow"/></div>}
-
-            indicators={true}
+            pauseOnHover={true}
+            indicators={i => (<div className="dot"/>)}
+            style={{maxHeight: props.maxHeight}}
         >
             {props.children}
         </Fade>
-        </span>
     );
 };
 export default Slideshow;
