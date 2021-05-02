@@ -27,7 +27,7 @@ export default function Nav(props) {
 
     return(
         <div class={`navigation ${props.visible}`}>
-            <img id="cross" src={Cross} onClick={props.toggle}></img>
+            <img id="cross" src={Cross} onClick={props.toggle} alt="Close Navigation"></img>
             <a class={`nav-option ${isPageActive(home)}`} href={home}>
                 <text>Home</text>
             </a>

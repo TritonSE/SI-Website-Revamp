@@ -5,11 +5,13 @@
  * @author      Aaron Kirk
  */
 
-import React from "react";
+import React, {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {SITE_PAGES} from "../../constants/links";
 
 import "../../css/ResourcesNavBar.css";
-import {SITE_PAGES} from "../../constants/links";
+import LeftArrow from "../../media/left-arrow.svg";
+import Cross from "../../media/cross.svg";
 
 export default function ResourcesNavBar(props) {
 
@@ -18,14 +20,27 @@ export default function ResourcesNavBar(props) {
     const culture = SITE_PAGES.RESOURCES_BUDDHIST_CULTURE;
     const ordination = SITE_PAGES.RESOURCES_ORDINATION_ISSUE;
 
+    const [navToggled, setNavToggled] = useState(false);
+
+    function toggleNav() {
+        setNavToggled(!navToggled);
+    }
+
     // check page path from props to change color of active nav link
     function isPageActive(pageToCheck) { 
         return pageToCheck === window.location.pathname ? "current" : "";
     }
 
+
     return(
         <div>
-            <div class="resources-nav">
+            {/* Button to toggle menu on mobile */}
+            <div id="left-arrow">
+                <img src={LeftArrow} alt="Toggle Resources Navigation" onClick={toggleNav}></img>
+            </div>
+
+            <div class={`resources-nav ${navToggled ? "toggled" : ""}`}>
+                <img id="cross" src={Cross} onClick={toggleNav} alt="Close Resources Navigation"></img>
                 <a class={`resources-link ${isPageActive(newsletters)}`} href={newsletters}>
                     <text>Newsletters</text>
                 </a>
