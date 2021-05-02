@@ -21,9 +21,16 @@ export default function ResourcesNavBar(props) {
     const ordination = SITE_PAGES.RESOURCES_ORDINATION_ISSUE;
 
     const [navToggled, setNavToggled] = useState(false);
+    const [divStyle, setDivStyle] = useState({zIndex: "auto"});
+
 
     function toggleNav() {
         setNavToggled(!navToggled);
+
+        if(!navToggled) setDivStyle({zIndex: "3", position: "relative"});
+        else setTimeout(() => {
+            setDivStyle({zIndex: "auto"});
+        }, 500);
     }
 
     // check page path from props to change color of active nav link
@@ -33,9 +40,9 @@ export default function ResourcesNavBar(props) {
 
     // controls the z-index of the entire component so that the navigation panel
     // renders on top of the normal navbar
-    var divStyle = {zIndex: "auto"};
+    // var divStyle = {zIndex: "auto"};
 
-    if(navToggled) divStyle = {zIndex: "3", position: "relative"};
+    // if(navToggled) divStyle = {zIndex: "3", position: "relative"};
 
     return(
         <div style={divStyle}>
