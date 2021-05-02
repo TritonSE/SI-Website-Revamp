@@ -1,0 +1,38 @@
+.resources-nav {
+    position: sticky;
+    top: 120px;
+    height: 70px;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--orange);
+}
+
+.resources-link {
+    display: block;
+    height: 100%;
+    width: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: var(--body-font);
+    font-size: 1.125em;
+    color: white;
+    text-decoration: none;
+}
+
+.resources-link:hover {
+    background-color: var(--dark-orange);
+
+    color: white;
+    text-decoration: none;
+}
+
+.current {
+    background-color: var(--dark-orange);
+}

@@ -28,12 +28,12 @@
 }
 
 .nav-option.current {
-    background-color: var(--light-orange);
+    background-color: var(--dark-orange);
 }
 
 .nav-option:hover {
     color: white;
-    background-color: var(--light-orange);
+    background-color: var(--dark-orange);
 
     text-decoration: none;
 }

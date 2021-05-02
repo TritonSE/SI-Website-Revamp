@@ -3,6 +3,8 @@
 .NavBar {
     position: sticky;
     top: 0;
+
+    width: 100vw;
 }
 
 .navBar {
@@ -24,6 +26,7 @@
     align-items: center;
 
     color: inherit;
+    text-decoration: none;
 }
 
 .nav-left:hover {

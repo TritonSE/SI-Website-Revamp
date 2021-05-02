@@ -1,8 +1,8 @@
 /**
- * Navigation panel for all pages. Contains the Sakyadhita logo, branding, and a
- * hamburger icon to expand the navigation panel.
+ * Navigation panel for main site pages. Slides in and out from the right side
+ * of the screen on toggle.
  * 
- * @summary     Navbar containing hamburger button to toggle navigation.
+ * @summary     Navigation panel for main site pages.
  * @author      Aaron Kirk
  */
 

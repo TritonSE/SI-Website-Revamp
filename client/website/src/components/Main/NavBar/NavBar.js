@@ -1,13 +1,13 @@
 /**
- * Navbar for all pages. Contains the Sakyadhita logo, branding, and a
- * hamburger icon to expand the navigation panel.
+ * Sticky Navbar for all pages. Contains the Sakyadhita logo, branding, and a
+ * hamburger icon to expand the navigation panel. Darkens other page content
+ * when navigation is toggled.
  * 
  * @summary     Navbar containing hamburger button to toggle navigation.
  * @author      Aaron Kirk
  */
 
 import React, {useState} from "react";
-import {SITE_PAGES} from "../../../constants/links";
 
 import "../../../css/NavBar.css";
 //import Logo from "../../../media/logo.png";
