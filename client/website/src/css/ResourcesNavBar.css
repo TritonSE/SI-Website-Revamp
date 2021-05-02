@@ -9,8 +9,18 @@
     align-items: center;
 
     background-color: var(--orange);
+}
 
-    z-index: -1;
+/* Janky, but I can't get it to show under the main Navbar's box shadow */
+/* nor do children respect the parent's box-shadow */
+.resources-nav::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100vw;
+    box-shadow: inset 0px 7px 10px 0px rgba(0,0,0,0.2);
 }
 
 .resources-link {
@@ -26,6 +36,8 @@
     font-size: 1.125em;
     color: white;
     text-decoration: none;
+
+    z-index: -10;
 }
 
 .resources-link:hover {

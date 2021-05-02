@@ -2,7 +2,6 @@
     position: absolute;
     top: 120px;
     right: -410px;
-    /* Original height is 660px, but I assume it should take up screen height */
     height: calc(100vh - 120px);
     width: 410px;
 
