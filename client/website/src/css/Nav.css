@@ -61,7 +61,7 @@
         width: 100vw;
 
         padding-top: 60px;
-        padding-bottom: 200px;
+        justify-content: flex-start;
     }
 
     .navigation #cross {
