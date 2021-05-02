@@ -1,4 +1,4 @@
-/** 
+/**
  * Slideshow component built with react-slideshow-image. Takes in children
  * components (should be divs) and renders them in a slideshow with custom
  * arrows and indicators. The slideshow requires height and width props, that
@@ -8,29 +8,35 @@
  */
 
 import React from "react";
-import 'react-slideshow-image/dist/styles.css'
-import { Fade } from 'react-slideshow-image';
-import LeftArrow from '../media/leftarrow.svg';
-import RightArrow from '../media/rightarrow.svg';
+import "react-slideshow-image/dist/styles.css";
+import { Fade } from "react-slideshow-image";
+import LeftArrow from "../media/leftarrow.svg";
+import RightArrow from "../media/rightarrow.svg";
 
 import "../css/Slideshow.css";
 
-const Slideshow = (props) => {
+const Slideshow = (props) => (
     // required props: height, width
-    return(
-        <Fade 
-            autoPlay={true}
-            duration={3000}
-            transitionDuration={500}
-            prevArrow={<div style={{width: "50px", marginRight: "-50px"}}><img className="Slideshow_arrowleft" src={LeftArrow} alt="left arrow"/></div>}
-            nextArrow={<div style={{width: "50px", marginLeft: "-100px"}}><img className="Slideshow_arrowright" src={RightArrow} alt="right arrow"/></div>}
-            pauseOnHover={true}
-            indicators={i => (<div className="dot"/>)}
-            style={{maxHeight: props.height, minHeight: props.height, width: props.width}}
-            className="Slideshow"
-        >
-            {props.children}
-        </Fade>
-    );
-};
+    <Fade
+        autoPlay
+        duration={3000}
+        transitionDuration={500}
+        prevArrow={
+            <div style={{ width: "50px", marginRight: "-50px" }}>
+                <img className="Slideshow_arrowleft" src={LeftArrow} alt="left arrow" />
+            </div>
+        }
+        nextArrow={
+            <div style={{ width: "50px", marginLeft: "-100px" }}>
+                <img className="Slideshow_arrowright" src={RightArrow} alt="right arrow" />
+            </div>
+        }
+        pauseOnHover
+        indicators={() => <div className="dot" />}
+        style={{ maxHeight: props.height, minHeight: props.height, width: props.width }}
+        className="Slideshow"
+    >
+        {props.children}
+    </Fade>
+);
 export default Slideshow;
