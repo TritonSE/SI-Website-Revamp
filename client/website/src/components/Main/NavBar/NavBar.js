@@ -42,7 +42,7 @@ export default function NavBar() {
             </div>
 
             {/* Conditionally Rendered Navigation Panel */}
-            {navToggled ? <Nav visible="visible"></Nav> : <Nav></Nav>}
+            {navToggled ? <Nav visible="visible" toggle={toggleNav}></Nav> : <Nav toggle={toggleNav}></Nav>}
 
             {/* Overlay to darken website content when toggled */}
             {navToggled ? <div class="nav-overlay visible"></div> : <div class="nav-overlay"></div>}

@@ -37,7 +37,7 @@
 }
 
 .nav-left #logo {
-    height: 92px;
+    height: 90px;
 }
 
 .nav-left .branding {
@@ -79,4 +79,41 @@
 
 .nav-overlay.visible {
     opacity: 100%;
+}
+
+@media only screen and (max-width: 768px), (max-height: 768px) {
+
+    .navBar {
+        height: 50px;
+        width: 100vw;
+        padding: 0 25px;
+
+        box-shadow: none;
+    }
+
+    .nav-left #logo {
+        height: 36px;
+    }
+
+    .nav-left .branding {
+        margin-left: 5px;
+    }
+
+    .nav-left #title {
+        font-size: 1.125em;
+        margin: 0;
+    }
+
+    .branding #subtitle {
+        display: none;
+    }
+
+    #nav-toggle {
+        width: 20px;
+        margin-bottom: -5px;
+    }
+
+    .nav-overlay {
+        display: none;
+    }
 }

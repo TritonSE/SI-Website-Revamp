@@ -7,8 +7,10 @@
  */
 
 import React from "react";
-import "../../../css/Nav.css";
 import {SITE_PAGES} from "../../../constants/links";
+
+import "../../../css/Nav.css";
+import Cross from "../../../media/cross.svg";
  
 export default function Nav(props) {
 
@@ -25,20 +27,21 @@ export default function Nav(props) {
 
     return(
         <div class={`navigation ${props.visible}`}>
+            <img id="cross" src={Cross} onClick={props.toggle}></img>
             <a class={`nav-option ${isPageActive(home)}`} href={home}>
-                Home
+                <text>Home</text>
             </a>
             <a class={`nav-option ${isPageActive(conferences)}`} href={conferences}>
-                Conferences
+                <text>Conferences</text>
             </a>
             <a class={`nav-option ${isPageActive(resources)}`} href={resources}>
-                Resources
+                <text>Resources</text>
             </a>
             <a class={`nav-option ${isPageActive(about)}`} href={about}>
-                About Us
+                <text>About Us</text>
             </a>
             <a class={`nav-option ${isPageActive(contact)}`} href={contact}>
-                Contact Us
+                <text>Contact Us</text>
             </a>
         </div>
     );
