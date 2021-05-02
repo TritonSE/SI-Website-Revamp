@@ -3,8 +3,9 @@
 .NavBar {
     position: sticky;
     top: 0;
-
     width: 100vw;
+
+    z-index: 2;
 }
 
 .navBar {
@@ -79,6 +80,7 @@
 
 .nav-overlay.visible {
     opacity: 100%;
+    pointer-events: all;
 }
 
 

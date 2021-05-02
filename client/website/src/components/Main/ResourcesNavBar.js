@@ -31,9 +31,14 @@ export default function ResourcesNavBar(props) {
         return pageToCheck === window.location.pathname ? "current" : "";
     }
 
+    // controls the z-index of the entire component so that the navigation panel
+    // renders on top of the normal navbar
+    var divStyle = {zIndex: "auto"};
+
+    if(navToggled) divStyle = {zIndex: "3", position: "relative"};
 
     return(
-        <div>
+        <div style={divStyle}>
             {/* Button to toggle menu on mobile */}
             <div id="left-arrow">
                 <img src={LeftArrow} alt="Toggle Resources Navigation" onClick={toggleNav}></img>
