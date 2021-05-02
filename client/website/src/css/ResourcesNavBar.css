@@ -9,6 +9,8 @@
     align-items: center;
 
     background-color: var(--orange);
+
+    z-index: -1;
 }
 
 .resources-link {
