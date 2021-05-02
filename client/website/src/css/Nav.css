@@ -1,0 +1,35 @@
+.navigation {
+    position: absolute;
+    top: 120px;
+    right: -410px;
+    /* Original height is 660px, but I assume it should take up screen height */
+    height: calc(100vh - 120px);
+    width: 410px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 70px 0;
+
+    background-color: var(--orange);
+    transition: right .5s ease;
+}
+
+.navigation.visible {
+    right: 0;
+}
+
+.nav-option {
+    padding: 30px 0px;
+    padding-left: 75px;
+    font-family: var(--header-font);
+    font-size: 2.25em;
+    color: white;
+}
+
+.nav-option:hover {
+    color: white;
+    background-color: var(--light-orange);
+
+    text-decoration: none;
+}

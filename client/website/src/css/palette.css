@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Nunito&display=swap");
+
+:root {
+    /* Colors: */
+    --purple: #8477B9 !important;
+    --orange: #EA8644 !important;
+
+    --header-purple: #6652A055;
+    --footer-purple: #8477B955;
+
+    /* Not in design; I made this up for hover effects */
+    --light-orange: #e79761;
+
+    /* Fonts: */
+    --header-font: 'Libre Baskerville', serif;
+    --body-font: 'Nunito', sans-serif;
+}

@@ -1,0 +1,47 @@
+@import "palette.css";
+
+.navBar {
+    height: 120px;
+    width: 100vw;
+    padding: 0 60px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--purple);
+    color: white;
+
+    overflow-x: hidden;
+}
+
+.nav-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav-left #logo {
+    height: 92px;
+}
+
+.nav-left .branding {
+    margin-left: 10px;
+}
+
+.branding #title {
+    font-family: var(--header-font);
+    font-size: 1.5em;
+}
+
+.branding #subtitle {
+    font-family: var(--body-font);
+    font-size: 1.125em;
+}
+
+#nav-toggle {
+    width: 50px;
+    margin-bottom: -12.5px;
+
+    cursor: pointer;
+}
