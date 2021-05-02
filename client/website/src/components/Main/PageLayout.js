@@ -9,7 +9,7 @@ export default function PageLayout(props) {
         <div style={{overflowX: "hidden", height: "100vh"}}>
            <NavBar/>
             {props.children}
-           <Footer/>
+            <Footer />
         </div>
     );
-};
+}

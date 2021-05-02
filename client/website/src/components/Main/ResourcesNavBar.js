@@ -80,4 +80,4 @@ export default function ResourcesNavBar(props) {
             {props.children}
         </div>
     );
-};
+}
