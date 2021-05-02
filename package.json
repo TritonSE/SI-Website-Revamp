@@ -6,7 +6,7 @@
     "start": "nodemon ./bin/www",
     "begin": "node ./bin/www",
     "format": "prettier --write .",
-    "lint-fix": "eslint --fix --cache --report-unused-disable-directives . ; prettier --write .",
+    "lint-fix": "(eslint --fix --cache --report-unused-disable-directives . || true) && prettier --write .",
     "lint-check": "eslint --cache --report-unused-disable-directives . && prettier --check .",
     "prepare": "husky install .husky"
   },
