@@ -1,13 +1,15 @@
-module.exports = () => {
-   
-    Promise.all([
-        require("./models/sample")(),
-        
-        // add new seeds here
+const initSample = require("./models/sample");
 
-    ]).then(() => {
-        console.log("Done!")
-    }).catch((err) => {
-        console.error(err);
-    })
-}
+module.exports = () => {
+    Promise.all([
+        initSample(),
+
+        // add new seeds here
+    ])
+        .then(() => {
+            console.log("Done!");
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+};

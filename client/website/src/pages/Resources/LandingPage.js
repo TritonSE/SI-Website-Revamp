@@ -1,9 +1,9 @@
 import React from "react";
 
 export default function LandingPage() {
-    return(
+    return (
         <div>
             <p> This is the Resources Landing Page </p>
         </div>
     );
-};
+}

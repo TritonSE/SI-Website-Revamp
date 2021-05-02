@@ -4,11 +4,11 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 
 export default function PageLayout(props) {
-    return(
+    return (
         <div>
-           <NavBar/>
+            <NavBar />
             {props.children}
-           <Footer/>
+            <Footer />
         </div>
     );
-};
+}

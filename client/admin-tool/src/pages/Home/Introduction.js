@@ -1,9 +1,9 @@
 import React from "react";
 
 export default function Introduction() {
-    return(
+    return (
         <div>
             <p> This is the Intro Page </p>
         </div>
     );
-};
+}

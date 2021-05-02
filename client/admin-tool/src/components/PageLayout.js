@@ -4,10 +4,10 @@ import NavBar from "./NavBar";
 import "../css/PageLayout.css";
 
 export default function PageLayout(props) {
-    return(
+    return (
         <div className="page-layout-container">
-            <NavBar/>
+            <NavBar />
             {props.children}
         </div>
     );
-};
+}
