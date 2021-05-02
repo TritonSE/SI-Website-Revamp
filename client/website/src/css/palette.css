@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Nunito&display=swap");
 
 :root {
-    /* Colors: */
-    --purple: #8477B9 !important;
-    --orange: #EA8644 !important;
+  /* Colors: */
+  --purple: #8477b9 !important;
+  --orange: #ea8644 !important;
 
-    --header-purple: #6652A055;
-    --footer-purple: #8477B955;
+  --header-purple: #6652a055;
+  --footer-purple: #8477b955;
 
-    --dark-orange: #D77A3D;
+  --dark-orange: #d77a3d;
 
-    /* Fonts: */
-    --header-font: 'Libre Baskerville', serif;
-    --body-font: 'Nunito', sans-serif;
+  /* Fonts: */
+  --header-font: "Libre Baskerville", serif;
+  --body-font: "Nunito", sans-serif;
 }

@@ -1,20 +1,19 @@
 /**
  * Additional Navbar rendered only for the Resources page.
- * 
+ *
  * @summary     Additional Navbar rendered only for the Resources page.
  * @author      Aaron Kirk
  */
 
-import React, {useState} from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {SITE_PAGES} from "../../constants/links";
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { SITE_PAGES } from "../../constants/links";
 
 import "../../css/ResourcesNavBar.css";
 import LeftArrow from "../../media/left-arrow.svg";
 import Cross from "../../media/cross.svg";
 
 export default function ResourcesNavBar(props) {
-
     const newsletters = SITE_PAGES.RESOURCES_NEWSLETTERS;
     const epub = SITE_PAGES.RESOURCES_EPUBS;
     const culture = SITE_PAGES.RESOURCES_BUDDHIST_CULTURE;
@@ -26,8 +25,7 @@ export default function ResourcesNavBar(props) {
 
     // Controls the z-index of the entire component so that the navigation panel
     // renders on top of the normal navbar
-    const [divStyle, setDivStyle] = useState({zIndex: "auto"});
-
+    const [divStyle, setDivStyle] = useState({ zIndex: "auto" });
 
     /**
      * Handles toggling the navToggled state. Because the slide animation
@@ -37,41 +35,47 @@ export default function ResourcesNavBar(props) {
     function toggleNav() {
         setNavToggled(!navToggled);
 
-        if(!navToggled) setDivStyle({zIndex: "3", position: "relative"});
-        else setTimeout(() => {
-            setDivStyle({zIndex: "auto"});
-        }, 500);
+        if (!navToggled) setDivStyle({ zIndex: "3", position: "relative" });
+        else
+            setTimeout(() => {
+                setDivStyle({ zIndex: "auto" });
+            }, 500);
     }
 
     /**
      * Checks page path from props to change color of the active nav link.
-     * 
+     *
      * @param {String} pageToCheck - URL of site to check
      * @returns {boolean} - True if currently on the desired page
      */
-    function isPageActive(pageToCheck) { 
+    function isPageActive(pageToCheck) {
         return pageToCheck === window.location.pathname ? "current" : "";
     }
 
-    return(
+    return (
         <div style={divStyle}>
             {/* Button to toggle menu on mobile */}
-            <div id="left-arrow">
-                <img src={LeftArrow} alt="Toggle Resources Navigation" onClick={toggleNav}></img>
-            </div>
+            <button id="left-arrow" onClick={toggleNav} onKeyDown={toggleNav} type="button">
+                <img src={LeftArrow} alt="Toggle Resources Navigation" />
+            </button>
 
-            <div class={`resources-nav ${navToggled ? "toggled" : ""}`}>
-                <img id="cross" src={Cross} onClick={toggleNav} alt="Close Resources Navigation"></img>
-                <a class={`resources-link ${isPageActive(newsletters)}`} href={newsletters}>
+            <div className={`resources-nav ${navToggled ? "toggled" : ""}`}>
+                {/* Button to close menu on mobile */}
+                <button id="cross" onClick={toggleNav} onKeyDown={toggleNav} type="button">
+                    <img src={Cross} alt="Close Resources Navigation" />
+                </button>
+
+                {/* Nav Links */}
+                <a className={`resources-link ${isPageActive(newsletters)}`} href={newsletters}>
                     <text>Newsletters</text>
                 </a>
-                <a class={`resources-link ${isPageActive(epub)}`} href={epub}>
+                <a className={`resources-link ${isPageActive(epub)}`} href={epub}>
                     <text>E-Publications</text>
                 </a>
-                <a class={`resources-link ${isPageActive(culture)}`} href={culture}>
+                <a className={`resources-link ${isPageActive(culture)}`} href={culture}>
                     <text>Buddhist Culture</text>
                 </a>
-                <a class={`resources-link ${isPageActive(ordination)}`} href={ordination}>
+                <a className={`resources-link ${isPageActive(ordination)}`} href={ordination}>
                     <text>Oridnation Issue</text>
                 </a>
             </div>
