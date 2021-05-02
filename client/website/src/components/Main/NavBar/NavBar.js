@@ -17,8 +17,13 @@ import Nav from "./Nav";
 
 export default function NavBar() {
 
+    // Tells the navigation panel whether or not to render
+    // toggles when the hamburger icon is clicked
     const [navToggled, setNavToggled] = useState(false);
 
+    /**
+     * Handles toggling the navToggled state
+     */
     function toggleNav() {
         setNavToggled(!navToggled);
     }

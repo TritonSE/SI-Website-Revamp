@@ -20,10 +20,20 @@ export default function ResourcesNavBar(props) {
     const culture = SITE_PAGES.RESOURCES_BUDDHIST_CULTURE;
     const ordination = SITE_PAGES.RESOURCES_ORDINATION_ISSUE;
 
+    // On mobile, tells the navigation panel whether or not to render
+    // Toggles when the slider icon is clicked
     const [navToggled, setNavToggled] = useState(false);
+
+    // Controls the z-index of the entire component so that the navigation panel
+    // renders on top of the normal navbar
     const [divStyle, setDivStyle] = useState({zIndex: "auto"});
 
 
+    /**
+     * Handles toggling the navToggled state. Because the slide animation
+     * takes 500ms, the divStyle is returned back to normal 500ms after
+     * actually closing the Nav.
+     */
     function toggleNav() {
         setNavToggled(!navToggled);
 
@@ -33,16 +43,15 @@ export default function ResourcesNavBar(props) {
         }, 500);
     }
 
-    // check page path from props to change color of active nav link
+    /**
+     * Checks page path from props to change color of the active nav link.
+     * 
+     * @param {String} pageToCheck - URL of site to check
+     * @returns {boolean} - True if currently on the desired page
+     */
     function isPageActive(pageToCheck) { 
         return pageToCheck === window.location.pathname ? "current" : "";
     }
-
-    // controls the z-index of the entire component so that the navigation panel
-    // renders on top of the normal navbar
-    // var divStyle = {zIndex: "auto"};
-
-    // if(navToggled) divStyle = {zIndex: "3", position: "relative"};
 
     return(
         <div style={divStyle}>

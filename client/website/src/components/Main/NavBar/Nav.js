@@ -20,14 +20,23 @@ export default function Nav(props) {
     const about = SITE_PAGES.ABOUT_US;
     const contact = SITE_PAGES.CONTACT_US;
 
-    // check current page directly to change color of active nav link
+    /**
+     * Checks page path from props to change color of the active nav link.
+     * 
+     * @param {String} pageToCheck - URL of site to check
+     * @returns {boolean} - True if currently on the desired page
+     */
     function isPageActive(pageToCheck) { 
         return pageToCheck === window.location.pathname ? "current" : "";
     }
 
     return(
         <div class={`navigation ${props.visible}`}>
+
+            {/* Cross icon to close panel on mobile */}
             <img id="cross" src={Cross} onClick={props.toggle} alt="Close Navigation"></img>
+
+            {/* Nav Links */}
             <a class={`nav-option ${isPageActive(home)}`} href={home}>
                 <text>Home</text>
             </a>
