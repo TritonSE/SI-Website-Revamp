@@ -27,6 +27,10 @@
     color: white;
 }
 
+.nav-option.current {
+    background-color: var(--light-orange);
+}
+
 .nav-option:hover {
     color: white;
     background-color: var(--light-orange);

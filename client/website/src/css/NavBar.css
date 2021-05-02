@@ -1,5 +1,10 @@
 @import "palette.css";
 
+.NavBar {
+    position: sticky;
+    top: 0;
+}
+
 .navBar {
     height: 120px;
     width: 100vw;
@@ -11,14 +16,19 @@
 
     background-color: var(--purple);
     color: white;
-
-    overflow-x: hidden;
 }
 
 .nav-left {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    color: inherit;
+}
+
+.nav-left:hover {
+    color: inherit;
+    text-decoration: none;
 }
 
 .nav-left #logo {
@@ -44,4 +54,23 @@
     margin-bottom: -12.5px;
 
     cursor: pointer;
+}
+
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    transition: opacity .5s ease;
+    backdrop-filter: brightness(70%);
+    -webkit-backdrop-filter: brightness(70%);
+    opacity: 0;
+
+    z-index: -1;
+}
+
+.nav-overlay.visible {
+    opacity: 100%;
 }

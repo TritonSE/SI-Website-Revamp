@@ -24,22 +24,28 @@ export default function NavBar() {
     }
 
     return(
-        <div class="navBar">
-            {/* Logo and Branding */}
-            <div class="nav-left">
-                <img src="" alt="Logo" id="logo"></img>
-                <div class="branding">
-                    <h3 id="title">sakyadhita</h3>
-                    <span id="subtitle">international association of buddhist women</span>
-                </div>
-            </div>
+        <div class="NavBar">
+            {/* The actual Navigation Bar */}
+            {/* Overlay and Nav Panel are outside to allow sticky positioning */}
+            <div class="navBar">
+                {/* Logo and Branding */}
+                <a href="/home" class="nav-left">
+                    <img src="" alt="Logo" id="logo"></img>
+                    <div class="branding">
+                        <h3 id="title">sakyadhita</h3>
+                        <span id="subtitle">international association of buddhist women</span>
+                    </div>
+                </a>
 
-            {/* Hamburger Button to Toggle Navigation */}
-            <img src={Hamburger} alt="Toggle Navigation" id="nav-toggle" onClick={toggleNav}></img>
+                {/* Hamburger Button to Toggle Navigation */}
+                <img src={Hamburger} alt="Toggle Navigation" id="nav-toggle" onClick={toggleNav}></img>
+            </div>
 
             {/* Conditionally Rendered Navigation Panel */}
             {navToggled ? <Nav visible="visible"></Nav> : <Nav></Nav>}
 
+            {/* Overlay to darken website content when toggled */}
+            {navToggled ? <div class="nav-overlay visible"></div> : <div class="nav-overlay"></div>}
         </div>
     );
 };
