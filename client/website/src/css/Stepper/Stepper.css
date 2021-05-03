@@ -1,0 +1,9 @@
+.stepper-node {
+  font-size: calc(17px);
+}
+
+.pagination-stepper {
+  width: calc(50%);
+  margin-left: calc(10px);
+  margin-top: calc(-10px);
+}
