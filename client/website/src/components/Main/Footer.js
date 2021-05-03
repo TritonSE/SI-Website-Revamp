@@ -9,10 +9,10 @@ export default function Footer() {
         <div className="Footer-Main-Container">
             <section className="Footer-Pages">
                 <a href={SITE_PAGES.HOME}> Home </a>
-                <a href={SITE_PAGES.HOME}> Conferences </a>
-                <a href={SITE_PAGES.HOME}> Resouces </a>
-                <a href={SITE_PAGES.HOME}> About Us </a>
-                <a href={SITE_PAGES.HOME}> Contact Us </a>
+                <a href={SITE_PAGES.CONFERENCES}> Conferences </a>
+                <a href={SITE_PAGES.RESOURCES_LANDING}> Resouces </a>
+                <a href={SITE_PAGES.ABOUT_US}> About Us </a>
+                <a href={SITE_PAGES.CONTACT_US}> Contact Us </a>
             </section>
             <section className="Footer-Bottom">
                 <section className="Footer-Social-Media">
