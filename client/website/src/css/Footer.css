@@ -106,3 +106,30 @@
     }
 
   }
+
+  @media only screen and (max-width: 300px) {
+   
+    .Footer-Main-Container{
+       padding: 0px;
+    }
+
+    .Footer-Pages {
+        padding: 9vw;
+        height: 70%;
+    }
+
+    .Footer-Pages a{
+        font-size: 16px;
+    }
+
+    .Footer-Bottom{
+        padding: 7vw;
+    }
+
+    .Footer-Social-Media a{
+        padding-right: 0px;
+        padding-left: 5px;
+        font-size: 30px;
+    }
+
+  }
