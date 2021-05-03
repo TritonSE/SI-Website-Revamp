@@ -30,7 +30,7 @@ export default function Nav(props) {
     }
 
     return (
-        <div className={`navigation ${props.visible}`}>
+        <div className={`navigation ${props.visible} ${props.transition}`}>
             {/* Cross icon to close panel on mobile */}
             <button type="button" id="cross" onClick={props.toggle} onKeyDown={props.toggle}>
                 <img src={Cross} alt="Close Navigation" />

@@ -21,11 +21,23 @@ export default function NavBar() {
     // toggles when the hamburger icon is clicked
     const [navToggled, setNavToggled] = useState(false);
 
+    // Removes transition time on the nav panel when not necessary
+    const [navTransition, setNavTransition] = useState("");
+
     /**
      * Handles toggling the navToggled state
      */
     function toggleNav() {
         setNavToggled(!navToggled);
+
+        // Removes transition time when not necessary so that changing
+        // view width does not cause the nav to glitch
+        if (!navTransition) setNavTransition("transition");
+        // If closing navbar, wait for animation to finish
+        else
+            setTimeout(() => {
+                setNavTransition("");
+            }, 500);
     }
 
     return (
@@ -43,7 +55,11 @@ export default function NavBar() {
             </div>
 
             {/* Conditionally Rendered Navigation Panel */}
-            {navToggled ? <Nav visible="visible" toggle={toggleNav} /> : <Nav toggle={toggleNav} />}
+            {navToggled ? (
+                <Nav visible="visible" toggle={toggleNav} transition={navTransition} />
+            ) : (
+                <Nav toggle={toggleNav} transition={navTransition} />
+            )}
 
             {/* Overlay to darken website content when toggled */}
             {navToggled ? <div className="nav-overlay visible" /> : <div className="nav-overlay" />}
