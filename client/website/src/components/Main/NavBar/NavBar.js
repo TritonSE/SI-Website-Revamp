@@ -14,6 +14,7 @@ import "../../../css/NavBar.css";
 import Hamburger from "../../../media/hamburger.svg";
 
 import Nav from "./Nav";
+import Brand from "../Brand";
 
 export default function NavBar() {
     // Tells the navigation panel whether or not to render
@@ -33,13 +34,7 @@ export default function NavBar() {
             {/* Overlay and Nav Panel are outside to allow sticky positioning */}
             <div className="navBar">
                 {/* Logo and Branding */}
-                <a href="/home" className="nav-left">
-                    <img src="" alt="Logo" id="logo" />
-                    <div className="branding">
-                        <h3 id="title">sakyadhita</h3>
-                        <span id="subtitle">international association of buddhist women</span>
-                    </div>
-                </a>
+                <Brand />
 
                 {/* Hamburger Button to Toggle Navigation */}
                 <button type="button" id="nav-toggle" onClick={toggleNav} onKeyDown={toggleNav}>

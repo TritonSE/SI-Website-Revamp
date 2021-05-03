@@ -1,10 +1,9 @@
 .navigation {
   position: absolute;
   top: 120px;
-  right: -410px;
+  right: max(-350px, -17vw);
   height: calc(100vh - 120px);
-  width: 410px;
-  padding-top: 70px;
+  width: min(350px, 17vw);
 
   display: flex;
   flex-direction: column;
@@ -20,17 +19,17 @@
 
 .nav-option {
   width: 100%;
-  height: calc((100vh - 190px) / 5);
+  height: calc((100vh - 120px) / 5);
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 75px;
+  padding-left: calc(1.9vw + 2px);
 }
 
 .nav-option text {
   font-family: var(--header-font);
-  font-size: 2.25em;
+  font-size: min(1.25em, 2vw);
   color: white;
 }
 
