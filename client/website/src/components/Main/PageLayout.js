@@ -8,7 +8,7 @@ export default function PageLayout(props) {
         <div>
            <NavBar/>
             {props.children}
-           <Footer/>
+            <Footer/>
         </div>
     );
 };

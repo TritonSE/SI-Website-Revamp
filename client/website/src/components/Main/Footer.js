@@ -19,15 +19,20 @@ export default function Footer() {
                     <a href="https://material-ui.com/components/icons/">
                         <AiOutlineFacebook 
                         style={{color: "white"}}
-                        // onMouseOver={({target})=>target.style.color='red'} 
-                        // onMouseOut={({target})=>target.style.color='white'}
+                        onMouseOut={({target})=>target.style.color='white'}
+                        onMouseOver={({target})=>target.style.color='#EA8644'} 
                         />
                     </a>
-                    <AiOutlineInstagram style={{color: "white"}}/>
+                    <a href="https://material-ui.com/components/icons/">
+                        <AiOutlineInstagram 
+                        style={{color: "white"}}
+                        onMouseOut={({target})=>target.style.color='white'}
+                        onMouseOver={({target})=>target.style.color='#EA8644'} 
+                        />
+                    </a>
                 </section>
                 <p> logo </p>
-
             </section>
-        </div>
+         </div>
     );
 };
