@@ -2,8 +2,8 @@
 .Footer-Main-Container::before {
     content: "";
     position: absolute;
-    margin-left: 0;
-    margin-right: 0;
+    left: 0;
+    right: 0;
     z-index: -1;
 
     display: block;
@@ -21,8 +21,8 @@
 /* Content */
 .Footer-Main-Container{
     position: absolute;
-    margin-left: 0;
-    margin-right: 0;
+    left: 0;
+    right: 0;
     z-index: 0;
 
     background-color: #8578ba;
@@ -52,6 +52,7 @@
     font-weight: 700;
     font-size: 20px;
     text-transform: capitalize;
+    text-decoration-color: #EA8644;
 }
 
 .Footer-Bottom{
@@ -77,25 +78,26 @@
 @media only screen and (max-width: 700px) {
    
     .Footer-Main-Container{
+        overflow: hidden;
        flex-direction: row;
-       padding: 40px;
-       align-items: none;
+       padding: 0px;
+       align-items: flex-start;
     }
 
     .Footer-Pages {
-        height: 100%;
+        padding: 10vw;
         flex-direction: column;
         justify-content: space-between;
-        /* background-color: rgb(31, 169, 219); */
+        height: 80%;
     }
 
     .Footer-Bottom{
+        padding: 10vw;
         flex-direction: column;
         margin-top: 0;
         justify-content: space-between;
         align-items: flex-end;
         height: 100%;
-        background-color: rgb(180, 34, 82);
     }
 
     .Footer-Social-Media a{
