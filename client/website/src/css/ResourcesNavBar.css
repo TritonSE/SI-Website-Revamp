@@ -122,7 +122,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 75px;
+    padding-left: calc(50vw - 90px);
   }
 
   .resources-link text {

@@ -82,6 +82,7 @@
 
   .nav-option {
     height: 60px;
+    padding-left: calc(50vw - 60px);
   }
 
   .nav-option text {
