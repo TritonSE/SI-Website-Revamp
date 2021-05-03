@@ -10,7 +10,6 @@
 import React, { useState } from "react";
 
 import "../../../css/NavBar.css";
-// import Logo from "../../../media/logo.png";
 import Hamburger from "../../../media/hamburger.svg";
 
 import Nav from "./Nav";

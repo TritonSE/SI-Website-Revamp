@@ -10,6 +10,7 @@
 import React from "react";
 
 import "../../css/Brand.css";
+import Logo from "../../media/logo.svg";
 
 export default function Brand(props) {
     let brandStyle = {};
@@ -23,7 +24,7 @@ export default function Brand(props) {
 
     return (
         <a href="/home" className="nav-left" style={brandStyle}>
-            <img src="" alt="Logo" id="logo" />
+            <img src={Logo} alt="Logo" id="logo" />
             <div className="branding" style={textStyle}>
                 <h3 id="title">sakyadhita</h3>
                 <span id="subtitle">international association of buddhist women</span>

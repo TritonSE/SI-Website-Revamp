@@ -11,7 +11,7 @@
 .navBar {
   height: 120px;
   width: 100vw;
-  padding: 0 60px;
+  padding: 0 55px;
 
   display: flex;
   justify-content: space-between;
@@ -71,23 +71,6 @@
     padding: 0 25px;
 
     box-shadow: none;
-  }
-
-  .nav-left #logo {
-    height: 36px;
-  }
-
-  .nav-left .branding {
-    margin-left: 5px;
-  }
-
-  .nav-left #title {
-    font-size: 1.125em;
-    margin: 0;
-  }
-
-  .branding #subtitle {
-    display: none;
   }
 
   #nav-toggle {
