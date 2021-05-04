@@ -25,7 +25,7 @@ export default function ResourcesNavBar(props) {
 
     // Controls the z-index of the entire component so that the navigation panel
     // renders on top of the normal navbar
-    const [divStyle, setDivStyle] = useState({ zIndex: "auto" });
+    const [divStyle, setDivStyle] = useState({ zIndex: "999" });
 
     /**
      * Handles toggling the navToggled state. Because the slide animation
@@ -35,10 +35,10 @@ export default function ResourcesNavBar(props) {
     function toggleNav() {
         setNavToggled(!navToggled);
 
-        if (!navToggled) setDivStyle({ zIndex: "3", position: "relative" });
+        if (!navToggled) setDivStyle({ zIndex: "1001", position: "relative" });
         else
             setTimeout(() => {
-                setDivStyle({ zIndex: "auto" });
+                setDivStyle({ zIndex: "999" });
             }, 500);
     }
 

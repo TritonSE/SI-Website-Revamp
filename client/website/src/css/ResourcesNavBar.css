@@ -15,6 +15,7 @@
   align-items: center;
 
   background-color: var(--orange);
+  z-index: 999;
 }
 
 .resources-nav #cross {
@@ -58,6 +59,7 @@
     right: 25px;
     height: 35px;
     width: 35px;
+    z-index: 99;
 
     display: flex;
     justify-content: center;
