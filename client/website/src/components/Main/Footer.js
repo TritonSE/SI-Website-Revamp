@@ -1,9 +1,8 @@
 /**
- * Renders the responsive Footer component for the general website. Footer is coded to always exist at the end of
- * the page, regardless of how much content exists within the page. This constraint can be seen in PageLayout.js for
- * further information, or when the the height of the Footer is updated in the future.
+ * Renders the responsive Footer component for the general website. Footer is coded to display after end of all content,
+ * but is not guranteed to be always at the bottom of the page for small content pages. 
  *
- * This component has no dependencies (aside from constraint in PageLayout.js), and works independently.
+ * This component has no dependencies, and works independently.
  *
  * @author Amrit Kaur Singh
  */
@@ -15,28 +14,30 @@ import "../../css/Footer.css";
 
 export default function Footer() {
 
+    // max width size that mobile view will be rendered
     const MAX_MOBILE_VIEW_WIDTH = 750;
 
     const [windowSize, setWindowSize] = useState({
         width: undefined
     });
 
+    // track window resizes to determine rerender
       useEffect(() => {
-        // Handler to call on window resize
         function handleResize() {
-          // Set window width/height to state
           setWindowSize({
             width: window.innerWidth
           });
         }
         // Add event listener
         window.addEventListener("resize", handleResize);
-        // Call handler right away so state gets updated with initial window size
         handleResize();
+
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
       }, []); // Empty array ensures that effect is only run on mount
 
+
+    // desktop rendering 
     if(windowSize.width > MAX_MOBILE_VIEW_WIDTH){
         
         return (
@@ -86,7 +87,9 @@ export default function Footer() {
             </div>
         );
 
-    } else{
+    } 
+
+    // mobile rendering 
 
         return (
     
@@ -138,5 +141,4 @@ export default function Footer() {
             </div>
         );
 
-    }
 }
