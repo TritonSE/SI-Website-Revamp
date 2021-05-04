@@ -51,6 +51,10 @@
   font-weight: 700;
   font-size: 20px;
   text-transform: capitalize;
+}
+
+.Footer-Pages a:hover{
+  color: var(--white);
   text-decoration-color: var(--darkorange);
 }
 
