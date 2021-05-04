@@ -14,4 +14,4 @@ export default function PageLayout(props) {
             <Footer/>
         </body>
     );
-};
+}

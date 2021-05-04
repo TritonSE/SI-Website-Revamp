@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Home() {
-    return(
+    return (
         <div>
             <p> This is the Home Page </p>
             <p>
@@ -35,4 +35,4 @@ export default function Home() {
             
         </div>
     );
-};
+}

@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "dotenv": "^8.2.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
@@ -17,7 +18,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write .",
+    "lint-fix": "(eslint --fix --cache --report-unused-disable-directives . || true) && prettier --write .",
+    "lint-check": "eslint --cache --report-unused-disable-directives . && prettier --check .",
+    "prepare": "cd ../.. && husky install .husky"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +41,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.13.14",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
+    "prettier": "^2.2.1"
   }
 }

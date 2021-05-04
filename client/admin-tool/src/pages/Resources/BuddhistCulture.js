@@ -1,9 +1,9 @@
 import React from "react";
 
 export default function BuddhistCulture() {
-    return(
+    return (
         <div>
             <p> This is the BuddhistCulture Page </p>
         </div>
     );
-};
+}
