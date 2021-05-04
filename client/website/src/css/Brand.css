@@ -1,0 +1,50 @@
+.nav-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-left:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-left #logo {
+  height: 90px;
+}
+
+.nav-left .branding {
+  margin-left: 10px;
+}
+
+.branding #title {
+  font-family: var(--header-font);
+  font-size: 1.5em;
+}
+
+.branding #subtitle {
+  font-family: var(--body-font);
+  font-size: 1.125em;
+}
+
+@media only screen and (max-width: 600px), (max-height: 600px) {
+  .nav-left #logo {
+    height: 36px;
+  }
+
+  .nav-left .branding {
+    margin-left: 5px;
+  }
+
+  .nav-left #title {
+    font-size: 1.125em;
+    margin: 0;
+  }
+
+  .branding #subtitle {
+    display: none;
+  }
+}
