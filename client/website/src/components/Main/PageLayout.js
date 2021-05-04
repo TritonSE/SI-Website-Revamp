@@ -4,7 +4,6 @@ import Footer from "./Footer";
 
 export default function PageLayout(props) {
     return (
-
         <div style={{ overflowX: "hidden", height: "100vh" }}>
             <NavBar />
             {props.children}

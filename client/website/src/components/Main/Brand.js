@@ -13,9 +13,11 @@ import "../../css/Brand.css";
 import Logo from "../../media/logo.svg";
 
 export default function Brand(props) {
-
     return (
-        <a href={SITE_PAGES.HOME} className={props.location === "footer" ? "footer-brand": "nav-left"}>
+        <a
+            href={SITE_PAGES.HOME}
+            className={props.location === "footer" ? "footer-brand" : "nav-left"}
+        >
             <img src={Logo} alt="Logo" id="logo" />
             <div className="branding">
                 <h3 id="title">sakyadhita</h3>
