@@ -8,24 +8,16 @@
  */
 
 import React from "react";
-
+import { SITE_PAGES } from "../../constants/links";
 import "../../css/Brand.css";
 import Logo from "../../media/logo.svg";
 
 export default function Brand(props) {
-    let brandStyle = {};
-    let textStyle = {};
-
-    // If used in the footer, renders elements in reverse and text from the right
-    if (props.location === "footer") {
-        brandStyle = { justifyContent: "flex-end", flexDirection: "row-reverse" };
-        textStyle = { textAlign: "right" };
-    }
 
     return (
-        <a href="/home" className="nav-left" style={brandStyle}>
+        <a href={SITE_PAGES.HOME} className={props.location === "footer" ? "footer-brand": "nav-left"}>
             <img src={Logo} alt="Logo" id="logo" />
-            <div className="branding" style={textStyle}>
+            <div className="branding">
                 <h3 id="title">sakyadhita</h3>
                 <span id="subtitle">international association of buddhist women</span>
             </div>

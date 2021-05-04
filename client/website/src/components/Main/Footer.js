@@ -9,6 +9,7 @@
  */
 import React from "react";
 import { AiOutlineFacebook, AiOutlineInstagram } from "react-icons/ai";
+import Brand from "./Brand";
 import { SITE_PAGES } from "../../constants/links";
 import "../../css/Footer.css";
 
@@ -54,7 +55,7 @@ export default function Footer() {
                         </a>
                     </section>
                     {/* site logo */}
-                    <p> logo </p>
+                    <Brand location="footer"/>
                 </section>
             </div>
         </div>
