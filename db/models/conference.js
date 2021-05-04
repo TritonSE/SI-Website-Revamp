@@ -1,3 +1,9 @@
+/**
+ * This file defines the Sequilize schema for Conferences.
+ *
+ * @summary   defines schema for Conferences.
+ * @author    Thomas Garry
+ */
 const Sequelize = require("sequelize");
 const db = require("../configDB");
 
