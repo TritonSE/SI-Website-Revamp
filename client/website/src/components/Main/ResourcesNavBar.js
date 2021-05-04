@@ -76,7 +76,7 @@ export default function ResourcesNavBar(props) {
                     <text>Buddhist Culture</text>
                 </a>
                 <a className={`resources-link ${isPageActive(ordination)}`} href={ordination}>
-                    <text>Oridnation Issue</text>
+                    <text>Ordination Issue</text>
                 </a>
             </div>
 
