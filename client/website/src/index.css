@@ -1,5 +1,5 @@
-@import './constants/colorPalette.css';
-@import './constants/fonts.css';
+@import "./constants/colorPalette.css";
+@import "./constants/fonts.css";
 
 body {
   margin: 0;
