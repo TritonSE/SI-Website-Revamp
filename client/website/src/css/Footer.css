@@ -11,6 +11,7 @@
   height: 375px;
 
   background-image: url("https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2996&q=80");
+  /* allows for a purple tint on image */
   box-shadow: inset 0 0 0 1000px rgba(26, 23, 194, 0.4);
   border-radius: 5px;
   filter: blur(9px);
@@ -19,7 +20,7 @@
   background-repeat: no-repeat, no-repeat;
 }
 
-/* Content */
+/* Content - Exists on top of image */
 .Footer-Main-Container {
   position: absolute;
   left: 0;
