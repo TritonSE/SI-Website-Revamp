@@ -55,7 +55,7 @@ export default function Footer() {
                             {/* facebook */}
                             <a href="https://www.facebook.com/">
                                 <AiOutlineFacebook
-                                    style={{ color: "white", borderRadius: "100px" }}
+                                    style={{ color: "white", borderRadius: "20px" }}
                                     onMouseOut={({ target }) => {
                                         target.style.color = "white";
                                     }}
@@ -106,7 +106,7 @@ export default function Footer() {
                         {/* facebook */}
                         <a href="https://www.facebook.com/">
                             <AiOutlineFacebook
-                                style={{ color: "white", borderRadius: "100px" }}
+                                style={{ color: "white", borderRadius: "20px" }}
                                 onMouseOut={({ target }) => {
                                     target.style.color = "white";
                                 }}
