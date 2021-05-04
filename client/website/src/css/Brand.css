@@ -74,9 +74,17 @@
   }
 }
 
+/* Special Footer Mobile Views */
 @media only screen and (max-width: 750px){
   .footer-brand #logo {
-    height: 80px;
+    height: max(80px, 13vw);
+  }
+
+}
+
+@media only screen and (max-width: 650px){
+  .footer-brand #logo {
+    height: max(80px, 13vw);
   }
 
   .footer-brand .branding {
