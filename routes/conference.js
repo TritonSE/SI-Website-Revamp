@@ -87,7 +87,7 @@ router.put(
 
         // success / failure upon edit
         const entries = await edit(Number(id), req.body);
-        if (entries === 1) return res.status(200).json({ message: "success" });
+        if (entries[0] === 1) return res.status(200).json({ message: "success" });
         return res.status(501).json({ message: "unsuccessful edit" });
     }
 );

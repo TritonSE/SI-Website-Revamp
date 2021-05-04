@@ -34,17 +34,7 @@ async function create(data) {
  */
 async function edit(index, body) {
     // make sure slideShowImages array is not empty
-    if (body.slideShowImages !== undefined && body.slideShowImages.urls.length > 0) {
-        return Conference.update(
-            { body },
-            {
-                where: {
-                    id: index,
-                },
-            }
-        );
-    }
-    if (body !== undefined && body.slideShowImages === undefined) {
+    if (body !== undefined) {
         return Conference.update(body, {
             where: {
                 id: index,
