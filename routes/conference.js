@@ -1,5 +1,5 @@
 const express = require("express");
-const { create } = require("../db/services/conference");
+const { create, getAll } = require("../db/services/conference");
 const { isValidated } = require("../middleware/validation");
 
 const router = express.Router();
@@ -13,6 +13,11 @@ router.post("/addConference", [isValidated], async (req, res) => {
         console.log(err);
         return res.status(400).json({ message: err });
     }
+});
+
+router.get("/getAllConferences", [isValidated], async (req, res) => {
+    const entries = await getAll();
+    return res.status(200).json(entries);
 });
 
 module.exports = router;
