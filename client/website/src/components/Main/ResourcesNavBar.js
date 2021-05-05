@@ -25,7 +25,7 @@ export default function ResourcesNavBar(props) {
 
     // Controls the z-index of the entire component so that the navigation panel
     // renders on top of the normal navbar
-    const [divStyle, setDivStyle] = useState({ zIndex: "auto" });
+    const [divStyle, setDivStyle] = useState({ zIndex: "999" });
 
     /**
      * Handles toggling the navToggled state. Because the slide animation
@@ -35,10 +35,10 @@ export default function ResourcesNavBar(props) {
     function toggleNav() {
         setNavToggled(!navToggled);
 
-        if (!navToggled) setDivStyle({ zIndex: "3", position: "relative" });
+        if (!navToggled) setDivStyle({ zIndex: "1001" });
         else
             setTimeout(() => {
-                setDivStyle({ zIndex: "auto" });
+                setDivStyle({ zIndex: "999" });
             }, 500);
     }
 
@@ -53,13 +53,13 @@ export default function ResourcesNavBar(props) {
     }
 
     return (
-        <div style={divStyle}>
+        <>
             {/* Button to toggle menu on mobile */}
             <button id="left-arrow" onClick={toggleNav} onKeyDown={toggleNav} type="button">
                 <img src={LeftArrow} alt="Toggle Resources Navigation" />
             </button>
 
-            <div className={`resources-nav ${navToggled ? "toggled" : ""}`}>
+            <div className={`resources-nav ${navToggled ? "toggled" : ""}`} style={divStyle}>
                 {/* Button to close menu on mobile */}
                 <button id="cross" onClick={toggleNav} onKeyDown={toggleNav} type="button">
                     <img src={Cross} alt="Close Resources Navigation" />
@@ -82,6 +82,6 @@ export default function ResourcesNavBar(props) {
 
             {/* Allows for remanining page content to be rendered */}
             {props.children}
-        </div>
+        </>
     );
 }
