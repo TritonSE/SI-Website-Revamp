@@ -42,8 +42,8 @@
   height: 20px;
   margin: 11px;
   border-radius: 50%;
-  color: white;
-  border: 10px solid white;
+  color: var(--white);
+  border: 10px solid var(--white);
 }
 .indicators > .dot {
   width: 20px;
@@ -58,7 +58,7 @@
   height: 20px;
   margin: 11px;
   border-radius: 50%;
-  color: white;
-  border: 10px solid white;
+  color: var(--white);
+  border: 10px solid var(--white);
   cursor: pointer;
 }
