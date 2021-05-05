@@ -58,6 +58,7 @@
   font-size: 1.125em;
 }
 
+/* NavBar Mobile Views */
 @media only screen and (max-width: 600px), (max-height: 600px) {
   .nav-left #logo {
     height: 36px;
@@ -77,10 +78,14 @@
   }
 }
 
-/* Special Footer Mobile Views */
+/* Footer Mobile Views */
 @media only screen and (max-width: 750px) {
   .footer-brand #logo {
-    height: max(80px, 13vw);
+    height: max(80px, 17vw);
+  }
+
+  .footer-brand #title {
+    font-size: 1.45em;
   }
 }
 

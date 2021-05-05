@@ -13,6 +13,9 @@ import { SITE_PAGES } from "../../constants/links";
 import "../../css/Footer.css";
 
 export default function Footer() {
+    const FACEBOOK_LINK = "https://www.facebook.com/";
+    const INSTAGRAM_LINK = "https://www.instagram.com/";
+
     // max width size that mobile view will be rendered
     const MAX_MOBILE_VIEW_WIDTH = 750;
 
@@ -53,7 +56,7 @@ export default function Footer() {
                         {/* social media icons + links */}
                         <section className="Footer-Social-Media">
                             {/* facebook */}
-                            <a href="https://www.facebook.com/">
+                            <a href={FACEBOOK_LINK} target="_blank" rel="noreferrer">
                                 <AiOutlineFacebook
                                     style={{ color: "white", borderRadius: "20px" }}
                                     onMouseOut={({ target }) => {
@@ -65,7 +68,7 @@ export default function Footer() {
                                 />
                             </a>
                             {/* instagram */}
-                            <a href="https://www.instagram.com/">
+                            <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer">
                                 <AiOutlineInstagram
                                     style={{ color: "white" }}
                                     onMouseOut={({ target }) => {
@@ -104,7 +107,7 @@ export default function Footer() {
                     {/* social media icons + links */}
                     <section className="Footer-Social-Media">
                         {/* facebook */}
-                        <a href="https://www.facebook.com/">
+                        <a href={FACEBOOK_LINK} target="_blank" rel="noreferrer">
                             <AiOutlineFacebook
                                 style={{ color: "white", borderRadius: "20px" }}
                                 onMouseOut={({ target }) => {
@@ -116,7 +119,7 @@ export default function Footer() {
                             />
                         </a>
                         {/* instagram */}
-                        <a href="https://www.instagram.com/">
+                        <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer">
                             <AiOutlineInstagram
                                 style={{ color: "white" }}
                                 onMouseOut={({ target }) => {
