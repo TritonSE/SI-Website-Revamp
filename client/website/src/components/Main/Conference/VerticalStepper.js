@@ -1,10 +1,13 @@
 /**
- * The Vertical Stepper used in the following classes
- *   - Conferences
+ * The Vertical Stepper is a component used for displaying
+ * a list of items in a orderly fashion. This will be a
+ * reusable component and has the following properties:
  *
  * Takes in the following as props
- *   - Color
- *   -
+ *   color - string - prop to determine color of the stepper
+ *   setParentIndex - number - used to update the parent index
+ *   height - string - height of the stepper
+ *   items - object - items consist of title and number
  *
  * @summary     Vertical Stepper class
  * @author      Amitesh Sharma
@@ -19,78 +22,72 @@ import { StepButton, StepLabel } from "@material-ui/core";
 import CustomPagination from "./Pagination";
 import "../../../css/Stepper/Stepper.css";
 
-const useStyles = makeStyles(() => ({
-    root: {
-        width: "15%",
-        color: "#454322",
-        border: "1px solid black",
-    },
-    step_label_root: {
-        fontSize: "18px",
-        color: "#6652A0",
-        fontWeight: "500",
-        width: "calc(200px)",
-        textAlign: "left",
-        marginLeft: "calc(20px)",
-    },
-    icon_container: {
-        width: "25px",
-        height: "25px",
-        justifyContent: "center",
-    },
-    button: {
-        width: "20px",
-        height: "20px",
-        backgroundColor: "transparent",
-        border: "4px solid #6652A0",
-        borderRadius: "50%",
-    },
-    buttonActive: {
-        width: "20px",
-        height: "20px",
-        backgroundColor: "#6652A0",
-        border: "4px solid #6652A0",
-        borderRadius: "50%",
-        color: "white",
-    },
-}));
-
-const ColorlibConnector = withStyles({
-    line: {
-        marginTop: "calc(5.5px)",
-        width: 3,
-        border: 0,
-        backgroundColor: "#6652A0",
-        borderRadius: 1,
-        marginLeft: "calc(0.5px)",
-    },
-})(StepConnector);
-
-function getSteps() {
-    return [
-        "New",
-        "United States",
-        "Country",
-        "Country",
-        "Country",
-        "Country",
-        "Country",
-        "Country",
-        "Country",
-        "Country",
-        "Country",
-        "Country",
-        "Country",
-    ];
-}
-
 const stepperNode = (index) => <div className="stepper-node">{`${index + 1}th`}</div>;
 
-export default function VerticalStepper() {
+export default function VerticalStepper(props) {
+    const useStyles = makeStyles(() => ({
+        root: {
+            minWidth: "calc(12vw)",
+            margin: "8vh 0vw 9vh 8vw",
+        },
+        stepDiv: {
+            minHeight: "calc(666.5px)",
+        },
+        step_label_root: {
+            fontSize: "18px",
+            color: props.color,
+            fontWeight: "500",
+            width: "calc(200px)",
+            textAlign: "left",
+            marginLeft: "calc(15px)",
+        },
+        icon_container: {
+            width: "32px",
+            height: "24px",
+            justifyContent: "center",
+        },
+        button: {
+            width: "25px",
+            height: "25px",
+            backgroundColor: "transparent",
+            border: `3px solid ${props.color}`,
+            borderRadius: "50%",
+        },
+        buttonActive: {
+            width: "25px",
+            height: "25px",
+            backgroundColor: "#6652A0",
+            border: `2px solid ${props.color}`,
+            borderRadius: "50%",
+            color: "white",
+            transform: "scale(1.15)",
+        },
+    }));
+
+    const ColorlibConnector = withStyles({
+        line: {
+            marginTop: "calc(5.5px)",
+            width: 3,
+            border: 0,
+            backgroundColor: props.color,
+            borderRadius: 1,
+            marginLeft: "calc(2px)",
+        },
+    })(StepConnector);
+
+    function getSteps() {
+        const arr = [];
+        for (let i = 0; i < props.items.length; i++) {
+            arr.push(props.items[i].location.split(",")[1]);
+        }
+
+        return arr;
+    }
+
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [indices, setIndices] = useState([0, 10]);
+    const [indices, setIndices] = useState([0, 9]);
     const [splitSteps, setSplitSteps] = useState(getSteps());
     const steps = getSteps();
 
@@ -105,43 +102,46 @@ export default function VerticalStepper() {
     const handleStep = (step) => {
         setActiveStep(step);
         setActiveIndex(step);
+        props.setParentIndex(step);
     };
 
     const updatePage = (index) => {
-        setIndices([(index - 1) * 10, index * 10]);
+        setIndices([(index - 1) * 9, index * 9]);
     };
 
     return (
         <div className={classes.root}>
-            <Stepper
-                nonLinear
-                activeStep={activeStep}
-                orientation="vertical"
-                connector={<ColorlibConnector />}
-            >
-                {splitSteps.map((label, index) => (
-                    <Step key={label}>
-                        <StepButton
-                            onClick={() => handleStep(index)}
-                            classes={
-                                activeIndex === index
-                                    ? { root: classes.buttonActive }
-                                    : { root: classes.button }
-                            }
-                            icon={stepperNode(index)}
-                        >
-                            <StepLabel
-                                classes={{
-                                    label: classes.step_label_root,
-                                    iconContainer: classes.icon_container,
-                                }}
+            <div className={classes.stepDiv}>
+                <Stepper
+                    nonLinear
+                    activeStep={activeStep}
+                    orientation="vertical"
+                    connector={<ColorlibConnector />}
+                >
+                    {splitSteps.map((label, index) => (
+                        <Step>
+                            <StepButton
+                                onClick={() => handleStep(index)}
+                                classes={
+                                    activeIndex === index
+                                        ? { root: classes.buttonActive }
+                                        : { root: classes.button }
+                                }
+                                icon={stepperNode(index)}
                             >
-                                {label}
-                            </StepLabel>
-                        </StepButton>
-                    </Step>
-                ))}
-            </Stepper>
+                                <StepLabel
+                                    classes={{
+                                        label: classes.step_label_root,
+                                        iconContainer: classes.icon_container,
+                                    }}
+                                >
+                                    {label}
+                                </StepLabel>
+                            </StepButton>
+                        </Step>
+                    ))}
+                </Stepper>
+            </div>
 
             <div className="pagination-stepper">
                 <CustomPagination count={steps.length} updatePage={updatePage} />

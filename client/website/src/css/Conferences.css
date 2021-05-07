@@ -1,0 +1,134 @@
+body {
+  font-family: var(--text-font);
+}
+
+/* The Conferences page */
+.conference-container {
+  width: 100%;
+}
+
+/* Rendering the main components on the page */
+.component-display {
+  display: flex;
+  flex-direction: row;
+}
+
+.conference-container {
+  width: calc(25vw);
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Conference information */
+
+.conference-info {
+  width: calc(22vw);
+  margin: 15.5vh 2vw 9vh 1vw;
+}
+
+.conference-info-title h1 {
+  font-size: calc(35px);
+  font-weight: 700;
+  font-family: var(--heading-font);
+}
+
+.conference-info-location {
+  padding-bottom: calc(1.5vh);
+}
+
+.conference-info-resource-title {
+  padding-bottom: calc(1.5vh);
+  width: calc(16vw);
+}
+
+.conference-info-resource-title h4 {
+  font-size: calc(20.5px);
+}
+
+.conference-info-divider {
+  border: 1px solid var(--orange);
+  width: calc(16vw);
+  color: white;
+  background-color: var(--orange);
+  font-size: calc(18px);
+  margin-bottom: calc(1.5vh);
+  padding-left: calc(0.5vw);
+}
+
+.program-divider {
+  margin-bottom: calc(2vh);
+}
+
+.program {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  margin-bottom: calc(-1vh);
+  width: calc(16vw);
+  color: black;
+  text-decoration: none;
+}
+
+.program p {
+  margin-left: calc(0.5vw);
+  margin-top: calc(-0.4vh);
+}
+
+.conference-info-signup {
+  padding-bottom: calc(1.5vh);
+}
+
+.conference-info-signup button {
+  border: none;
+  border-left: none;
+  background-color: var(--orange);
+  color: var(--white);
+  font-family: var(--text-font);
+  font-size: calc(20px);
+  padding: 0.5vh 2vw 0.5vh 2vw;
+  border-radius: calc(1vw);
+  font-weight: 600;
+}
+
+/* Slideshow section  */
+
+.slideshow-section {
+  width: calc(80vw);
+  margin: 9.5vh 2vw 9vh 1vw;
+}
+
+.slideshow-section-theme-active,
+.slideshow-section-overview-active {
+  border: none;
+  border-left: none;
+  background-color: var(--orange);
+  color: var(--white);
+  font-family: var(--text-font);
+  font-size: calc(18px);
+  width: calc(8vw);
+  height: calc(4.5vh);
+  border-radius: calc(1vw);
+  font-weight: 600;
+  margin-left: calc(2vw);
+  margin-bottom: calc(2vh);
+}
+
+.slideshow-section-theme,
+.slideshow-section-overview {
+  border: 1.2px solid var(--black);
+  background-color: transparent;
+  color: var(--black);
+  font-family: var(--text-font);
+  font-size: calc(18px);
+  width: calc(8vw);
+  height: calc(4.5vh);
+  border-radius: calc(3vw);
+  font-weight: 600;
+  margin-left: calc(2vw);
+  margin-bottom: calc(2vh);
+}
+
+.slideshow-section-theme-active,
+.slideshow-section-theme {
+  margin-left: 0;
+}

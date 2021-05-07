@@ -3,7 +3,7 @@
 }
 
 .pagination-stepper {
-  width: calc(50%);
+  min-width: calc(50%);
   margin-left: calc(10px);
-  margin-top: calc(-10px);
+  margin-top: calc(-55px);
 }
