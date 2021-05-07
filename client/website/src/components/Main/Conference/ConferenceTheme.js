@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../Modal";
 import "../../../css/Conferences.css";
 
 export default function ConferenceTheme(props) {
+    const [open, setOpen] = useState(false);
+
     const redirect = () => {
-        window.location.href(props.redirect);
+        setOpen(!open);
     };
+
+    const hide = () => setOpen(false);
+
     return (
         <div className="conference-info">
             <section className="conference-info-title">
@@ -22,6 +28,8 @@ export default function ConferenceTheme(props) {
             </section>
 
             <p>{props.theme} </p>
+
+            <Modal open={open} hide={hide} />
         </div>
     );
 }

@@ -4,7 +4,7 @@ body {
 
 /* The Conferences page */
 .conference-container {
-  width: 100%;
+  min-width: 100%;
 }
 
 /* Rendering the main components on the page */
@@ -14,6 +14,7 @@ body {
 }
 
 .conference-container {
+  min-width: 440px;
   width: calc(25vw);
   display: flex;
   justify-content: flex-start;
@@ -22,6 +23,7 @@ body {
 /* Conference information */
 
 .conference-info {
+  min-width: 400px;
   width: calc(22vw);
   margin: 15.5vh 2vw 9vh 1vw;
 }
@@ -93,7 +95,9 @@ body {
 /* Slideshow section  */
 
 .slideshow-section {
-  width: calc(80vw);
+  /* min-width: calc(70vw);
+  width: calc(80vw); */
+  min-width: 100%;
   margin: 9.5vh 2vw 9vh 1vw;
 }
 
@@ -105,9 +109,9 @@ body {
   color: var(--white);
   font-family: var(--text-font);
   font-size: calc(18px);
-  width: calc(8vw);
-  height: calc(4.5vh);
-  border-radius: calc(1vw);
+  min-width: calc(8vw);
+  min-height: calc(4.5vh);
+  border-radius: calc(3vw);
   font-weight: 600;
   margin-left: calc(2vw);
   margin-bottom: calc(2vh);
@@ -120,8 +124,8 @@ body {
   color: var(--black);
   font-family: var(--text-font);
   font-size: calc(18px);
-  width: calc(8vw);
-  height: calc(4.5vh);
+  min-width: calc(8vw);
+  min-height: calc(4.5vh);
   border-radius: calc(3vw);
   font-weight: 600;
   margin-left: calc(2vw);

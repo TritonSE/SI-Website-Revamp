@@ -22,12 +22,28 @@ import { StepButton, StepLabel } from "@material-ui/core";
 import CustomPagination from "./Pagination";
 import "../../../css/Stepper/Stepper.css";
 
-const stepperNode = (index) => <div className="stepper-node">{`${index + 1}th`}</div>;
+const ordinal_suffix_of = (i) => {
+    const ones = i % 10;
+    const hundreds = i % 100;
+
+    if (ones === 1 && hundreds !== 11) {
+        return `${i}st`;
+    }
+    if (ones === 2 && hundreds !== 12) {
+        return `${i}nd`;
+    }
+    if (ones === 3 && hundreds !== 13) {
+        return `${i}rd`;
+    }
+    return `${i}st`;
+};
+
+const stepperNode = (index) => <div className="stepper-node">{ordinal_suffix_of(index)}</div>;
 
 export default function VerticalStepper(props) {
     const useStyles = makeStyles(() => ({
         root: {
-            minWidth: "calc(12vw)",
+            minWidth: "190px",
             margin: "8vh 0vw 9vh 8vw",
         },
         stepDiv: {
@@ -78,7 +94,12 @@ export default function VerticalStepper(props) {
     function getSteps() {
         const arr = [];
         for (let i = 0; i < props.items.length; i++) {
-            arr.push(props.items[i].location.split(",")[1]);
+            const obj = {};
+            const two = props.items[i].location.split(",").splice(1, 1);
+            obj.location = two;
+            obj.number = props.items[i].number;
+
+            arr.push(obj);
         }
 
         return arr;
@@ -118,7 +139,7 @@ export default function VerticalStepper(props) {
                     orientation="vertical"
                     connector={<ColorlibConnector />}
                 >
-                    {splitSteps.map((label, index) => (
+                    {splitSteps.map((step, index) => (
                         <Step>
                             <StepButton
                                 onClick={() => handleStep(index)}
@@ -127,7 +148,7 @@ export default function VerticalStepper(props) {
                                         ? { root: classes.buttonActive }
                                         : { root: classes.button }
                                 }
-                                icon={stepperNode(index)}
+                                icon={stepperNode(step.number)}
                             >
                                 <StepLabel
                                     classes={{
@@ -135,7 +156,7 @@ export default function VerticalStepper(props) {
                                         iconContainer: classes.icon_container,
                                     }}
                                 >
-                                    {label}
+                                    {step.location}
                                 </StepLabel>
                             </StepButton>
                         </Step>

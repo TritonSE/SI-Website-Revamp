@@ -31,11 +31,9 @@ const obj = {
         presentations: [
             { description: "presentation 1", url: "url.com/download1" },
             { description: "presentation 2", url: "url.com/download2" },
+            { description: "presentation 3", url: "url.com/download2" },
         ],
-        abstracts: [
-            { description: "abstract 1", url: "url.com/downloadabstract1" },
-            { description: "abstract 2", url: "url.com/downloadabstract2" },
-        ],
+        abstracts: [{ description: "abstract 1", url: "url.com/downloadabstract1" }],
         video: "https://www.youtube.com/watch?v=Ny_v-W2SkCk",
         theme:
             "Etiam non sem semper enim posuere mattis vel id dolor. Vivamus laoreet ultrices metus non maximus. Nunc ut erat tristique, consequat eros et, accumsan mauris. Praesent cursus ullamcorper efficitur. Etiam viverra ut nisl et vestibulum. Phasellus tellus lacus, molestie in faucibus ac, dapibus quis massa. Nunc urna mi, maximus nec ligula ac, hendrerit tincidunt metus. Praesent et tempus magna. Quisque pellentesque sollicitudin nibh at tempor. Vivamus cursus dignissim eros, ultrices faucibus urna porta vel. Pellentesque quam massa, bibendum ut consectetur sed, hendrerit non risus. ",
@@ -45,7 +43,7 @@ const obj = {
 
 const obj1 = {
     title: "Signup for the new life here conference",
-    number: 1,
+    number: 2,
     location: "San Diego, California",
     info: {
         slideShowImages: [
@@ -85,11 +83,10 @@ export default function Conferences() {
     const [isInfo, setIsInfo] = useState(true);
     const [index, setIndex] = useState(0);
     const [item, setItem] = useState(arr[index]);
-    const [itemList, setItemList] = useState([]);
+    const [itemList] = useState(arr);
 
     useEffect(() => {
         setItem(itemList[index]);
-        setItemList(arr);
     }, []);
 
     const updateInformation = () => {
@@ -123,7 +120,7 @@ export default function Conferences() {
                     {obj.info.slideShowImages.map((image) => (
                         <div>
                             <img
-                                style={{ width: "100vw", height: "400px" }}
+                                style={{ width: "calc(100vw)", height: "400px" }}
                                 alt="cat"
                                 src={image}
                             />
