@@ -31,6 +31,7 @@ export default function EPublications() {
 
             <p> This is the E-Publications Page </p>
             <EPubSection />
+            <EPubSection />
         </div>
     );
 }

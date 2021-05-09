@@ -1,5 +1,7 @@
 .EPubCard {
+  display: inline-block;
   width: 184px;
+  margin: 25px;
 }
 .EPubCard_title {
   height: 62px;
@@ -16,7 +18,7 @@
   overflow: hidden;
 }
 .EPubCard_author {
-  height: 25px;
+  height: 30px;
   display: block;
 
   font-family: Nunito;
@@ -26,7 +28,7 @@
   line-height: 25px;
   letter-spacing: 0em;
   text-align: left;
-
+  padding-top: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
 }

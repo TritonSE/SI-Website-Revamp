@@ -10,12 +10,12 @@ const EPubSectionMobile = () => <div />;
 
 // desktop render
 const EPubSectionDesktop = (publication_list) => (
-    <div>
-        <div>
-            <h1>Section Title</h1>
-            <p>view all</p>
+    <div className="EPubSection">
+        <div className="EPubSection_header">
+            <h1 className="EPubSection_header_title">Section Title</h1>
+            <p className="EPubSection_header_seeAll">All (15) &gt;</p>
         </div>
-        <div>
+        <div className="EPubSection_body">
             {publication_list.slice(0, 5).map((pub) => (
                 <EPubCard
                     title={pub.title}
@@ -24,8 +24,8 @@ const EPubSectionDesktop = (publication_list) => (
                     redirect_link={pub.redirect_link}
                 />
             ))}
+            <div className="EPubSection_orangebar" />
         </div>
-        <div>render orange bar</div>
     </div>
 );
 export default function EPubSection() {
@@ -44,6 +44,24 @@ export default function EPubSection() {
         },
         {
             title: "even longer super duper long title that takes 3 lines",
+            author: "first last",
+            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
+            redirect_link: "https://google.com",
+        },
+        {
+            title: "title 4",
+            author: "first last",
+            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
+            redirect_link: "https://google.com",
+        },
+        {
+            title: "title 5",
+            author: "first last",
+            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
+            redirect_link: "https://google.com",
+        },
+        {
+            title: "title 6",
             author: "first last",
             image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
             redirect_link: "https://google.com",
