@@ -1,0 +1,39 @@
+.EPubCard {
+  width: 184px;
+}
+.EPubCard_title {
+  height: 62px;
+
+  display: block;
+
+  font-family: Libre Baskerville;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 31px;
+  text-align: left;
+
+  white-space: text-wrap;
+  overflow: hidden;
+}
+.EPubCard_author {
+  height: 25px;
+  display: block;
+
+  font-family: Nunito;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.EPubCard_image {
+  width: 184px;
+  height: 271px;
+  object-fit: cover;
+  box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+}
