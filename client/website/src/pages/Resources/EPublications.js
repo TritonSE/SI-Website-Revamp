@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slideshow from "../../components/Slideshow";
 import EPubSection from "../../components/EPubs/EPubSection";
 import EPubCard from "../../components/EPubs/EPubCard";
@@ -247,6 +247,27 @@ const renderSelectedSection = (selectedSection, setSelectedSection) => (
 );
 export default function EPublications() {
     const [selectedSection, setSelectedSection] = useState("");
+    const [isMobile, setIsMobile] = useState(false);
+
+    // max width size that mobile view will be rendered
+    const MAX_MOBILE_VIEW_WIDTH = 750;
+
+    // track window resizes to determine rerender
+    useEffect(() => {
+        function handleResize() {
+            setIsMobile(window.innerWidth <= MAX_MOBILE_VIEW_WIDTH);
+            if (window.innerWidth <= MAX_MOBILE_VIEW_WIDTH) {
+                setSelectedSection("");
+            }
+        }
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+    }, []); // Empty array ensures that effect is only run on mount
+
     return (
         <div>
             {selectedSection === "" ? (
@@ -274,12 +295,15 @@ export default function EPublications() {
                             />
                         </div>
                     </Slideshow>
-                    {page_data.sections.map((section) => (
-                        <EPubSection
-                            publication_section={section}
-                            setSelectedSection={setSelectedSection}
-                        />
-                    ))}
+                    <div className="EPub_body">
+                        {page_data.sections.map((section) => (
+                            <EPubSection
+                                publication_section={section}
+                                setSelectedSection={setSelectedSection}
+                                isMobile={isMobile}
+                            />
+                        ))}
+                    </div>
                 </>
             ) : (
                 renderSelectedSection(

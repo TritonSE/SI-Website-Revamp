@@ -1,7 +1,7 @@
 /**
  *
  */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import EPubCard from "./EPubCard";
 import "../../css/EPubSection.css";
 
@@ -36,32 +36,10 @@ const EPubSectionDesktop = (publication_section, setSelectedSection) => (
         </div>
     </div>
 );
-export default function EPubSection({ publication_section, setSelectedSection }) {
-    // max width size that mobile view will be rendered
-    const MAX_MOBILE_VIEW_WIDTH = 750;
-
-    const [windowSize, setWindowSize] = useState({
-        width: undefined,
-    });
-
-    // track window resizes to determine rerender
-    useEffect(() => {
-        function handleResize() {
-            setWindowSize({
-                width: window.innerWidth,
-            });
-        }
-        // Add event listener
-        window.addEventListener("resize", handleResize);
-        handleResize();
-
-        // Remove event listener on cleanup
-        return () => window.removeEventListener("resize", handleResize);
-    }, []); // Empty array ensures that effect is only run on mount
-
+export default function EPubSection({ publication_section, setSelectedSection, isMobile }) {
     return (
         <>
-            {windowSize.width > MAX_MOBILE_VIEW_WIDTH
+            {!isMobile
                 ? EPubSectionDesktop(publication_section, setSelectedSection)
                 : EPubSectionMobile()}
         </>

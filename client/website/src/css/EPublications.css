@@ -1,9 +1,12 @@
 @import "palette.css";
 
+.EPub_body {
+  margin: 100px 0px;
+}
 .EPub_SelectedSection {
   display: block;
   position: relative;
-  margin: 44px 10vw;
+  margin: 130px 10vw;
 }
 .EPub_SelectedSection_header {
   display: block;
