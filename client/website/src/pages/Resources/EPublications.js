@@ -256,9 +256,6 @@ export default function EPublications() {
     useEffect(() => {
         function handleResize() {
             setIsMobile(window.innerWidth <= MAX_MOBILE_VIEW_WIDTH);
-            if (window.innerWidth <= MAX_MOBILE_VIEW_WIDTH) {
-                setSelectedSection("");
-            }
         }
         // Add event listener
         window.addEventListener("resize", handleResize);

@@ -64,3 +64,69 @@
   text-align: center;
   margin: 0px -25px;
 }
+
+/* Mobile */
+.EPub_body--mobile {
+  margin: 0px 0px;
+}
+.EPub_SelectedSection--mobile {
+  display: block;
+  position: relative;
+  margin: 130px 10vw;
+}
+.EPub_SelectedSection_header--mobile {
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+}
+.EPub_SelectedSection_header_title--mobile {
+  width: 100%;
+  font-family: Libre Baskerville;
+  font-size: 36px;
+  line-height: 45px;
+  text-align: center;
+}
+.EPub_SelectedSection_header_seeAll--mobile {
+  z-index: 100;
+  position: absolute;
+  right: 25px;
+  bottom: 0;
+  width: fit-content !important;
+  font-family: Nunito;
+  font-size: 18px;
+  line-height: 25px;
+  text-decoration: none;
+}
+.EPub_SelectedSection_header_seeAll--mobile > span {
+  color: var(--orange);
+}
+.EPub_SelectedSection_header_back--mobile {
+  position: absolute;
+  left: 25px;
+  bottom: 0;
+  width: fit-content !important;
+  z-index: 100;
+
+  padding: 0;
+  margin-bottom: 16px;
+
+  border: none;
+  background-color: inherit;
+
+  font-family: Nunito;
+  font-size: 18px;
+  line-height: 25px;
+  text-decoration: none;
+}
+.EPub_SelectedSection_header_back--mobile:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.EPub_SelectedSection_body--mobile {
+  position: relative;
+  text-align: center;
+  margin: 0px -25px;
+}
