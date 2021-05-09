@@ -1,10 +1,10 @@
 import React from "react";
 import Slideshow from "../../components/Slideshow";
+import EPubSection from "../../components/EPubs/EPubSection";
 
 export default function EPublications() {
     return (
         <div>
-            <p> This is the E-Publications Page </p>
             <Slideshow height="400px" width="100%">
                 <div>
                     <img
@@ -28,15 +28,9 @@ export default function EPublications() {
                     />
                 </div>
             </Slideshow>
-            <p>text</p>
-            <p>text</p>
-            <p>text</p>
-            <p>text</p>
-            <p>text</p>
-            <p>text</p>
-            <p>text</p>
-            <p>text</p>
-            <p>text</p>
+
+            <p> This is the E-Publications Page </p>
+            <EPubSection />
         </div>
     );
 }
