@@ -9,14 +9,22 @@ import "../../css/EPubSection.css";
 const EPubSectionMobile = () => <div />;
 
 // desktop render
-const EPubSectionDesktop = (publication_list) => (
+const EPubSectionDesktop = (publication_section, setSelectedSection) => (
     <div className="EPubSection">
         <div className="EPubSection_header">
-            <h1 className="EPubSection_header_title">Section Title</h1>
-            <p className="EPubSection_header_seeAll">All (15) &gt;</p>
+            <h1 className="EPubSection_header_title">{publication_section.section_title}</h1>
+            <button
+                type="button"
+                className="EPubSection_header_seeAll"
+                onClick={() => {
+                    setSelectedSection(publication_section.section_title);
+                }}
+            >
+                All <span>({publication_section.section_list.length})</span> &gt;
+            </button>
         </div>
         <div className="EPubSection_body">
-            {publication_list.slice(0, 5).map((pub) => (
+            {publication_section.section_list.slice(0, 5).map((pub) => (
                 <EPubCard
                     title={pub.title}
                     author={pub.author}
@@ -28,45 +36,7 @@ const EPubSectionDesktop = (publication_list) => (
         </div>
     </div>
 );
-export default function EPubSection() {
-    const publication_list = [
-        {
-            title: "title",
-            author: "first last",
-            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-            redirect_link: "https://google.com",
-        },
-        {
-            title: "super duper long title",
-            author: "first last",
-            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-            redirect_link: "https://google.com",
-        },
-        {
-            title: "even longer super duper long title that takes 3 lines",
-            author: "first last",
-            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-            redirect_link: "https://google.com",
-        },
-        {
-            title: "title 4",
-            author: "first last",
-            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-            redirect_link: "https://google.com",
-        },
-        {
-            title: "title 5",
-            author: "first last",
-            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-            redirect_link: "https://google.com",
-        },
-        {
-            title: "title 6",
-            author: "first last",
-            image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-            redirect_link: "https://google.com",
-        },
-    ];
+export default function EPubSection({ publication_section, setSelectedSection }) {
     // max width size that mobile view will be rendered
     const MAX_MOBILE_VIEW_WIDTH = 750;
 
@@ -92,7 +62,7 @@ export default function EPubSection() {
     return (
         <>
             {windowSize.width > MAX_MOBILE_VIEW_WIDTH
-                ? EPubSectionDesktop(publication_list)
+                ? EPubSectionDesktop(publication_section, setSelectedSection)
                 : EPubSectionMobile()}
         </>
     );
