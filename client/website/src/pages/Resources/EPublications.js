@@ -216,41 +216,88 @@ const page_data = {
         },
     ],
 };
-const renderSelectedSection = (selectedSection, setSelectedSection) => (
-    <div className="EPub_SelectedSection">
-        <div className="EPub_SelectedSection_header">
-            <h1 className="EPub_SelectedSection_header_title">{selectedSection.section_title}</h1>
-            <button
-                type="button"
-                className="EPub_SelectedSection_header_back"
-                onClick={() => {
-                    setSelectedSection("");
-                }}
-            >
-                &lt; Back
-            </button>
-            <p className="EPub_SelectedSection_header_seeAll">
-                All <span>({selectedSection.section_list.length})</span>
-            </p>
+
+// renders selected section
+const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) => {
+    if (!isMobile) {
+        return (
+            <div className="EPub_SelectedSection">
+                <div className="EPub_SelectedSection_header">
+                    <h1 className="EPub_SelectedSection_header_title">
+                        {selectedSection.section_title}
+                    </h1>
+                    <button
+                        type="button"
+                        className="EPub_SelectedSection_header_back"
+                        onClick={() => {
+                            setSelectedSection("");
+                        }}
+                    >
+                        &lt; Back
+                    </button>
+                    <p className="EPub_SelectedSection_header_seeAll">
+                        All <span>({selectedSection.section_list.length})</span>
+                    </p>
+                </div>
+                <div className="EPub_SelectedSection_body">
+                    {selectedSection.section_list.map((pub) => (
+                        <EPubCard
+                            title={pub.title}
+                            author={pub.author}
+                            image_url={pub.image_url}
+                            redirect_link={pub.redirect_link}
+                            isMobile={isMobile}
+                        />
+                    ))}
+                </div>
+            </div>
+        );
+    }
+    return (
+        <div className="EPub_SelectedSection--mobile">
+            <div className="EPub_SelectedSection_header--mobile">
+                <h1 className="EPub_SelectedSection_header_title--mobile">
+                    {selectedSection.section_title}
+                </h1>
+                <button
+                    type="button"
+                    className="EPub_SelectedSection_header_back--mobile"
+                    onClick={() => {
+                        setSelectedSection("");
+                    }}
+                >
+                    &lt; Back to latest
+                </button>
+            </div>
+            <div className="EPub_SelectedSection_body--mobile">
+                {selectedSection.section_list.map((pub) => (
+                    <div className="EPub_SelectedSection_body_cardcontainer">
+                        <EPubCard
+                            title={pub.title}
+                            author={pub.author}
+                            image_url={pub.image_url}
+                            redirect_link={pub.redirect_link}
+                            isMobile={isMobile}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => window.location.replace(pub.redirect_link)}
+                            className="EPub_SelectedSection_body_readbutton--mobile"
+                        >
+                            Read
+                        </button>
+                    </div>
+                ))}
+            </div>
         </div>
-        <div className="EPub_SelectedSection_body">
-            {selectedSection.section_list.map((pub) => (
-                <EPubCard
-                    title={pub.title}
-                    author={pub.author}
-                    image_url={pub.image_url}
-                    redirect_link={pub.redirect_link}
-                />
-            ))}
-        </div>
-    </div>
-);
+    );
+};
 export default function EPublications() {
     const [selectedSection, setSelectedSection] = useState("");
     const [isMobile, setIsMobile] = useState(false);
 
     // max width size that mobile view will be rendered
-    const MAX_MOBILE_VIEW_WIDTH = 750;
+    const MAX_MOBILE_VIEW_WIDTH = 600;
 
     // track window resizes to determine rerender
     useEffect(() => {
@@ -292,7 +339,7 @@ export default function EPublications() {
                             />
                         </div>
                     </Slideshow>
-                    <div className="EPub_body">
+                    <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>
                         {page_data.sections.map((section) => (
                             <EPubSection
                                 publication_section={section}
@@ -305,7 +352,8 @@ export default function EPublications() {
             ) : (
                 renderSelectedSection(
                     page_data.sections.filter((e) => e.section_title === selectedSection)[0],
-                    setSelectedSection
+                    setSelectedSection,
+                    isMobile
                 )
             )}
         </div>

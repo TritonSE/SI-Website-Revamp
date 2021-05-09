@@ -72,54 +72,42 @@
 .EPub_SelectedSection--mobile {
   display: block;
   position: relative;
-  margin: 130px 10vw;
+  margin: 50px 10vw;
 }
 .EPub_SelectedSection_header--mobile {
   display: block;
   position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
+  top: -50px;
+  left: -10vw;
+  padding-top: 20px;
+
+  width: 100vw;
+  height: 88px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 }
 .EPub_SelectedSection_header_title--mobile {
   width: 100%;
   font-family: Libre Baskerville;
-  font-size: 36px;
-  line-height: 45px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 31px;
   text-align: center;
 }
-.EPub_SelectedSection_header_seeAll--mobile {
-  z-index: 100;
-  position: absolute;
-  right: 25px;
-  bottom: 0;
-  width: fit-content !important;
-  font-family: Nunito;
-  font-size: 18px;
-  line-height: 25px;
-  text-decoration: none;
-}
-.EPub_SelectedSection_header_seeAll--mobile > span {
-  color: var(--orange);
-}
 .EPub_SelectedSection_header_back--mobile {
-  position: absolute;
-  left: 25px;
-  bottom: 0;
+  display: block;
+  position: relative;
   width: fit-content !important;
-  z-index: 100;
 
   padding: 0;
-  margin-bottom: 16px;
+  margin: 11px auto 20px auto;
 
   border: none;
   background-color: inherit;
 
   font-family: Nunito;
-  font-size: 18px;
-  line-height: 25px;
-  text-decoration: none;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
 }
 .EPub_SelectedSection_header_back--mobile:hover {
   text-decoration: underline;
@@ -129,4 +117,19 @@
   position: relative;
   text-align: center;
   margin: 0px -25px;
+}
+.EPub_SelectedSection_body_cardcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.EPub_SelectedSection_body_readbutton--mobile {
+  height: 37px;
+  width: 158px;
+  border-radius: 40px;
+  background-color: var(--orange);
+  border: none;
+  color: var(--white);
+  margin-bottom: 20px;
 }
