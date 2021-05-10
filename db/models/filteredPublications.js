@@ -9,23 +9,36 @@
 const Sequelize = require("sequelize");
 const db = require("../configDB");
 
-module.exports = db.define(
+const Publications = require("./publications");
+const EPubFilters = require("./ePubFilters");
+
+const FilteredPublications = db.define(
     // table name
     "FilteredPublications",
     {
         // id field column by default
 
-        publicationId: {
-            type: Sequelize.INTEGER.UNSIGNED,
-            allowNull: false,
-        },
-        filterId: {
-            type: Sequelize.INTEGER.UNSIGNED,
-            allowNull: false,
-        },
         pdfLink: {
             type: Sequelize.TEXT("tiny"),
             allowNull: false,
         },
+    },
+    {
+        // createdAt & updatedAt columns will be added/self-mantained by table
+        timestamps: true,
     }
 );
+
+// creates an association between Publications and FilteredPublications
+// new "publicationId" column in table
+FilteredPublications.belongsTo(Publications, {
+    foreignKey: "publicationId",
+});
+
+// creates an association between Publications and EPubFilters
+// new "filterId" column in table
+FilteredPublications.belongsTo(EPubFilters, {
+    foreignKey: "filterId",
+});
+
+module.exports = FilteredPublications;
