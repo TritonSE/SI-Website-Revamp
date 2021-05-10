@@ -35,7 +35,11 @@ router.post(
     async (req, res) => {
         try {
             const entries = await create(req.body);
-            return res.status(200).json(entries);
+            if (entries === false)
+                return res
+                    .status(400)
+                    .json({ message: "Not added, possibly invalid id in interests" });
+            return res.status(200).json({ message: "success" });
         } catch (err) {
             console.log(err);
             return res.status(400).json({ message: err });

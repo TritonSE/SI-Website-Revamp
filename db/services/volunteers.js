@@ -11,19 +11,33 @@ const Volunteers = require("../models/volunteers");
 const User = require("../models/userInfo");
 
 /**
- * Creates emailList data. Assumption: required interests in data object
+ * Creates volunteer data. This will check
+ *
  *
  * @param {object} data - user data and interests
  * @returns {boolean} - created true or false.
  */
 async function create(data) {
     try {
+        if (data === undefined || data.interests === undefined) return false;
+
+        // validate every interest
+        const committeeCount = await CommitteeInterests.count({});
+        // check every passed in interest to be in between 0 and the committeCount max.
+        data.interests.forEach((i) => {
+            // if ((await CommitteeInterests.findOne({ where: { id: i } })) === null) {
+            //     return false;
+            // }
+            if (committeeCount > i || i <= 0) return false;
+            return true;
+        });
+
+        // validated! Create user/volunteer
         const user = await User.create(data);
         const volunteer = await Volunteers.create({ info: user.id });
-        let c;
+        // create every interest for this volunteer
         data.interests.forEach(async (i) => {
-            c = await CommitteeInterests.create({ title: i, description: "cats" });
-            await VolunteerInterests.create({ volunteerId: volunteer.id, interestId: c.id });
+            await VolunteerInterests.create({ volunteerId: volunteer.id, interestId: i });
         });
         return true;
     } catch (e) {

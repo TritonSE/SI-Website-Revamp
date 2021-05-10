@@ -40,10 +40,10 @@ module.exports = async () => {
     ])
         .then(() => {
             // successfull population
-            console.log("Finished Sample");
+            console.log("Finished Conference");
         })
         .catch((err) => {
             // some error occurred
-            console.error(`Sample: ${err}`);
+            console.error(`Conference: ${err}`);
         });
 };
