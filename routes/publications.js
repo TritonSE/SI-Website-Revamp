@@ -142,7 +142,9 @@ router.put(
                 req.body.filters.forEach(async (value) => {
                     const filter = value.filterId;
                     const { pdfLink } = value;
-                    const filterId = ePubMethods.filterId(filter);
+                    const filterId = await ePubMethods.filterId(filter);
+                    
+                    console.log("---------------------> " + filterId);
 
                     await filteredMethods.addOne({
                         filterId,
