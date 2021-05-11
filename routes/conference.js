@@ -24,14 +24,49 @@ router.post(
         body("confNum").isNumeric(),
         body("location").isString(),
         body("slideShowImages").custom((value) => {
+            // urls array must have at least 1 entry
             if (value.urls !== undefined && value.urls.length > 0) return true;
             return false;
         }),
-        body("programs.data").isArray().optional(),
-        body("presentations.data").isArray().optional(),
-        body("abstracts.data").isArray().optional(),
+        body("programs.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            }),
+        body("presentations.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            }),
+        body("abstracts.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            }),
         body("video").isString().optional(),
         body("theme").isString().optional(),
+        body("signUpLink ").isString().optional(),
         isValidated,
     ],
     async (req, res) => {
@@ -73,11 +108,48 @@ router.put(
                 return false;
             })
             .optional(),
-        body("programs.data").isArray().optional(),
-        body("presentations.data").isArray().optional(),
-        body("abstracts.data").isArray().optional(),
+        body("programs.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            .optional(),
+        body("presentations.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            .optional(),
+        body("abstracts.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            .optional(),
         body("video").isString().optional(),
         body("theme").isString().optional(),
+        body("signUpLink ").isString().optional(),
         isValidated,
     ],
     async (req, res) => {

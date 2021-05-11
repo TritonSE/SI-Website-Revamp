@@ -34,6 +34,7 @@ module.exports = async () => {
                 },
                 video: "google.com",
                 theme: "Lorem Ipsum Dolor",
+                signUpLink: "https://google.com",
             },
             { logging: false }
         ),
