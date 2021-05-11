@@ -66,7 +66,10 @@ router.post(
             }),
         body("video").isString().optional(),
         body("theme").isString().optional(),
-        body("signUpLink ").isString().optional(),
+        body("signUpLink").isString().optional(),
+        // prevent createdAt to be edited
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
@@ -149,7 +152,9 @@ router.put(
             .optional(),
         body("video").isString().optional(),
         body("theme").isString().optional(),
-        body("signUpLink ").isString().optional(),
+        body("signUpLink").isString().optional(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
