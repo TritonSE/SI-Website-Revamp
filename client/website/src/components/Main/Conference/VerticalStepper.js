@@ -22,25 +22,34 @@ import { StepButton, StepLabel } from "@material-ui/core";
 import CustomPagination from "./Pagination";
 import "../../../css/Stepper/Stepper.css";
 
+/**
+ * Convert a given number into an ordinal number
+ * @param {number} i
+ * @returns string of ordinal number
+ */
 const ordinal_suffix_of = (i) => {
     const ones = i % 10;
     const hundreds = i % 100;
 
+    // if the remainder is 1 and 11
     if (ones === 1 && hundreds !== 11) {
         return `${i}st`;
     }
+    // if the remainder is 2 and 12
     if (ones === 2 && hundreds !== 12) {
         return `${i}nd`;
     }
+    // if the remainder is 3 and 13
     if (ones === 3 && hundreds !== 13) {
         return `${i}rd`;
     }
-    return `${i}st`;
+    return `${i}th`;
 };
 
 const stepperNode = (index) => <div className="stepper-node">{ordinal_suffix_of(index)}</div>;
 
 export default function VerticalStepper(props) {
+    // custom styling used for various components
     const useStyles = makeStyles(() => ({
         root: {
             minWidth: "190px",
@@ -80,6 +89,7 @@ export default function VerticalStepper(props) {
         },
     }));
 
+    // custom styling for the connectors on the stepper
     const ColorlibConnector = withStyles({
         line: {
             marginTop: "calc(5.5px)",
@@ -91,6 +101,10 @@ export default function VerticalStepper(props) {
         },
     })(StepConnector);
 
+    /**
+     * Return all the locations and conference number as an array
+     * @returns array
+     */
     function getSteps() {
         const arr = [];
         for (let i = 0; i < props.items.length; i++) {
@@ -105,27 +119,46 @@ export default function VerticalStepper(props) {
         return arr;
     }
 
+    // import the styling
     const classes = useStyles();
+    // keep track of the current page for pagination
     const [activeStep, setActiveStep] = useState(0);
+    // update the page if the user changes pages
     const [activeIndex, setActiveIndex] = useState(0);
+    // indicies to render 9 items per page
     const [indices, setIndices] = useState([0, 9]);
+    // steps that are split based on indices
     const [splitSteps, setSplitSteps] = useState(getSteps());
+
+    // initial call to get all steps
     const steps = getSteps();
 
+    // render only the first nine items
     useEffect(() => {
         setSplitSteps(steps.slice(indices[0], indices[1]));
     }, []);
 
+    // update the items on the stepper when the indices updates
     useEffect(() => {
         setSplitSteps(steps.slice(indices[0], indices[1]));
     }, [indices]);
 
+    /**
+     * When an item in the stepper is clicked, it's parent
+     * index is updated accordingly
+     *
+     * @param {index} step
+     */
     const handleStep = (step) => {
         setActiveStep(step);
         setActiveIndex(step);
         props.setParentIndex(step);
     };
 
+    /**
+     * Update the stepper to render the 9 items depending on the page
+     * @param {number} index
+     */
     const updatePage = (index) => {
         setIndices([(index - 1) * 9, index * 9]);
     };

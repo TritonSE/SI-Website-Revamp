@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 
 const useStyles = makeStyles((theme) => ({
+    // custom styling for the pagination
     root: {
         "& > *": {
             marginTop: theme.spacing(2),

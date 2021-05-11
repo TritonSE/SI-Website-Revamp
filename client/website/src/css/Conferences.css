@@ -2,22 +2,23 @@ body {
   font-family: var(--text-font);
 }
 
+.conferences-outer-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
 /* The Conferences page */
 .conference-container {
-  min-width: 100%;
+  min-width: 440px;
+  width: calc(25vw);
+  display: flex;
+  justify-content: flex-start;
 }
 
 /* Rendering the main components on the page */
 .component-display {
   display: flex;
   flex-direction: row;
-}
-
-.conference-container {
-  min-width: 440px;
-  width: calc(25vw);
-  display: flex;
-  justify-content: flex-start;
 }
 
 /* Conference information */
@@ -40,7 +41,7 @@ body {
 
 .conference-info-resource-title {
   padding-bottom: calc(1.5vh);
-  width: calc(16vw);
+  width: calc(307.2px);
 }
 
 .conference-info-resource-title h4 {
@@ -49,7 +50,7 @@ body {
 
 .conference-info-divider {
   border: 1px solid var(--orange);
-  width: calc(16vw);
+  width: calc(307.2px);
   color: white;
   background-color: var(--orange);
   font-size: calc(18px);
@@ -66,7 +67,7 @@ body {
   flex-direction: row;
   cursor: pointer;
   margin-bottom: calc(-1vh);
-  width: calc(16vw);
+  width: calc(307.2px);
   color: black;
   text-decoration: none;
 }
@@ -88,6 +89,8 @@ body {
   font-family: var(--text-font);
   font-size: calc(20px);
   padding: 0.5vh 2vw 0.5vh 2vw;
+  min-width: calc(153.6px);
+  min-height: calc(44.28px);
   border-radius: calc(1vw);
   font-weight: 600;
 }
@@ -97,7 +100,7 @@ body {
 .slideshow-section {
   /* min-width: calc(70vw);
   width: calc(80vw); */
-  min-width: 100%;
+  /* min-width: 100%; */
   margin: 9.5vh 2vw 9vh 1vw;
 }
 
@@ -109,8 +112,8 @@ body {
   color: var(--white);
   font-family: var(--text-font);
   font-size: calc(18px);
-  min-width: calc(8vw);
-  min-height: calc(4.5vh);
+  min-width: calc(153.6px);
+  min-height: calc(44.28px);
   border-radius: calc(3vw);
   font-weight: 600;
   margin-left: calc(2vw);
@@ -124,8 +127,8 @@ body {
   color: var(--black);
   font-family: var(--text-font);
   font-size: calc(18px);
-  min-width: calc(8vw);
-  min-height: calc(4.5vh);
+  min-width: calc(153.6px);
+  min-height: calc(44.28px);
   border-radius: calc(3vw);
   font-weight: 600;
   margin-left: calc(2vw);

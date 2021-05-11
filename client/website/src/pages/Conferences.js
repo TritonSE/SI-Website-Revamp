@@ -1,5 +1,13 @@
 /**
- * The conferences page on the website
+ * The conferences page on the website. This is a template page
+ * and will be served dynamically. It will take in an array of
+ * objects containing information for each conference.
+ *
+ * It consists of the following components:
+ *  - VerticalStepper
+ *  - ConferenceOverview
+ *  - ConferenceTheme
+ *  - Slideshow
  *
  * @summary     conferences page
  * @author      Amitesh Sharma
@@ -14,6 +22,7 @@ import Slideshow from "../components/Slideshow";
 
 import "../css/Conferences.css";
 
+// testing data
 const obj = {
     title: "Signup for the Why Navid is a loser conference",
     number: 1,
@@ -41,6 +50,7 @@ const obj = {
     },
 };
 
+// testing data
 const obj1 = {
     title: "Signup for the new life here conference",
     number: 2,
@@ -70,6 +80,7 @@ const obj1 = {
     },
 };
 
+// testing data
 const arr = [];
 for (let i = 0; i < 13; i++) {
     if (i % 2 === 0) {
@@ -80,24 +91,46 @@ for (let i = 0; i < 13; i++) {
 }
 
 export default function Conferences() {
+    // switch between theme and overview state
     const [isInfo, setIsInfo] = useState(true);
+    // keep track of the conference
     const [index, setIndex] = useState(0);
+    // update screen with spceific conference information
     const [item, setItem] = useState(arr[index]);
+    // list of all conferences
     const [itemList] = useState(arr);
 
+    // initalially set the page to render the first conference
     useEffect(() => {
         setItem(itemList[index]);
     }, []);
 
+    /**
+     * Switches between the theme and overview tabs
+     */
     const updateInformation = () => {
         setIsInfo(!isInfo);
     };
 
+    /**
+     * Updates the current index and information rendered
+     * when clicked on in VerticalStepper
+     * @param {number} step
+     */
     const setParentIndex = (step) => {
         setIndex(step);
         setItem(itemList[step]);
     };
 
+    /**
+     * Rendered the conference theme information
+     * title - the title of the conference
+     * location - location of the conference
+     * redirect - redirect url for registration
+     * theme - information about the conference
+     * info - overview of conference, files
+     * @returns Node
+     */
     const displayInformation = () => {
         if (isInfo) {
             return (
@@ -113,10 +146,15 @@ export default function Conferences() {
         return <ConferenceOverview info={item.info} title={item.title} />;
     };
 
+    /**
+     * Renders a slideshow or video depending on the tab
+     * If theme, slideshow, otherwise video
+     * @returns Node
+     */
     const slideshowVideo = () => {
         if (isInfo) {
             return (
-                <Slideshow height="450px" width="42.5vw">
+                <Slideshow height="450px" width="900px">
                     {obj.info.slideShowImages.map((image) => (
                         <div>
                             <img
@@ -130,43 +168,45 @@ export default function Conferences() {
             );
         }
 
-        return <ReactPlayer url={obj.info.video} height="450px" width="42.5vw" />;
+        return <ReactPlayer url={obj.info.video} height="450px" width="900px" />;
     };
 
     return (
-        <div className="conference-container">
-            <div className="component-display">
-                <VerticalStepper items={arr} color="#6652A0" setParentIndex={setParentIndex} />
-                <div className="conference-container">{displayInformation()}</div>
+        <div className="conferences-outer-container">
+            <div className="conference-container">
+                <div className="component-display">
+                    <VerticalStepper items={arr} color="#6652A0" setParentIndex={setParentIndex} />
+                    <div className="conference-container">{displayInformation()}</div>
+                    {/* The tabs to switch between theme and overview */}
+                    <section className="slideshow-section">
+                        <div className="slideshow-section-tabs">
+                            <button
+                                className={
+                                    isInfo
+                                        ? "slideshow-section-theme-active"
+                                        : "slideshow-section-theme"
+                                }
+                                onClick={() => updateInformation()}
+                                type="button"
+                            >
+                                Theme
+                            </button>
+                            <button
+                                className={
+                                    isInfo
+                                        ? "slideshow-section-overview"
+                                        : "slideshow-section-overview-active"
+                                }
+                                onClick={() => updateInformation()}
+                                type="button"
+                            >
+                                Overview
+                            </button>
+                        </div>
 
-                <section className="slideshow-section">
-                    <div className="slideshow-section-tabs">
-                        <button
-                            className={
-                                isInfo
-                                    ? "slideshow-section-theme-active"
-                                    : "slideshow-section-theme"
-                            }
-                            onClick={() => updateInformation()}
-                            type="button"
-                        >
-                            Theme
-                        </button>
-                        <button
-                            className={
-                                isInfo
-                                    ? "slideshow-section-overview"
-                                    : "slideshow-section-overview-active"
-                            }
-                            onClick={() => updateInformation()}
-                            type="button"
-                        >
-                            Overview
-                        </button>
-                    </div>
-
-                    {slideshowVideo()}
-                </section>
+                        <div>{slideshowVideo()}</div>
+                    </section>
+                </div>
             </div>
         </div>
     );
