@@ -282,7 +282,7 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                         />
                         <button
                             type="button"
-                            onClick={() => window.location.replace(pub.redirect_link)}
+                            onClick={() => window.open(pub.redirect_link, "_blank", "norefferer")}
                             className="EPub_SelectedSection_body_readbutton--mobile"
                         >
                             Read
@@ -319,7 +319,11 @@ export default function EPublications() {
         <div id="EPubPage">
             {selectedSection === "" ? (
                 <>
-                    <Slideshow height="450px" width="100%">
+                    <Slideshow
+                        height={isMobile ? "530px" : "450px"}
+                        width="100%"
+                        isMobile={isMobile}
+                    >
                         <div>
                             <div className="EPub_Slide">
                                 <div className="EPub_Slide_body">

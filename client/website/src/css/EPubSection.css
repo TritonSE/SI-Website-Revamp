@@ -80,7 +80,7 @@
 .EPubSection_header_title--mobile {
   width: 100%;
   font-family: var(--heading-font);
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 31px;
   text-align: center;
@@ -98,7 +98,7 @@
 
   text-decoration: none;
   font-family: var(--text-font);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 16px;
   text-align: center;
 }
