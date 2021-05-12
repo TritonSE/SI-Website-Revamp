@@ -22,7 +22,7 @@ router.post(
     "/addNewsletter",
     [
         body("volume").isNumeric(),
-        body("year").isNumeric(),
+        body("year").isNumeric().isLength({ min: 4, max: 4 }),
         body("pdfLink").isString(),
         body("imageLink").isString(),
         isValidated,
@@ -47,9 +47,12 @@ router.put(
     "/editNewsletter/:id",
     [
         body("volume").isNumeric().optional(),
-        body("year").isNumeric().optional(),
+        body("year").isNumeric().isLength({ min: 4, max: 4 }).optional(),
         body("pdfLink").isString().optional(),
         body("imageLink").isString().optional(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {

@@ -14,11 +14,11 @@ module.exports = db.define(
     {
         // if no primary key, default it will have a column called 'id' that will auto-increment an integer value
         volume: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.INTEGER.UNSIGNED,
             allowNull: false,
         },
         year: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.INTEGER(4).UNSIGNED,
             allowNull: false,
         },
         pdfLink: {
