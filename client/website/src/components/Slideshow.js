@@ -22,6 +22,7 @@ const Slideshow = (props) => (
         duration={3000}
         transitionDuration={500}
         prevArrow={
+            // custom left arrow component
             <div
                 style={
                     !props.isMobile
@@ -39,6 +40,7 @@ const Slideshow = (props) => (
             </div>
         }
         nextArrow={
+            // custom right arrow component
             <div
                 style={
                     !props.isMobile

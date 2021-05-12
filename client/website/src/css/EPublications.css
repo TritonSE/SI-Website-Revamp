@@ -131,6 +131,8 @@
   color: var(--white);
   margin-bottom: 20px;
 }
+
+/* Slides */
 .EPub_Slide {
   position: relative;
   display: flex;
@@ -192,7 +194,66 @@
   height: 55px;
   border: none;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
+  .EPub_Slide {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 450;
+    background-color: var(--darkpurple);
+    color: var(--white);
+  }
+  .EPub_Slide_body {
+    z-index: 10;
+    background: rgba(102, 82, 160, 0.85);
+    padding: 20px;
+    width: 300px;
+    display: block;
+    font-family: var(--heading-font);
+    text-align: left;
+    height: fit-content;
+  }
+  .EPub_Slide_body > h1 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+  .EPub_Slide_body > h2 {
+    display: none;
+  }
+  .EPub_Slide_body > p {
+    font-family: var(--text-font);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21px;
+  }
+  .EPub_Slide_body_readMoreButton {
+    font-family: var(--text-font);
+    font-size: 14px;
+    line-height: 27px;
+    text-align: center;
+    color: var(--white);
+    background: var(--orange);
+    border-radius: 40px;
+    width: 150px;
+    height: 35px;
+    border: none;
+  }
+  .EPub_Slide_image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+
+    margin: 0;
+    padding: 0;
+    background: var(--darkpurple);
+  }
+}
+
+@media screen and (max-width: 600px) {
   .EPub_Slide {
     position: relative;
     display: flex;

@@ -1,3 +1,13 @@
+/**
+ * renders the EPublication page that includes sections of publications
+ * that can be expanded to show all publications in that section. This page
+ * currently uses dummy data to display the publication list.
+ *
+ * Calls EPubCard.js, and EPubSection.js
+ *
+ * @Author PatrickBrown1
+ */
+
 import React, { useState, useEffect } from "react";
 import Slideshow from "../../components/Slideshow";
 import EPubSection from "../../components/EPubs/EPubSection";
@@ -217,10 +227,11 @@ const page_data = {
     ],
 };
 
-// renders selected section
+// renders selected section from state, including each card in that page,
+// and a button to go back to the main EPublications screen
 const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
     if (!isMobile) {
+        // render desktop version
         return (
             <div className="EPub_SelectedSection">
                 <div className="EPub_SelectedSection_header">
@@ -241,20 +252,24 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                     </p>
                 </div>
                 <div className="EPub_SelectedSection_body">
-                    {selectedSection.section_list.map((pub) => (
-                        <EPubCard
-                            title={pub.title}
-                            author={pub.author}
-                            image_url={pub.image_url}
-                            redirect_link={pub.redirect_link}
-                            isMobile={isMobile}
-                        />
-                    ))}
+                    {
+                        // render each card based on data passed in
+                        selectedSection.section_list.map((pub) => (
+                            <EPubCard
+                                title={pub.title}
+                                author={pub.author}
+                                image_url={pub.image_url}
+                                redirect_link={pub.redirect_link}
+                                isMobile={isMobile}
+                            />
+                        ))
+                    }
                 </div>
             </div>
         );
     }
     return (
+        // render mobile version
         <div className="EPub_SelectedSection--mobile">
             <div className="EPub_SelectedSection_header--mobile">
                 <h1 className="EPub_SelectedSection_header_title--mobile">
@@ -271,28 +286,34 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                 </button>
             </div>
             <div className="EPub_SelectedSection_body--mobile">
-                {selectedSection.section_list.map((pub) => (
-                    <div className="EPub_SelectedSection_body_cardcontainer">
-                        <EPubCard
-                            title={pub.title}
-                            author={pub.author}
-                            image_url={pub.image_url}
-                            redirect_link={pub.redirect_link}
-                            isMobile={isMobile}
-                        />
-                        <button
-                            type="button"
-                            onClick={() => window.open(pub.redirect_link, "_blank", "norefferer")}
-                            className="EPub_SelectedSection_body_readbutton--mobile"
-                        >
-                            Read
-                        </button>
-                    </div>
-                ))}
+                {
+                    // render each card based on data passed in
+                    selectedSection.section_list.map((pub) => (
+                        <div className="EPub_SelectedSection_body_cardcontainer">
+                            <EPubCard
+                                title={pub.title}
+                                author={pub.author}
+                                image_url={pub.image_url}
+                                redirect_link={pub.redirect_link}
+                                isMobile={isMobile}
+                            />
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    window.open(pub.redirect_link, "_blank", "norefferer")
+                                }
+                                className="EPub_SelectedSection_body_readbutton--mobile"
+                            >
+                                Read
+                            </button>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     );
 };
+// No props
 export default function EPublications() {
     const [selectedSection, setSelectedSection] = useState("");
     const [isMobile, setIsMobile] = useState(false);
@@ -313,6 +334,7 @@ export default function EPublications() {
         return () => window.removeEventListener("resize", handleResize);
     }, []); // Empty array ensures that effect is only run on mount
     useEffect(() => {
+        // scroll to top whenever a new section is selected / left
         document.getElementById("page-layout").scrollTo({ top: 0, behavior: "smooth" });
     }, [selectedSection]);
     return (
@@ -324,6 +346,7 @@ export default function EPublications() {
                         width="100%"
                         isMobile={isMobile}
                     >
+                        {/* Temp Slides */}
                         <div>
                             <div className="EPub_Slide">
                                 <div className="EPub_Slide_body">
@@ -377,6 +400,7 @@ export default function EPublications() {
                             </div>
                         </div>
                     </Slideshow>
+                    {/* Render a new publications section for each section in data, pass in each card */}
                     <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>
                         {page_data.sections.map((section) => (
                             <EPubSection

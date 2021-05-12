@@ -1,10 +1,14 @@
 /**
- * renders an EPub Card given the title, author name, image_url, and redirect link
+ * renders an EPub Card given information about the publication.
+ * Props include title, author, image_url, redirect_link, isMobile.
+ *
+ * @Author PatrickBrown1
  */
 import React from "react";
 import "../../css/EPubCard.css";
 
 export default function EPubCard({ title, author, image_url, redirect_link, isMobile }) {
+    // props title, author name, image_url, redirect link, isMobile
     return (
         <>
             {!isMobile ? (
