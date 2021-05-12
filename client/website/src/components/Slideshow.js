@@ -18,9 +18,9 @@ import "../css/Slideshow.css";
 const Slideshow = (props) => (
     // required props: height, width
     <Fade
-        autoPlay
-        duration={3000}
-        transitionDuration={500}
+        // autoPlay
+        // duration={3000}
+        // transitionDuration={500}
         prevArrow={
             <div style={{ width: "50px", marginRight: "-50px" }}>
                 <img className="Slideshow_arrowleft" src={LeftArrow} alt="left arrow" />

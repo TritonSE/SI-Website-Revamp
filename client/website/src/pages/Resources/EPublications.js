@@ -316,27 +316,58 @@ export default function EPublications() {
         <div>
             {selectedSection === "" ? (
                 <>
-                    <Slideshow height="400px" width="100%">
+                    <Slideshow height="450px" width="100%">
                         <div>
-                            <img
-                                style={{ width: "100vw", height: "400px" }}
-                                alt="cat"
-                                src="https://api.timeforkids.com/wp-content/uploads/2020/08/animalVoting.jpg?w=1024"
-                            />
+                            <div className="EPub_Slide">
+                                <div className="EPub_Slide_body">
+                                    <h1>E-Publications</h1>
+                                    <h2>Author</h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Maecenas facilisis condimentum massa, sit amet lacinia massa
+                                        commodo sed. Praesent vehicula eget arcu ut laoreet. Sed
+                                        porta, dui ut dapibus sodales, orci neque volutpat arcu, in
+                                        efficitur sem tortor vel lectus.{" "}
+                                    </p>
+                                    <button
+                                        type="button"
+                                        className="EPub_Slide_body_readMoreButton"
+                                    >
+                                        Read More
+                                    </button>
+                                </div>
+                                <img
+                                    className="EPub_Slide_image"
+                                    src="https://m.media-amazon.com/images/I/41Ht+tl9cCL._AC_UY218_.jpg"
+                                    alt=""
+                                />
+                            </div>
                         </div>
                         <div>
-                            <img
-                                style={{ width: "100vw", height: "400px" }}
-                                alt="cat"
-                                src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2019/10/giant-panda-750x400.jpg"
-                            />
-                        </div>
-                        <div>
-                            <img
-                                style={{ width: "100vw", height: "400px" }}
-                                alt="cat"
-                                src="https://28qs4b33l1o7458ep2hwzyw1-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/Ring-tail-Lemur-1550x700.jpg"
-                            />
+                            <div className="EPub_Slide">
+                                <div className="EPub_Slide_body">
+                                    <h1>E-Publications</h1>
+                                    <h2>Author</h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Maecenas facilisis condimentum massa, sit amet lacinia massa
+                                        commodo sed. Praesent vehicula eget arcu ut laoreet. Sed
+                                        porta, dui ut dapibus sodales, orci neque volutpat arcu, in
+                                        efficitur sem tortor vel lectus.{" "}
+                                    </p>
+                                    <button
+                                        type="button"
+                                        className="EPub_Slide_body_readMoreButton"
+                                    >
+                                        Read More
+                                    </button>
+                                </div>
+                                <img
+                                    className="EPub_Slide_image"
+                                    src="https://m.media-amazon.com/images/I/41Ht+tl9cCL._AC_UY218_.jpg"
+                                    alt=""
+                                />
+                            </div>
                         </div>
                     </Slideshow>
                     <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>
