@@ -9,7 +9,7 @@ export default function EPubCard({ title, author, image_url, redirect_link, isMo
         <>
             {!isMobile ? (
                 <div className="EPubCard">
-                    <a href={redirect_link}>
+                    <a href={redirect_link} target="_blank" rel="noreferrer noopener">
                         <img alt={title} src={image_url} className="EPubCard_image" />
                     </a>
                     <div className="EPubCard_title">{title}</div>
@@ -17,7 +17,7 @@ export default function EPubCard({ title, author, image_url, redirect_link, isMo
                 </div>
             ) : (
                 <div className="EPubCard--mobile">
-                    <a href={redirect_link}>
+                    <a href={redirect_link} target="_blank" rel="noreferrer noopener">
                         <img alt={title} src={image_url} className="EPubCard_image--mobile" />
                     </a>
                     <div className="EPubCard_title--mobile">{title}</div>

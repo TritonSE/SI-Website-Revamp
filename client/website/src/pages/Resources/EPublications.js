@@ -219,6 +219,7 @@ const page_data = {
 
 // renders selected section
 const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (!isMobile) {
         return (
             <div className="EPub_SelectedSection">
@@ -311,9 +312,11 @@ export default function EPublications() {
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []); // Empty array ensures that effect is only run on mount
-
+    useEffect(() => {
+        document.getElementById("page-layout").scrollTo({ top: 0, behavior: "smooth" });
+    }, [selectedSection]);
     return (
-        <div>
+        <div id="EPubPage">
             {selectedSection === "" ? (
                 <>
                     <Slideshow height="450px" width="100%">
