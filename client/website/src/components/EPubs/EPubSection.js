@@ -1,5 +1,9 @@
 /**
+ * renders the preview publications for a given section. This includes
+ * up to 5 elements, and in mobile view includes arrows to iterate through
+ * the publications.
  *
+ * @Author PatrickBrown1
  */
 import React, { useState } from "react";
 import EPubCard from "./EPubCard";
