@@ -15,9 +15,10 @@
 
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
-import VerticalStepper from "../components/Main/Conference/VerticalStepper";
-import ConferenceOverview from "../components/Main/Conference/ConferenceOverview";
-import ConferenceTheme from "../components/Main/Conference/ConferenceTheme";
+import VerticalStepper from "../components/Conference/VerticalStepper";
+import ConferenceOverview from "../components/Conference/ConferenceOverview";
+import ConferenceTheme from "../components/Conference/ConferenceTheme";
+import useWindowSize from "../util/ScreenListener";
 import Slideshow from "../components/Slideshow";
 
 import "../css/Conferences.css";
@@ -99,6 +100,8 @@ export default function Conferences() {
     const [item, setItem] = useState(arr[index]);
     // list of all conferences
     const [itemList] = useState(arr);
+    // listener for the
+    const listener = useWindowSize();
 
     // initalially set the page to render the first conference
     useEffect(() => {
@@ -154,12 +157,18 @@ export default function Conferences() {
     const slideshowVideo = () => {
         if (isInfo) {
             return (
-                <Slideshow height="450px" width="900px">
+                <Slideshow
+                    height={listener.width > 1200 ? "396px" : "450px"}
+                    width={listener.width > 1200 ? "calc(41.8vw)" : "calc(85vw)"}
+                >
                     {obj.info.slideShowImages.map((image) => (
                         <div>
                             <img
-                                style={{ width: "calc(100vw)", height: "400px" }}
-                                alt="cat"
+                                style={{
+                                    width: listener.width > 1200 ? "calc(41.8vw)" : "calc(85vw)",
+                                    height: listener.width > 1200 ? "396px" : "450px",
+                                }}
+                                alt="Event Visual"
                                 src={image}
                             />
                         </div>
@@ -168,44 +177,51 @@ export default function Conferences() {
             );
         }
 
-        return <ReactPlayer url={obj.info.video} height="450px" width="900px" />;
+        return (
+            <ReactPlayer
+                url={obj.info.video}
+                height={listener.width > 1200 ? "396px" : "450px"}
+                width={listener.width > 1200 ? "calc(41.8vw)" : "calc(85vw)"}
+            />
+        );
     };
 
     return (
         <div className="conferences-outer-container">
-            <div className="conference-container">
-                <div className="component-display">
+            <div className="component-display">
+                <div className="conference-vertical-stepper">
                     <VerticalStepper items={arr} color="#6652A0" setParentIndex={setParentIndex} />
-                    <div className="conference-container">{displayInformation()}</div>
-                    {/* The tabs to switch between theme and overview */}
-                    <section className="slideshow-section">
-                        <div className="slideshow-section-tabs">
-                            <button
-                                className={
-                                    isInfo
-                                        ? "slideshow-section-theme-active"
-                                        : "slideshow-section-theme"
-                                }
-                                onClick={() => updateInformation()}
-                                type="button"
-                            >
-                                Theme
-                            </button>
-                            <button
-                                className={
-                                    isInfo
-                                        ? "slideshow-section-overview"
-                                        : "slideshow-section-overview-active"
-                                }
-                                onClick={() => updateInformation()}
-                                type="button"
-                            >
-                                Overview
-                            </button>
-                        </div>
+                </div>
 
-                        <div>{slideshowVideo()}</div>
-                    </section>
+                <div className="conference-container">{displayInformation()}</div>
+                {/* The tabs to switch between theme and overview */}
+                <div className="slideshow-section">
+                    <div className="slideshow-section-tabs">
+                        <button
+                            className={
+                                isInfo
+                                    ? "slideshow-section-theme-active"
+                                    : "slideshow-section-theme"
+                            }
+                            onClick={() => updateInformation()}
+                            type="button"
+                        >
+                            Theme
+                        </button>
+                        <button
+                            className={
+                                isInfo
+                                    ? "slideshow-section-overview"
+                                    : "slideshow-section-overview-active"
+                            }
+                            onClick={() => updateInformation()}
+                            type="button"
+                        >
+                            Overview
+                        </button>
+                    </div>
+
+                    <div>{slideshowVideo()}</div>
                 </div>
             </div>
         </div>

@@ -13,8 +13,8 @@
  */
 
 import React, { useState } from "react";
-import Modal from "../Modal";
-import "../../../css/Conferences.css";
+import Modal from "../Main/Modal";
+import "../../css/Conferences.css";
 
 export default function ConferenceTheme(props) {
     // used to control the state of the CustomModal

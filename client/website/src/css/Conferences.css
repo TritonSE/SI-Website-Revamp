@@ -1,16 +1,13 @@
-body {
-  font-family: var(--text-font);
-}
-
 .conferences-outer-container {
   width: 100%;
-  overflow-x: auto;
+  padding-left: calc(101px);
+  padding-right: calc(101px);
 }
 
 /* The Conferences page */
 .conference-container {
-  min-width: 440px;
-  width: calc(25vw);
+  /* min-width: 440px; */
+  width: calc(30.24vw);
   display: flex;
   justify-content: flex-start;
 }
@@ -19,13 +16,20 @@ body {
 .component-display {
   display: flex;
   flex-direction: row;
+  position: relative;
+}
+
+.conference-vertical-stepper {
+  min-width: calc(200px);
+  margin-top: calc(65px);
+  margin-bottom: calc(170px);
 }
 
 /* Conference information */
 
 .conference-info {
-  min-width: 400px;
-  width: calc(22vw);
+  /* min-width: 400px; */
+  width: calc(30.24vw);
   margin: 15.5vh 2vw 9vh 1vw;
 }
 
@@ -46,6 +50,7 @@ body {
 
 .conference-info-resource-title h4 {
   font-size: calc(20.5px);
+  font-family: var(--text-font);
 }
 
 .conference-info-divider {
@@ -75,6 +80,7 @@ body {
 .program p {
   margin-left: calc(0.5vw);
   margin-top: calc(-0.4vh);
+  font-family: var(--text-font);
 }
 
 .conference-info-signup {
@@ -89,19 +95,20 @@ body {
   font-family: var(--text-font);
   font-size: calc(20px);
   padding: 0.5vh 2vw 0.5vh 2vw;
-  min-width: calc(153.6px);
-  min-height: calc(44.28px);
-  border-radius: calc(1vw);
+  min-width: calc(180px);
+  min-height: calc(50px);
+  border-radius: calc(24.5px);
   font-weight: 600;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  font-family: var(--text-font);
 }
 
 /* Slideshow section  */
 
 .slideshow-section {
-  /* min-width: calc(70vw);
-  width: calc(80vw); */
-  /* min-width: 100%; */
-  margin: 9.5vh 2vw 9vh 1vw;
+  width: 100%;
+  margin-top: calc(120px);
+  position: relative;
 }
 
 .slideshow-section-theme-active,
@@ -112,12 +119,13 @@ body {
   color: var(--white);
   font-family: var(--text-font);
   font-size: calc(18px);
-  min-width: calc(153.6px);
-  min-height: calc(44.28px);
-  border-radius: calc(3vw);
+  min-width: calc(180px);
+  min-height: calc(50px);
+  border-radius: calc(24.5px);
   font-weight: 600;
   margin-left: calc(2vw);
   margin-bottom: calc(2vh);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
 }
 
 .slideshow-section-theme,
@@ -127,9 +135,9 @@ body {
   color: var(--black);
   font-family: var(--text-font);
   font-size: calc(18px);
-  min-width: calc(153.6px);
-  min-height: calc(44.28px);
-  border-radius: calc(3vw);
+  min-width: calc(180px);
+  min-height: calc(50px);
+  border-radius: calc(24.5px);
   font-weight: 600;
   margin-left: calc(2vw);
   margin-bottom: calc(2vh);
@@ -138,4 +146,42 @@ body {
 .slideshow-section-theme-active,
 .slideshow-section-theme {
   margin-left: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+  .conference-container {
+    width: calc(50vw);
+    grid-area: textArea;
+  }
+
+  .conference-vertical-stepper {
+    margin-bottom: 0;
+    min-width: calc(100px);
+    width: calc(100px);
+  }
+
+  .conference-info {
+    min-width: calc(60vw);
+  }
+
+  .component-display {
+    display: grid;
+    justify-content: center;
+    grid:
+      ". textArea"
+      "slideshowArea slideshowArea";
+  }
+
+  .slideshow-section {
+    width: 100%;
+    grid-area: slideshowArea;
+    margin-top: calc(40px);
+    margin-bottom: calc(90px);
+  }
+
+  .conferences-outer-container {
+    width: 100%;
+    padding-left: calc(50px);
+    padding-right: calc(50px);
+  }
 }

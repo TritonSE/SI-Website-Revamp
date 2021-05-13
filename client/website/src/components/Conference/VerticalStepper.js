@@ -20,7 +20,7 @@ import StepConnector from "@material-ui/core/StepConnector";
 import Step from "@material-ui/core/Step";
 import { StepButton, StepLabel } from "@material-ui/core";
 import CustomPagination from "./Pagination";
-import "../../../css/Stepper/Stepper.css";
+import "../../css/Stepper/Stepper.css";
 
 /**
  * Convert a given number into an ordinal number
@@ -52,52 +52,55 @@ export default function VerticalStepper(props) {
     // custom styling used for various components
     const useStyles = makeStyles(() => ({
         root: {
-            minWidth: "190px",
-            margin: "8vh 0vw 9vh 8vw",
+            minWidth: "calc(11.39vw)",
         },
         stepDiv: {
             minHeight: "calc(666.5px)",
         },
         step_label_root: {
-            fontSize: "18px",
-            color: props.color,
+            fontSize: "16px",
+            color: `${props.color} !important`,
             fontWeight: "500",
             width: "calc(200px)",
             textAlign: "left",
             marginLeft: "calc(15px)",
         },
         icon_container: {
-            width: "32px",
-            height: "24px",
+            width: "30px",
+            height: "22px",
             justifyContent: "center",
         },
         button: {
-            width: "25px",
-            height: "25px",
+            width: "22px",
+            height: "22px",
             backgroundColor: "transparent",
-            border: `3px solid ${props.color}`,
+            border: `2px solid ${props.color}`,
             borderRadius: "50%",
+            fontWeight: "300",
+            color: `${props.color}`,
         },
         buttonActive: {
-            width: "25px",
-            height: "25px",
+            width: "22px",
+            height: "22px",
             backgroundColor: "#6652A0",
             border: `2px solid ${props.color}`,
             borderRadius: "50%",
             color: "white",
-            transform: "scale(1.15)",
+            fontWeight: "300",
         },
     }));
 
     // custom styling for the connectors on the stepper
     const ColorlibConnector = withStyles({
         line: {
-            marginTop: "calc(5.5px)",
-            width: 3,
+            marginTop: "calc(6.5px)",
+            marginBottom: "calc(-2px)",
+            width: 2,
+            minHeight: "22px",
             border: 0,
             backgroundColor: props.color,
             borderRadius: 1,
-            marginLeft: "calc(2px)",
+            marginLeft: "calc(0px)",
         },
     })(StepConnector);
 
@@ -187,6 +190,7 @@ export default function VerticalStepper(props) {
                                     classes={{
                                         label: classes.step_label_root,
                                         iconContainer: classes.icon_container,
+                                        active: classes.step_label_root,
                                     }}
                                 >
                                     {step.location}
