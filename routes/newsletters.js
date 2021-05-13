@@ -25,6 +25,9 @@ router.post(
         body("year").isNumeric().isLength({ min: 4, max: 4 }),
         body("pdfLink").isString(),
         body("imageLink").isString(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
