@@ -32,20 +32,28 @@ export default function Home() {
                     <h1>Be Involved </h1>
                     <div className="involve-sections-container">
                         <div id="join-us" className="involve-section">
-                            <p> Become a member of Sakyadhita! </p>
-                            <button> Join Us </button>
+                            <div className="overlay">
+                                <p> Become a member of Sakyadhita! </p>
+                                <button> Join Us </button>
+                            </div>
                         </div>
                         <div id="volunteer" className="involve-section">
-                            <p>
-                                {" "}
-                                Interested in helping us with anything from writing content to
-                                building?{" "}
-                            </p>
-                            <button> Volunteer </button>
+                            <div className="overlay">
+                                <p>
+                                    Interested in helping us with anything from writing content to
+                                    building?
+                                </p>
+                                <button> Volunteer </button>
+                            </div>
                         </div>
                         <div id="donate" className="involve-section">
-                            <p> Help us grow and continue to connect by donating in any amount </p>
-                            <button> Donate </button>
+                            <div className="overlay">
+                                <p>
+                                    {" "}
+                                    Help us grow and continue to connect by donating in any amount{" "}
+                                </p>
+                                <button> Donate </button>
+                            </div>
                         </div>
                     </div>
                 </section>
