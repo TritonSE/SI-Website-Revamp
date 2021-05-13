@@ -11,10 +11,15 @@ const Newsletters = require("../models/newsletters");
 /**
  * Returns all entries in the Newsletters table
  *
- * @returns {[object]} - Array of all entries in the table
+ * @returns {[object]} - Array of all entries in the table, ordered by descending year
  */
 async function getAll() {
-    return Newsletters.findAll();
+    return Newsletters.findAll({
+        order: [
+            ["year", "DESC"],
+            ["volume", "DESC"],
+        ],
+    });
 }
 
 /**
