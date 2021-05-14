@@ -1,4 +1,5 @@
 import React from "react";
+import InteractiveMap from "../components/Home/InteractiveMap";
 import "../css/Home.css";
 
 export default function Home() {
@@ -28,6 +29,9 @@ export default function Home() {
                     </p>
                 </section>
                 <hr className="divider" />
+                <section id="branches-and-chapters">
+                    <InteractiveMap />
+                </section>
                 <section id="home-be-involved">
                     <h1>Be Involved </h1>
                     <div className="involve-sections-container">
@@ -49,7 +53,6 @@ export default function Home() {
                         <div id="donate" className="involve-section">
                             <div className="overlay">
                                 <p>
-                                    {" "}
                                     Help us grow and continue to connect by donating in any amount{" "}
                                 </p>
                                 <button> Donate </button>
