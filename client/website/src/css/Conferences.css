@@ -1,7 +1,7 @@
 .conferences-outer-container {
   width: 100%;
-  padding-left: calc(101px);
-  padding-right: calc(101px);
+  margin-left: calc(101px);
+  margin-right: calc(101px);
 }
 
 /* The Conferences page */
@@ -55,7 +55,7 @@
 
 .conference-info-divider {
   border: 1px solid var(--orange);
-  width: calc(307.2px);
+  width: calc(100%);
   color: white;
   background-color: var(--orange);
   font-size: calc(18px);
@@ -106,9 +106,9 @@
 /* Slideshow section  */
 
 .slideshow-section {
-  width: 100%;
+  width: calc(50.064vw - 100px);
+  float: left;
   margin-top: calc(120px);
-  position: relative;
 }
 
 .slideshow-section-theme-active,
@@ -148,6 +148,16 @@
   margin-left: 0;
 }
 
+/* pagination styling */
+.MuiPaginationItem-page.Mui-selected {
+  background-color: var(--lightpurple) !important;
+  color: var(--white);
+}
+
+.MuiPaginationItem-icon {
+  color: var(--darkpurple) !important;
+}
+
 @media only screen and (max-width: 1200px) {
   .conference-container {
     width: calc(50vw);
@@ -173,7 +183,7 @@
   }
 
   .slideshow-section {
-    width: 100%;
+    width: calc(85vw);
     grid-area: slideshowArea;
     margin-top: calc(40px);
     margin-bottom: calc(90px);
@@ -181,7 +191,26 @@
 
   .conferences-outer-container {
     width: 100%;
-    padding-left: calc(50px);
-    padding-right: calc(50px);
+    margin-left: calc(0px);
+    margin-right: calc(0px);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .component-display {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .conference-vertical-stepper {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: calc(12px);
+  }
+
+  .horizontal-stepper {
+    min-width: calc(350px);
   }
 }

@@ -1,7 +1,8 @@
 /**
  * The pagination that supplements the Stepper.
  * Takes in a prop from parent, which updates the current
- * page the pagination should be on.
+ * page the pagination should be on. Takes in a size prop
+ * which is used to determine how to split the page numbers
  *
  * @summary     Custom Pagination
  * @author      Amitesh Sharma
@@ -10,6 +11,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
+import "../../css/Conferences.css";
 
 const useStyles = makeStyles((theme) => ({
     // custom styling for the paginations
@@ -25,9 +27,14 @@ export default function CustomPagination(props) {
     const classes = useStyles();
 
     // set the tabs for the pagination
-    const count = parseInt(props.count / 10, 10) + 1;
+    const count = parseInt(props.count / props.size, 10) + 1;
 
-    // updates the page the pagination should be on
+    /**
+     * Update the parent's page number
+     *
+     * @param {Event} e - event trigger
+     * @param {number} page - the page number
+     */
     const handleChange = (e, page) => {
         props.updatePage(page);
     };

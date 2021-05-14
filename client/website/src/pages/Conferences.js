@@ -16,6 +16,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import VerticalStepper from "../components/Conference/VerticalStepper";
+import HorizontalStepper from "../components/Conference/HorizontalStepper";
 import ConferenceOverview from "../components/Conference/ConferenceOverview";
 import ConferenceTheme from "../components/Conference/ConferenceTheme";
 import useWindowSize from "../util/ScreenListener";
@@ -92,7 +93,7 @@ for (let i = 0; i < 13; i++) {
 }
 
 export default function Conferences() {
-    // switch between theme and overview state
+    // switch used to toggle theme and overview state
     const [isInfo, setIsInfo] = useState(true);
     // keep track of the conference
     const [index, setIndex] = useState(0);
@@ -109,7 +110,7 @@ export default function Conferences() {
     }, []);
 
     /**
-     * Switches between the theme and overview tabs
+     * Switch between the theme and overview tabs depending on the previous state
      */
     const updateInformation = () => {
         setIsInfo(!isInfo);
@@ -118,7 +119,7 @@ export default function Conferences() {
     /**
      * Updates the current index and information rendered
      * when clicked on in VerticalStepper
-     * @param {number} step
+     * @param {number} step - the index clicked on the vertical stepper
      */
     const setParentIndex = (step) => {
         setIndex(step);
@@ -126,13 +127,13 @@ export default function Conferences() {
     };
 
     /**
-     * Rendered the conference theme information
+     * Rendersthe conference theme information
      * title - the title of the conference
      * location - location of the conference
      * redirect - redirect url for registration
      * theme - information about the conference
      * info - overview of conference, files
-     * @returns Node
+     * @returns Node - component to render
      */
     const displayInformation = () => {
         if (isInfo) {
@@ -146,26 +147,29 @@ export default function Conferences() {
             );
         }
 
+        // if it is not the info tab, then render the overview tab
         return <ConferenceOverview info={item.info} title={item.title} />;
     };
 
     /**
      * Renders a slideshow or video depending on the tab
      * If theme, slideshow, otherwise video
-     * @returns Node
+     * @returns Node - component to render
      */
     const slideshowVideo = () => {
         if (isInfo) {
             return (
                 <Slideshow
                     height={listener.width > 1200 ? "396px" : "450px"}
-                    width={listener.width > 1200 ? "calc(41.8vw)" : "calc(85vw)"}
+                    width={listener.width > 1200 ? "100%" : "calc(85vw)"}
                 >
+                    {/* Loop through all the images associated with the conference */}
                     {obj.info.slideShowImages.map((image) => (
                         <div>
+                            {/* Set styling on the img */}
                             <img
                                 style={{
-                                    width: listener.width > 1200 ? "calc(41.8vw)" : "calc(85vw)",
+                                    width: listener.width > 1200 ? "100%" : "calc(85vw)",
                                     height: listener.width > 1200 ? "396px" : "450px",
                                 }}
                                 alt="Event Visual"
@@ -177,11 +181,12 @@ export default function Conferences() {
             );
         }
 
+        // if it is the overivew tab, render the associated video
         return (
             <ReactPlayer
                 url={obj.info.video}
                 height={listener.width > 1200 ? "396px" : "450px"}
-                width={listener.width > 1200 ? "calc(41.8vw)" : "calc(85vw)"}
+                width={listener.width > 1200 ? "100%" : "calc(85vw)"}
             />
         );
     };
@@ -189,14 +194,32 @@ export default function Conferences() {
     return (
         <div className="conferences-outer-container">
             <div className="component-display">
+                {/* The vertical stepper */}
                 <div className="conference-vertical-stepper">
-                    <VerticalStepper items={arr} color="#6652A0" setParentIndex={setParentIndex} />
+                    {listener.width > 767 ? (
+                        <VerticalStepper
+                            items={arr}
+                            color="#6652a0"
+                            setParentIndex={setParentIndex}
+                        />
+                    ) : (
+                        <div className="horizontal-stepper">
+                            <HorizontalStepper
+                                items={arr}
+                                color="#6652a0"
+                                setParentIndex={setParentIndex}
+                            />
+                        </div>
+                    )}
                 </div>
 
+                {/* Display the information for either theme or ovwerview */}
                 <div className="conference-container">{displayInformation()}</div>
+
                 {/* The tabs to switch between theme and overview */}
                 <div className="slideshow-section">
                     <div className="slideshow-section-tabs">
+                        {/* The 'theme' tab button */}
                         <button
                             className={
                                 isInfo
@@ -208,6 +231,7 @@ export default function Conferences() {
                         >
                             Theme
                         </button>
+                        {/* The 'overview' tab button */}
                         <button
                             className={
                                 isInfo
@@ -221,7 +245,8 @@ export default function Conferences() {
                         </button>
                     </div>
 
-                    <div>{slideshowVideo()}</div>
+                    {/* Render either the associated video or the slideshow of images */}
+                    <div style={{ width: "100%" }}>{slideshowVideo()}</div>
                 </div>
             </div>
         </div>

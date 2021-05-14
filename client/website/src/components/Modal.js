@@ -4,6 +4,8 @@
  *  - open: control if the modal should be open or not
  *  - hide: function to hide the modal
  *  - text: required, pass in text for the modal.
+ *  - url: required if button is rendered within modal,
+ *         directs the user to the specified link.
  *
  * @summary     popup modal
  * @author      Amitesh Sharma
@@ -11,7 +13,7 @@
 
 import React from "react";
 import { Modal } from "react-bootstrap";
-import "../../css/Modal.css";
+import "../css/Modal.css";
 
 export default function CustomModal(props) {
     // redirect to the registration url
@@ -26,8 +28,10 @@ export default function CustomModal(props) {
                     <Modal.Body>
                         {/* The text of the modal */}
                         <p>{props.text}</p>
-                        {/* The close modal button */}
+
+                        {/* Contains the two buttons within the modal */}
                         <div className="redirect-div">
+                            {/* The close modal button */}
                             <button
                                 className="redirect-cancel"
                                 onClick={() => props.hide(false)}
@@ -35,6 +39,7 @@ export default function CustomModal(props) {
                             >
                                 Cancel
                             </button>
+
                             {/* the redirect button */}
                             <button
                                 className="redirect-link"

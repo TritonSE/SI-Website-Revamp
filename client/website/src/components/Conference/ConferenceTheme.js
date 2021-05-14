@@ -13,20 +13,21 @@
  */
 
 import React, { useState } from "react";
-import Modal from "../Main/Modal";
+import Modal from "../Modal";
 import "../../css/Conferences.css";
 
 export default function ConferenceTheme(props) {
     // used to control the state of the CustomModal
     const [open, setOpen] = useState(false);
 
-    // function to set the state of the modal
-    const redirect = () => {
-        setOpen(!open);
-    };
+    /**
+     * function to set the view state of the modal.
+     */
+    const redirect = () => setOpen(!open);
 
-    // function to hide the modal, passed in
-    // as props to the Modal component
+    /**
+     * Sets the modal view state to false and closes it.
+     */
     const hide = () => setOpen(false);
 
     return (
@@ -48,8 +49,11 @@ export default function ConferenceTheme(props) {
                 </button>
             </section>
 
+            {/* The text describing the specific conference */}
             <p>{props.theme} </p>
 
+            {/* The Modal that renders if the signup button is clicked under 'overview' 
+            on conferences */}
             <Modal
                 open={open}
                 hide={hide}
