@@ -40,7 +40,7 @@
 .slider-wrapper {
   position: absolute;
   top: 650px;
-  margin-left: 50px;
+  margin-left: min(50px, 2.5vw);
   height: calc(100% - 615px);
 }
 
@@ -61,11 +61,31 @@
 
 .slider-nav li {
   padding: 15px 0;
-  font-size: min(1.125em, 1.25vw);
+  font-size: min(1.125em, 1.7vw);
 }
 
 .slider-nav li.underline {
-  text-decoration: underline solid orange 2px;
+  text-decoration: underline solid var(--orange) 2px;
+  text-underline-offset: 6px;
+}
+
+.slider-nav li a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.slider-nav li a:hover {
+  text-decoration: underline solid var(--orange) 2px;
+  text-underline-offset: 6px;
+}
+
+.slider-nav li a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.slider-nav li a:hover {
+  text-decoration: underline solid var(--orange) 2px;
   text-underline-offset: 6px;
 }
 
@@ -80,11 +100,11 @@
 
 .contents {
   position: relative;
-  margin-left: min(315px, 24vw);
+  align-self: center;
   padding-top: 100px;
   padding-bottom: 275px;
-  width: max(100vw - 315px - 100px, 100vw - 22vw - 100px);
-  width: calc(100vw - 315px - 100px);
+  margin-left: max(25vw, 50vw - 500px);
+  width: 70vw;
   max-width: 1000px;
 
   display: flex;
@@ -92,6 +112,7 @@
 }
 
 .section {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -117,16 +138,35 @@
   width: 100%;
 }
 
+.scroll {
+  position: absolute;
+  top: -144px;
+}
+
+#exec h1 {
+  align-self: center;
+}
+
+#exec button {
+  height: 40px;
+  width: 175px;
+  background: transparent;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
 .profiles {
-  width: 840px;
+  position: relative;
+  width: min(749px, 100%);
   display: flex;
   flex-flow: row-reverse wrap-reverse;
   justify-content: space-evenly;
 }
 
 .profile {
-  width: 420px;
-  padding: 0 70px;
+  position: relative;
+  width: 250px;
+  margin: 0 20px;
 
   display: flex;
   flex-direction: column;
@@ -157,11 +197,35 @@
   padding: 0px 10px;
 }
 
+#founding h1 {
+  align-self: center;
+}
+
+#founding h2 {
+  align-self: flex-start;
+  margin-top: 85px;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 1.875em;
+}
+
+#founding p {
+  margin-top: 10px;
+}
+
 .divider {
   margin: 100px 0px;
   height: 8px;
-  width: 700px;
+  width: min(700px, 50vw);
   background: var(--orange);
 
   align-self: center;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 600px), (max-height: 600px) {
+  .slider-wrapper {
+    display: none;
+  }
 }

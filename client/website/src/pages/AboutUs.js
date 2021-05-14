@@ -5,6 +5,7 @@ import "../css/About.css";
 import Header from "../media/lotus-header.svg";
 import LotusPink from "../media/lotus-pink.svg";
 import Navid from "../media/navid.jpg";
+import Founders from "../media/founders.png";
 
 export default function AboutUs() {
     return (
@@ -17,10 +18,18 @@ export default function AboutUs() {
             <div className="slider-wrapper">
                 <div className="slider">
                     <ul className="slider-nav">
-                        <li className="underline">Mission & Activities</li>
-                        <li>History & Goals</li>
-                        <li>Executive Committee</li>
-                        <li>Founding Members</li>
+                        <li className="underline">
+                            <a href="#mission">Mission & Activities</a>
+                        </li>
+                        <li>
+                            <a href="#history">History & Goals</a>
+                        </li>
+                        <li>
+                            <a href="#committee">Executive Committee</a>
+                        </li>
+                        <li>
+                            <a href="#founders">Founding Members</a>
+                        </li>
                     </ul>
                     <div className="vbar" />
                 </div>
@@ -28,6 +37,7 @@ export default function AboutUs() {
 
             <div className="contents">
                 <div className="section">
+                    <div className="scroll" id="mission" />
                     <h1>Mission & Activities</h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, distinctio
@@ -56,6 +66,7 @@ export default function AboutUs() {
                 <div className="divider" />
 
                 <div className="section">
+                    <div className="scroll" id="history" />
                     <h1>History & Goals</h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, distinctio
@@ -83,8 +94,14 @@ export default function AboutUs() {
 
                 <div className="divider" />
 
-                <div className="section">
+                <div className="section" id="exec">
+                    <div className="scroll" id="committee" />
                     <h1>Executive Committee</h1>
+
+                    <button type="button">
+                        <span>2021</span>
+                    </button>
+
                     <div className="profiles">
                         <div className="profile">
                             <img src={Navid} alt="Exec Headshot" />
@@ -93,7 +110,7 @@ export default function AboutUs() {
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum est?
+                                nostrum?
                             </p>
                         </div>
                         <div className="profile">
@@ -103,7 +120,7 @@ export default function AboutUs() {
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum est?
+                                nostrum?
                             </p>
                         </div>
                         <div className="profile">
@@ -113,7 +130,7 @@ export default function AboutUs() {
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum est?
+                                nostrum?
                             </p>
                         </div>
                         <div className="profile">
@@ -123,7 +140,7 @@ export default function AboutUs() {
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum est?
+                                nostrum?
                             </p>
                         </div>
                         <div className="profile">
@@ -133,7 +150,7 @@ export default function AboutUs() {
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum est?
+                                nostrum?
                             </p>
                         </div>
                     </div>
@@ -141,8 +158,21 @@ export default function AboutUs() {
 
                 <div className="divider" />
 
-                <div className="section">
+                <div className="section" id="founding">
+                    <div className="scroll" id="founders" />
                     <h1>Founding Members</h1>
+                    <img src={Founders} alt="Founding Members" />
+                    <h2>1st Sakyadhita Conference, 1987</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
+                        condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula
+                        eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat
+                        arcu, in efficitur sem tortor vel lectus. Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet
+                        lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed
+                        porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem
+                        tortor vel lectus.
+                    </p>
                 </div>
             </div>
         </div>
