@@ -1,8 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import InteractiveMap from "../components/Home/InteractiveMap";
+import ReactTooltip from "react-tooltip";
 import "../css/Home.css";
+import { FiExternalLink } from "react-icons/fi";
 
 export default function Home() {
+    const [content, setTooltipContent] = useState({
+        country: "",
+        email: "",
+        urlLink: ""
+    });
+
     return (
         <div className="Home">
             <section className="home-body">
@@ -30,7 +38,18 @@ export default function Home() {
                 </section>
                 <hr className="divider" />
                 <section id="branches-and-chapters">
-                    <InteractiveMap />
+                    {/* <p  data-tip="hover me"> Hello </p>
+                    <p  data-tip="check me"> Hello </p> */}
+                    <a data-tip='custom show' data-event='click focus'>( •̀д•́)</a>
+                    <InteractiveMap setTooltipContent={setTooltipContent} />
+                    <ReactTooltip place="left" effect="solid" type="dark" delayUpdate={1} globalEventOff='click' >
+                        <a href={content.urlLink} target="_blank">
+                            {content.country}
+                            <FiExternalLink/>
+                        </a>
+                        <br/>
+                        {content.email}
+                    </ReactTooltip>
                 </section>
                 <section id="home-be-involved">
                     <h1>Be Involved </h1>

@@ -29,6 +29,11 @@
   width: 100%;
 }
 
+.__react_component_tooltip { pointer-events: auto !important; }
+.__react_component_tooltip:hover{
+  background-color: aquamarine;
+}
+
 .Home #home-be-involved {
   margin-top: 70px;
   width: 100%;
