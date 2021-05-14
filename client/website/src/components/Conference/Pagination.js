@@ -38,6 +38,7 @@ export default function CustomPagination(props) {
     const handleChange = (e, page) => {
         props.updatePage(page);
     };
+
     return (
         <div className={classes.root}>
             <Pagination count={count} size="small" onChange={(e, page) => handleChange(e, page)} />

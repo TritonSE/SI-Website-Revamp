@@ -152,9 +152,9 @@ export default function VerticalStepper(props) {
      * @param {index} step
      */
     const handleStep = (step) => {
-        setActiveStep(step);
+        setActiveStep(indices[0] + step);
         setActiveIndex(step);
-        props.setParentIndex(step);
+        props.setParentIndex(indices[0] + step);
     };
 
     /**
@@ -163,6 +163,8 @@ export default function VerticalStepper(props) {
      */
     const updatePage = (index) => {
         setIndices([(index - 1) * 9, index * 9]);
+        setActiveIndex(0);
+        props.setParentIndex((index - 1) * 9);
     };
 
     return (

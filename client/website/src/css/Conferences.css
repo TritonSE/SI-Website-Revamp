@@ -148,6 +148,33 @@
   margin-left: 0;
 }
 
+.mobile-slideshow-label {
+  position: absolute;
+  width: calc(55vw);
+  background: rgba(102, 82, 160, 0.55);
+  z-index: 100;
+  color: white;
+  margin-left: calc(14vw);
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.mobile-slideshow-label h1 {
+  font-family: var(--heading-font);
+  font-style: normal;
+  font-weight: bold;
+  font-size: calc(2vw + 5px);
+  line-height: 22px;
+}
+
+.mobile-slideshow-label h3 {
+  font-family: var(--text-font);
+  font-style: normal;
+  font-weight: normal;
+  font-size: calc(1.8vw + 5px);
+  line-height: 22px;
+}
+
 /* pagination styling */
 .MuiPaginationItem-page.Mui-selected {
   background-color: var(--lightpurple) !important;
@@ -212,5 +239,11 @@
 
   .horizontal-stepper {
     min-width: calc(350px);
+  }
+
+  .conference-info {
+    /* min-width: 400px; */
+    width: 100%;
+    margin: 0;
   }
 }

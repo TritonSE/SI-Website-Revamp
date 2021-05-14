@@ -5,6 +5,7 @@ import StepConnector from "@material-ui/core/StepConnector";
 import Step from "@material-ui/core/Step";
 import { StepButton } from "@material-ui/core";
 import CustomPagination from "./Pagination";
+import useWindowSize from "../../util/ScreenListener";
 import "../../css/Stepper/Stepper.css";
 
 /**
@@ -34,45 +35,52 @@ const ordinal_suffix_of = (i) => {
 const stepperNode = (index) => <div className="stepper-node">{ordinal_suffix_of(index)}</div>;
 
 export default function HorizontalStepper(props) {
+    // a listener that checks the screen width
+    const listener = useWindowSize();
+
     // custom styling used for various components
     const useStyles = makeStyles(() => ({
         stepDiv: {
             minHeight: "calc(10.5px)",
         },
         button: {
-            width: "35px",
-            height: "35px",
-            backgroundColor: "transparent",
+            width: "45px",
+            height: "45px",
+            backgroundColor: "white",
             border: `2px solid ${props.color}`,
             borderRadius: "50%",
             fontWeight: "400",
             color: `${props.color}`,
             margin: "0",
+            marginRight: "10px",
             padding: "0",
+            zIndex: "100",
         },
         buttonActive: {
-            width: "35px",
-            height: "35px",
+            width: "45px",
+            height: "45px",
             backgroundColor: `${props.color}`,
             border: `2px solid ${props.color}`,
             borderRadius: "50%",
             color: "white",
             fontWeight: "400",
             margin: "0",
+            marginRight: "10px",
             padding: "0",
+            zIndex: "100",
         },
     }));
 
     // custom styling for the connectors on the stepper
     const ColorlibConnector = withStyles({
         lineHorizontal: {
-            width: "calc(5.2vw)",
+            width: "55px",
             height: "2px",
             border: 0,
             backgroundColor: props.color,
             borderRadius: 1,
-            marginLeft: "calc(-1.6vw)",
-            marginTop: "calc(5px)",
+            marginTop: "calc(10px)",
+            marginLeft: "calc(-1.6px)",
         },
     })(StepConnector);
 
@@ -108,6 +116,12 @@ export default function HorizontalStepper(props) {
     // initial call to get all steps
     const steps = getSteps();
 
+    useEffect(() => {
+        if (listener.width > 600) {
+            setIndices([0, 6]);
+        } else setIndices([0, 4]);
+    }, [listener]);
+
     // render only the first nine items
     useEffect(() => {
         setSplitSteps(steps.slice(indices[0], indices[1]));
@@ -125,9 +139,9 @@ export default function HorizontalStepper(props) {
      * @param {index} step
      */
     const handleStep = (step) => {
-        setActiveStep(step);
+        setActiveStep(indices[0] + step);
         setActiveIndex(step);
-        props.setParentIndex(step);
+        props.setParentIndex(indices[0] + step);
     };
 
     /**
@@ -135,7 +149,14 @@ export default function HorizontalStepper(props) {
      * @param {number} index
      */
     const updatePage = (index) => {
-        setIndices([(index - 1) * 4, index * 4]);
+        // determine if it is a mobile screen or tablet
+        const size = listener.width < 601 ? 4 : 6;
+        // update the indices range
+        setIndices([(index - 1) * size, index * size]);
+        // when updating to new page, set the active index to 0
+        setActiveIndex(0);
+        // update the parent index to display proper information
+        props.setParentIndex((index - 1) * size);
     };
 
     return (
@@ -162,7 +183,11 @@ export default function HorizontalStepper(props) {
             </Stepper>
 
             <div className="pagination-stepper">
-                <CustomPagination count={steps.length} updatePage={updatePage} size={4} />
+                <CustomPagination
+                    count={steps.length}
+                    updatePage={updatePage}
+                    size={listener.width < 601 ? 4 : 6}
+                />
             </div>
         </div>
     );

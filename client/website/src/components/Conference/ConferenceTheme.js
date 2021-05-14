@@ -33,9 +33,11 @@ export default function ConferenceTheme(props) {
     return (
         <div className="conference-info">
             {/* The title of the conference */}
-            <section className="conference-info-title">
-                <h1>{props.title}</h1>
-            </section>
+            {props.title ? (
+                <section className="conference-info-title">
+                    <h1>{props.title}</h1>
+                </section>
+            ) : null}
 
             {/* The location of the conference */}
             <section className="conference-info-location">
@@ -43,11 +45,13 @@ export default function ConferenceTheme(props) {
             </section>
 
             {/* Button that opens the modal */}
-            <section className="conference-info-signup">
-                <button onClick={() => redirect()} type="button">
-                    Sign Up
-                </button>
-            </section>
+            {props.signup ? (
+                <section className="conference-info-signup">
+                    <button onClick={() => redirect()} type="button">
+                        Sign Up
+                    </button>
+                </section>
+            ) : null}
 
             {/* The text describing the specific conference */}
             <p>{props.theme} </p>
