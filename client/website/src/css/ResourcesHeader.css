@@ -1,0 +1,86 @@
+#Header {
+  width: 100%;
+  height: 40vw;
+}
+
+.header-div {
+  position: relative;
+}
+
+.header-info-div {
+  position: absolute;
+  width: 38.2vw;
+  height: 23.75vw;
+  margin-left: 5.16vw;
+  top: 9.45vw;
+  background: rgba(102, 82, 160, 0.85);
+}
+
+.header-text {
+  position: absolute;
+  width: 23.8vw;
+  height: 3.5vw;
+  margin-left: 3.7vw;
+  margin-top: 2.97vw;
+
+  font-family: var(--heading-font);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.81vw;
+  line-height: 3.5vw;
+
+  color: var(--white);
+}
+
+.header-info {
+  position: absolute;
+  width: 32.7vw;
+  height: 14.9vw;
+  margin-left: 3.4vw;
+  margin-top: 7.6vw;
+
+  font-family: var(--text-font);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.41vw;
+  line-height: 1.95vw;
+
+  color: var(--white);
+}
+
+@media screen and (max-width: 600px) {
+  #Header {
+    width: 100%;
+    height: 166.25vw;
+  }
+
+  .header-info-div {
+    width: 65.94vw;
+    height: 119.06vw;
+    margin-left: 7.19vw;
+    top: 23.13vw;
+  }
+
+  .header-text {
+    width: 23.8vw;
+    height: 3.5vw;
+
+    font-size: 5.63vw;
+    line-height: 170%;
+
+    margin-left: 6.25vw;
+    margin-top: 7.19vw;
+  }
+
+  .header-info {
+    width: 53.44vw;
+    height: 62.81vw;
+
+    font-size: 5vw;
+    line-height: 6.88vw;
+
+    margin-left: 6.25vw;
+    margin-right: 6.25vw;
+    bottom: 23.62%;
+  }
+}
