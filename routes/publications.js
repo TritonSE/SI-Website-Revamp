@@ -30,6 +30,9 @@ router.post(
         body("feature").isBoolean().optional(),
         body("description").isString().optional(),
         body("imageLink").isString(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
@@ -96,6 +99,9 @@ router.put(
         body("feature").isBoolean().optional(),
         body("description").isString().optional(),
         body("imageLink").isString().optional(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
