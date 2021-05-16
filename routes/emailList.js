@@ -7,7 +7,8 @@
  */
 const express = require("express");
 const { body } = require("express-validator");
-const { create } = require("../db/services/emailList");
+const { addUser } = require("../db/services/emailList");
+const { createUser } = require("../db/services/userInfo");
 const { isValidated } = require("../middleware/validation");
 
 const router = express.Router();
@@ -26,11 +27,15 @@ router.post(
         body("phone").isString(),
         body("email").isEmail(),
         body("country").isString(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
         try {
-            const entries = await create(req.body);
+            const user = await createUser(req.body);
+            const entries = await addUser({ info: user.id });
             return res.status(200).json(entries);
         } catch (err) {
             console.log(err);

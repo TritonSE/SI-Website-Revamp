@@ -4,20 +4,24 @@
  * @summary   defines schema for emailList.
  * @author    Thomas Garry
  */
-const Sequelize = require("sequelize");
 const db = require("../configDB");
+const UserInformation = require("./userInfo");
 
-module.exports = db.define(
+const EmailList = db.define(
     "emailList",
     {
-        // if no primary key, default it will have a column called 'id' that will auto-increment an integer value
-        info: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
+        // column 'id' will auto-increment an integer value
     },
     {
         // createdAt & updatedAt columns will be added/self-mantained by table
         timestamps: true,
     }
 );
+
+// creates an association between UserInformation and EmailList
+// new "info" column in table
+EmailList.belongsTo(UserInformation, {
+    foreignKey: "info",
+});
+
+module.exports = EmailList;
