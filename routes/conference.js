@@ -70,6 +70,7 @@ router.post(
         // prevent createdAt to be edited
         body("createdAt").custom((val) => val === undefined),
         body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
@@ -155,17 +156,23 @@ router.put(
         body("signUpLink").isString().optional(),
         body("createdAt").custom((val) => val === undefined),
         body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
-        const { id } = req.params;
-        // index must be a number
-        if (Number(id) < 0) return res.status(400).json({ message: "index must be a number" });
+        try {
+            const { id } = req.params;
+            // index must be a number
+            if (Number(id) < 0) return res.status(400).json({ message: "index must be a number" });
 
-        // success / failure upon edit
-        const entries = await edit(Number(id), req.body);
-        if (entries[0] === 1) return res.status(200).json({ message: "success" });
-        return res.status(501).json({ message: "unsuccessful edit" });
+            // success / failure upon edit
+            const entries = await edit(Number(id), req.body);
+            if (entries[0] === 1) return res.status(200).json({ message: "success" });
+            return res.status(501).json({ message: "unsuccessful edit" });
+        } catch (err) {
+            console.log(err);
+            return res.status(400).json({ message: err });
+        }
     }
 );
 
