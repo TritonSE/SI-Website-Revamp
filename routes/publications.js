@@ -26,7 +26,20 @@ router.post(
     [
         body("title").isString(),
         body("author").isString(),
-        body("filters").isArray(),
+        body("filters")
+            .isArray()
+            .custom((val) => {
+                if (!val) return false;
+
+                // make sure that every entry in the array has a pdfLink/filterId
+                for (const i of val) {
+                    if (i === undefined || i.pdfLink === undefined || i.filterId === undefined || 
+                        i.pdfLink.length === 0 || i.filterId.length === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }),
         body("feature").isBoolean().optional(),
         body("description").isString().optional(),
         body("imageLink").isString(),
@@ -54,7 +67,8 @@ router.post(
             // loops through passed-in filters and makes sure they are in the EPubFilters table
             for (let i = 0; i < req.body.filters.length; i++) {
                 const filter = req.body.filters[i].filterId;
-                const filterCount = ePubMethods.filterCount(filter);
+
+                const filterCount = await ePubMethods.filterCount(filter);
 
                 // if there is less than 1 row found with the given filter name return 409
                 if (filterCount < 1) {
@@ -95,7 +109,21 @@ router.put(
     [
         body("title").isString().optional(),
         body("author").isString().optional(),
-        body("filters").isArray().optional(),
+        body("filters")
+            .isArray()
+            .custom((val) => {
+                if (!val) return false;
+
+                // make sure that every entry in the array has a pdfLink/filterId
+                for (const i of val) {
+                    if (i === undefined || i.pdfLink === undefined || i.filterId === undefined || 
+                        i.pdfLink.length === 0 || i.filterId.length === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            .optional(),
         body("feature").isBoolean().optional(),
         body("description").isString().optional(),
         body("imageLink").isString().optional(),
@@ -133,7 +161,7 @@ router.put(
                 // loops through passed-in filters and makes sure they are in the EPubFilters table
                 for (let i = 0; i < req.body.filters.length; i++) {
                     const filter = req.body.filters[i].filterId;
-                    const filterCount = ePubMethods.filterCount(filter);
+                    const filterCount = await ePubMethods.filterCount(filter);
 
                     if (filterCount < 1) {
                         return res.status(409).json({ message: "Not a valid filter value" });
