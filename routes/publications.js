@@ -143,8 +143,6 @@ router.put(
                     const filter = value.filterId;
                     const { pdfLink } = value;
                     const filterId = await ePubMethods.filterId(filter);
-                    
-                    console.log("---------------------> " + filterId);
 
                     await filteredMethods.addOne({
                         filterId,
