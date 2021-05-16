@@ -4,20 +4,22 @@
  * @summary   defines schema for volunteers DB.
  * @author    Thomas Garry
  */
-const Sequelize = require("sequelize");
 const db = require("../configDB");
+const UserInformation = require("./userInfo");
 
-module.exports = db.define(
+const Volunteers = db.define(
     "volunteers",
     {
-        // if no primary key, default it will have a column called 'id' that will auto-increment an integer value
-        info: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
+        // column called 'id' will auto-increment an integer value
     },
     {
         // createdAt & updatedAt columns will be added/self-mantained by table
         timestamps: true,
     }
 );
+
+Volunteers.belongsTo(UserInformation, {
+    foreignKey: "info",
+});
+
+module.exports = Volunteers;

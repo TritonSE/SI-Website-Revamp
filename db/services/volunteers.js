@@ -24,17 +24,14 @@ async function create(data) {
         // validate every interest
         const committeeCount = await CommitteeInterests.count({});
         // check every passed in interest to be in between 0 and the committeCount max.
-        data.interests.forEach((i) => {
-            // if ((await CommitteeInterests.findOne({ where: { id: i } })) === null) {
-            //     return false;
-            // }
-            if (committeeCount > i || i <= 0) return false;
-            return true;
-        });
+        for (const i of data.interests) {
+            if (committeeCount < Number(i) || Number(i) <= 0) return false;
+        }
 
         // validated! Create user/volunteer
         const user = await User.create(data);
         const volunteer = await Volunteers.create({ info: user.id });
+        console.log(volunteer);
         // create every interest for this volunteer
         data.interests.forEach(async (i) => {
             await VolunteerInterests.create({ volunteerId: volunteer.id, interestId: i });

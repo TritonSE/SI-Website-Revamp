@@ -4,24 +4,31 @@
  * @summary   defines schema for volunteerInterests DB.
  * @author    Thomas Garry
  */
-const Sequelize = require("sequelize");
 const db = require("../configDB");
+const CommitteeInterests = require("./committeeInterests");
+const Volunteers = require("./volunteers");
 
-module.exports = db.define(
+const VolunteerInterests = db.define(
     "volunteerInterests",
     {
-        // if no primary key, default it will have a column called 'id' that will auto-increment an integer value
-        volunteerId: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
-        interestId: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
+        // column 'id' will auto-increment an integer value
     },
     {
         // createdAt & updatedAt columns will be added/self-mantained by table
         timestamps: true,
     }
 );
+
+// creates an association between VolunteerInterests and Volunteers
+// new "volunteerId" column in table
+VolunteerInterests.belongsTo(Volunteers, {
+    foreignKey: "volunteerId",
+});
+
+// creates an association between VolunteerInterests and CommitteeInterests
+// new "interestId" column in table
+VolunteerInterests.belongsTo(CommitteeInterests, {
+    foreignKey: "interestId",
+});
+
+module.exports = VolunteerInterests;
