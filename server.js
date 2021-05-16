@@ -46,6 +46,7 @@ app.use(cors({ methods: ["GET", "POST", "PUT", "DELETE"] }));
 // Routers
 app.use("/sample", require("./routes/sample"));
 app.use("/publications", require("./routes/publications"));
+app.use("/newsletters", require("./routes/newsletters"));
 
 app.get("/", (req, res) => {
     res.status(200).json({ message: "Abandon All Hope Ye Who Enter Here..." });
