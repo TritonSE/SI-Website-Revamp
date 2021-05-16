@@ -31,7 +31,6 @@ async function create(data) {
         // validated! Create user/volunteer
         const user = await User.create(data);
         const volunteer = await Volunteers.create({ info: user.id });
-        console.log(volunteer);
         // create every interest for this volunteer
         data.interests.forEach(async (i) => {
             await VolunteerInterests.create({ volunteerId: volunteer.id, interestId: i });
