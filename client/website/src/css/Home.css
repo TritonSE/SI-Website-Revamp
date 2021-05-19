@@ -1,6 +1,6 @@
 .Home > .home-body {
   width: 100%;
-  padding: 50px;
+  padding: 50px 50px 100px 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,7 +113,7 @@
 }
 
 .involve-section + .involve-section {
-  margin-left: 30px;
+  margin-left: 40px;
 }
 
 .Home .involve-section .overlay {

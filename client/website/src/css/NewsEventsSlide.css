@@ -1,0 +1,31 @@
+.NewsEventsSlide{
+    width: 100%;
+
+    background-size: cover, contain;
+    background-position: center, top;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.NewsEventsSlide .info-container{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 7%;
+    background: rgb(102, 82, 160, 0.85);
+    width: 500px;
+    height: fit-content;
+    padding: 50px;
+    color: white;
+}
+
+.news-slide-info + .news-slide-info{
+    margin: 20px 0px;
+}
+
+.NewsEventsSlide .circle-arrow{
+    color: white;
+    position: absolute;
+    font-size: 74px;
+    bottom: 0;
+    margin: 0px 0px 20px 30px;
+}
+
