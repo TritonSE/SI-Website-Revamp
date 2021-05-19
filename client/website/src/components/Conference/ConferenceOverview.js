@@ -33,25 +33,27 @@ export default function ConferenceOverview(props) {
     );
 
     return (
-        <div className="conference-info">
+        <div className="conference-overview">
             {/* The title of the conference */}
-            <section className="conference-info-title">
+            <div className="conference-info-title">
                 <h1>{props.title}</h1>
-            </section>
+            </div>
 
             {/* Header section for file downloads */}
             <section className="conference-info-resource-title">
                 <h4>Conference resources are available for download as a PDF.</h4>
             </section>
 
-            <div className="conference-info-divider">Programs</div>
-            {itemList(items.programs)}
+            <div className="conference-info-divider-div">
+                <div className="conference-info-divider">Programs</div>
+                {itemList(items.programs)}
 
-            <div className="conference-info-divider">Presentations</div>
-            {itemList(items.presentations)}
+                <div className="conference-info-divider">Presentations</div>
+                {itemList(items.presentations)}
 
-            <div className="conference-info-divider">Abstracts</div>
-            {itemList(items.abstracts)}
+                <div className="conference-info-divider">Abstracts</div>
+                {itemList(items.abstracts)}
+            </div>
         </div>
     );
 }

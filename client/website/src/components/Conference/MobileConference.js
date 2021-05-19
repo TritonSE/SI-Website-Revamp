@@ -56,7 +56,7 @@ export default function MobileConferences(props) {
      */
     const displayInformation = () => (
         <div>
-            <div>
+            <div className="theme-header-mobile">
                 <h2>Theme</h2>
             </div>
             <ConferenceTheme
@@ -65,7 +65,7 @@ export default function MobileConferences(props) {
                 signup={false}
                 location={item.location}
             />
-            <div>
+            <div className="overview-header-mobile">
                 <h2>Overview</h2>
             </div>
             <ConferenceOverview info={item.info} />
