@@ -26,6 +26,7 @@
 }
 
 .Home #branches-and-chapters {
+  margin-top: 50px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -68,7 +69,7 @@
 }
 
 .Home #home-be-involved {
-  margin-top: 70px;
+  margin-top: 50px;
   width: 100%;
 }
 
