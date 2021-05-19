@@ -16,7 +16,7 @@ module.exports = db.define(
             allowNull: false,
         },
         confNum: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.INTEGER.UNSIGNED,
             allowNull: false,
         },
         location: {
@@ -40,11 +40,15 @@ module.exports = db.define(
             allowNull: true,
         },
         video: {
-            type: Sequelize.STRING,
+            type: Sequelize.STRING(500),
             allowNull: true,
         },
         theme: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT("medium"),
+            allowNull: true,
+        },
+        signUpLink: {
+            type: Sequelize.STRING(500),
             allowNull: true,
         },
     },

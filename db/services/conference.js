@@ -10,10 +10,10 @@ const Conference = require("../models/conference");
 /**
  * Returns all conferences in DB.
  *
- * @returns {[object]} - Array of objects.
+ * @returns {[object]} - Array of objects in decreasing order of confNum
  */
 async function getAll() {
-    return Conference.findAll();
+    return Conference.findAll({ order: [["confNum", "DESC"]] });
 }
 
 /**
