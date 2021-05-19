@@ -4,6 +4,7 @@ import ReactTooltip from "react-tooltip";
 import InteractiveMap from "../components/Home/InteractiveMap";
 import Slideshow from "../components/Slideshow";
 import NewsEventsSlide from "../components/Home/NewsEventsSlide";
+import CustomButton from "../components/CustomButton.js";
 import "../css/Home.css";
 
 export default function Home() {
@@ -108,7 +109,11 @@ export default function Home() {
                         <div id="join-us" className="involve-section">
                             <div className="overlay">
                                 <p> Become a member of Sakyadhita! </p>
-                                <button> Join Us </button>
+                                <CustomButton
+                                openInSameTab={true}
+                                redirect_link="/join"
+                                text="Join Us"
+                                />
                             </div>
                         </div>
                         <div id="volunteer" className="involve-section">
@@ -117,7 +122,11 @@ export default function Home() {
                                     Interested in helping us with anything from writing content to
                                     building?
                                 </p>
-                                <button> Volunteer </button>
+                                <CustomButton
+                                openInSameTab={true}
+                                redirect_link="/volunteer"
+                                text="Volunteer"
+                                />
                             </div>
                         </div>
                         <div id="donate" className="involve-section">
@@ -125,7 +134,11 @@ export default function Home() {
                                 <p>
                                     Help us grow and continue to connect by donating in any amount{" "}
                                 </p>
-                                <button> Donate </button>
+                                <CustomButton
+                                openInSameTab={false}
+                                redirect_link="https://www.paypal.com/donate?token=OHfoxPvmqn1U-GS2GQWfp-3meA63s0tE_fqAWoLmqyiGBh4SWJfZ0rM5jb63hTCsOYZQ_JJvWdyKgwHX"
+                                text="Donate"
+                                />
                             </div>
                         </div>
                     </div>

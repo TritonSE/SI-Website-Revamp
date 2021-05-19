@@ -1,5 +1,6 @@
 import React from "react";
 import { FiArrowDownCircle } from "react-icons/fi";
+import CustomButton from "../../components/CustomButton.js";
 import "../../css/NewsEventsSlide.css";
  
  export default function NewsEventsSlide({ title, description, image_url, redirect_link, openInSameTab, isMobile }) {
@@ -13,9 +14,11 @@ import "../../css/NewsEventsSlide.css";
                       <p className="news-slide-info"> {description}</p>:
                       null
                  }
-                 <a className="news-slide-info" href={redirect_link} target={openInSameTab ? null:"_blank"} rel={openInSameTab ? null:"noreferrer noopener"}>
-                    <button> Learn More </button>
-                 </a>
+                 <CustomButton
+                 openInSameTab={openInSameTab}
+                 redirect_link={redirect_link}
+                 text="Learn More"
+                 />
              </div>
              <div className="circle-arrow">
                 <FiArrowDownCircle/>
