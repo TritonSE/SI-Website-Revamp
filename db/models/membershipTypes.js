@@ -16,7 +16,7 @@ module.exports = db.define(
             allowNull: false,
         },
         cost: {
-            type: Sequelize.DECIMAL(4, 2),
+            type: Sequelize.DECIMAL(5, 2),
             allowNull: true,
         },
     },

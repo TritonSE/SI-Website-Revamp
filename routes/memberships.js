@@ -1,8 +1,8 @@
 /**
- * This file provides routes to modify the volunteers DB.
+ * This file provides routes to modify the memberships DB.
  * Allows for add capability.
  *
- * @summary   Routes for volunteers --> addUser.
+ * @summary   Routes for memberships --> addUser.
  * @author    Thomas Garry
  */
 const express = require("express");
@@ -26,19 +26,21 @@ router.post(
         body("phone").isString(),
         body("email").isEmail(),
         body("country").isString(),
-        body("interests").custom((value) => {
-            if (value !== undefined && value.length > 0) return true;
-            return false;
-        }),
+        body("isNewMember").isBoolean(),
+        body("affiliatedOrgs").isString(),
+        body("membershipType").isString(),
+        body("totalPaid").isNumeric(),
+        body("payPalTransactionId").isString(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
         try {
             const entries = await addMember(req.body);
-            if (entries === false)
-                return res
-                    .status(400)
-                    .json({ message: "Not added, possibly invalid id in interests" });
+            if (entries === undefined || entries === null)
+                return res.status(400).json({ message: "Failure" });
             return res.status(200).json({ message: "success" });
         } catch (err) {
             console.log(err);

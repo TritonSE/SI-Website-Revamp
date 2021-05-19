@@ -48,6 +48,8 @@ app.use("/sample", require("./routes/sample"));
 app.use("/conference", require("./routes/conference"));
 app.use("/emailList", require("./routes/emailList"));
 app.use("/volunteers", require("./routes/volunteers"));
+app.use("/memberships", require("./routes/memberships"));
+app.use("/membershipTypes", require("./routes/membershipTypes"));
 
 app.get("/", (req, res) => {
     res.status(200).json({ message: "Abandon All Hope Ye Who Enter Here..." });

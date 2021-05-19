@@ -48,7 +48,7 @@ Memberships.belongsTo(UserInformation, {
 });
 
 Memberships.belongsTo(MembershipType, {
-    foreignKey: "membershipType",
+    foreignKey: "membersType",
 });
 
 module.exports = Memberships;

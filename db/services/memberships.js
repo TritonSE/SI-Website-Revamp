@@ -6,15 +6,25 @@
  * @author    Thomas Garry
  */
 const Memberships = require("../models/memberships");
+const MembershipshipTypes = require("../models/membershipTypes");
+const User = require("../models/userInfo");
 
 /**
  * Creates Memberships data.
  *
  * @param {object} data -
- * @returns {[object]} - Array of objects.
+ * @returns {object} - A single Member or null.
  */
 async function addMember(data) {
-    return Memberships.create(data);
+    const user = await User.create(data);
+    data["info"] = user.id;
+    const memberTypeCount = await MembershipshipTypes.count({});
+    if (data.membershipType > 0 && data.membershipType < memberTypeCount) {
+        // had to redefine the name
+        data["membersType"] = data.membershipType;
+        return Memberships.create(data);
+    }
+    return null;
 }
 
 module.exports = {

@@ -18,6 +18,9 @@ module.exports = async () => {
                 email: "john@gmail.com",
                 country: "United States",
             },
+            { logging: false }
+        ),
+        UserInfo.create(
             {
                 fName: "Alice",
                 mName: "r",
@@ -26,10 +29,13 @@ module.exports = async () => {
                 email: "alice@gmail.com",
                 country: "United States",
             },
+            { logging: false }
+        ),
+        UserInfo.create(
             {
                 fName: "Doe",
                 mName: "r",
-                lName: "John",
+                lName: "Doe",
                 phone: "1234567890",
                 email: "Doe@gmail.com",
                 country: "United States",
