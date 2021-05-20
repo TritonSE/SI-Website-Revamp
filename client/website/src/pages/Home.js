@@ -103,6 +103,7 @@ export default function Home() {
                             facilisis condimentum massa, sit amet lacinia massa commodo sed.
                             {"\n\n\n"}
                             Hover over each pin for more information about each branch!
+                            {"\n\n"}
                         </p>
                         <section className="legend-container">
                             <div className="label">
