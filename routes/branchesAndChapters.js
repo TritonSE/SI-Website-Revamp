@@ -2,8 +2,8 @@
  * This file provides routes to modify the Branches and Chapters DB.
  * Allows for add, get, and edit capabilities.
  *
- * @summary   Routes for branchesAndChapters --> addLocation, getAll and
- *            editLocation.
+ * @summary   Routes for branchesAndChapters --> addLocation, getAllLOcations
+ *            and editLocation.
  */
 const express = require("express");
 const { body } = require("express-validator");
@@ -55,7 +55,7 @@ router.post(
  *
  * @returns {status} - 200 - with array of all conferences.
  */
-router.get("/getAllConferences", [isValidated], async (req, res) => {
+router.get("/getAllLocations", [isValidated], async (req, res) => {
     const entries = await getAll();
     return res.status(200).json(entries);
 });
