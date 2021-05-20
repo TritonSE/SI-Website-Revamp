@@ -2,7 +2,7 @@
  * This file provides routes to modify the Branches and Chapters DB.
  * Allows for add, get, and edit capabilities.
  *
- * @summary   Routes for branchesAndChapters --> addLocation, getAllLOcations
+ * @summary   Routes for branchesAndChapters --> addLocation, getAllLocations
  *            and editLocation.
  */
 const express = require("express");

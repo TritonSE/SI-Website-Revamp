@@ -1,5 +1,5 @@
 /**
- * This file defines the Sequilize schema for Branches and Chapters.
+ * This file defines the Sequelize schema for Branches and Chapters.
  *
  * @summary   defines schema for Branches and Chapters.
  */
