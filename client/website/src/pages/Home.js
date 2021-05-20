@@ -1,3 +1,14 @@
+/**
+ * Displays Home Screen of website, inclusive of Slideshow component and interactive map for
+ * global branches/chapters. The page dynamically rerenders css as screen width changes, adjusting
+ * for mobile/tablet views. It has sub-components for the Slideshow, Interactive Map, and each of 
+ * the Be Involved sections.
+ * 
+ * @summary Renders and formats Home Page. 
+ * 
+ * @author Amrit Kaur Singh
+ */
+
 import React, { useState, useEffect} from "react";
 import { FiExternalLink } from "react-icons/fi";
 import ReactTooltip from "react-tooltip";
@@ -5,21 +16,25 @@ import InteractiveMap from "../components/Home/InteractiveMap";
 import Slideshow from "../components/Slideshow";
 import NewsEventsSlide from "../components/Home/NewsEventsSlide";
 import BeInvolved from "../components/Home/BeInvolved";
+
 import "../css/Home.css";
 
 const MAX_MOBILE_WIDTH = 700;
 
 export default function Home() {
+
+    // utilized for tool-tip information for interactive map
     const [content, setTooltipContent] = useState({
         country: "",
         email: "",
         urlLink: "",
     });
 
+    // tracks layout of screen
     const [isMobile, setMobileView] = useState(false);
 
+     // handler to call on window resize
     useEffect(() => {
-        // Handler to call on window resize
         function handleResize() {
 
           if(window.innerWidth <= MAX_MOBILE_WIDTH){
@@ -28,14 +43,15 @@ export default function Home() {
               setMobileView(false);
           }
         }
-        // Add event listener
+        // add event listener
         window.addEventListener("resize", handleResize);
-        // Call handler right away so state gets updated with initial window size
         handleResize();
-        // Remove event listener on cleanup
+
+        // remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
       }, []); 
 
+    // dummy slideshow data
     const slideData = [
         {
             openInSameTab: true,
@@ -56,15 +72,18 @@ export default function Home() {
 
     return (
         <div className="Home">
+                {/* Slideshow component */}
               <Slideshow
                         height={isMobile ? "95vh":"600px"}
                         width="100%"
                         isMobile={isMobile}
                     >
+                         {/* All Slides mapped here with display information  */}
                         {
                             slideData.map((slideInfo) =>{
                                 return <NewsEventsSlide
-                                isMobile={isMobile}
+                                height={isMobile ? "95vh":"600px"}
+                                showButton={true}
                                 openInSameTab={slideInfo.openInSameTab}
                                 redirect_link={slideInfo.redirect_link}
                                 title={slideInfo.title}
@@ -75,7 +94,9 @@ export default function Home() {
                         }
 
             </Slideshow>
+             {/* Body of Page - Everthing below slideshow */}
             <section className="home-body">
+                {/* Introduction */}
                 <section id="home-intro">
                     <h1>Introduction </h1>
                     <p>
@@ -98,15 +119,23 @@ export default function Home() {
                         massa commodo sed.
                     </p>
                 </section>
+
+                 {/* Mini Divider */}
                 <hr className="divider" />
+
+                 {/*Branches & Chapters Section */}
                 <section id="branches-and-chapters">
-                    <InteractiveMap setTooltipContent={setTooltipContent} />
+                    {/* Interactive Map */}
+                    <InteractiveMap setTooltipContent={setTooltipContent}/>
+
+                    {/* Custom Tooltip for Interactive Map */}
                     <ReactTooltip
                         place="left"
                         effect="solid"
                         type="dark"
                         delayUpdate={1}
                     >
+                        {/* Tool-tip pop-up text */}
                         <a href={content.urlLink} target="_blank" rel="noreferrer" >
                             {content.country}
                             <FiExternalLink />
@@ -114,6 +143,7 @@ export default function Home() {
                         <br />
                         {content.email}
                     </ReactTooltip>
+                    {/* Branch/Chapter Information  */}
                     <div className="branch-info">
                         <h1>Branches </h1>
                         <p>
@@ -123,6 +153,7 @@ export default function Home() {
                             Hover over each pin for more information about each branch!
                             {"\n\n"}
                         </p>
+                         {/* Mini Color Legend  */}
                         <section className="legend-container">
                             <div className="label">
                                 <div className="color-box" style={{ backgroundColor: "#EA8644" }} />
@@ -136,9 +167,11 @@ export default function Home() {
                         </section>
                     </div>
                 </section>
+                {/* Be Involved Section  */}
                 <section id="home-be-involved">
                     <h1>Be Involved </h1>
                     <div className="involve-sections-container">
+                         {/* Join Us  */}
                         <BeInvolved
                             description="Become a member of Sakyadhita!"
                             image_url="https://s3-alpha-sig.figma.com/img/8f03/ef9f/36365dafe0acb50fa55cbb8064b6f29a?Expires=1621814400&Signature=RbXghI9GvSQ6DLOTXwZssXF6NxJlqaUzwIKuEdIKHPAhNMn6Pkp5D8xWgD5ofazmEKZMZIA8tNFSHk8Qpg8r9MDuy1R8c9WsLDFabDj-tYfuhmCJIJFljE1Rz6egir~a~cpoAUdPAKbTzsTGlqDrXo6OE~jLOw6OVsGwga~LepQao~5xcfpAqzDEiLQo5KEi75r4irxhNPJfcL4MKICBlnj0fLNEXeQJeY0~ahv0LdLmTSnoNZREjr7ZeUoQdpJwVJrWw187ouCb~oIwcoENMl8vJdAoAjKFwCZValYQpSPleKp2TIz8AJpjpuH-SaJNfHv60s0bg5DkMEaInm~kiA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -146,6 +179,7 @@ export default function Home() {
                             redirect_link="/join"
                             button_title="Join Us"      
                         />
+                        {/* Volunteer  */}
                         <BeInvolved
                             description="Interested in helping us with anything from writing content to
                             building?"
@@ -154,6 +188,7 @@ export default function Home() {
                             redirect_link="/volunteer"
                             button_title="Volunteer"      
                         />
+                         {/* Donate  */}
                           <BeInvolved
                             description="Help us grow and continue to connect by donating in any amount"
                             image_url="https://s3-alpha-sig.figma.com/img/7f47/8bb4/fe38c23cd82024eadf280d59fa5c3426?Expires=1621814400&Signature=QsXn3t5aa4RW5-T-akYPo60OJfYjbm4kqUNoHqI--XWejZYFx9gMJVH2w~CURZBEezTovdHGp68aZ48zvUde3n7vMZOoPjxTL77DuOF3qj8YAOajzMOB7wvdT1tv7pS30pC41X6zHa5XGybBOx5wBbHJdo1UCvZE3l4F3zibKI-NpvH844BSQXQDhGbe~6lM5uSB3YXtoONR1nl8v8g2KfJZ6Om09DAxKOOxvOIlfFRQGWy4jGY2Yd5KyFFEJofW-RV0dozZo0E2hBoA6NdYwkKbvlWWxStWCVaGLIm0gFZTuXhqbuUKe10B6q3So6VAmRTZy0gY~xikb~V1kiAqyg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
