@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { FiExternalLink } from "react-icons/fi";
 import ReactTooltip from "react-tooltip";
 import InteractiveMap from "../components/Home/InteractiveMap";
@@ -7,6 +7,8 @@ import NewsEventsSlide from "../components/Home/NewsEventsSlide";
 import BeInvolved from "../components/Home/BeInvolved";
 import "../css/Home.css";
 
+const MAX_MOBILE_WIDTH = 700;
+
 export default function Home() {
     const [content, setTooltipContent] = useState({
         country: "",
@@ -14,11 +16,28 @@ export default function Home() {
         urlLink: "",
     });
 
-    const isMobile = false;
+    const [isMobile, setMobileView] = useState(false);
+
+    useEffect(() => {
+        // Handler to call on window resize
+        function handleResize() {
+
+          if(window.innerWidth <= MAX_MOBILE_WIDTH){
+              setMobileView(true);
+          } else {
+              setMobileView(false);
+          }
+        }
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+        // Call handler right away so state gets updated with initial window size
+        handleResize();
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+      }, []); 
 
     const slideData = [
         {
-            isMobile: isMobile,
             openInSameTab: true,
             redirect_link: "https://stackoverflow.com/questions/48748645/conditional-rendering-of-css-style-in-elements-react",
             title: "News & Events",
@@ -26,7 +45,6 @@ export default function Home() {
             image_url: "https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1622419200&Signature=A4Vo6ehJhS-InREAaHT0ia~wMkWJGgVgC722h3dzLQkgpRStx5G-QYzANTGLJQKMeCPJDn5p3wagEvGGxgJEpl693~h5Vu4kzlwSjdHVxJcDsaLRlisO83GREBNuKpsgWSwhiwCU3Ydh1UnFqIRIIzCSuc5oOlDdTD-ErpKAZ00fM447eSXZ5jobF6sDpjvE0IS0Kg1kw9GuEl9wvcN-B61zBb4X6~yvYG7-1GHx38-H5uKtkH3SVPjkX2HxHRCFqmP7MidfCzEfzRWm-seIYeGqM0jynk5XFllDXwHXkzB7R4QkQEEIAeosNSFFzHGtZBJz0Vr6Wr9ZQkT~qxIlAg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
         }, 
         {
-            isMobile: isMobile,
             openInSameTab: false,
             title: "Upcoming Hawaii Conference!",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
@@ -39,14 +57,14 @@ export default function Home() {
     return (
         <div className="Home">
               <Slideshow
-                        height={"600px"}
+                        height={isMobile ? "95vh":"600px"}
                         width="100%"
                         isMobile={isMobile}
                     >
                         {
                             slideData.map((slideInfo) =>{
                                 return <NewsEventsSlide
-                                isMobile={slideInfo.isMobile}
+                                isMobile={isMobile}
                                 openInSameTab={slideInfo.openInSameTab}
                                 redirect_link={slideInfo.redirect_link}
                                 title={slideInfo.title}

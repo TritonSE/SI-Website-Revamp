@@ -32,14 +32,12 @@
 @media only screen and (max-width: 1000px) {
 
     .NewsEventsSlide .info-container{
-        /* margin-left: 20%;
-        margin-top: 7%; */
         width: 300px;
         padding: 30px;
     }
 
     .NewsEventsSlide .circle-arrow{
-        display: none;
+        font-size: 54px;
     }
     
 
@@ -48,16 +46,9 @@
 @media only screen and (max-width: 350px) {
 
     .NewsEventsSlide .info-container{
-        /* margin-left: 20%;
-        margin-top: 7%; */
         width: 75%;
         padding: 20px;
     }
-
-    .NewsEventsSlide .circle-arrow{
-        display: none;
-    }
-    
 
 }
 

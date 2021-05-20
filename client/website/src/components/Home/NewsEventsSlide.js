@@ -6,7 +6,7 @@ import "../../css/NewsEventsSlide.css";
  export default function NewsEventsSlide({ title, description, image_url, redirect_link, openInSameTab, isMobile }) {
      // props title, author name, image_url, redirect link, isMobile style={{background: `url(${image_url})`, height: "600px"}}
      return (
-         <div className="NewsEventsSlide" style={{backgroundImage:`url("${image_url}")`, height: `${isMobile ? "300px": "600px"}`}}>
+         <div className="NewsEventsSlide" style={{backgroundImage:`url("${image_url}")`, height: `${isMobile ? "95vh": "600px"}`}}>
              <div className="info-container">
                  <h1 className="news-slide-info"> {title} </h1>
                  {
