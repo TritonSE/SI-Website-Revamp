@@ -1,0 +1,75 @@
+#Header {
+    width: 100%;
+    height: 40vw;
+}
+
+.header-div {
+    position: relative;
+}
+
+.header-info-div {
+    position: absolute;
+    width: 38.2vw;
+    height: 7.89vw;
+    margin-left: 5.16vw;
+    top: 9.45vw;
+    background: rgba(102, 82, 160, 0.85);
+}
+
+.header-text {
+    position: absolute;
+    width: 33.3vw;
+    height: 3.5vw;
+    margin-left: 3.36vw;
+    margin-top: 2.18vw;
+
+    font-family: Libre Baskerville;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.81vw;
+    line-height: 3.5vw;
+
+    color: #FFFFFF;
+}
+
+.header-info {
+    position: absolute;
+    width: 32.7vw;
+    height: 14.9vw;
+    margin-left: 3.4vw;
+    margin-top: 7.6vw;
+
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.95vw;
+
+    color: #FFFFFF;
+}
+
+.page-content {
+    width: 70.47vw;
+    align-content: center;
+    margin-left: 14.77vw;
+    margin-top: 7.81vw;
+}
+
+.ordination-text {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000000;
+}
+
+.ordination-image {
+    margin-top: 3.05vw;
+    width: 100%;
+}
+
+.bottom-text {
+    margin-top: 3.05vw;
+    margin-bottom: 14.92vw;
+}
