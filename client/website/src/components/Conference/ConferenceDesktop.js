@@ -32,8 +32,11 @@ export default function ConferencesDesktop(props) {
     // list of all conferences
     const [itemList] = useState(props.data);
 
-    // initalially set the page to render the first conference
+    /**
+     * On rendering of page, set the current item to be the first item on stepper
+     */
     useEffect(() => {
+        // initalially set the page to render the first conference
         setItem(itemList[index]);
     }, []);
 
@@ -56,11 +59,11 @@ export default function ConferencesDesktop(props) {
 
     /**
      * Rendersthe conference theme information
-     * title - the title of the conference
-     * location - location of the conference
-     * redirect - redirect url for registration
-     * theme - information about the conference
-     * info - overview of conference, files
+     *      title - the title of the conference
+     *      location - location of the conference
+     *      redirect - redirect url for registration
+     *      theme - information about the conference
+     *      info - overview of conference, files
      * @returns Node - component to render
      */
     const displayInformation = () => {
@@ -123,40 +126,43 @@ export default function ConferencesDesktop(props) {
                     />
                 </div>
 
-                {/* Display the information for either theme or ovwerview */}
-                <div className="conference-container">{displayInformation()}</div>
+                {/* This outer div is used for 767 < x < 1200 screen widths */}
+                <div className="small-desktop-div-container">
+                    {/* Display the information for either theme or ovwerview */}
+                    <div className="conference-container">{displayInformation()}</div>
 
-                {/* The tabs to switch between theme and overview */}
-                <div className="slideshow-section">
-                    <div className="slideshow-section-tabs">
-                        {/* The 'theme' tab button */}
-                        <button
-                            className={
-                                isInfo
-                                    ? "slideshow-section-theme-active"
-                                    : "slideshow-section-theme"
-                            }
-                            onClick={() => updateInformation()}
-                            type="button"
-                        >
-                            Theme
-                        </button>
-                        {/* The 'overview' tab button */}
-                        <button
-                            className={
-                                isInfo
-                                    ? "slideshow-section-overview"
-                                    : "slideshow-section-overview-active"
-                            }
-                            onClick={() => updateInformation()}
-                            type="button"
-                        >
-                            Overview
-                        </button>
+                    {/* The tabs to switch between theme and overview */}
+                    <div className="slideshow-section">
+                        <div className="slideshow-section-tabs">
+                            {/* The 'theme' tab button */}
+                            <button
+                                className={
+                                    isInfo
+                                        ? "slideshow-section-theme-active"
+                                        : "slideshow-section-theme"
+                                }
+                                onClick={() => updateInformation()}
+                                type="button"
+                            >
+                                Theme
+                            </button>
+                            {/* The 'overview' tab button */}
+                            <button
+                                className={
+                                    isInfo
+                                        ? "slideshow-section-overview"
+                                        : "slideshow-section-overview-active"
+                                }
+                                onClick={() => updateInformation()}
+                                type="button"
+                            >
+                                Overview
+                            </button>
+                        </div>
+
+                        {/* Render either the associated video or the slideshow of images */}
+                        <div style={{ width: "100%" }}>{slideshowVideo()}</div>
                     </div>
-
-                    {/* Render either the associated video or the slideshow of images */}
-                    <div style={{ width: "100%" }}>{slideshowVideo()}</div>
                 </div>
             </div>
         </div>

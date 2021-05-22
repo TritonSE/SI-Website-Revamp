@@ -4,7 +4,7 @@
  * objects containing information for each conference.
  *
  * It consists of the following components:
- *  - VerticalStepper
+ *  - HorizontalStepper
  *  - ConferenceOverview
  *  - ConferenceTheme
  *  - Slideshow
@@ -30,8 +30,11 @@ export default function MobileConferences(props) {
     // list of all conferences
     const [itemList] = useState(props.data);
 
-    // initalially set the page to render the first conference
+    /**
+     * On rendering of page, set the current item to be the first item on stepper
+     */
     useEffect(() => {
+        // initalially set the page to render the first conference
         setItem(itemList[index]);
     }, []);
 

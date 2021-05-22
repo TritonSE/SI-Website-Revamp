@@ -46,6 +46,7 @@ const ordinal_suffix_of = (i) => {
     return `${i}th`;
 };
 
+// custom node for the text within a node
 const stepperNode = (index) => <div className="stepper-node">{ordinal_suffix_of(index)}</div>;
 
 export default function VerticalStepper(props) {
@@ -57,6 +58,7 @@ export default function VerticalStepper(props) {
         stepDiv: {
             minHeight: "calc(666.5px)",
         },
+        // styling for the country/state label
         step_label_root: {
             fontSize: "16px",
             color: `${props.color} !important`,
@@ -64,11 +66,13 @@ export default function VerticalStepper(props) {
             textAlign: "left",
             marginLeft: "calc(15px)",
         },
+        // this is used for the custom stepper node text
         icon_container: {
             width: "30px",
             height: "22px",
             justifyContent: "center",
         },
+        // this is styling for stepper node
         button: {
             width: "22px",
             height: "22px",
@@ -78,6 +82,7 @@ export default function VerticalStepper(props) {
             fontWeight: "400",
             color: `${props.color}`,
         },
+        // when a user clicks a stepper, this class is active
         buttonActive: {
             width: "22px",
             height: "22px",
@@ -109,12 +114,16 @@ export default function VerticalStepper(props) {
      */
     function getSteps() {
         const arr = [];
+        // loop through each item
         for (let i = 0; i < props.items.length; i++) {
             const obj = {};
+            // extract only the country/state, not city
             const two = props.items[i].location.split(",").splice(1, 1);
             obj.location = two;
+            // get the conference number
             obj.number = props.items[i].number;
 
+            // push it to the array
             arr.push(obj);
         }
 
@@ -135,8 +144,11 @@ export default function VerticalStepper(props) {
     // initial call to get all steps
     const steps = getSteps();
 
-    // render only the first nine items
+    /**
+     * This is called when the page is rendered
+     */
     useEffect(() => {
+        // render only the first nine items
         setSplitSteps(steps.slice(indices[0], indices[1]));
     }, []);
 
@@ -170,14 +182,17 @@ export default function VerticalStepper(props) {
     return (
         <div className={classes.root}>
             <div className={classes.stepDiv}>
+                {/* The material-ui stepper class */}
                 <Stepper
                     nonLinear
                     activeStep={activeStep}
                     orientation="vertical"
                     connector={<ColorlibConnector />}
                 >
+                    {/* for each item in our splitSteps array */}
                     {splitSteps.map((step, index) => (
                         <Step>
+                            {/* add a step button that is clickable */}
                             <StepButton
                                 onClick={() => handleStep(index)}
                                 classes={
@@ -187,6 +202,7 @@ export default function VerticalStepper(props) {
                                 }
                                 icon={stepperNode(step.number)}
                             >
+                                {/* step label provides the location */}
                                 <StepLabel
                                     classes={{
                                         label: classes.step_label_root,
@@ -202,6 +218,7 @@ export default function VerticalStepper(props) {
                 </Stepper>
             </div>
 
+            {/* This pagination allows user to change pages and view more conferences */}
             <div className="pagination-stepper">
                 <CustomPagination count={steps.length} updatePage={updatePage} size={9} />
             </div>

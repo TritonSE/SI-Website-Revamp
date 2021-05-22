@@ -118,6 +118,7 @@ export default function Conferences() {
     // Needed to determine when to render the desktop or mobile version
     const listener = useWindowSize();
 
+    // check is the screen size is either mobile or desktop
     return listener.width > 767 ? (
         <ConferenceDesktop data={arr} />
     ) : (

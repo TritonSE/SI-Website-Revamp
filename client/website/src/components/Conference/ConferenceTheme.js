@@ -47,6 +47,7 @@ export default function ConferenceTheme(props) {
             {/* Button that opens the modal */}
             {props.signup ? (
                 <section className="conference-info-signup">
+                    {/* When button is clicked, it will render the modal */}
                     <button onClick={() => redirect()} type="button">
                         Sign Up
                     </button>

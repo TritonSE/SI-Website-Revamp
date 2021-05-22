@@ -19,6 +19,12 @@
   position: relative;
 }
 
+.small-desktop-div-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
 .conference-vertical-stepper {
   min-width: calc(200px);
   margin-top: calc(65px);
@@ -151,8 +157,8 @@
 
 .mobile-slideshow-label {
   position: absolute;
-  width: calc(55vw);
-  background: rgba(102, 82, 160, 0.55);
+  width: calc(60vw);
+  background: rgba(102, 82, 160, 0.85);
   z-index: 100;
   color: white;
   margin-left: calc(14vw);
@@ -164,16 +170,16 @@
   font-family: var(--heading-font);
   font-style: normal;
   font-weight: bold;
-  font-size: calc(2vw + 5px);
-  line-height: 22px;
+  font-size: calc(3vw + 5px);
+  line-height: 35px;
 }
 
 .mobile-slideshow-label h3 {
   font-family: var(--text-font);
   font-style: normal;
   font-weight: normal;
-  font-size: calc(1.8vw + 5px);
-  line-height: 22px;
+  font-size: calc(2.2vw + 5px);
+  line-height: 28px;
 }
 
 /* pagination styling */
@@ -187,40 +193,54 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .conference-container {
-    width: calc(50vw);
+  .conference-container,
+  .small-desktop-div-container {
+    width: calc(53vw);
     grid-area: textArea;
   }
 
   .conference-vertical-stepper {
     margin-bottom: 0;
-    min-width: calc(100px);
-    width: calc(100px);
+    min-width: calc(100%);
+    width: calc(200px);
   }
 
   .conference-info {
-    min-width: calc(60vw);
+    min-width: calc(53vw);
+  }
+
+  .small-desktop-div-container {
+    display: flex;
+    flex-direction: column;
   }
 
   .component-display {
     display: grid;
-    justify-content: center;
-    grid:
-      ". textArea"
-      "slideshowArea slideshowArea";
+    grid: ". textArea";
   }
 
   .slideshow-section {
-    width: calc(85vw);
+    width: calc(53vw);
     grid-area: slideshowArea;
-    margin-top: calc(40px);
+    margin-top: calc(-50px);
     margin-bottom: calc(90px);
   }
 
   .conferences-outer-container {
     width: 100%;
-    margin-left: calc(0px);
-    margin-right: calc(0px);
+    margin: 0;
+    padding-right: calc(10vw);
+    padding-left: calc(10vw);
+  }
+
+  .conference-info-resource-title {
+    padding-bottom: calc(1.5vh);
+    width: calc(400.2px);
+  }
+
+  .conference-overview {
+    /* min-width: 400px; */
+    min-width: calc(53vw);
   }
 }
 
@@ -229,6 +249,12 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  .conferences-outer-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .conference-vertical-stepper {

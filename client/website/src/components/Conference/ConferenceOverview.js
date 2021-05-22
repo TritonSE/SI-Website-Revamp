@@ -1,6 +1,6 @@
 /**
  * The ConferenceOverview page only renders the 'overview' information
- * This is a component of the Conferences page
+ * This is a component of both Conferences page.
  *
  * Takes in the following props:
  *  - title: required, string
@@ -23,8 +23,10 @@ export default function ConferenceOverview(props) {
     // Convert each item in the props.info to a <a> tag
     const itemList = (item) => (
         <div className="program-divider">
+            {/* Loop thorugh each item and display it */}
             {item.map((program) => (
                 <a href={program.url} download className="program">
+                    {/* The download font icon */}
                     <FontAwesomeIcon icon={faDownload} />
                     <p>{program.description}</p>
                 </a>
@@ -45,12 +47,15 @@ export default function ConferenceOverview(props) {
             </section>
 
             <div className="conference-info-divider-div">
+                {/* render the files for 'programs' */}
                 <div className="conference-info-divider">Programs</div>
                 {itemList(items.programs)}
 
+                {/* render the files for 'presentations' */}
                 <div className="conference-info-divider">Presentations</div>
                 {itemList(items.presentations)}
 
+                {/* render the files for 'abstracts' */}
                 <div className="conference-info-divider">Abstracts</div>
                 {itemList(items.abstracts)}
             </div>

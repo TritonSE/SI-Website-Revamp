@@ -1,3 +1,18 @@
+/**
+ * The Horizontal Stepper is a component used for displaying
+ * a list of items in a orderly fashion. This will be a
+ * reusable component and has the following properties:
+ *
+ * Takes in the following as props
+ *   color - string - prop to determine color of the stepper
+ *   setParentIndex - number - used to update the parent index
+ *   height - string - height of the stepper
+ *   items - object - items consist of title and number
+ *
+ * @summary     Horizontal Stepper class
+ * @author      Amitesh Sharma
+ */
+
 import React, { useState, useEffect } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
@@ -32,6 +47,7 @@ const ordinal_suffix_of = (i) => {
     return `${i}th`;
 };
 
+// custom node for the text within a node
 const stepperNode = (index) => <div className="stepper-node">{ordinal_suffix_of(index)}</div>;
 
 export default function HorizontalStepper(props) {
@@ -43,6 +59,7 @@ export default function HorizontalStepper(props) {
         stepDiv: {
             minHeight: "calc(10.5px)",
         },
+        // used for each node in the stepper
         button: {
             width: "45px",
             height: "45px",
@@ -56,6 +73,7 @@ export default function HorizontalStepper(props) {
             padding: "0",
             zIndex: "100",
         },
+        // for active node in the stepper
         buttonActive: {
             width: "45px",
             height: "45px",
@@ -90,12 +108,16 @@ export default function HorizontalStepper(props) {
      */
     function getSteps() {
         const arr = [];
+        // loop through each item
         for (let i = 0; i < props.items.length; i++) {
             const obj = {};
+            // extract only the country/state, not city
             const two = props.items[i].location.split(",").splice(1, 1);
             obj.location = two;
+            // get the conference number
             obj.number = props.items[i].number;
 
+            // push it to the array
             arr.push(obj);
         }
 
@@ -116,8 +138,12 @@ export default function HorizontalStepper(props) {
     // initial call to get all steps
     const steps = getSteps();
 
+    /**
+     * When the screen size changes to below 600px, updates the stepper
+     */
     useEffect(() => {
         if (listener.width > 600) {
+            // we want stepper of length 6 when it is greater than 600px
             setIndices([0, 6]);
         } else setIndices([0, 4]);
     }, [listener]);
@@ -167,8 +193,10 @@ export default function HorizontalStepper(props) {
                 activeStep={activeStep}
                 connector={<ColorlibConnector />}
             >
+                {/* loop through each item in splitSteps */}
                 {splitSteps.map((step, index) => (
                     <Step>
+                        {/* add a button with custom icon */}
                         <StepButton
                             onClick={() => handleStep(index)}
                             icon={stepperNode(step.number)}
@@ -182,6 +210,7 @@ export default function HorizontalStepper(props) {
                 ))}
             </Stepper>
 
+            {/* pagination allows user to see more conferences */}
             <div className="pagination-stepper">
                 <CustomPagination
                     count={steps.length}
