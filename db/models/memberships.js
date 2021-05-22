@@ -31,8 +31,7 @@ const Memberships = db.define(
             allowNull: false,
         },
         payPalVerified: {
-            type: Sequelize.STRING(56),
-            payPalVerified: Sequelize.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             defaultValue: false,
             allowNull: false,
         },
