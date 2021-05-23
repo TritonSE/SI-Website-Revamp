@@ -56,7 +56,7 @@ export default function HorizontalStepper(props) {
 
     // custom styling used for various components
     const useStyles = makeStyles(() => ({
-        stepDiv: {
+        root: {
             minHeight: "calc(10.5px)",
         },
         // used for each node in the stepper
@@ -144,7 +144,8 @@ export default function HorizontalStepper(props) {
     useEffect(() => {
         if (listener.width > 600) {
             // we want stepper of length 6 when it is greater than 600px
-            setIndices([0, 6]);
+            /* eslint-disable no-unused-vars */
+            const indicies = listener.width < 900 ? setIndices([0, 6]) : setIndices([0, 9]);
         } else setIndices([0, 4]);
     }, [listener]);
 
@@ -174,15 +175,21 @@ export default function HorizontalStepper(props) {
      * Update the stepper to render the 9 items depending on the page
      * @param {number} index
      */
-    const updatePage = (index) => {
+    const updatePage = (index, count) => {
         // determine if it is a mobile screen or tablet
-        const size = listener.width < 601 ? 4 : 6;
+        const size = count;
         // update the indices range
         setIndices([(index - 1) * size, index * size]);
         // when updating to new page, set the active index to 0
         setActiveIndex(0);
         // update the parent index to display proper information
         props.setParentIndex((index - 1) * size);
+    };
+
+    const updateSize = () => {
+        if (listener.width < 601) return 4;
+        if (listener.width < 900) return 6;
+        return 10;
     };
 
     return (
@@ -215,7 +222,7 @@ export default function HorizontalStepper(props) {
                 <CustomPagination
                     count={steps.length}
                     updatePage={updatePage}
-                    size={listener.width < 601 ? 4 : 6}
+                    size={updateSize()}
                 />
             </div>
         </div>

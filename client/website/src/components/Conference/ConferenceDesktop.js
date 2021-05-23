@@ -91,14 +91,14 @@ export default function ConferencesDesktop(props) {
     const slideshowVideo = () => {
         if (isInfo) {
             return (
-                <Slideshow height="396px" width="100%">
+                <Slideshow height="430px" width="100%">
                     {/* Loop through all the images associated with the conference */}
                     {item.info.slideShowImages.map((image) => (
                         <div>
                             {/* Set styling on the img */}
                             <img
                                 style={{
-                                    height: "396px",
+                                    height: "430px",
                                     width: "100%",
                                 }}
                                 alt="Event Visual"
@@ -111,7 +111,7 @@ export default function ConferencesDesktop(props) {
         }
 
         // if it is the overivew tab, render the associated video
-        return <ReactPlayer url={item.info.video} height="396px" width="100%" />;
+        return <ReactPlayer url={item.info.video} height="430px" width="100%" />;
     };
 
     return (

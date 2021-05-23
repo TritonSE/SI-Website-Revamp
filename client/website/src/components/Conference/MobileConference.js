@@ -84,7 +84,7 @@ export default function MobileConferences(props) {
     const slideshowVideo = (isInfo) => {
         if (isInfo) {
             return (
-                <Slideshow height="350px" width="100%" isMobile>
+                <Slideshow height="400px" width="100%" isMobile>
                     {/* Loop through all the images associated with the conference */}
                     {item.info.slideShowImages.map((image) => (
                         <div>
@@ -95,7 +95,7 @@ export default function MobileConferences(props) {
                             </div>
                             <img
                                 style={{
-                                    height: "350px",
+                                    height: "400px",
                                     width: "100%",
                                 }}
                                 alt="Event Visual"

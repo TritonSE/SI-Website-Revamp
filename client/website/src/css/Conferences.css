@@ -170,16 +170,14 @@
   font-family: var(--heading-font);
   font-style: normal;
   font-weight: bold;
-  font-size: calc(3vw + 5px);
-  line-height: 35px;
+  font-size: calc(3vw + 2px);
 }
 
 .mobile-slideshow-label h3 {
   font-family: var(--text-font);
   font-style: normal;
   font-weight: normal;
-  font-size: calc(2.2vw + 5px);
-  line-height: 28px;
+  font-size: calc(2.2vw + 2px);
 }
 
 /* pagination styling */
@@ -192,7 +190,7 @@
   color: var(--darkpurple) !important;
 }
 
-@media only screen and (max-width: 1200px) {
+/* @media only screen and (max-width: 1200px) {
   .conference-container,
   .small-desktop-div-container {
     width: calc(53vw);
@@ -207,6 +205,8 @@
 
   .conference-info {
     min-width: calc(53vw);
+    margin: 0;
+    margin-top: calc(60px);
   }
 
   .small-desktop-div-container {
@@ -222,7 +222,7 @@
   .slideshow-section {
     width: calc(53vw);
     grid-area: slideshowArea;
-    margin-top: calc(-50px);
+    margin-top: calc(0px);
     margin-bottom: calc(90px);
   }
 
@@ -239,12 +239,11 @@
   }
 
   .conference-overview {
-    /* min-width: 400px; */
     min-width: calc(53vw);
   }
-}
+} */
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1200px) {
   .component-display {
     width: 100%;
     display: flex;
@@ -258,9 +257,10 @@
   }
 
   .conference-vertical-stepper {
-    min-width: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
+    margin: 0;
     margin-top: calc(12px);
   }
 
@@ -289,7 +289,7 @@
   }
 
   .horizontal-stepper {
-    min-width: calc(350px);
+    min-width: calc(50px);
   }
 
   .overview-header-mobile,
@@ -349,5 +349,40 @@
 
   .conference-info-divider {
     width: calc(90%);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .horizontal-stepper {
+    min-width: calc(340px);
+  }
+
+  .mobile-slideshow-label h1 {
+    font-size: calc(4vw + 2px);
+  }
+
+  .mobile-slideshow-label h3 {
+    font-size: calc(3.2vw + 2px);
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .mobile-slideshow-label {
+    position: absolute;
+    width: calc(60vw);
+    background: rgba(102, 82, 160, 0.85);
+    z-index: 100;
+    color: white;
+    margin-left: calc(20vw);
+    margin-top: 50px;
+    padding: 30px;
+  }
+
+  .mobile-slideshow-label h1 {
+    font-size: calc(5vw + 2px);
+  }
+
+  .mobile-slideshow-label h3 {
+    font-size: calc(4.2vw + 2px);
   }
 }

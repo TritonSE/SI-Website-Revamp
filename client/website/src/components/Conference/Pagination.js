@@ -36,7 +36,7 @@ export default function CustomPagination(props) {
      * @param {number} page - the page number
      */
     const handleChange = (e, page) => {
-        props.updatePage(page);
+        props.updatePage(page, props.size);
     };
 
     return (

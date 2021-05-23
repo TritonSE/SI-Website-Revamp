@@ -119,7 +119,7 @@ export default function Conferences() {
     const listener = useWindowSize();
 
     // check is the screen size is either mobile or desktop
-    return listener.width > 767 ? (
+    return listener.width > 1200 ? (
         <ConferenceDesktop data={arr} />
     ) : (
         <MobileConference data={arr} />

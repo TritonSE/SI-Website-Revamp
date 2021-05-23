@@ -10,8 +10,11 @@
 
 @media only screen and (max-width: 1200px) {
   .pagination-stepper {
-    min-width: 100vw;
-    margin-left: calc(19px);
+    min-width: calc(100%);
+    display: flex;
+    justify-content: center;
+    margin-top: calc(-30px);
+    margin-left: 0;
   }
 }
 
