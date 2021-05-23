@@ -4,32 +4,23 @@
  * @summary Creates a component for resources header
  * @author Dhanush Nanjunda Reddy
  */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../css/ResourcesHeader.css";
 
 export default function ResourcesHeader(props) {
-    const [isMobile, setIsMobile] = useState(false);
-
-    // modifies isMobile state when window resizes
-    useEffect(() => {
-        function handleResize() {
-            setIsMobile(window.innerWidth <= 600);
-        }
-
-        // event listener for resize
-        window.addEventListener("resize", handleResize);
-        handleResize();
-
-        // Removes event listener on cleanup
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
     return (
-        <div className="header-div">
-            <img src={isMobile ? props.mobileImage : props.image} alt="Header Image" id="Header" />
+        <div
+            className="header-div"
+            style={{
+                backgroundImage: `url("${props.image}")`,
+                height: props.height,
+                width: props.width,
+            }}
+        >
+            {/* Purple box with a title and description */}
             <div className="header-info-div">
-                <h1 className="header-text">{props.title}</h1>
-                <p className="header-info">{props.text}</p>
+                {props.title ? <h1 className="header-text">{props.title}</h1> : null}
+                {props.text ? <p className="header-info">{props.text}</p> : null}
             </div>
         </div>
     );

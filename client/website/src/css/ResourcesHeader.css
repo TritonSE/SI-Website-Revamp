@@ -1,86 +1,75 @@
-#Header {
-  width: 100%;
-  height: 40vw;
-}
-
 .header-div {
   position: relative;
+  background-size: cover, contain;
+  background-position: center, top;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.header-div .header-info-div {
+  margin-left: 10%;
+  background: rgb(102, 82, 160, 0.85);
+  width: 38.2vw;
+  height: fit-content;
+  padding-left: 3.67vw;
+  padding-top: 2.97vw;
+  padding-right: 2.34vw;
+  padding-bottom: 4vw;
+  color: var(--white);
 }
 
 .header-info-div {
   position: absolute;
-  width: 38.2vw;
-  height: 23.75vw;
-  margin-left: 5.16vw;
-  top: 9.45vw;
-  background: rgba(102, 82, 160, 0.85);
+  margin-top: 10%;
 }
 
 .header-text {
-  position: absolute;
-  width: 23.8vw;
-  height: 3.5vw;
-  margin-left: 3.7vw;
-  margin-top: 2.97vw;
-
   font-family: var(--heading-font);
-  font-style: normal;
+  font-style: bold;
   font-weight: bold;
   font-size: 2.81vw;
   line-height: 3.5vw;
-
-  color: var(--white);
 }
 
 .header-info {
-  position: absolute;
-  width: 32.7vw;
-  height: 14.9vw;
-  margin-left: 3.4vw;
-  margin-top: 7.6vw;
-
+  margin-top: 1.09vw;
   font-family: var(--text-font);
   font-style: normal;
   font-weight: normal;
   font-size: 1.41vw;
   line-height: 1.95vw;
+}
 
-  color: var(--white);
+@media screen and (min-width: 450px) and (max-width: 600px) {
+  .header-info {
+    font-size: 3vw;
+    line-height: 5vw;
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .header-info {
+    font-size: 5vw;
+    line-height: 6.88vw;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  #Header {
-    width: 100%;
-    height: 166.25vw;
-  }
-
-  .header-info-div {
-    width: 65.94vw;
-    height: 119.06vw;
+  .header-div .header-info-div {
+    width: 66%;
     margin-left: 7.19vw;
-    top: 23.13vw;
+    top: 7.78vw;
+    padding: 0vw 2.34vw 4vw 0vw;
   }
 
   .header-text {
-    width: 23.8vw;
-    height: 3.5vw;
-
     font-size: 5.63vw;
     line-height: 170%;
-
     margin-left: 6.25vw;
     margin-top: 7.19vw;
   }
 
   .header-info {
-    width: 53.44vw;
-    height: 62.81vw;
-
-    font-size: 5vw;
-    line-height: 6.88vw;
-
-    margin-left: 6.25vw;
-    margin-right: 6.25vw;
+    margin: 4.8vh 6.25vw 9vh 6.25vw;
     bottom: 23.62%;
   }
 }
