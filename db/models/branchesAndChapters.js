@@ -12,7 +12,7 @@ module.exports = db.define(
         // By default, there will be a column called 'id' that will
         // auto-increment an integer value
         name: {
-            type: Sequelize.TEXT(56),
+            type: Sequelize.STRING(56),
             allowNull: false,
         },
         coordinates: {
@@ -25,11 +25,11 @@ module.exports = db.define(
             defaultValue: false,
         },
         email: {
-            type: Sequelize.TEXT(320),
+            type: Sequelize.STRING(320),
             allowNull: false,
         },
         siteLink: {
-            type: Sequelize.TEXT(500),
+            type: Sequelize.STRING(500),
             allowNull: true,
         },
     },
