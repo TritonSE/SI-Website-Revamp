@@ -126,7 +126,7 @@ export default function ConferencesDesktop(props) {
                     />
                 </div>
 
-                {/* This outer div is used for 767 < x < 1200 screen widths */}
+                {/* This outer div is used for 1050 < x < 1200 screen widths */}
                 <div className="small-desktop-div-container">
                     {/* Display the information for either theme or ovwerview */}
                     <div className="conference-container">{displayInformation()}</div>
