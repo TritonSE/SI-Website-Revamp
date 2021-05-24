@@ -128,11 +128,11 @@ export default function Home() {
     return (
         <div className="Home">
             {/* Slideshow component */}
-            <Slideshow height={isMobile ? "95vh" : "600px"} width="100%" isMobile={isMobile}>
+            <Slideshow height={isMobile ? "95vh" : "85vh"} width="100%" isMobile={isMobile}>
                 {/* All Slides mapped here with display information  */}
                 {slideData.map((slideInfo) => (
                     <NewsEventsSlide
-                        height={isMobile ? "95vh" : "600px"}
+                        height={isMobile ? "95vh" : "85vh"}
                         showButton="true"
                         openInSameTab={slideInfo.openInSameTab}
                         redirect_link={slideInfo.redirect_link}
