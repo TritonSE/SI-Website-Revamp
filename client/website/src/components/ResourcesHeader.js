@@ -7,20 +7,20 @@
 import React from "react";
 import "../css/ResourcesHeader.css";
 
-export default function ResourcesHeader(props) {
+export default function ResourcesHeader({ image, height, width, title, text }) {
     return (
         <div
             className="header-div"
             style={{
-                backgroundImage: `url("${props.image}")`,
-                height: props.height,
-                width: props.width,
+                backgroundImage: `url("${image}")`,
+                height,
+                width,
             }}
         >
             {/* Purple box with a title and description */}
             <div className="header-info-div">
-                {props.title ? <h1 className="header-text">{props.title}</h1> : null}
-                {props.text ? <p className="header-info">{props.text}</p> : null}
+                {title ? <h1 className="header-text">{title}</h1> : null}
+                {text ? <p className="header-info">{text}</p> : null}
             </div>
         </div>
     );
