@@ -6,17 +6,17 @@
 }
 
 .header-div .header-info-div {
-  margin-left: 10%;
+  margin-left: 7%;
   background: rgb(102, 82, 160, 0.85);
-  width: 489px;
+  width: 500px;
   height: fit-content;
-  padding: 2.97vw 2.34vw 4vw 3.67vw;
+  padding: 2.97vw 2.34vw 2.97vw 2.34vw;
   color: var(--white);
 }
 
 .header-info-div {
   position: absolute;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .header-text {
