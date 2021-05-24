@@ -13,6 +13,7 @@
   font-size: 20px;
   line-height: 28px;
   text-align: left;
+  color: var(--black);
 
   overflow: hidden;
 }
@@ -26,6 +27,11 @@
   font-weight: 400;
   line-height: 20px;
   text-align: left;
+  color: var(--black) !important;
+}
+.NewsletterCard_link {
+  color: var(--black) !important;
+  text-decoration-color: var(--black) !important;
 }
 .NewsletterCard_image {
   width: 100%;

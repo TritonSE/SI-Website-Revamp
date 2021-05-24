@@ -37,7 +37,7 @@ const renderPublicationGrid = (currentNewsletters) => (
                 title={newsletter.title}
                 year={newsletter.year}
                 image_url={newsletter.image_url}
-                redirect_url={newsletter.redirect_url}
+                redirect_link={newsletter.redirect_url}
             />
         ))}
     </div>
