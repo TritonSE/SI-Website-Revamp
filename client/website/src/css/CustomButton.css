@@ -1,9 +1,8 @@
-.Custom-Button{
-    /* width: max(25px, 125px); */
-    background-color: var(--orange) !important;
-    border-radius: 30px !important;
-    /* padding: 15px 50px !important; */
-    box-shadow: 2px 2px 2px rgb(63, 62, 62) !important;
-    color: white !important;
-
+.Custom-Button {
+  /* width: max(25px, 125px); */
+  background-color: var(--orange) !important;
+  border-radius: 30px !important;
+  /* padding: 15px 50px !important; */
+  box-shadow: 2px 2px 2px rgb(63, 62, 62) !important;
+  color: white !important;
 }
