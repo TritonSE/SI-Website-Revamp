@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ResourcesHeader from "../../components/ResourcesHeader";
 
-import "../../css/LandingPage.css";
-
 const MAX_MOBILE_WIDTH = 700;
 
 export default function LandingPage() {
