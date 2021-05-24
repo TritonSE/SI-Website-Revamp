@@ -37,6 +37,7 @@ export default function NewsEventsSlide({
     showButton,
     openInSameTab,
     height,
+    arrowClickCallback,
 }) {
     return (
         <div className="NewsEventsSlide" style={{ backgroundImage: `url("${image_url}")`, height }}>
@@ -57,7 +58,7 @@ export default function NewsEventsSlide({
             </div>
             {/* Displays white arrow on bottom left of slide */}
             <div className="circle-arrow">
-                <FiArrowDownCircle />
+                <FiArrowDownCircle onClick={arrowClickCallback} />
             </div>
         </div>
     );

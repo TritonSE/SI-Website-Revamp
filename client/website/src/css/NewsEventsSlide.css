@@ -29,6 +29,10 @@
   margin: 0px 0px 20px 30px;
 }
 
+.NewsEventsSlide .circle-arrow:hover {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 1000px) {
   .NewsEventsSlide .info-container {
     width: 300px;

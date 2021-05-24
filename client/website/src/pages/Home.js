@@ -24,6 +24,7 @@ const MAX_MOBILE_WIDTH = 700;
 export default function Home() {
     // tracks layout of screen
     const [isMobile, setMobileView] = useState(false);
+    const introTitle = React.createRef();
 
     // handler to call on window resize
     useEffect(() => {
@@ -41,6 +42,16 @@ export default function Home() {
         // remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    const scrollToIntro = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (introTitle.current) {
+            introTitle.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+            });
+        }
+    };
 
     // dummy slideshow data
     const slideData = [
@@ -130,6 +141,7 @@ export default function Home() {
                         title={slideInfo.title}
                         description={slideInfo.description}
                         image_url={slideInfo.image_url}
+                        arrowClickCallback={scrollToIntro}
                     />
                 ))}
             </Slideshow>
@@ -137,7 +149,7 @@ export default function Home() {
             <section className="home-body">
                 {/* Introduction */}
                 <section id="home-intro">
-                    <h1>Introduction </h1>
+                    <h1 ref={introTitle}>Introduction </h1>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
                         condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula
