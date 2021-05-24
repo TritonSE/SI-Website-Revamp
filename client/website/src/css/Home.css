@@ -1,3 +1,7 @@
+.__react_component_tooltip {
+  pointer-events: auto !important;
+}
+
 .Home > .home-body {
   width: 100%;
   padding: 3rem 3rem 6rem 3rem;

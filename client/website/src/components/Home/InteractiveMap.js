@@ -23,7 +23,8 @@ import "../../css/InteractiveMap.css";
 const geoUrl =
     "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-export default function InteractiveMap({ setTooltipContent, markers }) {
+export default function InteractiveMap({ markers }) {
+    
 
     return (
         <div className="Interactive-Map">
@@ -39,33 +40,21 @@ export default function InteractiveMap({ setTooltipContent, markers }) {
                         }
                     </Geographies>
                      {/* Creates custom markers for all information passed */}
-                    {markers.map(({ name, coordinates, isBranch, email, urlLink }) => (
-                        <a href={urlLink} target="_blank" rel="noreferrer noopener">
-                             {/* Marker information utilized here */}
+                    {markers.map(({ name, coordinates, isBranch}, i) => (
+                          
                             <Marker
-                                data-tip="JL"
+                                data-for='soclose'
+                                data-tip={i}
+                                data-event='click'
                                 key={name}
+                                className="marker"
                                 // coordinates of marker 
                                 coordinates={coordinates}
-                                // tool-tip info on hover 
-                                onMouseEnter={() => {
-                                    setTooltipContent({
-                                        country: name,
-                                        email: email,
-                                        urlLink: urlLink,
-                                    });
-                                }}
-                                onMouseLeave={() => {
-                                    setTooltipContent({
-                                        country: "",
-                                        email: "",
-                                        urlLink: "",
-                                    });
-                                }}
                             >
                                  {/* Outline/style of custom marker defined here */}
                                 <g
                                     fill="none"
+                                    className="outer"
                                     stroke={isBranch ? "#d77a3d" : "#6652a0"}
                                     strokeWidth="2"
                                     strokeLinecap="round"
@@ -76,7 +65,6 @@ export default function InteractiveMap({ setTooltipContent, markers }) {
                                     <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
                                 </g>
                             </Marker>
-                        </a>
                     ))}
                 </ZoomableGroup>
             </ComposableMap>

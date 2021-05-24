@@ -3,6 +3,6 @@
   height: 100%;
 }
 
-.Interactive-Map .test {
-  color: aqua;
+.Interactive-Map .marker:hover{
+  cursor: pointer;
 }

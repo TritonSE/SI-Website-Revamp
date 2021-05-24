@@ -23,13 +23,6 @@ const MAX_MOBILE_WIDTH = 700;
 
 export default function Home() {
 
-    // utilized for tool-tip information for interactive map
-    const [content, setTooltipContent] = useState({
-        country: "",
-        email: "",
-        urlLink: "",
-    });
-
     // tracks layout of screen
     const [isMobile, setMobileView] = useState(false);
 
@@ -93,8 +86,38 @@ export default function Home() {
             email: "patrick@weirdo.com",
             urlLink:
                 "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+        },
+        {
+            name: "Budapest",
+            coordinates: [19.0402, 47.4979],
+            isBranch: false,
+            email: "patrick@weirdo.com",
+            urlLink:
+                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+        },
+        {
+            name: "Delhi",
+            coordinates: [77.1025, 28.7041],
+            isBranch: false,
+            email: "patrick@weirdo.com",
+            urlLink:
+                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+        },
+        {
+            name: "California",
+            coordinates: [-119.4179, 36.7783],
+            isBranch: true,
+            email: "patrick@weirdo.com",
+            urlLink:
+                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
         }
     ];
+
+    function test(index, markers){
+        let i = parseInt(index);
+        const x = markers[i];
+        return x.name;
+    }
 
     return (
         <div className="Home">
@@ -152,23 +175,27 @@ export default function Home() {
                  {/*Branches & Chapters Section */}
                 <section id="branches-and-chapters">
                     {/* Interactive Map */}
-                    <InteractiveMap setTooltipContent={setTooltipContent} markers={markers}/>
+                    <InteractiveMap markers={markers}/>
 
                     {/* Custom Tooltip for Interactive Map */}
                     <ReactTooltip
                         place="left"
                         effect="solid"
-                        type="dark"
-                        delayUpdate={1}
-                    >
-                        {/* Tool-tip pop-up text */}
-                        <a href={content.urlLink} target="_blank" rel="noreferrer" >
-                            {content.country}
-                            <FiExternalLink />
-                        </a>
-                        <br />
-                        {content.email}
-                    </ReactTooltip>
+                        type="light"
+                        border={true}
+                        globalEventOff='click'
+                        id='soclose'
+                        getContent={(dataTip) => 
+                            <div>
+                                 <a href={markers[Math.floor(dataTip)].urlLink} target="_blank" rel="noreferrer" >
+                                    { markers[Math.floor(dataTip)].name}
+                                    <FiExternalLink />
+                                </a>
+                                <br />
+                                {markers[Math.floor(dataTip)].email}
+                            </div>
+                        }
+                    />
                     {/* Branch/Chapter Information  */}
                     <div className="branch-info">
                         <h1>Branches </h1>
@@ -176,7 +203,7 @@ export default function Home() {
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
                             facilisis condimentum massa, sit amet lacinia massa commodo sed.
                             {"\n\n\n"}
-                            Hover over each pin for more information about each branch!
+                            Click on a pin for more information about the branch!
                             {"\n\n"}
                         </p>
                          {/* Mini Color Legend  */}
