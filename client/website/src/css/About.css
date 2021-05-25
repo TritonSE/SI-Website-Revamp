@@ -79,16 +79,6 @@
   text-underline-offset: 6px;
 }
 
-.slider-nav li a {
-  text-decoration: inherit;
-  color: inherit;
-}
-
-.slider-nav li a:hover {
-  text-decoration: underline solid var(--orange) 2px;
-  text-underline-offset: 6px;
-}
-
 .vbar {
   position: absolute;
   top: 0;
@@ -133,7 +123,7 @@
   font-size: 1.125em;
 }
 
-.section img {
+.section img:not(button img) {
   margin-top: 85px;
   width: 100%;
 }
@@ -147,12 +137,48 @@
   align-self: center;
 }
 
-#exec button {
+#dropdown-button {
+  position: relative;
   height: 40px;
   width: 175px;
-  background: transparent;
+  background: white;
   border: 2px solid black;
   border-radius: 20px;
+  z-index: 3;
+}
+
+#dropdown-button img {
+  position: absolute;
+  height: 9px;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+}
+
+#dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+
+  width: 140px;
+  left: 17.5px;
+
+  border: 2px solid gray;
+  list-style: none;
+  transform: translateY(-2px);
+  z-index: 2;
+}
+
+#dropdown button {
+  padding: 10px 0;
+  width: 100%;
+  border: none;
+  background-color: white;
+}
+
+#dropdown button:hover {
+  background-color: rgba(200, 200, 200);
 }
 
 .profiles {
@@ -277,7 +303,7 @@ h2 #conference {
     font-size: 1em;
   }
 
-  .section img:not(.profile img) {
+  .section img:not(.profile img, button img) {
     margin-top: 85px;
     width: 100vw;
     height: 300px;

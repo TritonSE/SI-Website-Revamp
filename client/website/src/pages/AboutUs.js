@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { SITE_PAGES } from "../constants/links";
 
 import "../css/About.css";
@@ -6,8 +6,21 @@ import Header from "../media/lotus-header.svg";
 import LotusPink from "../media/lotus-pink.svg";
 import Navid from "../media/navid.jpg";
 import Founders from "../media/founders.png";
+import DownArrow from "../media/down-arrow.svg";
 
 export default function AboutUs() {
+    const [dropdownOn, setDropdownOn] = useState(false);
+    const [year, setYear] = useState("2021");
+
+    function toggleDropdown() {
+        setDropdownOn(!dropdownOn);
+    }
+
+    function clickDropdown(newYear) {
+        setYear(newYear);
+        toggleDropdown();
+    }
+
     return (
         <div className="page">
             <div className="header">
@@ -98,9 +111,26 @@ export default function AboutUs() {
                     <div className="scroll" id="committee" />
                     <h1>Executive Committee</h1>
 
-                    <button type="button">
-                        <span>2021</span>
-                    </button>
+                    <div className="dropdown">
+                        <button type="button" id="dropdown-button" onClick={() => toggleDropdown()}>
+                            <span>{year}</span>
+                            <img src={DownArrow} alt="dropdown arrow" />
+                        </button>
+                        <div id="dropdown" style={dropdownOn ? null : { display: "none" }}>
+                            <button type="button" onClick={() => clickDropdown("2021")}>
+                                2021
+                            </button>
+                            <button type="button" onClick={() => clickDropdown("2020")}>
+                                2020
+                            </button>
+                            <button type="button" onClick={() => clickDropdown("2019")}>
+                                2019
+                            </button>
+                            <button type="button" onClick={() => clickDropdown("2018")}>
+                                2018
+                            </button>
+                        </div>
+                    </div>
 
                     <div className="profiles">
                         <div className="profile">
