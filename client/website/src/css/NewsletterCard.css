@@ -46,16 +46,14 @@
   position: relative;
   display: inline-block;
   width: 270px;
-  margin: 25px;
+  margin: 16px;
 }
 .NewsletterCard_title--mobile {
-  height: 48px;
-
   display: block;
 
   font-family: var(--text-font);
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 20px;
+  line-height: 24px;
   text-align: left;
 
   white-space: text-wrap;
@@ -66,8 +64,8 @@
   display: block;
 
   font-family: var(--text-font);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 20px;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;

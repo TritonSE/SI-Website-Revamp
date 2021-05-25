@@ -67,7 +67,7 @@ export default function Newsletters() {
                 setMaxPages(Math.ceil(newsletterList.length / 9));
             }
 
-            if (window.innerWidth <= 400) {
+            if (window.innerWidth <= 450) {
                 setIsMobile(true);
             } else {
                 setIsMobile(false);
