@@ -33,7 +33,7 @@
 
 .header img {
   width: 100vw;
-  height: 525px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -189,6 +189,15 @@
   text-align: center;
 }
 
+.profile h3 {
+  margin: 5px 0;
+
+  font-family: var(--heading-font);
+  font-size: 1.875em;
+  font-weight: 700;
+  text-align: center;
+}
+
 .profile p {
   margin-top: 10px;
   font-family: var(--text-font);
@@ -209,6 +218,14 @@
   font-size: 1.875em;
 }
 
+h2 #year {
+  display: none;
+}
+
+h2 #conference {
+  font-size: 1em;
+}
+
 #founding p {
   margin-top: 10px;
 }
@@ -225,7 +242,87 @@
 /* Mobile Styles */
 
 @media only screen and (max-width: 750px), (max-height: 600px) {
+  .header {
+    height: 320px;
+  }
+
+  .header .page-title {
+    top: 60px;
+    left: 18px;
+    width: 115px;
+    height: 55px;
+    font-size: 1.125em;
+    line-height: 55px;
+  }
+
   .slider-wrapper {
+    display: none;
+  }
+
+  .contents {
+    margin: 0;
+    padding: 50px 25px 0px 25px;
+    width: 100%;
+  }
+
+  .section {
+    padding-bottom: 50px;
+  }
+
+  .section h1 {
+    font-size: 1.125em;
+  }
+
+  .section p {
+    font-size: 1em;
+  }
+
+  .section img:not(.profile img) {
+    margin-top: 85px;
+    width: 100vw;
+    height: 300px;
+
+    object-fit: cover;
+  }
+
+  .profile {
+    width: 200px;
+    align-items: flex-start;
+  }
+
+  .profile h2 {
+    font-size: 1.125em;
+  }
+
+  .profile h3 {
+    font-size: 0.875em;
+  }
+
+  .profile p {
+    font-size: 0.75em;
+    padding: 0;
+  }
+
+  .profile img {
+    margin-top: 50px;
+  }
+
+  #founding img {
+    height: auto;
+    margin: 0;
+  }
+
+  #founding h2 {
+    margin-top: 50px;
+    font-size: 1.125em;
+  }
+
+  h2 #year {
+    display: initial;
+    font-size: 0.8em;
+  }
+
+  .divider {
     display: none;
   }
 }

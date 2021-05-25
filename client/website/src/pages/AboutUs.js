@@ -106,7 +106,7 @@ export default function AboutUs() {
                         <div className="profile">
                             <img src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
-                            <h2>Cavs Fan 1</h2>
+                            <h3>Cavs Fan 1</h3>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam
@@ -115,7 +115,7 @@ export default function AboutUs() {
                         <div className="profile">
                             <img src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
-                            <h2>Cavs Fan 2</h2>
+                            <h3>Cavs Fan 2</h3>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam
@@ -124,7 +124,7 @@ export default function AboutUs() {
                         <div className="profile">
                             <img src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
-                            <h2>Cavs Fan 3</h2>
+                            <h3>Cavs Fan 3</h3>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam
@@ -133,7 +133,7 @@ export default function AboutUs() {
                         <div className="profile">
                             <img src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
-                            <h2>Cavs Fan 4</h2>
+                            <h3>Cavs Fan 4</h3>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam
@@ -142,7 +142,7 @@ export default function AboutUs() {
                         <div className="profile">
                             <img src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
-                            <h2>Cavs Fan 5</h2>
+                            <h3>Cavs Fan 5</h3>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                                 nesciunt rem quo dolor voluptas magnam aliquam
@@ -157,7 +157,13 @@ export default function AboutUs() {
                     <div className="scroll" id="founders" />
                     <h1>Founding Members</h1>
                     <img src={Founders} alt="Founding Members" />
-                    <h2>1st Sakyadhita Conference, 1987</h2>
+                    <h2>
+                        <span id="year">
+                            1987
+                            <br />
+                        </span>
+                        <span id="conference">1st Sakyadhita Conference, 1987</span>
+                    </h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
                         condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula
