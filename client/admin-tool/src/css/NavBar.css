@@ -1,5 +1,14 @@
 .nav-bar-container {
   background-color: #8477b9;
-  width: fit-content;
+  width: 150px;
   height: 100vh;
+}
+.nav.NavDropdown {
+  color: green;
+}
+.nav-item {
+  width: 100%;
+  height: 80px;
+  font-family: var(--text-font);
+  color: var(--white);
 }
