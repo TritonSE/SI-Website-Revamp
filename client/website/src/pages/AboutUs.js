@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { SITE_PAGES } from "../constants/links";
 
 import "../css/About.css";
@@ -9,8 +9,33 @@ import Founders from "../media/founders.png";
 import DownArrow from "../media/down-arrow.svg";
 
 export default function AboutUs() {
+    const [scrollLocation, setScrollLocation] = useState("mission");
     const [dropdownOn, setDropdownOn] = useState(false);
     const [year, setYear] = useState("2021");
+
+    useEffect(() => {
+        document.querySelector("#page-layout").addEventListener("scroll", () => {
+            const mission = document.querySelector("#mission").getBoundingClientRect().top;
+            const history = document.querySelector("#history").getBoundingClientRect().top;
+            const committee = document.querySelector("#committee").getBoundingClientRect().top;
+            const founders = document.querySelector("#founders").getBoundingClientRect().top;
+
+            if (founders <= 1) {
+                setScrollLocation("founders");
+            } else if (committee <= 1) {
+                setScrollLocation("committee");
+            } else if (history <= 1) {
+                setScrollLocation("history");
+            } else if (mission <= 1) {
+                setScrollLocation("mission");
+            }
+        });
+    });
+
+    function computeNavUnderline(location) {
+        if (location === scrollLocation) return "underline";
+        return "";
+    }
 
     function toggleDropdown() {
         setDropdownOn(!dropdownOn);
@@ -31,16 +56,16 @@ export default function AboutUs() {
             <div className="slider-wrapper">
                 <div className="slider">
                     <ul className="slider-nav">
-                        <li className="underline">
+                        <li className={computeNavUnderline("mission")}>
                             <a href="#mission">Mission & Activities</a>
                         </li>
-                        <li>
+                        <li className={computeNavUnderline("history")}>
                             <a href="#history">History & Goals</a>
                         </li>
-                        <li>
+                        <li className={computeNavUnderline("committee")}>
                             <a href="#committee">Executive Committee</a>
                         </li>
-                        <li>
+                        <li className={computeNavUnderline("founders")}>
                             <a href="#founders">Founding Members</a>
                         </li>
                     </ul>
