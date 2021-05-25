@@ -7,8 +7,16 @@
   color: green;
 }
 .nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 80px;
-  font-family: var(--text-font);
   color: var(--white);
+  text-decoration: none;
+}
+
+.nav-item > a {
+  color: var(--white);
+  text-decoration: none;
 }

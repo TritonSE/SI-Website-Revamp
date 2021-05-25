@@ -27,7 +27,9 @@ export default function NavBar() {
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                     </NavDropdown>
-                    <Nav.Link href={SITE_PAGES.CONFERENCES}>Conferences</Nav.Link>
+                    <Nav.Link href={SITE_PAGES.CONFERENCES} className="nav-item">
+                        Conferences
+                    </Nav.Link>
                     <NavDropdown title="Resources" id="basic-nav-dropdown">
                         <NavDropdown.Item href={SITE_PAGES.RESOURCE_NEWSLETTERS}>
                             Newsletters
