@@ -42,38 +42,77 @@
 }
 
 /* Mobile */
-.NewsletterCard--mobile {
-  position: relative;
-  display: inline-block;
-  width: 270px;
-  margin: 16px;
-}
-.NewsletterCard_title--mobile {
-  display: block;
+@media only screen and (min-width: 301px) {
+  .NewsletterCard--mobile {
+    position: relative;
+    display: inline-block;
+    width: 270px;
+    margin: 16px;
+  }
+  .NewsletterCard_title--mobile {
+    display: block;
 
-  font-family: var(--text-font);
-  font-size: 20px;
-  line-height: 24px;
-  text-align: left;
+    font-family: var(--text-font);
+    font-size: 20px;
+    line-height: 24px;
+    text-align: left;
 
-  white-space: text-wrap;
-  overflow: hidden;
-}
-.NewsletterCard_year--mobile {
-  height: 21px;
-  display: block;
+    white-space: text-wrap;
+    overflow: hidden;
+  }
+  .NewsletterCard_year--mobile {
+    height: 21px;
+    display: block;
 
-  font-family: var(--text-font);
-  font-size: 16px;
-  line-height: 20px;
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-family: var(--text-font);
+    font-size: 16px;
+    line-height: 20px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .NewsletterCard_image--mobile {
+    width: 270px;
+    height: 212px;
+    object-fit: cover;
+    box-shadow: 0px 0px 3px 0.75px rgba(0, 0, 0, 0.25);
+    margin-bottom: 16px;
+  }
 }
-.NewsletterCard_image--mobile {
-  width: 270px;
-  height: 212px;
-  object-fit: cover;
-  box-shadow: 0px 0px 3px 0.75px rgba(0, 0, 0, 0.25);
-  margin-bottom: 16px;
+@media only screen and (max-width: 300px) {
+  .NewsletterCard--mobile {
+    position: relative;
+    display: inline-block;
+    width: 242px;
+    margin: 16px;
+  }
+  .NewsletterCard_title--mobile {
+    display: block;
+
+    font-family: var(--text-font);
+    font-size: 16px;
+    line-height: 20px;
+    text-align: left;
+
+    white-space: text-wrap;
+    overflow: hidden;
+  }
+  .NewsletterCard_year--mobile {
+    height: 18px;
+    display: block;
+
+    font-family: var(--text-font);
+    font-size: 14px;
+    line-height: 16px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .NewsletterCard_image--mobile {
+    width: 242px;
+    height: 190px;
+    object-fit: cover;
+    box-shadow: 0px 0px 3px 0.75px rgba(0, 0, 0, 0.25);
+    margin-bottom: 12px;
+  }
 }

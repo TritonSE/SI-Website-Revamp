@@ -16,17 +16,34 @@
 
   color: var(--black);
 }
-.NewsletterPage__title--mobile {
-  margin-top: 24px;
-  margin-bottom: 12px;
 
-  font-family: var(--heading-font);
-  font-style: normal;
-  font-weight: bold;
-  font-size: 26px;
-  line-height: 170%;
+@media only screen and (min-width: 301px) {
+  .NewsletterPage__title--mobile {
+    margin-top: 24px;
+    margin-bottom: 12px;
 
-  color: var(--black);
+    font-family: var(--heading-font);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 170%;
+
+    color: var(--black);
+  }
+}
+@media only screen and (max-width: 300px) {
+  .NewsletterPage__title--mobile {
+    margin-top: 24px;
+    margin-bottom: 12px;
+
+    font-family: var(--heading-font);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 170%;
+
+    color: var(--black);
+  }
 }
 .NewsletterContainer {
   display: flex;
