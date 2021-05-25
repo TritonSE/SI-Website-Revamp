@@ -16,6 +16,18 @@
 
   color: var(--black);
 }
+.NewsletterPage__title--mobile {
+  margin-top: 24px;
+  margin-bottom: 12px;
+
+  font-family: var(--heading-font);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 170%;
+
+  color: var(--black);
+}
 .NewsletterContainer {
   display: flex;
   flex-direction: row;
