@@ -109,8 +109,7 @@ export default function AboutUs() {
                             <h2>Cavs Fan 1</h2>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum?
+                                nesciunt rem quo dolor voluptas magnam aliquam
                             </p>
                         </div>
                         <div className="profile">
@@ -119,8 +118,7 @@ export default function AboutUs() {
                             <h2>Cavs Fan 2</h2>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum?
+                                nesciunt rem quo dolor voluptas magnam aliquam
                             </p>
                         </div>
                         <div className="profile">
@@ -129,8 +127,7 @@ export default function AboutUs() {
                             <h2>Cavs Fan 3</h2>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum?
+                                nesciunt rem quo dolor voluptas magnam aliquam
                             </p>
                         </div>
                         <div className="profile">
@@ -139,8 +136,7 @@ export default function AboutUs() {
                             <h2>Cavs Fan 4</h2>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum?
+                                nesciunt rem quo dolor voluptas magnam aliquam
                             </p>
                         </div>
                         <div className="profile">
@@ -149,8 +145,7 @@ export default function AboutUs() {
                             <h2>Cavs Fan 5</h2>
                             <p>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam iusto consequuntur
-                                nostrum?
+                                nesciunt rem quo dolor voluptas magnam aliquam
                             </p>
                         </div>
                     </div>

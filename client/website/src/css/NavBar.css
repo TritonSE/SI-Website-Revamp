@@ -62,7 +62,7 @@
 
 /* Mobile Styles */
 
-@media only screen and (max-width: 600px), (max-height: 600px) {
+@media only screen and (max-width: 750px), (max-height: 600px) {
   .navBar {
     height: 50px;
     width: 100vw;

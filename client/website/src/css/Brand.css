@@ -59,7 +59,7 @@
 }
 
 /* NavBar Mobile Views */
-@media only screen and (max-width: 600px), (max-height: 600px) {
+@media only screen and (max-width: 750px), (max-height: 600px) {
   .nav-left #logo {
     height: 36px;
   }
