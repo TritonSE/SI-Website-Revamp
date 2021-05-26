@@ -22,6 +22,15 @@ function isPageActive(pageToCheck) {
     return pageToCheck === window.location.pathname.toLowerCase().split("/")[2];
 }
 
+/**
+ * Checks path from props and returns if this is the current second path
+ *
+ * @param {String} pageToCheck - URL of site to check
+ * @returns {boolean} - True if currently on the first path
+ */
+function isSubPageActive(pageToCheck) {
+    return pageToCheck === window.location.pathname.toLowerCase().split("/")[3];
+}
 export default function NavBar() {
     const [expanded, setExpanded] = useState("");
     const navRef = useRef(null);
@@ -66,7 +75,13 @@ export default function NavBar() {
                         >
                             <path
                                 d="M1.90798e-07 14L24 0.143593L24 27.8564L1.90798e-07 14Z"
-                                fill="#EA8644"
+                                fill={
+                                    isSubPageActive(
+                                        SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER.split("/")[3]
+                                    )
+                                        ? "#d77a3d"
+                                        : "#EA8644"
+                                }
                             />
                         </svg>
                     )}
@@ -74,14 +89,48 @@ export default function NavBar() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     {expanded === "home" && (
                         <Nav>
-                            <Nav.Link href={SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER}>
+                            <Nav.Link
+                                href={SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER}
+                                className={
+                                    isSubPageActive(
+                                        SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER.split("/")[3]
+                                    )
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
                                 News & Events Slider
                             </Nav.Link>
-                            <Nav.Link href={SITE_PAGES.HOME_INTRODUCTION}>Introduction</Nav.Link>
-                            <Nav.Link href={SITE_PAGES.HOME_BRANCHES_CHAPTERS}>
+                            <Nav.Link
+                                href={SITE_PAGES.HOME_INTRODUCTION}
+                                className={
+                                    isSubPageActive(SITE_PAGES.HOME_INTRODUCTION.split("/")[3])
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
+                                Introduction
+                            </Nav.Link>
+                            <Nav.Link
+                                href={SITE_PAGES.HOME_BRANCHES_CHAPTERS}
+                                className={
+                                    isSubPageActive(SITE_PAGES.HOME_BRANCHES_CHAPTERS.split("/")[3])
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
                                 Branches & Chapters
                             </Nav.Link>
-                            <Nav.Link href={SITE_PAGES.HOME_ADD_SECTION}>+ Section</Nav.Link>
+                            <Nav.Link
+                                href={SITE_PAGES.HOME_ADD_SECTION}
+                                className={
+                                    isSubPageActive(SITE_PAGES.HOME_ADD_SECTION.split("/")[3])
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
+                                + Section
+                            </Nav.Link>
                         </Nav>
                     )}
                 </Navbar.Collapse>
@@ -115,7 +164,13 @@ export default function NavBar() {
                         >
                             <path
                                 d="M1.90798e-07 14L24 0.143593L24 27.8564L1.90798e-07 14Z"
-                                fill="#EA8644"
+                                fill={
+                                    isSubPageActive(
+                                        SITE_PAGES.RESOURCE_BUDDHIST_CULTURE.split("/")[3]
+                                    )
+                                        ? "#d77a3d"
+                                        : "#EA8644"
+                                }
                             />
                         </svg>
                     )}
@@ -123,12 +178,48 @@ export default function NavBar() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     {expanded === "resources" && (
                         <Nav>
-                            <Nav.Link href={SITE_PAGES.RESOURCE_NEWSLETTERS}>Newsletters</Nav.Link>
-                            <Nav.Link href={SITE_PAGES.RESOURCE_EPUBS}>E-Publications</Nav.Link>
-                            <Nav.Link href={SITE_PAGES.RESOURCE_BUDDHIST_CULTURE}>
+                            <Nav.Link
+                                href={SITE_PAGES.RESOURCE_NEWSLETTERS}
+                                className={
+                                    isSubPageActive(SITE_PAGES.RESOURCE_NEWSLETTERS.split("/")[3])
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
+                                Newsletters
+                            </Nav.Link>
+                            <Nav.Link
+                                href={SITE_PAGES.RESOURCE_EPUBS}
+                                className={
+                                    isSubPageActive(SITE_PAGES.RESOURCE_EPUBS.split("/")[3])
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
+                                E-Publications
+                            </Nav.Link>
+                            <Nav.Link
+                                href={SITE_PAGES.RESOURCE_BUDDHIST_CULTURE}
+                                className={
+                                    isSubPageActive(
+                                        SITE_PAGES.RESOURCE_BUDDHIST_CULTURE.split("/")[3]
+                                    )
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
                                 Buddhist Culture
                             </Nav.Link>
-                            <Nav.Link href={SITE_PAGES.RESOURCE_ORDINATION_ISSUE}>
+                            <Nav.Link
+                                href={SITE_PAGES.RESOURCE_ORDINATION_ISSUE}
+                                className={
+                                    isSubPageActive(
+                                        SITE_PAGES.RESOURCE_ORDINATION_ISSUE.split("/")[3]
+                                    )
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
                                 Ordination Issue
                             </Nav.Link>
                         </Nav>
@@ -164,8 +255,24 @@ export default function NavBar() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     {expanded === "aboutus" && (
                         <Nav>
-                            <Nav.Link href={SITE_PAGES.ABOUT_EDIT_SECTION}>About Us - All</Nav.Link>
-                            <Nav.Link href={SITE_PAGES.ABOUT_EXEC_COMMITTEE}>
+                            <Nav.Link
+                                href={SITE_PAGES.ABOUT_EDIT_SECTION}
+                                className={
+                                    isSubPageActive(SITE_PAGES.ABOUT_EDIT_SECTION.split("/")[3])
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
+                                About Us - All
+                            </Nav.Link>
+                            <Nav.Link
+                                href={SITE_PAGES.ABOUT_EXEC_COMMITTEE}
+                                className={
+                                    isSubPageActive(SITE_PAGES.ABOUT_EXEC_COMMITTEE.split("/")[3])
+                                        ? "selectedSubpage"
+                                        : ""
+                                }
+                            >
                                 Executive Committee
                             </Nav.Link>
                         </Nav>

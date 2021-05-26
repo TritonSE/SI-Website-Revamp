@@ -101,3 +101,7 @@
 .selectedToggleContainer {
   background-color: var(--darkpurple);
 }
+
+.selectedSubpage {
+  background-color: var(--darkorange) !important;
+}
