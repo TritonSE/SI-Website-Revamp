@@ -1,22 +1,3 @@
-.involve-section::before {
-  flex: 1;
-  width: 100%;
-  height: 450px;
-
-  background-size: cover, contain;
-  background-position: center, top;
-  background-repeat: no-repeat, no-repeat;
-
-  font-family: var(--text-font);
-  color: white;
-  font-size: 24px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 4vw 7vw;
-}
-
 .involve-section {
   flex: 1;
   width: 100%;
@@ -54,12 +35,6 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .involve-section::before {
-    width: 100%;
-    height: 450px;
-    padding: 10vw 20vw;
-  }
-
   .involve-section {
     width: 100%;
     height: 450px;
@@ -72,10 +47,6 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .involve-section::before {
-    width: 100%;
-  }
-
   .involve-section {
     width: 100%;
   }
