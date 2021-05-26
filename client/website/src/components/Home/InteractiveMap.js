@@ -23,12 +23,22 @@ import "../../css/InteractiveMap.css";
 const geoUrl =
     "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
+// constrains panning extent of interactive map, preventing panning into whitespace
+const mapWidth = 800;
+const mapHeight = 600;
+
 export default function InteractiveMap({ markers }) {
     return (
         <div className="Interactive-Map">
             <ComposableMap>
                 {/* Makes map zoomable/pannable, with default zoom set as zoomed out as possible */}
-                <ZoomableGroup zoom={1}>
+                <ZoomableGroup
+                    zoom={1}
+                    translateExtent={[
+                        [0, 0],
+                        [mapWidth, mapHeight],
+                    ]}
+                >
                     {/* Creates checkered stroke pattern around map */}
                     <Graticule stroke="#EAEAEC" />
                     {/* Creates all continents to be displayed */}
