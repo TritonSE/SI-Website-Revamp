@@ -1,3 +1,12 @@
+/**
+ * Navbar for admin page. Includes tabs for Home, Conferences,
+ * Resources, and About Us. When Home, Conferences or Resources
+ * is clicked, another tab showing the sub pages will appear.
+ *
+ * @summary Renders navbar for admin page
+ * @author  Patrick Brown
+ */
+
 import React, { useState, useEffect, useRef } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { SITE_PAGES } from "../constants/links";
