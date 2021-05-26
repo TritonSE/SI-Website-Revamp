@@ -1,10 +1,84 @@
 .nav-bar-container {
-  background-color: #8477b9;
+  background-color: var(--lightpurple);
   width: 150px;
   height: 100vh;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
 }
-.nav.NavDropdown {
-  color: green;
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.logout_button {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+.navbar-toggler {
+  position: relative;
+  width: 150px;
+  height: 80px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--lightpurple);
+  font-family: var(--text-body);
+  border: none;
+}
+.navbar-toggler:hover {
+  transition: background-color 0.15s;
+  cursor: pointer;
+  background-color: var(--lighterpurple);
+}
+.nav-link {
+  display: flex;
+  width: 150px;
+  height: 80px;
+  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: var(--white);
+  background-color: var(--lightpurple);
+  font-family: var(--text-body);
+  border: none;
+}
+.nav-link:hover {
+  transition: background-color 0.15s;
+  cursor: pointer;
+  background-color: var(--lighterpurple);
+}
+.navbar-nav {
+  position: absolute;
+  top: 0;
+  left: 150px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 100%;
+  background-color: var(--orange);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+}
+.navbar-nav .nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  width: 150px;
+  height: 80px;
+  font-size: 16px;
+  color: var(--white);
+  font-family: var(--text-body);
+  background-color: var(--orange);
+}
+.navbar-nav .nav-link:hover {
+  transition: background-color 0.15s;
+  cursor: pointer;
+  background-color: var(--darkorange);
 }
 .nav-item {
   display: flex;
@@ -15,8 +89,9 @@
   color: var(--white);
   text-decoration: none;
 }
-
-.nav-item > a {
-  color: var(--white);
-  text-decoration: none;
+.navOrangeArrow {
+  z-index: 5;
+  position: absolute;
+  right: 0;
+  margin-top: -3px;
 }
