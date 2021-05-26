@@ -44,7 +44,18 @@ export default function InteractiveMap({ markers }) {
                     {/* Creates all continents to be displayed */}
                     <Geographies geography={geoUrl}>
                         {({ geographies }) =>
-                            geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} />)
+                            geographies.map((geo) => (
+                                <Geography
+                                    key={geo.rsmKey}
+                                    geography={geo}
+                                    tabIndex={-1}
+                                    style={{
+                                        default: { outline: "none" },
+                                        hover: { outline: "none" },
+                                        pressed: { outline: "none" },
+                                    }}
+                                />
+                            ))
                         }
                     </Geographies>
                     {/* Creates custom markers for all information passed */}
