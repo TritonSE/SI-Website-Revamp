@@ -3,6 +3,16 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { SITE_PAGES } from "../constants/links";
 import "../css/NavBar.css";
 
+/**
+ * Checks first path from props and returns if this is the current first path
+ *
+ * @param {String} pageToCheck - URL of site to check
+ * @returns {boolean} - True if currently on the first path
+ */
+function isPageActive(pageToCheck) {
+    return pageToCheck === window.location.pathname.toLowerCase().split("/")[2];
+}
+
 export default function NavBar() {
     const [expanded, setExpanded] = useState("");
     const navRef = useRef(null);
@@ -33,6 +43,7 @@ export default function NavBar() {
                     onClick={() => {
                         setExpanded(expanded === "home" ? "" : "home");
                     }}
+                    className={isPageActive("home") ? "selectedToggleContainer" : ""}
                 >
                     Home
                     {expanded === "home" && (
@@ -67,7 +78,12 @@ export default function NavBar() {
                 </Navbar.Collapse>
 
                 {/* Conferences Button */}
-                <Nav.Link href={SITE_PAGES.CONFERENCES}>Conferences</Nav.Link>
+                <Nav.Link
+                    href={SITE_PAGES.CONFERENCES}
+                    className={isPageActive("conferences") ? "selectedToggleContainer" : ""}
+                >
+                    Conferences
+                </Nav.Link>
 
                 {/* Resources Button */}
                 <Navbar.Toggle
@@ -76,6 +92,7 @@ export default function NavBar() {
                     onClick={() => {
                         setExpanded(expanded === "resources" ? "" : "resources");
                     }}
+                    className={isPageActive("resources") ? "selectedToggleContainer" : ""}
                 >
                     Resources
                     {expanded === "resources" && (
@@ -116,6 +133,7 @@ export default function NavBar() {
                     onClick={() => {
                         setExpanded(expanded === "aboutus" ? "" : "aboutus");
                     }}
+                    className={isPageActive("about") ? "selectedToggleContainer" : ""}
                 >
                     About Us
                     {expanded === "aboutus" && (

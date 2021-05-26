@@ -28,8 +28,9 @@
 .navbar-toggler:hover {
   transition: background-color 0.15s;
   cursor: pointer;
-  background-color: var(--lighterpurple);
+  background-color: var(--darkpurple);
 }
+
 .nav-link {
   display: flex;
   width: 150px;
@@ -47,7 +48,7 @@
 .nav-link:hover {
   transition: background-color 0.15s;
   cursor: pointer;
-  background-color: var(--lighterpurple);
+  background-color: var(--darkpurple);
 }
 .navbar-nav {
   position: absolute;
@@ -94,4 +95,7 @@
   position: absolute;
   right: 0;
   margin-top: -3px;
+}
+.selectedToggleContainer {
+  background-color: var(--darkpurple);
 }
