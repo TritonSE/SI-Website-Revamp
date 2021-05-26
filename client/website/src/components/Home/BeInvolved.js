@@ -52,21 +52,4 @@ export default function BeInvolved({
             </div>
         </ImageWrapper>
     );
-
-    // return (
-    //     <div
-    //         id={button_title}
-    //         className="involve-section"
-    //         style={{ backgroundImage: `url("${image_url}")` }}
-    //     >
-    //         <div className="overlay">
-    //             <p> {description} </p>
-    //             <CustomButton
-    //                 openInSameTab={openInSameTab}
-    //                 redirect_link={redirect_link}
-    //                 text={button_title}
-    //             />
-    //         </div>
-    //     </div>
-    // );
 }

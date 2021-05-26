@@ -8,7 +8,7 @@
 
 .NewsEventsSlide .info-container {
   position: absolute;
-  margin-left: 10%;
+  margin-left: 15%;
   margin-top: 7%;
   background: rgb(102, 82, 160, 0.85);
   width: 500px;
@@ -35,8 +35,23 @@
 
 @media only screen and (max-width: 1000px) {
   .NewsEventsSlide .info-container {
-    width: 300px;
     padding: 30px;
+    margin-left: 0%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-size: 14px;
+  }
+
+  .NewsEventsSlide .circle-arrow {
+    font-size: 54px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .NewsEventsSlide .info-container {
+    width: 70.5vw;
+    margin-top: 10%;
   }
 
   .NewsEventsSlide .circle-arrow {

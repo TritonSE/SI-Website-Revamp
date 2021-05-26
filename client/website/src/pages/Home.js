@@ -19,20 +19,50 @@ import BeInvolved from "../components/Home/BeInvolved";
 
 import "../css/Home.css";
 
-const MAX_MOBILE_WIDTH = 700;
+// Mobile Screens
+const MAX_HEIGHT_HORIZONTAL_MOBILE = 500; // Landscape Layout
+const MAX_MOBILE_WIDTH = 750;
+
+// Tablet Screens - Portrait Layout
+const TABLET_MIN_WIDTH = 756;
+const TABLET_MAX_WIDTH = 1050;
+const TABLET_MIN_HEIGHT = 1000;
+const TABLET_MAX_HEIGHT = 2500;
 
 export default function Home() {
     // tracks layout of screen
     const [isMobile, setMobileView] = useState(false);
+    const [isHorizontalMobile, setHorizontalMobile] = useState(false);
+    const [isTabletVertical, setTebletVertical] = useState(false);
     const introTitle = React.createRef();
 
     // handler to call on window resize
     useEffect(() => {
         function handleResize() {
+            // check if now in mobile mode
             if (window.innerWidth <= MAX_MOBILE_WIDTH) {
                 setMobileView(true);
             } else {
                 setMobileView(false);
+            }
+
+            // mobile landscape mode
+            if (window.innerHeight <= MAX_HEIGHT_HORIZONTAL_MOBILE) {
+                setHorizontalMobile(true);
+            } else {
+                setHorizontalMobile(false);
+            }
+
+            // portrait tablet screen mode
+            if (
+                window.innerWidth >= TABLET_MIN_WIDTH &&
+                window.innerWidth <= TABLET_MAX_WIDTH &&
+                window.innerHeight >= TABLET_MIN_HEIGHT &&
+                window.innerHeight <= TABLET_MAX_HEIGHT
+            ) {
+                setTebletVertical(true);
+            } else {
+                setTebletVertical(false);
             }
         }
         // add event listener
@@ -125,14 +155,20 @@ export default function Home() {
         },
     ];
 
+    function getSlideshowHeight() {
+        if (isHorizontalMobile) return "500px";
+        if (isMobile) return "95vh";
+        if (isTabletVertical) return "55vh";
+        return "85vh";
+    }
     return (
         <div className="Home">
             {/* Slideshow component */}
-            <Slideshow height={isMobile ? "95vh" : "85vh"} width="100%" isMobile={isMobile}>
+            <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
                 {/* All Slides mapped here with display information  */}
                 {slideData.map((slideInfo) => (
                     <NewsEventsSlide
-                        height={isMobile ? "95vh" : "85vh"}
+                        height={getSlideshowHeight()}
                         showButton="true"
                         openInSameTab={slideInfo.openInSameTab}
                         redirect_link={slideInfo.redirect_link}
