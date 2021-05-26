@@ -17,6 +17,8 @@ import Slideshow from "../components/Slideshow";
 import NewsEventsSlide from "../components/Home/NewsEventsSlide";
 import BeInvolved from "../components/Home/BeInvolved";
 
+import { SITE_PAGES } from "../constants/links";
+
 import "../css/Home.css";
 
 // Mobile Screens
@@ -28,6 +30,10 @@ const TABLET_MIN_WIDTH = 756;
 const TABLET_MAX_WIDTH = 1050;
 const TABLET_MIN_HEIGHT = 1000;
 const TABLET_MAX_HEIGHT = 2500;
+
+// Donate Button Redirect Link
+const DONATE_REDIRECT_LINK =
+    "https://www.paypal.com/donate?token=n4Ck5RvK_epLMZQxmIloFbLpby9p3_H9lVfDuvDpLJljY9dxYbwORh3UJCEaI7C9jXyWD8ajukVhKAaa";
 
 export default function Home() {
     // tracks layout of screen
@@ -269,7 +275,7 @@ export default function Home() {
                             description="Become a member of Sakyadhita!"
                             image_url="https://d.wattpad.com/story_parts/271116779/images/161bdd205bbf18fb307084307993.jpg"
                             openInSameTab="true"
-                            redirect_link="/join"
+                            redirect_link={SITE_PAGES.JOIN_US}
                             button_title="Join Us"
                         />
                         {/* Volunteer  */}
@@ -278,15 +284,15 @@ export default function Home() {
                             building?"
                             image_url="https://lh3.googleusercontent.com/tVonHCrVh7igUJjFPyZ9-Cpa9eZBQXsSHGOh0_XHioRJtwK-AWFN4nH5B12qVdn1Kw8VRe_5nvegTgVu=w1080-h608-p-no-v0"
                             openInSameTab="true"
-                            redirect_link="/volunteer"
+                            redirect_link={SITE_PAGES.VOLUNTEER}
                             button_title="Volunteer"
                         />
                         {/* Donate  */}
                         <BeInvolved
                             description="Help us grow and continue to connect by donating in any amount"
                             image_url="https://cdn9.dissolve.com/p/D1024_57_273/D1024_57_273_1200.jpg"
-                            openInSameTab="false"
-                            redirect_link="https://www.paypal.com/donate?token=OHfoxPvmqn1U-GS2GQWfp-3meA63s0tE_fqAWoLmqyiGBh4SWJfZ0rM5jb63hTCsOYZQ_JJvWdyKgwHX"
+                            openInSameTab={false}
+                            redirect_link={DONATE_REDIRECT_LINK}
                             button_title="Donate"
                         />
                     </div>
