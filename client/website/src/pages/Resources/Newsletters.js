@@ -50,6 +50,7 @@ export default function Newsletters() {
     const [numPerPage, setNumPerPage] = useState(9);
     const [currentPage, setCurrentPage] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+
     // track window resizes to determine rerender
     useEffect(() => {
         function handleResize() {
@@ -81,6 +82,12 @@ export default function Newsletters() {
         return () => window.removeEventListener("resize", handleResize);
     }, []); // Empty array ensures that effect is only run on mount
 
+    // make sure current page never exceeds maxPages
+    useEffect(() => {
+        if (currentPage >= maxPages) {
+            setCurrentPage(maxPages - 1);
+        }
+    }, [currentPage, maxPages]);
     return (
         <>
             {isMobile || window.innerHeight <= 500 ? (
@@ -120,6 +127,7 @@ export default function Newsletters() {
                     pageCount={maxPages}
                     marginPagesDisplayed={1}
                     pageRangeDisplayed={2}
+                    forcePage={currentPage}
                     onPageChange={(e) => setCurrentPage(e.selected)}
                     containerClassName="newsletter__pagination"
                     activeClassName="newsletter__pagination--active"
