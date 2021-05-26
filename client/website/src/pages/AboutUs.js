@@ -374,6 +374,7 @@ export default function AboutUs() {
                             <br />
                         </span>
                         <span id="conference">1st Sakyadhita Conference, 1987</span>
+                        <span id="conference-mobile">1st Sakyadhita Conference</span>
                     </h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis

@@ -256,6 +256,14 @@ h2 #conference {
   margin-top: 10px;
 }
 
+#conference {
+  display: initial;
+}
+
+#conference-mobile {
+  display: none;
+}
+
 .divider {
   margin: 100px 0px;
   height: 8px;
@@ -350,5 +358,13 @@ h2 #conference {
 
   .divider {
     display: none;
+  }
+
+  #conference {
+    display: none;
+  }
+
+  #conference-mobile {
+    display: initial;
   }
 }
