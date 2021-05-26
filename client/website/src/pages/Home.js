@@ -231,7 +231,7 @@ export default function Home() {
                         {/* Join Us  */}
                         <BeInvolved
                             description="Become a member of Sakyadhita!"
-                            image_url="https://s3-alpha-sig.figma.com/img/8f03/ef9f/36365dafe0acb50fa55cbb8064b6f29a?Expires=1621814400&Signature=RbXghI9GvSQ6DLOTXwZssXF6NxJlqaUzwIKuEdIKHPAhNMn6Pkp5D8xWgD5ofazmEKZMZIA8tNFSHk8Qpg8r9MDuy1R8c9WsLDFabDj-tYfuhmCJIJFljE1Rz6egir~a~cpoAUdPAKbTzsTGlqDrXo6OE~jLOw6OVsGwga~LepQao~5xcfpAqzDEiLQo5KEi75r4irxhNPJfcL4MKICBlnj0fLNEXeQJeY0~ahv0LdLmTSnoNZREjr7ZeUoQdpJwVJrWw187ouCb~oIwcoENMl8vJdAoAjKFwCZValYQpSPleKp2TIz8AJpjpuH-SaJNfHv60s0bg5DkMEaInm~kiA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                            image_url="https://d.wattpad.com/story_parts/271116779/images/161bdd205bbf18fb307084307993.jpg"
                             openInSameTab="true"
                             redirect_link="/join"
                             button_title="Join Us"
@@ -240,7 +240,7 @@ export default function Home() {
                         <BeInvolved
                             description="Interested in helping us with anything from writing content to
                             building?"
-                            image_url="https://s3-alpha-sig.figma.com/img/4a6e/7fbe/45cd7abf1fc865cac2ba9e2d073562ef?Expires=1621814400&Signature=Q7NGjVsyuJekpOfR3qlH8xZp0vgFzB3oK5JLgjNLH85aCmd8Q9-9UsyUn-rh1pYWMhCq-~0dpBJEQCRMRknnLht6Z9Rygc5OkTTWat-KpqrXamtLOOD9eqw9AO4ln--yH6~1CaLE6nzQRAHnVJh1VV~kM6PyqLYg6xGOVFXvpYjcM7dzfKjulGF01cYkX6t72ZWDFlhz3Vnl7bX~Rj9rAJ9SVoyOQBW67qInVlD454Osh3QzFIdU89KCWMUFvTyCPqU9pHciiSeg2mcAkh4OAhWLRbsDk9y4MifywFeH5DVGLN2y7cix9aPcQOfEaT7MfIa-u3KOCls-iQ6o~YNzXA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                            image_url="https://lh3.googleusercontent.com/tVonHCrVh7igUJjFPyZ9-Cpa9eZBQXsSHGOh0_XHioRJtwK-AWFN4nH5B12qVdn1Kw8VRe_5nvegTgVu=w1080-h608-p-no-v0"
                             openInSameTab="true"
                             redirect_link="/volunteer"
                             button_title="Volunteer"
@@ -248,7 +248,7 @@ export default function Home() {
                         {/* Donate  */}
                         <BeInvolved
                             description="Help us grow and continue to connect by donating in any amount"
-                            image_url="https://s3-alpha-sig.figma.com/img/7f47/8bb4/fe38c23cd82024eadf280d59fa5c3426?Expires=1621814400&Signature=QsXn3t5aa4RW5-T-akYPo60OJfYjbm4kqUNoHqI--XWejZYFx9gMJVH2w~CURZBEezTovdHGp68aZ48zvUde3n7vMZOoPjxTL77DuOF3qj8YAOajzMOB7wvdT1tv7pS30pC41X6zHa5XGybBOx5wBbHJdo1UCvZE3l4F3zibKI-NpvH844BSQXQDhGbe~6lM5uSB3YXtoONR1nl8v8g2KfJZ6Om09DAxKOOxvOIlfFRQGWy4jGY2Yd5KyFFEJofW-RV0dozZo0E2hBoA6NdYwkKbvlWWxStWCVaGLIm0gFZTuXhqbuUKe10B6q3So6VAmRTZy0gY~xikb~V1kiAqyg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                            image_url="https://cdn9.dissolve.com/p/D1024_57_273/D1024_57_273_1200.jpg"
                             openInSameTab="false"
                             redirect_link="https://www.paypal.com/donate?token=OHfoxPvmqn1U-GS2GQWfp-3meA63s0tE_fqAWoLmqyiGBh4SWJfZ0rM5jb63hTCsOYZQ_JJvWdyKgwHX"
                             button_title="Donate"

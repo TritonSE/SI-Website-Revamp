@@ -8,6 +8,7 @@
  */
 
 import React from "react";
+import styled from "styled-components";
 import CustomButton from "../CustomButton";
 import "../../css/BeInvolved.css";
 
@@ -28,12 +29,19 @@ export default function BeInvolved({
     redirect_link,
     openInSameTab,
 }) {
+    // sets background to specified image
+    const ImageWrapper = styled.div`
+        && {
+            background-image: url(${image_url});
+        }
+
+        &&::before {
+            background-image: url(${image_url});
+        }
+    `;
+
     return (
-        <div
-            id={button_title}
-            className="involve-section"
-            style={{ backgroundImage: `url("${image_url}")` }}
-        >
+        <ImageWrapper id={button_title} className="involve-section">
             <div className="overlay">
                 <p> {description} </p>
                 <CustomButton
@@ -42,6 +50,23 @@ export default function BeInvolved({
                     text={button_title}
                 />
             </div>
-        </div>
+        </ImageWrapper>
     );
+
+    // return (
+    //     <div
+    //         id={button_title}
+    //         className="involve-section"
+    //         style={{ backgroundImage: `url("${image_url}")` }}
+    //     >
+    //         <div className="overlay">
+    //             <p> {description} </p>
+    //             <CustomButton
+    //                 openInSameTab={openInSameTab}
+    //                 redirect_link={redirect_link}
+    //                 text={button_title}
+    //             />
+    //         </div>
+    //     </div>
+    // );
 }
