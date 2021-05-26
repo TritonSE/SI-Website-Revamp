@@ -1,8 +1,7 @@
 .Custom-Button {
-  /* width: max(25px, 125px); */
+  width: min(175px, 100%);
   background-color: var(--orange) !important;
   border-radius: 30px !important;
-  /* padding: 15px 50px !important; */
   box-shadow: 2px 2px 2px rgb(63, 62, 62) !important;
   color: white !important;
 }
