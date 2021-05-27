@@ -282,11 +282,11 @@ h2 #conference {
 
   .header .page-title {
     top: 60px;
-    left: 18px;
-    width: 115px;
-    height: 55px;
-    font-size: 1.125em;
-    line-height: 55px;
+    left: 10vw;
+    width: max(30vw, 115px);
+    height: max(55px, 12vw);
+    font-size: max(1.125em, 4vw);
+    line-height: max(55px, 12vw);
   }
 
   .slider-wrapper {
