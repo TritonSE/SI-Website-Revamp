@@ -16,7 +16,7 @@ module.exports = db.define(
             allowNull: false,
         },
         coordinates: {
-            type: Sequelize.GEOMETRY("POINT"),
+            type: Sequelize.GEOMETRY('POINT'),
             allowNull: false,
         },
         isBranch: {

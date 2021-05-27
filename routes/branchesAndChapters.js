@@ -31,7 +31,7 @@ router.post(
     async (req, res) => {
         try {
             const point = {
-                type: "Point",
+                type: 'POINT',
                 coordinates: [req.body.latitude, req.body.longitude],
             };
             const newEntry = {
