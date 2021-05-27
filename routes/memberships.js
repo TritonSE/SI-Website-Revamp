@@ -31,6 +31,7 @@ router.post(
         body("membershipType").isString(),
         body("totalPaid").isNumeric(),
         body("payPalTransactionId").isString(),
+        body("payPalVerified").custom((val) => val === undefined),
         body("createdAt").custom((val) => val === undefined),
         body("updatedAt").custom((val) => val === undefined),
         body("id").custom((val) => val === undefined),

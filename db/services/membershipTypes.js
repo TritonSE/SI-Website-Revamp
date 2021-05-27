@@ -26,7 +26,7 @@ async function checkCost(u_id, u_cost) {
             id: u_id,
         },
     });
-    return !!(memberType && Number(memberType.dataValues.cost) === u_cost);
+    return memberType !== undefined && memberType.dataValues.cost === u_cost;
 }
 
 module.exports = {

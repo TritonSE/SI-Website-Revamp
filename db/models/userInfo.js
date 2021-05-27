@@ -12,23 +12,27 @@ module.exports = db.define(
     {
         // if no primary key, default it will have a column called 'id' that will auto-increment an integer value
         fName: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(100),
             allowNull: false,
         },
         mName: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(100),
             allowNull: true,
         },
         lName: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(100),
             allowNull: false,
         },
         phone: {
-            type: Sequelize.INTEGER(15),
+            type: Sequelize.STRING(15),
+            allowNull: false,
+        },
+        email: {
+            type: Sequelize.STRING(500),
             allowNull: false,
         },
         country: {
-            type: Sequelize.STRING(56),
+            type: Sequelize.STRING(100),
             allowNull: false,
         },
     },

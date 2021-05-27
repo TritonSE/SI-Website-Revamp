@@ -6,7 +6,14 @@ const initMemberType = require("./models/membershipTypes");
 const initNewsletters = require("./models/newsletters");
 
 module.exports = () => {
-    Promise.all([initSample(), initConference(), initCommittee(), initUserInfo(), initMemberType(),initNewsletters(),])
+    Promise.all([
+        initSample(),
+        initConference(),
+        initCommittee(),
+        initUserInfo(),
+        initMemberType(),
+        initNewsletters(),
+    ])
         .then(() => {
             console.log("Done!");
         })
