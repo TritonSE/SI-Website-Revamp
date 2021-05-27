@@ -16,7 +16,7 @@ import useWindowSize from "../util/ScreenListener";
 import ConferenceDesktop from "../components/Conference/ConferenceDesktop";
 import MobileConference from "../components/Conference/MobileConference";
 
-// testing data
+// testing data :)
 const obj = {
     title: "Signup for the Why Navid is a loser conference",
     number: 1,
