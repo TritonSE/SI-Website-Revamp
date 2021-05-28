@@ -117,7 +117,7 @@ export default function BuddhistCulture() {
             Object.entries(documentObjects).forEach(([key, item]) => {
                 // if the top of the div is less than one,
                 // then set the scroll location
-                if (item < 1) {
+                if (item < 101) {
                     setScrollLocation(key);
                 }
             });
