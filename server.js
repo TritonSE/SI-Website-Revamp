@@ -47,6 +47,7 @@ app.use(cors({ methods: ["GET", "POST", "PUT", "DELETE"] }));
 app.use("/sample", require("./routes/sample"));
 app.use("/conference", require("./routes/conference"));
 app.use("/newsletters", require("./routes/newsletters"));
+app.use("/adminAccounts", require("./routes/adminAccounts"));
 
 app.get("/", (req, res) => {
     res.status(200).json({ message: "Abandon All Hope Ye Who Enter Here..." });
