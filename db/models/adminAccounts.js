@@ -5,9 +5,10 @@
  * @author    Thomas Garry
  */
 const Sequelize = require("sequelize");
+const bcrypt = require("bcrypt");
 const db = require("../configDB");
-// const bcrypt = require("bcrypt");
-// const SALT_WORK_FACTOR = 10;
+
+const SALT_WORK_FACTOR = 10;
 
 const AdminAccount = db.define(
     "adminaccounts",
@@ -27,47 +28,27 @@ const AdminAccount = db.define(
         },
     },
     {
+        hooks: {
+            beforeValidate: async (user) => {
+                if (user.password) {
+                    // generate a salt
+                    const hashedPassword = await new Promise((resolve, reject) => {
+                        bcrypt.genSalt(SALT_WORK_FACTOR, (error, salt) => {
+                            bcrypt.hash(user.password, salt, (err, hash) => {
+                                if (err) reject(err);
+                                resolve(hash);
+                            });
+                        });
+                    });
+                    user.password = hashedPassword;
+                }
+            },
+        },
         // createdAt & updatedAt columns will be added/self-mantained by table
         timestamps: true,
+        instanceMethods: {
+            validPassword: (password) => bcrypt.compareSync(password, this.password),
+        },
     }
-    // {
-    //     hooks: {
-    //         beforeValidate: async (user) => {
-    //             console.log(user);
-    //             if (user.password) {
-    //                 // generate a salt
-    //                 return bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
-    //                     if (err) return next(err);
-
-    //                     // hash the password using our new salt
-    //                     return bcrypt.hash(user.password, salt, (errH, hash) => {
-    //                         if (errH) return next(errH);
-
-    //                         // overrirde the cleartext password with the hashed one
-    //                         user.password = hash;
-    //                         user.salt = salt;
-    //                         console.log("user.password is " + user.password + " .");
-    //                         console.log("user.salt is " + user.salt + " .");
-    //                         next();
-    //                     });
-    //                 });
-    //             }
-    //         },
-    //         beforeUpdate: async (user) => {
-    //             if (user.password) {
-    //                 const salt = await bcrypt.genSaltSync(10, "a");
-    //                 user.password = bcrypt.hashSync(user.password, salt);
-    //                 user.salt = salt;
-    //                 console.log("user.password is " + user.password + " .");
-    //                 console.log("user.salt is " + user.salt + " .");
-    //             }
-    //         },
-    //     },
-    //     instanceMethods: {
-    //         validPassword: (password) => {
-    //             return bcrypt.compareSync(password, this.password);
-    //         },
-    //     },
-    // }
 );
 module.exports = AdminAccount;

@@ -32,7 +32,8 @@ router.post(
     async (req, res) => {
         try {
             const entries = await addAdmin(req.body);
-            entries.validPassword("yes");
+            if (!entries)
+                return res.status(400).json({ message: "there was an error adding entry" });
             return res.status(200).json(entries);
         } catch (err) {
             console.log(err);
