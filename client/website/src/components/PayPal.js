@@ -9,15 +9,23 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-// const config = require("../config");
+const config = require("../config.js");
+
+const BACKEND_URL = config.backend.uri;
 
 const TAX_RATE = 0.08;
 
-// const BACKEND_URL = config.backend.uri;
-
 // PayPal script is located in public/index.html (contains Client ID)
 export default function PayPal(props) {
-    const { membershipTitle, membershipCost, donationAmount, disable } = props;
+    const {
+        membershipTitle,
+        membershipID,
+        membershipCost,
+        donationAmount,
+        isNewMember,
+        affiliatedOrgs,
+        disable,
+    } = props;
     const history = useHistory();
 
     // only add values to itemTotal and taxTotal if they are positive
@@ -95,123 +103,94 @@ export default function PayPal(props) {
         window.paypal
             .Buttons({
                 // onClick is called when the button is clicked, makes server call to validate order first
-                onClick(_data, _actions) {
+                onClick(_data, actions) {
                     // Validate the membership type
-                    // const submission = {
-                    // };
-                    // // call server to validate cart order
-                    // return fetch(`${BACKEND_URL}paypal/validate`, {
-                    //     method: "post",
-                    //     headers: {
-                    //         "content-type": "application/json",
-                    //     },
-                    //     body: JSON.stringify(submission),
-                    // }).then((res) => {
-                    //     if (res.ok) {
-                    //         return actions.resolve();
-                    //     }
-                    //     alert(
-                    //         "Your order cannot be processed at the moment. Please clear out your cart and retry, or contact us directly for placement."
-                    //     );
-                    //     return actions.reject();
-                    // });
+                    return fetch(
+                        `${BACKEND_URL}membershipTypes/${membershipID}?cost=${membershipCost.toFixed(
+                            2
+                        )}`,
+                        {
+                            method: "get",
+                            headers: {
+                                "content-type": "application/json",
+                            },
+                        }
+                    ).then((res) => {
+                        // not working? res isn't showing the boolean
+                        console.log(res);
+                        if (res.ok) {
+                            // update
+                            return actions.resolve();
+                        }
+                        return actions.resolve();
+                        // alert(
+                        //     "There was an issue verifying your membership type, please try again."
+                        // );
+                        // return actions.reject();
+                    });
                 },
                 createOrder: async (_data, actions) => actions.order.create(paypalOrderObject),
-                onApprove: async (_data, actions) =>
-                    actions.order.capture().then(() => {
-                        history.push("/");
-                        history.go(0);
-                    }),
-
-                // disable screen so automation can go through without user clicking out
-                // props.disableScreen();
-                // loading cursor to indicate to the user they need to wait
-                // document.body.style.cursor = "wait";
-                // return actions.order.capture().then((details) => {
-                // create the membership through database route
-                // create order object
-                // const sendDate = new Date(
-                //     props.selectedDate.getFullYear(),
-                //     props.selectedDate.getMonth(),
-                //     props.selectedDate.getDate(),
-                //     props.selectedTime.substring(0, 2),
-                //     props.selectedTime.substring(3, 5)
-                // );
-                // const orderObj = {
-                //     Customer: {
-                //         Name: `${details.payer.name.given_name} ${details.payer.name.surname}`,
-                //         Email: details.payer.email_address,
-                //         Phone: details.payer.phone.phone_number.national_number,
-                //     },
-                //     Pickup: sendDate,
-                //     PayPal: {
-                //         Amount: parseFloat(cookies.cart.total).toFixed(2),
-                //         transactionID: details.purchase_units[0].payments.captures[0].id,
-                //     },
-                //     Order: cookies.cart.items.map((item) => ({
-                //         item: item[1],
-                //         quantity: parseInt(item[3]),
-                //         size: item[4],
-                //         accommodations:
-                //             item[6] !== undefined
-                //                 ? Array.isArray(item[6])
-                //                     ? item[6].join(",")
-                //                     : item[6]
-                //                 : "",
-                //         specialInstructions: item[5],
-                //     })),
-                // };
-                // signal email automation by calling the /autoEmails/automate route,
-                // this will automatically add the order to the database
-                // return fetch(`${BACKEND_URL}autoEmails/automate`, {
-                //     method: "POST",
-                //     headers: {
-                //         "content-type": "application/json",
-                //     },
-                //     body: JSON.stringify(orderObj),
-                // })
-                //     .then((res) => {
-                //         // restore screen back to normal
-                //         document.body.style.cursor = null;
-                //         props.enableScreen();
-                //         // notify user
-                //         if (res.ok) {
-                //             alert(
-                //                 "Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you."
-                //             );
-                //         } else {
-                //             alert(
-                //                 "Transaction completed, but email automation failed. You paid for your meal, and should get a confirmation from PayPal. Please contact us to set up your order."
-                //             );
-                //         }
-                //         // clears the cart cookie after order is placed
-                //         const newCart = {
-                //             items: [],
-                //             subtotal: "00.00",
-                //             tax: "00.00",
-                //             total: "00.00",
-                //         };
-                //         setCookie("cart", newCart, { path: "/" });
-                //         // refresh window
-                //         history.push("/");
-                //         history.go(0);
-                //     })
-                //     .catch(() => {
-                //         document.body.style.cursor = null;
-                //         alert(
-                //             "There was an internal error. Check your email for a recepit from PayPal, and contact us to set up your order."
-                //         );
-                //     });
-                // });
-                // },
+                onApprove: async (_data, actions) => {
+                    console.log(_data);
+                    // disable screen so automation can go through without user clicking out
+                    // props.disableScreen();
+                    // loading cursor to indicate to the user they need to wait
+                    // document.body.style.cursor = "wait";
+                    return actions.order.capture().then((details) => {
+                        console.log(details);
+                        // create membership object
+                        const membershipObject = {
+                            fName: details.payer.name.given_name,
+                            lName: details.payer.name.surname,
+                            phone: details.payer.phone.phone_number.national_number,
+                            email: details.payer.email_address,
+                            country: details.payer.address.country_code,
+                            isNewMember,
+                            affiliatedOrgs,
+                            membershipType: membershipID.toString(),
+                            totalPaid: parseFloat(details.purchase_units[0].amount.value),
+                            payPalTransactionId: details.purchase_units[0].payments.captures[0].id,
+                        };
+                        console.log(membershipObject);
+                        return fetch(`${BACKEND_URL}memberships/addUser`, {
+                            method: "post",
+                            headers: {
+                                "content-type": "application/json",
+                            },
+                            body: JSON.stringify(membershipObject),
+                        })
+                            .then((res) => {
+                                console.log(res);
+                                if (res.ok) {
+                                    alert(
+                                        "Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you."
+                                    );
+                                } else {
+                                    alert(
+                                        "Transaction completed but it wasn't added to our database. Please email us with the receipt sent to your email."
+                                    );
+                                }
+                                history.push("/");
+                                history.go(0);
+                            })
+                            .catch(() => {
+                                document.body.style.cursor = null;
+                                alert(
+                                    "There was an internal error. Check your email for a recepit from PayPal, and contact us to set up your order."
+                                );
+                            });
+                    });
+                },
                 onCancel: () => {
                     document.body.style.cursor = null;
-                    // props.enableScreen();
+                    props.enableScreen();
                 },
                 onError: (_err) => {
                     document.body.style.cursor = null;
-                    // props.enableScreen();
-                    // alert("An unexpected error occurred - your payment did not go through. Please try again later.");
+                    props.enableScreen();
+                    alert(
+                        "An unexpected error occurred - your payment did not go through. Please try again later."
+                    );
                 },
             })
             .render(paypalRef.current);

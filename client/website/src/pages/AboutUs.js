@@ -6,9 +6,12 @@ export default function AboutUs() {
         <div>
             <p> This is the About Us Page </p>
             <PayPal
-                membershipTitle="Membership A"
-                membershipCost={10}
+                membershipTitle="Nun/Student/Unemployed"
+                membershipID={1}
+                membershipCost={15}
                 donationAmount={0}
+                isNewMember
+                affiliatedOrgs="affiliated org 1"
                 disable={false}
             />
         </div>
