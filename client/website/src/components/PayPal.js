@@ -131,13 +131,13 @@ export default function PayPal(props) {
                 },
                 createOrder: async (_data, actions) => actions.order.create(paypalOrderObject),
                 onApprove: async (_data, actions) => {
-                    console.log(_data);
                     // disable screen so automation can go through without user clicking out
-                    // props.disableScreen();
                     // loading cursor to indicate to the user they need to wait
-                    // document.body.style.cursor = "wait";
+                    document.body.style.cursor = "wait";
                     return actions.order.capture().then((details) => {
-                        console.log(details);
+                        // restore screen back to normal
+                        document.body.style.cursor = null;
+
                         // create membership object
                         const membershipObject = {
                             fName: details.payer.name.given_name,
@@ -151,7 +151,6 @@ export default function PayPal(props) {
                             totalPaid: parseFloat(details.purchase_units[0].amount.value),
                             payPalTransactionId: details.purchase_units[0].payments.captures[0].id,
                         };
-                        console.log(membershipObject);
                         return fetch(`${BACKEND_URL}memberships/addUser`, {
                             method: "post",
                             headers: {
@@ -160,7 +159,6 @@ export default function PayPal(props) {
                             body: JSON.stringify(membershipObject),
                         })
                             .then((res) => {
-                                console.log(res);
                                 if (res.ok) {
                                     alert(
                                         "Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you."
