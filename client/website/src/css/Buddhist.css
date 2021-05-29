@@ -91,7 +91,7 @@
   position: relative;
   align-self: center;
   padding-top: 100px;
-  padding-bottom: 275px;
+  padding-bottom: 75px;
   margin-left: max(25vw, 50vw - 500px);
   width: 70vw;
   max-width: 1000px;
@@ -176,7 +176,7 @@
   }
 
   .buddhist-section h1 {
-    font-size: 1.125em;
+    font-size: 1.725em;
   }
 
   .buddhist-section p {
