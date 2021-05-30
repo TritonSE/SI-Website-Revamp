@@ -111,7 +111,7 @@ export default function ContactUs() {
                     <FaPhoneAlt /> 619-260-4600 x4921{" "}
                 </p>
                 <div className="address">
-                    <BsHouseFill style={{ fontSize: "17px" }} />
+                    <BsHouseFill className="address-icon" />
                     <p>
                         Sakyadhita International, 7331 Princess View Drive, <br /> San Diego, CA
                         92120 U.S.A.

@@ -11,6 +11,10 @@
   display: flex;
 }
 
+.Contact-Us .address .address-icon {
+  font-size: 17px;
+}
+
 .Contact-Us .address p {
   margin-left: 5px;
 }
@@ -57,6 +61,7 @@ h3 {
   text-align: center;
 }
 
+/* Tablet + Mobile */
 @media only screen and (max-width: 1050px) {
   .Contact-Us {
     width: 100%;
@@ -65,5 +70,29 @@ h3 {
     flex-direction: column-reverse;
     flex: 1;
     font-family: var(--text-font);
+  }
+}
+
+/* Galaxy Fold */
+@media only screen and (max-width: 300px) {
+  .Contact-Us .address .address-icon {
+    font-size: 24px;
+  }
+
+  .Contact-Us > .left-container > h2,
+  h3 {
+    font-size: 20px;
+  }
+
+  .Contact-Us > .left-container > h2 {
+    font-size: 22px;
+  }
+
+  .Contact-Us .left-container h3 {
+    margin-top: 30px;
+  }
+
+  .Contact-Us .left-container {
+    padding: 20px;
   }
 }
