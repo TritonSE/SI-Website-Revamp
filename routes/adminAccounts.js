@@ -35,6 +35,14 @@ router.post(
     async (req, res) => {
         try {
             const { email, secret } = req.body;
+
+            // check if user exists
+            const user = await findOneUser(email);
+            if (user) {
+                return res.status(401).json({ errors: [{ msg: "Invalid Credentials" }] });
+            }
+
+            // add user
             const entries = await addAdmin(req.body);
 
             // validate secrets
