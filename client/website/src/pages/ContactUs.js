@@ -6,7 +6,11 @@ import { TextField, Snackbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageHeader from "../components/Contact/ImageHeader";
 import CustomButton from "../components/CustomButton";
+import Modal from "../components/Modal";
 import "../css/ContactUs.css";
+import config from "../config";
+
+const BACKEND_URL = config.backend.uri;
 
 const MAX_MOBILE_WIDTH = 1050;
 
@@ -30,19 +34,13 @@ const useStyles = makeStyles((theme) => ({
         "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
             borderColor: "red",
         },
-
-        //   "& .MuiButton-root": {
-        //     margin: theme.spacing(3),
-        //     color: "black",
-        //     background: "#F9CE1D",
-        //     width: "30%",
-        //   },
     },
 }));
 
 export default function ContactUs() {
     const [isMobile, setIsMobile] = React.useState(false);
     const [isFormDisabled, setIsFormDisabled] = React.useState(false);
+    const [isEmailSentModuleOpen, setIsEmailSentModuleOpen] = React.useState(false);
     const [snackbar, setSnackBar] = React.useState({
         open: false,
         message: "",
@@ -95,13 +93,19 @@ export default function ContactUs() {
         });
     };
 
+    const handleModalHide = (event) => {
+        setIsEmailSentModuleOpen(event);
+    };
+
     const handleSnackClose = () => {
         setSnackBar({ open: false });
     };
 
-    const handleFormSubmit = () => {
+    const handleFormSubmit = async () => {
         if (isFormDisabled) return;
         setIsFormDisabled(true);
+        // display loading cursor
+        document.body.style.cursor = "wait";
 
         let name = false;
         let message = false;
@@ -122,9 +126,44 @@ export default function ContactUs() {
         if (name || message || email) {
             setSnackBar({ open: true, message: "Missing required fields" });
             setIsFormDisabled(false);
+            document.body.style.cursor = null;
             return;
         }
 
+        // attempt to send contact message
+        await fetch(`${BACKEND_URL}contact/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: values.name.value,
+                email: values.email.value,
+                phone: values.phone.value,
+                message: values.message.value,
+            }),
+        }).then((res) => {
+            // message sent
+            if (res.ok) {
+                // display email sent confirmation modal
+                setIsEmailSentModuleOpen(true);
+                // clear form values
+                setValues({
+                    ...values,
+                    name: { ...values.name, value: "" },
+                    message: { ...values.message, value: "" },
+                    email: { ...values.email, value: "" },
+                    phone: { ...values.phone, value: "" },
+                });
+                // message could not be sent
+            } else {
+                // show snackbar to notify message could not be sent
+                setSnackBar({
+                    open: true,
+                    message: "An internal error occurred. Message not sent.",
+                });
+            }
+        });
+
+        document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
 
@@ -141,7 +180,7 @@ export default function ContactUs() {
                 <h3>Reach us at: </h3>
                 <p>
                     {" "}
-                    <GoMail /> email@domain.org{" "}
+                    <GoMail /> <a href="mailto:email@domain.org"> email@domain.org </a>{" "}
                 </p>
                 <p>
                     {" "}
@@ -150,8 +189,14 @@ export default function ContactUs() {
                 <div className="address">
                     <BsHouseFill className="address-icon" />
                     <p>
-                        Sakyadhita International, 7331 Princess View Drive, <br /> San Diego, CA
-                        92120 U.S.A.
+                        <a
+                            href="https://goo.gl/maps/CKvzmNnzRsdtgLLE9"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
+                            Sakyadhita International, 7331 Princess View Drive, <br /> San Diego, CA
+                            92120 U.S.A.
+                        </a>
                     </p>
                 </div>
                 <h3>Send us a message!</h3>
@@ -223,6 +268,12 @@ export default function ContactUs() {
                 width={isMobile ? "100%" : "50%"}
                 height={isMobile ? "400px" : "auto"}
                 title={isMobile ? "Contact Us" : null}
+            />
+            <Modal
+                text="Thank you for contacting us. We will get in touch with you shortly."
+                open={isEmailSentModuleOpen}
+                hide={handleModalHide}
+                negativeButtonText="Ok"
             />
             <Snackbar
                 open={snackbar.open}
