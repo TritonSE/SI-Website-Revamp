@@ -123,7 +123,7 @@
   font-size: 1.125em;
 }
 
-.section img:not(button img, .profile img) {
+.section img:not(button img, .headshot, .profile-link) {
   margin-top: 85px;
   width: 100%;
 }
@@ -198,7 +198,7 @@
   flex-direction: column;
 }
 
-.profile img {
+.headshot {
   width: 100%;
   border-radius: 50%;
   margin-bottom: 15px;
@@ -225,12 +225,28 @@
   text-align: center;
 }
 
+.profile-paragraph {
+  position: relative;
+}
+
 .profile p {
   margin-top: 10px;
   font-family: var(--text-font);
   font-size: 1.125em;
   font-weight: 400;
   padding: 0px 10px;
+}
+
+.profile-link {
+  position: absolute;
+  top: 0.85em;
+  left: -1.5em;
+  height: 1em;
+}
+
+/* This is a really gross an hacky method, but it works */
+.profile-link:hover {
+  filter: invert(54%) sepia(100%) saturate(466%) hue-rotate(334deg) brightness(101%) contrast(84%) !important;
 }
 
 #founding h1 {
@@ -343,7 +359,11 @@ h2 #conference {
     padding: 0;
   }
 
-  .profile img {
+  .profile-link {
+    display: none;
+  }
+
+  .headshot {
     margin-top: 50px;
   }
 

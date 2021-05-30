@@ -17,6 +17,7 @@ import Amrit from "../media/amrit.jpg";
 import Aaron from "../media/sexy.jpg";
 import Founders from "../media/founders.png";
 import DownArrow from "../media/down-arrow.svg";
+import Link from "../media/link.svg";
 
 export default function AboutUs() {
     // Keeps track of the current location for the sticky navbar
@@ -219,142 +220,212 @@ export default function AboutUs() {
                     {/* 2021 Profiles */}
                     <div className="profiles" style={computeProfileDisplay("2021")}>
                         <div className="profile">
-                            <img src={Navid} alt="Exec Headshot" />
+                            <img className="headshot" src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
                             <h3>Cavs Fan 1</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Navid} alt="Exec Headshot" />
+                            <img className="headshot" src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
                             <h3>Cavs Fan 2</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Navid} alt="Exec Headshot" />
+                            <img className="headshot" src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
                             <h3>Cavs Fan 3</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Navid} alt="Exec Headshot" />
+                            <img className="headshot" src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
                             <h3>Cavs Fan 4</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Navid} alt="Exec Headshot" />
+                            <img className="headshot" src={Navid} alt="Exec Headshot" />
                             <h2>Navid Boloorian</h2>
                             <h3>Cavs Fan 5</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     {/* 2020 Profiles */}
                     <div className="profiles" style={computeProfileDisplay("2020")}>
                         <div className="profile">
-                            <img src={Amrit} alt="Exec Headshot" />
+                            <img className="headshot" src={Amrit} alt="Exec Headshot" />
                             <h2>Amrit K. Singh</h2>
                             <h3>Total Beast 1</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Amrit} alt="Exec Headshot" />
+                            <img className="headshot" src={Amrit} alt="Exec Headshot" />
                             <h2>Amrit K. Singh</h2>
                             <h3>Total Beast 2</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Amrit} alt="Exec Headshot" />
+                            <img className="headshot" src={Amrit} alt="Exec Headshot" />
                             <h2>Amrit K. Singh</h2>
                             <h3>Total Beast 3</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Amrit} alt="Exec Headshot" />
+                            <img className="headshot" src={Amrit} alt="Exec Headshot" />
                             <h2>Amrit K. Singh</h2>
                             <h3>Total Beast 4</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     {/* 2019 Profiles */}
                     <div className="profiles" style={computeProfileDisplay("2019")}>
                         <div className="profile">
-                            <img src={Aaron} alt="Exec Headshot" />
+                            <img className="headshot" src={Aaron} alt="Exec Headshot" />
                             <h2>Too Lazy For</h2>
                             <h3>Originality</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Aaron} alt="Exec Headshot" />
+                            <img className="headshot" src={Aaron} alt="Exec Headshot" />
                             <h2>Too Lazy For</h2>
                             <h3>Originality</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Aaron} alt="Exec Headshot" />
+                            <img className="headshot" src={Aaron} alt="Exec Headshot" />
                             <h2>Too Lazy For</h2>
                             <h3>Originality</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     {/* 2018 Profiles */}
                     <div className="profiles" style={computeProfileDisplay("2018")}>
                         <div className="profile">
-                            <img src={Aaron} alt="Exec Headshot" />
+                            <img className="headshot" src={Aaron} alt="Exec Headshot" />
                             <h2>Too Lazy For</h2>
                             <h3>Originality</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                         <div className="profile">
-                            <img src={Aaron} alt="Exec Headshot" />
+                            <img className="headshot" src={Aaron} alt="Exec Headshot" />
                             <h2>Too Lazy For</h2>
                             <h3>Originality</h3>
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                                nesciunt rem quo dolor voluptas magnam aliquam
-                            </p>
+                            <div className="profile-paragraph">
+                                <a href="/about">
+                                    <img className="profile-link" src={Link} alt="Profile Link" />
+                                </a>
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                    nesciunt rem quo dolor voluptas magnam aliquam
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
