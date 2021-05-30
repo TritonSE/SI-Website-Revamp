@@ -1,21 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GoMail } from "react-icons/go";
 import { FaPhoneAlt } from "react-icons/fa";
 import { BsHouseFill } from "react-icons/bs";
 // import PropTypes from "prop-types";
 // import MaskedInput from "react-text-mask";
 import TextField from "@material-ui/core/TextField";
-import ResourcesHeader from "../components/ResourcesHeader";
+import ImageHeader from "../components/Contact/ImageHeader";
 import CustomButton from "../components/CustomButton";
 import "../css/ContactUs.css";
 
+const MAX_MOBILE_WIDTH = 1050;
+
 export default function ContactUs() {
+    const [isMobile, setIsMobile] = React.useState(false);
     const [values, setValues] = React.useState({
         name: "",
         email: "",
         phone: "",
         message: "",
     });
+
+    // handler to call on window resize
+    useEffect(() => {
+        function handleResize() {
+            // check if now in mobile mode
+            if (window.innerWidth <= MAX_MOBILE_WIDTH) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        }
+        // add event listener
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        // remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const handleChange = (event) => {
         setValues({
@@ -27,7 +48,7 @@ export default function ContactUs() {
     return (
         <div className="Contact-Us">
             <section className="left-container">
-                <h2>Thank you for your interest in Sakyadhita! </h2>
+                <h2>{isMobile ? "Thank you for your interest in Sakyadhita!" : "Contact Us"}</h2>
                 <p>
                     {" "}
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
@@ -56,6 +77,7 @@ export default function ContactUs() {
                         <TextField
                             className="form-field"
                             name="name"
+                            value={values.name}
                             label="Full Name"
                             variant="outlined"
                         />
@@ -65,6 +87,7 @@ export default function ContactUs() {
                         <TextField
                             className="form-field"
                             name="email"
+                            value={values.email}
                             label="Email"
                             variant="outlined"
                         />
@@ -85,6 +108,7 @@ export default function ContactUs() {
                         <TextField
                             className="form-field"
                             name="message"
+                            value={values.message}
                             placeholder="Write your message here"
                             variant="outlined"
                             multiline
@@ -97,11 +121,11 @@ export default function ContactUs() {
                     </div>
                 </form>
             </section>
-            <ResourcesHeader
+            <ImageHeader
                 image="https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1623024000&Signature=SCONX7E-9B-btNQQ0a8fn1kh2A4i8I3-aZjQlNXgBZSJnw~N8fCz7YzTOmI6hq0iinH~f~2cTCB2mvuab1dM3sLLIqbF1ZwaOcYlCXMiOAkhAYMkzVbcbZgrN6s4X67Jq2fSmA7D-kgk9KzDjiXkLnxn0n8l~TMh6huoB18N5MbJrighV~Hl2YaoJrHmEWhjoBu8Jhm8TDPB99ghsGKIOR9xQMIuULa4STzVHCkoCtzWzWBLgd1-BDv2hhE67pH5PYqoIJnzZwEemddHpUtI-RMW2xHPaq6J8P1LnvRfL9Kuq00ULLl3h04474LC9EjWGr2cACW0lhgyX~ei0roR3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                width="50%"
-                height="auto"
-                title="Contact Us"
+                width={isMobile ? "100%" : "50%"}
+                height={isMobile ? "400px" : "auto"}
+                title={isMobile ? "Contact Us" : null}
             />
         </div>
     );
