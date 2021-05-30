@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         // input field - general layout
         "& .MuiTextField-root": {
             margin: theme.spacing(1),
-            width: "90%",
+            width: "95%",
         },
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
             borderColor: "black",
@@ -258,6 +258,10 @@ export default function ContactUs() {
                         />
                         <span className="required-asterisk"> * </span>
                     </div>
+                    <p style={{ textAlign: "center" }}>
+                        {" "}
+                        <span className="required-asterisk"> * </span> indicates a required field
+                    </p>
                     <div className="submit-button">
                         <CustomButton text="Submit" onClickCallback={handleFormSubmit} />
                     </div>

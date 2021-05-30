@@ -55,7 +55,7 @@ h4 {
   display: flex;
 }
 
-.Contact-Us .left-container .form-field-wrapper .required-asterisk {
+.Contact-Us .left-container .required-asterisk {
   color: #ea4444;
   font-size: 25px;
 }
