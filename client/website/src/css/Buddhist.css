@@ -47,7 +47,7 @@
 .buddhist-slider {
   position: sticky;
   top: 210px;
-
+  margin-bottom: calc(18vh);
   display: flex;
 }
 

@@ -162,7 +162,7 @@ export default function BuddhistCulture() {
             {/* The contents for buddhist culture */}
             <div className="buddhist-contents">
                 {/* Generate the seperate divs dynamically */}
-                {data.map((item) => (
+                {data.map((item, index) => (
                     <div className="buddhist-contents-div">
                         <div className="buddhist-section">
                             {/* This div is used for scrolling to the specific spot */}
@@ -177,7 +177,7 @@ export default function BuddhistCulture() {
                         </div>
 
                         {/* The orange divider at the bottom of the page */}
-                        <div className="buddhist-divider" />
+                        {index !== data.length - 1 ? <div className="buddhist-divider" /> : null}
                     </div>
                 ))}
             </div>
