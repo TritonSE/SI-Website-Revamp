@@ -8,7 +8,7 @@ export default function AboutUs() {
             <PayPal
                 membershipTitle="Nun/Student/Unemployed"
                 membershipID={1}
-                membershipCost={15}
+                membershipCost={16}
                 donationAmount={0}
                 isNewMember
                 affiliatedOrgs="affiliated org 1"

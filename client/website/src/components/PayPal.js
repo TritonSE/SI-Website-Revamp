@@ -115,23 +115,21 @@ export default function PayPal(props) {
                                 "content-type": "application/json",
                             },
                         }
-                    ).then((res) => {
+                    ).then(async (res) => {
                         // not working? res isn't showing the boolean
-                        console.log(res);
-                        if (res.ok) {
+                        const json = await res.json();
+                        if (res.ok && json.isValid) {
                             // update
                             return actions.resolve();
                         }
-                        return actions.resolve();
-                        // alert(
-                        //     "There was an issue verifying your membership type, please try again."
-                        // );
-                        // return actions.reject();
+                        alert(
+                            "There was an issue verifying your membership type, please try again."
+                        );
+                        return actions.reject();
                     });
                 },
                 createOrder: async (_data, actions) => actions.order.create(paypalOrderObject),
                 onApprove: async (_data, actions) => {
-                    // disable screen so automation can go through without user clicking out
                     // loading cursor to indicate to the user they need to wait
                     document.body.style.cursor = "wait";
                     return actions.order.capture().then((details) => {
