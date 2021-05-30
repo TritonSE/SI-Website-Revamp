@@ -360,7 +360,7 @@ h2 #conference {
   }
 
   .profile-link {
-    display: none;
+    height: 0.9em;
   }
 
   .headshot {
