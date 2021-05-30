@@ -1,9 +1,116 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { GoMail } from "react-icons/go";
+import { FaPhoneAlt } from "react-icons/fa";
+import { BsHouseFill } from "react-icons/bs";
+import MaskedInput from "react-text-mask";
+import TextField from "@material-ui/core/TextField";
+import ResourcesHeader from "../components/ResourcesHeader";
+import CustomButton from "../components/CustomButton";
+import "../css/ContactUs.css";
 
 export default function ContactUs() {
+    const [values, setValues] = React.useState({
+        phone: "(1  )    -    ",
+    });
+
+    function TextMaskCustom(props) {
+        const { inputRef, ...other } = props;
+
+        return (
+            <MaskedInput
+                {...other}
+                ref={(ref) => {
+                    inputRef(ref ? ref.inputElement : null);
+                }}
+                mask={[
+                    "(",
+                    /[1-9]/,
+                    /\d/,
+                    /\d/,
+                    ")",
+                    " ",
+                    /\d/,
+                    /\d/,
+                    /\d/,
+                    "-",
+                    /\d/,
+                    /\d/,
+                    /\d/,
+                    /\d/,
+                ]}
+                placeholderChar={"\u2000"}
+                showMask
+            />
+        );
+    }
+
+    TextMaskCustom.propTypes = {
+        inputRef: PropTypes.func.isRequired,
+    };
+
+    const handleChange = (event) => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value,
+        });
+    };
+
     return (
-        <div>
-            <p> This is the Contact Us Page </p>
+        <div className="Contact-Us">
+            <section className="left-container">
+                <h2>Thank you for your interest in Sakyadhita! </h2>
+                <p>
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
+                    condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget
+                    arcu ut laoreet.{" "}
+                </p>
+                <h3>Reach us at: </h3>
+                <p>
+                    {" "}
+                    <GoMail /> email@domain.org{" "}
+                </p>
+                <p>
+                    {" "}
+                    <FaPhoneAlt /> 619-260-4600 x4921{" "}
+                </p>
+                <p>
+                    {" "}
+                    <BsHouseFill /> Sakyadhita International, 7331 Princess View Drive, <br /> San
+                    Diego, CA 92120 U.S.A.
+                </p>
+                <h3>Send us a message!</h3>
+                <form className="message-form" autoComplete="off">
+                    <TextField className="form-field" label="Full Name" variant="outlined" />
+                    <TextField className="form-field" label="Email" variant="outlined" />
+                    <TextField
+                        className="form-field"
+                        name="phone"
+                        value={values.phone}
+                        onChange={handleChange}
+                        label="Phone Number"
+                        variant="outlined"
+                        inputComponent={TextMaskCustom}
+                    />
+                    <TextField
+                        className="form-field"
+                        placeholder="Write your message here"
+                        variant="outlined"
+                        multiline
+                        rows={10}
+                    />
+                    <div className="submit-button">
+                        <CustomButton text="Submit" />
+                    </div>
+                </form>
+            </section>
+            <ResourcesHeader
+                image="https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1623024000&Signature=SCONX7E-9B-btNQQ0a8fn1kh2A4i8I3-aZjQlNXgBZSJnw~N8fCz7YzTOmI6hq0iinH~f~2cTCB2mvuab1dM3sLLIqbF1ZwaOcYlCXMiOAkhAYMkzVbcbZgrN6s4X67Jq2fSmA7D-kgk9KzDjiXkLnxn0n8l~TMh6huoB18N5MbJrighV~Hl2YaoJrHmEWhjoBu8Jhm8TDPB99ghsGKIOR9xQMIuULa4STzVHCkoCtzWzWBLgd1-BDv2hhE67pH5PYqoIJnzZwEemddHpUtI-RMW2xHPaq6J8P1LnvRfL9Kuq00ULLl3h04474LC9EjWGr2cACW0lhgyX~ei0roR3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                width="50%"
+                height="auto"
+                title="Contact Us"
+            />
         </div>
     );
 }

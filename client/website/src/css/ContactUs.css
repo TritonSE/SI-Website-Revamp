@@ -1,0 +1,40 @@
+.Contact-Us {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  font-family: var(--text-font);
+}
+
+.Contact-Us .left-container {
+  flex: 1;
+  padding: 50px;
+  text-align: left;
+}
+
+.Contact-Us .left-container h2,
+h3 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+}
+
+.Contact-Us .left-container h3 {
+  margin-top: 40px;
+}
+
+.Contact-Us .left-container .message-form fieldset {
+  border-radius: 30px !important;
+  border-color: black !important;
+  color: black !important;
+}
+
+.Contact-Us .left-container .message-form .form-field {
+  margin-top: 20px !important;
+  width: 100% !important;
+}
+
+.Contact-Us .left-container .message-form .submit-button {
+  margin-top: 20px !important;
+  text-align: center;
+}
