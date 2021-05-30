@@ -177,7 +177,7 @@ export default function ContactUs() {
                     condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget
                     arcu ut laoreet.{" "}
                 </p>
-                <h3>Reach us at: </h3>
+                <h4>Reach us at: </h4>
                 <p>
                     {" "}
                     <GoMail /> <a href="mailto:email@domain.org"> email@domain.org </a>{" "}
@@ -199,7 +199,7 @@ export default function ContactUs() {
                         </a>
                     </p>
                 </div>
-                <h3>Send us a message!</h3>
+                <h4>Send us a message!</h4>
                 <form className={classes.form} autoComplete="off">
                     <div className="form-field-wrapper">
                         <TextField

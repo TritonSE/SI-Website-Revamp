@@ -35,13 +35,13 @@
 }
 
 .Contact-Us .left-container h2,
-h3 {
+h4 {
   font-family: var(--heading-font);
   font-weight: 600;
   margin-bottom: 20px;
 }
 
-.Contact-Us .left-container h3 {
+.Contact-Us .left-container h4 {
   margin-top: 40px;
 }
 
@@ -89,7 +89,7 @@ h3 {
   }
 
   .Contact-Us > .left-container > h2,
-  h3 {
+  h4 {
     font-size: 20px;
   }
 
@@ -97,7 +97,7 @@ h3 {
     font-size: 22px;
   }
 
-  .Contact-Us .left-container h3 {
+  .Contact-Us .left-container h4 {
     margin-top: 30px;
   }
 
