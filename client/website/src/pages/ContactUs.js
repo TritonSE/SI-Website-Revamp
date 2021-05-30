@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import { GoMail } from "react-icons/go";
 import { FaPhoneAlt } from "react-icons/fa";
 import { BsHouseFill } from "react-icons/bs";
-// import PropTypes from "prop-types";
-// import MaskedInput from "react-text-mask";
-import TextField from "@material-ui/core/TextField";
+import { TextField, Snackbar } from "@material-ui/core";
 import ImageHeader from "../components/Contact/ImageHeader";
 import CustomButton from "../components/CustomButton";
 import "../css/ContactUs.css";
@@ -13,11 +11,28 @@ const MAX_MOBILE_WIDTH = 1050;
 
 export default function ContactUs() {
     const [isMobile, setIsMobile] = React.useState(false);
-    const [values, setValues] = React.useState({
-        name: "",
-        email: "",
-        phone: "",
+    const [isFormDisabled, setIsFormDisabled] = React.useState(false);
+    const [snackbar, setSnackBar] = React.useState({
+        open: false,
         message: "",
+    });
+    const [values, setValues] = React.useState({
+        name: {
+            value: "",
+            error: false,
+        },
+        email: {
+            value: "",
+            error: false,
+        },
+        phone: {
+            value: "",
+            error: false,
+        },
+        message: {
+            value: "",
+            error: false,
+        },
     });
 
     // handler to call on window resize
@@ -43,6 +58,37 @@ export default function ContactUs() {
             ...values,
             [event.target.name]: event.target.value,
         });
+    };
+
+    const handleSnackClose = () => {
+        setSnackBar({ open: false });
+    };
+
+    const handleFormSubmit = () => {
+        if (isFormDisabled) return;
+        setIsFormDisabled(true);
+
+        let name = false;
+        let message = false;
+        let email = false;
+
+        if (values.name.value === "") name = true;
+        if (values.message.value === "") message = true;
+        if (values.email.value === "") email = true;
+
+        // check to see if any required fields are empty
+        if (name || message || email) {
+            setValues({
+                ...values,
+                name: { error: name },
+                message: { error: message },
+                email: { error: email },
+            });
+            setSnackBar({ open: true, message: "Missing required fields" });
+            setIsFormDisabled(false);
+            return;
+        }
+        setIsFormDisabled(false);
     };
 
     return (
@@ -77,8 +123,11 @@ export default function ContactUs() {
                         <TextField
                             className="form-field"
                             name="name"
-                            value={values.name}
+                            value={values.name.value}
+                            error={values.name.error}
+                            onChange={handleChange}
                             label="Full Name"
+                            disabled={isFormDisabled}
                             variant="outlined"
                         />
                         <span className="required-asterisk"> * </span>
@@ -87,8 +136,11 @@ export default function ContactUs() {
                         <TextField
                             className="form-field"
                             name="email"
-                            value={values.email}
+                            value={values.email.value}
+                            error={values.email.error}
+                            onChange={handleChange}
                             label="Email"
+                            disabled={isFormDisabled}
                             variant="outlined"
                         />
                         <span className="required-asterisk"> * </span>
@@ -97,9 +149,11 @@ export default function ContactUs() {
                         <TextField
                             className="form-field"
                             name="phone"
-                            value={values.phone}
+                            value={values.phone.value}
                             onChange={handleChange}
                             label="Phone Number"
+                            disabled={isFormDisabled}
+                            error={values.phone.error}
                             variant="outlined"
                         />
                         <span style={{ color: "white" }}> * </span>
@@ -108,8 +162,11 @@ export default function ContactUs() {
                         <TextField
                             className="form-field"
                             name="message"
-                            value={values.message}
+                            value={values.message.value}
+                            onChange={handleChange}
                             placeholder="Write your message here"
+                            disabled={isFormDisabled}
+                            error={values.message.error}
                             variant="outlined"
                             multiline
                             rows={8}
@@ -117,7 +174,7 @@ export default function ContactUs() {
                         <span className="required-asterisk"> * </span>
                     </div>
                     <div className="submit-button">
-                        <CustomButton text="Submit" />
+                        <CustomButton text="Submit" onClickCallback={handleFormSubmit} />
                     </div>
                 </form>
             </section>
@@ -126,6 +183,12 @@ export default function ContactUs() {
                 width={isMobile ? "100%" : "50%"}
                 height={isMobile ? "400px" : "auto"}
                 title={isMobile ? "Contact Us" : null}
+            />
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={handleSnackClose}
+                message={snackbar.message}
             />
         </div>
     );
