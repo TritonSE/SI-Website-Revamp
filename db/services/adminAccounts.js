@@ -22,6 +22,28 @@ async function addAdmin(data) {
     }
 }
 
+/**
+ * Finds user in the DB.
+ *
+ * @param {string} incomingEmail - User email to be found
+ * @returns {object/boolean} - Order object / null
+ */
+async function findOneUser(incomingEmail) {
+    return AdminAccounts.findOne({ where: { email: incomingEmail } });
+}
+
+/**
+ * Updates user in the DB.
+ *
+ * @param {object} updated_user - Updated user object
+ * @returns {object/boolean} - Updated object
+ */
+async function updateOneUser(updated_user) {
+    return updated_user.save();
+}
+
 module.exports = {
     addAdmin,
+    findOneUser,
+    updateOneUser,
 };

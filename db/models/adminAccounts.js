@@ -29,7 +29,7 @@ const AdminAccount = db.define(
     },
     {
         hooks: {
-            beforeValidate: async (user) => {
+            beforeSave: async (user) => {
                 if (user.password) {
                     // generate a salt
                     const hashedPassword = await new Promise((resolve, reject) => {
@@ -46,9 +46,10 @@ const AdminAccount = db.define(
         },
         // createdAt & updatedAt columns will be added/self-mantained by table
         timestamps: true,
-        instanceMethods: {
-            validPassword: (password) => bcrypt.compareSync(password, this.password),
-        },
     }
 );
+// validation instance method
+AdminAccount.prototype.validPassword = function validate(password) {
+    return bcrypt.compareSync(password, this.password);
+};
 module.exports = AdminAccount;

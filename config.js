@@ -5,6 +5,11 @@ module.exports = {
         env: process.env.NODE_ENV || "development",
         port: process.env.PORT || 3000,
     },
+    // used for jwt
+    auth: {
+        register_secret: process.env.REGISTER_SECRET || "tritonse",
+        jwt_secret: process.env.JWT_SECRET || "keyboard cat",
+    },
     // establish MySQL DB connection
     db: {
         host: process.env.DB_HOST || "localhost",
