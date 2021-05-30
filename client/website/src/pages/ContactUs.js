@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { GoMail } from "react-icons/go";
 import { FaPhoneAlt } from "react-icons/fa";
 import { BsHouseFill } from "react-icons/bs";
-import MaskedInput from "react-text-mask";
+// import PropTypes from "prop-types";
+// import MaskedInput from "react-text-mask";
 import TextField from "@material-ui/core/TextField";
 import ResourcesHeader from "../components/ResourcesHeader";
 import CustomButton from "../components/CustomButton";
@@ -11,43 +11,11 @@ import "../css/ContactUs.css";
 
 export default function ContactUs() {
     const [values, setValues] = React.useState({
-        phone: "(1  )    -    ",
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
     });
-
-    function TextMaskCustom(props) {
-        const { inputRef, ...other } = props;
-
-        return (
-            <MaskedInput
-                {...other}
-                ref={(ref) => {
-                    inputRef(ref ? ref.inputElement : null);
-                }}
-                mask={[
-                    "(",
-                    /[1-9]/,
-                    /\d/,
-                    /\d/,
-                    ")",
-                    " ",
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                    "-",
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                ]}
-                placeholderChar={"\u2000"}
-                showMask
-            />
-        );
-    }
-
-    TextMaskCustom.propTypes = {
-        inputRef: PropTypes.func.isRequired,
-    };
 
     const handleChange = (event) => {
         setValues({
@@ -75,31 +43,55 @@ export default function ContactUs() {
                     {" "}
                     <FaPhoneAlt /> 619-260-4600 x4921{" "}
                 </p>
-                <p>
-                    {" "}
-                    <BsHouseFill /> Sakyadhita International, 7331 Princess View Drive, <br /> San
-                    Diego, CA 92120 U.S.A.
-                </p>
+                <div className="address">
+                    <BsHouseFill style={{ fontSize: "17px" }} />
+                    <p>
+                        Sakyadhita International, 7331 Princess View Drive, <br /> San Diego, CA
+                        92120 U.S.A.
+                    </p>
+                </div>
                 <h3>Send us a message!</h3>
                 <form className="message-form" autoComplete="off">
-                    <TextField className="form-field" label="Full Name" variant="outlined" />
-                    <TextField className="form-field" label="Email" variant="outlined" />
-                    <TextField
-                        className="form-field"
-                        name="phone"
-                        value={values.phone}
-                        onChange={handleChange}
-                        label="Phone Number"
-                        variant="outlined"
-                        inputComponent={TextMaskCustom}
-                    />
-                    <TextField
-                        className="form-field"
-                        placeholder="Write your message here"
-                        variant="outlined"
-                        multiline
-                        rows={10}
-                    />
+                    <div className="form-field-wrapper">
+                        <TextField
+                            className="form-field"
+                            name="name"
+                            label="Full Name"
+                            variant="outlined"
+                        />
+                        <span className="required-asterisk"> * </span>
+                    </div>
+                    <div className="form-field-wrapper">
+                        <TextField
+                            className="form-field"
+                            name="email"
+                            label="Email"
+                            variant="outlined"
+                        />
+                        <span className="required-asterisk"> * </span>
+                    </div>
+                    <div className="form-field-wrapper">
+                        <TextField
+                            className="form-field"
+                            name="phone"
+                            value={values.phone}
+                            onChange={handleChange}
+                            label="Phone Number"
+                            variant="outlined"
+                        />
+                        <span style={{ color: "white" }}> * </span>
+                    </div>
+                    <div className="form-field-wrapper">
+                        <TextField
+                            className="form-field"
+                            name="message"
+                            placeholder="Write your message here"
+                            variant="outlined"
+                            multiline
+                            rows={8}
+                        />
+                        <span className="required-asterisk"> * </span>
+                    </div>
                     <div className="submit-button">
                         <CustomButton text="Submit" />
                     </div>

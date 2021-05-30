@@ -7,6 +7,14 @@
   font-family: var(--text-font);
 }
 
+.Contact-Us .address {
+  display: flex;
+}
+
+.Contact-Us .address p {
+  margin-left: 5px;
+}
+
 .Contact-Us .left-container {
   flex: 1;
   padding: 50px;
@@ -17,6 +25,7 @@
 h3 {
   font-family: var(--heading-font);
   font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .Contact-Us .left-container h3 {
@@ -27,6 +36,15 @@ h3 {
   border-radius: 30px !important;
   border-color: black !important;
   color: black !important;
+}
+
+.Contact-Us .left-container .message-form .form-field-wrapper {
+  display: flex;
+}
+
+.Contact-Us .left-container .message-form .form-field-wrapper .required-asterisk {
+  color: #ea4444;
+  font-size: 25px;
 }
 
 .Contact-Us .left-container .message-form .form-field {
