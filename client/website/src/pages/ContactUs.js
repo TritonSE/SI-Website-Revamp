@@ -3,11 +3,42 @@ import { GoMail } from "react-icons/go";
 import { FaPhoneAlt } from "react-icons/fa";
 import { BsHouseFill } from "react-icons/bs";
 import { TextField, Snackbar } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import ImageHeader from "../components/Contact/ImageHeader";
 import CustomButton from "../components/CustomButton";
 import "../css/ContactUs.css";
 
 const MAX_MOBILE_WIDTH = 1050;
+
+const useStyles = makeStyles((theme) => ({
+    form: {
+        // input field - general layout
+        "& .MuiTextField-root": {
+            margin: theme.spacing(1),
+            width: "90%",
+        },
+        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: "black",
+            borderRadius: "30px",
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#6652a0",
+        },
+        "& .MuiInputLabel-outlined.Mui-focused": {
+            color: "#d77a3d",
+        },
+        "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
+            borderColor: "red",
+        },
+
+        //   "& .MuiButton-root": {
+        //     margin: theme.spacing(3),
+        //     color: "black",
+        //     background: "#F9CE1D",
+        //     width: "30%",
+        //   },
+    },
+}));
 
 export default function ContactUs() {
     const [isMobile, setIsMobile] = React.useState(false);
@@ -35,6 +66,8 @@ export default function ContactUs() {
         },
     });
 
+    const classes = useStyles();
+
     // handler to call on window resize
     useEffect(() => {
         function handleResize() {
@@ -56,7 +89,9 @@ export default function ContactUs() {
     const handleChange = (event) => {
         setValues({
             ...values,
-            [event.target.name]: event.target.value,
+            [event.target.name]: {
+                value: event.target.value,
+            },
         });
     };
 
@@ -76,18 +111,20 @@ export default function ContactUs() {
         if (values.message.value === "") message = true;
         if (values.email.value === "") email = true;
 
+        setValues({
+            ...values,
+            name: { ...values.name, error: name },
+            message: { ...values.message, error: message },
+            email: { ...values.email, error: email },
+        });
+
         // check to see if any required fields are empty
         if (name || message || email) {
-            setValues({
-                ...values,
-                name: { error: name },
-                message: { error: message },
-                email: { error: email },
-            });
             setSnackBar({ open: true, message: "Missing required fields" });
             setIsFormDisabled(false);
             return;
         }
+
         setIsFormDisabled(false);
     };
 
@@ -118,15 +155,16 @@ export default function ContactUs() {
                     </p>
                 </div>
                 <h3>Send us a message!</h3>
-                <form className="message-form" autoComplete="off">
+                <form className={classes.form} autoComplete="off">
                     <div className="form-field-wrapper">
                         <TextField
-                            className="form-field"
+                            // className="form-field"
                             name="name"
                             value={values.name.value}
                             error={values.name.error}
                             onChange={handleChange}
-                            label="Full Name"
+                            // label="Full Name"
+                            placeholder="Full Name"
                             disabled={isFormDisabled}
                             variant="outlined"
                         />
@@ -134,12 +172,13 @@ export default function ContactUs() {
                     </div>
                     <div className="form-field-wrapper">
                         <TextField
-                            className="form-field"
+                            // className="form-field"
                             name="email"
                             value={values.email.value}
                             error={values.email.error}
                             onChange={handleChange}
-                            label="Email"
+                            // label="Email"
+                            placeholder="Email"
                             disabled={isFormDisabled}
                             variant="outlined"
                         />
@@ -147,11 +186,12 @@ export default function ContactUs() {
                     </div>
                     <div className="form-field-wrapper">
                         <TextField
-                            className="form-field"
+                            // className="form-field"
                             name="phone"
-                            value={values.phone.value}
                             onChange={handleChange}
-                            label="Phone Number"
+                            // label="Phone Number"
+                            placeholder="Phone Number"
+                            value={values.phone.value}
                             disabled={isFormDisabled}
                             error={values.phone.error}
                             variant="outlined"
@@ -160,7 +200,7 @@ export default function ContactUs() {
                     </div>
                     <div className="form-field-wrapper">
                         <TextField
-                            className="form-field"
+                            // className="form-field"
                             name="message"
                             value={values.message.value}
                             onChange={handleChange}
