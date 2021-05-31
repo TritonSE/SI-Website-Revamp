@@ -5,7 +5,7 @@
  * @author      Aaron Kirk
  */
 
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SITE_PAGES } from "../../constants/links";
 
@@ -53,7 +53,7 @@ export default function ResourcesNavBar(props) {
     }
 
     return (
-        <>
+        <Fragment>
             {/* Button to toggle menu on mobile */}
             <button id="left-arrow" onClick={toggleNav} onKeyDown={toggleNav} type="button">
                 <img src={LeftArrow} alt="Toggle Resources Navigation" />
@@ -82,6 +82,6 @@ export default function ResourcesNavBar(props) {
 
             {/* Allows for remanining page content to be rendered */}
             {props.children}
-        </>
+        </Fragment>
     );
 }
