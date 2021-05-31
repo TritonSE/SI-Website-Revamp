@@ -122,9 +122,7 @@ export default function PayPal(props) {
                             // update
                             return actions.resolve();
                         }
-                        alert(
-                            "There was an issue verifying your membership type, please try again."
-                        );
+                        alert("An error occurred. Please try refreshing the page, and try again.");
                         return actions.reject();
                     });
                 },
