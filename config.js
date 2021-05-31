@@ -14,7 +14,11 @@ module.exports = {
     },
     // used for email automation
     autoEmail: {
-        email: process.env.EMAIL || "",
-        password: process.env.PASSWORD || "",
+        user: process.env.EMAIL || "",
+        pass: process.env.PASSWORD || "",
+    },
+    recipientEmailList: {
+        // receives any submission to volunteer or email list forms, notifications of new memberships, and contact messages
+        general: process.env.GENERAL_EMAIL_LIST || "aksingh@ucsd.edu",
     },
 };
