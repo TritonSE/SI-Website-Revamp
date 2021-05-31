@@ -1,3 +1,13 @@
+/**
+ * The contact us page on the website.It displays contact information, including email,
+ * phone number, and address (on click opens up google maps). It also includes a small form
+ * to allow any user to send messages to Sakyadhita. Sent messages are done using a fetch request
+ * to the backend server, which will trigger email automation to Sakyadhita with the given form
+ * information provided by the user.
+ *
+ * @summary     Displays Contact Us Page.
+ * @author      Amrit Kaur Singh
+ */
 import React, { useEffect } from "react";
 import { GoMail } from "react-icons/go";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -13,7 +23,10 @@ import config from "../config";
 const BACKEND_URL = config.backend.uri;
 
 const MAX_MOBILE_WIDTH = 1050;
+const MAIN_IMG_URL_LINK =
+    "https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1623024000&Signature=SCONX7E-9B-btNQQ0a8fn1kh2A4i8I3-aZjQlNXgBZSJnw~N8fCz7YzTOmI6hq0iinH~f~2cTCB2mvuab1dM3sLLIqbF1ZwaOcYlCXMiOAkhAYMkzVbcbZgrN6s4X67Jq2fSmA7D-kgk9KzDjiXkLnxn0n8l~TMh6huoB18N5MbJrighV~Hl2YaoJrHmEWhjoBu8Jhm8TDPB99ghsGKIOR9xQMIuULa4STzVHCkoCtzWzWBLgd1-BDv2hhE67pH5PYqoIJnzZwEemddHpUtI-RMW2xHPaq6J8P1LnvRfL9Kuq00ULLl3h04474LC9EjWGr2cACW0lhgyX~ei0roR3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
 
+// provides custom style/border colors for form fields
 const useStyles = makeStyles((theme) => ({
     form: {
         // input field - general layout
@@ -21,16 +34,19 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(1),
             width: "95%",
         },
+        // default rendering of field
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
             borderColor: "black",
             borderRadius: "30px",
         },
+        // on focus rendering of field
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: "#6652a0",
         },
         "& .MuiInputLabel-outlined.Mui-focused": {
             color: "#d77a3d",
         },
+        // on error rendering of field
         "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
             borderColor: "red",
         },
@@ -38,17 +54,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ContactUs() {
+    // tracks page layout to width changes
     const [isMobile, setIsMobile] = React.useState(false);
+    // tracks whether form is disabled
     const [isFormDisabled, setIsFormDisabled] = React.useState(false);
+    // tracks whether thank you modal should open
     const [isEmailSentModuleOpen, setIsEmailSentModuleOpen] = React.useState(false);
+    // tracks snackbar for any error messages to the user
     const [snackbar, setSnackBar] = React.useState({
         open: false,
         message: "",
     });
+    // tracks values and error states for all fields in form
     const [values, setValues] = React.useState({
         name: {
-            value: "",
-            error: false,
+            value: "", // field value given by user
+            error: false, // field contains an error
         },
         email: {
             value: "",
@@ -84,6 +105,7 @@ export default function ContactUs() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // handles user updates to any field in form
     const handleChange = (event) => {
         setValues({
             ...values,
@@ -93,16 +115,22 @@ export default function ContactUs() {
         });
     };
 
+    // triggered once user decides to close thank you modal
     const handleModalHide = (event) => {
         setIsEmailSentModuleOpen(event);
     };
 
+    // closes snackbar for any error messages shown
     const handleSnackClose = () => {
         setSnackBar({ open: false });
     };
 
+    // triggered once submit button is clicked by user
     const handleFormSubmit = async () => {
+        // do nothing if form is already processing a request
         if (isFormDisabled) return;
+
+        // disable form to prevent spam requests
         setIsFormDisabled(true);
         // display loading cursor
         document.body.style.cursor = "wait";
@@ -163,13 +191,16 @@ export default function ContactUs() {
             }
         });
 
+        // allow form to be editable again
         document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
 
     return (
         <div className="Contact-Us">
+            {/* contains textual rendering of all information not including header image  */}
             <section className="left-container">
+                {/* Main paragraph at top  */}
                 <h2>{isMobile ? "Thank you for your interest in Sakyadhita!" : "Contact Us"}</h2>
                 <p>
                     {" "}
@@ -177,15 +208,19 @@ export default function ContactUs() {
                     condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget
                     arcu ut laoreet.{" "}
                 </p>
+                {/* Contact Information */}
                 <h4>Reach us at: </h4>
+                {/* Email */}
                 <p>
                     {" "}
                     <GoMail /> <a href="mailto:email@domain.org"> email@domain.org </a>{" "}
                 </p>
+                {/* Phone Number */}
                 <p>
                     {" "}
                     <FaPhoneAlt /> 619-260-4600 x4921{" "}
                 </p>
+                {/* Address */}
                 <div className="address">
                     <BsHouseFill className="address-icon" />
                     <p>
@@ -199,42 +234,40 @@ export default function ContactUs() {
                         </a>
                     </p>
                 </div>
+                {/* Renders Form */}
                 <h4>Send us a message!</h4>
                 <form className={classes.form} autoComplete="off">
+                    {/* Full Name Field */}
                     <div className="form-field-wrapper">
                         <TextField
-                            // className="form-field"
                             name="name"
                             value={values.name.value}
                             error={values.name.error}
                             onChange={handleChange}
-                            // label="Full Name"
                             placeholder="Full Name"
                             disabled={isFormDisabled}
                             variant="outlined"
                         />
                         <span className="required-asterisk"> * </span>
                     </div>
+                    {/* Email Field */}
                     <div className="form-field-wrapper">
                         <TextField
-                            // className="form-field"
                             name="email"
                             value={values.email.value}
                             error={values.email.error}
                             onChange={handleChange}
-                            // label="Email"
                             placeholder="Email"
                             disabled={isFormDisabled}
                             variant="outlined"
                         />
                         <span className="required-asterisk"> * </span>
                     </div>
+                    {/* Phone Number Field */}
                     <div className="form-field-wrapper">
                         <TextField
-                            // className="form-field"
                             name="phone"
                             onChange={handleChange}
-                            // label="Phone Number"
                             placeholder="Phone Number"
                             value={values.phone.value}
                             disabled={isFormDisabled}
@@ -243,9 +276,9 @@ export default function ContactUs() {
                         />
                         <span style={{ color: "white" }}> * </span>
                     </div>
+                    {/* Message Field */}
                     <div className="form-field-wrapper">
                         <TextField
-                            // className="form-field"
                             name="message"
                             value={values.message.value}
                             onChange={handleChange}
@@ -258,27 +291,32 @@ export default function ContactUs() {
                         />
                         <span className="required-asterisk"> * </span>
                     </div>
+                    {/* Note on required fields  */}
                     <p style={{ textAlign: "center" }}>
                         {" "}
                         <span className="required-asterisk"> * </span> indicates a required field
                     </p>
+                    {/* Submit Button */}
                     <div className="submit-button">
                         <CustomButton text="Submit" onClickCallback={handleFormSubmit} />
                     </div>
                 </form>
             </section>
+            {/* Image Header */}
             <ImageHeader
-                image="https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1623024000&Signature=SCONX7E-9B-btNQQ0a8fn1kh2A4i8I3-aZjQlNXgBZSJnw~N8fCz7YzTOmI6hq0iinH~f~2cTCB2mvuab1dM3sLLIqbF1ZwaOcYlCXMiOAkhAYMkzVbcbZgrN6s4X67Jq2fSmA7D-kgk9KzDjiXkLnxn0n8l~TMh6huoB18N5MbJrighV~Hl2YaoJrHmEWhjoBu8Jhm8TDPB99ghsGKIOR9xQMIuULa4STzVHCkoCtzWzWBLgd1-BDv2hhE67pH5PYqoIJnzZwEemddHpUtI-RMW2xHPaq6J8P1LnvRfL9Kuq00ULLl3h04474LC9EjWGr2cACW0lhgyX~ei0roR3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                image={MAIN_IMG_URL_LINK}
                 width={isMobile ? "100%" : "50%"}
                 height={isMobile ? "400px" : "auto"}
                 title={isMobile ? "Contact Us" : null}
             />
+            {/* Thank You Modal Once Form Submitted */}
             <Modal
                 text="Thank you for contacting us. We will get in touch with you shortly."
                 open={isEmailSentModuleOpen}
                 hide={handleModalHide}
                 negativeButtonText="Ok"
             />
+            {/* Snackbar for Error Displays */}
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}
