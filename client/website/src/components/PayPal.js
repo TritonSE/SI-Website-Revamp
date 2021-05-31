@@ -2,12 +2,12 @@
  * This file contains the code for the PayPal Smart Buttons integration.
  * It will call the backend to verify the item type, and then after the purchase was complete.
  * The expected props include Membership title, membership cost, donation amount, and disable
+ * This function also takes in a callback function that is called when the transaction is completed.
  *
  * @summary Renders paypal buttons for payment based on values passed in through props
  * @author PatrickBrown1
  */
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 const config = require("../config.js");
 
@@ -25,8 +25,8 @@ export default function PayPal(props) {
         isNewMember,
         affiliatedOrgs,
         disable,
+        transactionCompleted,
     } = props;
-    const history = useHistory();
 
     // only add values to itemTotal and taxTotal if they are positive
     let itemTotal;
@@ -156,21 +156,17 @@ export default function PayPal(props) {
                         })
                             .then((res) => {
                                 if (res.ok) {
-                                    alert(
-                                        "Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you."
-                                    );
+                                    transactionCompleted();
                                 } else {
                                     alert(
                                         "Transaction completed but it wasn't added to our database. Please email us with the receipt sent to your email."
                                     );
                                 }
-                                history.push("/");
-                                history.go(0);
                             })
                             .catch(() => {
                                 document.body.style.cursor = null;
                                 alert(
-                                    "There was an internal error. Check your email for a recepit from PayPal, and contact us to set up your order."
+                                    "There was an internal error. Check your email for a receipt from PayPal, and contact us to set up your order."
                                 );
                             });
                     });

@@ -8,11 +8,14 @@ export default function AboutUs() {
             <PayPal
                 membershipTitle="Nun/Student/Unemployed"
                 membershipID={1}
-                membershipCost={16}
+                membershipCost={15}
                 donationAmount={0}
                 isNewMember
                 affiliatedOrgs="affiliated org 1"
                 disable={false}
+                transactionCompleted={() => {
+                    alert("completed transaction yay");
+                }}
             />
         </div>
     );
