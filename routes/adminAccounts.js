@@ -221,7 +221,7 @@ router.post(
             // send an automated email to the user containing their new randomly generated password
             const locals = {
                 password: randomlyGeneratedPass,
-                resetLink: `reset-password`,
+                resetLink: `${config.frontend.uri}reset-password`,
             };
 
             sendEmail("forgot-password", email, locals, res);

@@ -10,6 +10,10 @@ module.exports = {
         register_secret: process.env.REGISTER_SECRET || "tritonse",
         jwt_secret: process.env.JWT_SECRET || "keyboard cat",
     },
+    // frontend URI
+    frontend: {
+        uri: process.env.FRONTEND_URI || "http://localhost:3000/",
+    },
     // establish MySQL DB connection
     db: {
         host: process.env.DB_HOST || "localhost",
