@@ -33,26 +33,26 @@
   justify-content: center;
   align-items: center;
 
-  font-family: var(--body-font);
+  font-family: var(--text-font);
   font-size: 1.125em;
   color: white;
   text-decoration: none;
 }
 
 .resources-link:hover {
-  background-color: var(--dark-orange);
+  background-color: var(--darkorange);
 
   color: white;
   text-decoration: none;
 }
 
 .current {
-  background-color: var(--dark-orange);
+  background-color: var(--darkorange);
 }
 
 /* Mobile Styles */
 
-@media only screen and (max-width: 600px), (max-height: 600px) {
+@media only screen and (max-width: 750px), (max-height: 600px) {
   #left-arrow {
     position: fixed;
     top: 65px;
@@ -128,7 +128,7 @@
   }
 
   .resources-link text {
-    font-family: var(--header-font);
+    font-family: var(--heading-font);
     font-size: 1.125em;
     color: white;
   }

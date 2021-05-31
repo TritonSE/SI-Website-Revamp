@@ -15,39 +15,49 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import "../css/Modal.css";
 
-export default function CustomModal(props) {
+export default function CustomModal({
+    hide,
+    open,
+    text,
+    negativeButtonText,
+    positiveButtonText,
+    positiveUrl,
+}) {
     // redirect to the registration url
     const redirectLink = () => {
-        window.location.href = props.url;
+        window.location.href = positiveUrl;
     };
 
     return (
-        <Modal show={props.open} onHide={() => props.hide(false)} centered>
+        <Modal show={open} onHide={() => hide(false)} centered>
             <div className="modal-body-div">
                 <div className="modal-body-content">
                     <Modal.Body>
                         {/* The text of the modal */}
-                        <p>{props.text}</p>
+                        <p>{text}</p>
 
                         {/* Contains the two buttons within the modal */}
                         <div className="redirect-div">
                             {/* The close modal button */}
-                            <button
-                                className="redirect-cancel"
-                                onClick={() => props.hide(false)}
-                                type="button"
-                            >
-                                Cancel
-                            </button>
+                            {negativeButtonText ? (
+                                <button
+                                    className="redirect-cancel"
+                                    onClick={() => hide(false)}
+                                    type="button"
+                                >
+                                    {negativeButtonText}
+                                </button>
+                            ) : null}
 
-                            {/* the redirect button */}
-                            <button
-                                className="redirect-link"
-                                onClick={() => redirectLink()}
-                                type="button"
-                            >
-                                Go
-                            </button>
+                            {positiveButtonText ? (
+                                <button
+                                    className="redirect-link"
+                                    onClick={() => redirectLink()}
+                                    type="button"
+                                >
+                                    {positiveButtonText}
+                                </button>
+                            ) : null}
                         </div>
                     </Modal.Body>
                 </div>
