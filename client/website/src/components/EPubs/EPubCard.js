@@ -4,13 +4,13 @@
  *
  * @Author PatrickBrown1
  */
-import React, { Fragment } from "react";
+import React from "react";
 import "../../css/EPubCard.css";
 
 export default function EPubCard({ title, author, image_url, redirect_link, isMobile }) {
     // props title, author name, image_url, redirect link, isMobile
     return (
-        <Fragment>
+        <>
             {!isMobile ? (
                 <div className="EPubCard">
                     <a href={redirect_link} target="_blank" rel="noreferrer noopener">
@@ -28,6 +28,6 @@ export default function EPubCard({ title, author, image_url, redirect_link, isMo
                     <div className="EPubCard_author--mobile">By {author}</div>
                 </div>
             )}
-        </Fragment>
+        </>
     );
 }

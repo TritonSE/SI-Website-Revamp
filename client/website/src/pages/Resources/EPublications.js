@@ -8,7 +8,7 @@
  * @Author PatrickBrown1
  */
 
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import Slideshow from "../../components/Slideshow";
 import EPubSection from "../../components/EPubs/EPubSection";
 import EPubCard from "../../components/EPubs/EPubCard";
@@ -340,7 +340,7 @@ export default function EPublications() {
     return (
         <div id="EPubPage">
             {selectedSection === "" ? (
-                <Fragment>
+                <>
                     <Slideshow
                         height={isMobile ? "530px" : "450px"}
                         width="100%"
@@ -410,7 +410,7 @@ export default function EPublications() {
                             />
                         ))}
                     </div>
-                </Fragment>
+                </>
             ) : (
                 renderSelectedSection(
                     page_data.sections.filter((e) => e.section_title === selectedSection)[0],

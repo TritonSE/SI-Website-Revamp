@@ -4,7 +4,7 @@
  *
  *  @author PatrickBrown1
  */
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 
 import ResourcesHeader from "../../components/ResourcesHeader";
@@ -89,7 +89,7 @@ export default function Newsletters() {
         }
     }, [currentPage, maxPages]);
     return (
-        <Fragment>
+        <>
             {isMobile || window.innerHeight <= 500 ? (
                 <ResourcesHeader
                     title="Sakyadhita Newsletters"
@@ -133,6 +133,6 @@ export default function Newsletters() {
                     activeClassName="newsletter__pagination--active"
                 />
             </div>
-        </Fragment>
+        </>
     );
 }

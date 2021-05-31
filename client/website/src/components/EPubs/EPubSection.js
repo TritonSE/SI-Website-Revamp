@@ -5,7 +5,7 @@
  *
  * @Author PatrickBrown1
  */
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import EPubCard from "./EPubCard";
 import "../../css/EPubSection.css";
 import LeftArrowBlack from "../../media/left-arrow-black.svg";
@@ -104,7 +104,7 @@ const EPubSectionDesktop = (publication_section, setSelectedSection, isMobile) =
 export default function EPubSection({ publication_section, setSelectedSection, isMobile }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     return (
-        <Fragment>
+        <>
             {!isMobile
                 ? EPubSectionDesktop(publication_section, setSelectedSection, false)
                 : EPubSectionMobile(
@@ -114,6 +114,6 @@ export default function EPubSection({ publication_section, setSelectedSection, i
                       currentIndex,
                       setCurrentIndex
                   )}
-        </Fragment>
+        </>
     );
 }
