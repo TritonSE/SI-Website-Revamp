@@ -1,8 +1,8 @@
 /**
- * This file creates a component for the resources header with an image, title, and description text.
+ * This file creates a component for the image header for Resources Landing Page.
  *
  * @summary Creates a component for resources header
- * @author Dhanush Nanjunda Reddy
+ * @author Amrit Kaur Singh, Dhanush
  */
 import React from "react";
 import "../../css/ResourcesLanding/ResourcesLandingPageHeader.css";
