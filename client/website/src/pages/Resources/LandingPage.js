@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ResourcesHeader from "../../components/ResourcesHeader";
+import ResourcesHeader from "../../components/ResourcesLanding/ResourcesLandingPageHeader";
 
 const MAX_MOBILE_WIDTH = 700;
 
