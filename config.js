@@ -24,6 +24,6 @@ module.exports = {
     },
     recipientEmailList: {
         // receives any submission to volunteer or email list forms, notifications of new memberships, and contact messages
-        general: process.env.GENERAL_EMAIL_LIST || "aksingh@ucsd.edu",
+        general: process.env.GENERAL_EMAIL_LIST || "thomas@garry.to",
     },
 };
