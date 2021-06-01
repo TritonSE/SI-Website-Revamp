@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const status = await checkCost(req.params.id, req.query.cost);
-        return res.status(200).json(status);
+        return res.status(200).json({ isValid: status });
     } catch (err) {
         console.log(err);
         return res.status(500).json({ message: err });
