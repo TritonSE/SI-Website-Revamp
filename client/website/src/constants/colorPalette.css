@@ -1,7 +1,7 @@
 :root {
   --lightpurple: #8477b9;
   --darkpurple: #6652a0;
-  --orange: #ea8644;
+  --orange: #ea8644 !important;
   --darkorange: #d77a3d;
   --red: #ea4444;
   --white: #ffffff;
