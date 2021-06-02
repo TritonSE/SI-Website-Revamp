@@ -19,7 +19,7 @@ const router = express.Router();
  * @returns {status} - 200 - with created item.
  */
 router.post(
-    "/addUser",
+    "/",
     [
         body("fName").isString(),
         body("mName").isString().optional(),

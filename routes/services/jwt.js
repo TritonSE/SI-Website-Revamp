@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../../config");
 
 //  denotes length of time a JWT will be considered valid after creation
-const JWT_EXPIRY = "1h";
+const JWT_EXPIRY = "2h";
 
 /**
  * Given a payload, synchronously creates a JWT with a specific signature and expiry date.
