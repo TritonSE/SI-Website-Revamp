@@ -46,6 +46,7 @@
   width: 100vw;
   height: 100vh;
 
+  background-color: transparent;
   transition: opacity 0.5s ease;
   backdrop-filter: brightness(70%);
   -webkit-backdrop-filter: brightness(70%);
@@ -53,6 +54,7 @@
 
   z-index: -1;
   pointer-events: none;
+  cursor: default !important;
 }
 
 .nav-overlay.visible {
