@@ -16,6 +16,7 @@ import { TextField, Snackbar } from "@material-ui/core";
 import { CountryDropdown } from "react-country-region-selector";
 import ResourcesHeader from "../components/ResourcesHeader";
 import VolunteerOption from "../components/VolunteerOption";
+import CustomButton from "../components/CustomButton";
 
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
@@ -61,28 +62,56 @@ const CustomTextField = withStyles({
                 opacity: "1",
             },
         },
+        "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
+            borderColor: "red",
+        },
     },
 })(TextField);
 
 export default function Volunteer() {
-    // const classes = props.classes;
-
     const [isMobile, setIsMobile] = useState(false);
-    // const [formCheck, setFormCheck] = useState(false);
 
-    const [country, setCountry] = useState("");
-    const [addressOne, setAddressOne] = useState("");
+    const [values, setValues] = useState({
+        firstName: {
+            value: "", // field value given by user
+            error: false, // field contains an error
+        },
+        lastName: {
+            value: "",
+            error: false,
+        },
+        phoneNumber: {
+            value: "",
+            error: false,
+        },
+        emailAddress: {
+            value: "",
+            error: false,
+        },
+        country: {
+            value: "",
+            error: false,
+        },
+        addressOne: {
+            value: "",
+            error: false,
+        },
+        city: {
+            value: "",
+            error: false,
+        },
+        stateLocation: {
+            value: "",
+            error: false,
+        },
+        zipcode: {
+            value: "",
+            error: false,
+        },
+    });
+
     const [addressTwo, setAddressTwo] = useState("");
-    const [city, setCity] = useState("");
-    const [stateLocation, setStateLocation] = useState("");
-    const [zipcode, setZipcode] = useState("");
-
-    const [firstName, setFirstName] = useState("");
     const [middleName, setMiddleName] = useState("");
-    const [lastName, setLastName] = useState("");
-
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [emailAddress, setEmailAddress] = useState("");
 
     const [editing, setEditing] = useState(false);
     const [techSupport, setTechSupport] = useState(false);
@@ -104,6 +133,7 @@ export default function Volunteer() {
         open: false,
         message: "",
     });
+    const [isFormDisabled, setIsFormDisabled] = useState(false);
 
     // modifies isMobile state when window resizes
     useEffect(() => {
@@ -119,29 +149,95 @@ export default function Volunteer() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const handleChange = (event) => {
+        setValues({
+            ...values,
+            [event.target.name]: {
+                value: event.target.value,
+            },
+        });
+    };
+
     const handleSnackClose = () => {
         setSnackBar({ open: false });
     };
 
-    const handleCountryChange = (value) => {
-        setCountry(value);
+    const handleCountryChange = (val) => {
+        setValues({
+            ...values,
+            country: {
+                value: val,
+            },
+        });
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
+        if (isFormDisabled) return;
+        setIsFormDisabled(true);
+        document.body.style.cursor = "wait";
+
+        let firstName = false;
+        let lastName = false;
+        let phone = false;
+        let email = false;
+        let country = false;
+        let address = false;
+        let city = false;
+        let state = false;
+        let zipcode = false;
+
+        if (values.firstName.value === "") firstName = true;
+        if (values.lastName.value === "") lastName = true;
+        if (values.phoneNumber.value === "") phone = true;
+        if (values.emailAddress.value === "") email = true;
+        if (values.country.value === "") country = true;
+        if (values.addressOne.value === "") address = true;
+        if (values.city.value === "") city = true;
+        if (values.stateLocation.value === "") state = true;
+        if (values.zipcode.value === "") zipcode = true;
+
+        setValues({
+            ...values,
+            firstName: { ...values.firstName, error: firstName },
+            lastName: { ...values.lastName, error: lastName },
+            phoneNumber: { ...values.phoneNumber, error: phone },
+            emailAddress: { ...values.emailAddress, error: email },
+            country: { ...values.country, error: country },
+            addressOne: { ...values.addressOne, error: address },
+            city: { ...values.city, error: city },
+            stateLocation: { ...values.stateLocation, error: state },
+            zipcode: { ...values.zipcode, error: zipcode },
+        });
+
+        if (
+            firstName ||
+            lastName ||
+            phone ||
+            email ||
+            country ||
+            address ||
+            city ||
+            state ||
+            zipcode
+        ) {
+            setSnackBar({ open: true, message: "Missing required fields" });
+            setIsFormDisabled(false);
+            document.body.style.cursor = null;
+            return;
+        }
 
         // call backend route to store volunteer data
+
+        document.body.style.cursor = null;
+        setIsFormDisabled(false);
     };
 
     const inputFieldStyle = {
-        borderRadius: "15px",
-        boxSizing: "border-box",
         border: "1px solid #000000",
-        fontFamily: "Nunito",
-        fontSize: "18px",
-        lineHeight: "1.95vw",
-        color: "#000000",
-        background: "#FFFFFF",
+    };
+
+    const inputErrorStyle = {
+        border: "1px solid #ea4444",
     };
 
     return (
@@ -154,16 +250,18 @@ export default function Volunteer() {
                 width="100%"
             />
             <div className="volunteer-content">
-                <form onSubmit={handleSubmit}>
+                <form autoComplete="off">
                     <h1 className="signup-text">Sign Me Up!</h1>
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
                             className="first-name input-field"
                             placeholder="First Name"
-                            required
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
+                            value={values.firstName.value}
+                            error={values.firstName.error}
+                            onChange={handleChange}
+                            disabled={isFormDisabled}
+                            name="firstName"
                         />
                         {displayAsterisk()}
                     </div>
@@ -174,6 +272,7 @@ export default function Volunteer() {
                             placeholder="Middle Name"
                             value={middleName}
                             onChange={(e) => setMiddleName(e.target.value)}
+                            disabled={isFormDisabled}
                         />
                     </div>
                     <div className="form-item last-name-field">
@@ -181,9 +280,11 @@ export default function Volunteer() {
                             variant="outlined"
                             className="input-field"
                             placeholder="Last Name"
-                            required
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
+                            value={values.lastName.value}
+                            error={values.lastName.error}
+                            onChange={handleChange}
+                            disabled={isFormDisabled}
+                            name="lastName"
                         />
                         {displayAsterisk()}
                     </div>
@@ -194,9 +295,11 @@ export default function Volunteer() {
                             className="phone-number input-field"
                             placeholder="Phone Number"
                             type="tel"
-                            required
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            value={values.phoneNumber.value}
+                            error={values.phoneNumber.error}
+                            onChange={handleChange}
+                            disabled={isFormDisabled}
+                            name="phoneNumber"
                         />
                         {displayAsterisk()}
                     </div>
@@ -206,31 +309,49 @@ export default function Volunteer() {
                             className="email-address input-field"
                             placeholder="Email Address"
                             type="email"
-                            required
-                            value={emailAddress}
-                            onChange={(e) => setEmailAddress(e.target.value)}
+                            value={values.emailAddress.value}
+                            error={values.emailAddress.error}
+                            onChange={handleChange}
+                            disabled={isFormDisabled}
+                            name="emailAddress"
                         />
                         {displayAsterisk()}
                     </div>
-                    <div className="form-item">
-                        <CountryDropdown
-                            className="input-field country-dropdown"
-                            style={inputFieldStyle}
-                            value={country}
-                            onChange={handleCountryChange}
-                        />
-                        {displayAsterisk()}
-                    </div>
-                    {country !== "" ? (
+                    {values.country.error ? (
+                        <div className="form-item">
+                            <CountryDropdown
+                                className="input-field country-dropdown"
+                                style={inputErrorStyle}
+                                value={values.country.value}
+                                onChange={handleCountryChange}
+                                disabled={isFormDisabled}
+                            />
+                            {displayAsterisk()}
+                        </div>
+                    ) : (
+                        <div className="form-item">
+                            <CountryDropdown
+                                className="input-field country-dropdown"
+                                style={inputFieldStyle}
+                                value={values.country.value}
+                                onChange={handleCountryChange}
+                                disabled={isFormDisabled}
+                            />
+                            {displayAsterisk()}
+                        </div>
+                    )}
+                    {values.country.value !== "" ? (
                         <div>
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
                                     className="address-line1 input-field"
                                     placeholder="Address Line 1"
-                                    required
-                                    value={addressOne}
-                                    onChange={(e) => setAddressOne(e.target.value)}
+                                    value={values.addressOne.value}
+                                    error={values.addressOne.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="addressOne"
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -241,6 +362,7 @@ export default function Volunteer() {
                                     placeholder="Address Line 2"
                                     value={addressTwo}
                                     onChange={(e) => setAddressTwo(e.target.value)}
+                                    disabled={isFormDisabled}
                                 />
                             </div>
                             <div className="form-item">
@@ -248,9 +370,11 @@ export default function Volunteer() {
                                     variant="outlined"
                                     className="city-field input-field"
                                     placeholder="City"
-                                    required
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
+                                    value={values.city.value}
+                                    error={values.city.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="city"
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -259,9 +383,11 @@ export default function Volunteer() {
                                     variant="outlined"
                                     className="state-field input-field"
                                     placeholder="State"
-                                    required
-                                    value={stateLocation}
-                                    onChange={(e) => setStateLocation(e.target.value)}
+                                    value={values.stateLocation.value}
+                                    error={values.stateLocation.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="stateLocation"
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -270,9 +396,11 @@ export default function Volunteer() {
                                     variant="outlined"
                                     className="zipcode-field input-field"
                                     placeholder="Zip Code"
-                                    required
-                                    value={zipcode}
-                                    onChange={(e) => setZipcode(e.target.value)}
+                                    value={values.zipcode.value}
+                                    error={values.zipcode.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="zipcode"
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -473,9 +601,13 @@ export default function Volunteer() {
                             </div>
                         </div>
                     )}
-                    <button className="submit-form" type="submit">
-                        Submit
-                    </button>
+                    <p style={{ textAlign: "center" }}>
+                        {" "}
+                        <span className="error-asterisk"> * </span> indicates a required field
+                    </p>
+                    <div className="submit-form">
+                        <CustomButton text="Submit" onClickCallback={handleSubmit} />
+                    </div>
                 </form>
             </div>
             <Snackbar
