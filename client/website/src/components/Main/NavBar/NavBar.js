@@ -61,7 +61,16 @@ export default function NavBar() {
             )}
 
             {/* Overlay to darken website content when toggled */}
-            {navToggled ? <div className="nav-overlay visible" /> : <div className="nav-overlay" />}
+            {navToggled ? (
+                <button
+                    className="nav-overlay visible"
+                    type="button"
+                    onClick={toggleNav}
+                    aria-label="Disable Navigation"
+                />
+            ) : (
+                <button type="button" className="nav-overlay" aria-label="Disable Navigation" />
+            )}
         </div>
     );
 }

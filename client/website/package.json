@@ -13,6 +13,8 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
     "dotenv": "^8.2.0",
+    "nice-try": "^1.0.5",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-country-region-selector": "^3.1.0",
@@ -24,6 +26,7 @@
     "react-scripts": "4.0.3",
     "react-simple-maps": "^2.3.0",
     "react-slideshow-image": "^3.4.6",
+    "react-text-mask": "^5.4.3",
     "react-tooltip": "^4.2.19",
     "web-vitals": "^1.0.1"
   },

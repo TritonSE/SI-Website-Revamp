@@ -21,7 +21,7 @@
 .Home .divider {
   background-color: var(--orange);
   width: 50%;
-  border-width: 7px;
+  border-width: 2px;
   border-radius: 1px;
   margin: 70px 0px 30px 0px;
 }
