@@ -12,11 +12,12 @@ import React, { useState, useEffect } from "react";
 import "../css/JoinUs.css";
 import { withStyles } from "@material-ui/core/styles";
 
-import { Checkbox, MenuItem, TextField } from "@material-ui/core";
+import { Checkbox, MenuItem, TextField, InputAdornment, Snackbar } from "@material-ui/core";
 import { CountryDropdown } from "react-country-region-selector";
 import ResourcesHeader from "../components/ResourcesHeader";
 
 import HeaderImage from "../media/JoinUs_Header.png";
+import CustomButton from "../components/CustomButton";
 
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
@@ -105,34 +106,73 @@ const CustomTextField = withStyles({
                 opacity: "1",
             },
         },
+        "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
+            borderColor: "red",
+        },
     },
 })(TextField);
 
 export default function JoinUs() {
+    // const classes = useStyles();
+
     const [isMobile, setIsMobile] = useState(false);
 
     const [membershipCheck, setMembershipCheck] = useState(false);
     const [donateCheck, setDonateCheck] = useState(false);
-    // const [formCheck, setFormCheck] = useState(false);
+    const [isFormDisabled, setIsFormDisabled] = useState(false);
 
-    const [country, setCountry] = useState("");
-    const [addressOne, setAddressOne] = useState("");
+    const [values, setValues] = useState({
+        firstName: {
+            value: "", // field value given by user
+            error: false, // field contains an error
+        },
+        lastName: {
+            value: "",
+            error: false,
+        },
+        phoneNumber: {
+            value: "",
+            error: false,
+        },
+        emailAddress: {
+            value: "",
+            error: false,
+        },
+        country: {
+            value: "",
+            error: false,
+        },
+        addressOne: {
+            value: "",
+            error: false,
+        },
+        city: {
+            value: "",
+            error: false,
+        },
+        stateLocation: {
+            value: "",
+            error: false,
+        },
+        zipcode: {
+            value: "",
+            error: false,
+        },
+    });
+
     const [addressTwo, setAddressTwo] = useState("");
-    const [city, setCity] = useState("");
-    const [stateLocation, setStateLocation] = useState("");
-    const [zipcode, setZipcode] = useState("");
-
-    const [firstName, setFirstName] = useState("");
     const [middleName, setMiddleName] = useState("");
-    const [lastName, setLastName] = useState("");
 
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [emailAddress, setEmailAddress] = useState("");
     const [organizations, setOrganizations] = useState("");
     const [donation, setDonation] = useState("");
 
     const [membership, setMembership] = useState("");
     const [memberType, setMemberType] = useState("");
+
+    const [snackbar, setSnackBar] = useState({
+        open: false,
+        message: "",
+    });
 
     // modifies isMobile state when window resizes
     useEffect(() => {
@@ -148,33 +188,104 @@ export default function JoinUs() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const handleChange = (event) => {
+        setValues({
+            ...values,
+            [event.target.name]: {
+                value: event.target.value,
+            },
+        });
+    };
+
+    const handleSnackClose = () => {
+        setSnackBar({ open: false });
+    };
+
     const handleMembershipChange = (event) => {
         setMembershipCheck(event.target.checked);
     };
 
     const handleDonateChange = (event) => {
+        if (donateCheck) setDonation("");
         setDonateCheck(event.target.checked);
     };
 
-    const handleCountryChange = (value) => {
-        setCountry(value);
+    const handleCountryChange = (val) => {
+        setValues({
+            ...values,
+            country: {
+                value: val,
+            },
+        });
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
+        if (isFormDisabled) return;
+        setIsFormDisabled(true);
+        document.body.style.cursor = "wait";
+
+        let firstName = false;
+        let lastName = false;
+        let phone = false;
+        let email = false;
+        let country = false;
+        let address = false;
+        let city = false;
+        let state = false;
+        let zipcode = false;
+
+        if (values.firstName.value === "") firstName = true;
+        if (values.lastName.value === "") lastName = true;
+        if (values.phoneNumber.value === "") phone = true;
+        if (values.emailAddress.value === "") email = true;
+        if (values.country.value === "") country = true;
+        if (values.addressOne.value === "") address = true;
+        if (values.city.value === "") city = true;
+        if (values.stateLocation.value === "") state = true;
+        if (values.zipcode.value === "") zipcode = true;
+
+        setValues({
+            ...values,
+            firstName: { ...values.firstName, error: firstName },
+            lastName: { ...values.lastName, error: lastName },
+            phoneNumber: { ...values.phoneNumber, error: phone },
+            emailAddress: { ...values.emailAddress, error: email },
+            country: { ...values.country, error: country },
+            addressOne: { ...values.addressOne, error: address },
+            city: { ...values.city, error: city },
+            stateLocation: { ...values.stateLocation, error: state },
+            zipcode: { ...values.zipcode, error: zipcode },
+        });
+
+        if (
+            firstName ||
+            lastName ||
+            phone ||
+            email ||
+            country ||
+            address ||
+            city ||
+            state ||
+            zipcode
+        ) {
+            setSnackBar({ open: true, message: "Missing required fields" });
+            setIsFormDisabled(false);
+            document.body.style.cursor = null;
+            return;
+        }
 
         // call backend route to store member data
+
+        document.body.style.cursor = null;
+        setIsFormDisabled(false);
     };
 
-    const dropdownStyle = {
-        borderRadius: "15px",
-        boxSizing: "border-box",
+    const inputFieldStyle = {
         border: "1px solid #000000",
-        fontFamily: "Nunito",
-        fontSize: "18px",
-        lineHeight: "1.95vw",
-        color: "#000000",
-        background: "#FFFFFF",
+    };
+
+    const inputErrorStyle = {
+        border: "1px solid #ea4444",
     };
 
     const CustomColorCheckbox = withStyles({
@@ -238,16 +349,18 @@ export default function JoinUs() {
                         </div>
                     </div>
                 )}
-                <form onSubmit={handleSubmit}>
+                <form autoComplete="off">
                     <h1 className="signup-text">Sign Me Up!</h1>
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
                             className="first-name input-field"
                             placeholder="First Name"
-                            required
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
+                            value={values.firstName.value}
+                            error={values.firstName.error}
+                            onChange={handleChange}
+                            disabled={isFormDisabled}
+                            name="firstName"
                         />
                         {displayAsterisk()}
                     </div>
@@ -258,16 +371,19 @@ export default function JoinUs() {
                             placeholder="Middle Name"
                             value={middleName}
                             onChange={(e) => setMiddleName(e.target.value)}
+                            disabled={isFormDisabled}
                         />
                     </div>
-                    <div className="form-item">
+                    <div className="form-item last-name-field">
                         <CustomTextField
                             variant="outlined"
                             className="last-name input-field"
                             placeholder="Last Name"
-                            required
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
+                            value={values.lastName.value}
+                            error={values.lastName.error}
+                            onChange={handleChange}
+                            disabled={isFormDisabled}
+                            name="lastName"
                         />
                         {displayAsterisk()}
                     </div>
@@ -277,10 +393,12 @@ export default function JoinUs() {
                             variant="outlined"
                             className="phone-number input-field"
                             placeholder="Phone Number"
-                            required
                             type="tel"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            value={values.phoneNumber.value}
+                            error={values.phoneNumber.error}
+                            onChange={handleChange}
+                            disabled={isFormDisabled}
+                            name="phoneNumber"
                         />
                         {displayAsterisk()}
                     </div>
@@ -289,32 +407,37 @@ export default function JoinUs() {
                             variant="outlined"
                             className="email-address input-field"
                             placeholder="Email Address"
-                            required
                             type="email"
-                            value={emailAddress}
-                            onChange={(e) => setEmailAddress(e.target.value)}
+                            value={values.emailAddress.value}
+                            error={values.emailAddress.error}
+                            onChange={handleChange}
+                            disabled={isFormDisabled}
+                            name="emailAddress"
                         />
                         {displayAsterisk()}
                     </div>
                     <div className="form-item">
                         <CountryDropdown
                             className="input-field country-dropdown"
-                            style={dropdownStyle}
-                            value={country}
+                            style={values.country.error ? inputErrorStyle : inputFieldStyle}
+                            value={values.country.value}
                             onChange={handleCountryChange}
+                            disabled={isFormDisabled}
                         />
                         {displayAsterisk()}
                     </div>
-                    {country !== "" ? (
+                    {values.country.value !== "" ? (
                         <div>
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
                                     className="address-line1 input-field"
                                     placeholder="Address Line 1"
-                                    required
-                                    value={addressOne}
-                                    onChange={(e) => setAddressOne(e.target.value)}
+                                    value={values.addressOne.value}
+                                    error={values.addressOne.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="addressOne"
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -325,16 +448,19 @@ export default function JoinUs() {
                                     placeholder="Address Line 2"
                                     value={addressTwo}
                                     onChange={(e) => setAddressTwo(e.target.value)}
+                                    disabled={isFormDisabled}
                                 />
                             </div>
-                            <div className="form-item">
+                            <div className="city-field form-item">
                                 <CustomTextField
                                     variant="outlined"
                                     className="city-field input-field"
                                     placeholder="City"
-                                    required
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
+                                    value={values.city.value}
+                                    error={values.city.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="city"
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -343,9 +469,11 @@ export default function JoinUs() {
                                     variant="outlined"
                                     className="state-field input-field"
                                     placeholder="State"
-                                    required
-                                    value={stateLocation}
-                                    onChange={(e) => setStateLocation(e.target.value)}
+                                    value={values.stateLocation.value}
+                                    error={values.stateLocation.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="stateLocation"
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -354,9 +482,11 @@ export default function JoinUs() {
                                     variant="outlined"
                                     className="zipcode-field input-field"
                                     placeholder="Zip Code"
-                                    required
-                                    value={zipcode}
-                                    onChange={(e) => setZipcode(e.target.value)}
+                                    value={values.zipcode.value}
+                                    error={values.zipcode.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="zipcode"
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -374,6 +504,7 @@ export default function JoinUs() {
                                     label="New or Renewing Member?"
                                     select
                                     size="small"
+                                    InputLabelProps={isMobile ? { style: { fontSize: 14 } } : null}
                                 >
                                     <MenuItem value="new">New</MenuItem>
                                     <MenuItem value="renew">Renewing</MenuItem>
@@ -388,6 +519,8 @@ export default function JoinUs() {
                                     required
                                     value={organizations}
                                     onChange={(e) => setOrganizations(e.target.value)}
+                                    multiline
+                                    rows={3}
                                 />
                                 {displayAsterisk()}
                             </div>
@@ -407,7 +540,7 @@ export default function JoinUs() {
                                     </MenuItem>
                                     <MenuItem value="option2">General $30.00 USD</MenuItem>
                                     <MenuItem value="option3">
-                                        Lifetime - Nun/Sudent/Unemployed $150.00 USD
+                                        Lifetime - Nun/Student/Unemployed $150.00 USD
                                     </MenuItem>
                                     <MenuItem value="option4">Lifetime $300.00 USD</MenuItem>
                                 </CustomSelectField>
@@ -424,7 +557,7 @@ export default function JoinUs() {
                                 </span>
                             </div>
                             {donateCheck ? (
-                                <div className="donation-num">
+                                <div className="donation-num form-item">
                                     <CustomTextField
                                         variant="outlined"
                                         className="donation-amount input-field"
@@ -432,15 +565,27 @@ export default function JoinUs() {
                                         required
                                         value={donation}
                                         onChange={(e) => setDonation(e.target.value)}
+                                        InputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position="start">$</InputAdornment>
+                                            ),
+                                        }}
                                     />
                                     {displayAsterisk()}
                                 </div>
                             ) : null}
                         </div>
                     ) : (
-                        <button className="submit-button" type="submit">
-                            Submit
-                        </button>
+                        <div>
+                            <p style={{ textAlign: "center", marginTop: "50px" }}>
+                                {" "}
+                                <span className="error-asterisk"> * </span> indicates a required
+                                field
+                            </p>
+                            <div className="submit-button">
+                                <CustomButton text="Submit" onClickCallback={handleSubmit} />
+                            </div>
+                        </div>
                     )}
                 </form>
                 {!membershipCheck ? (
@@ -450,6 +595,12 @@ export default function JoinUs() {
                 ) : null}
                 {/* {formCheck ? <p className="success-message">All required fields are filled.</p> : <p className="error-message">*Please fill out all required fields to proceed to payment.</p>} */}
             </div>
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={handleSnackClose}
+                message={snackbar.message}
+            />
         </div>
     );
 }
