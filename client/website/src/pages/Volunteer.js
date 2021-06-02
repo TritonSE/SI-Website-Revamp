@@ -12,7 +12,7 @@ import React, { useState, useEffect } from "react";
 import "../css/Volunteer.css";
 
 import { withStyles } from "@material-ui/core/styles";
-import { TextField } from "@material-ui/core";
+import { TextField, Snackbar } from "@material-ui/core";
 import { CountryDropdown } from "react-country-region-selector";
 import ResourcesHeader from "../components/ResourcesHeader";
 import VolunteerOption from "../components/VolunteerOption";
@@ -100,6 +100,11 @@ export default function Volunteer() {
     const [design, setDesign] = useState(false);
     const [ordination, setOrdination] = useState(false);
 
+    const [snackbar, setSnackBar] = useState({
+        open: false,
+        message: "",
+    });
+
     // modifies isMobile state when window resizes
     useEffect(() => {
         function handleResize() {
@@ -113,6 +118,10 @@ export default function Volunteer() {
         // Removes event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    const handleSnackClose = () => {
+        setSnackBar({ open: false });
+    };
 
     const handleCountryChange = (value) => {
         setCountry(value);
@@ -167,10 +176,10 @@ export default function Volunteer() {
                             onChange={(e) => setMiddleName(e.target.value)}
                         />
                     </div>
-                    <div className="form-item">
+                    <div className="form-item last-name-field">
                         <CustomTextField
                             variant="outlined"
-                            className="last-name input-field"
+                            className="input-field"
                             placeholder="Last Name"
                             required
                             value={lastName}
@@ -469,6 +478,12 @@ export default function Volunteer() {
                     </button>
                 </form>
             </div>
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={handleSnackClose}
+                message={snackbar.message}
+            />
         </div>
     );
 }

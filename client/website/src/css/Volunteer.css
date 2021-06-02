@@ -44,13 +44,14 @@
 .left-options-column {
   display: inline-block;
   vertical-align: top;
-  width: 50%;
+  width: 49%;
 }
 
 .right-options-column {
   display: inline-block;
   vertical-align: top;
-  width: 50%;
+  width: 49%;
+  margin-left: 2%;
 }
 
 .submit-form {
@@ -75,8 +76,9 @@
 }
 
 .error-asterisk {
-  color: red;
+  color: #ea4444;
   margin-left: 0.16vw;
+  font-size: 25px;
 }
 
 .form-item {
@@ -92,14 +94,15 @@
 
 .committee-row {
   margin-top: 1.25vw;
+  display: inline-block;
 }
 
 .committee-checkbox {
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .committee-title {
-  display: inline-block;
+  /* display: inline-block; */
   font-family: var(--text-font);
   font-style: normal;
   font-weight: normal;
@@ -123,6 +126,56 @@
 .country-dropdown {
   padding-left: 10px;
   height: 40px;
+}
+
+@media screen and (min-width: 840px) and (max-width: 1150px) {
+  .committee-row {
+    margin-top: 30px;
+  }
+
+  .submit-form {
+    width: 15vw;
+    height: 36px;
+    margin-top: 100px;
+    margin-left: 37%;
+  }
+
+  .form-item {
+    margin-top: 29px;
+  }
+
+  .input-field {
+    width: 97%;
+  }
+
+  .last-name-field {
+    margin-top: 40px !important;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 839px) {
+  .committee-row {
+    margin-top: 50px;
+  }
+
+  .submit-form {
+    width: 30vw;
+    height: 36px;
+    margin-top: 100px;
+    margin-left: 25.5%;
+  }
+
+  .input-field {
+    width: 96%;
+  }
+
+  .form-item {
+    margin-top: 29px;
+  }
+
+  .last-name-field {
+    margin-top: 40px !important;
+  }
 }
 
 @media screen and (max-width: 600px) {
