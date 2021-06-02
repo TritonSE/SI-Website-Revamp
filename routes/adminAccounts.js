@@ -3,7 +3,7 @@
  * Allows for account create, login, and forgot password capabilities.
  *
  * @summary   Routes for AdminAccounts -->
- * @author    Thomas Garry
+ * @author    Thomas Garry, Amrit Kaur Singh
  */
 const express = require("express");
 const { body } = require("express-validator");
@@ -33,9 +33,14 @@ function getRandomArbitrary(min, max) {
 }
 
 /**
- * Registers an admin to the DB.
+ * Registers an admin to the DB if they know the correct secret key and have do not already have an account with
+ * the given email address.
  *
- * @returns {jwt} - 200 and jwttoken
+ * @returns {200} - Successful registeration, returned JSON contains name, email, and a signed JWT token
+ * @returns {400} - Insufficient Information, route was expected more information than what was given
+ * @returns {401} - Secret key is not correct, invalid credentials
+ * @returns {409} - Email address already used for an existing admin account
+ * @returns {500} - Internal error, user could not be registered for some reason
  */
 router.post(
     "/register",
@@ -44,43 +49,50 @@ router.post(
         body("email").isEmail(),
         body("password").notEmpty().isString().isLength({ min: 6 }),
         body("secret").notEmpty().isString(),
-        // prevent createdAt to be edited
-        body("createdAt").custom((val) => val === undefined),
-        body("updatedAt").custom((val) => val === undefined),
-        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
         try {
-            const { email, secret } = req.body;
+            const { name, email, password, secret } = req.body;
+
+            // validate secrets
+            if (secret !== config.auth.register_secret) {
+                return res.status(401).json({ errors: [{ msg: "Invalid Credentials" }] });
+            }
 
             // check if user exists
             const user = await findOneUser(email);
             if (user) {
-                return res.status(401).json({ errors: [{ msg: "Invalid Credentials" }] });
+                return res
+                    .status(409)
+                    .json({ errors: [{ msg: "Email address already registered to an account." }] });
             }
+
+            const newUserEntry = {
+                name,
+                email,
+                password,
+            };
 
             // add user
-            const entries = await addAdmin(req.body);
+            const entries = await addAdmin(newUserEntry);
 
-            // validate secrets
-            if (secret !== config.auth.register_secret) {
-                return res.status(401).json({ errors: [{ msg: "User Error" }] });
-            }
-
-            if (!entries)
-                return res.status(400).json({ message: "there was an error adding entry" });
+            // user could not be added
+            if (!entries) return res.status(500).json({ message: "User could not be registered." });
 
             const payload = {
+                name,
                 email,
             };
+            // success, return name + email + token
             return res.status(200).json({
+                name,
                 email,
                 token: createJWT(payload),
             });
         } catch (err) {
             console.log(err);
-            return res.status(400).json({ message: err });
+            return res.status(500).json({ message: err });
         }
     }
 );
@@ -89,7 +101,11 @@ router.post(
  * Logins an admin user.
  *
  * @body email, password - Use middleware to validate
- * @returns {status/object} - 200 json with email and jwt / 500 with err
+ *
+ * @returns {200} - Successful login, returned JSON contains name, email, and a signed JWT token
+ * @returns {400} - Insufficient Information, route was expected more information than what was given
+ * @returns {401} - Either email or password do not match an existing account
+ * @returns {500} - Internal error, user could not be logged in for some reason
  */
 router.post(
     "/login",
@@ -101,21 +117,22 @@ router.post(
     async (req, res) => {
         const { email, password } = req.body;
         try {
-            // check if user exists
+            // check if user does not exist
             const user = await findOneUser(email);
             if (!user) {
-                return res.status(401).json({ errors: [{ msg: "Invalid Credentials" }] });
+                return res.status(401).json({ errors: [{ msg: "Invalid credentials" }] });
             }
             // compare user password with passed in value
             const matched = await user.validPassword(password);
 
             if (matched) {
-                // matched user, return email and token
+                // matched user, return email + name +  token
                 const payload = {
                     email,
                 };
                 return res.status(200).json({
-                    email,
+                    email: user.email,
+                    name: user.name,
                     token: createJWT(payload),
                 });
             }
@@ -133,7 +150,11 @@ router.post(
  * @body {string} email - Denotes an existing user's email in the DB
  * @body {string} oldPassword - Denotes an existing user's current password in DB - required
  * @body {string} newPassword - Denotes what an existing user's password will be changed to - required
- * @returns {status/object} - 200 if email and oldPassword match and the password is updated / 401 or 500 with err
+ *
+ * @returns {200} - Successful password change
+ * @returns {400} - Insufficient Information, route was expected more information than what was given
+ * @returns {401} - Either email or oldPassword do not match an existing account
+ * @returns {500} - Internal error, user's password could not be changed for some reason
  */
 router.put(
     "/changePassword",
@@ -148,10 +169,11 @@ router.put(
         try {
             // check if user email exists
             const user = await findOneUser(email);
+
             // error: User email does not exist
             if (!user) {
                 return res.status(401).json({
-                    errors: [{ msg: "Email Not Associated With User Account" }],
+                    errors: [{ msg: "Invalid Credentials" }],
                 });
             }
 
@@ -170,7 +192,7 @@ router.put(
             // error: Password could not be updated
             if (!updatedUser) {
                 return res
-                    .status(400)
+                    .status(500)
                     .json({ errors: [{ msg: "Password Could Not Be Updated!" }] });
             }
 
@@ -186,12 +208,18 @@ router.put(
 );
 
 /**
- * Sends Email containing new password for forgot password if the user is authenticated with email.
+ * Sends email containing new password if the user provides an email address to an exisitng account. The
+ * password itself is randomly generated. Email should provide user with this randomly generated password and encourage them
+ * to reset it to something more memorable.
  *
  * @body {string} - Email that denotes an existing user's email in the DB
- * @returns {status/object} - 200 if password is reset to a rendomly generated password / 400 or 500 with err
+ *
+ * @returns {200} - Successful randomly generated password reset + email sent to user
+ * @returns {400} - Insufficient Information, route was expected more information than what was given
+ * @returns {401} - Email does not match an existing account
+ * @returns {500} - Internal error, user's password could not be changed/email could not be sent for some reason
  */
-router.post(
+router.put(
     "/forgotPassword",
     [body("email").notEmpty().isEmail(), isValidated],
     async (req, res) => {
@@ -201,7 +229,7 @@ router.post(
             const user = await findOneUser(email);
             if (!user) {
                 return res.status(401).json({
-                    errors: [{ msg: "Email Not Associated With User Account" }],
+                    errors: [{ msg: "Invalid Credentials" }],
                 });
             }
 
@@ -215,7 +243,9 @@ router.post(
             // attempt to update the password for the user
             const updatedUser = await updateOneUser(user);
             if (!updatedUser) {
-                return res.status(400).json({ errors: [{ msg: "Could not update user..." }] });
+                return res
+                    .status(500)
+                    .json({ errors: [{ msg: "Password could not be reset for account." }] });
             }
 
             // send an automated email to the user containing their new randomly generated password
@@ -224,7 +254,18 @@ router.post(
                 resetLink: `${config.frontend.uri}reset-password`,
             };
 
-            sendEmail("forgot-password", email, locals, res);
+            const isSent = await sendEmail("forgot-password", email, locals, res);
+
+            // email could be sent
+            if (!isSent)
+                return res.status(500).json({
+                    errors: [
+                        {
+                            msg:
+                                "Password reset, but email could not be sent. Please contact an adminstrator.",
+                        },
+                    ],
+                });
 
             return res.status(200).json({
                 msg: "Email Successfully Sent",
