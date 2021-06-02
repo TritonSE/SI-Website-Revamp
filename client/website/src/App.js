@@ -22,76 +22,98 @@ function App() {
     return (
         <Router>
             {/* Switch gurantees that a URL can match to only one route */}
-            <PageLayout>
-                <Switch>
-                    {/* Home Page */}
-                    <Route exact path={["/home", SITE_PAGES.HOME]}>
+            <Switch>
+                {/* Home Page */}
+                <Route exact path={["/home", SITE_PAGES.HOME]}>
+                    <PageLayout>
                         <Home />
-                    </Route>
-                    {/* Conferences Page */}
-                    <Route exact path={SITE_PAGES.CONFERENCES}>
+                    </PageLayout>
+                </Route>
+                {/* Conferences Page */}
+                <Route exact path={SITE_PAGES.CONFERENCES}>
+                    <PageLayout>
                         <Conferences />
-                    </Route>
-                    {/* About Us Page */}
-                    <Route exact path={SITE_PAGES.ABOUT_US}>
+                    </PageLayout>
+                </Route>
+                {/* About Us Page */}
+                <Route exact path={SITE_PAGES.ABOUT_US}>
+                    <PageLayout>
                         <AboutUs />
-                    </Route>
-                    {/* Contact Us Page */}
-                    <Route exact path={SITE_PAGES.CONTACT_US}>
+                    </PageLayout>
+                </Route>
+                {/* Contact Us Page */}
+                <Route exact path={SITE_PAGES.CONTACT_US}>
+                    <PageLayout>
                         <ContactUs />
-                    </Route>
+                    </PageLayout>
+                </Route>
 
-                    {/* Join Us Page */}
-                    <Route exact path={SITE_PAGES.JOIN_US}>
+                {/* Join Us Page */}
+                <Route exact path={SITE_PAGES.JOIN_US}>
+                    <PageLayout>
                         <JoinUs />
-                    </Route>
+                    </PageLayout>
+                </Route>
 
-                    {/* Volunteer Page */}
-                    <Route exact path={SITE_PAGES.VOLUNTEER}>
+                {/* Volunteer Page */}
+                <Route exact path={SITE_PAGES.VOLUNTEER}>
+                    <PageLayout>
                         <Volunteer />
-                    </Route>
+                    </PageLayout>
+                </Route>
 
-                    {/* ------ Resource Pages -------- */}
+                {/* ------ Resource Pages -------- */}
 
-                    {/* Landing Page */}
-                    <Route exact path={SITE_PAGES.RESOURCES_LANDING}>
+                {/* Landing Page */}
+                <Route exact path={SITE_PAGES.RESOURCES_LANDING}>
+                    <PageLayout hideFooter="true">
                         <ResourcesNavBar>
                             <LandingPage />
                         </ResourcesNavBar>
-                    </Route>
-                    {/* Newsletters */}
-                    <Route exact path={SITE_PAGES.RESOURCES_NEWSLETTERS}>
+                    </PageLayout>
+                </Route>
+                {/* Newsletters */}
+                <Route exact path={SITE_PAGES.RESOURCES_NEWSLETTERS}>
+                    <PageLayout>
                         <ResourcesNavBar>
                             <Newsletters />
                         </ResourcesNavBar>
-                    </Route>
-                    {/* E-Publications */}
-                    <Route exact path={SITE_PAGES.RESOURCES_EPUBS}>
+                    </PageLayout>
+                </Route>
+                {/* E-Publications */}
+                <Route exact path={SITE_PAGES.RESOURCES_EPUBS}>
+                    <PageLayout>
                         <ResourcesNavBar>
                             <EPublications />
                         </ResourcesNavBar>
-                    </Route>
-                    {/* Buddhist Culture */}
-                    <Route exact path={SITE_PAGES.RESOURCES_BUDDHIST_CULTURE}>
+                    </PageLayout>
+                </Route>
+                {/* Buddhist Culture */}
+                <Route exact path={SITE_PAGES.RESOURCES_BUDDHIST_CULTURE}>
+                    <PageLayout>
                         <ResourcesNavBar>
                             <BuddhistCulture />
                         </ResourcesNavBar>
-                    </Route>
-                    {/* Ordination Issue */}
-                    <Route exact path={SITE_PAGES.RESOURCES_ORDINATION_ISSUE}>
+                    </PageLayout>
+                </Route>
+                {/* Ordination Issue */}
+                <Route exact path={SITE_PAGES.RESOURCES_ORDINATION_ISSUE}>
+                    <PageLayout>
                         <ResourcesNavBar>
                             <OrdinationIssue />
                         </ResourcesNavBar>
-                    </Route>
+                    </PageLayout>
+                </Route>
 
-                    {/* ------ Resource Pages -------- */}
+                {/* ------ Resource Pages -------- */}
 
-                    {/* Any other URL is automatically matched to 404 Page */}
-                    <Route path="/">
+                {/* Any other URL is automatically matched to 404 Page */}
+                <Route path="/">
+                    <PageLayout>
                         <Custom404 />
-                    </Route>
-                </Switch>
-            </PageLayout>
+                    </PageLayout>
+                </Route>
+            </Switch>
         </Router>
     );
 }
