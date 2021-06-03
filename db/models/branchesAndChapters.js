@@ -15,10 +15,6 @@ module.exports = db.define(
             type: Sequelize.STRING(56),
             allowNull: false,
         },
-        coordinates: {
-            type: Sequelize.GEOMETRY('POINT'),
-            allowNull: false,
-        },
         isBranch: {
             type: Sequelize.BOOLEAN,
             allowNull: false,
@@ -26,6 +22,14 @@ module.exports = db.define(
         },
         email: {
             type: Sequelize.STRING(320),
+            allowNull: false,
+        },
+        latitude: {
+            type: Sequelize.FLOAT(),
+            allowNull: false,
+        },
+        longitude: {
+            type: Sequelize.FLOAT(),
             allowNull: false,
         },
         siteLink: {

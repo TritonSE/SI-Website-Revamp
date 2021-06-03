@@ -22,7 +22,7 @@ router.post(
     [
         body("name").isString(),
         body("isBranch").isBoolean(),
-        body("email").isString(),
+        body("email").isEmail(),
         body("latitude").isFloat(),
         body("longitude").isFloat(),
         body("siteLink").isURL().optional(),
@@ -30,21 +30,9 @@ router.post(
     ],
     async (req, res) => {
         try {
-            const point = {
-                type: 'POINT',
-                coordinates: [req.body.latitude, req.body.longitude],
-            };
-            const newEntry = {
-                name: req.body.name,
-                coordinates: point,
-                isBranch: req.body.isBranch,
-                email: req.body.email,
-                siteLink: req.body.siteLink,
-            };
-            const addedEntry = await create(newEntry);
+            const addedEntry = await create(req.body);
             return res.status(200).json(addedEntry);
         } catch (err) {
-            console.log(err);
             return res.status(500).json({ message: err });
         }
     }
@@ -56,8 +44,12 @@ router.post(
  * @returns {status} - 200 - with array of all conferences.
  */
 router.get("/getAllLocations", [isValidated], async (req, res) => {
-    const entries = await getAll();
-    return res.status(200).json(entries);
+    try {
+        const entries = await getAll();
+        return res.status(200).json(entries);
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
 });
 
 /**
@@ -71,7 +63,7 @@ router.put(
     [
         body("name").isString().optional(),
         body("isBranch").isBoolean().optional(),
-        body("email").isString().optional(),
+        body("email").isEmail().optional(),
         body("latitude").isFloat().optional(),
         body("longitude").isFloat().optional(),
         body("siteLink").isURL().optional(),
@@ -79,20 +71,17 @@ router.put(
     ],
     async (req, res) => {
         try {
-            const { id } = req.params; // must be a number
-            const point = {
-                type: "Point",
-                coordinates: [req.body.latitude, req.body.longitude],
-            }; // creates a point from coordinates
-            const newEntry = {
-                name: req.body.name,
-                coordinates: point,
-                isBranch: req.body.isBranch,
-                email: req.body.email,
-                siteLink: req.body.siteLink,
-            }; // creates body from formatted data
-            const editedEntry = await edit(id, newEntry);
-            return res.status(200).json(editedEntry);
+            const { id } = req.params;
+            // checks that index is a number
+            if (Number(id) < 0) return res.status(500).json({ message: "index must be a number" });
+
+            const entries = await edit(Number(id), req.body);
+
+            // success upon edit
+            if (entries[0] === 1) return res.status(200).json({ message: "success" });
+
+            // failure upon edit
+            return res.status(500).json({ message: "unsuccessful edit" });
         } catch (err) {
             console.log(err);
             return res.status(500).json({ message: err });
