@@ -61,7 +61,7 @@ const CustomSelectField = withStyles({
             color: "black",
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "black",
+            borderColor: "#6652a0",
         },
     },
 })(TextField);
@@ -88,7 +88,7 @@ const CustomTextField = withStyles({
                 borderColor: "black",
             },
             "&.Mui-focused fieldset": {
-                borderColor: "black",
+                borderColor: "#6652a0",
             },
         },
         "& input": {
@@ -565,6 +565,8 @@ export default function JoinUs() {
                                         required
                                         value={donation}
                                         onChange={(e) => setDonation(e.target.value)}
+                                        type="number"
+                                        step={0.01}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">$</InputAdornment>
