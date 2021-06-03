@@ -44,7 +44,7 @@ const CustomTextField = withStyles({
                 borderColor: "black",
             },
             "&.Mui-focused fieldset": {
-                borderColor: "black",
+                borderColor: "#6652a0",
             },
         },
         "& input": {
@@ -251,7 +251,7 @@ export default function Volunteer() {
             />
             <div className="volunteer-content">
                 <form autoComplete="off">
-                    <p style={{ textAlign: "center", marginTop: "100px", fontSize: "18px" }}>
+                    <p className="required-note">
                         {" "}
                         <span className="error-asterisk"> * </span> indicates a required field
                     </p>

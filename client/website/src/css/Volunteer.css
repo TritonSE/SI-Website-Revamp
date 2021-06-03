@@ -115,6 +115,12 @@
   background: var(--white);
 }
 
+.required-note {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 100px;
+}
+
 @media screen and (min-width: 840px) and (max-width: 1150px) {
   .committee-row {
     margin-top: 30px;
@@ -164,6 +170,10 @@
 
   .city-field {
     margin-top: 40px;
+  }
+
+  .required-note {
+    margin-top: 50px;
   }
 }
 
@@ -222,5 +232,19 @@
   .committee-description {
     font-size: 14px;
     line-height: 16px;
+  }
+
+  .required-note {
+    margin-top: 60px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .committee-row {
+    margin-top: 50px;
+  }
+
+  .submit-form {
+    margin-top: 100px;
   }
 }
