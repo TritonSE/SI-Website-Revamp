@@ -5,14 +5,14 @@
 }
 
 .signup-text {
-  margin-top: 6.2vw;
-  font-size: 2.81vw;
+  margin-top: 2.2vw;
+  font-size: 36px;
   font-weight: bold;
 }
 
 .contact-info-text {
   margin-top: 8.83vw;
-  font-size: 2.81vw;
+  font-size: 36px;
   font-weight: bold;
 }
 
@@ -21,7 +21,7 @@
   font-family: var(--heading-font);
   font-style: normal;
   font-weight: bold;
-  font-size: 2.81vw;
+  font-size: 36px;
   line-height: 45px;
 
   color: var(--black);
@@ -133,7 +133,11 @@
   }
 
   .last-name-field {
-    margin-top: 40px !important;
+    margin-top: 40px;
+  }
+
+  .city-field {
+    margin-top: 40px;
   }
 }
 
@@ -155,7 +159,11 @@
   }
 
   .last-name-field {
-    margin-top: 40px !important;
+    margin-top: 40px;
+  }
+
+  .city-field {
+    margin-top: 40px;
   }
 }
 
@@ -164,40 +172,37 @@
     width: 85%;
     margin-left: 7.5%;
   }
+
   .input-field {
     width: 95%;
   }
 
   .form-item {
-    margin-top: 10vw;
+    margin-top: 15px;
+  }
+
+  .last-name-field {
+    margin-top: 28px;
+  }
+
+  .city-field {
+    margin-top: 28px;
   }
 
   .signup-text {
-    font-size: 18px;
+    font-size: 22px;
     margin-top: 50px;
-    margin-bottom: -10px;
   }
 
   .contact-info-text {
-    font-size: 18px;
-    margin-top: 50px;
-    margin-bottom: -10px;
+    font-size: 22px;
+    margin-top: 70px;
   }
 
   .help-section-title {
-    font-size: 18px;
+    font-size: 22px;
     line-height: 170%;
-  }
-
-  .country-dropdown {
-    height: 40px;
-    border-radius: 1.17vw;
-    box-sizing: border-box;
-    border: 1px solid #000000;
-    font-family: var(--text-font);
-    font-size: 18px;
-    line-height: 1.95vw;
-    color: #000000;
+    margin-top: 70px;
   }
 
   .submit-form {
@@ -215,7 +220,7 @@
   }
 
   .committee-description {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 16px;
   }
 }

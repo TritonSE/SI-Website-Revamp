@@ -251,6 +251,10 @@ export default function Volunteer() {
             />
             <div className="volunteer-content">
                 <form autoComplete="off">
+                    <p style={{ textAlign: "center", marginTop: "100px", fontSize: "18px" }}>
+                        {" "}
+                        <span className="error-asterisk"> * </span> indicates a required field
+                    </p>
                     <h1 className="signup-text">Sign Me Up!</h1>
                     <div className="form-item">
                         <CustomTextField
@@ -365,10 +369,10 @@ export default function Volunteer() {
                                     disabled={isFormDisabled}
                                 />
                             </div>
-                            <div className="form-item">
+                            <div className="city-field form-item">
                                 <CustomTextField
                                     variant="outlined"
-                                    className="city-field input-field"
+                                    className="input-field"
                                     placeholder="City"
                                     value={values.city.value}
                                     error={values.city.error}
@@ -601,10 +605,6 @@ export default function Volunteer() {
                             </div>
                         </div>
                     )}
-                    <p style={{ textAlign: "center" }}>
-                        {" "}
-                        <span className="error-asterisk"> * </span> indicates a required field
-                    </p>
                     <div className="submit-form">
                         <CustomButton text="Submit" onClickCallback={handleSubmit} />
                     </div>
