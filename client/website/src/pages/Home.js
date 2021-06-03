@@ -116,48 +116,43 @@ export default function Home() {
             name: "Buenos Aires",
             coordinates: [-58.3816, -34.6037],
             isBranch: true,
-            email: "kingnavid@awesome.com",
-            urlLink: "https://www.instagram.com/navidisme/?hl=en",
+            email: "sakyadhita@buenos.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "La Paz",
             coordinates: [-68.1193, -16.4897],
             isBranch: true,
-            email: "thomas@cat.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/3122a8820897b8d1110b0840edc0944e/a41d1/Thomas_Garry.jpg",
+            email: "sakyadhita@lapaz.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "Brasilia",
             coordinates: [-47.8825, -15.7942],
             isBranch: false,
-            email: "patrick@weirdo.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+            email: "sakyadhita@brasilia.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "Budapest",
             coordinates: [19.0402, 47.4979],
             isBranch: false,
-            email: "patrick@weirdo.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+            email: "sakyadhita@budapest.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "Delhi",
             coordinates: [77.1025, 28.7041],
             isBranch: false,
-            email: "patrick@weirdo.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+            email: "sakyadhita@delhi.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "California",
             coordinates: [-119.4179, 36.7783],
             isBranch: true,
-            email: "patrick@weirdo.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+            email: "sakyadhita@california.com",
+            urlLink: "https://www.google.com/",
         },
     ];
 
