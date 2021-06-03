@@ -57,6 +57,7 @@ const Slideshow = (props) => (
                 />
             </div>
         }
+        arrows={!props.isMobile}
         pauseOnHover
         indicators={() => <div className="dot" />}
         style={{ maxHeight: props.height, minHeight: props.height, width: props.width }}
