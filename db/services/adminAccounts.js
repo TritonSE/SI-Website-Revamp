@@ -10,8 +10,8 @@ const AdminAccounts = require("../models/adminAccounts");
 /**
  * Creates Admin data.
  *
- * @param {object} data -
- * @returns {[object]} - Array of objects.
+ * @param {object}
+ * @returns {[object]}
  */
 async function addAdmin(data) {
     try {
@@ -26,7 +26,7 @@ async function addAdmin(data) {
  * Finds user in the DB.
  *
  * @param {string} incomingEmail - User email to be found
- * @returns {object/boolean} - Order object / null
+ * @returns {object} 
  */
 async function findOneUser(incomingEmail) {
     return AdminAccounts.findOne({ where: { email: incomingEmail } });
@@ -36,7 +36,7 @@ async function findOneUser(incomingEmail) {
  * Updates user in the DB.
  *
  * @param {object} updated_user - Updated user object
- * @returns {object/boolean} - Updated object
+ * @returns {object} 
  */
 async function updateOneUser(updated_user) {
     return updated_user.save();

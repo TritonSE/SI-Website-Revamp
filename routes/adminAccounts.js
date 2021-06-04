@@ -36,7 +36,12 @@ function getRandomArbitrary(min, max) {
  * Registers an admin to the DB if they know the correct secret key and have do not already have an account with
  * the given email address.
  *
- * @returns {200} - Successful registeration, returned JSON contains name, email, and a signed JWT token
+ * @body {string} name - Denotes the name of the user to be registered
+ * @body {string} email - Denotes the email of the user to be registered
+ * @body {string} password - Denotes the password of the user to be registered
+ * @body {string} secret - Denotes the secret for validation
+ * 
+ * @returns {200} - Successful registration, returned JSON contains name, email, and a signed JWT token
  * @returns {400} - Insufficient Information, route was expected more information than what was given
  * @returns {401} - Secret key is not correct, invalid credentials
  * @returns {409} - Email address already used for an existing admin account
@@ -57,7 +62,7 @@ router.post(
 
             // validate secrets
             if (secret !== config.auth.register_secret) {
-                return res.status(401).json({ errors: [{ msg: "Invalid Credentials" }] });
+                return res.status(401).json({ msg: "Invalid Credentials" });
             }
 
             // check if user exists
@@ -65,7 +70,7 @@ router.post(
             if (user) {
                 return res
                     .status(409)
-                    .json({ errors: [{ msg: "Email address already registered to an account." }] });
+                    .json({ msg: "Email address already registered to an account." });
             }
 
             const newUserEntry = {
@@ -120,7 +125,7 @@ router.post(
             // check if user does not exist
             const user = await findOneUser(email);
             if (!user) {
-                return res.status(401).json({ errors: [{ msg: "Invalid credentials" }] });
+                return res.status(401).json({ msg: "Invalid credentials" });
             }
             // compare user password with passed in value
             const matched = await user.validPassword(password);
@@ -136,10 +141,10 @@ router.post(
                     token: createJWT(payload),
                 });
             }
-            return res.status(401).json({ errors: [{ msg: "Invalid Credentials" }] });
+            return res.status(401).json({ msg: "Invalid Credentials" });
         } catch (err) {
             console.error(err.message);
-            return res.status(500).send("Server error");
+            return res.status(500).json({ msg: "Server Error" });
         }
     }
 );
@@ -172,9 +177,7 @@ router.put(
 
             // error: User email does not exist
             if (!user) {
-                return res.status(401).json({
-                    errors: [{ msg: "Invalid Credentials" }],
-                });
+                return res.status(401).json({ msg: "Invalid Credentials" });
             }
 
             // check if the old password matches the email (authenticated user)
@@ -182,7 +185,7 @@ router.put(
             const matched = await user.validPassword(oldPassword);
 
             if (!matched) {
-                return res.status(401).json({ errors: [{ msg: "Invalid Credentials" }] });
+                return res.status(401).json({ msg: "Invalid Credentials" });
             }
 
             // attempt to update to the newPassword for the user
@@ -193,16 +196,14 @@ router.put(
             if (!updatedUser) {
                 return res
                     .status(500)
-                    .json({ errors: [{ msg: "Password Could Not Be Updated!" }] });
+                    .json({ msg: "Password Could Not Be Updated!" });
             }
 
             // success!
-            return res.status(200).json({
-                msg: "Password Successfully Updated!",
-            });
+            return res.status(200).json({msg: "Password Successfully Updated!"});
         } catch (err) {
             console.error(err.message);
-            return res.status(500).send("Server error");
+            return res.status(500).json({ msg: "Server Error" });
         }
     }
 );
@@ -228,9 +229,7 @@ router.put(
             // check if user email exists
             const user = await findOneUser(email);
             if (!user) {
-                return res.status(401).json({
-                    errors: [{ msg: "Invalid Credentials" }],
-                });
+                return res.status(401).json({ msg: "Invalid Credentials" });
             }
 
             // generate a random password
@@ -245,7 +244,7 @@ router.put(
             if (!updatedUser) {
                 return res
                     .status(500)
-                    .json({ errors: [{ msg: "Password could not be reset for account." }] });
+                    .json({ msg: "Password could not be reset for account." });
             }
 
             // send an automated email to the user containing their new randomly generated password
@@ -258,21 +257,14 @@ router.put(
 
             // email could be sent
             if (!isSent)
-                return res.status(500).json({
-                    errors: [
-                        {
-                            msg:
-                                "Password reset, but email could not be sent. Please contact an adminstrator.",
-                        },
-                    ],
-                });
+                return res.status(500).json({msg:"Password reset, but email could not be sent. Please contact an adminstrator."});
 
             return res.status(200).json({
                 msg: "Email Successfully Sent",
             });
         } catch (err) {
             console.error(err.message);
-            return res.status(500).send("Server error");
+            return res.status(500).json({ msg: "Server Error" });
         }
     }
 );
