@@ -79,7 +79,7 @@ export default function OrdinationIssue() {
                     <ResourcesHeader
                         image={Header}
                         title="The Ordination Issue"
-                        height="600px"
+                        height="max(75vh, 400px)"
                         width="100%"
                     />
                     <div className="page-content">
