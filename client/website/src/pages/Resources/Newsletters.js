@@ -13,6 +13,19 @@ import "../../css/Newsletters.css";
 
 import Header from "../../media/Lotus_Header.png";
 
+import { fetchNewsletters } from "../../util/requests";
+
+const useNewsletters = () => {
+    const [newsletters, setNewsletters] = useState([]);
+
+    useEffect(async () => {
+        const d = await fetchNewsletters();
+        setNewsletters(d);
+    }, []);
+    console.log(newsletters);
+    return newsletters;
+};
+
 // fill newsletterList
 const newsletterList = [];
 let i = 0;
@@ -37,10 +50,10 @@ const renderPublicationGrid = (currentNewsletters, isMobile) => (
         {currentNewsletters.map((newsletter) => (
             <NewsletterCard
                 key={newsletter.title}
-                title={newsletter.title}
+                title={newsletter.volume}
                 year={newsletter.year}
-                image_url={newsletter.image_url}
-                redirect_link={newsletter.redirect_url}
+                image_url={newsletter.imageLink}
+                redirect_link={newsletter.pdfLink}
                 isMobile={isMobile}
             />
         ))}
@@ -48,11 +61,12 @@ const renderPublicationGrid = (currentNewsletters, isMobile) => (
 );
 
 export default function Newsletters() {
-    const [maxPages, setMaxPages] = useState(9);
+    const [maxPages, setMaxPages] = useState(1);
     const [numPerPage, setNumPerPage] = useState(9);
     const [currentPage, setCurrentPage] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
 
+    const newslettersData = useNewsletters();
     // track window resizes to determine rerender
     useEffect(() => {
         function handleResize() {
@@ -61,13 +75,13 @@ export default function Newsletters() {
             // 4 at 746
             if (window.innerWidth <= 746) {
                 setNumPerPage(4);
-                setMaxPages(Math.ceil(newsletterList.length / 4));
+                setMaxPages(Math.ceil(newslettersData.length / 4));
             } else if (window.innerWidth <= 1167) {
                 setNumPerPage(6);
-                setMaxPages(Math.ceil(newsletterList.length / 6));
+                setMaxPages(Math.ceil(newslettersData.length / 6));
             } else {
                 setNumPerPage(9);
-                setMaxPages(Math.ceil(newsletterList.length / 9));
+                setMaxPages(Math.ceil(newslettersData.length / 9));
             }
 
             if (window.innerWidth <= 450) {
@@ -90,6 +104,7 @@ export default function Newsletters() {
             setCurrentPage(maxPages - 1);
         }
     }, [currentPage, maxPages]);
+
     return (
         <>
             {isMobile || window.innerHeight <= 500 ? (
@@ -119,7 +134,7 @@ export default function Newsletters() {
                     Latest
                 </h1>
                 {renderPublicationGrid(
-                    calculateCards(newsletterList, currentPage, numPerPage),
+                    calculateCards(newslettersData, currentPage, numPerPage),
                     isMobile
                 )}
                 <ReactPaginate
