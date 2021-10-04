@@ -4,7 +4,7 @@
  *
  *  @author PatrickBrown1
  */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ReactPaginate from "react-paginate";
 
 import ResourcesHeader from "../../components/ResourcesHeader";
@@ -15,34 +15,37 @@ import Header from "../../media/Lotus_Header.png";
 
 import { fetchNewsletters } from "../../util/requests";
 
-const useNewsletters = () => {
-    const [newsletters, setNewsletters] = useState([]);
+// const useNewsletters = () => {
+//     const [newsletters, setNewsletters] = useState([]);
+//     const [loadingNewsletters, setLoadingNewsletters] = useState(true);
 
-    useEffect(async () => {
-        const d = await fetchNewsletters();
-        setNewsletters(d);
-    }, []);
-    console.log(newsletters);
-    return newsletters;
-};
+//     useEffect(async () => {
+//         (async () => {
+//             const d = await fetchNewsletters();
+//             setNewsletters(d);
+//         })();
+//         setLoadingNewsletters(false);
+//     }, []);
+//     return [newsletters, loadingNewsletters];
+// };
 
 // fill newsletterList
-const newsletterList = [];
-let i = 0;
-for (i; i < 50; i++) {
-    newsletterList.push({
-        title: `Newsletter ${i}`,
-        year: "2019",
-        image_url:
-            "https://cdn2.wanderlust.co.uk/media/1069/lists-the-worlds-most-awesome-giant-buddhas.jpg?anchor=center&mode=crop&width=1200&height=0&rnd=131482975350000000",
-        redirect_url: "https://google.com",
-    });
-}
+// const newsletterList = [];
+// let i = 0;
+// for (i; i < 50; i++) {
+//     newsletterList.push({
+//         title: `Newsletter ${i}`,
+//         year: "2019",
+//         image_url:
+//             "https://cdn2.wanderlust.co.uk/media/1069/lists-the-worlds-most-awesome-giant-buddhas.jpg?anchor=center&mode=crop&width=1200&height=0&rnd=131482975350000000",
+//         redirect_url: "https://google.com",
+//     });
+// }
 
 // calculates the correct newsletter cards to display given the newsletters, current page, and
 // number of newsletters per page
-const calculateCards = (newsletters, currentPage, numPerPage) =>
-    newsletters.slice(currentPage * numPerPage, (currentPage + 1) * numPerPage);
+// const calculateCards = (newsletters, currentPage, numPerPage) =>
+//     newsletters.slice(currentPage * numPerPage, (currentPage + 1) * numPerPage);
 
 // renders the current newsletters from props in a grid
 const renderPublicationGrid = (currentNewsletters, isMobile) => (
@@ -61,12 +64,27 @@ const renderPublicationGrid = (currentNewsletters, isMobile) => (
 );
 
 export default function Newsletters() {
-    const [maxPages, setMaxPages] = useState(1);
+    const [maxPages, setMaxPages] = useState(9);
     const [numPerPage, setNumPerPage] = useState(9);
     const [currentPage, setCurrentPage] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
 
-    const newslettersData = useNewsletters();
+    const [newsletters, setNewsletters] = useState([]);
+    const [loadingNewsletters, setLoadingNewsletters] = useState(true);
+    const displayedNewsletters = useMemo(
+        () => newsletters.slice(currentPage * numPerPage, (currentPage + 1) * numPerPage),
+        [maxPages, numPerPage, currentPage, newsletters]
+    );
+
+    useEffect(async () => {
+        (async () => {
+            const d = await fetchNewsletters();
+            console.log(d);
+            setNewsletters(d);
+        })();
+        setLoadingNewsletters(false);
+    }, []);
+
     // track window resizes to determine rerender
     useEffect(() => {
         function handleResize() {
@@ -75,13 +93,13 @@ export default function Newsletters() {
             // 4 at 746
             if (window.innerWidth <= 746) {
                 setNumPerPage(4);
-                setMaxPages(Math.ceil(newslettersData.length / 4));
+                setMaxPages(Math.ceil(newsletters.length / 4));
             } else if (window.innerWidth <= 1167) {
                 setNumPerPage(6);
-                setMaxPages(Math.ceil(newslettersData.length / 6));
+                setMaxPages(Math.ceil(newsletters.length / 6));
             } else {
                 setNumPerPage(9);
-                setMaxPages(Math.ceil(newslettersData.length / 9));
+                setMaxPages(Math.ceil(newsletters.length / 9));
             }
 
             if (window.innerWidth <= 450) {
@@ -100,7 +118,7 @@ export default function Newsletters() {
 
     // make sure current page never exceeds maxPages
     useEffect(() => {
-        if (currentPage >= maxPages) {
+        if (currentPage >= maxPages && currentPage > 0) {
             setCurrentPage(maxPages - 1);
         }
     }, [currentPage, maxPages]);
@@ -133,22 +151,37 @@ export default function Newsletters() {
                 >
                     Latest
                 </h1>
-                {renderPublicationGrid(
-                    calculateCards(newslettersData, currentPage, numPerPage),
-                    isMobile
+                {loadingNewsletters ? (
+                    <p>Loading...</p>
+                ) : (
+                    <>
+                        {/* <div className="NewsletterContainer">
+                            {displayedNewsletters.map((newsletter) =>
+                                <NewsletterCard
+                                    key={`newsletter-${newsletter.id}`}
+                                    title={newsletter.volume}
+                                    year={newsletter.year}
+                                    image_url={newsletter.imageLink}
+                                    redirect_link={newsletter.pdfLink}
+                                    isMobile={isMobile}
+                                />
+                            )}
+                        </div> */}
+                        {renderPublicationGrid(displayedNewsletters, isMobile)}
+                        <ReactPaginate
+                            previousLabel="<"
+                            nextLabel=">"
+                            breakLabel="..."
+                            pageCount={maxPages}
+                            marginPagesDisplayed={1}
+                            pageRangeDisplayed={2}
+                            forcePage={currentPage}
+                            onPageChange={(e) => setCurrentPage(e.selected)}
+                            containerClassName="newsletter__pagination"
+                            activeClassName="newsletter__pagination--active"
+                        />
+                    </>
                 )}
-                <ReactPaginate
-                    previousLabel="<"
-                    nextLabel=">"
-                    breakLabel="..."
-                    pageCount={maxPages}
-                    marginPagesDisplayed={1}
-                    pageRangeDisplayed={2}
-                    forcePage={currentPage}
-                    onPageChange={(e) => setCurrentPage(e.selected)}
-                    containerClassName="newsletter__pagination"
-                    activeClassName="newsletter__pagination--active"
-                />
             </div>
         </>
     );
