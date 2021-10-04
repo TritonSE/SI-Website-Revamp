@@ -63,15 +63,15 @@ export default function MobileConferences(props) {
                 <h2>Theme</h2>
             </div>
             <ConferenceTheme
-                redirect={item.info.signUpLink}
-                theme={item.info.theme}
+                redirect={item.signUpLink}
+                theme={item.theme}
                 signup={false}
                 location={item.location}
             />
             <div className="overview-header-mobile">
                 <h2>Overview</h2>
             </div>
-            <ConferenceOverview info={item.info} />
+            <ConferenceOverview info={item} />
         </div>
     );
 
@@ -86,29 +86,31 @@ export default function MobileConferences(props) {
             return (
                 <Slideshow height="400px" width="100%" isMobile>
                     {/* Loop through all the images associated with the conference */}
-                    {item.info.slideShowImages.map((image) => (
-                        <div>
-                            {/* Set styling on the img */}
-                            <div className="mobile-slideshow-label">
-                                <h1>{item.title}</h1>
-                                <h3>{item.location}</h3>
-                            </div>
-                            <img
-                                style={{
-                                    height: "400px",
-                                    width: "100%",
-                                }}
-                                alt="Event Visual"
-                                src={image}
-                            />
-                        </div>
-                    ))}
+                    {item && item.slideShowImages
+                        ? item.slideShowImages.urls.map((image) => (
+                              <div>
+                                  {/* Set styling on the img */}
+                                  <div className="mobile-slideshow-label">
+                                      <h1>{item.title}</h1>
+                                      <h3>{item.location}</h3>
+                                  </div>
+                                  <img
+                                      style={{
+                                          height: "400px",
+                                          width: "100%",
+                                      }}
+                                      alt="Event Visual"
+                                      src={image}
+                                  />
+                              </div>
+                          ))
+                        : null}
                 </Slideshow>
             );
         }
 
         // if it is the overivew tab, render the associated video
-        return <ReactPlayer url={item.info.video} height="450px" width="100%" />;
+        return <ReactPlayer url={item.video} height="450px" width="100%" />;
     };
 
     return (

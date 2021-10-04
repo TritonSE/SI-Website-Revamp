@@ -1,3 +1,13 @@
+.loading-spinner {
+  height: calc(100vh);
+  width: calc(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: -10vh;
+}
+
 .conferences-outer-container {
   width: 100%;
   margin-left: calc(101px);

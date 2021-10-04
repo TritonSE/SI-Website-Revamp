@@ -24,7 +24,7 @@ export default function ConferenceOverview(props) {
     const itemList = (item) => (
         <div className="program-divider">
             {/* Loop thorugh each item and display it */}
-            {item.map((program) => (
+            {item.data.map((program) => (
                 <a href={program.url} download className="program">
                     {/* The download font icon */}
                     <FontAwesomeIcon icon={faDownload} />

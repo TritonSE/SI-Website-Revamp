@@ -72,15 +72,15 @@ export default function ConferencesDesktop(props) {
                 <ConferenceTheme
                     title={item.title}
                     location={item.location}
-                    redirect={item.info.signUpLink}
-                    theme={item.info.theme}
+                    redirect={item.signUpLink}
+                    theme={item.theme}
                     signup
                 />
             );
         }
 
         // if it is not the info tab, then render the overview tab
-        return <ConferenceOverview info={item.info} title={item.title} />;
+        return <ConferenceOverview info={item} title={item.title} />;
     };
 
     /**
@@ -93,7 +93,7 @@ export default function ConferencesDesktop(props) {
             return (
                 <Slideshow height="430px" width="100%">
                     {/* Loop through all the images associated with the conference */}
-                    {item.info.slideShowImages.map((image) => (
+                    {item.slideShowImages.urls.map((image) => (
                         <div>
                             {/* Set styling on the img */}
                             <img
@@ -111,7 +111,7 @@ export default function ConferencesDesktop(props) {
         }
 
         // if it is the overivew tab, render the associated video
-        return <ReactPlayer url={item.info.video} height="430px" width="100%" />;
+        return <ReactPlayer url={item.video} height="430px" width="100%" />;
     };
 
     return (

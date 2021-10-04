@@ -7,7 +7,13 @@ module.exports = async () => {
                 title: "First Meeting!",
                 confNum: 1,
                 location: "San Diego",
-                slideShowImages: { urls: ["https://www.google.com/"] },
+                slideShowImages: {
+                    urls: [
+                        "https://media.istockphoto.com/photos/green-leaf-with-dew-on-dark-nature-background-picture-id1050634172?k=6&m=1050634172&s=612x612&w=0&h=C6CWho9b4RDhCqvaivYOLV2LK6FzygYpAyLPBlF1i2c=",
+                        "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg",
+                        "https://st2.depositphotos.com/2001755/5408/i/600/depositphotos_54081723-stock-photo-beautiful-nature-landscape.jpg",
+                    ],
+                },
                 programs: {
                     data: [
                         {
@@ -32,7 +38,7 @@ module.exports = async () => {
                         },
                     ],
                 },
-                video: "google.com",
+                video: "https://www.youtube.com/watch?v=Jh5oX0VRnzk",
                 theme: "Lorem Ipsum Dolor",
                 signUpLink: "https://google.com",
             },
