@@ -55,7 +55,7 @@ const Memberships = db.define(
             allowNull: false,
         },
         address: {
-            type: Sequelize.STRING(100),
+            type: Sequelize.STRING(750),
             allowNull: false,
         },
     },
