@@ -14,19 +14,25 @@ const config = require("../../config");
 
 // transporter object for nodemailer
 const transporter =
-    config.autoEmail.user === ""
+    config.autoEmail.MAIL_USERNAME === ""
         ? null
         : nodemailer.createTransport({
-              host: "smtp.gmail.com",
-              port: 465,
-              secure: true,
-              // account email + password
-              auth: config.autoEmail,
+
+            service: 'gmail',
+            auth: {
+                type: 'OAuth2',
+                user: config.autoEmail.MAIL_USERNAME,
+                pass: config.autoEmail.MAIL_PASSWORD,
+                clientId: config.autoEmail.OAUTH_CLIENT_ID, // Google Cloud Platform
+                clientSecret: config.autoEmail.OAUTH_CLIENT_SECRET, // Google Cloud Platform
+                refreshToken: config.autoEmail.OAUTH_REFRESH_TOKEN // OAuth Playground
+            }
+
           });
 
 // template based sender object
 const mail =
-    config.autoEmail.user === ""
+    config.autoEmail.MAIL_USERNAME === ""
         ? null
         : new Email({
               transport: transporter,
@@ -51,7 +57,7 @@ async function sendEmail(template, to_email, locals) {
             await mail.send({
                 template,
                 message: {
-                    from: config.autoEmail.user,
+                    from: config.autoEmail.MAIL_USERNAME,
                     to: to_email,
                 },
                 locals,

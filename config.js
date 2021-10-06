@@ -23,8 +23,11 @@ module.exports = {
     },
     // used for email automation
     autoEmail: {
-        user: process.env.EMAIL || "",
-        pass: process.env.PASSWORD || "",
+        MAIL_USERNAME: process.env.EMAIL || "",
+        MAIL_PASSWORD: process.env.PASSWORD || "",
+        OAUTH_CLIENT_ID: process.env.OAUTH_CLIENT_ID || "",
+        OAUTH_CLIENT_SECRET: process.env.OAUTH_CLIENT_SECRET || "",
+        OAUTH_REFRESH_TOKEN: process.env.OAUTH_REFRESH_TOKEN || ""
     },
     recipientEmailList: {
         // receives any submission to volunteer or email list forms, notifications of new memberships, and contact messages

@@ -6,6 +6,7 @@
  */
 
 const Newsletters = require("../../db/models/newsletters");
+const AdminAccounts = require("../../db/models/adminAccounts");
 
 module.exports = async () => {
     await Promise.all([
@@ -21,7 +22,7 @@ module.exports = async () => {
         Newsletters.create(
             { volume: 3, year: 2023, pdfLink: "amazon.com", imageLink: "amazon.com" },
             { logging: false }
-        ),
+        )
     ])
         .then(() => {
             // successfull population
