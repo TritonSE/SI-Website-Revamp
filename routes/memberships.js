@@ -56,7 +56,7 @@ router.post(
  *
  * @returns {[entries]} - 200 - with array of entries.
  */
- router.get("/membershipTypes", async (req, res) => {
+router.get("/membershipTypes", async (req, res) => {
     try {
         const entries = await getAll();
         return res.status(200).json(entries);
