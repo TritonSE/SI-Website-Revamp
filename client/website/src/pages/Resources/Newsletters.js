@@ -26,7 +26,7 @@ const PublicationGrid = ({ displayedNewsletters, isMobile }) => (
         {displayedNewsletters.map((newsletter) => (
             <NewsletterCard
                 key={newsletter.title}
-                title={newsletter.volume}
+                title={`Volume ${newsletter.volume}, Number ${newsletter.number}`}
                 year={newsletter.year}
                 image_url={newsletter.imageLink}
                 redirect_link={newsletter.pdfLink}
