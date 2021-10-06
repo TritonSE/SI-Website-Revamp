@@ -26,7 +26,7 @@ async function addAdmin(data) {
  * Finds user in the DB.
  *
  * @param {string} incomingEmail - User email to be found
- * @returns {object} 
+ * @returns {object}
  */
 async function findOneUser(incomingEmail) {
     return AdminAccounts.findOne({ where: { email: incomingEmail } });
@@ -36,7 +36,7 @@ async function findOneUser(incomingEmail) {
  * Updates user in the DB.
  *
  * @param {object} updated_user - Updated user object
- * @returns {object} 
+ * @returns {object}
  */
 async function updateOneUser(updated_user) {
     return updated_user.save();

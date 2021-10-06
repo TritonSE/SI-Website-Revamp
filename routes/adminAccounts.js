@@ -40,7 +40,7 @@ function getRandomArbitrary(min, max) {
  * @body {string} email - Denotes the email of the user to be registered
  * @body {string} password - Denotes the password of the user to be registered
  * @body {string} secret - Denotes the secret for validation
- * 
+ *
  * @returns {200} - Successful registration, returned JSON contains name, email, and a signed JWT token
  * @returns {400} - Insufficient Information, route was expected more information than what was given
  * @returns {401} - Secret key is not correct, invalid credentials
@@ -194,13 +194,11 @@ router.put(
 
             // error: Password could not be updated
             if (!updatedUser) {
-                return res
-                    .status(500)
-                    .json({ msg: "Password Could Not Be Updated!" });
+                return res.status(500).json({ msg: "Password Could Not Be Updated!" });
             }
 
             // success!
-            return res.status(200).json({msg: "Password Successfully Updated!"});
+            return res.status(200).json({ msg: "Password Successfully Updated!" });
         } catch (err) {
             console.error(err.message);
             return res.status(500).json({ msg: "Server Error" });
@@ -242,9 +240,7 @@ router.put(
             // attempt to update the password for the user
             const updatedUser = await updateOneUser(user);
             if (!updatedUser) {
-                return res
-                    .status(500)
-                    .json({ msg: "Password could not be reset for account." });
+                return res.status(500).json({ msg: "Password could not be reset for account." });
             }
 
             // send an automated email to the user containing their new randomly generated password
@@ -257,7 +253,10 @@ router.put(
 
             // email could be sent
             if (!isSent)
-                return res.status(500).json({msg:"Password reset, but email could not be sent. Please contact an adminstrator."});
+                return res.status(500).json({
+                    msg:
+                        "Password reset, but email could not be sent. Please contact an adminstrator.",
+                });
 
             return res.status(200).json({
                 msg: "Email Successfully Sent",

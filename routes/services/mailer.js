@@ -17,17 +17,15 @@ const transporter =
     config.autoEmail.MAIL_USERNAME === ""
         ? null
         : nodemailer.createTransport({
-
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: config.autoEmail.MAIL_USERNAME,
-                pass: config.autoEmail.MAIL_PASSWORD,
-                clientId: config.autoEmail.OAUTH_CLIENT_ID, // Google Cloud Platform
-                clientSecret: config.autoEmail.OAUTH_CLIENT_SECRET, // Google Cloud Platform
-                refreshToken: config.autoEmail.OAUTH_REFRESH_TOKEN // OAuth Playground
-            }
-
+              service: "gmail",
+              auth: {
+                  type: "OAuth2",
+                  user: config.autoEmail.MAIL_USERNAME,
+                  pass: config.autoEmail.MAIL_PASSWORD,
+                  clientId: config.autoEmail.OAUTH_CLIENT_ID, // Google Cloud Platform
+                  clientSecret: config.autoEmail.OAUTH_CLIENT_SECRET, // Google Cloud Platform
+                  refreshToken: config.autoEmail.OAUTH_REFRESH_TOKEN, // OAuth Playground
+              },
           });
 
 // template based sender object

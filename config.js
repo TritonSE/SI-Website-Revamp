@@ -27,7 +27,7 @@ module.exports = {
         MAIL_PASSWORD: process.env.PASSWORD || "",
         OAUTH_CLIENT_ID: process.env.OAUTH_CLIENT_ID || "",
         OAUTH_CLIENT_SECRET: process.env.OAUTH_CLIENT_SECRET || "",
-        OAUTH_REFRESH_TOKEN: process.env.OAUTH_REFRESH_TOKEN || ""
+        OAUTH_REFRESH_TOKEN: process.env.OAUTH_REFRESH_TOKEN || "",
     },
     recipientEmailList: {
         // receives any submission to volunteer or email list forms, notifications of new memberships, and contact messages
