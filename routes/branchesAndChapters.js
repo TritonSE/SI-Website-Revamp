@@ -18,14 +18,17 @@ const router = express.Router();
  * @returns {status} - 200 - with created item.
  */
 router.post(
-    "/addLocation",
+    "/",
     [
         body("name").isString(),
         body("isBranch").isBoolean(),
-        body("email").isEmail(),
+        body("email").isString(),
         body("latitude").isFloat(),
         body("longitude").isFloat(),
-        body("siteLink").isURL().optional(),
+        body("siteLink").isString().optional(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
@@ -43,7 +46,7 @@ router.post(
  *
  * @returns {status} - 200 - with array of all conferences.
  */
-router.get("/getAllLocations", [isValidated], async (req, res) => {
+router.get("/", [isValidated], async (req, res) => {
     try {
         const entries = await getAll();
         return res.status(200).json(entries);
@@ -59,29 +62,34 @@ router.get("/getAllLocations", [isValidated], async (req, res) => {
  * @returns {status} - 200 - with array of all locations.
  */
 router.put(
-    "/editLocation/:id",
+    "/:id",
     [
         body("name").isString().optional(),
         body("isBranch").isBoolean().optional(),
-        body("email").isEmail().optional(),
+        body("email").isString().optional(),
         body("latitude").isFloat().optional(),
         body("longitude").isFloat().optional(),
-        body("siteLink").isURL().optional(),
+        body("siteLink").isString().optional(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
         isValidated,
     ],
     async (req, res) => {
         try {
             const { id } = req.params;
-            // checks that index is a number
-            if (Number(id) < 0) return res.status(500).json({ message: "index must be a number" });
+
+            // checks that id is a number
+            if (Number(id) < 0)
+                return res.status(500).json({ message: "Id must be a valid number" });
 
             const entries = await edit(Number(id), req.body);
 
             // success upon edit
-            if (entries[0] === 1) return res.status(200).json({ message: "success" });
+            if (entries[0] === 1) return res.status(200).json({ message: "Success" });
 
             // failure upon edit
-            return res.status(500).json({ message: "unsuccessful edit" });
+            return res.status(500).json({ message: "Unsuccessful edit" });
         } catch (err) {
             console.log(err);
             return res.status(500).json({ message: err });
