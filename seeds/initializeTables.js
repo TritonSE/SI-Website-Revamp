@@ -4,6 +4,7 @@ const initCommittee = require("./models/committeeInterests");
 const initUserInfo = require("./models/userInfo");
 const initMemberType = require("./models/membershipTypes");
 const initNewsletters = require("./models/newsletters");
+const initAdminAccounts = require("./models/adminAccounts");
 
 module.exports = () => {
     Promise.all([
@@ -13,6 +14,7 @@ module.exports = () => {
         initUserInfo(),
         initMemberType(),
         initNewsletters(),
+        initAdminAccounts(),
     ])
         .then(() => {
             console.log("Done!");
