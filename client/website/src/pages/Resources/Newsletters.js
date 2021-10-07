@@ -9,6 +9,7 @@ import ReactPaginate from "react-paginate";
 
 import ResourcesHeader from "../../components/ResourcesHeader";
 import NewsletterCard from "../../components/Newsletters/NewsletterCard";
+import Loader from "../../components/Main/Loader";
 import "../../css/Newsletters.css";
 
 import Header from "../../media/Lotus_Header.png";
@@ -97,7 +98,7 @@ export default function Newsletters() {
 
     // fetch newsletters from backend
     useEffect(async () => {
-        (async () => {
+        await (async () => {
             const d = await fetchNewsletters();
             // old seeding
             // fill newsletterList
@@ -147,7 +148,7 @@ export default function Newsletters() {
                     Latest
                 </h1>
                 {loadingNewsletters ? (
-                    <p>Loading...</p>
+                    <Loader />
                 ) : (
                     <>
                         <PublicationGrid
