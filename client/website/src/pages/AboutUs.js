@@ -12,13 +12,22 @@ import "../css/About.css";
 
 import Header from "../media/lotus-header.svg";
 import LotusPink from "../media/lotus-pink.svg";
-import Navid from "../media/navid.jpg";
+// import Navid from "../media/navid.jpg";
 import Amrit from "../media/amrit.jpg";
 import Aaron from "../media/sexy.jpg";
 import Founders from "../media/founders.png";
 import DownArrow from "../media/down-arrow.svg";
 import Link from "../media/link.svg";
 
+// demo links
+const PRESIDENT_IMG =
+    "https://s3-alpha-sig.figma.com/img/a3bc/8780/30eed8e741a683a30ed8f7a9fad07b98?Expires=1623628800&Signature=OaN0W7TZtsx4LnvVr7DeUvQfLPIBAyeIRP0SNgdgpX7ieSWW22bcnoXm2YXtkhdE9iFlDdGIW18bqjsr1U7SD5gcO8lyKTwC0F2Bryyn0Gt8cVFAPYf8lX-bu6U7BK6zjOcfFRNyXwwydGndW04Y4bD6OsHGXF5925jAWpq6fJvfmVPYScYC2kVb4LI3gYglQT40meeltkXJ-Pg-zlzL2OsBFolRB6FFGPPXJYwdbDYOk8tVKUHjEfWbpRrDL-3jV1sIoTTvduFw3q85NL4mPRfYxr2vMx~gggL56hHeI-tLT5BYjTcmD0wjW3oeLAX5C~tZ6qk2v4J67QDpDV8~yA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+const VP_IMG =
+    "https://s3-alpha-sig.figma.com/img/49a4/fb12/3a4bca3b8038a0b4e1f514a1e63864a1?Expires=1623628800&Signature=Vg5ZEjaIXJ4knj6MlegNcGeDJv4q5XadiMCp-afOvdsLSdJWna25F3mmrQYT23MNPwPvyZRI7Ga0L5kd3oIJHvlZPgewxDFvoCbVPQDkmOhGI64S1c~8K5pz0CxjUL4nBCp0S0qr0Ynl2Nje-izgVN-X3xh8CktUoT5g-ynQ5J1~IElZoP0HSLP6UlEaRae6Y2SQFz3bHOhUK~5OIeWXHPHHDMAXcgr-uAPbsBI6Rv2jdrZAvIbTKGEBxEOOgCZ3F390zObOcrTFhZjI2jRoYC2A42FhGhL3nEUPPa-PzsUSB2DiASgPyKnVQtwLSqqAiDw3-4AlpdzY58AEhcbULw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+const SECRETARY_IMG =
+    "https://s3-alpha-sig.figma.com/img/1ea9/b253/1f1c11ec63457da2fb702e9d13d83625?Expires=1623628800&Signature=MNohndscPkfd2rhPOWuyX1Fygg6DMlnIWa6W3l4OlPsvzvjNEEiY6z6YaXRZ1H5s9KoJCsNkedcsxE0FLAVJwrIBWURQFl2k0Tjk8-uTScVGs6tV~sHC4GKT7PCRjvSsTyaehacDT8iTRX5akL3fgVGou~evJL5kZe46SPLUCXQNGegbbSNubvlTwPFPpJlEuwU8eK5yHTcrjZ90LZhoR9GXpliFVLb-t2Mcm~uIQH2hWWXNSok9IOQF4GCYH9P5uA9Rbf9VmoKp9H2ZQ5DHRd5dRdw8D1jbkPdMSHfN78Af1bpuHB~FYHQQet~PjFpShm0ByfdasRtg3ZlRkSKrtQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+const TREASURER_IMG =
+    "https://s3-alpha-sig.figma.com/img/6389/021f/c830549123e26f5691128675beaec067?Expires=1623628800&Signature=BEkaqzUNySmevf57u~MwcY5yypfviX-cAFEDm3wc7bELKbP2lkgSt~nNv89fjDZQEDtiTgP9fINJ6wF0J~yLK1ev0S6Z0ODiQoWhfh7YyR-uWJE0ma9sAcnaJuwz9J1ivcud0N9vT19QELV~fORiBQ3HFizCMTEKLIUE4l8DTiJn3ysEKXy2Y6s0jW9hqxZJR3IaJZJUVRV-4qsdj8BkYBVgv9BxhqOQ467UyRcSvmTe8KQVdcWqbPQ2LrfE-8Hjuk0cDKyjPuQRr8LIZ3KZjLUXjkWxC2zCENa3OnAdN-0RCmH95KsObiUh6dddZDcmjqIJbTGdaRsJaCRLjq1Yfg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
 export default function AboutUs() {
     // Keeps track of the current location for the sticky navbar
     const [scrollLocation, setScrollLocation] = useState("mission");
@@ -220,9 +229,9 @@ export default function AboutUs() {
                     {/* 2021 Profiles */}
                     <div className="profiles" style={computeProfileDisplay("2021")}>
                         <div className="profile">
-                            <img className="headshot" src={Navid} alt="Exec Headshot" />
-                            <h2>Navid Boloorian</h2>
-                            <h3>Cavs Fan 1</h3>
+                            <img className="headshot" src={VP_IMG} alt="Exec Headshot" />
+                            <h2>Alex Pot</h2>
+                            <h3>Publicist</h3>
                             <div className="profile-paragraph">
                                 <a href="/about">
                                     <img className="profile-link" src={Link} alt="Profile Link" />
@@ -234,9 +243,9 @@ export default function AboutUs() {
                             </div>
                         </div>
                         <div className="profile">
-                            <img className="headshot" src={Navid} alt="Exec Headshot" />
-                            <h2>Navid Boloorian</h2>
-                            <h3>Cavs Fan 2</h3>
+                            <img className="headshot" src={TREASURER_IMG} alt="Exec Headshot" />
+                            <h2>Tori Vega</h2>
+                            <h3>Treasurer</h3>
                             <div className="profile-paragraph">
                                 <a href="/about">
                                     <img className="profile-link" src={Link} alt="Profile Link" />
@@ -248,9 +257,9 @@ export default function AboutUs() {
                             </div>
                         </div>
                         <div className="profile">
-                            <img className="headshot" src={Navid} alt="Exec Headshot" />
-                            <h2>Navid Boloorian</h2>
-                            <h3>Cavs Fan 3</h3>
+                            <img className="headshot" src={SECRETARY_IMG} alt="Exec Headshot" />
+                            <h2>Cat Valentine</h2>
+                            <h3>Secretary</h3>
                             <div className="profile-paragraph">
                                 <a href="/about">
                                     <img className="profile-link" src={Link} alt="Profile Link" />
@@ -262,9 +271,9 @@ export default function AboutUs() {
                             </div>
                         </div>
                         <div className="profile">
-                            <img className="headshot" src={Navid} alt="Exec Headshot" />
-                            <h2>Navid Boloorian</h2>
-                            <h3>Cavs Fan 4</h3>
+                            <img className="headshot" src={VP_IMG} alt="Exec Headshot" />
+                            <h2>Sam Puckett</h2>
+                            <h3>Vice President</h3>
                             <div className="profile-paragraph">
                                 <a href="/about">
                                     <img className="profile-link" src={Link} alt="Profile Link" />
@@ -276,9 +285,9 @@ export default function AboutUs() {
                             </div>
                         </div>
                         <div className="profile">
-                            <img className="headshot" src={Navid} alt="Exec Headshot" />
-                            <h2>Navid Boloorian</h2>
-                            <h3>Cavs Fan 5</h3>
+                            <img className="headshot" src={PRESIDENT_IMG} alt="Exec Headshot" />
+                            <h2>Carly Shay</h2>
+                            <h3>President</h3>
                             <div className="profile-paragraph">
                                 <a href="/about">
                                     <img className="profile-link" src={Link} alt="Profile Link" />

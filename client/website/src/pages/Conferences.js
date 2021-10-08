@@ -18,9 +18,9 @@ import MobileConference from "../components/Conference/MobileConference";
 
 // testing data :)
 const obj = {
-    title: "Signup for the Why Navid is a loser conference",
-    number: 1,
-    location: "San Fransisco, California",
+    title: "Signup for the 17th conference in San Diego!",
+    number: 17,
+    location: "San Diego, United States",
     info: {
         slideShowImages: [
             "https://api.timeforkids.com/wp-content/uploads/2020/08/animalVoting.jpg?w=1024",
@@ -37,7 +37,7 @@ const obj = {
             { description: "presentation 3", url: "url.com/download2" },
         ],
         abstracts: [{ description: "abstract 1", url: "url.com/downloadabstract1" }],
-        video: "https://www.youtube.com/watch?v=Ny_v-W2SkCk",
+        video: "https://www.youtube.com/watch?v=-o2o91UIjPk",
         theme:
             "Etiam non sem semper enim posuere mattis vel id dolor. Vivamus laoreet ultrices metus non maximus. Nunc ut erat tristique, consequat eros et, accumsan mauris. Praesent cursus ullamcorper efficitur. Etiam viverra ut nisl et vestibulum. Phasellus tellus lacus, molestie in faucibus ac, dapibus quis massa. Nunc urna mi, maximus nec ligula ac, hendrerit tincidunt metus. Praesent et tempus magna. Quisque pellentesque sollicitudin nibh at tempor. Vivamus cursus dignissim eros, ultrices faucibus urna porta vel. Pellentesque quam massa, bibendum ut consectetur sed, hendrerit non risus. ",
         signUpLink: "https://www.google.com",
@@ -46,14 +46,14 @@ const obj = {
 
 // testing data
 const obj1 = {
-    title: "Signup for the new life here conference",
-    number: 2,
-    location: "San Diego, California",
+    title: "16th Conference",
+    number: 16,
+    location: "Hawaii, United States",
     info: {
         slideShowImages: [
-            "https://api.timeforkids.com/wp-content/uploads/2020/08/animalVoting.jpg?w=1024",
-            "https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2019/10/giant-panda-750x400.jpg",
-            "https://28qs4b33l1o7458ep2hwzyw1-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/Ring-tail-Lemur-1550x700.jpg",
+            "https://oceanvodka.com/uploads/2019/04/HP-Hero-Header@2x-1024x570.jpg",
+            "https://specials-images.forbesimg.com/imageserve/6058b1eed388d3a4a0831d09/960x0.jpg?fit=scale",
+            "https://www.theoceanagency.org/img/loader/loading-4-mobile.jpg",
         ],
         programs: [
             { description: "program 1", url: "url.com/download1" },
@@ -67,7 +67,7 @@ const obj1 = {
             { description: "abstract 1", url: "url.com/downloadabstract1" },
             { description: "abstract 2", url: "url.com/downloadabstract2" },
         ],
-        video: "https://www.youtube.com/watch?v=Ny_v-W2SkCk",
+        video: "https://www.youtube.com/watch?v=cTQ3Ko9ZKg8",
         theme:
             "Etiam non sem semper enim posuere mattis vel id dolor. Vivamus laoreet ultrices metus non maximus. Nunc ut erat tristique, consequat eros et, accumsan mauris. Praesent cursus ullamcorper efficitur. Etiam viverra ut nisl et vestibulum. Phasellus tellus lacus, molestie in faucibus ac, dapibus quis massa. Nunc urna mi, maximus nec ligula ac, hendrerit tincidunt metus. Praesent et tempus magna. Quisque pellentesque sollicitudin nibh at tempor. Vivamus cursus dignissim eros, ultrices faucibus urna porta vel. Pellentesque quam massa, bibendum ut consectetur sed, hendrerit non risus. ",
         signUpLink: "https://www.google.com",
@@ -76,14 +76,14 @@ const obj1 = {
 
 // testing data
 const obj2 = {
-    title: "The Last Conference Ever",
-    number: 4,
-    location: "Denver, Colorado",
+    title: "15th Conference",
+    number: 15,
+    location: "Delhi, India",
     info: {
         slideShowImages: [
-            "https://api.timeforkids.com/wp-content/uploads/2020/08/animalVoting.jpg?w=1024",
-            "https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2019/10/giant-panda-750x400.jpg",
-            "https://28qs4b33l1o7458ep2hwzyw1-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/Ring-tail-Lemur-1550x700.jpg",
+            "https://media.istockphoto.com/photos/green-leaf-with-dew-on-dark-nature-background-picture-id1050634172?k=6&m=1050634172&s=612x612&w=0&h=C6CWho9b4RDhCqvaivYOLV2LK6FzygYpAyLPBlF1i2c=",
+            "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg",
+            "https://st2.depositphotos.com/2001755/5408/i/600/depositphotos_54081723-stock-photo-beautiful-nature-landscape.jpg",
         ],
         programs: [
             { description: "program 1", url: "url.com/download1" },
@@ -97,7 +97,7 @@ const obj2 = {
             { description: "abstract 1", url: "url.com/downloadabstract1" },
             { description: "abstract 2", url: "url.com/downloadabstract2" },
         ],
-        video: "https://www.youtube.com/watch?v=Ny_v-W2SkCk",
+        video: "https://www.youtube.com/watch?v=Jh5oX0VRnzk",
         theme:
             "Etiam non sem semper enim posuere mattis vel id dolor. Vivamus laoreet ultrices metus non maximus. Nunc ut erat tristique, consequat eros et, accumsan mauris. Praesent cursus ullamcorper efficitur. Etiam viverra ut nisl et vestibulum. Phasellus tellus lacus, molestie in faucibus ac, dapibus quis massa. Nunc urna mi, maximus nec ligula ac, hendrerit tincidunt metus. Praesent et tempus magna. Quisque pellentesque sollicitudin nibh at tempor. Vivamus cursus dignissim eros, ultrices faucibus urna porta vel. Pellentesque quam massa, bibendum ut consectetur sed, hendrerit non risus. ",
         signUpLink: "https://www.google.com",
