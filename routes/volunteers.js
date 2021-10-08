@@ -8,6 +8,7 @@
 const express = require("express");
 const { body } = require("express-validator");
 const { create } = require("../db/services/volunteers");
+const { getCommittees } = require("../db/services/committeeInterests");
 const { isValidated } = require("../middleware/validation");
 
 const router = express.Router();
@@ -46,5 +47,20 @@ router.post(
         }
     }
 );
+
+/**
+ * gets volunteer committees.
+ *
+ * @returns {status} - 200 - with created item.
+ */
+router.get("/committees", async (req, res) => {
+    try {
+        const entries = await getCommittees();
+        return res.status(200).json(entries);
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: err });
+    }
+});
 
 module.exports = router;
