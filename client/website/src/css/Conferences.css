@@ -8,6 +8,21 @@
   margin-top: -10vh;
 }
 
+/* Design for when there is no conferences to load */
+.empty-conferences {
+  height: calc(80vh);
+  width: calc(100vw);
+  display: flex;
+  align-items: center;
+}
+
+.empty-conferences p {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: var(--text-font);
+}
+
 .conferences-outer-container {
   width: 100%;
   margin-left: calc(101px);

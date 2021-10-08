@@ -113,6 +113,15 @@ export default function MobileConferences(props) {
         return <ReactPlayer url={item.video} height="450px" width="100%" />;
     };
 
+    // check to see if data exists
+    if (props.data.length === 0) {
+        return (
+            <div className="empty-conferences">
+                <p>We have no conferences to show you at this time</p>
+            </div>
+        );
+    }
+
     return (
         <div className="conferences-outer-container">
             <div className="component-display">
