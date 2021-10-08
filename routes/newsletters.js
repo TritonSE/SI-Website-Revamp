@@ -22,6 +22,7 @@ router.post(
     "/addNewsletter",
     [
         body("volume").isNumeric(),
+        body("number").isNumeric(),
         body("year").isNumeric().isLength({ min: 4, max: 4 }),
         body("pdfLink").isString(),
         body("imageLink").isString(),
@@ -50,6 +51,7 @@ router.put(
     "/editNewsletter/:id",
     [
         body("volume").isNumeric().optional(),
+        body("number").isNumeric().optional(),
         body("year").isNumeric().isLength({ min: 4, max: 4 }).optional(),
         body("pdfLink").isString().optional(),
         body("imageLink").isString().optional(),

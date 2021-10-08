@@ -18,6 +18,7 @@ async function getAll() {
         order: [
             ["year", "DESC"],
             ["volume", "DESC"],
+            ["number", "DESC"],
         ],
     });
 }
