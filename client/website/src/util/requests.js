@@ -9,6 +9,9 @@ export const fetchNewsletters = async () => {
             "content-type": "application/json",
         },
     });
-    const data = await res.json();
-    return data;
+    if (res.ok) {
+        const data = await res.json();
+        return data;
+    }
+    return [];
 };

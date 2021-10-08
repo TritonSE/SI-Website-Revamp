@@ -22,20 +22,29 @@ import { fetchNewsletters } from "../../util/requests";
 // }
 
 // renders the current newsletters from props in a grid
-const PublicationGrid = ({ displayedNewsletters, isMobile }) => (
-    <div className="NewsletterContainer">
-        {displayedNewsletters.map((newsletter) => (
-            <NewsletterCard
-                key={newsletter.title}
-                title={`Volume ${newsletter.volume}, Number ${newsletter.number}`}
-                year={newsletter.year}
-                image_url={newsletter.imageLink}
-                redirect_link={newsletter.pdfLink}
-                isMobile={isMobile}
-            />
-        ))}
-    </div>
-);
+const PublicationGrid = ({ displayedNewsletters, isMobile }) => {
+    if (displayedNewsletters.length === 0) {
+        return (
+            <div className="NewsletterContainer">
+                We have no newsletters to show you at this time
+            </div>
+        );
+    }
+    return (
+        <div className="NewsletterContainer">
+            {displayedNewsletters.map((newsletter) => (
+                <NewsletterCard
+                    key={newsletter.title}
+                    title={`Volume ${newsletter.volume}, Number ${newsletter.number}`}
+                    year={newsletter.year}
+                    image_url={newsletter.imageLink}
+                    redirect_link={newsletter.pdfLink}
+                    isMobile={isMobile}
+                />
+            ))}
+        </div>
+    );
+};
 
 export default function Newsletters() {
     const [newsletters, setNewsletters] = useState([]);
