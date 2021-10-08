@@ -19,6 +19,9 @@ import BeInvolved from "../components/Home/BeInvolved";
 
 import { SITE_PAGES } from "../constants/links";
 
+import PinkFlower from "../media/Lotus_Flower.png";
+import PurpleFlower from "../media/JoinUs_Header.png";
+
 import "../css/Home.css";
 
 // Mobile Screens
@@ -97,8 +100,7 @@ export default function Home() {
             title: "News & Events",
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
-            image_url:
-                "https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1622419200&Signature=A4Vo6ehJhS-InREAaHT0ia~wMkWJGgVgC722h3dzLQkgpRStx5G-QYzANTGLJQKMeCPJDn5p3wagEvGGxgJEpl693~h5Vu4kzlwSjdHVxJcDsaLRlisO83GREBNuKpsgWSwhiwCU3Ydh1UnFqIRIIzCSuc5oOlDdTD-ErpKAZ00fM447eSXZ5jobF6sDpjvE0IS0Kg1kw9GuEl9wvcN-B61zBb4X6~yvYG7-1GHx38-H5uKtkH3SVPjkX2HxHRCFqmP7MidfCzEfzRWm-seIYeGqM0jynk5XFllDXwHXkzB7R4QkQEEIAeosNSFFzHGtZBJz0Vr6Wr9ZQkT~qxIlAg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+            image_url: PinkFlower,
         },
         {
             openInSameTab: false,
@@ -106,8 +108,7 @@ export default function Home() {
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
             redirect_link: "https://www.google.com/",
-            image_url:
-                "https://s3-alpha-sig.figma.com/img/2632/7b67/21741a7000235fce33b207b71e8da1cd?Expires=1622419200&Signature=NaKrOXhTogZlNaWaE-kcQHGyv7cZL745P19PBIu3a~8UWgMEh0wqj3bAmfbhisl4j91lMJQei5kgDCFq4KIUeqRX39BNJxg7qt8CKrpx1Hw-kdUaaTz-10Rqp6tw~vxCma9x19Ry~JIhDTRyAjyn2zN21NTYCNvF1Xpc2BgzzavRdZsW22cFD66fde8NG-Sqq85fT4QwvDxStiavUn0EqvAYPvYDxJ2uhghbnI6U07n5MmEI~nrUzV2IamBqywS-B5TMo7Qqxnajzf1H6WgNKrFRVFok5jNVy4J4HNXYJLp7lQFXZ1yzs9YD~bapJXBg1Yo9R6KTWsv58zxvtw2M6g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+            image_url: PurpleFlower,
         },
     ];
 
@@ -116,48 +117,43 @@ export default function Home() {
             name: "Buenos Aires",
             coordinates: [-58.3816, -34.6037],
             isBranch: true,
-            email: "kingnavid@awesome.com",
-            urlLink: "https://www.instagram.com/navidisme/?hl=en",
+            email: "sakyadhita@buenos.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "La Paz",
             coordinates: [-68.1193, -16.4897],
             isBranch: true,
-            email: "thomas@cat.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/3122a8820897b8d1110b0840edc0944e/a41d1/Thomas_Garry.jpg",
+            email: "sakyadhita@lapaz.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "Brasilia",
             coordinates: [-47.8825, -15.7942],
             isBranch: false,
-            email: "patrick@weirdo.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+            email: "sakyadhita@brasilia.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "Budapest",
             coordinates: [19.0402, 47.4979],
             isBranch: false,
-            email: "patrick@weirdo.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+            email: "sakyadhita@budapest.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "Delhi",
             coordinates: [77.1025, 28.7041],
             isBranch: false,
-            email: "patrick@weirdo.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+            email: "sakyadhita@delhi.com",
+            urlLink: "https://www.google.com/",
         },
         {
             name: "California",
             coordinates: [-119.4179, 36.7783],
             isBranch: true,
-            email: "patrick@weirdo.com",
-            urlLink:
-                "https://tse.ucsd.edu/static/50db41fd31f90dfd8ae4958102b7476a/ed396/Patrick_Brown.png",
+            email: "sakyadhita@california.com",
+            urlLink: "https://www.google.com/",
         },
     ];
 
