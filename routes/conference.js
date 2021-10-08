@@ -18,7 +18,7 @@ const router = express.Router();
  * @returns {status} - 200 - with created item.
  */
 router.post(
-    "/addConference",
+    "/",
     [
         body("title").isString(),
         body("confNum").isNumeric(),
@@ -89,7 +89,7 @@ router.post(
  *
  * @returns {status} - 200 - with array of all conferences.
  */
-router.get("/getAllConferences", [isValidated], async (req, res) => {
+router.get("/", [isValidated], async (req, res) => {
     const entries = await getAll();
     return res.status(200).json(entries);
 });
@@ -101,7 +101,7 @@ router.get("/getAllConferences", [isValidated], async (req, res) => {
  * @returns {status} - 200 - with array of all conferences.
  */
 router.put(
-    "/editConference/:id",
+    "/:id",
     [
         body("title").isString().optional(),
         body("confNum").isNumeric().optional(),
