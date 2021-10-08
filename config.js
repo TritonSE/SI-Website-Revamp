@@ -5,6 +5,15 @@ module.exports = {
         env: process.env.NODE_ENV || "development",
         port: process.env.PORT || 3000,
     },
+    // used for jwt
+    auth: {
+        register_secret: process.env.REGISTER_SECRET || "tritonse",
+        jwt_secret: process.env.JWT_SECRET || "keyboard cat",
+    },
+    // frontend URI
+    frontend: {
+        uri: process.env.FRONTEND_URI || "http://localhost:3000/",
+    },
     // establish MySQL DB connection
     db: {
         host: process.env.DB_HOST || "localhost",
@@ -19,6 +28,6 @@ module.exports = {
     },
     recipientEmailList: {
         // receives any submission to volunteer or email list forms, notifications of new memberships, and contact messages
-        general: process.env.GENERAL_EMAIL_LIST || "aksingh@ucsd.edu",
+        general: process.env.GENERAL_EMAIL_LIST || "thomas@garry.to",
     },
 };
