@@ -15,6 +15,7 @@
 
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
+import { ErrorLoadingContent } from "../Main/ErrorLoadingContent";
 import HorizontalStepper from "./HorizontalStepper";
 import ConferenceOverview from "./ConferenceOverview";
 import ConferenceTheme from "./ConferenceTheme";
@@ -29,6 +30,8 @@ export default function MobileConferences(props) {
     const [item, setItem] = useState(props.data[index]);
     // list of all conferences
     const [itemList] = useState(props.data);
+    // determine if video has an error
+    const [videoError, setVideoError] = useState(false);
 
     /**
      * On rendering of page, set the current item to be the first item on stepper
@@ -110,7 +113,16 @@ export default function MobileConferences(props) {
         }
 
         // if it is the overivew tab, render the associated video
-        return <ReactPlayer url={item.video} height="450px" width="100%" />;
+        return videoError ? (
+            <ErrorLoadingContent height="400px" width="100%" />
+        ) : (
+            <ReactPlayer
+                url={item.video}
+                height="430px"
+                width="100%"
+                onError={() => setVideoError(true)}
+            />
+        );
     };
 
     // check to see if data exists
