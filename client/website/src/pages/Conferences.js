@@ -13,7 +13,7 @@
 
 import React, { useEffect, useState } from "react";
 import Loader from "../components/Main/Loader";
-// import { fetchConferences } from "../util/requests";
+import { fetchConferences } from "../util/requests";
 import useWindowSize from "../util/ScreenListener";
 import ConferenceDesktop from "../components/Conference/ConferenceDesktop";
 import MobileConference from "../components/Conference/MobileConference";
@@ -29,9 +29,8 @@ export default function Conferences() {
     useEffect(async () => {
         setLoading(true);
         // fetch the conferences
-        // const data = await fetchConferences();
-        // setConferencesData(data);
-        setConferencesData([]);
+        const data = await fetchConferences();
+        setConferencesData(data);
         setLoading(false);
     }, []);
 
