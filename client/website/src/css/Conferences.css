@@ -1,3 +1,26 @@
+/* Styling the scroll bar for the overview/theme */
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(240, 240, 240);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--lightpurple);
+  height: 20px;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--darkpurple);
+}
+
 .loading-spinner {
   height: calc(100vh);
   width: calc(100%);
@@ -57,12 +80,18 @@
 }
 
 /* Conference information */
-
 .conference-info,
 .conference-overview {
   /* min-width: 400px; */
   width: calc(30.24vw);
-  margin: 15.5vh 2vw 9vh 1vw;
+  max-height: 55vh;
+  overflow-y: hidden;
+  margin: 15.5vh 1.5vw 9vh 1vw;
+}
+
+.conference-overview:hover,
+.conference-info:hover {
+  overflow-y: auto;
 }
 
 .conference-info-title h1 {
@@ -375,6 +404,7 @@
 
   .program-divider {
     width: 90%;
+    border: 1px solid black;
   }
 
   .program {
