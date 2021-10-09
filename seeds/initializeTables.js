@@ -4,6 +4,7 @@ const initCommittee = require("./models/committeeInterests");
 const initMemberships = require("./models/memberships");
 const initMemberType = require("./models/membershipTypes");
 const initNewsletters = require("./models/newsletters");
+const initAdminAccounts = require("./models/adminAccounts");
 const initVolunteerInterests = require("./models/volunteerInterests");
 const initEmailList = require("./models/emaillist");
 
@@ -14,6 +15,7 @@ module.exports = () => {
         initCommittee(),
         initMemberType(),
         initNewsletters(),
+        initAdminAccounts(),
         initMemberships(),
         initVolunteerInterests(),
         initEmailList(),
