@@ -49,8 +49,8 @@ app.use("/conference", require("./routes/conference"));
 app.use("/emailList", require("./routes/emailList"));
 app.use("/volunteers", require("./routes/volunteers"));
 app.use("/memberships", require("./routes/memberships"));
-app.use("/membershipTypes", require("./routes/membershipTypes"));
 app.use("/newsletters", require("./routes/newsletters"));
+app.use("/adminAccounts", require("./routes/adminAccounts"));
 app.use("/contact", require("./routes/contact"));
 app.use("/branchesAndChapters", require("./routes/branchesAndChapters"));
 

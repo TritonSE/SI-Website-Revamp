@@ -147,7 +147,7 @@ export default function PayPal(props) {
                             totalPaid: parseFloat(details.purchase_units[0].amount.value),
                             payPalTransactionId: details.purchase_units[0].payments.captures[0].id,
                         };
-                        return fetch(`${BACKEND_URL}memberships/addUser`, {
+                        return fetch(`${BACKEND_URL}memberships/`, {
                             method: "post",
                             headers: {
                                 "content-type": "application/json",
