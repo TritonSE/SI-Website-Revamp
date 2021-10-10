@@ -17,6 +17,9 @@ import { CountryDropdown } from "react-country-region-selector";
 import ResourcesHeader from "../components/ResourcesHeader";
 import VolunteerOption from "../components/VolunteerOption";
 import CustomButton from "../components/CustomButton";
+import config from "../config";
+
+const BACKEND_URL = config.backend.uri;
 
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
@@ -76,6 +79,10 @@ export default function Volunteer() {
             value: "", // field value given by user
             error: false, // field contains an error
         },
+        middleName: {
+            value: "",
+            error: false,
+        },
         lastName: {
             value: "",
             error: false,
@@ -111,7 +118,7 @@ export default function Volunteer() {
     });
 
     const [addressTwo, setAddressTwo] = useState("");
-    const [middleName, setMiddleName] = useState("");
+    // const [middleName, setMiddleName] = useState("");
 
     const [editing, setEditing] = useState(false);
     const [techSupport, setTechSupport] = useState(false);
@@ -226,7 +233,65 @@ export default function Volunteer() {
             return;
         }
 
+        const committeeInterests = [];
+
+        if (editing) committeeInterests.push(1);
+        if (techSupport) committeeInterests.push(2);
+        if (administration) committeeInterests.push(3);
+        if (research) committeeInterests.push(4);
+        if (socialJustice) committeeInterests.push(5);
+        if (writing) committeeInterests.push(6);
+        if (building) committeeInterests.push(7);
+        if (accounting) committeeInterests.push(8);
+        if (programming) committeeInterests.push(9);
+        if (planning) committeeInterests.push(10);
+        if (arts) committeeInterests.push(11);
+        if (translation) committeeInterests.push(12);
+        if (branches) committeeInterests.push(13);
+        if (design) committeeInterests.push(14);
+        if (ordination) committeeInterests.push(15);
+
+        console.log(committeeInterests);
+
         // call backend route to store volunteer data
+        await fetch(`${BACKEND_URL}volunteers/addUser`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                fName: values.firstName.value,
+                mName: values.middleName.value,
+                lName: values.lastName.value,
+                phone: values.phoneNumber.value,
+                email: values.emailAddress.value,
+                country: values.country.value,
+                interests: committeeInterests,
+            }),
+        }).then((res) => {
+            // form submitted
+            if (res.ok) {
+                // clear form values
+                setValues({
+                    ...values,
+                    firstName: { ...values.firstName, value: "" },
+                    middleName: { ...values.middleName, value: "" },
+                    lastName: { ...values.lastName, value: "" },
+                    phoneNumber: { ...values.phoneNumber, value: "" },
+                    emailAddress: { ...values.emailAddress, value: "" },
+                    country: { ...values.country, value: "" },
+                    addressOne: { ...values.addressOne, value: "" },
+                    city: { ...values.city, value: "" },
+                    stateLocation: { ...values.stateLocation, value: "" },
+                    zipcode: { ...values.zipcode, value: "" },
+                });
+                // form could not be submitted
+            } else {
+                // show snackbar to notify form could not be submitted
+                setSnackBar({
+                    open: true,
+                    message: "An internal error occurred. Form not submitted.",
+                });
+            }
+        });
 
         document.body.style.cursor = null;
         setIsFormDisabled(false);
@@ -274,9 +339,10 @@ export default function Volunteer() {
                             variant="outlined"
                             className="middle-name input-field"
                             placeholder="Middle Name"
-                            value={middleName}
-                            onChange={(e) => setMiddleName(e.target.value)}
+                            value={values.middleName.value}
+                            onChange={handleChange}
                             disabled={isFormDisabled}
+                            name="middleName"
                         />
                     </div>
                     <div className="form-item last-name-field">
@@ -293,20 +359,6 @@ export default function Volunteer() {
                         {displayAsterisk()}
                     </div>
                     <h1 className="contact-info-text">Contact Information</h1>
-                    <div className="form-item">
-                        <CustomTextField
-                            variant="outlined"
-                            className="phone-number input-field"
-                            placeholder="Phone Number"
-                            type="tel"
-                            value={values.phoneNumber.value}
-                            error={values.phoneNumber.error}
-                            onChange={handleChange}
-                            disabled={isFormDisabled}
-                            name="phoneNumber"
-                        />
-                        {displayAsterisk()}
-                    </div>
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -405,6 +457,20 @@ export default function Volunteer() {
                                     onChange={handleChange}
                                     disabled={isFormDisabled}
                                     name="zipcode"
+                                />
+                                {displayAsterisk()}
+                            </div>
+                            <div className="form-item">
+                                <CustomTextField
+                                    variant="outlined"
+                                    className="phone-number input-field"
+                                    placeholder="Phone Number"
+                                    type="tel"
+                                    value={values.phoneNumber.value}
+                                    error={values.phoneNumber.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="phoneNumber"
                                 />
                                 {displayAsterisk()}
                             </div>

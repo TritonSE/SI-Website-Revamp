@@ -58,9 +58,13 @@
   color: #ea4444;
   font-size: 18px;
   text-align: center;
+}
+
+.paypal-buttons {
   width: 100%;
   padding-bottom: 12.34vw;
   margin-top: 7.27vw;
+  margin-left: 5%;
 }
 
 .error-asterisk {
@@ -255,6 +259,9 @@
   .error-message {
     font-size: 16px;
     line-height: 22px;
+  }
+
+  .paypal-buttons {
     padding-bottom: 79px;
     margin-top: 43px;
   }

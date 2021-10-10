@@ -18,6 +18,10 @@ import ResourcesHeader from "../components/ResourcesHeader";
 
 import HeaderImage from "../media/JoinUs_Header.png";
 import CustomButton from "../components/CustomButton";
+import PayPal from "../components/PayPal";
+import config from "../config";
+
+const BACKEND_URL = config.backend.uri;
 
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
@@ -112,6 +116,35 @@ const CustomTextField = withStyles({
     },
 })(TextField);
 
+// const displayMemberships = ({ memberships, membership }) => {
+//     return (
+//         <div className="form-item">
+//             <CustomSelectField
+//                 className="input-field"
+//                 value={membership}
+//                 onChange={(e) => setMembership(e.target.value)}
+//                 variant="outlined"
+//                 label="Select Membership"
+//                 select
+//                 size="small"
+//             >
+//                 {memberships.map((membershipItem) => (
+//                     <MenuItem >{membershipItem.title + membershipItem.cost}</MenuItem>
+//                 ))}
+//                 {/* <MenuItem value="option1">
+//                                         Nun/Student/Unemployed $15.00 USD
+//                                     </MenuItem>
+//                                     <MenuItem value="option2">General $30.00 USD</MenuItem>
+//                                     <MenuItem value="option3">
+//                                         Lifetime - Nun/Student/Unemployed $150.00 USD
+//                                     </MenuItem>
+//                                     <MenuItem value="option4">Lifetime $300.00 USD</MenuItem> */}
+//             </CustomSelectField>
+//             {displayAsterisk()}
+//         </div>
+//     );
+// }
+
 export default function JoinUs() {
     // const classes = useStyles();
 
@@ -125,6 +158,10 @@ export default function JoinUs() {
         firstName: {
             value: "", // field value given by user
             error: false, // field contains an error
+        },
+        middleName: {
+            value: "",
+            error: false,
         },
         lastName: {
             value: "",
@@ -161,13 +198,16 @@ export default function JoinUs() {
     });
 
     const [addressTwo, setAddressTwo] = useState("");
-    const [middleName, setMiddleName] = useState("");
 
     const [organizations, setOrganizations] = useState("");
-    const [donation, setDonation] = useState("");
+    const [donation, setDonation] = useState(0);
 
-    const [membership, setMembership] = useState("");
-    const [memberType, setMemberType] = useState("");
+    const [membership, setMembership] = useState(0);
+    const [memberType, setMemberType] = useState(false);
+    const [isNewMember, setIsNewMember] = useState("");
+
+    const [memberships, setMemberships] = useState([]);
+    const [displayPayPal, setDisplayPayPal] = useState(false);
 
     const [snackbar, setSnackBar] = useState({
         open: false,
@@ -188,6 +228,48 @@ export default function JoinUs() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    useEffect(() => {
+        if (
+            values.firstName.value === "" ||
+            values.lastName.value === "" ||
+            values.phoneNumber.value === "" ||
+            values.emailAddress.value === "" ||
+            values.country.value === "" ||
+            values.addressOne.value === "" ||
+            values.city.value === "" ||
+            values.stateLocation.value === "" ||
+            values.zipcode.value === "" ||
+            memberType === "" ||
+            organizations === "" ||
+            membership === 0
+        ) {
+            setDisplayPayPal(false);
+        } else {
+            setDisplayPayPal(true);
+        }
+    });
+
+    // fetch membership types from backend
+    useEffect(async () => {
+        await (async () => {
+            try {
+                const res = await fetch(`${BACKEND_URL}membershipTypes/`, {
+                    method: "get",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    setMemberships(data);
+                }
+            } catch {
+                console.log("error");
+            }
+        })();
+        console.log(memberships);
+    }, []);
+
     const handleChange = (event) => {
         setValues({
             ...values,
@@ -197,12 +279,31 @@ export default function JoinUs() {
         });
     };
 
+    const handleNewMember = (event) => {
+        setIsNewMember(event.target.value);
+        if (event.target.value === "new") {
+            setMemberType(true);
+        } else {
+            setMemberType(false);
+        }
+    };
+
     const handleSnackClose = () => {
         setSnackBar({ open: false });
     };
 
     const handleMembershipChange = (event) => {
         setMembershipCheck(event.target.checked);
+
+        // fetch(`${BACKEND_URL}membershipTypes/`, {
+        //     method: "get",
+        //     headers: { "Content-Type": "application/json" },
+        // }).then((res) => {
+        //     // form submitted
+        //     if (res.ok) {
+        //         console.log(res.json());
+        //     }
+        // });
     };
 
     const handleDonateChange = (event) => {
@@ -275,6 +376,85 @@ export default function JoinUs() {
         }
 
         // call backend route to store member data
+        if (membershipCheck) {
+            // call backend route to store member data
+            await fetch(`${BACKEND_URL}emailList/addUser`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    fName: values.firstName.value,
+                    mName: values.middleName.value,
+                    lName: values.lastName.value,
+                    phone: values.phoneNumber.value,
+                    email: values.emailAddress.value,
+                    country: values.country.value,
+                }),
+            }).then((res) => {
+                // form submitted
+                if (res.ok) {
+                    // clear form values
+                    setValues({
+                        ...values,
+                        firstName: { ...values.firstName, value: "" },
+                        middleName: { ...values.middleName, value: "" },
+                        lastName: { ...values.lastName, value: "" },
+                        phoneNumber: { ...values.phoneNumber, value: "" },
+                        emailAddress: { ...values.emailAddress, value: "" },
+                        country: { ...values.country, value: "" },
+                        addressOne: { ...values.addressOne, value: "" },
+                        city: { ...values.city, value: "" },
+                        stateLocation: { ...values.stateLocation, value: "" },
+                        zipcode: { ...values.zipcode, value: "" },
+                    });
+                    // form could not be submitted
+                } else {
+                    // show snackbar to notify form could not be submitted
+                    setSnackBar({
+                        open: true,
+                        message: "An internal error occurred. Form not submitted.",
+                    });
+                }
+            });
+        } else {
+            // call backend route to store member data
+            await fetch(`${BACKEND_URL}emailList/addUser`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    fName: values.firstName.value,
+                    mName: values.middleName.value,
+                    lName: values.lastName.value,
+                    phone: values.phoneNumber.value,
+                    email: values.emailAddress.value,
+                    country: values.country.value,
+                }),
+            }).then((res) => {
+                // form submitted
+                if (res.ok) {
+                    // clear form values
+                    setValues({
+                        ...values,
+                        firstName: { ...values.firstName, value: "" },
+                        middleName: { ...values.middleName, value: "" },
+                        lastName: { ...values.lastName, value: "" },
+                        phoneNumber: { ...values.phoneNumber, value: "" },
+                        emailAddress: { ...values.emailAddress, value: "" },
+                        country: { ...values.country, value: "" },
+                        addressOne: { ...values.addressOne, value: "" },
+                        city: { ...values.city, value: "" },
+                        stateLocation: { ...values.stateLocation, value: "" },
+                        zipcode: { ...values.zipcode, value: "" },
+                    });
+                    // form could not be submitted
+                } else {
+                    // show snackbar to notify form could not be submitted
+                    setSnackBar({
+                        open: true,
+                        message: "An internal error occurred. Form not submitted.",
+                    });
+                }
+            });
+        }
 
         document.body.style.cursor = null;
         setIsFormDisabled(false);
@@ -369,9 +549,10 @@ export default function JoinUs() {
                             variant="outlined"
                             className="middle-name input-field"
                             placeholder="Middle Name"
-                            value={middleName}
-                            onChange={(e) => setMiddleName(e.target.value)}
+                            value={values.middleName.value}
+                            onChange={handleChange}
                             disabled={isFormDisabled}
+                            name="middleName"
                         />
                     </div>
                     <div className="form-item last-name-field">
@@ -391,23 +572,8 @@ export default function JoinUs() {
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
-                            className="phone-number input-field"
-                            placeholder="Phone Number"
-                            type="tel"
-                            value={values.phoneNumber.value}
-                            error={values.phoneNumber.error}
-                            onChange={handleChange}
-                            disabled={isFormDisabled}
-                            name="phoneNumber"
-                        />
-                        {displayAsterisk()}
-                    </div>
-                    <div className="form-item">
-                        <CustomTextField
-                            variant="outlined"
                             className="email-address input-field"
                             placeholder="Email Address"
-                            type="email"
                             value={values.emailAddress.value}
                             error={values.emailAddress.error}
                             onChange={handleChange}
@@ -490,6 +656,19 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            <div className="form-item">
+                                <CustomTextField
+                                    variant="outlined"
+                                    className="phone-number input-field"
+                                    placeholder="Phone Number"
+                                    value={values.phoneNumber.value}
+                                    error={values.phoneNumber.error}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="phoneNumber"
+                                />
+                                {displayAsterisk()}
+                            </div>
                         </div>
                     ) : null}
                     {!membershipCheck ? (
@@ -498,8 +677,9 @@ export default function JoinUs() {
                             <div className="form-item">
                                 <CustomSelectField
                                     className="input-field"
-                                    value={memberType}
-                                    onChange={(e) => setMemberType(e.target.value)}
+                                    value={isNewMember}
+                                    onChange={handleNewMember}
+                                    // onChange={(e) => setMemberType(e.target.value)}
                                     variant="outlined"
                                     label="New or Renewing Member?"
                                     select
@@ -535,14 +715,19 @@ export default function JoinUs() {
                                     select
                                     size="small"
                                 >
-                                    <MenuItem value="option1">
+                                    {memberships.map((membershipItem) => (
+                                        <MenuItem value={membershipItem.id}>
+                                            {membershipItem.title} ${membershipItem.cost} USD
+                                        </MenuItem>
+                                    ))}
+                                    {/* <MenuItem value="option1">
                                         Nun/Student/Unemployed $15.00 USD
                                     </MenuItem>
                                     <MenuItem value="option2">General $30.00 USD</MenuItem>
                                     <MenuItem value="option3">
                                         Lifetime - Nun/Student/Unemployed $150.00 USD
                                     </MenuItem>
-                                    <MenuItem value="option4">Lifetime $300.00 USD</MenuItem>
+                                    <MenuItem value="option4">Lifetime $300.00 USD</MenuItem> */}
                                 </CustomSelectField>
                                 {displayAsterisk()}
                             </div>
@@ -576,6 +761,28 @@ export default function JoinUs() {
                                     {displayAsterisk()}
                                 </div>
                             ) : null}
+                            <div className="paypal-buttons">
+                                {!displayPayPal ? (
+                                    <p className="error-message">
+                                        *Please fill out all required fields to proceed to payment.
+                                    </p>
+                                ) : (
+                                    <PayPal
+                                        membershipTitle={memberships[membership - 1].title}
+                                        membershipID={memberships[membership - 1].id}
+                                        membershipCost={parseFloat(
+                                            memberships[membership - 1].cost
+                                        )}
+                                        donationAmount={donation}
+                                        isNewMember={memberType}
+                                        affiliatedOrgs={organizations}
+                                        disable={false}
+                                        transactionCompleted={() => {
+                                            alert("completed transaction");
+                                        }}
+                                    />
+                                )}
+                            </div>
                         </div>
                     ) : (
                         <div>
@@ -590,11 +797,24 @@ export default function JoinUs() {
                         </div>
                     )}
                 </form>
-                {!membershipCheck ? (
-                    <p className="error-message">
-                        *Please fill out all required fields to proceed to payment.
-                    </p>
-                ) : null}
+
+                {/* {!membershipCheck ? 
+                                {
+                                    ((values.firstName.value === "") ||
+                                    (values.lastName.value === "") ||
+                                    (values.phoneNumber.value === "") ||
+                                    (values.emailAddress.value === "") ||
+                                    (values.country.value === "") ||
+                                    (values.addressOne.value === "") ||
+                                    (values.city.value === "") ||
+                                    (values.stateLocation.value === "") ||
+                                    (values.zipcode.value === "")) ? 
+                                    (<p className="error-message">
+                                        *Please fill out all required fields to proceed to payment.
+                                    </p>) : <PayPal membershipCost={membership} donationAmount={donation} isNewMember={memberType} affiliatedOrgs={organizations} />
+                                }
+                : <PayPal membershipCost={membership} donationAmount={donation} isNewMember={memberType} affiliatedOrgs={organizations} />} */}
+
                 {/* {formCheck ? <p className="success-message">All required fields are filled.</p> : <p className="error-message">*Please fill out all required fields to proceed to payment.</p>} */}
             </div>
             <Snackbar
