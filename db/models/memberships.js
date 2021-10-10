@@ -6,7 +6,6 @@
  */
 const Sequelize = require("sequelize");
 const db = require("../configDB");
-const UserInformation = require("./userInfo");
 const MembershipType = require("./membershipTypes");
 
 const Memberships = db.define(
@@ -35,16 +34,36 @@ const Memberships = db.define(
             defaultValue: false,
             allowNull: false,
         },
+        fName: {
+            type: Sequelize.STRING(100),
+            allowNull: false,
+        },
+        mName: {
+            type: Sequelize.STRING(100),
+            allowNull: true,
+        },
+        lName: {
+            type: Sequelize.STRING(100),
+            allowNull: false,
+        },
+        phone: {
+            type: Sequelize.STRING(15),
+            allowNull: false,
+        },
+        email: {
+            type: Sequelize.STRING(500),
+            allowNull: false,
+        },
+        address: {
+            type: Sequelize.STRING(750),
+            allowNull: false,
+        },
     },
     {
         // createdAt & updatedAt columns will be added/self-mantained by table
         timestamps: true,
     }
 );
-
-Memberships.belongsTo(UserInformation, {
-    foreignKey: "info",
-});
 
 Memberships.belongsTo(MembershipType, {
     foreignKey: "membersType",

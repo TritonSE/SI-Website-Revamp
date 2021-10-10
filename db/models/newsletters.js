@@ -17,6 +17,10 @@ module.exports = db.define(
             type: Sequelize.SMALLINT.UNSIGNED,
             allowNull: false,
         },
+        number: {
+            type: Sequelize.SMALLINT.UNSIGNED,
+            allowNull: false,
+        },
         year: {
             type: Sequelize.SMALLINT.UNSIGNED,
             allowNull: false,

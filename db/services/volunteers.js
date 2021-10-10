@@ -8,7 +8,6 @@
 const VolunteerInterests = require("../models/volunteerInterests");
 const CommitteeInterests = require("../models/committeeInterests");
 const Volunteers = require("../models/volunteers");
-const User = require("../models/userInfo");
 
 /**
  * Creates volunteer data. This will check
@@ -28,9 +27,8 @@ async function create(data) {
             if (committeeCount < Number(i) || Number(i) <= 0) return false;
         }
 
-        // validated! Create user/volunteer
-        const user = await User.create(data);
-        const volunteer = await Volunteers.create({ info: user.id });
+        // validated! Create volunteer
+        const volunteer = await Volunteers.create(data);
         // create every interest for this volunteer
         data.interests.forEach(async (i) => {
             await VolunteerInterests.create({ volunteerId: volunteer.id, interestId: i });

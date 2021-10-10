@@ -19,9 +19,10 @@ const router = express.Router();
  * @returns {status} - 200 if add was successful, 500 otherwise
  */
 router.post(
-    "/addNewsletter",
+    "/",
     [
         body("volume").isNumeric(),
+        body("number").isNumeric(),
         body("year").isNumeric().isLength({ min: 4, max: 4 }),
         body("pdfLink").isString(),
         body("imageLink").isString(),
@@ -47,9 +48,10 @@ router.post(
  * @returns {status} - 200 if edit was successful, 500 otherwise
  */
 router.put(
-    "/editNewsletter/:id",
+    "/:id",
     [
         body("volume").isNumeric().optional(),
+        body("number").isNumeric().optional(),
         body("year").isNumeric().isLength({ min: 4, max: 4 }).optional(),
         body("pdfLink").isString().optional(),
         body("imageLink").isString().optional(),
@@ -85,7 +87,7 @@ router.put(
  *
  * @returns {status} - 200 with an array of all entries if successful, 500 otherwise
  */
-router.get("/getAllNewsletters", [isValidated], async (req, res) => {
+router.get("/", [isValidated], async (req, res) => {
     try {
         const newsletters = await getAll();
         return res.status(200).json(newsletters);
