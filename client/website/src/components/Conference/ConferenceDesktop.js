@@ -92,7 +92,7 @@ export default function ConferencesDesktop(props) {
      * @returns Node - component to render
      */
     const slideshowVideo = () => {
-        if (isInfo) {
+        if (isInfo || !item.video) {
             return (
                 <Slideshow height="430px" width="100%">
                     {/* Loop through all the images associated with the conference */}
@@ -149,7 +149,7 @@ export default function ConferencesDesktop(props) {
 
                 {/* This outer div is used for 1050 < x < 1200 screen widths */}
                 <div className="small-desktop-div-container">
-                    {/* Display the information for either theme or ovwerview */}
+                    {/* Display the information for either theme or overview */}
                     <div className="conference-container">{displayInformation()}</div>
 
                     {/* The tabs to switch between theme and overview */}

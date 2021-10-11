@@ -55,7 +55,9 @@ export default function ConferenceTheme(props) {
             ) : null}
 
             {/* The text describing the specific conference */}
-            <p className="conference-theme-paragraph">{props.theme}</p>
+            <div className="conference-theme-paragraph-div">
+                <p className="conference-theme-paragraph">{props.theme}</p>
+            </div>
 
             {/* The Modal that renders if the signup button is clicked under 'overview' 
             on conferences */}

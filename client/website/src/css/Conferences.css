@@ -84,13 +84,21 @@
 .conference-overview {
   /* min-width: 400px; */
   width: calc(30.24vw);
-  max-height: 55vh;
-  overflow-y: hidden;
   margin: 15.5vh 1.5vw 9vh 1vw;
 }
 
-.conference-overview:hover,
-.conference-info:hover {
+.conference-info-divider-div,
+.conference-theme-paragraph-div {
+  max-height: 342px;
+  overflow-y: hidden;
+}
+
+.conference-theme-paragraph-div {
+  max-height: 304px;
+}
+
+.conference-info-divider-div:hover,
+.conference-theme-paragraph-div:hover {
   overflow-y: auto;
 }
 
