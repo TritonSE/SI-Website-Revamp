@@ -69,7 +69,7 @@ router.delete("/:id", [isValidated], async (req, res) => {
         remove(Number(id));
 
         // success upon delete
-        return res.status(200);
+        return res.status(200).json({ message: "Success" });
     } catch (err) {
         return res.status(500).json({ message: err });
     }

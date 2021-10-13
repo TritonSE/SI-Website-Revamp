@@ -8,6 +8,7 @@ const initBranchesAndChapters = require("./models/branchesAndChapters");
 const initAdminAccounts = require("./models/adminAccounts");
 const initVolunteerInterests = require("./models/volunteerInterests");
 const initEmailList = require("./models/emaillist");
+const initNewsEvents = require("./models/newsAndEvents");
 
 module.exports = () => {
     Promise.all([
@@ -21,6 +22,7 @@ module.exports = () => {
         initMemberships(),
         initVolunteerInterests(),
         initEmailList(),
+        initNewsEvents(),
     ])
         .then(() => {
             console.log("Done!");
