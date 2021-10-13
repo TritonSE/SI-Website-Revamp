@@ -66,10 +66,13 @@ router.delete("/:id", [isValidated], async (req, res) => {
         // checks that id is a number
         if (Number(id) < 0) return res.status(500).json({ message: "Id must be a valid number" });
 
-        remove(Number(id));
+        const entries = await remove(Number(id), req.body);
 
-        // success upon delete
-        return res.status(200).json({ message: "Success" });
+        // success upon removal
+        if (entries[0] === 1) return res.status(200).json({ message: "Success" });
+
+        // failure upon removal
+        return res.status(500).json({ message: "Unsuccessful removal" });
     } catch (err) {
         return res.status(500).json({ message: err });
     }
