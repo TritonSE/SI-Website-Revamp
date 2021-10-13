@@ -1,0 +1,18 @@
+.site-button {
+  background-color: var(--orange);
+  color: white;
+  border-radius: 40px;
+
+  padding: 15px 20px;
+  min-width: 165px;
+  width: fit-content;
+
+  font-size: 17px;
+  font-weight: bold;
+  border-color: white;
+}
+
+.site-button:hover {
+  cursor: pointer;
+  background-color: var(--darkorange);
+}
