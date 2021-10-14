@@ -312,6 +312,10 @@
   .conference-overview {
     min-width: calc(53vw);
   }
+
+  .conference-info-signup button {
+    width: 150px;
+  }
 }
 
 @media only screen and (max-width: 1050px) {
@@ -405,14 +409,28 @@
   .conference-info-divider-div {
     width: 100%;
     display: flex;
+    max-height: fit-content;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: visible;
+  }
+
+  .conference-theme-paragraph-div {
+    overflow-y: visible;
+    max-height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .conference-info-divider-div:hover,
+  .conference-theme-paragraph-div:hover {
+    overflow-y: hidden;
   }
 
   .program-divider {
     width: 90%;
-    border: 1px solid black;
   }
 
   .program {

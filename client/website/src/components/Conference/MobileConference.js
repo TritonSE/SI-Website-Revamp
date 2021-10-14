@@ -51,6 +51,8 @@ export default function MobileConferences(props) {
         setItem(itemList[step]);
     };
 
+    console.log(item);
+
     /**
      * Rendersthe conference theme information
      * title - the title of the conference
@@ -68,8 +70,9 @@ export default function MobileConferences(props) {
             <ConferenceTheme
                 redirect={item.signUpLink}
                 theme={item.theme}
-                signup={false}
+                signup={item.signUpLink}
                 location={item.location}
+                isMobile
             />
             <div className="overview-header-mobile">
                 <h2>Overview</h2>
@@ -155,7 +158,7 @@ export default function MobileConferences(props) {
                 {displayInformation()}
 
                 {/* Render either the associated video or the slideshow of images */}
-                <div style={{ width: "100%" }}>{slideshowVideo(false)}</div>
+                {item.video ? <div style={{ width: "100%" }}>{slideshowVideo(false)}</div> : null}
             </div>
         </div>
     );

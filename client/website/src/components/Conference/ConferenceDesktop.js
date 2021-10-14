@@ -77,7 +77,8 @@ export default function ConferencesDesktop(props) {
                     location={item.location}
                     redirect={item.signUpLink}
                     theme={item.theme}
-                    signup
+                    signup={item.signUpLink}
+                    isMobile={false}
                 />
             );
         }
