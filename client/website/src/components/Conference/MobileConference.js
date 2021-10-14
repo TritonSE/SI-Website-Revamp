@@ -51,8 +51,6 @@ export default function MobileConferences(props) {
         setItem(itemList[step]);
     };
 
-    console.log(item);
-
     /**
      * Rendersthe conference theme information
      * title - the title of the conference
