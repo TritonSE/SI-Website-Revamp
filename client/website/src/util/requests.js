@@ -10,7 +10,7 @@ export const fetchNewsletters = async () => {
                 "content-type": "application/json",
             },
         });
-        // successfull
+        // successful
         if (res.ok) {
             const data = await res.json();
             return data;
@@ -33,7 +33,7 @@ export const fetchCommittees = async () => {
                 "content-type": "application/json",
             },
         });
-        // successfull
+        // successful
         if (res.ok) {
             const data = await res.json();
             return data;
@@ -56,7 +56,7 @@ export const fetchMemberships = async () => {
                 "content-type": "application/json",
             },
         });
-        // successfull
+        // successful
         if (res.ok) {
             const data = await res.json();
             return data;

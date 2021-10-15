@@ -26,6 +26,7 @@ export default function PayPal(props) {
         affiliatedOrgs,
         disable,
         transactionCompleted,
+        address,
     } = props;
 
     // only add values to itemTotal and taxTotal if they are positive
@@ -106,7 +107,7 @@ export default function PayPal(props) {
                 onClick(_data, actions) {
                     // Validate the membership type
                     return fetch(
-                        `${BACKEND_URL}membershipTypes/${membershipID}?cost=${membershipCost.toFixed(
+                        `${BACKEND_URL}memberships/membershipTypes/${membershipID}?cost=${membershipCost.toFixed(
                             2
                         )}`,
                         {
@@ -140,13 +141,14 @@ export default function PayPal(props) {
                             lName: details.payer.name.surname,
                             phone: details.payer.phone.phone_number.national_number,
                             email: details.payer.email_address,
-                            country: details.payer.address.country_code,
+                            address,
                             isNewMember,
                             affiliatedOrgs,
                             membershipType: membershipID.toString(),
                             totalPaid: parseFloat(details.purchase_units[0].amount.value),
                             payPalTransactionId: details.purchase_units[0].payments.captures[0].id,
                         };
+                        console.log(membershipObject);
                         return fetch(`${BACKEND_URL}memberships/`, {
                             method: "post",
                             headers: {

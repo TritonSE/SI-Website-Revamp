@@ -1,5 +1,13 @@
+/**
+ * This file creates a component for the PayPal Modal that is used to
+ * display the PayPal buttons for making payments. This component is
+ * used on the Join Us page to allow the user to pay for memberships.
+ *
+ * @summary Creates a component for PayPal Modal on Join Us page
+ * @author Dhanush Nanjunda Reddy
+ */
+
 import React from "react";
-// import { Button } from 'react-bootstrap';
 import PayPal from "./PayPal";
 import CustomButton from "./CustomButton";
 import "../css/PayPalModal.css";
@@ -11,7 +19,7 @@ export default function PayPalModal(props) {
             <div className="paypal-modal-wrapper">
                 <div className="header-text">Choose Your Payment Method</div>
                 <div className="paypal-component">
-                    {/* <h className="header-text">Choose Your Payment Method</h> */}
+                    {/* displays PayPal buttons component */}
                     <PayPal
                         key={props.key}
                         membershipTitle={props.membershipTitle}
@@ -20,6 +28,7 @@ export default function PayPalModal(props) {
                         donationAmount={props.donationAmount}
                         isNewMember={props.isNewMember}
                         affiliatedOrgs={props.affiliatedOrgs}
+                        address={props.address}
                         disable={false}
                         transactionCompleted={() => {
                             alert("completed transaction");
@@ -29,7 +38,6 @@ export default function PayPalModal(props) {
                 <div className="return-button">
                     <CustomButton text="Return to Form" onClickCallback={props.toggleModal} />
                 </div>
-                {/* <Button style={{ backgroundColor: "#f9ce1d", borderColor: "#f9ce1d", color: "#000000" }} className="return-button" onClick={props.toggleModal}>Return to Form</Button> */}
             </div>
         </>
     );

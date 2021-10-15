@@ -9,7 +9,6 @@
  */
 
 import React, { useState, useEffect } from "react";
-// import { Button } from 'react-bootstrap';
 import "../css/JoinUs.css";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -19,7 +18,6 @@ import ResourcesHeader from "../components/ResourcesHeader";
 
 import HeaderImage from "../media/JoinUs_Header.png";
 import CustomButton from "../components/CustomButton";
-// import PayPal from "../components/PayPal";
 import PayPalModal from "../components/PayPalModal";
 import config from "../config";
 import { fetchMemberships } from "../util/requests";
@@ -30,29 +28,6 @@ const BACKEND_URL = config.backend.uri;
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
-
-// function showPaypal(displayPayPalModal, openPaypalModal, displayPayPal, membership, memberships, donation, memberType, organizations) {
-//     if (displayPayPalModal) {
-//         return (
-//             <PayPal
-//                 key={displayPayPal}
-//                 membershipTitle={memberships[membership - 1].title}
-//                 membershipID={memberships[membership - 1].id}
-//                 membershipCost={parseFloat(
-//                     memberships[membership - 1].cost
-//                 )}
-//                 donationAmount={donation}
-//                 isNewMember={memberType}
-//                 affiliatedOrgs={organizations}
-//                 disable={false}
-//                 transactionCompleted={() => {
-//                     alert("completed transaction");
-//                 }}
-//             />
-//         );
-//     }
-//     return (<Button style={{ backgroundColor: "#f9ce1d", borderColor: "#f9ce1d", color: "#000000" }} className="review-order-button" onClick={openPaypalModal}>Pay Now</Button>);
-// }
 
 const CustomSelectField = withStyles({
     root: {
@@ -144,8 +119,6 @@ const CustomTextField = withStyles({
 })(TextField);
 
 export default function JoinUs() {
-    // const classes = useStyles();
-
     const [isMobile, setIsMobile] = useState(false);
 
     const [membershipCheck, setMembershipCheck] = useState(false);
@@ -198,8 +171,6 @@ export default function JoinUs() {
             error: false,
         },
     });
-
-    // const [addressTwo, setAddressTwo] = useState("");
 
     const [organizations, setOrganizations] = useState("");
     const [donation, setDonation] = useState(0);
@@ -263,27 +234,6 @@ export default function JoinUs() {
         setLoadingMemberships(false);
     }, []);
 
-    // fetch membership types from backend
-    // useEffect(async () => {
-    //     await (async () => {
-    //         try {
-    //             const res = await fetch(`${BACKEND_URL}memberships/membershipTypes`, {
-    //                 method: "get",
-    //                 headers: {
-    //                     "content-type": "application/json",
-    //                 },
-    //             });
-    //             if (res.ok) {
-    //                 const data = await res.json();
-    //                 setMemberships(data);
-    //             }
-    //         } catch {
-    //             console.log("error");
-    //         }
-    //     })();
-    //     console.log(memberships);
-    // }, []);
-
     const handleChange = (event) => {
         setValues({
             ...values,
@@ -308,16 +258,6 @@ export default function JoinUs() {
 
     const handleMembershipChange = (event) => {
         setMembershipCheck(event.target.checked);
-
-        // fetch(`${BACKEND_URL}membershipTypes/`, {
-        //     method: "get",
-        //     headers: { "Content-Type": "application/json" },
-        // }).then((res) => {
-        //     // form submitted
-        //     if (res.ok) {
-        //         console.log(res.json());
-        //     }
-        // });
     };
 
     const handleDonateChange = (event) => {
@@ -397,94 +337,47 @@ export default function JoinUs() {
         const givenAddress = `${values.addressOne.value} ${addressOpt}${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`;
 
         // call backend route to store member data
-        if (membershipCheck) {
-            // call backend route to store member data
-            await fetch(`${BACKEND_URL}emailList/`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    fName: values.firstName.value,
-                    mName: values.middleName.value,
-                    lName: values.lastName.value,
-                    phone: values.phoneNumber.value,
-                    email: values.emailAddress.value,
-                    address: givenAddress,
-                }),
-            }).then((res) => {
-                // form submitted
-                if (res.ok) {
-                    // clear form values
-                    setValues({
-                        ...values,
-                        firstName: { ...values.firstName, value: "" },
-                        middleName: { ...values.middleName, value: "" },
-                        lastName: { ...values.lastName, value: "" },
-                        phoneNumber: { ...values.phoneNumber, value: "" },
-                        emailAddress: { ...values.emailAddress, value: "" },
-                        country: { ...values.country, value: "" },
-                        addressOne: { ...values.addressOne, value: "" },
-                        addressTwo: { ...values.addressTwo, value: "" },
-                        city: { ...values.city, value: "" },
-                        stateLocation: { ...values.stateLocation, value: "" },
-                        zipcode: { ...values.zipcode, value: "" },
-                    });
-                    setSnackBar({
-                        open: true,
-                        message: "Form was submitted!",
-                    });
-                    // form could not be submitted
-                } else {
-                    // show snackbar to notify form could not be submitted
-                    setSnackBar({
-                        open: true,
-                        message: "An internal error occurred. Form not submitted.",
-                    });
-                }
-            });
-        } else {
-            // call backend route to store member data
-            await fetch(`${BACKEND_URL}emailList/`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    fName: values.firstName.value,
-                    mName: values.middleName.value,
-                    lName: values.lastName.value,
-                    phone: values.phoneNumber.value,
-                    email: values.emailAddress.value,
-                    address: givenAddress,
-                }),
-            }).then((res) => {
-                // form submitted
-                if (res.ok) {
-                    // clear form values
-                    setValues({
-                        ...values,
-                        firstName: { ...values.firstName, value: "" },
-                        middleName: { ...values.middleName, value: "" },
-                        lastName: { ...values.lastName, value: "" },
-                        phoneNumber: { ...values.phoneNumber, value: "" },
-                        emailAddress: { ...values.emailAddress, value: "" },
-                        country: { ...values.country, value: "" },
-                        addressOne: { ...values.addressOne, value: "" },
-                        city: { ...values.city, value: "" },
-                        stateLocation: { ...values.stateLocation, value: "" },
-                        zipcode: { ...values.zipcode, value: "" },
-                    });
-                    setSnackBar({
-                        open: true,
-                        message: "Form was submitted!",
-                    });
-                    // form could not be submitted
-                } else {
-                    // show snackbar to notify form could not be submitted
-                    setSnackBar({
-                        open: true,
-                        message: "An internal error occurred. Form not submitted.",
-                    });
-                }
-            });
-        }
+        await fetch(`${BACKEND_URL}emailList/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                fName: values.firstName.value,
+                mName: values.middleName.value,
+                lName: values.lastName.value,
+                phone: values.phoneNumber.value,
+                email: values.emailAddress.value,
+                address: givenAddress,
+            }),
+        }).then((res) => {
+            // form submitted
+            if (res.ok) {
+                // clear form values
+                setValues({
+                    ...values,
+                    firstName: { ...values.firstName, value: "" },
+                    middleName: { ...values.middleName, value: "" },
+                    lastName: { ...values.lastName, value: "" },
+                    phoneNumber: { ...values.phoneNumber, value: "" },
+                    emailAddress: { ...values.emailAddress, value: "" },
+                    country: { ...values.country, value: "" },
+                    addressOne: { ...values.addressOne, value: "" },
+                    addressTwo: { ...values.addressTwo, value: "" },
+                    city: { ...values.city, value: "" },
+                    stateLocation: { ...values.stateLocation, value: "" },
+                    zipcode: { ...values.zipcode, value: "" },
+                });
+                setSnackBar({
+                    open: true,
+                    message: "Form was submitted!",
+                });
+            } else {
+                // show snackbar to notify form could not be submitted
+                setSnackBar({
+                    open: true,
+                    message: "An internal error occurred. Form not submitted.",
+                });
+            }
+        });
 
         document.body.style.cursor = null;
         setIsFormDisabled(false);
@@ -710,7 +603,6 @@ export default function JoinUs() {
                                     className="input-field"
                                     value={isNewMember}
                                     onChange={handleNewMember}
-                                    // onChange={(e) => setMemberType(e.target.value)}
                                     variant="outlined"
                                     label="New or Renewing Member?"
                                     select
@@ -754,14 +646,6 @@ export default function JoinUs() {
                                                 {membershipItem.title} ${membershipItem.cost} USD
                                             </MenuItem>
                                         ))}
-                                        {/* <MenuItem value="option1">
-                                        Nun/Student/Unemployed $15.00 USD
-                                    </MenuItem>
-                                    <MenuItem value="option2">General $30.00 USD</MenuItem>
-                                    <MenuItem value="option3">
-                                        Lifetime - Nun/Student/Unemployed $150.00 USD
-                                    </MenuItem>
-                                    <MenuItem value="option4">Lifetime $300.00 USD</MenuItem> */}
                                     </CustomSelectField>
                                     {displayAsterisk()}
                                 </div>
@@ -784,7 +668,7 @@ export default function JoinUs() {
                                         placeholder="Insert Donation Amount"
                                         required
                                         value={donation}
-                                        onChange={(e) => setDonation(e.target.value)}
+                                        onChange={(e) => setDonation(parseFloat(e.target.value))}
                                         type="number"
                                         step={0.01}
                                         InputProps={{
@@ -806,44 +690,22 @@ export default function JoinUs() {
                                     isNewMember={memberType}
                                     affiliatedOrgs={organizations}
                                     toggleModal={openPaypalModal}
+                                    address={`${values.addressOne.value} ${values.addressTwo.value} ${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`}
                                 />
                             ) : null}
                             <div className="paypal-buttons">
-                                {
-                                    !displayPayPal ? (
-                                        <p className="error-message">
-                                            *Please fill out all required fields to proceed to
-                                            payment.
-                                        </p>
-                                    ) : (
-                                        <div className="continue-button">
-                                            <CustomButton
-                                                text="Continue to Payment"
-                                                onClickCallback={openPaypalModal}
-                                            />
-                                        </div>
-                                    )
-                                    // <Button style={{ backgroundColor: "#f9ce1d", borderColor: "#f9ce1d", color: "#000000" }} className="continue-button" onClick={openPaypalModal}>Continue to Payment</Button>
-                                    // showPaypal(displayPayPalModal, openPaypalModal, displayPayPal, membership, memberships, donation, memberType, organizations)
-                                    // displayPayPalModal ?
-                                    //     <PayPal
-                                    //         key={displayPayPal}
-                                    //         membershipTitle={memberships[membership - 1].title}
-                                    //         membershipID={memberships[membership - 1].id}
-                                    //         membershipCost={parseFloat(
-                                    //             memberships[membership - 1].cost
-                                    //         )}
-                                    //         donationAmount={donation}
-                                    //         isNewMember={memberType}
-                                    //         affiliatedOrgs={organizations}
-                                    //         disable={false}
-                                    //         transactionCompleted={() => {
-                                    //             alert("completed transaction");
-                                    //         }}
-                                    //     />
-                                    //     :
-                                    //     <Button style={{ backgroundColor: "#f9ce1d", borderColor: "#f9ce1d", color: "#000000" }} className="review-order-button" onClick={openPaypalModal}>Pay Now</Button>
-                                }
+                                {!displayPayPal ? (
+                                    <p className="error-message">
+                                        *Please fill out all required fields to proceed to payment.
+                                    </p>
+                                ) : (
+                                    <div className="continue-button">
+                                        <CustomButton
+                                            text="Continue to Payment"
+                                            onClickCallback={openPaypalModal}
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ) : (
@@ -859,25 +721,6 @@ export default function JoinUs() {
                         </div>
                     )}
                 </form>
-
-                {/* {!membershipCheck ? 
-                                {
-                                    ((values.firstName.value === "") ||
-                                    (values.lastName.value === "") ||
-                                    (values.phoneNumber.value === "") ||
-                                    (values.emailAddress.value === "") ||
-                                    (values.country.value === "") ||
-                                    (values.addressOne.value === "") ||
-                                    (values.city.value === "") ||
-                                    (values.stateLocation.value === "") ||
-                                    (values.zipcode.value === "")) ? 
-                                    (<p className="error-message">
-                                        *Please fill out all required fields to proceed to payment.
-                                    </p>) : <PayPal membershipCost={membership} donationAmount={donation} isNewMember={memberType} affiliatedOrgs={organizations} />
-                                }
-                : <PayPal membershipCost={membership} donationAmount={donation} isNewMember={memberType} affiliatedOrgs={organizations} />} */}
-
-                {/* {formCheck ? <p className="success-message">All required fields are filled.</p> : <p className="error-message">*Please fill out all required fields to proceed to payment.</p>} */}
             </div>
             <Snackbar
                 open={snackbar.open}
