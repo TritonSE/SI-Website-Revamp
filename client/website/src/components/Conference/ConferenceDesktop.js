@@ -15,6 +15,7 @@
 
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
+import { ErrorLoadingContent } from "../Main/ErrorLoadingContent";
 import VerticalStepper from "./VerticalStepper";
 import ConferenceOverview from "./ConferenceOverview";
 import ConferenceTheme from "./ConferenceTheme";
@@ -31,6 +32,8 @@ export default function ConferencesDesktop(props) {
     const [item, setItem] = useState(props.data[index]);
     // list of all conferences
     const [itemList] = useState(props.data);
+    // determine if video has an error
+    const [videoError, setVideoError] = useState(false);
 
     /**
      * On rendering of page, set the current item to be the first item on stepper
@@ -72,15 +75,16 @@ export default function ConferencesDesktop(props) {
                 <ConferenceTheme
                     title={item.title}
                     location={item.location}
-                    redirect={item.info.signUpLink}
-                    theme={item.info.theme}
-                    signup
+                    redirect={item.signUpLink}
+                    theme={item.theme}
+                    signup={item.signUpLink}
+                    isMobile={false}
                 />
             );
         }
 
         // if it is not the info tab, then render the overview tab
-        return <ConferenceOverview info={item.info} title={item.title} />;
+        return <ConferenceOverview info={item} title={item.title} />;
     };
 
     /**
@@ -89,11 +93,11 @@ export default function ConferencesDesktop(props) {
      * @returns Node - component to render
      */
     const slideshowVideo = () => {
-        if (isInfo) {
+        if (isInfo || !item.video) {
             return (
                 <Slideshow height="430px" width="100%">
                     {/* Loop through all the images associated with the conference */}
-                    {item.info.slideShowImages.map((image) => (
+                    {item.slideShowImages.urls.map((image) => (
                         <div>
                             {/* Set styling on the img */}
                             <img
@@ -111,8 +115,26 @@ export default function ConferencesDesktop(props) {
         }
 
         // if it is the overivew tab, render the associated video
-        return <ReactPlayer url={item.info.video} height="430px" width="100%" />;
+        return videoError ? (
+            <ErrorLoadingContent height="430px" width="100%" />
+        ) : (
+            <ReactPlayer
+                url={item.video}
+                height="430px"
+                width="100%"
+                onError={() => setVideoError(true)}
+            />
+        );
     };
+
+    // check to see if data exists
+    if (props.data.length === 0) {
+        return (
+            <div className="empty-conferences">
+                <p>We have no conferences to show you at this time</p>
+            </div>
+        );
+    }
 
     return (
         <div className="conferences-outer-container">
@@ -128,7 +150,7 @@ export default function ConferencesDesktop(props) {
 
                 {/* This outer div is used for 1050 < x < 1200 screen widths */}
                 <div className="small-desktop-div-container">
-                    {/* Display the information for either theme or ovwerview */}
+                    {/* Display the information for either theme or overview */}
                     <div className="conference-container">{displayInformation()}</div>
 
                     {/* The tabs to switch between theme and overview */}

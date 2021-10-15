@@ -24,3 +24,22 @@ export const fetchNewsletters = async () => {
         return [];
     }
 };
+
+export const fetchConferences = async () => {
+    try {
+        const response = await fetch(`${BACKEND_URL}conference/`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        }
+    } catch {
+        // pass through if any error
+    }
+    return [];
+};

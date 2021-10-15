@@ -118,10 +118,9 @@ export default function VerticalStepper(props) {
         for (let i = 0; i < props.items.length; i++) {
             const obj = {};
             // extract only the country/state, not city
-            const two = props.items[i].location.split(",").splice(1, 1);
-            obj.location = two;
+            obj.location = props.items[i].location;
             // get the conference number
-            obj.number = props.items[i].number;
+            obj.confNum = props.items[i].confNum;
 
             // push it to the array
             arr.push(obj);
@@ -200,7 +199,7 @@ export default function VerticalStepper(props) {
                                         ? { root: classes.buttonActive }
                                         : { root: classes.button }
                                 }
-                                icon={stepperNode(step.number)}
+                                icon={stepperNode(step.confNum)}
                             >
                                 {/* step label provides the location */}
                                 <StepLabel

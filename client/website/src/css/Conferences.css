@@ -1,3 +1,51 @@
+/* Styling the scroll bar for the overview/theme */
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(240, 240, 240);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--lightpurple);
+  height: 20px;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--darkpurple);
+}
+
+.loading-spinner {
+  height: calc(100vh);
+  width: calc(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: -10vh;
+}
+
+/* Design for when there is no conferences to load */
+.empty-conferences {
+  height: calc(80vh);
+  width: calc(100vw);
+  display: flex;
+  align-items: center;
+}
+
+.empty-conferences p {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: var(--text-font);
+}
+
 .conferences-outer-container {
   width: 100%;
   margin-left: calc(101px);
@@ -32,12 +80,26 @@
 }
 
 /* Conference information */
-
 .conference-info,
 .conference-overview {
   /* min-width: 400px; */
   width: calc(30.24vw);
-  margin: 15.5vh 2vw 9vh 1vw;
+  margin: 15.5vh 1.5vw 9vh 1vw;
+}
+
+.conference-info-divider-div,
+.conference-theme-paragraph-div {
+  max-height: 342px;
+  overflow-y: hidden;
+}
+
+.conference-theme-paragraph-div {
+  max-height: 304px;
+}
+
+.conference-info-divider-div:hover,
+.conference-theme-paragraph-div:hover {
+  overflow-y: auto;
 }
 
 .conference-info-title h1 {
@@ -250,6 +312,10 @@
   .conference-overview {
     min-width: calc(53vw);
   }
+
+  .conference-info-signup button {
+    width: 150px;
+  }
 }
 
 @media only screen and (max-width: 1050px) {
@@ -343,9 +409,24 @@
   .conference-info-divider-div {
     width: 100%;
     display: flex;
+    max-height: fit-content;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: visible;
+  }
+
+  .conference-theme-paragraph-div {
+    overflow-y: visible;
+    max-height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .conference-info-divider-div:hover,
+  .conference-theme-paragraph-div:hover {
+    overflow-y: hidden;
   }
 
   .program-divider {
