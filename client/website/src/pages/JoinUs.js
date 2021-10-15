@@ -9,6 +9,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+// import { Button } from 'react-bootstrap';
 import "../css/JoinUs.css";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -18,14 +19,40 @@ import ResourcesHeader from "../components/ResourcesHeader";
 
 import HeaderImage from "../media/JoinUs_Header.png";
 import CustomButton from "../components/CustomButton";
-import PayPal from "../components/PayPal";
+// import PayPal from "../components/PayPal";
+import PayPalModal from "../components/PayPalModal";
 import config from "../config";
+import { fetchMemberships } from "../util/requests";
+import Loader from "../components/Main/Loader";
 
 const BACKEND_URL = config.backend.uri;
 
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
+
+// function showPaypal(displayPayPalModal, openPaypalModal, displayPayPal, membership, memberships, donation, memberType, organizations) {
+//     if (displayPayPalModal) {
+//         return (
+//             <PayPal
+//                 key={displayPayPal}
+//                 membershipTitle={memberships[membership - 1].title}
+//                 membershipID={memberships[membership - 1].id}
+//                 membershipCost={parseFloat(
+//                     memberships[membership - 1].cost
+//                 )}
+//                 donationAmount={donation}
+//                 isNewMember={memberType}
+//                 affiliatedOrgs={organizations}
+//                 disable={false}
+//                 transactionCompleted={() => {
+//                     alert("completed transaction");
+//                 }}
+//             />
+//         );
+//     }
+//     return (<Button style={{ backgroundColor: "#f9ce1d", borderColor: "#f9ce1d", color: "#000000" }} className="review-order-button" onClick={openPaypalModal}>Pay Now</Button>);
+// }
 
 const CustomSelectField = withStyles({
     root: {
@@ -116,35 +143,6 @@ const CustomTextField = withStyles({
     },
 })(TextField);
 
-// const displayMemberships = ({ memberships, membership }) => {
-//     return (
-//         <div className="form-item">
-//             <CustomSelectField
-//                 className="input-field"
-//                 value={membership}
-//                 onChange={(e) => setMembership(e.target.value)}
-//                 variant="outlined"
-//                 label="Select Membership"
-//                 select
-//                 size="small"
-//             >
-//                 {memberships.map((membershipItem) => (
-//                     <MenuItem >{membershipItem.title + membershipItem.cost}</MenuItem>
-//                 ))}
-//                 {/* <MenuItem value="option1">
-//                                         Nun/Student/Unemployed $15.00 USD
-//                                     </MenuItem>
-//                                     <MenuItem value="option2">General $30.00 USD</MenuItem>
-//                                     <MenuItem value="option3">
-//                                         Lifetime - Nun/Student/Unemployed $150.00 USD
-//                                     </MenuItem>
-//                                     <MenuItem value="option4">Lifetime $300.00 USD</MenuItem> */}
-//             </CustomSelectField>
-//             {displayAsterisk()}
-//         </div>
-//     );
-// }
-
 export default function JoinUs() {
     // const classes = useStyles();
 
@@ -183,6 +181,10 @@ export default function JoinUs() {
             value: "",
             error: false,
         },
+        addressTwo: {
+            value: "",
+            error: false,
+        },
         city: {
             value: "",
             error: false,
@@ -197,7 +199,7 @@ export default function JoinUs() {
         },
     });
 
-    const [addressTwo, setAddressTwo] = useState("");
+    // const [addressTwo, setAddressTwo] = useState("");
 
     const [organizations, setOrganizations] = useState("");
     const [donation, setDonation] = useState(0);
@@ -207,7 +209,9 @@ export default function JoinUs() {
     const [isNewMember, setIsNewMember] = useState("");
 
     const [memberships, setMemberships] = useState([]);
+    const [loadingMemberships, setLoadingMemberships] = useState(true);
     const [displayPayPal, setDisplayPayPal] = useState(false);
+    const [displayPayPalModal, setDisplayPayPalModal] = useState(false);
 
     const [snackbar, setSnackBar] = useState({
         open: false,
@@ -241,7 +245,8 @@ export default function JoinUs() {
             values.zipcode.value === "" ||
             memberType === "" ||
             organizations === "" ||
-            membership === 0
+            membership === 0 ||
+            (donateCheck && donation === 0)
         ) {
             setDisplayPayPal(false);
         } else {
@@ -252,23 +257,32 @@ export default function JoinUs() {
     // fetch membership types from backend
     useEffect(async () => {
         await (async () => {
-            try {
-                const res = await fetch(`${BACKEND_URL}membershipTypes/`, {
-                    method: "get",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    setMemberships(data);
-                }
-            } catch {
-                console.log("error");
-            }
+            const data = await fetchMemberships();
+            setMemberships(data);
         })();
-        console.log(memberships);
+        setLoadingMemberships(false);
     }, []);
+
+    // fetch membership types from backend
+    // useEffect(async () => {
+    //     await (async () => {
+    //         try {
+    //             const res = await fetch(`${BACKEND_URL}memberships/membershipTypes`, {
+    //                 method: "get",
+    //                 headers: {
+    //                     "content-type": "application/json",
+    //                 },
+    //             });
+    //             if (res.ok) {
+    //                 const data = await res.json();
+    //                 setMemberships(data);
+    //             }
+    //         } catch {
+    //             console.log("error");
+    //         }
+    //     })();
+    //     console.log(memberships);
+    // }, []);
 
     const handleChange = (event) => {
         setValues({
@@ -318,6 +332,10 @@ export default function JoinUs() {
                 value: val,
             },
         });
+    };
+
+    const openPaypalModal = () => {
+        setDisplayPayPalModal(!displayPayPalModal);
     };
 
     const handleSubmit = async () => {
@@ -375,10 +393,13 @@ export default function JoinUs() {
             return;
         }
 
+        const addressOpt = values.addressTwo.value !== "" ? `${values.addressTwo.value} ` : "";
+        const givenAddress = `${values.addressOne.value} ${addressOpt}${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`;
+
         // call backend route to store member data
         if (membershipCheck) {
             // call backend route to store member data
-            await fetch(`${BACKEND_URL}emailList/addUser`, {
+            await fetch(`${BACKEND_URL}emailList/`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -387,7 +408,7 @@ export default function JoinUs() {
                     lName: values.lastName.value,
                     phone: values.phoneNumber.value,
                     email: values.emailAddress.value,
-                    country: values.country.value,
+                    address: givenAddress,
                 }),
             }).then((res) => {
                 // form submitted
@@ -402,9 +423,14 @@ export default function JoinUs() {
                         emailAddress: { ...values.emailAddress, value: "" },
                         country: { ...values.country, value: "" },
                         addressOne: { ...values.addressOne, value: "" },
+                        addressTwo: { ...values.addressTwo, value: "" },
                         city: { ...values.city, value: "" },
                         stateLocation: { ...values.stateLocation, value: "" },
                         zipcode: { ...values.zipcode, value: "" },
+                    });
+                    setSnackBar({
+                        open: true,
+                        message: "Form was submitted!",
                     });
                     // form could not be submitted
                 } else {
@@ -417,7 +443,7 @@ export default function JoinUs() {
             });
         } else {
             // call backend route to store member data
-            await fetch(`${BACKEND_URL}emailList/addUser`, {
+            await fetch(`${BACKEND_URL}emailList/`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -426,7 +452,7 @@ export default function JoinUs() {
                     lName: values.lastName.value,
                     phone: values.phoneNumber.value,
                     email: values.emailAddress.value,
-                    country: values.country.value,
+                    address: givenAddress,
                 }),
             }).then((res) => {
                 // form submitted
@@ -444,6 +470,10 @@ export default function JoinUs() {
                         city: { ...values.city, value: "" },
                         stateLocation: { ...values.stateLocation, value: "" },
                         zipcode: { ...values.zipcode, value: "" },
+                    });
+                    setSnackBar({
+                        open: true,
+                        message: "Form was submitted!",
                     });
                     // form could not be submitted
                 } else {
@@ -612,9 +642,10 @@ export default function JoinUs() {
                                     variant="outlined"
                                     className="address-line2 input-field"
                                     placeholder="Address Line 2"
-                                    value={addressTwo}
-                                    onChange={(e) => setAddressTwo(e.target.value)}
+                                    value={values.addressTwo.value}
+                                    onChange={handleChange}
                                     disabled={isFormDisabled}
+                                    name="addressTwo"
                                 />
                             </div>
                             <div className="city-field form-item">
@@ -705,22 +736,25 @@ export default function JoinUs() {
                                 {displayAsterisk()}
                             </div>
                             <h1 className="payment-text">Payment Options</h1>
-                            <div className="form-item">
-                                <CustomSelectField
-                                    className="input-field"
-                                    value={membership}
-                                    onChange={(e) => setMembership(e.target.value)}
-                                    variant="outlined"
-                                    label="Select Membership"
-                                    select
-                                    size="small"
-                                >
-                                    {memberships.map((membershipItem) => (
-                                        <MenuItem value={membershipItem.id}>
-                                            {membershipItem.title} ${membershipItem.cost} USD
-                                        </MenuItem>
-                                    ))}
-                                    {/* <MenuItem value="option1">
+                            {loadingMemberships ? (
+                                <Loader />
+                            ) : (
+                                <div className="form-item">
+                                    <CustomSelectField
+                                        className="input-field"
+                                        value={membership}
+                                        onChange={(e) => setMembership(e.target.value)}
+                                        variant="outlined"
+                                        label="Select Membership"
+                                        select
+                                        size="small"
+                                    >
+                                        {memberships.map((membershipItem) => (
+                                            <MenuItem value={membershipItem.id}>
+                                                {membershipItem.title} ${membershipItem.cost} USD
+                                            </MenuItem>
+                                        ))}
+                                        {/* <MenuItem value="option1">
                                         Nun/Student/Unemployed $15.00 USD
                                     </MenuItem>
                                     <MenuItem value="option2">General $30.00 USD</MenuItem>
@@ -728,9 +762,10 @@ export default function JoinUs() {
                                         Lifetime - Nun/Student/Unemployed $150.00 USD
                                     </MenuItem>
                                     <MenuItem value="option4">Lifetime $300.00 USD</MenuItem> */}
-                                </CustomSelectField>
-                                {displayAsterisk()}
-                            </div>
+                                    </CustomSelectField>
+                                    {displayAsterisk()}
+                                </div>
+                            )}
                             <div className="donate-check">
                                 <CustomColorCheckbox
                                     className="donate-checkbox"
@@ -761,27 +796,54 @@ export default function JoinUs() {
                                     {displayAsterisk()}
                                 </div>
                             ) : null}
+                            {displayPayPalModal ? (
+                                <PayPalModal
+                                    key={displayPayPal}
+                                    membershipTitle={memberships[membership - 1].title}
+                                    membershipID={memberships[membership - 1].id}
+                                    membershipCost={parseFloat(memberships[membership - 1].cost)}
+                                    donationAmount={donation}
+                                    isNewMember={memberType}
+                                    affiliatedOrgs={organizations}
+                                    toggleModal={openPaypalModal}
+                                />
+                            ) : null}
                             <div className="paypal-buttons">
-                                {!displayPayPal ? (
-                                    <p className="error-message">
-                                        *Please fill out all required fields to proceed to payment.
-                                    </p>
-                                ) : (
-                                    <PayPal
-                                        membershipTitle={memberships[membership - 1].title}
-                                        membershipID={memberships[membership - 1].id}
-                                        membershipCost={parseFloat(
-                                            memberships[membership - 1].cost
-                                        )}
-                                        donationAmount={donation}
-                                        isNewMember={memberType}
-                                        affiliatedOrgs={organizations}
-                                        disable={false}
-                                        transactionCompleted={() => {
-                                            alert("completed transaction");
-                                        }}
-                                    />
-                                )}
+                                {
+                                    !displayPayPal ? (
+                                        <p className="error-message">
+                                            *Please fill out all required fields to proceed to
+                                            payment.
+                                        </p>
+                                    ) : (
+                                        <div className="continue-button">
+                                            <CustomButton
+                                                text="Continue to Payment"
+                                                onClickCallback={openPaypalModal}
+                                            />
+                                        </div>
+                                    )
+                                    // <Button style={{ backgroundColor: "#f9ce1d", borderColor: "#f9ce1d", color: "#000000" }} className="continue-button" onClick={openPaypalModal}>Continue to Payment</Button>
+                                    // showPaypal(displayPayPalModal, openPaypalModal, displayPayPal, membership, memberships, donation, memberType, organizations)
+                                    // displayPayPalModal ?
+                                    //     <PayPal
+                                    //         key={displayPayPal}
+                                    //         membershipTitle={memberships[membership - 1].title}
+                                    //         membershipID={memberships[membership - 1].id}
+                                    //         membershipCost={parseFloat(
+                                    //             memberships[membership - 1].cost
+                                    //         )}
+                                    //         donationAmount={donation}
+                                    //         isNewMember={memberType}
+                                    //         affiliatedOrgs={organizations}
+                                    //         disable={false}
+                                    //         transactionCompleted={() => {
+                                    //             alert("completed transaction");
+                                    //         }}
+                                    //     />
+                                    //     :
+                                    //     <Button style={{ backgroundColor: "#f9ce1d", borderColor: "#f9ce1d", color: "#000000" }} className="review-order-button" onClick={openPaypalModal}>Pay Now</Button>
+                                }
                             </div>
                         </div>
                     ) : (

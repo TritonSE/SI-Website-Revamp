@@ -64,7 +64,11 @@
   width: 100%;
   padding-bottom: 12.34vw;
   margin-top: 7.27vw;
-  margin-left: 5%;
+}
+
+.continue-button {
+  width: 100%;
+  margin-left: 40%;
 }
 
 .error-asterisk {
@@ -186,6 +190,11 @@
     margin-top: 120px;
   }
 
+  .continue-button {
+    width: 100%;
+    margin-left: 28%;
+  }
+
   /* .page-info {
     font-size: 18px;
   }
@@ -292,5 +301,10 @@
     border-radius: 40px;
     font-size: 14px;
     line-height: 19px; */
+  }
+
+  .continue-button {
+    width: 100%;
+    margin-left: 25%;
   }
 }

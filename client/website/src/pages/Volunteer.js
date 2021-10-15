@@ -18,11 +18,265 @@ import ResourcesHeader from "../components/ResourcesHeader";
 import VolunteerOption from "../components/VolunteerOption";
 import CustomButton from "../components/CustomButton";
 import config from "../config";
+import { fetchCommittees } from "../util/requests";
+import Loader from "../components/Main/Loader";
 
 const BACKEND_URL = config.backend.uri;
 
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
+}
+
+function displayCommittees(
+    isMobile,
+    volunteerCommittees,
+    selectedCommittees,
+    checkedValues,
+    handleCommitteesChange
+) {
+    const mid = Math.floor(volunteerCommittees.length / 2);
+    console.log(volunteerCommittees);
+    if (isMobile) {
+        return (
+            <div className="volunteer-options">
+                {volunteerCommittees.map((committee) => (
+                    <VolunteerOption
+                        value={committee.id}
+                        checked={selectedCommittees.includes(committee.id)}
+                        handleChange={(e) => handleCommitteesChange(e)}
+                        title={committee.title}
+                        description={committee.description}
+                    />
+                ))}
+                {/* <VolunteerOption
+                    value={editing}
+                    handleChange={(e) => setEditing(e.target.checked)}
+                    title="Editing"
+                    description="Put together recap videos for our annual conferences."
+                />
+                <VolunteerOption
+                    value={techSupport}
+                    handleChange={(e) => setTechSupport(e.target.checked)}
+                    title="Tech Support"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={administration}
+                    handleChange={(e) => setAdministration(e.target.checked)}
+                    title="Administration"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={research}
+                    handleChange={(e) => setResearch(e.target.checked)}
+                    title="Research"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={socialJustice}
+                    handleChange={(e) => setSocialJustice(e.target.checked)}
+                    title="Social Justice"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={writing}
+                    handleChange={(e) => setWriting(e.target.checked)}
+                    title="Writing"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={building}
+                    handleChange={(e) => setBuilding(e.target.checked)}
+                    title="Building & Planting"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={accounting}
+                    handleChange={(e) => setAccounting(e.target.checked)}
+                    title="Accounting"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={programming}
+                    handleChange={(e) => setProgramming(e.target.checked)}
+                    title="Programming"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={planning}
+                    handleChange={(e) => setPlanning(e.target.checked)}
+                    title="Conference Planning"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={arts}
+                    handleChange={(e) => setArts(e.target.checked)}
+                    title="Arts"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={translation}
+                    handleChange={(e) => setTranslation(e.target.checked)}
+                    title="Translation"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={branches}
+                    handleChange={(e) => setBranches(e.target.checked)}
+                    title="Branches & Chapters"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={design}
+                    handleChange={(e) => setDesign(e.target.checked)}
+                    title="Design"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={ordination}
+                    handleChange={(e) => setOrdination(e.target.checked)}
+                    title="Ordination"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                /> */}
+            </div>
+        );
+    }
+    const volunteerOptionsLeft = [];
+    const volunteerOptionsRight = [];
+
+    for (let ind = 0; ind <= mid; ind++) {
+        volunteerOptionsLeft.push(
+            <VolunteerOption
+                value={volunteerCommittees[ind].id}
+                checked={selectedCommittees.includes(volunteerCommittees[ind].id)}
+                handleChange={(e) => handleCommitteesChange(e)}
+                title={volunteerCommittees[ind].title}
+                description={volunteerCommittees[ind].description}
+            />
+        );
+    }
+
+    for (let i = mid + 1; i < volunteerCommittees.length; i++) {
+        // console.log(volunteerCommittees[0]);
+        // console.log(i);
+        console.log(
+            volunteerCommittees[i].title,
+            " ",
+            volunteerCommittees[i].id,
+            " ",
+            selectedCommittees.includes(volunteerCommittees[i].id)
+        );
+        volunteerOptionsRight.push(
+            <VolunteerOption
+                value={volunteerCommittees[i].id}
+                checked={selectedCommittees.includes(volunteerCommittees[i].id)}
+                handleChange={(e) => handleCommitteesChange(e)}
+                title={volunteerCommittees[i].title}
+                description={volunteerCommittees[i].description}
+            />
+        );
+    }
+
+    return (
+        <div className="volunteer-options">
+            <div className="left-options-column">
+                {volunteerOptionsLeft}
+                {/* <VolunteerOption
+                    value={editing}
+                    handleChange={(e) => setEditing(e.target.checked)}
+                    title="Editing"
+                    description="Put together recap videos for our annual conferences."
+                />
+                <VolunteerOption
+                    value={techSupport}
+                    handleChange={(e) => setTechSupport(e.target.checked)}
+                    title="Tech Support"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={administration}
+                    handleChange={(e) => setAdministration(e.target.checked)}
+                    title="Administration"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={research}
+                    handleChange={(e) => setResearch(e.target.checked)}
+                    title="Research"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={socialJustice}
+                    handleChange={(e) => setSocialJustice(e.target.checked)}
+                    title="Social Justice"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={writing}
+                    handleChange={(e) => setWriting(e.target.checked)}
+                    title="Writing"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={building}
+                    handleChange={(e) => setBuilding(e.target.checked)}
+                    title="Building & Planting"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={accounting}
+                    handleChange={(e) => setAccounting(e.target.checked)}
+                    title="Accounting"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                /> */}
+            </div>
+            <div className="right-options-column">
+                {volunteerOptionsRight}
+                {/* <VolunteerOption
+                    value={programming}
+                    handleChange={(e) => setProgramming(e.target.checked)}
+                    title="Programming"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={planning}
+                    handleChange={(e) => setPlanning(e.target.checked)}
+                    title="Conference Planning"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={arts}
+                    handleChange={(e) => setArts(e.target.checked)}
+                    title="Arts"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={translation}
+                    handleChange={(e) => setTranslation(e.target.checked)}
+                    title="Translation"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={branches}
+                    handleChange={(e) => setBranches(e.target.checked)}
+                    title="Branches & Chapters"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={design}
+                    handleChange={(e) => setDesign(e.target.checked)}
+                    title="Design"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                />
+                <VolunteerOption
+                    value={ordination}
+                    handleChange={(e) => setOrdination(e.target.checked)}
+                    title="Ordination"
+                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
+                /> */}
+            </div>
+        </div>
+    );
 }
 
 const CustomTextField = withStyles({
@@ -103,6 +357,10 @@ export default function Volunteer() {
             value: "",
             error: false,
         },
+        addressTwo: {
+            value: "",
+            error: false,
+        },
         city: {
             value: "",
             error: false,
@@ -117,30 +375,44 @@ export default function Volunteer() {
         },
     });
 
-    const [addressTwo, setAddressTwo] = useState("");
+    // const [addressTwo, setAddressTwo] = useState("");
     // const [middleName, setMiddleName] = useState("");
 
-    const [editing, setEditing] = useState(false);
-    const [techSupport, setTechSupport] = useState(false);
-    const [administration, setAdministration] = useState(false);
-    const [research, setResearch] = useState(false);
-    const [socialJustice, setSocialJustice] = useState(false);
-    const [writing, setWriting] = useState(false);
-    const [building, setBuilding] = useState(false);
-    const [accounting, setAccounting] = useState(false);
-    const [programming, setProgramming] = useState(false);
-    const [planning, setPlanning] = useState(false);
-    const [arts, setArts] = useState(false);
-    const [translation, setTranslation] = useState(false);
-    const [branches, setBranches] = useState(false);
-    const [design, setDesign] = useState(false);
-    const [ordination, setOrdination] = useState(false);
+    // const [editing, setEditing] = useState(false);
+    // const [techSupport, setTechSupport] = useState(false);
+    // const [administration, setAdministration] = useState(false);
+    // const [research, setResearch] = useState(false);
+    // const [socialJustice, setSocialJustice] = useState(false);
+    // const [writing, setWriting] = useState(false);
+    // const [building, setBuilding] = useState(false);
+    // const [accounting, setAccounting] = useState(false);
+    // const [programming, setProgramming] = useState(false);
+    // const [planning, setPlanning] = useState(false);
+    // const [arts, setArts] = useState(false);
+    // const [translation, setTranslation] = useState(false);
+    // const [branches, setBranches] = useState(false);
+    // const [design, setDesign] = useState(false);
+    // const [ordination, setOrdination] = useState(false);
+
+    const [volunteerCommittees, setVolunteerCommittees] = useState([]);
+    const [selectedCommittees, setSelectedCommittees] = useState([]);
+    const [loadingCommittees, setLoadingCommittees] = useState(true);
+    const checkedValues = Array(volunteerCommittees.length).fill(false);
 
     const [snackbar, setSnackBar] = useState({
         open: false,
         message: "",
     });
     const [isFormDisabled, setIsFormDisabled] = useState(false);
+
+    // fetch volunteer committees from backend
+    useEffect(async () => {
+        await (async () => {
+            const data = await fetchCommittees();
+            setVolunteerCommittees(data);
+        })();
+        setLoadingCommittees(false);
+    }, []);
 
     // modifies isMobile state when window resizes
     useEffect(() => {
@@ -155,6 +427,28 @@ export default function Volunteer() {
         // Removes event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    // // fetch volunteer committees from backend
+    // useEffect(async () => {
+    //     await (async () => {
+    //         try {
+    //             const res = await fetch(`${BACKEND_URL}volunteers/committees`, {
+    //                 method: "get",
+    //                 headers: {
+    //                     "content-type": "application/json",
+    //                 },
+    //             });
+    //             if (res.ok) {
+    //                 const data = await res.json();
+    //                 console.log(data);
+    //                 setVolunteerCommittees(data);
+    //             }
+    //         } catch {
+    //             console.log("error");
+    //         }
+    //     })();
+    //     console.log(volunteerCommittees);
+    // }, []);
 
     const handleChange = (event) => {
         setValues({
@@ -177,6 +471,24 @@ export default function Volunteer() {
             },
         });
     };
+
+    function handleCommitteesChange(event) {
+        console.log(event.target.value);
+        checkedValues[event.target.value - 1] = event.target.checked;
+        if (selectedCommittees.includes(parseInt(event.target.value, 10))) {
+            // const index = selectedCommittees.indexOf(event.target.value);
+            // selectedCommittees.splice(index, 1);
+            setSelectedCommittees(
+                selectedCommittees.filter(
+                    (committee) => committee !== parseInt(event.target.value, 10)
+                )
+            );
+        } else {
+            setSelectedCommittees((oldArray) => [...oldArray, parseInt(event.target.value, 10)]);
+            // selectedCommittees.push(event.target.value);
+        }
+        console.log(selectedCommittees);
+    }
 
     const handleSubmit = async () => {
         if (isFormDisabled) return;
@@ -233,28 +545,31 @@ export default function Volunteer() {
             return;
         }
 
-        const committeeInterests = [];
+        const addressOpt = values.addressTwo.value !== "" ? `${values.addressTwo.value} ` : "";
+        const givenAddress = `${values.addressOne.value} ${addressOpt}${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`;
 
-        if (editing) committeeInterests.push(1);
-        if (techSupport) committeeInterests.push(2);
-        if (administration) committeeInterests.push(3);
-        if (research) committeeInterests.push(4);
-        if (socialJustice) committeeInterests.push(5);
-        if (writing) committeeInterests.push(6);
-        if (building) committeeInterests.push(7);
-        if (accounting) committeeInterests.push(8);
-        if (programming) committeeInterests.push(9);
-        if (planning) committeeInterests.push(10);
-        if (arts) committeeInterests.push(11);
-        if (translation) committeeInterests.push(12);
-        if (branches) committeeInterests.push(13);
-        if (design) committeeInterests.push(14);
-        if (ordination) committeeInterests.push(15);
+        // const committeeInterests = [];
 
-        console.log(committeeInterests);
+        // if (editing) committeeInterests.push(1);
+        // if (techSupport) committeeInterests.push(2);
+        // if (administration) committeeInterests.push(3);
+        // if (research) committeeInterests.push(4);
+        // if (socialJustice) committeeInterests.push(5);
+        // if (writing) committeeInterests.push(6);
+        // if (building) committeeInterests.push(7);
+        // if (accounting) committeeInterests.push(8);
+        // if (programming) committeeInterests.push(9);
+        // if (planning) committeeInterests.push(10);
+        // if (arts) committeeInterests.push(11);
+        // if (translation) committeeInterests.push(12);
+        // if (branches) committeeInterests.push(13);
+        // if (design) committeeInterests.push(14);
+        // if (ordination) committeeInterests.push(15);
+
+        // console.log(committeeInterests);
 
         // call backend route to store volunteer data
-        await fetch(`${BACKEND_URL}volunteers/addUser`, {
+        await fetch(`${BACKEND_URL}volunteers/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -263,8 +578,8 @@ export default function Volunteer() {
                 lName: values.lastName.value,
                 phone: values.phoneNumber.value,
                 email: values.emailAddress.value,
-                country: values.country.value,
-                interests: committeeInterests,
+                address: givenAddress,
+                interests: selectedCommittees,
             }),
         }).then((res) => {
             // form submitted
@@ -279,9 +594,15 @@ export default function Volunteer() {
                     emailAddress: { ...values.emailAddress, value: "" },
                     country: { ...values.country, value: "" },
                     addressOne: { ...values.addressOne, value: "" },
+                    addressTwo: { ...values.addressTwo, value: "" },
                     city: { ...values.city, value: "" },
                     stateLocation: { ...values.stateLocation, value: "" },
                     zipcode: { ...values.zipcode, value: "" },
+                });
+                setSelectedCommittees([]);
+                setSnackBar({
+                    open: true,
+                    message: "Form was submitted!",
                 });
                 // form could not be submitted
             } else {
@@ -308,7 +629,7 @@ export default function Volunteer() {
     return (
         <div>
             <ResourcesHeader
-                image="https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1623024000&Signature=SCONX7E-9B-btNQQ0a8fn1kh2A4i8I3-aZjQlNXgBZSJnw~N8fCz7YzTOmI6hq0iinH~f~2cTCB2mvuab1dM3sLLIqbF1ZwaOcYlCXMiOAkhAYMkzVbcbZgrN6s4X67Jq2fSmA7D-kgk9KzDjiXkLnxn0n8l~TMh6huoB18N5MbJrighV~Hl2YaoJrHmEWhjoBu8Jhm8TDPB99ghsGKIOR9xQMIuULa4STzVHCkoCtzWzWBLgd1-BDv2hhE67pH5PYqoIJnzZwEemddHpUtI-RMW2xHPaq6J8P1LnvRfL9Kuq00ULLl3h04474LC9EjWGr2cACW0lhgyX~ei0roR3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                image="https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1634515200&Signature=W7juSDjbFVbOKZC~AT6zXJeSdSv0kMd4jyVRZwXL2UFkox-~lUtwFG4ombOzKIsjNzCFiUidEc-auRtKwrUu6iGQlkTHVa9KMj7sWSALCtGT59iYiKXJxQBiStfj7yN-ls2G~WzCC9P1~04Yf52ODaau9~ZBElw6PC200~-JwUdasY8YzaRQEXv7JypSZ26enrYQoA6zObbDVb7CLxMp1MSwddCZH7LMZRcFBKhjBNgtK17zR5gadWOXy9IjuEyxe7IoWmkYrPl~icNFYLiJwSASNSOKBHCo-qH1kKY-McblLVS3eLVGCsFIJbM6sA0fkcfkj87mU~A2YB0KYKLQUQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                 title="Volunteer"
                 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus."
                 height={isMobile ? "95vh" : "600px"}
@@ -416,9 +737,10 @@ export default function Volunteer() {
                                     variant="outlined"
                                     className="address-line2 input-field"
                                     placeholder="Address Line 2"
-                                    value={addressTwo}
-                                    onChange={(e) => setAddressTwo(e.target.value)}
+                                    value={values.addressTwo.value}
+                                    onChange={handleChange}
                                     disabled={isFormDisabled}
+                                    name="addressTwo"
                                 />
                             </div>
                             <div className="city-field form-item">
@@ -480,196 +802,16 @@ export default function Volunteer() {
                     <p className="select-committees-text">
                         Select all committees you are interested in.
                     </p>
-                    {isMobile ? (
-                        <div className="volunteer-options">
-                            <VolunteerOption
-                                value={editing}
-                                handleChange={(e) => setEditing(e.target.checked)}
-                                title="Editing"
-                                description="Put together recap videos for our annual conferences."
-                            />
-                            <VolunteerOption
-                                value={techSupport}
-                                handleChange={(e) => setTechSupport(e.target.checked)}
-                                title="Tech Support"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={administration}
-                                handleChange={(e) => setAdministration(e.target.checked)}
-                                title="Administration"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={research}
-                                handleChange={(e) => setResearch(e.target.checked)}
-                                title="Research"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={socialJustice}
-                                handleChange={(e) => setSocialJustice(e.target.checked)}
-                                title="Social Justice"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={writing}
-                                handleChange={(e) => setWriting(e.target.checked)}
-                                title="Writing"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={building}
-                                handleChange={(e) => setBuilding(e.target.checked)}
-                                title="Building & Planting"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={accounting}
-                                handleChange={(e) => setAccounting(e.target.checked)}
-                                title="Accounting"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={programming}
-                                handleChange={(e) => setProgramming(e.target.checked)}
-                                title="Programming"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={planning}
-                                handleChange={(e) => setPlanning(e.target.checked)}
-                                title="Conference Planning"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={arts}
-                                handleChange={(e) => setArts(e.target.checked)}
-                                title="Arts"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={translation}
-                                handleChange={(e) => setTranslation(e.target.checked)}
-                                title="Translation"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={branches}
-                                handleChange={(e) => setBranches(e.target.checked)}
-                                title="Branches & Chapters"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={design}
-                                handleChange={(e) => setDesign(e.target.checked)}
-                                title="Design"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={ordination}
-                                handleChange={(e) => setOrdination(e.target.checked)}
-                                title="Ordination"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                        </div>
+                    {loadingCommittees ? (
+                        <Loader />
                     ) : (
-                        <div className="volunteer-options">
-                            <div className="left-options-column">
-                                <VolunteerOption
-                                    value={editing}
-                                    handleChange={(e) => setEditing(e.target.checked)}
-                                    title="Editing"
-                                    description="Put together recap videos for our annual conferences."
-                                />
-                                <VolunteerOption
-                                    value={techSupport}
-                                    handleChange={(e) => setTechSupport(e.target.checked)}
-                                    title="Tech Support"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={administration}
-                                    handleChange={(e) => setAdministration(e.target.checked)}
-                                    title="Administration"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={research}
-                                    handleChange={(e) => setResearch(e.target.checked)}
-                                    title="Research"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={socialJustice}
-                                    handleChange={(e) => setSocialJustice(e.target.checked)}
-                                    title="Social Justice"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={writing}
-                                    handleChange={(e) => setWriting(e.target.checked)}
-                                    title="Writing"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={building}
-                                    handleChange={(e) => setBuilding(e.target.checked)}
-                                    title="Building & Planting"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={accounting}
-                                    handleChange={(e) => setAccounting(e.target.checked)}
-                                    title="Accounting"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                            </div>
-                            <div className="right-options-column">
-                                <VolunteerOption
-                                    value={programming}
-                                    handleChange={(e) => setProgramming(e.target.checked)}
-                                    title="Programming"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={planning}
-                                    handleChange={(e) => setPlanning(e.target.checked)}
-                                    title="Conference Planning"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={arts}
-                                    handleChange={(e) => setArts(e.target.checked)}
-                                    title="Arts"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={translation}
-                                    handleChange={(e) => setTranslation(e.target.checked)}
-                                    title="Translation"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={branches}
-                                    handleChange={(e) => setBranches(e.target.checked)}
-                                    title="Branches & Chapters"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={design}
-                                    handleChange={(e) => setDesign(e.target.checked)}
-                                    title="Design"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={ordination}
-                                    handleChange={(e) => setOrdination(e.target.checked)}
-                                    title="Ordination"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                            </div>
-                        </div>
+                        displayCommittees(
+                            isMobile,
+                            volunteerCommittees,
+                            selectedCommittees,
+                            checkedValues,
+                            handleCommitteesChange
+                        )
                     )}
                     <div className="submit-form">
                         <CustomButton text="Submit" onClickCallback={handleSubmit} />
