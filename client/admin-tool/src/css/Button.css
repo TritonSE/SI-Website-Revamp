@@ -10,9 +10,41 @@
   font-size: 17px;
   font-weight: bold;
   border-color: white;
+  border-style: none;
+
+  position: relative;
 }
 
 .site-button:hover {
   cursor: pointer;
   background-color: var(--darkorange);
+}
+
+.site-button:active {
+  animation: jiggle 1s;
+  -webkit-animation: jiggle 0.25s;
+}
+
+@keyframes jiggle {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@-webkit-keyframes jiggle {
+  0% {
+    -webkit-transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-3px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+  }
 }
