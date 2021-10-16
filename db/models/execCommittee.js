@@ -8,7 +8,7 @@ const Sequelize = require("sequelize");
 const db = require("../configDB");
 
 const ExecCommittee = db.define(
-    "execCommitttee",
+    "execCommittee",
     {
         // if no primary key, default it will have a column called 'id' that will auto-increment an integer value
         year: {

@@ -26,7 +26,22 @@ async function getAll() {
     return ExecCommittee.findAll();
 }
 
+/**
+ * Edits Branches and Chapters data.
+ *
+ * @param {object} data -
+ * @returns {[object]} - Array of objects/null.
+ */
+async function edit(index, body) {
+    return ExecCommittee.update(body, {
+        where: {
+            id: index,
+        },
+    });
+}
+
 module.exports = {
     addExecCommittee,
     getAll,
+    edit,
 };

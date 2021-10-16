@@ -7,7 +7,7 @@
  */
 const express = require("express");
 const { body } = require("express-validator");
-const { addExecCommittee, getAll } = require("../db/services/execCommittee");
+const { addExecCommittee, getAll, edit } = require("../db/services/execCommittee");
 const { isValidated } = require("../middleware/validation");
 
 const router = express.Router();
@@ -59,5 +59,49 @@ router.get("/", async (req, res) => {
         return res.status(500).json({ message: err });
     }
 });
+
+/**
+ * Edits an execCommittee from DB.
+ *
+ * @param {Number} id - id of the location to be edited.
+ * @returns {status} - 200
+ */
+router.put(
+    "/:id",
+    [
+        body("year").isNumeric().optional(),
+        body("rank").isNumeric().optional(),
+        body("name").isString().optional(),
+        body("position").isString().optional(),
+        body("bio").isString().optional(),
+        body("imageLink").isURL().optional(),
+        body("redirectLink").isURL().optional(),
+        body("openInSameTab").isBoolean().optional(),
+        body("createdAt").custom((val) => val === undefined),
+        body("updatedAt").custom((val) => val === undefined),
+        body("id").custom((val) => val === undefined),
+        isValidated,
+    ],
+    async (req, res) => {
+        try {
+            const { id } = req.params;
+
+            // checks that id is a number
+            if (Number(id) < 0)
+                return res.status(500).json({ message: "Id must be a valid number" });
+
+            const entries = await edit(Number(id), req.body);
+
+            // success upon edit
+            if (entries[0] === 1) return res.status(200).json({ message: "Success" });
+
+            // failure upon edit
+            return res.status(500).json({ message: "Unsuccessful edit" });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({ message: err });
+        }
+    }
+);
 
 module.exports = router;
