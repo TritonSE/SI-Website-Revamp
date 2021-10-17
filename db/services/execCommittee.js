@@ -3,7 +3,7 @@
  * Allows for create capability.
  *
  * @summary   Services for execCommittees --> addExecCommittee.
- * @author    Thomas Garry
+ * @author    Thomas Garry, Amrit Singh
  */
 const ExecCommittee = require("../models/execCommittee");
 
@@ -31,23 +31,24 @@ async function getAll() {
         group: ["startYear"],
         order: [["startYear", "DESC"]],
     }).then(async (startYears) => {
-        let groupedResults = [];
-        for (let i = 0; i < startYears.length; i++) {
-            // group a particular start year's entries by ascending rank
-            await ExecCommittee.findAll({
-                where: { startYear: startYears[i]["startYear"] },
-                order: [["rank", "ASC"]],
-            })
-                .then((results) => {
-                    // add grouped entries into final response
-                    groupedResults.push({
-                        startYear: startYears[i]["startYear"],
-                        endYear: results[0]["endYear"],
-                        data: results,
-                    });
+        const groupedResults = [];
+        await Promise.all(
+            startYears.map(async (val) => {
+                await ExecCommittee.findAll({
+                    where: { startYear: val["startYear"] },
+                    order: [["rank", "ASC"]],
                 })
-                .catch((err) => console.log(`Error: ${JSON.stringify(err)}`));
-        }
+                    .then((results) => {
+                        // add grouped entries into final response
+                        groupedResults.push({
+                            startYear: val["startYear"],
+                            endYear: results[0]["endYear"],
+                            data: results,
+                        });
+                    })
+                    .catch((err) => console.log(`Error: ${JSON.stringify(err)}`));
+            })
+        );
         return groupedResults;
     });
 }
@@ -60,7 +61,7 @@ async function getAll() {
  * @returns {[JSON]} - Array of JSON entries fullfilling that startYear.
  */
 async function getSpecificCommittee(startYear) {
-    return ExecCommittee.findAll({ where: { 'startYear': startYear }, order: [["rank", "ASC"]] });
+    return ExecCommittee.findAll({ where: { startYear }, order: [["rank", "ASC"]] });
 }
 
 /**
@@ -98,7 +99,7 @@ async function deleteById(index) {
 async function deleteCommittee(startYear) {
     return ExecCommittee.destroy({
         where: {
-            'startYear': startYear,
+            startYear,
         },
     });
 }

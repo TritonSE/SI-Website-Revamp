@@ -27,7 +27,8 @@ const router = express.Router();
 router.post(
     "/",
     [
-        body("year").isNumeric(),
+        body("startYear").isNumeric(),
+        body("endYear").isNumeric(),
         body("rank").isNumeric(),
         body("name").isString(),
         body("position").isString(),
@@ -94,7 +95,8 @@ router.get("/:startYear", async (req, res) => {
 router.put(
     "/:id",
     [
-        body("year").isNumeric().optional(),
+        body("startYear").isNumeric(),
+        body("endYear").isNumeric(),
         body("rank").isNumeric().optional(),
         body("name").isString().optional(),
         body("position").isString().optional(),
@@ -162,7 +164,9 @@ router.delete("/committee/:startYear", async (req, res) => {
         const status = await deleteCommittee(startYear);
 
         // success
-        if (status === 1) return res.status(200).json({ message: "Success" });
+        if (status > 0) return res.status(200).json({ message: "Success" });
+
+        console.log(status);
 
         // failure
         return res.status(500).json({ message: "Unsuccessful committee deletion" });
