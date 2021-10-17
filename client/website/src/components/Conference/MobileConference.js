@@ -15,6 +15,7 @@
 
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
+import { ErrorLoadingContent } from "../Main/ErrorLoadingContent";
 import HorizontalStepper from "./HorizontalStepper";
 import ConferenceOverview from "./ConferenceOverview";
 import ConferenceTheme from "./ConferenceTheme";
@@ -29,6 +30,8 @@ export default function MobileConferences(props) {
     const [item, setItem] = useState(props.data[index]);
     // list of all conferences
     const [itemList] = useState(props.data);
+    // determine if video has an error
+    const [videoError, setVideoError] = useState(false);
 
     /**
      * On rendering of page, set the current item to be the first item on stepper
@@ -63,15 +66,16 @@ export default function MobileConferences(props) {
                 <h2>Theme</h2>
             </div>
             <ConferenceTheme
-                redirect={item.info.signUpLink}
-                theme={item.info.theme}
-                signup={false}
+                redirect={item.signUpLink}
+                theme={item.theme}
+                signup={item.signUpLink}
                 location={item.location}
+                isMobile
             />
             <div className="overview-header-mobile">
                 <h2>Overview</h2>
             </div>
-            <ConferenceOverview info={item.info} />
+            <ConferenceOverview info={item} />
         </div>
     );
 
@@ -86,30 +90,50 @@ export default function MobileConferences(props) {
             return (
                 <Slideshow height="400px" width="100%" isMobile>
                     {/* Loop through all the images associated with the conference */}
-                    {item.info.slideShowImages.map((image) => (
-                        <div>
-                            {/* Set styling on the img */}
-                            <div className="mobile-slideshow-label">
-                                <h1>{item.title}</h1>
-                                <h3>{item.location}</h3>
-                            </div>
-                            <img
-                                style={{
-                                    height: "400px",
-                                    width: "100%",
-                                }}
-                                alt="Event Visual"
-                                src={image}
-                            />
-                        </div>
-                    ))}
+                    {item && item.slideShowImages
+                        ? item.slideShowImages.urls.map((image) => (
+                              <div>
+                                  {/* Set styling on the img */}
+                                  <div className="mobile-slideshow-label">
+                                      <h1>{item.title}</h1>
+                                      <h3>{item.location}</h3>
+                                  </div>
+                                  <img
+                                      style={{
+                                          height: "400px",
+                                          width: "100%",
+                                      }}
+                                      alt="Event Visual"
+                                      src={image}
+                                  />
+                              </div>
+                          ))
+                        : null}
                 </Slideshow>
             );
         }
 
         // if it is the overivew tab, render the associated video
-        return <ReactPlayer url={item.info.video} height="450px" width="100%" />;
+        return videoError ? (
+            <ErrorLoadingContent height="400px" width="100%" />
+        ) : (
+            <ReactPlayer
+                url={item.video}
+                height="430px"
+                width="100%"
+                onError={() => setVideoError(true)}
+            />
+        );
     };
+
+    // check to see if data exists
+    if (props.data.length === 0) {
+        return (
+            <div className="empty-conferences">
+                <p>We have no conferences to show you at this time</p>
+            </div>
+        );
+    }
 
     return (
         <div className="conferences-outer-container">
@@ -132,7 +156,7 @@ export default function MobileConferences(props) {
                 {displayInformation()}
 
                 {/* Render either the associated video or the slideshow of images */}
-                <div style={{ width: "100%" }}>{slideshowVideo(false)}</div>
+                {item.video ? <div style={{ width: "100%" }}>{slideshowVideo(false)}</div> : null}
             </div>
         </div>
     );

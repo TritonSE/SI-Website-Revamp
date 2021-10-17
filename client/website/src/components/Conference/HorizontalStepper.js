@@ -112,10 +112,9 @@ export default function HorizontalStepper(props) {
         for (let i = 0; i < props.items.length; i++) {
             const obj = {};
             // extract only the country/state, not city
-            const two = props.items[i].location.split(",").splice(1, 1);
-            obj.location = two;
+            obj.location = props.items[i].location;
             // get the conference number
-            obj.number = props.items[i].number;
+            obj.confNum = props.items[i].confNum;
 
             // push it to the array
             arr.push(obj);
@@ -206,7 +205,7 @@ export default function HorizontalStepper(props) {
                         {/* add a button with custom icon */}
                         <StepButton
                             onClick={() => handleStep(index)}
-                            icon={stepperNode(step.number)}
+                            icon={stepperNode(step.confNum)}
                             classes={
                                 activeIndex === index
                                     ? { root: classes.buttonActive }
