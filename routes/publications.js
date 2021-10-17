@@ -22,7 +22,7 @@ const router = express.Router();
  * @return {status} - 200 if successful, 400 if syntax error, 409 if feature error, 500 if other error
  */
 router.post(
-    "/addPublication",
+    "/",
     [
         body("title").isString(),
         body("author").isString(),
@@ -33,8 +33,13 @@ router.post(
 
                 // make sure that every entry in the array has a pdfLink/filterId
                 for (const i of val) {
-                    if (i === undefined || i.pdfLink === undefined || i.filterId === undefined || 
-                        i.pdfLink.length === 0 || i.filterId.length === 0) {
+                    if (
+                        i === undefined ||
+                        i.pdfLink === undefined ||
+                        i.filterId === undefined ||
+                        i.pdfLink.length === 0 ||
+                        i.filterId.length === 0
+                    ) {
                         return false;
                     }
                 }
@@ -105,7 +110,7 @@ router.post(
  * @return {status} - 200 if successful, 400 if syntax error, 409 if feature error, 500 if other error
  */
 router.put(
-    "/editPublication/:id",
+    "/:id",
     [
         body("title").isString().optional(),
         body("author").isString().optional(),
@@ -116,8 +121,13 @@ router.put(
 
                 // make sure that every entry in the array has a pdfLink/filterId
                 for (const i of val) {
-                    if (i === undefined || i.pdfLink === undefined || i.filterId === undefined || 
-                        i.pdfLink.length === 0 || i.filterId.length === 0) {
+                    if (
+                        i === undefined ||
+                        i.pdfLink === undefined ||
+                        i.filterId === undefined ||
+                        i.pdfLink.length === 0 ||
+                        i.filterId.length === 0
+                    ) {
                         return false;
                     }
                 }
@@ -199,7 +209,7 @@ router.put(
  *
  * @return {status} - 200 if successful, 500 otherwise
  */
-router.get("/getAllPublications", [isValidated], async (req, res) => {
+router.get("/", [isValidated], async (req, res) => {
     try {
         const publications = await pubMethods.getAll();
         return res.status(200).json(publications);
