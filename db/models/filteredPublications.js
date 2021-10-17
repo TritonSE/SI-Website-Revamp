@@ -17,11 +17,6 @@ const FilteredPublications = db.define(
     "FilteredPublications",
     {
         // id field column by default
-
-        pdfLink: {
-            type: Sequelize.TEXT("tiny"),
-            allowNull: false,
-        },
     },
     {
         // createdAt & updatedAt columns will be added/self-mantained by table

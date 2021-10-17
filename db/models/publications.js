@@ -37,6 +37,13 @@ module.exports = db.define(
             type: Sequelize.STRING(500),
             allowNull: false,
         },
+        pdfLink: {
+            type: Sequelize.STRING(500),
+            allowNull: false,
+        },
+
+        // for retrieval purposes only, not stored in DB
+        filters: Sequelize.VIRTUAL
     },
     {
         timestamps: true,

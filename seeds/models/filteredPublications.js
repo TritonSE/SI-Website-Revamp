@@ -11,27 +11,27 @@ const FilteredPublications = require("../../db/models/filteredPublications");
 module.exports = async () => {
     await Promise.all([
         FilteredPublications.create(
-            { pdfLink: "https://www.google.com/", publicationId: "1", filterId: "1" },
+            { publicationId: "1", filterId: "1" },
             { logging: false }
         ),
         FilteredPublications.create(
-            { pdfLink: "https://www.google.com/", publicationId: "2", filterId: "2" },
+            { publicationId: "2", filterId: "2" },
             { logging: false }
         ),
         FilteredPublications.create(
-            { pdfLink: "https://www.google.com/", publicationId: "3", filterId: "1" },
+            { publicationId: "3", filterId: "1" },
             { logging: false }
         ),
         FilteredPublications.create(
-            { pdfLink: "https://www.google.com/", publicationId: "4", filterId: "3" },
+            { publicationId: "4", filterId: "3" },
             { logging: false }
         ),
         FilteredPublications.create(
-            { pdfLink: "https://www.google.com/", publicationId: "5", filterId: "1" },
+            { publicationId: "5", filterId: "1" },
             { logging: false }
         ),
         FilteredPublications.create(
-            { pdfLink: "https://www.google.com/", publicationId: "6", filterId: "3" },
+            { publicationId: "6", filterId: "3" },
             { logging: false }
         ),
     ])

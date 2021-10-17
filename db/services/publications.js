@@ -10,13 +10,38 @@ const { Op } = require("sequelize");
 const Publications = require("../models/publications");
 
 /**
- * Returns all of the values in the Publications table in newest-first order.
+ * Returns all of the values in the Publications table in alphabetical order by title.
  *
  * @returns - all the values in the table
  */
-async function getAll() {
+async function getAll(queryFilter = null) {
     return Publications.findAll({
-        order: [["createdAt", "DESC"]],
+        ...queryFilter,
+        order: [["title", "ASC"]],
+    });
+}
+
+/**
+ * Returns all of the values in the Publications table that are featured, in alphabetical order
+ * by title.
+ *
+ * @returns - all the values in the table
+ */
+ async function getFeatured() {
+    return Publications.findAll({
+        where: { feature: true},
+        order: [["title", "ASC"]],
+    });
+}
+
+/**
+ * Returns a single publications using its unique id. 
+ *
+ * @returns {JSON}- corresponding publication
+ */
+ async function getPublicationById(id) {
+    return Publications.findOne({
+        where: { id: id},
     });
 }
 
@@ -93,10 +118,36 @@ async function idExists(id) {
     });
 }
 
+/**
+ * Returns whether or not the publication with the corresponding id
+ * could be deleted from the Publications table. 
+ *
+ * @param {int} id - the id of the publication to delete
+ * @returns {boolean} - true if successful delete, false if failure 
+ */
+ async function deleteById(id) {
+    return Publications.destroy({
+        where: {
+            id,
+        },
+    }).then((count) => {
+        if (count === 0) {
+            return false;
+        }
+        return true;
+    }).catch((err) => {
+        console.log(err);
+        return false; 
+    });
+}
+
 module.exports = {
     getAll,
+    getFeatured,
+    getPublicationById,
     addOne,
     editOne,
     countFeatured,
     idExists,
+    deleteById
 };

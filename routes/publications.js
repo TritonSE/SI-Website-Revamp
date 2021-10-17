@@ -16,6 +16,8 @@ const ePubMethods = require("../db/services/ePubFilters");
 
 const router = express.Router();
 
+const MAX_NUM_FEATURE_PUBS = 6; // maximum number of publications that can be featured
+
 /**
  * Add publication into Publications table.
  *
@@ -34,11 +36,11 @@ router.post(
                 // make sure that every entry in the array has a pdfLink/filterId
                 for (const i of val) {
                     if (
-                        i === undefined ||
-                        i.pdfLink === undefined ||
-                        i.filterId === undefined ||
-                        i.pdfLink.length === 0 ||
-                        i.filterId.length === 0
+                        i === undefined 
+                        // i.pdfLink === undefined ||
+                        // i.filterId === undefined ||
+                        // i.pdfLink.length === 0 ||
+                        // i.filterId.length === 0
                     ) {
                         return false;
                     }
@@ -48,6 +50,7 @@ router.post(
         body("feature").isBoolean().optional(),
         body("description").isString().optional(),
         body("imageLink").isString(),
+        body("pdfLink").isString(),
         body("createdAt").custom((val) => val === undefined),
         body("updatedAt").custom((val) => val === undefined),
         body("id").custom((val) => val === undefined),
@@ -60,8 +63,8 @@ router.post(
         // mess up the count
         const numFeatured = await pubMethods.countFeatured(-1);
 
-        if (req.body.feature && numFeatured >= 6) {
-            return res.status(409).json({ message: "Already 6 features in table" });
+        if (req.body.feature && numFeatured >= MAX_NUM_FEATURE_PUBS) {
+            return res.status(409).json({ message: `Already ${MAX_NUM_FEATURE_PUBS} publications featured in table` });
         }
 
         if (req.body.filters.length < 1) {
@@ -71,7 +74,7 @@ router.post(
         try {
             // loops through passed-in filters and makes sure they are in the EPubFilters table
             for (let i = 0; i < req.body.filters.length; i++) {
-                const filter = req.body.filters[i].filterId;
+                const filter = req.body.filters[i];
 
                 const filterCount = await ePubMethods.filterCount(filter);
 
@@ -85,14 +88,10 @@ router.post(
             const publicationId = publications.dataValues.id;
 
             // loop through filters and add them to the FilteredPublications table
-            req.body.filters.forEach(async (value) => {
-                const filter = value.filterId;
-                const { pdfLink } = value;
-                const filterId = await ePubMethods.filterId(filter);
-
+            req.body.filters.forEach(async (filterId) => {
+        
                 await filteredMethods.addOne({
                     filterId,
-                    pdfLink,
                     publicationId,
                 });
             });
@@ -122,11 +121,11 @@ router.put(
                 // make sure that every entry in the array has a pdfLink/filterId
                 for (const i of val) {
                     if (
-                        i === undefined ||
-                        i.pdfLink === undefined ||
-                        i.filterId === undefined ||
-                        i.pdfLink.length === 0 ||
-                        i.filterId.length === 0
+                        i === undefined 
+                        // i.pdfLink === undefined ||
+                        // i.filterId === undefined ||
+                        // i.pdfLink.length === 0 ||
+                        // i.filterId.length === 0
                     ) {
                         return false;
                     }
@@ -137,6 +136,7 @@ router.put(
         body("feature").isBoolean().optional(),
         body("description").isString().optional(),
         body("imageLink").isString().optional(),
+        body("pdfLink").isString().optional(),
         body("createdAt").custom((val) => val === undefined),
         body("updatedAt").custom((val) => val === undefined),
         body("id").custom((val) => val === undefined),
@@ -155,8 +155,8 @@ router.put(
             return res.status(400).json({ message: "ID does not exist in table" });
         }
 
-        if (req.body.feature && numFeatured >= 6) {
-            return res.status(409).json({ message: "Already 6 features in table" });
+        if (req.body.feature && numFeatured >= MAX_NUM_FEATURE_PUBS) {
+            return res.status(409).json({ message: `Already ${MAX_NUM_FEATURE_PUBS} features in table` });
         }
 
         if (Number(id) < 0) return res.status(400).json({ message: "Id must be a number" });
@@ -170,7 +170,7 @@ router.put(
 
                 // loops through passed-in filters and makes sure they are in the EPubFilters table
                 for (let i = 0; i < req.body.filters.length; i++) {
-                    const filter = req.body.filters[i].filterId;
+                    const filter = req.body.filters[i];
                     const filterCount = await ePubMethods.filterCount(filter);
 
                     if (filterCount < 1) {
@@ -183,20 +183,16 @@ router.put(
 
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // loop through filters and add them to the FilteredPublications table
-                req.body.filters.forEach(async (value) => {
-                    const filter = value.filterId;
-                    const { pdfLink } = value;
-                    const filterId = await ePubMethods.filterId(filter);
-
+                req.body.filters.forEach(async (filterId) => {
+                    
                     await filteredMethods.addOne({
                         filterId,
-                        pdfLink,
                         publicationId,
                     });
                 });
             }
 
-            return res.status(200).json(publications);
+            return res.status(200).json({message: "success"});
         } catch (err) {
             console.log(req.body);
             return res.status(500).json({ message: err });
@@ -205,14 +201,116 @@ router.put(
 );
 
 /**
- * Get all publications in Publications table.
+ * Get all publications in Publications table. If optional query param is 
+ * passed ('filterId'), it will only return the subset of Publications that 
+ * have that filter attached to it. 
  *
  * @return {status} - 200 if successful, 500 otherwise
  */
 router.get("/", [isValidated], async (req, res) => {
     try {
-        const publications = await pubMethods.getAll();
+        const filterId = req.query.filterId || null;
+
+        // default: get all publications
+        let queryFilter = null; 
+        
+        // retrive publications with a specific filter 
+        if(filterId){
+
+            let pubIds = await filteredMethods.getAllEntriesWithFilter(filterId);
+            pubIds = pubIds.map((val) => {
+                return val['publicationId'];
+            });
+
+            queryFilter = {
+                where: { "id": pubIds}
+            }
+        } 
+
+        const publications = await pubMethods.getAll(queryFilter);
+
+        // tag any associated filters to each publication 
+        for(let i=0; i < publications.length; i++){
+            const pubId = publications[i]['id'];
+            publications[i]['filters'] = await filteredMethods.getAllFiltersForPub(pubId);
+        }
+
         return res.status(200).json(publications);
+
+
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
+
+/**
+ * Get all featured publications from Publications table.
+ *
+ * @return {status} - 200 if successful, 500 otherwise
+ */
+ router.get("/featured", [isValidated], async (req, res) => {
+    try {
+        const featuredPubs = await pubMethods.getFeatured();
+        return res.status(200).json(featuredPubs);
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
+
+/**
+ * Get all filters from EPubFilters table.
+ *
+ * @return {status} - 200 if successful, 500 otherwise
+ */
+ router.get("/epubfilters", [isValidated], async (req, res) => {
+    try {
+        const filters = await ePubMethods.getAllFilters();
+        return res.status(200).json(filters);
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
+
+/**
+ * Get a particular publication from Publications table, indicated
+ * by its unique id.
+ *
+ * @return {status} - 200 if successful, 500 otherwise
+ */
+ router.get("/:id", [isValidated], async (req, res) => {
+    try {
+        const {id} = req.params; 
+
+        if (Number(id) < 0) return res.status(400).json({ message: "Id must be a number" });
+
+        const publication = await pubMethods.getPublicationById(id);
+        publication['filters'] = await filteredMethods.getAllFiltersForPub(id);
+
+        return res.status(200).json(publication);
+
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
+
+/**
+ * Delete a particular publication by its unique id. This automatically 
+ * will also delete any associated filters in the relevent tables. 
+ *
+ * @return {status} - 200 if successful, 500 otherwise
+ */
+ router.delete("/:id", [isValidated], async (req, res) => {
+    try {
+        const {id} = req.params; 
+
+        if (Number(id) < 0) return res.status(400).json({ message: "Id must be a number" });
+
+        const deleteFiltersStatus = await filteredMethods.deleteMany(id);
+        const deletePubStatus = await pubMethods.deleteById(id);
+
+        if(deletePubStatus && deleteFiltersStatus) return res.status(200).json({message: "Success"});
+
+        return res.status(200).json({message: "Deletion encountered a failure at some point.", isPublicationDeleted: deletePubStatus, areFiltersDeleted: deleteFiltersStatus});
     } catch (err) {
         return res.status(500).json({ message: err });
     }
