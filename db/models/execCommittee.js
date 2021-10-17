@@ -11,7 +11,11 @@ const ExecCommittee = db.define(
     "execCommittee",
     {
         // if no primary key, default it will have a column called 'id' that will auto-increment an integer value
-        year: {
+        startYear: {
+            type: Sequelize.INTEGER(),
+            allowNull: false,
+        },
+        endYear: {
             type: Sequelize.INTEGER(),
             allowNull: false,
         },
@@ -29,11 +33,12 @@ const ExecCommittee = db.define(
         },
         bio: {
             type: Sequelize.STRING(175),
-            allowNull: false,
+            defaultValue: null,
         },
         imageLink: {
             type: Sequelize.STRING(500),
-            defaultValue: null,
+            allowNull: true,
+            defaultValue: "https://assets.ucsd.edu/img/icon/headshot.jpg",
         },
         redirectLink: {
             type: Sequelize.STRING(500),
