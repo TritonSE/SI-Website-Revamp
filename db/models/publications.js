@@ -43,7 +43,7 @@ module.exports = db.define(
         },
 
         // for retrieval purposes only, not stored in DB
-        filters: Sequelize.VIRTUAL
+        filters: Sequelize.VIRTUAL,
     },
     {
         timestamps: true,

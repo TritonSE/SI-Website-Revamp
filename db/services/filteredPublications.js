@@ -23,10 +23,10 @@ async function getAll() {
  *
  * @returns - entries matching 'filterId'
  */
- async function getAllEntriesWithFilter(filterId) {
+async function getAllEntriesWithFilter(filterId) {
     return FilteredPublications.findAll({
-        where: { 'filterId': filterId},
-        attributes: ['publicationId']
+        where: { filterId: filterId },
+        attributes: ["publicationId"],
     });
 }
 
@@ -34,15 +34,14 @@ async function getAll() {
  * Returns all entries in FilteredPublications with that have
  * a particular 'publicationId' value.
  *
- * @returns {[JSON]}- 'filterId' of entries matching 'publicationId' 
+ * @returns {[JSON]}- 'filterId' of entries matching 'publicationId'
  */
- async function getAllFiltersForPub(pubId) {
+async function getAllFiltersForPub(pubId) {
     return FilteredPublications.findAll({
-        where: { 'publicationId': pubId},
-        attributes: ['filterId']
+        where: { publicationId: pubId },
+        attributes: ["filterId"],
     });
 }
-
 
 /**
  * Inserts specified value into FilteredPublications table.
@@ -58,22 +57,24 @@ async function addOne(data) {
  * Deletes all values with the specified publicationId.
  *
  * @param {*} id - publication id to be deleted
- * @returns {boolean}- true if successful delete, false if failure 
+ * @returns {boolean}- true if successful delete, false if failure
  */
 async function deleteMany(id) {
     return FilteredPublications.destroy({
         where: {
             publicationId: id,
         },
-    }).then((count) => {
-        if (count === 0) {
+    })
+        .then((count) => {
+            if (count === 0) {
+                return false;
+            }
+            return true;
+        })
+        .catch((err) => {
+            console.log(err);
             return false;
-        }
-        return true;
-    }).catch((err) => {
-        console.log(err);
-        return false; 
-    });
+        });
 }
 
 module.exports = {

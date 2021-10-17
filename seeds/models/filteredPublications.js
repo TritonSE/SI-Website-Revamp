@@ -10,30 +10,12 @@ const FilteredPublications = require("../../db/models/filteredPublications");
 
 module.exports = async () => {
     await Promise.all([
-        FilteredPublications.create(
-            { publicationId: "1", filterId: "1" },
-            { logging: false }
-        ),
-        FilteredPublications.create(
-            { publicationId: "2", filterId: "2" },
-            { logging: false }
-        ),
-        FilteredPublications.create(
-            { publicationId: "3", filterId: "1" },
-            { logging: false }
-        ),
-        FilteredPublications.create(
-            { publicationId: "4", filterId: "3" },
-            { logging: false }
-        ),
-        FilteredPublications.create(
-            { publicationId: "5", filterId: "1" },
-            { logging: false }
-        ),
-        FilteredPublications.create(
-            { publicationId: "6", filterId: "3" },
-            { logging: false }
-        ),
+        FilteredPublications.create({ publicationId: "1", filterId: "1" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "2", filterId: "2" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "3", filterId: "1" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "4", filterId: "3" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "5", filterId: "1" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "6", filterId: "3" }, { logging: false }),
     ])
         .then(() => {
             // successfull population

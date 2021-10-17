@@ -48,7 +48,7 @@ export default function Footer() {
                     <section className="Footer-Pages">
                         <a href={SITE_PAGES.HOME}> Home </a>
                         <a href={SITE_PAGES.CONFERENCES}> Conferences </a>
-                        <a href={SITE_PAGES.RESOURCES_LANDING}> Resouces </a>
+                        <a href={SITE_PAGES.RESOURCES_LANDING}> Resources </a>
                         <a href={SITE_PAGES.ABOUT_US}> About Us </a>
                         <a href={SITE_PAGES.CONTACT_US}> Contact Us </a>
                     </section>
@@ -99,7 +99,7 @@ export default function Footer() {
                     <section className="Footer-Pages">
                         <a href={SITE_PAGES.HOME}> Home </a>
                         <a href={SITE_PAGES.CONFERENCES}> Conferences </a>
-                        <a href={SITE_PAGES.RESOURCES_LANDING}> Resouces </a>
+                        <a href={SITE_PAGES.RESOURCES_LANDING}> Resources </a>
                         <a href={SITE_PAGES.ABOUT_US}> About Us </a>
                         <a href={SITE_PAGES.CONTACT_US}> Contact Us </a>
                     </section>

@@ -27,21 +27,21 @@ async function getAll(queryFilter = null) {
  *
  * @returns - all the values in the table
  */
- async function getFeatured() {
+async function getFeatured() {
     return Publications.findAll({
-        where: { feature: true},
+        where: { feature: true },
         order: [["title", "ASC"]],
     });
 }
 
 /**
- * Returns a single publications using its unique id. 
+ * Returns a single publications using its unique id.
  *
  * @returns {JSON}- corresponding publication
  */
- async function getPublicationById(id) {
+async function getPublicationById(id) {
     return Publications.findOne({
-        where: { id: id},
+        where: { id: id },
     });
 }
 
@@ -120,25 +120,27 @@ async function idExists(id) {
 
 /**
  * Returns whether or not the publication with the corresponding id
- * could be deleted from the Publications table. 
+ * could be deleted from the Publications table.
  *
  * @param {int} id - the id of the publication to delete
- * @returns {boolean} - true if successful delete, false if failure 
+ * @returns {boolean} - true if successful delete, false if failure
  */
- async function deleteById(id) {
+async function deleteById(id) {
     return Publications.destroy({
         where: {
             id,
         },
-    }).then((count) => {
-        if (count === 0) {
+    })
+        .then((count) => {
+            if (count === 0) {
+                return false;
+            }
+            return true;
+        })
+        .catch((err) => {
+            console.log(err);
             return false;
-        }
-        return true;
-    }).catch((err) => {
-        console.log(err);
-        return false; 
-    });
+        });
 }
 
 module.exports = {
@@ -149,5 +151,5 @@ module.exports = {
     editOne,
     countFeatured,
     idExists,
-    deleteById
+    deleteById,
 };

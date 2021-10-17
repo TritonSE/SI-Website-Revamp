@@ -63,7 +63,7 @@ module.exports = async () => {
                 feature: false,
                 description:
                     "Dyslexic kid must compete with cyclops for absent father's affections.",
-                    pdfLink: "https://www.google.com/",
+                pdfLink: "https://www.google.com/",
                 imageLink:
                     "https://i2.wp.com/books.disney.com/content/uploads/2013/09/9780786856862.jpg?fit=405%2C612&ssl=1",
             },

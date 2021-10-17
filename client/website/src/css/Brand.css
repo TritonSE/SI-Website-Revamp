@@ -43,23 +43,23 @@
 }
 
 .branding #title {
-  font-family: var(--header-font);
+  font-family: var(--heading-font);
   font-size: 1.5em;
 }
 
 .footer-brand #title {
-  font-family: var(--header-font);
+  font-family: var(--heading-font);
   font-size: 1.8em;
 }
 
 .branding #subtitle,
 .footer-brand #subtitle {
-  font-family: var(--body-font);
+  font-family: var(--text-font);
   font-size: 1.125em;
 }
 
 /* NavBar Mobile Views */
-@media only screen and (max-width: 600px), (max-height: 600px) {
+@media only screen and (max-width: 750px), (max-height: 600px) {
   .nav-left #logo {
     height: 36px;
   }
