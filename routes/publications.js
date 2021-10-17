@@ -88,13 +88,15 @@ router.post(
             const publicationId = publications.dataValues.id;
 
             // loop through filters and add them to the FilteredPublications table
-            req.body.filters.forEach(async (filterId) => {
+            Promise.all([
+                req.body.filters.forEach(async (filterId) => {
         
-                await filteredMethods.addOne({
-                    filterId,
-                    publicationId,
-                });
-            });
+                    return filteredMethods.addOne({
+                        filterId,
+                        publicationId,
+                    });
+                })
+            ]);
 
             return res.status(200).json(publications);
         } catch (err) {
@@ -183,13 +185,15 @@ router.put(
 
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // loop through filters and add them to the FilteredPublications table
-                req.body.filters.forEach(async (filterId) => {
-                    
-                    await filteredMethods.addOne({
-                        filterId,
-                        publicationId,
-                    });
-                });
+                Promise.all([
+                    req.body.filters.forEach(async (filterId) => {
+            
+                        return filteredMethods.addOne({
+                            filterId,
+                            publicationId,
+                        });
+                    })
+                ]);
             }
 
             return res.status(200).json({message: "success"});
