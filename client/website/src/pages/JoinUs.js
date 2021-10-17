@@ -22,6 +22,7 @@ import PayPalModal from "../components/PayPalModal";
 import config from "../config";
 import { fetchMemberships } from "../util/requests";
 import Loader from "../components/Main/Loader";
+import Modal from "../components/Modal";
 
 const BACKEND_URL = config.backend.uri;
 
@@ -124,6 +125,7 @@ export default function JoinUs() {
     const [membershipCheck, setMembershipCheck] = useState(false);
     const [donateCheck, setDonateCheck] = useState(false);
     const [isFormDisabled, setIsFormDisabled] = useState(false);
+    const [isThankYouNoteOpen, setIsThankYouNoteOpen] = React.useState(false);
 
     const [values, setValues] = useState({
         firstName: {
@@ -278,6 +280,42 @@ export default function JoinUs() {
         setDisplayPayPalModal(!displayPayPalModal);
     };
 
+    // called when user decides to close thank you modal
+    const handleModalClose = (event) => {
+        setIsThankYouNoteOpen(event);
+    };
+
+    const handleFormCompleted = () => {
+        setDisplayPayPalModal(false);
+
+        // display thank you modal
+        setIsThankYouNoteOpen(true);
+
+        // clear form values
+        setValues({
+            ...values,
+            firstName: { ...values.firstName, value: "" },
+            middleName: { ...values.middleName, value: "" },
+            lastName: { ...values.lastName, value: "" },
+            phoneNumber: { ...values.phoneNumber, value: "" },
+            emailAddress: { ...values.emailAddress, value: "" },
+            country: { ...values.country, value: "" },
+            addressOne: { ...values.addressOne, value: "" },
+            addressTwo: { ...values.addressTwo, value: "" },
+            city: { ...values.city, value: "" },
+            stateLocation: { ...values.stateLocation, value: "" },
+            zipcode: { ...values.zipcode, value: "" },
+        });
+
+        setOrganizations("");
+        setDonation(0);
+        setMembership(0);
+        setMemberType(false);
+        setIsNewMember("");
+        setMembershipCheck(false);
+        setDonateCheck(false);
+    };
+
     const handleSubmit = async () => {
         if (isFormDisabled) return;
         setIsFormDisabled(true);
@@ -351,25 +389,7 @@ export default function JoinUs() {
         }).then((res) => {
             // form submitted
             if (res.ok) {
-                // clear form values
-                setValues({
-                    ...values,
-                    firstName: { ...values.firstName, value: "" },
-                    middleName: { ...values.middleName, value: "" },
-                    lastName: { ...values.lastName, value: "" },
-                    phoneNumber: { ...values.phoneNumber, value: "" },
-                    emailAddress: { ...values.emailAddress, value: "" },
-                    country: { ...values.country, value: "" },
-                    addressOne: { ...values.addressOne, value: "" },
-                    addressTwo: { ...values.addressTwo, value: "" },
-                    city: { ...values.city, value: "" },
-                    stateLocation: { ...values.stateLocation, value: "" },
-                    zipcode: { ...values.zipcode, value: "" },
-                });
-                setSnackBar({
-                    open: true,
-                    message: "Form was submitted!",
-                });
+                handleFormCompleted();
             } else {
                 // show snackbar to notify form could not be submitted
                 setSnackBar({
@@ -691,6 +711,7 @@ export default function JoinUs() {
                                     affiliatedOrgs={organizations}
                                     toggleModal={openPaypalModal}
                                     address={`${values.addressOne.value} ${values.addressTwo.value} ${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`}
+                                    transactionCompleted={handleFormCompleted}
                                 />
                             ) : null}
                             <div className="paypal-buttons">
@@ -722,6 +743,12 @@ export default function JoinUs() {
                     )}
                 </form>
             </div>
+            <Modal
+                text="Thank you for your support! We will get in touch with you shortly."
+                open={isThankYouNoteOpen}
+                hide={handleModalClose}
+                negativeButtonText="Ok"
+            />
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}

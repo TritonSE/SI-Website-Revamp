@@ -20,6 +20,7 @@ import CustomButton from "../components/CustomButton";
 import config from "../config";
 import { fetchCommittees } from "../util/requests";
 import Loader from "../components/Main/Loader";
+import Modal from "../components/Modal";
 
 const BACKEND_URL = config.backend.uri;
 
@@ -183,6 +184,7 @@ export default function Volunteer() {
     const [volunteerCommittees, setVolunteerCommittees] = useState([]);
     const [selectedCommittees, setSelectedCommittees] = useState([]);
     const [loadingCommittees, setLoadingCommittees] = useState(true);
+    const [isThankYouNoteOpen, setIsThankYouNoteOpen] = React.useState(false);
 
     const [snackbar, setSnackBar] = useState({
         open: false,
@@ -233,6 +235,11 @@ export default function Volunteer() {
                 value: val,
             },
         });
+    };
+
+    // called when user decides to close thank you modal
+    const handleModalClose = (event) => {
+        setIsThankYouNoteOpen(event);
     };
 
     function handleCommitteesChange(event) {
@@ -321,6 +328,8 @@ export default function Volunteer() {
         }).then((res) => {
             // form submitted
             if (res.ok) {
+                // display thank you modal
+                setIsThankYouNoteOpen(true);
                 // clear form values
                 setValues({
                     ...values,
@@ -337,10 +346,10 @@ export default function Volunteer() {
                     zipcode: { ...values.zipcode, value: "" },
                 });
                 setSelectedCommittees([]);
-                setSnackBar({
-                    open: true,
-                    message: "Form was submitted!",
-                });
+                // setSnackBar({
+                //     open: true,
+                //     message: "Form was submitted!",
+                // });
             } else {
                 // show snackbar to notify form could not be submitted
                 setSnackBar({
@@ -553,6 +562,12 @@ export default function Volunteer() {
                     </div>
                 </form>
             </div>
+            <Modal
+                text="Thank you for your support! We will get in touch with you shortly."
+                open={isThankYouNoteOpen}
+                hide={handleModalClose}
+                negativeButtonText="Ok"
+            />
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}

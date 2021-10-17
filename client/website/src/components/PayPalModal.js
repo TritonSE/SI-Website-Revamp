@@ -30,9 +30,7 @@ export default function PayPalModal(props) {
                         affiliatedOrgs={props.affiliatedOrgs}
                         address={props.address}
                         disable={false}
-                        transactionCompleted={() => {
-                            alert("completed transaction");
-                        }}
+                        transactionCompleted={props.transactionCompleted}
                     />
                 </div>
                 <div className="return-button">
