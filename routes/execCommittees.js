@@ -140,7 +140,7 @@ router.delete("/:id", async (req, res) => {
 
         const status = await deleteById(id);
         // success
-        if (status[0] === 1) return res.status(200).json({ message: "Success" });
+        if (status === 1) return res.status(200).json({ message: "Success" });
 
         // failure
         return res.status(500).json({ message: "Unsuccessful deletion" });
@@ -162,7 +162,7 @@ router.delete("/committee/:startYear", async (req, res) => {
         const status = await deleteCommittee(startYear);
 
         // success
-        if (status[0] === 1) return res.status(200).json({ message: "Success" });
+        if (status === 1) return res.status(200).json({ message: "Success" });
 
         // failure
         return res.status(500).json({ message: "Unsuccessful committee deletion" });
