@@ -33,6 +33,7 @@ export default function PayPalModal(props) {
                         transactionCompleted={props.transactionCompleted}
                     />
                 </div>
+                {/* button to close modal */}
                 <div className="return-button">
                     <CustomButton text="Return to Form" onClickCallback={props.toggleModal} />
                 </div>

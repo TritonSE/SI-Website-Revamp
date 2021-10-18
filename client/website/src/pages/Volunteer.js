@@ -24,10 +24,12 @@ import Modal from "../components/Modal";
 
 const BACKEND_URL = config.backend.uri;
 
+// function to display asterisk for required fields
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
 
+// funcion to render all volunteer committees
 function displayCommittees(
     isMobile,
     volunteerCommittees,
@@ -35,7 +37,9 @@ function displayCommittees(
     handleCommitteesChange
 ) {
     const mid = Math.floor(volunteerCommittees.length / 2);
+
     if (isMobile) {
+        // renders a single column if device is mobile
         return (
             <div className="volunteer-options">
                 {volunteerCommittees.map((committee) => (
@@ -50,9 +54,11 @@ function displayCommittees(
             </div>
         );
     }
+
     const volunteerOptionsLeft = [];
     const volunteerOptionsRight = [];
 
+    // separates committees into two lists to display in two columns
     for (let ind = 0; ind <= mid; ind++) {
         volunteerOptionsLeft.push(
             <VolunteerOption
@@ -77,6 +83,7 @@ function displayCommittees(
         );
     }
 
+    // renders committees in two columns
     return (
         <div className="volunteer-options">
             <div className="left-options-column">{volunteerOptionsLeft}</div>
@@ -85,6 +92,7 @@ function displayCommittees(
     );
 }
 
+// custom style for text fields on form
 const CustomTextField = withStyles({
     root: {
         "& label.Mui-focused": {
@@ -132,8 +140,10 @@ const CustomTextField = withStyles({
 })(TextField);
 
 export default function Volunteer() {
+    // tracks window width changes
     const [isMobile, setIsMobile] = useState(false);
 
+    // stores values and error states for various field in form
     const [values, setValues] = useState({
         firstName: {
             value: "", // field value given by user
@@ -181,16 +191,22 @@ export default function Volunteer() {
         },
     });
 
+    // stores all volunteer committees to be displayed
     const [volunteerCommittees, setVolunteerCommittees] = useState([]);
+    // stores all volunteer committees selected by user
     const [selectedCommittees, setSelectedCommittees] = useState([]);
+    // tracks whether committees data is being loaded
     const [loadingCommittees, setLoadingCommittees] = useState(true);
+    // tracks whether thank you modal should be open
     const [isThankYouNoteOpen, setIsThankYouNoteOpen] = React.useState(false);
+    // tracks whether the form is disabled
+    const [isFormDisabled, setIsFormDisabled] = useState(false);
 
+    // snackbar used to display error messages
     const [snackbar, setSnackBar] = useState({
         open: false,
         message: "",
     });
-    const [isFormDisabled, setIsFormDisabled] = useState(false);
 
     // fetch volunteer committees from backend
     useEffect(async () => {
@@ -215,6 +231,7 @@ export default function Volunteer() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // handles user input to any form field
     const handleChange = (event) => {
         setValues({
             ...values,
@@ -224,10 +241,12 @@ export default function Volunteer() {
         });
     };
 
+    // closes snackbar
     const handleSnackClose = () => {
         setSnackBar({ open: false });
     };
 
+    // handles user input to country field
     const handleCountryChange = (val) => {
         setValues({
             ...values,
@@ -242,6 +261,7 @@ export default function Volunteer() {
         setIsThankYouNoteOpen(event);
     };
 
+    // handles any changes to committees selected
     function handleCommitteesChange(event) {
         if (selectedCommittees.includes(parseInt(event.target.value, 10))) {
             setSelectedCommittees(
@@ -254,11 +274,17 @@ export default function Volunteer() {
         }
     }
 
+    // called when submit button is clicked
     const handleSubmit = async () => {
+        // ignore if form is still being processed
         if (isFormDisabled) return;
+
+        // disable form to avoid frequent requests
         setIsFormDisabled(true);
+        // display loading cursor
         document.body.style.cursor = "wait";
 
+        // variables used to check if any field is blank
         let firstName = false;
         let lastName = false;
         let phone = false;
@@ -279,6 +305,7 @@ export default function Volunteer() {
         if (values.stateLocation.value === "") state = true;
         if (values.zipcode.value === "") zipcode = true;
 
+        // sets error values for all fields
         setValues({
             ...values,
             firstName: { ...values.firstName, error: firstName },
@@ -292,6 +319,7 @@ export default function Volunteer() {
             zipcode: { ...values.zipcode, error: zipcode },
         });
 
+        // checks if any required fields are empty
         if (
             firstName ||
             lastName ||
@@ -309,6 +337,7 @@ export default function Volunteer() {
             return;
         }
 
+        // defines address to pass to backend
         const addressOpt = values.addressTwo.value !== "" ? `${values.addressTwo.value} ` : "";
         const givenAddress = `${values.addressOne.value} ${addressOpt}${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`;
 
@@ -346,10 +375,6 @@ export default function Volunteer() {
                     zipcode: { ...values.zipcode, value: "" },
                 });
                 setSelectedCommittees([]);
-                // setSnackBar({
-                //     open: true,
-                //     message: "Form was submitted!",
-                // });
             } else {
                 // show snackbar to notify form could not be submitted
                 setSnackBar({
@@ -359,6 +384,7 @@ export default function Volunteer() {
             }
         });
 
+        // allow form to be edited
         document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
@@ -373,6 +399,7 @@ export default function Volunteer() {
 
     return (
         <div>
+            {/* header image with title and description */}
             <ResourcesHeader
                 image="https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1634515200&Signature=W7juSDjbFVbOKZC~AT6zXJeSdSv0kMd4jyVRZwXL2UFkox-~lUtwFG4ombOzKIsjNzCFiUidEc-auRtKwrUu6iGQlkTHVa9KMj7sWSALCtGT59iYiKXJxQBiStfj7yN-ls2G~WzCC9P1~04Yf52ODaau9~ZBElw6PC200~-JwUdasY8YzaRQEXv7JypSZ26enrYQoA6zObbDVb7CLxMp1MSwddCZH7LMZRcFBKhjBNgtK17zR5gadWOXy9IjuEyxe7IoWmkYrPl~icNFYLiJwSASNSOKBHCo-qH1kKY-McblLVS3eLVGCsFIJbM6sA0fkcfkj87mU~A2YB0KYKLQUQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                 title="Volunteer"
@@ -387,6 +414,7 @@ export default function Volunteer() {
                         <span className="error-asterisk"> * </span> indicates a required field
                     </p>
                     <h1 className="signup-text">Sign Me Up!</h1>
+                    {/* first name field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -400,6 +428,7 @@ export default function Volunteer() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* middle name field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -411,6 +440,7 @@ export default function Volunteer() {
                             name="middleName"
                         />
                     </div>
+                    {/* last name field */}
                     <div className="form-item last-name-field">
                         <CustomTextField
                             variant="outlined"
@@ -425,6 +455,7 @@ export default function Volunteer() {
                         {displayAsterisk()}
                     </div>
                     <h1 className="contact-info-text">Contact Information</h1>
+                    {/* email address field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -439,6 +470,7 @@ export default function Volunteer() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* country dropdown field */}
                     {values.country.error ? (
                         <div className="form-item">
                             <CountryDropdown
@@ -462,8 +494,10 @@ export default function Volunteer() {
                             {displayAsterisk()}
                         </div>
                     )}
+                    {/* displays other address fields if country is selected */}
                     {values.country.value !== "" ? (
                         <div>
+                            {/* address line 1 field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -477,6 +511,7 @@ export default function Volunteer() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* address line 2 field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -488,6 +523,7 @@ export default function Volunteer() {
                                     name="addressTwo"
                                 />
                             </div>
+                            {/* city field */}
                             <div className="city-field form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -501,6 +537,7 @@ export default function Volunteer() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* state field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -514,6 +551,7 @@ export default function Volunteer() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* zipcode field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -527,6 +565,7 @@ export default function Volunteer() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* phone number field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -547,6 +586,7 @@ export default function Volunteer() {
                     <p className="select-committees-text">
                         Select all committees you are interested in.
                     </p>
+                    {/* displays all committee options or spinner if loading data */}
                     {loadingCommittees ? (
                         <Loader />
                     ) : (
@@ -557,17 +597,20 @@ export default function Volunteer() {
                             handleCommitteesChange
                         )
                     )}
+                    {/* submit button */}
                     <div className="submit-form">
                         <CustomButton text="Submit" onClickCallback={handleSubmit} />
                     </div>
                 </form>
             </div>
+            {/* thank you modal displayed when form is submitted */}
             <Modal
                 text="Thank you for your support! We will get in touch with you shortly."
                 open={isThankYouNoteOpen}
                 hide={handleModalClose}
                 negativeButtonText="Ok"
             />
+            {/* snackbar to display error messages */}
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}

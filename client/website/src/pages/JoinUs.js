@@ -26,10 +26,12 @@ import Modal from "../components/Modal";
 
 const BACKEND_URL = config.backend.uri;
 
+// function to display asterisk for required fields
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
 
+// custom style for dropdown/select field on form
 const CustomSelectField = withStyles({
     root: {
         "& .MuiOutlinedInput-input": {
@@ -73,6 +75,7 @@ const CustomSelectField = withStyles({
     },
 })(TextField);
 
+// custom style for text fields on form
 const CustomTextField = withStyles({
     root: {
         "& label.Mui-focused": {
@@ -120,13 +123,18 @@ const CustomTextField = withStyles({
 })(TextField);
 
 export default function JoinUs() {
+    // tracks window width changes
     const [isMobile, setIsMobile] = useState(false);
-
+    // tracks whether membership sign up should be hidden
     const [membershipCheck, setMembershipCheck] = useState(false);
+    // tracks whether donation field should be displayed
     const [donateCheck, setDonateCheck] = useState(false);
+    // tracks whether the form is disabled
     const [isFormDisabled, setIsFormDisabled] = useState(false);
+    // tracks whether thank you modal should be open
     const [isThankYouNoteOpen, setIsThankYouNoteOpen] = React.useState(false);
 
+    // stores values and error states for various field in form
     const [values, setValues] = useState({
         firstName: {
             value: "", // field value given by user
@@ -174,18 +182,26 @@ export default function JoinUs() {
         },
     });
 
+    // stores value of organizations field
     const [organizations, setOrganizations] = useState("");
+    // stores donation amount entered
     const [donation, setDonation] = useState(0);
-
+    // stores cost of memebership selected
     const [membership, setMembership] = useState(0);
+    // stores whether user is a new member
     const [memberType, setMemberType] = useState(false);
+    // stores options to display in new member field
     const [isNewMember, setIsNewMember] = useState("");
-
+    // stores options to display in memberships dropdown
     const [memberships, setMemberships] = useState([]);
+    // tracks whether memberships data is being loaded
     const [loadingMemberships, setLoadingMemberships] = useState(true);
+    // tracks whether continue to payment button is displayed
     const [displayPayPal, setDisplayPayPal] = useState(false);
+    // tracks whether paypal modal should be displayed
     const [displayPayPalModal, setDisplayPayPalModal] = useState(false);
 
+    // snackbar used to display error messages
     const [snackbar, setSnackBar] = useState({
         open: false,
         message: "",
@@ -205,6 +221,7 @@ export default function JoinUs() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // paypal buttons are rendered if all fields are filled
     useEffect(() => {
         if (
             values.firstName.value === "" ||
@@ -236,6 +253,7 @@ export default function JoinUs() {
         setLoadingMemberships(false);
     }, []);
 
+    // handles user input to any form field
     const handleChange = (event) => {
         setValues({
             ...values,
@@ -245,6 +263,7 @@ export default function JoinUs() {
         });
     };
 
+    // handle user input to new member field
     const handleNewMember = (event) => {
         setIsNewMember(event.target.value);
         if (event.target.value === "new") {
@@ -254,19 +273,23 @@ export default function JoinUs() {
         }
     };
 
+    // closes snackbar
     const handleSnackClose = () => {
         setSnackBar({ open: false });
     };
 
+    // handles change in membership checkbox
     const handleMembershipChange = (event) => {
         setMembershipCheck(event.target.checked);
     };
 
+    // handles change in donation checkbox
     const handleDonateChange = (event) => {
         if (donateCheck) setDonation("");
         setDonateCheck(event.target.checked);
     };
 
+    // handles user input to country field
     const handleCountryChange = (val) => {
         setValues({
             ...values,
@@ -276,6 +299,7 @@ export default function JoinUs() {
         });
     };
 
+    // handles opening/closing paypal modal
     const openPaypalModal = () => {
         setDisplayPayPalModal(!displayPayPalModal);
     };
@@ -285,7 +309,9 @@ export default function JoinUs() {
         setIsThankYouNoteOpen(event);
     };
 
+    // called when form/payment is submitted
     const handleFormCompleted = () => {
+        // closes paypal modal
         setDisplayPayPalModal(false);
 
         // display thank you modal
@@ -307,6 +333,7 @@ export default function JoinUs() {
             zipcode: { ...values.zipcode, value: "" },
         });
 
+        // clear all other values
         setOrganizations("");
         setDonation(0);
         setMembership(0);
@@ -316,11 +343,17 @@ export default function JoinUs() {
         setDonateCheck(false);
     };
 
+    // called when submit button is clicked
     const handleSubmit = async () => {
+        // ignore if form is still being processed
         if (isFormDisabled) return;
+
+        // disable form to avoid frequent requests
         setIsFormDisabled(true);
+        // display loading cursor
         document.body.style.cursor = "wait";
 
+        // variables used to check if any field is blank
         let firstName = false;
         let lastName = false;
         let phone = false;
@@ -341,6 +374,7 @@ export default function JoinUs() {
         if (values.stateLocation.value === "") state = true;
         if (values.zipcode.value === "") zipcode = true;
 
+        // sets error values for all fields
         setValues({
             ...values,
             firstName: { ...values.firstName, error: firstName },
@@ -354,6 +388,7 @@ export default function JoinUs() {
             zipcode: { ...values.zipcode, error: zipcode },
         });
 
+        // checks if any required fields are empty
         if (
             firstName ||
             lastName ||
@@ -371,6 +406,7 @@ export default function JoinUs() {
             return;
         }
 
+        // defines address to pass to backend
         const addressOpt = values.addressTwo.value !== "" ? `${values.addressTwo.value} ` : "";
         const givenAddress = `${values.addressOne.value} ${addressOpt}${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`;
 
@@ -389,6 +425,7 @@ export default function JoinUs() {
         }).then((res) => {
             // form submitted
             if (res.ok) {
+                // display thank you modal and clear form
                 handleFormCompleted();
             } else {
                 // show snackbar to notify form could not be submitted
@@ -399,6 +436,7 @@ export default function JoinUs() {
             }
         });
 
+        // allow form to be edited
         document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
@@ -411,6 +449,7 @@ export default function JoinUs() {
         border: "1px solid #ea4444",
     };
 
+    // style for checkboxes
     const CustomColorCheckbox = withStyles({
         root: {
             color: "#000000",
@@ -424,6 +463,7 @@ export default function JoinUs() {
 
     return (
         <div>
+            {/* header image with title and description */}
             <ResourcesHeader
                 image={HeaderImage}
                 title="Join Us"
@@ -435,6 +475,7 @@ export default function JoinUs() {
                 width="100%"
             />
             <div className="main-content">
+                {/* displays info based on if device is mobile or not */}
                 {isMobile ? (
                     <div>
                         <h1 className="thank-you">Thank you for your interest in Sakyadhita!</h1>
@@ -443,6 +484,7 @@ export default function JoinUs() {
                             asked to pay a membership fee. Once all required fields are filled out,
                             you may proceed to payment through PayPal.
                         </p>
+                        {/* checkbox to only join email list */}
                         <div className="membership-check">
                             <CustomColorCheckbox
                                 checked={membershipCheck}
@@ -461,6 +503,7 @@ export default function JoinUs() {
                             If you wish to only be on the email list, please check the “Not
                             interested in membership” box below.
                         </p>
+                        {/* checkbox to only join email list */}
                         <div className="membership-check">
                             <CustomColorCheckbox
                                 checked={membershipCheck}
@@ -474,6 +517,7 @@ export default function JoinUs() {
                 )}
                 <form autoComplete="off">
                     <h1 className="signup-text">Sign Me Up!</h1>
+                    {/* first name field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -487,6 +531,7 @@ export default function JoinUs() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* middle name field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -498,6 +543,7 @@ export default function JoinUs() {
                             name="middleName"
                         />
                     </div>
+                    {/* last name field */}
                     <div className="form-item last-name-field">
                         <CustomTextField
                             variant="outlined"
@@ -512,6 +558,7 @@ export default function JoinUs() {
                         {displayAsterisk()}
                     </div>
                     <h1 className="contact-info-text">Contact Information</h1>
+                    {/* email address field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -525,6 +572,7 @@ export default function JoinUs() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* country dropdown field */}
                     <div className="form-item">
                         <CountryDropdown
                             className="input-field country-dropdown"
@@ -535,8 +583,10 @@ export default function JoinUs() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* displays other address fields if country is selected */}
                     {values.country.value !== "" ? (
                         <div>
+                            {/* address line 1 field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -550,6 +600,7 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* address line 2 field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -561,6 +612,7 @@ export default function JoinUs() {
                                     name="addressTwo"
                                 />
                             </div>
+                            {/* city field */}
                             <div className="city-field form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -574,6 +626,7 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* state field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -587,6 +640,7 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* zipcode field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -600,6 +654,7 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* phone number field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -615,9 +670,11 @@ export default function JoinUs() {
                             </div>
                         </div>
                     ) : null}
+                    {/* displays rest of the form if email list only isn't selected */}
                     {!membershipCheck ? (
                         <div>
                             <h1 className="additional-info-text">Additional Information</h1>
+                            {/* new member dropdown */}
                             <div className="form-item">
                                 <CustomSelectField
                                     className="input-field"
@@ -634,6 +691,7 @@ export default function JoinUs() {
                                 </CustomSelectField>
                                 {displayAsterisk()}
                             </div>
+                            {/* past organizations field */}
                             <div className="form-item organizations-section">
                                 <CustomTextField
                                     variant="outlined"
@@ -648,6 +706,7 @@ export default function JoinUs() {
                                 {displayAsterisk()}
                             </div>
                             <h1 className="payment-text">Payment Options</h1>
+                            {/* displays memeberships dropdown or spinner if loading data */}
                             {loadingMemberships ? (
                                 <Loader />
                             ) : (
@@ -670,6 +729,7 @@ export default function JoinUs() {
                                     {displayAsterisk()}
                                 </div>
                             )}
+                            {/* checkbox to add a donation */}
                             <div className="donate-check">
                                 <CustomColorCheckbox
                                     className="donate-checkbox"
@@ -680,6 +740,7 @@ export default function JoinUs() {
                                     I would like to donate in addition to membership fees
                                 </span>
                             </div>
+                            {/* displays donation field if donate checkbox is checked */}
                             {donateCheck ? (
                                 <div className="donation-num form-item">
                                     <CustomTextField
@@ -700,6 +761,7 @@ export default function JoinUs() {
                                     {displayAsterisk()}
                                 </div>
                             ) : null}
+                            {/* displays paypal modal if continue button is clicked */}
                             {displayPayPalModal ? (
                                 <PayPalModal
                                     key={displayPayPal}
@@ -715,6 +777,7 @@ export default function JoinUs() {
                                 />
                             ) : null}
                             <div className="paypal-buttons">
+                                {/* displays continue to payment button if all fields are filled */}
                                 {!displayPayPal ? (
                                     <p className="error-message">
                                         *Please fill out all required fields to proceed to payment.
@@ -736,6 +799,7 @@ export default function JoinUs() {
                                 <span className="error-asterisk"> * </span> indicates a required
                                 field
                             </p>
+                            {/* submit button for email list only form */}
                             <div className="submit-button">
                                 <CustomButton text="Submit" onClickCallback={handleSubmit} />
                             </div>
@@ -743,12 +807,14 @@ export default function JoinUs() {
                     )}
                 </form>
             </div>
+            {/* thank you modal displayed when form is submitted */}
             <Modal
                 text="Thank you for your support! We will get in touch with you shortly."
                 open={isThankYouNoteOpen}
                 hide={handleModalClose}
                 negativeButtonText="Ok"
             />
+            {/* snackbar to display error messages */}
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}

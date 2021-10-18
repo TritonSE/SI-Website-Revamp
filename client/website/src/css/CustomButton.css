@@ -1,6 +1,6 @@
 .Custom-Button {
   min-width: 175px;
-  width: 100%;
+  width: fit-content;
   background-color: var(--orange) !important;
   border-radius: 30px !important;
   box-shadow: 2px 2px 2px rgb(63, 62, 62) !important;
