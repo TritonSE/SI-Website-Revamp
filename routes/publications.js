@@ -36,11 +36,8 @@ router.post(
                 // make sure that every entry in the array has a pdfLink/filterId
                 for (const i of val) {
                     if (
-                        i === undefined
-                        // i.pdfLink === undefined ||
-                        // i.filterId === undefined ||
-                        // i.pdfLink.length === 0 ||
-                        // i.filterId.length === 0
+                        i === undefined ||
+                        Number.isNaN(i)
                     ) {
                         return false;
                     }
@@ -93,12 +90,10 @@ router.post(
 
             // loop through filters and add them to the FilteredPublications table
             Promise.all([
-                req.body.filters.forEach(async (filterId) => {
-                    return filteredMethods.addOne({
+                req.body.filters.forEach(async (filterId) => filteredMethods.addOne({
                         filterId,
                         publicationId,
-                    });
-                }),
+                    })),
             ]);
 
             return res.status(200).json(publications);
@@ -126,11 +121,8 @@ router.put(
                 // make sure that every entry in the array has a pdfLink/filterId
                 for (const i of val) {
                     if (
-                        i === undefined
-                        // i.pdfLink === undefined ||
-                        // i.filterId === undefined ||
-                        // i.pdfLink.length === 0 ||
-                        // i.filterId.length === 0
+                        i === undefined||
+                        Number.isNaN(i)
                     ) {
                         return false;
                     }
@@ -186,17 +178,15 @@ router.put(
                 }
             }
 
-            const publications = await pubMethods.editOne(id, req.body);
+            await pubMethods.editOne(id, req.body);
 
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // loop through filters and add them to the FilteredPublications table
                 Promise.all([
-                    req.body.filters.forEach(async (filterId) => {
-                        return filteredMethods.addOne({
+                    req.body.filters.forEach(async (filterId) => filteredMethods.addOne({
                             filterId,
                             publicationId,
-                        });
-                    }),
+                        })),
                 ]);
             }
 
@@ -225,9 +215,7 @@ router.get("/", [isValidated], async (req, res) => {
         // retrive publications with a specific filter
         if (filterId) {
             let pubIds = await filteredMethods.getAllEntriesWithFilter(filterId);
-            pubIds = pubIds.map((val) => {
-                return val["publicationId"];
-            });
+            pubIds = pubIds.map((val) => val["publicationId"]);
 
             queryFilter = {
                 where: { id: pubIds },

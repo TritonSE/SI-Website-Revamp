@@ -41,7 +41,7 @@ async function getFeatured() {
  */
 async function getPublicationById(id) {
     return Publications.findOne({
-        where: { id: id },
+        where: { id },
     });
 }
 

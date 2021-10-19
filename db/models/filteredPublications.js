@@ -6,7 +6,6 @@
  * @author    Navid Boloorian
  */
 
-const Sequelize = require("sequelize");
 const db = require("../configDB");
 
 const Publications = require("./publications");

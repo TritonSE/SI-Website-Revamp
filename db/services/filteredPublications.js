@@ -25,7 +25,7 @@ async function getAll() {
  */
 async function getAllEntriesWithFilter(filterId) {
     return FilteredPublications.findAll({
-        where: { filterId: filterId },
+        where: { filterId },
         attributes: ["publicationId"],
     });
 }
