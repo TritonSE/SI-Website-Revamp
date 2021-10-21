@@ -5,16 +5,19 @@
  * It takes in the following props:
  *  - update - a function that updates the parent state when
  *             user is ready to add/update data to database
+ *  - html - a string of html that is used to load into the
+ *           editor state
  *
  * @summary     Text Editor
  * @author      Amitesh Sharma
  */
 
 import React, { useState, useEffect } from "react";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 // import DOMPurify from 'dompurify';
+import htmlToDraft from "html-to-draftjs";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import "../css/TextEditor.css";
@@ -38,6 +41,19 @@ const TextEditor = (props) => {
         const currentContentAsHTML = draftToHtml(convertToRaw(editorState.getCurrentContent()));
         setConvertedContent(currentContentAsHTML);
     };
+
+    // If the html code is passed in, then put it into the text editor
+    if (props.html) {
+        useEffect(() => {
+            // convert to draft.js state
+            const blocksFromHtml = htmlToDraft(props.html);
+            const { contentBlocks, entityMap } = blocksFromHtml;
+            const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+            // update the editor state
+            const updateEditorState = EditorState.createWithContent(contentState);
+            setEditorState(updateEditorState);
+        }, []);
+    }
 
     // convert to HTML whenever there is a change to the editor state
     useEffect(() => {
@@ -69,6 +85,7 @@ const TextEditor = (props) => {
                         "fontSize",
                         "fontFamily",
                         "textAlign",
+                        "colorPicker",
                         "link",
                         "embedded",
                         "image",
@@ -80,6 +97,16 @@ const TextEditor = (props) => {
                             height: "400",
                             width: "600",
                         },
+                    },
+                    fontFamily: {
+                        options: [
+                            "Arial",
+                            "Georgia",
+                            "Impact",
+                            "Tahoma",
+                            "Times New Roman",
+                            "Verdana",
+                        ],
                     },
                 }}
             />

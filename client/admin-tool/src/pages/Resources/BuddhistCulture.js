@@ -8,7 +8,7 @@ export default function BuddhistCulture() {
         <div>
             <p> This is the BuddhistCulture Page </p>
             <TextEditor update={setHTML} />
-            <p>{html}</p>
+            <p style={{ maxWidth: "60vw" }}>{html}</p>
         </div>
     );
 }
