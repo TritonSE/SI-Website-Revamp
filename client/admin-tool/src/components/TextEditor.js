@@ -3,9 +3,9 @@
  * adding/updating information from the admin side.
  *
  * It takes in the following props:
- *  - update - a function that updates the parent state when
+ *  - editorUpdateCallback - a function that updates the parent state when
  *             user is ready to add/update data to database
- *  - html - a string of html that is used to load into the
+ *  - initialHtmlLoadStr - a string of html that is used to load into the
  *           editor state
  *
  * @summary     Text Editor
@@ -22,7 +22,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import "../css/TextEditor.css";
 
-const TextEditor = (props) => {
+const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr }) => {
     // initialize the editor state
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     // store the stringified html content
@@ -43,10 +43,10 @@ const TextEditor = (props) => {
     };
 
     // If the html code is passed in, then put it into the text editor
-    if (props.html) {
+    if (initialHtmlLoadStr) {
         useEffect(() => {
             // convert to draft.js state
-            const blocksFromHtml = htmlToDraft(props.html);
+            const blocksFromHtml = htmlToDraft(initialHtmlLoadStr);
             const { contentBlocks, entityMap } = blocksFromHtml;
             const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
             // update the editor state
@@ -62,7 +62,7 @@ const TextEditor = (props) => {
 
     // update the parent state to hold the stringified html
     useEffect(() => {
-        props.update(convertedContent);
+        editorUpdateCallback(convertedContent);
     }, [convertedContent]);
 
     // const createHtml = (html) => {
@@ -106,6 +106,8 @@ const TextEditor = (props) => {
                             "Tahoma",
                             "Times New Roman",
                             "Verdana",
+                            "Libre Baskerville",
+                            "Nunito",
                         ],
                     },
                 }}

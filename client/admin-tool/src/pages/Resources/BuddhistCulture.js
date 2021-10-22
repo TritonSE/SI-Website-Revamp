@@ -7,7 +7,7 @@ export default function BuddhistCulture() {
     return (
         <div>
             <p> This is the BuddhistCulture Page </p>
-            <TextEditor update={setHTML} />
+            <TextEditor editorUpdateCallback={setHTML} />
             <p style={{ maxWidth: "60vw" }}>{html}</p>
         </div>
     );

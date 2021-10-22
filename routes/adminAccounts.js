@@ -254,7 +254,8 @@ router.put(
             // email could be sent
             if (!isSent)
                 return res.status(500).json({
-                    msg: "Password reset, but email could not be sent. Please contact an adminstrator.",
+                    msg:
+                        "Password reset, but email could not be sent. Please contact an adminstrator.",
                 });
 
             return res.status(200).json({
