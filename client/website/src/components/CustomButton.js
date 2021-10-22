@@ -18,9 +18,16 @@ import "../css/CustomButton.css";
  *
  * @returns One Custom Button
  */
-export default function CustomButton({ text, redirect_link, openInSameTab, onClickCallback }) {
+export default function CustomButton({
+    text,
+    redirect_link,
+    openInSameTab,
+    onClickCallback,
+    style = null,
+}) {
     return (
         <Button
+            style={style}
             onClick={onClickCallback}
             href={redirect_link}
             target={openInSameTab ? null : "_blank"}

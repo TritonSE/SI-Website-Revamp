@@ -785,6 +785,7 @@ export default function JoinUs() {
                                 ) : (
                                     <div className="continue-button">
                                         <CustomButton
+                                            style={{ width: "fit-content" }}
                                             text="Continue to Payment"
                                             onClickCallback={openPaypalModal}
                                         />

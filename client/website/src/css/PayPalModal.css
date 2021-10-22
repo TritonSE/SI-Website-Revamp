@@ -25,39 +25,39 @@
   z-index: 4;
 }
 
-.return-button {
+.paypal-modal-wrapper .return-button {
   width: 100%;
   margin-left: 40%;
   margin-top: 10px;
 }
 
-.paypal-component {
+.paypal-modal-wrapper .paypal-component {
   margin-left: 5.5vw;
 }
 
-.header-text {
-  font-size: 2vw;
+.paypal-modal-wrapper .header-text {
+  font-size: 24px;
   text-align: center;
   margin-top: 3%;
-  margin-bottom: -5%;
+  margin-bottom: -7%;
 }
 
 @media screen and (min-width: 600px) and (max-width: 900px) {
-  .paypal-component {
+  .paypal-modal-wrapper .paypal-component {
     margin-left: 0%;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .return-button {
+  .paypal-modal-wrapper .return-button {
     margin-left: 23%;
   }
 
-  .paypal-component {
+  .paypal-modal-wrapper .paypal-component {
     margin-left: 2%;
   }
 
-  .header-text {
+  .paypal-modal-wrapper .header-text {
     margin-left: -2%;
   }
 }

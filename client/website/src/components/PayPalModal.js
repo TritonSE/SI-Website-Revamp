@@ -17,7 +17,8 @@ export default function PayPalModal(props) {
         <>
             <div className="background" onClick={props.toggleModal} />
             <div className="paypal-modal-wrapper">
-                <div className="header-text">Choose Your Payment Method</div>
+                <p className="header-text">Choose Your Payment Method</p>
+
                 <div className="paypal-component">
                     {/* displays PayPal buttons component */}
                     <PayPal

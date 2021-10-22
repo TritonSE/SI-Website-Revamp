@@ -48,7 +48,7 @@ const Memberships = db.define(
         },
         phone: {
             type: Sequelize.STRING(15),
-            allowNull: false,
+            allowNull: true,
         },
         email: {
             type: Sequelize.STRING(500),
