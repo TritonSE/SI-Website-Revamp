@@ -11,6 +11,8 @@
 .editor-class {
   background-color: rgb(241, 241, 241);
   height: 50vh;
+  border: 2px solid var(--lightpurple);
+  border-top: none;
 }
 
 .editor-class div {
@@ -22,7 +24,9 @@
 .toolbar-class {
   background-color: var(--lightpurple);
   font-family: var(--text-font);
-  margin-bottom: 0;
+  margin-bottom: -1px;
+  border: 2px solid var(--lightpurple);
+  border-bottom: none;
 }
 
 .toolbar-class div {
