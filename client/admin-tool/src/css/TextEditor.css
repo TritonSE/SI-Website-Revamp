@@ -1,0 +1,58 @@
+:root {
+  --hoverpurple: #cbc4e9;
+}
+
+/* The wrapper class for the Editor component */
+.wrapper-class {
+  width: 100%;
+}
+
+/* The editor component containing the blank space for input */
+.editor-class {
+  background-color: rgb(241, 241, 241);
+  height: 50vh;
+  border: 2px solid var(--lightpurple);
+  border-top: none;
+}
+
+.editor-class div {
+  display: block;
+  margin-bottom: -10px;
+}
+
+/* The toolbar component at the top */
+.toolbar-class {
+  background-color: var(--lightpurple);
+  font-family: var(--text-font);
+  margin-bottom: -1px;
+  border: 2px solid var(--lightpurple);
+  border-bottom: none;
+}
+
+.toolbar-class div {
+  color: var(--black);
+  font-weight: 400;
+}
+
+.rdw-option-active {
+  background-color: var(--hoverpurple);
+  border: 1px solid var(--hoverpurple);
+}
+
+.rdw-option-active,
+.rdw-option-wrapper {
+  box-shadow: none;
+  transition: 0.2s ease-out;
+}
+
+.rdw-option-active:hover,
+.rdw-option-wrapper:hover {
+  box-shadow: none;
+  transition: 0.2s ease-in;
+  background-color: var(--hoverpurple);
+  border: 1px solid var(--hoverpurple);
+}
+
+.rdw-option-disabled {
+  cursor: not-allowed;
+}
