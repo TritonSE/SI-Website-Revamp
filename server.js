@@ -53,6 +53,7 @@ app.use("/newsletters", require("./routes/newsletters"));
 app.use("/adminAccounts", require("./routes/adminAccounts"));
 app.use("/contact", require("./routes/contact"));
 app.use("/branchesAndChapters", require("./routes/branchesAndChapters"));
+app.use("/execCommittees", require("./routes/execCommittees"));
 app.use("/newsAndEvents", require("./routes/newsAndEvents"));
 
 app.get("/", (req, res) => {
