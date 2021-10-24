@@ -175,11 +175,9 @@ export default function PayPal(props) {
                 },
                 onCancel: () => {
                     document.body.style.cursor = null;
-                    props.enableScreen();
                 },
                 onError: (_err) => {
                     document.body.style.cursor = null;
-                    props.enableScreen();
                     alert(
                         "An unexpected error occurred - your payment did not go through. Please try again later."
                     );
