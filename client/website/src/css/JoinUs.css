@@ -64,11 +64,13 @@
   width: 100%;
   padding-bottom: 12.34vw;
   margin-top: 7.27vw;
+  text-align: center;
 }
 
 .continue-button {
   width: 100%;
-  margin-left: 40%;
+  margin: 0 auto;
+  display: inline-block;
 }
 
 .error-asterisk {
@@ -174,11 +176,6 @@
   .payment-text {
     margin-top: 120px;
   }
-
-  .continue-button {
-    width: 100%;
-    margin-left: 28%;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -271,10 +268,5 @@
   .submit-button {
     margin-top: 31px;
     margin-bottom: 58px;
-  }
-
-  .continue-button {
-    width: 100%;
-    margin-left: 25%;
   }
 }

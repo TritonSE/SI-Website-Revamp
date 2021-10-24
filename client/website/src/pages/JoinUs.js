@@ -226,7 +226,6 @@ export default function JoinUs() {
         if (
             values.firstName.value === "" ||
             values.lastName.value === "" ||
-            values.phoneNumber.value === "" ||
             values.emailAddress.value === "" ||
             values.country.value === "" ||
             values.addressOne.value === "" ||
@@ -356,7 +355,6 @@ export default function JoinUs() {
         // variables used to check if any field is blank
         let firstName = false;
         let lastName = false;
-        let phone = false;
         let email = false;
         let country = false;
         let address = false;
@@ -366,7 +364,6 @@ export default function JoinUs() {
 
         if (values.firstName.value === "") firstName = true;
         if (values.lastName.value === "") lastName = true;
-        if (values.phoneNumber.value === "") phone = true;
         if (values.emailAddress.value === "") email = true;
         if (values.country.value === "") country = true;
         if (values.addressOne.value === "") address = true;
@@ -379,7 +376,6 @@ export default function JoinUs() {
             ...values,
             firstName: { ...values.firstName, error: firstName },
             lastName: { ...values.lastName, error: lastName },
-            phoneNumber: { ...values.phoneNumber, error: phone },
             emailAddress: { ...values.emailAddress, error: email },
             country: { ...values.country, error: country },
             addressOne: { ...values.addressOne, error: address },
@@ -389,17 +385,7 @@ export default function JoinUs() {
         });
 
         // checks if any required fields are empty
-        if (
-            firstName ||
-            lastName ||
-            phone ||
-            email ||
-            country ||
-            address ||
-            city ||
-            state ||
-            zipcode
-        ) {
+        if (firstName || lastName || email || country || address || city || state || zipcode) {
             setSnackBar({ open: true, message: "Missing required fields" });
             setIsFormDisabled(false);
             document.body.style.cursor = null;
@@ -661,12 +647,10 @@ export default function JoinUs() {
                                     className="phone-number input-field"
                                     placeholder="Phone Number"
                                     value={values.phoneNumber.value}
-                                    error={values.phoneNumber.error}
                                     onChange={handleChange}
                                     disabled={isFormDisabled}
                                     name="phoneNumber"
                                 />
-                                {displayAsterisk()}
                             </div>
                         </div>
                     ) : null}

@@ -23,16 +23,14 @@
   transform: translate(-50%, -50%);
   padding: 25px;
   z-index: 4;
+  text-align: center;
 }
 
 .paypal-modal-wrapper .return-button {
   width: 100%;
-  margin-left: 40%;
   margin-top: 10px;
-}
-
-.paypal-modal-wrapper .paypal-component {
-  margin-left: 5.5vw;
+  margin: 0 auto;
+  display: inline-block;
 }
 
 .paypal-modal-wrapper .header-text {
@@ -42,19 +40,9 @@
   margin-bottom: -7%;
 }
 
-@media screen and (min-width: 600px) and (max-width: 900px) {
-  .paypal-modal-wrapper .paypal-component {
-    margin-left: 0%;
-  }
-}
-
 @media screen and (max-width: 600px) {
-  .paypal-modal-wrapper .return-button {
-    margin-left: 23%;
-  }
-
-  .paypal-modal-wrapper .paypal-component {
-    margin-left: 2%;
+  .paypal-modal-wrapper {
+    top: 45%;
   }
 
   .paypal-modal-wrapper .header-text {
