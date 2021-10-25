@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Snackbar } from "@material-ui/core";
+import { TextField, Snackbar, Select, MenuItem } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "../../components/Button";
@@ -16,10 +16,16 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(1),
             width: "95%",
         },
-        "& .MuiSelect-root": {
-            // margin: theme.spacing(1),
-            width: "95%",
+        "& .MuiSelect-root .MuiMenuItem-root": {
+            //margin: theme.spacing(1),
+            minWidth: "calc(95%)",
+            width: '95%',
         },
+        Select: {
+            minWidth: "calc(95%)",
+
+        },
+
         // default rendering of field
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
             borderColor: "black",
@@ -131,6 +137,14 @@ export default function BranchesChapters() {
             return;
         }
 
+        if(values.isBranch.value === "branch"){
+            isBranch = true;
+            console.log("hi");
+        }
+        else{
+            isBranch = false;
+        }
+
         // attempt to post new branch and chapter
         await fetch(`${BACKEND_URL}branchesAndChapters/`, {
             method: "POST",
@@ -140,7 +154,7 @@ export default function BranchesChapters() {
                 email: values.email.value,
                 longitude: values.longitude.value,
                 latitude: values.latitude.value,
-                isBranch: values.isBranch.value,
+                isBranch: isBranch,
                 siteLink: values.siteLink.value,
             }),
         }).then((res) => {
@@ -217,15 +231,19 @@ export default function BranchesChapters() {
                     </div>
                     {/* Type of Branch/Chapter */}
                     <div className="form-field-wrapper">
-                        <TextField
+                        <Select
                             name="isBranch"
-                            value={values.isBranch.value}
                             error={values.isBranch.error}
-                            onChange={handleChange}
+                            value={values.isBranch.value}
                             placeholder="Branch"
+                            onChange={handleChange}
                             disabled={isFormDisabled}
                             variant="outlined"
-                        />
+                        >
+                            <MenuItem value="branch">Branch</MenuItem>
+                            <MenuItem value="chapter">Chapter</MenuItem>
+                        </Select>
+
                         <span className="required-asterisk"> * </span>
                     </div>
                     {/* Email of Branch/Chapter */}
