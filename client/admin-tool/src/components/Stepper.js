@@ -35,6 +35,7 @@ import "../css/Stepper.css";
 const Stepper = (props) => {
     // the state of the items
     const [items, setItems] = useState([]);
+    const [pageNumber, setPageNumber] = useState(0);
     // determine the title of the button
     const buttonTitle = props.buttonTitle ? props.buttonTitle : "Add new";
     // determine the number of items per page
@@ -43,7 +44,11 @@ const Stepper = (props) => {
     // Calls whenever the prop for items changes in the parent
     useEffect(() => {
         setItems(props.items);
-    }, [props.items]);
+    }, []);
+
+    const onPageChange = (itemList, currentPage) => {
+        setPageNumber(currentPage - 1);
+    };
 
     // The "+" icon on the 'add' button
     const addIcon = <FontAwesomeIcon icon={faPlus} style={{ marginRight: "10px" }} />;
@@ -64,6 +69,7 @@ const Stepper = (props) => {
                 paginatedListContainerClass="pagination-container"
                 controlClass="pagination-box"
                 activeControlClass="active-pagination-box"
+                onPageChange={onPageChange}
                 nextText={
                     <FontAwesomeIcon
                         icon={faArrowRight}
@@ -78,13 +84,12 @@ const Stepper = (props) => {
                             <div
                                 role="button"
                                 tabIndex={index}
-                                key={props.formatNodeTitle(item)}
                                 className="stepper-item-div"
-                                onClick={() => props.handleNodeClick(index)}
+                                onClick={() => props.handleNodeClick(pageNumber * 10 + index)}
                                 // required for accessibility reasons
                                 onKeyDown={(event) => {
                                     if (event.code === 13) {
-                                        props.handleNodeClick(index);
+                                        props.handleNodeClick(pageNumber * 10 + index);
                                     }
                                 }}
                             >

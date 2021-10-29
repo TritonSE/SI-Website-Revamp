@@ -2,8 +2,9 @@
   width: 350px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  min-height: 653px;
+  position: relative;
 }
 
 .add-stepper-button {
@@ -60,6 +61,8 @@
   background-color: transparent;
   color: black;
   border-radius: 50%;
+  position: absolute;
+  bottom: 0;
 }
 
 .active-pagination-box {
