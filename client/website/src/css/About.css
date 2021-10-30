@@ -200,6 +200,8 @@
 
 .headshot {
   width: 100%;
+  height: 250px;
+  object-fit: cover;
   border-radius: 50%;
   margin-bottom: 15px;
   margin-top: 85px;
@@ -365,6 +367,7 @@ h2 #conference {
 
   .headshot {
     margin-top: 50px;
+    height: 200px;
   }
 
   #founding img {

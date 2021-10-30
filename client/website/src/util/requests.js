@@ -43,3 +43,23 @@ export const fetchConferences = async () => {
     }
     return [];
 };
+
+export const fetchCommittees = async () => {
+    try {
+        const response = await fetch(`${BACKEND_URL}execCommittees/`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        }
+    } catch {
+        // pass through if any error
+    }
+    return [];
+};
