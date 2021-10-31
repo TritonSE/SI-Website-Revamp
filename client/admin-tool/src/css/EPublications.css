@@ -1,0 +1,62 @@
+.EPublications {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .EPublications h1 {
+    font-family: var(--heading-font);
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .EPublications .top-container {
+    width: 100%;
+    height: 10%;
+    padding-left: 24px;
+  }
+  
+  .EPublications .bottom-container {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .EPublications .left-container {
+    width: 25%;
+  }
+  
+  .EPublications .right-container {
+    width: 75%;
+  }
+  
+  .EPublications h3 {
+    font-family: var(--heading-font);
+    font-weight: bold;
+  }
+
+  .EPublications h4 {
+    font-family: var(--heading-font);
+  }
+
+  .select {
+    width: 95%;
+  }
+
+  .EPublications .form-field-wrapper {
+    display: flex;
+    width: 95% !important;
+    min-width: 95% !important;
+  }
+  
+  .EPublications .required-asterisk {
+    color: #ea4444;
+    font-size: 25px;
+  }
+
+  .EPublications .post-button {
+    margin-top: 20px !important;
+    text-align: center;
+  }
