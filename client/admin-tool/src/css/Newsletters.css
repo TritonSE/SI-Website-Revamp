@@ -1,0 +1,38 @@
+.Newsletters {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.Newsletters h1 {
+  font-family: var(--heading-font);
+  font-weight: bold;
+  width: 100%;
+}
+
+.Newsletters .top-container {
+  width: 100%;
+  height: 10%;
+  padding-left: 24px;
+}
+
+.Newsletters .bottom-container {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+}
+
+.Newsletters .left-container {
+  width: 25%;
+}
+
+.Newsletters .right-container {
+  width: 75%;
+}
+
+.Newsletters h3 {
+  font-family: var(--heading-font);
+  font-weight: bold;
+}
