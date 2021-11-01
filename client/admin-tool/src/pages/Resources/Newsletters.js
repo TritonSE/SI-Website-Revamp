@@ -8,7 +8,12 @@
  */
 
 import React from "react";
-import { Pagination, Box, Button, ToggleButton, ToggleButtonGroup, TextField } from "@mui/material";
+import {
+    Pagination,
+    Box,
+    Button,
+    TextField,
+} from "@mui/material";
 
 import "../../css/Newsletters.css";
 
@@ -20,8 +25,44 @@ export default function Newsletters() {
             </section>
             <section className="bottom-container">
                 <section className="left-container">
-                    <Button variant="contained">+ Add New</Button>
-                    <ToggleButtonGroup exclusive orientation="vertical">
+                    <Button id="add-button" variant="contained">
+                        + Add New
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    <Button className="serial-button" variant="outlined">
+                        Volume #, Year
+                    </Button>
+                    {/* <ButtonGroup orientation="vertical" variant="outlined">
+                        
+                    </ButtonGroup> */}
+                    {/* <ToggleButton>Volume #, Year</ToggleButton> */}
+                    {/* <ToggleButtonGroup orientation="vertical">
                         <ToggleButton>Volume #, Year</ToggleButton>
                         <ToggleButton>Volume #, Year</ToggleButton>
                         <ToggleButton>Volume #, Year</ToggleButton>
@@ -32,25 +73,22 @@ export default function Newsletters() {
                         <ToggleButton>Volume #, Year</ToggleButton>
                         <ToggleButton>Volume #, Year</ToggleButton>
                         <ToggleButton>Volume #, Year</ToggleButton>
-                    </ToggleButtonGroup>
+                    </ToggleButtonGroup> */}
                     <Pagination count={2} color="secondary" />
                 </section>
                 <section className="right-container">
                     <Box className="form" component="form">
                         <h3>Details</h3>
-                        <TextField required fullWidth id="outlined-required" label="Volume #" />
-                        <TextField required fullWidth id="outlined-required" label="Number #" />
-                        <TextField required fullWidth id="outlined-required" label="Year" />
-                        <TextField required fullWidth id="outlined-required" label="PDF link" />
+                        <TextField required id="outlined-required" label="Volume #" />
+                        <TextField required id="outlined-required" label="Number #" />
+                        <TextField required id="outlined-required" label="Year" />
+                        <TextField required id="outlined-required" label="PDF link" />
                         <h3>Thumnail Image</h3>
-                        <TextField
-                            required
-                            fullWidth
-                            id="outlined-required"
-                            label="Insert img link"
-                        />
+                        <TextField required id="outlined-required" label="Insert img link" />
                     </Box>
-                    <Button variant="contained">Post</Button>
+                    <Button id="post-button" variant="contained">
+                        Post
+                    </Button>
                 </section>
             </section>
         </div>
