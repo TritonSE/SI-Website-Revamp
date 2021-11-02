@@ -106,8 +106,8 @@ export default function AboutUs() {
             const response = await fetchExecCommittees();
             setCommittees(response);
             setYear(response[0].startYear);
+            setLoadingCommittees(false);
         })();
-        setLoadingCommittees(false);
     }, []);
 
     /**

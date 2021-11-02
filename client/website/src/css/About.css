@@ -210,7 +210,7 @@
 }
 
 .profile h2 {
-  margin: 5px 0;
+  margin: 5px 0px;
 
   font-family: var(--heading-font);
   font-size: 1.875em;
@@ -219,7 +219,7 @@
 }
 
 .profile h3 {
-  margin: 5px 0;
+  margin: 5px 0px;
 
   font-family: var(--heading-font);
   font-size: 1.875em;
@@ -232,18 +232,18 @@
 }
 
 .profile p {
-  margin-top: 10px;
   font-family: var(--text-font);
   font-size: 1.125em;
   font-weight: 400;
-  padding: 0px 10px;
+  padding: 20px 10px;
 }
 
 .profile-link {
   position: absolute;
-  top: 0.85em;
-  left: -1.5em;
+  top: 1.5em;
+  left: -1em;
   height: 1em;
+  
 }
 
 /* This is a really gross an hacky method, but it works */
@@ -350,19 +350,24 @@ h2 #conference {
 
   .profile h2 {
     font-size: 1.25em;
+    margin: 5px 15px;
   }
 
   .profile h3 {
     font-size: 1.125em;
+    margin: 5px 15px;
   }
 
   .profile p {
     font-size: 1em;
+    margin: 5px 15px;
     padding: 0;
   }
 
   .profile-link {
+    top: .75em;
     height: 0.9em;
+    left: -.5em;
   }
 
   .headshot {
