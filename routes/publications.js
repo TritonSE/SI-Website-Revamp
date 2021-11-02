@@ -18,6 +18,18 @@ const router = express.Router();
 
 const MAX_NUM_FEATURE_PUBS = 6; // maximum number of publications that can be featured
 
+// async function validateFilterIds(req) {
+//     for (let i = 0; i < req.body.filters.length; i++) {
+//         const filter = req.body.filters[i];
+//         const filterCount = await ePubMethods.filterCount(filter);
+
+//         if (filterCount < 1) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
 /**
  * Add publication into Publications table.
  *
@@ -35,10 +47,7 @@ router.post(
 
                 // make sure that every entry in the array has a pdfLink/filterId
                 for (const i of val) {
-                    if (
-                        i === undefined ||
-                        Number.isNaN(i)
-                    ) {
+                    if (i === undefined || Number.isNaN(i)) {
                         return false;
                     }
                 }
@@ -61,11 +70,9 @@ router.post(
         const numFeatured = await pubMethods.countFeatured(-1);
 
         if (req.body.feature && numFeatured >= MAX_NUM_FEATURE_PUBS) {
-            return res
-                .status(409)
-                .json({
-                    message: `Already ${MAX_NUM_FEATURE_PUBS} publications featured in table`,
-                });
+            return res.status(409).json({
+                message: `Already ${MAX_NUM_FEATURE_PUBS} publications featured in table`,
+            });
         }
 
         if (req.body.filters.length < 1) {
@@ -74,26 +81,31 @@ router.post(
 
         try {
             // loops through passed-in filters and makes sure they are in the EPubFilters table
-            for (let i = 0; i < req.body.filters.length; i++) {
-                const filter = req.body.filters[i];
+            // const isValidFilters = validateFilterIds(req);
+            // if(!isValidFilters) return res.status(409).json({ message: "At least one filter id is invalid." });
 
-                const filterCount = await ePubMethods.filterCount(filter);
+            // for (let i = 0; i < req.body.filters.length; i++) {
+            //     const filter = req.body.filters[i];
 
-                // if there is less than 1 row found with the given filter name return 409
-                if (filterCount < 1) {
-                    return res.status(409).json({ message: "Not a valid filter value" });
-                }
-            }
+            //     const filterCount = await ePubMethods.filterCount(filter);
+
+            //     // if there is less than 1 row found with the given filter name return 409
+            //     if (filterCount < 1) {
+            //         return res.status(409).json({ message: "Not a valid filter value" });
+            //     }
+            // }
 
             const publications = await pubMethods.addOne(req.body);
             const publicationId = publications.dataValues.id;
 
             // loop through filters and add them to the FilteredPublications table
-            Promise.all([
-                req.body.filters.forEach(async (filterId) => filteredMethods.addOne({
+            await Promise.allSettled([
+                req.body.filters.forEach(async (filterId) =>
+                    filteredMethods.addOne({
                         filterId,
                         publicationId,
-                    })),
+                    })
+                ),
             ]);
 
             return res.status(200).json(publications);
@@ -120,10 +132,7 @@ router.put(
 
                 // make sure that every entry in the array has a pdfLink/filterId
                 for (const i of val) {
-                    if (
-                        i === undefined||
-                        Number.isNaN(i)
-                    ) {
+                    if (i === undefined || Number.isNaN(i)) {
                         return false;
                     }
                 }
@@ -167,26 +176,31 @@ router.put(
                 // deletes publications associated with publicationId in FilteredPublications table
                 filteredMethods.deleteMany(publicationId);
 
-                // loops through passed-in filters and makes sure they are in the EPubFilters table
-                for (let i = 0; i < req.body.filters.length; i++) {
-                    const filter = req.body.filters[i];
-                    const filterCount = await ePubMethods.filterCount(filter);
+                // const isValidFilters = validateFilterIds(req);
+                // if(!isValidFilters) return res.status(409).json({ message: "At least one filter id is invalid." });
 
-                    if (filterCount < 1) {
-                        return res.status(409).json({ message: "Not a valid filter value" });
-                    }
-                }
+                // loops through passed-in filters and makes sure they are in the EPubFilters table
+                // for (let i = 0; i < req.body.filters.length; i++) {
+                //     const filter = req.body.filters[i];
+                //     const filterCount = await ePubMethods.filterCount(filter);
+
+                //     if (filterCount < 1) {
+                //         return res.status(409).json({ message: "Not a valid filter value" });
+                //     }
+                // }
             }
 
             await pubMethods.editOne(id, req.body);
 
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // loop through filters and add them to the FilteredPublications table
-                Promise.all([
-                    req.body.filters.forEach(async (filterId) => filteredMethods.addOne({
+                await Promise.allSettled([
+                    req.body.filters.forEach(async (filterId) =>
+                        filteredMethods.addOne({
                             filterId,
                             publicationId,
-                        })),
+                        })
+                    ),
                 ]);
             }
 
@@ -225,10 +239,19 @@ router.get("/", [isValidated], async (req, res) => {
         const publications = await pubMethods.getAll(queryFilter);
 
         // tag any associated filters to each publication
+
+        const pubFilters = await Promise.allSettled([
+            publications.forEach(async (pub) => filteredMethods.getAllFiltersForPub(pub["id"])),
+        ]);
+
         for (let i = 0; i < publications.length; i++) {
-            const pubId = publications[i]["id"];
-            publications[i]["filters"] = await filteredMethods.getAllFiltersForPub(pubId);
+            publications[i]["filters"] = pubFilters[i];
         }
+
+        // for (let i = 0; i < publications.length; i++) {
+        //     const pubId = publications[i]["id"];
+        //     publications[i]["filters"] = await filteredMethods.getAllFiltersForPub(pubId);
+        // }
 
         return res.status(200).json(publications);
     } catch (err) {
@@ -303,13 +326,11 @@ router.delete("/:id", [isValidated], async (req, res) => {
         if (deletePubStatus && deleteFiltersStatus)
             return res.status(200).json({ message: "Success" });
 
-        return res
-            .status(200)
-            .json({
-                message: "Deletion encountered a failure at some point.",
-                isPublicationDeleted: deletePubStatus,
-                areFiltersDeleted: deleteFiltersStatus,
-            });
+        return res.status(200).json({
+            message: "Deletion encountered a failure at some point.",
+            isPublicationDeleted: deletePubStatus,
+            areFiltersDeleted: deleteFiltersStatus,
+        });
     } catch (err) {
         return res.status(500).json({ message: err });
     }
