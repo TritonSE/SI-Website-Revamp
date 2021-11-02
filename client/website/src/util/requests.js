@@ -44,7 +44,7 @@ export const fetchConferences = async () => {
     return [];
 };
 
-export const fetchCommittees = async () => {
+export const fetchExecCommittees = async () => {
     try {
         const response = await fetch(`${BACKEND_URL}execCommittees/`, {
             method: "get",

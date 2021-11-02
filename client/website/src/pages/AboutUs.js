@@ -16,7 +16,7 @@ import DownArrow from "../media/down-arrow.svg";
 import Link from "../media/link.svg";
 import Founders from "../media/founders.png";
 
-import { fetchCommittees } from "../util/requests";
+import { fetchExecCommittees } from "../util/requests";
 import Loader from "../components/Main/Loader";
 
 const CommitteeSelector = ({committees, toggleDropdown, dropdownOn, clickDropdown, committeeIndex}) => {
@@ -103,7 +103,7 @@ export default function AboutUs() {
     // fetch committees from backend
     useEffect(async () => {
         await (async () => {
-            const response = await fetchCommittees();
+            const response = await fetchExecCommittees();
             setCommittees(response);
             setYear(response[0].startYear);
         })();
