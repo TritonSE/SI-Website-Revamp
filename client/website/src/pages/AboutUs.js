@@ -100,7 +100,7 @@ export default function AboutUs() {
         });
     });
 
-    // fetch newsletters from backend
+    // fetch committees from backend
     useEffect(async () => {
         await (async () => {
             const response = await fetchCommittees();
