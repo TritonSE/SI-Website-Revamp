@@ -239,13 +239,23 @@ router.get("/", [isValidated], async (req, res) => {
         const publications = await pubMethods.getAll(queryFilter);
 
         // tag any associated filters to each publication
-
         const pubFilters = await Promise.allSettled([
             publications.forEach(async (pub) => filteredMethods.getAllFiltersForPub(pub["id"])),
         ]);
 
+        // set filters to each publication for response
         for (let i = 0; i < publications.length; i++) {
-            publications[i]["filters"] = pubFilters[i];
+            // Successfull fetch
+            if (pubFilters[i]["status"] === "fulfilled") {
+                publications[i]["filters"] = pubFilters[i]["value"];
+
+                // Unsuccessful
+            } else {
+                console.log(
+                    `Could not get filters for Publication Id ${publications["id"]}. Reason: ${pubFilters[i]["reason"]}`
+                );
+                publications[i]["filters"] = [];
+            }
         }
 
         // for (let i = 0; i < publications.length; i++) {
