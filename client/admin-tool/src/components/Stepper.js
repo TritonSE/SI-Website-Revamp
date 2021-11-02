@@ -48,6 +48,10 @@ const Stepper = ({
     // the state of the items
     const [items, setItems] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
+    // keep track of the index of node to set active
+    const [indexButton, setIndexButton] = useState(undefined);
+    // this is needed for highlighting the proper node even when page changes
+    const [activeItem, setActiveItem] = useState(undefined);
 
     // Calls whenever the prop for items changes in the parent
     useEffect(() => {
@@ -61,6 +65,26 @@ const Stepper = ({
 
     // The "+" icon on the 'add' button
     const addIcon = <FontAwesomeIcon icon={faPlus} style={{ marginRight: "10px" }} />;
+
+    /**
+     * Handle the onClick of a node inside the item itemList
+     *
+     * @param {number} index - the index of the node clicked
+     * @param {object} item - the current item in the data list
+     */
+    const onNodeClick = (index, item) => {
+        handleNodeClick(pageNumber * 10 + index);
+        // set the current index of the node
+        setIndexButton(index);
+        // remember the current active item
+        setActiveItem(item);
+    };
+
+    // determine the class for the node (active vs normal)
+    const determineClassname = (index, item) =>
+        index !== indexButton || item !== activeItem
+            ? `stepper-item-div ${addSpecialNodeClass(item)}`
+            : `stepper-item-div active ${addSpecialNodeClass(item)}`;
 
     return (
         <div className="stepper-component">
@@ -93,12 +117,12 @@ const Stepper = ({
                             <div
                                 role="button"
                                 tabIndex={index}
-                                className={`stepper-item-div ${addSpecialNodeClass(item)}`}
-                                onClick={() => handleNodeClick(pageNumber * 10 + index)}
+                                className={determineClassname(index, item)}
+                                onClick={() => onNodeClick(index, item)}
                                 // required for accessibility reasons
                                 onKeyDown={(event) => {
                                     if (event.code === 13) {
-                                        handleNodeClick(pageNumber * 10 + index);
+                                        onNodeClick(index);
                                     }
                                 }}
                             >
