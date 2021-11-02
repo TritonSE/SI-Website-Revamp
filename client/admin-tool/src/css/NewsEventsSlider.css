@@ -1,0 +1,12 @@
+#news-events-slider {
+  margin-left: 20px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#news-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 10px;
+}

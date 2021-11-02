@@ -1,0 +1,21 @@
+.news-events-item {
+  width: 400px;
+}
+.news-events-item .slide-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slide-icon + .slide-icon {
+  margin-left: 10px;
+}
+
+.slide-icon:hover {
+  color: var(--darkorange);
+  cursor: pointer;
+}
+
+.slide-img {
+  width: inherit;
+}
