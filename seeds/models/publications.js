@@ -91,50 +91,6 @@ module.exports = async () => {
             },
             { logging: false }
         ),
-        Publications.create(
-            {
-                title: "Little Women",
-                author: "Louise Alcott",
-                feature: true,
-                description: "Period piece. Male lead will annoy you.",
-                pdfLink: "https://www.google.com/",
-                imageLink: "https://images-na.ssl-images-amazon.com/images/I/A1WWhjM1+eL.jpg",
-            },
-            { logging: false }
-        ),
-        Publications.create(
-            {
-                title: "Little Women",
-                author: "Louise Alcott",
-                feature: true,
-                description: "Period piece. Male lead will annoy you.",
-                pdfLink: "https://www.google.com/",
-                imageLink: "https://images-na.ssl-images-amazon.com/images/I/A1WWhjM1+eL.jpg",
-            },
-            { logging: false }
-        ),
-        Publications.create(
-            {
-                title: "Little Women",
-                author: "Louise Alcott",
-                feature: true,
-                description: "Period piece. Male lead will annoy you.",
-                pdfLink: "https://www.google.com/",
-                imageLink: "https://images-na.ssl-images-amazon.com/images/I/A1WWhjM1+eL.jpg",
-            },
-            { logging: false }
-        ),
-        Publications.create(
-            {
-                title: "Little Women",
-                author: "Louise Alcott",
-                feature: true,
-                description: "Period piece. Male lead will annoy you.",
-                pdfLink: "https://www.google.com/",
-                imageLink: "https://images-na.ssl-images-amazon.com/images/I/A1WWhjM1+eL.jpg",
-            },
-            { logging: false }
-        ),
     ])
         .then(() => {
             // successfull population

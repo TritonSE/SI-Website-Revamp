@@ -80,21 +80,6 @@ router.post(
         }
 
         try {
-            // loops through passed-in filters and makes sure they are in the EPubFilters table
-            // const isValidFilters = validateFilterIds(req);
-            // if(!isValidFilters) return res.status(409).json({ message: "At least one filter id is invalid." });
-
-            // for (let i = 0; i < req.body.filters.length; i++) {
-            //     const filter = req.body.filters[i];
-
-            //     const filterCount = await ePubMethods.filterCount(filter);
-
-            //     // if there is less than 1 row found with the given filter name return 409
-            //     if (filterCount < 1) {
-            //         return res.status(409).json({ message: "Not a valid filter value" });
-            //     }
-            // }
-
             const publications = await pubMethods.addOne(req.body);
             const publicationId = publications.dataValues.id;
 
@@ -175,19 +160,6 @@ router.put(
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // deletes publications associated with publicationId in FilteredPublications table
                 filteredMethods.deleteMany(publicationId);
-
-                // const isValidFilters = validateFilterIds(req);
-                // if(!isValidFilters) return res.status(409).json({ message: "At least one filter id is invalid." });
-
-                // loops through passed-in filters and makes sure they are in the EPubFilters table
-                // for (let i = 0; i < req.body.filters.length; i++) {
-                //     const filter = req.body.filters[i];
-                //     const filterCount = await ePubMethods.filterCount(filter);
-
-                //     if (filterCount < 1) {
-                //         return res.status(409).json({ message: "Not a valid filter value" });
-                //     }
-                // }
             }
 
             await pubMethods.editOne(id, req.body);
