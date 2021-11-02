@@ -6,7 +6,7 @@
  * It takes in the following props:
  *
  * Required props:
- *  - items  - the array of items for the  specific page
+ *  - displayItems  - the array of items for the  specific page
  *  - handleAddNodeclick - A function fired when the 'add' button is clicked
  *      - Parameters: items
  *      - items - array - the list of items for the specific page
@@ -18,9 +18,10 @@
  *      - item - object - an item inside items that can be used to determine the title
  *
  * Non-required props:
- *  - buttonTitle - A string to indicate the title for the 'add' button
+ *  - addButtonTitle - A string to indicate the title for the 'add' button
  *                  defaults to "Add new" if no prop is passed in
  *  - numItemsPerPage - A number to indicate how many items to show per page
+ *  - addSpecialNodeClass - A function that passes back the item, and checks if that item should have a special class attached to it. Expects a string return representing the class to add.
  *
  * @summary     Stepper component
  * @author      Amitesh Sharma
@@ -32,21 +33,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import "../css/Stepper.css";
 
-const Stepper = (props) => {
+const Stepper = ({
+    displayItems,
+    handleNodeClick,
+    addButtonTitle = "Add New",
+    handleAddNodeClick,
+    formatNodeTitle,
+    addSpecialNodeClass = (item) => {
+        console.log(item);
+        return "";
+    },
+    numItemsPerPage = 10,
+}) => {
     // the state of the items
     const [items, setItems] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
-    // determine the title of the button
-    const buttonTitle = props.buttonTitle ? props.buttonTitle : "Add new";
-    // determine the number of items per page
-    const numItemsPerPage = props.numberPerPage ? props.numberPerPage : 10;
 
     // Calls whenever the prop for items changes in the parent
     useEffect(() => {
-        setItems(props.items);
+        setItems(displayItems);
     }, []);
 
     const onPageChange = (itemList, currentPage) => {
+        console.log(itemList);
         setPageNumber(currentPage - 1);
     };
 
@@ -59,9 +68,9 @@ const Stepper = (props) => {
             <button
                 type="button"
                 className="add-stepper-button"
-                onClick={() => props.handleAddNodeClick(items)}
+                onClick={() => handleAddNodeClick(items)}
             >
-                {addIcon} {buttonTitle}
+                {addIcon} {addButtonTitle}
             </button>
             <PaginatedList
                 list={items}
@@ -84,16 +93,16 @@ const Stepper = (props) => {
                             <div
                                 role="button"
                                 tabIndex={index}
-                                className="stepper-item-div"
-                                onClick={() => props.handleNodeClick(pageNumber * 10 + index)}
+                                className={`stepper-item-div ${addSpecialNodeClass(item)}`}
+                                onClick={() => handleNodeClick(pageNumber * 10 + index)}
                                 // required for accessibility reasons
                                 onKeyDown={(event) => {
                                     if (event.code === 13) {
-                                        props.handleNodeClick(pageNumber * 10 + index);
+                                        handleNodeClick(pageNumber * 10 + index);
                                     }
                                 }}
                             >
-                                <p>{props.formatNodeTitle(item)}</p>
+                                <p>{formatNodeTitle(item)}</p>
                             </div>
                         ))}
                     </>
