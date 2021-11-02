@@ -76,7 +76,7 @@ router.post(
         }
 
         if (req.body.filters.length < 1) {
-            return res.status(400).json({ message: "Syntax error" });
+            return res.status(400).json({ message: "At least one filter must be given." });
         }
 
         try {
@@ -100,7 +100,7 @@ router.post(
 
             // loop through filters and add them to the FilteredPublications table
             await Promise.allSettled([
-                req.body.filters.forEach(async (filterId) =>
+                req.body.filters.map((filterId) =>
                     filteredMethods.addOne({
                         filterId,
                         publicationId,
@@ -195,7 +195,7 @@ router.put(
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // loop through filters and add them to the FilteredPublications table
                 await Promise.allSettled([
-                    req.body.filters.forEach(async (filterId) =>
+                    req.body.filters.map((filterId) =>
                         filteredMethods.addOne({
                             filterId,
                             publicationId,
@@ -239,9 +239,9 @@ router.get("/", [isValidated], async (req, res) => {
         const publications = await pubMethods.getAll(queryFilter);
 
         // tag any associated filters to each publication
-        const pubFilters = await Promise.allSettled([
-            publications.forEach(async (pub) => filteredMethods.getAllFiltersForPub(pub["id"])),
-        ]);
+        const pubFilters = await Promise.allSettled(
+            publications.map((pub) => filteredMethods.getAllFiltersForPub(pub["id"]))
+        );
 
         // set filters to each publication for response
         for (let i = 0; i < publications.length; i++) {
@@ -257,11 +257,6 @@ router.get("/", [isValidated], async (req, res) => {
                 publications[i]["filters"] = [];
             }
         }
-
-        // for (let i = 0; i < publications.length; i++) {
-        //     const pubId = publications[i]["id"];
-        //     publications[i]["filters"] = await filteredMethods.getAllFiltersForPub(pubId);
-        // }
 
         return res.status(200).json(publications);
     } catch (err) {
