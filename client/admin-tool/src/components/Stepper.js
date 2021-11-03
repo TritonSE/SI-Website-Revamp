@@ -40,7 +40,7 @@ const Stepper = ({
     addButtonTitle = "Add New",
     handleAddNodeClick,
     formatNodeTitle,
-    startingIndex = undefined, 
+    startingIndex = undefined,
     addSpecialNodeClass = (item) => {
         console.log(item);
         return "";
@@ -59,7 +59,7 @@ const Stepper = ({
     useEffect(() => {
         setItems(displayItems);
         setIndexButton(startingIndex);
-    }, []);
+    }, [displayItems]);
 
     const onPageChange = (itemList, currentPage) => {
         console.log(itemList);
@@ -82,7 +82,7 @@ const Stepper = ({
 
     // determine the class for the node (active vs normal)
     const determineClassname = (index, item) =>
-        index !== indexButton 
+        index !== indexButton
             ? `stepper-item-div ${addSpecialNodeClass(item)}`
             : `stepper-item-div active ${addSpecialNodeClass(item)}`;
 
@@ -91,10 +91,10 @@ const Stepper = ({
             {/* The add button at the top of the stepper */}
             <AddButton
                 text={addButtonTitle}
-                className={indexButton === "button" ? "active-btn" : null}
+                className={indexButton === -1 ? "active-btn" : null}
                 onClickCallback={() => {
                     handleAddNodeClick();
-                    setIndexButton("button");
+                    setIndexButton(-1);
                 }}
             />
             <PaginatedList

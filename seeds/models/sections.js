@@ -40,6 +40,132 @@ module.exports = async () => {
         ),
         Sections.create(
             {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
+                page: "Home",
+                title: "Lifestyle & Devotion ",
+                content: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                isPublished: false,
+            },
+            { logging: false }
+        ),
+        Sections.create(
+            {
                 page: "BuddhistCulture",
                 title: "Bodhisattvas",
                 content: "https://en.wikipedia.org/wiki/Barbara_Palvin",

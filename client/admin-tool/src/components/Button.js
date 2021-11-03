@@ -20,7 +20,13 @@ import "../css/Button.css";
  */
 export default function Button({ isDisabled = false, text, onClickCallback, style }) {
     return (
-        <button type="button" onClick={onClickCallback} className="site-button" style={style} disabled={isDisabled}>
+        <button
+            type="button"
+            onClick={onClickCallback}
+            className="site-button"
+            style={style}
+            disabled={isDisabled}
+        >
             {text}
         </button>
     );

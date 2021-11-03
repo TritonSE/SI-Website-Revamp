@@ -1,12 +1,8 @@
-.sections-main-wrapper{
-    margin: 0px 20px 0px 20px;
+.sections-main-wrapper {
+  margin: 0px 20px 0px 20px;
 }
 .sections-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.section-item-wrapper {
-   /* margin-right: 30px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }

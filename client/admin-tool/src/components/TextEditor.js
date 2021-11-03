@@ -22,7 +22,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import "../css/TextEditor.css";
 
-const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr, isDisabled = false}) => {
+const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr, isDisabled = false }) => {
     // initialize the editor state
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     // store the stringified html content
@@ -56,7 +56,6 @@ const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr, isDisabled = fal
     // }
 
     useEffect(() => {
-
         // convert to draft.js state
         const blocksFromHtml = htmlToDraft(initialHtmlLoadStr);
         const { contentBlocks, entityMap } = blocksFromHtml;
