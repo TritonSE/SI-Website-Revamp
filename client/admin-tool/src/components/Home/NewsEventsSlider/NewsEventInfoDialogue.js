@@ -25,6 +25,14 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
         openInSameTab: false
     });
 
+    const [isFormDisabled, setIsFormDisabled ] = React.useState(false);
+
+    const [formErrors, updateFormErrors ] = React.useState({
+        title: false,
+        imageLink: false,
+        redirectLink: false
+    });
+
     React.useEffect(() => {
 
         updateFormContent({
@@ -75,6 +83,38 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
         else updateFormContent({ ...formContent, [key]: event.target.value });
     };
 
+    const handleFormValidation = () => {
+        // disable form 
+        setIsFormDisabled(true);
+
+        // tracker for required fields
+        const errors = {
+            title: false,
+            imageLink: false,
+            redirectLink: false
+        };
+
+        // loop through all required fields and check if they values
+        let doesFormHaveErrors = false; 
+        for(const key in errors){
+        
+            const value = formContent[key];
+            if(value.length < 1) {
+                doesFormHaveErrors = true; 
+                errors[key] = true; 
+            }
+
+        }
+
+        // update errors (if any) 
+        updateFormErrors(errors);
+        // enable form 
+        setIsFormDisabled(false);
+
+        // callback if no errors were found
+        if(!doesFormHaveErrors) buttonClickCallBack(formContent);
+    }
+
     const helperTextStyles = useHelperTextStyles();
 
     return (
@@ -89,6 +129,8 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
                         placeholder="Insert Title"
                         fullWidth
                         variant="outlined" 
+                        disabled={isFormDisabled}
+                        error={formErrors.title}
                         inputProps={{ maxLength: TITLE_MAX_CHARS }}
                         value={formContent.title}
                         helperText={`${formContent.title.length}/${TITLE_MAX_CHARS} charachters`}
@@ -107,6 +149,7 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
                             multiline
                             rows={4}
                             margin="dense"
+                            disabled={isFormDisabled}
                             placeholder="Type Description Here"
                             fullWidth
                             variant="outlined" 
@@ -127,6 +170,8 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
                   <TextField
                     margin="dense"
                     value={formContent.imageLink}
+                    disabled={isFormDisabled}
+                    error={formErrors.imageLink}
                     placeholder="Insert Image Link"
                     fullWidth
                     variant="outlined" 
@@ -137,6 +182,8 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
                 Redirect to {asterisk()}
                 <TextField
                     margin="dense"
+                    disabled={isFormDisabled}
+                    error={formErrors.redirectLink}
                     placeholder="Website or PDF Link"
                     value={formContent.redirectLink}
                     fullWidth
@@ -150,6 +197,7 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
                     <Checkbox 
                     checked={formContent.openInSameTab}
                     onChange={handleFormContentChange("openInSameTab")}
+                    disabled={isFormDisabled}
                     sx={{
                         '&.Mui-checked': {
                           color: "var(--darkorange)",
@@ -165,7 +213,7 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
             </DialogContent>
             <DialogActions>
                 <div className="Dialogue-Button">
-                    <Button text={buttonText} onClickCallback={() => buttonClickCallBack(formContent)}/> 
+                    <Button text={buttonText} onClickCallback={handleFormValidation}/> 
                 </div>
                 
             </DialogActions>
