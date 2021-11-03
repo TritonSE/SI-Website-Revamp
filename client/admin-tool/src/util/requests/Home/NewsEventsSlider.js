@@ -32,11 +32,11 @@ export const addNewsEvent = async (content) => {
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(content)
+            body: JSON.stringify(content),
         });
         // successfull
         if (res.ok) {
-            return true; 
+            return true;
         }
 
         // any server issue
@@ -55,11 +55,11 @@ export const updateNewsEvent = async (id, content) => {
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(content)
+            body: JSON.stringify(content),
         });
         // successfull
         if (res.ok) {
-            return true; 
+            return true;
         }
 
         // any server issue
@@ -81,7 +81,7 @@ export const deleteNewsEvent = async (id) => {
         });
         // successfull
         if (res.ok) {
-            return true; 
+            return true;
         }
 
         // any server issue

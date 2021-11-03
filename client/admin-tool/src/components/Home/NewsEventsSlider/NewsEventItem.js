@@ -16,7 +16,9 @@ export default function NewsEventItem({ content, index, onEditCallBack, onDelete
             <div className="slide-info-top">
                 <p>
                     {" "}
-                    {index + 1}. {content["title"]}{" "}
+                    <span style={{ fontWeight: "bold", fontSize: "18px" }}>
+                        {index + 1}. {content["title"]}{" "}
+                    </span>
                 </p>
                 <div>
                     <FontAwesomeIcon
@@ -31,12 +33,12 @@ export default function NewsEventItem({ content, index, onEditCallBack, onDelete
                     />
                 </div>
             </div>
-            <img
-                className="slide-img"
-                src={content["imageLink"]}
-                alt="Slide-Photo"
-            />
-            <p> Uploaded {formatDate(content["createdAt"])}, Last Edited {formatDate(content["updatedAt"])}</p>
+            <img className="slide-img" src={content["imageLink"]} alt="Slide-Photo" />
+            <p>
+                {" "}
+                Uploaded {formatDate(content["createdAt"])}, Last Edited{" "}
+                {formatDate(content["updatedAt"])}
+            </p>
         </div>
     );
 }

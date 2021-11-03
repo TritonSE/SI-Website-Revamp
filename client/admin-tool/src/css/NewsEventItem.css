@@ -16,13 +16,13 @@
   cursor: pointer;
 }
 
-.slide-icon-delete:hover{
-  color: #EA4444;
+.slide-icon-delete:hover {
+  color: #ea4444;
 }
 
 .slide-img {
   width: inherit;
   height: 300px;
-  object-fit: cover; 
+  object-fit: cover;
   object-position: center;
 }
