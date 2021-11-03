@@ -30,7 +30,8 @@
 import React, { useState, useEffect } from "react";
 import { PaginatedList } from "react-paginated-list";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import AddButton from "./AddButton";
 import "../css/Stepper.css";
 
 const Stepper = ({
@@ -63,9 +64,6 @@ const Stepper = ({
         setPageNumber(currentPage - 1);
     };
 
-    // The "+" icon on the 'add' button
-    const addIcon = <FontAwesomeIcon icon={faPlus} style={{ marginRight: "10px" }} />;
-
     /**
      * Handle the onClick of a node inside the item itemList
      *
@@ -89,13 +87,14 @@ const Stepper = ({
     return (
         <div className="stepper-component">
             {/* The add button at the top of the stepper */}
-            <button
-                type="button"
-                className="add-stepper-button"
-                onClick={() => handleAddNodeClick(items)}
-            >
-                {addIcon} {addButtonTitle}
-            </button>
+            <AddButton
+                text={addButtonTitle}
+                className={indexButton === "button" ? "active-btn" : null}
+                onClickCallback={() => {
+                    handleAddNodeClick();
+                    setIndexButton("button");
+                }}
+            />
             <PaginatedList
                 list={items}
                 itemsPerPage={numItemsPerPage}
