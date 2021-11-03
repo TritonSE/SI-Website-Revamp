@@ -5,7 +5,7 @@
  * By default, renders as purple with white text.
  *
  * @summary Customizable Button Component
- * @author  Amrit Singh
+ * @author  Amitesh Sharma, Amrit Singh
  */
 import React from "react";
 
