@@ -22,7 +22,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import "../css/TextEditor.css";
 
-const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr }) => {
+const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr, isDisabled = false}) => {
     // initialize the editor state
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     // store the stringified html content
@@ -43,17 +43,28 @@ const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr }) => {
     };
 
     // If the html code is passed in, then put it into the text editor
-    if (initialHtmlLoadStr) {
-        useEffect(() => {
-            // convert to draft.js state
-            const blocksFromHtml = htmlToDraft(initialHtmlLoadStr);
-            const { contentBlocks, entityMap } = blocksFromHtml;
-            const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-            // update the editor state
-            const updateEditorState = EditorState.createWithContent(contentState);
-            setEditorState(updateEditorState);
-        }, []);
-    }
+    // if (initialHtmlLoadStr) {
+    //     useEffect(() => {
+    //         // convert to draft.js state
+    //         const blocksFromHtml = htmlToDraft(initialHtmlLoadStr);
+    //         const { contentBlocks, entityMap } = blocksFromHtml;
+    //         const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+    //         // update the editor state
+    //         const updateEditorState = EditorState.createWithContent(contentState);
+    //         setEditorState(updateEditorState);
+    //     }, []);
+    // }
+
+    useEffect(() => {
+
+        // convert to draft.js state
+        const blocksFromHtml = htmlToDraft(initialHtmlLoadStr);
+        const { contentBlocks, entityMap } = blocksFromHtml;
+        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+        // update the editor state
+        const updateEditorState = EditorState.createWithContent(contentState);
+        setEditorState(updateEditorState);
+    }, [initialHtmlLoadStr]);
 
     // convert to HTML whenever there is a change to the editor state
     useEffect(() => {
@@ -74,6 +85,7 @@ const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr }) => {
     return (
         <div className="text-editor">
             <Editor
+                readOnly={isDisabled}
                 editorState={editorState}
                 onEditorStateChange={handleEditorChange}
                 wrapperClassName="wrapper-class"

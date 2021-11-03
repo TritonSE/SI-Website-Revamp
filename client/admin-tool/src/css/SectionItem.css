@@ -1,0 +1,12 @@
+.section-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.asterisk {
+    color: #EA4444;
+    font-size: 18px;
+}

@@ -40,6 +40,7 @@ const Stepper = ({
     addButtonTitle = "Add New",
     handleAddNodeClick,
     formatNodeTitle,
+    startingIndex = undefined, 
     addSpecialNodeClass = (item) => {
         console.log(item);
         return "";
@@ -57,6 +58,7 @@ const Stepper = ({
     // Calls whenever the prop for items changes in the parent
     useEffect(() => {
         setItems(displayItems);
+        setIndexButton(startingIndex);
     }, []);
 
     const onPageChange = (itemList, currentPage) => {
@@ -71,7 +73,7 @@ const Stepper = ({
      * @param {object} item - the current item in the data list
      */
     const onNodeClick = (index, item) => {
-        handleNodeClick(pageNumber * 10 + index);
+        handleNodeClick(pageNumber * numItemsPerPage + index);
         // set the current index of the node
         setIndexButton(index);
         // remember the current active item
@@ -80,7 +82,7 @@ const Stepper = ({
 
     // determine the class for the node (active vs normal)
     const determineClassname = (index, item) =>
-        index !== indexButton || item !== activeItem
+        index !== indexButton 
             ? `stepper-item-div ${addSpecialNodeClass(item)}`
             : `stepper-item-div active ${addSpecialNodeClass(item)}`;
 
