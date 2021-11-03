@@ -14,8 +14,9 @@ import "../../../css/NewsEventInfoDialogue.css";
 const TITLE_MAX_CHARS = 20;
 const DESCRIPTION_MAX_CHARS = 175;
 
-export default function NewsEventInfoDialogue({ content, index, open, handleClose, buttonClickCallBack }) {
-    
+export default function NewsEventInfoDialogue({ content, buttonText, index, open, handleClose, buttonClickCallBack }) {
+
+
     const [formContent, updateFormContent ] = React.useState({
         title: '',
         description: '',
@@ -164,7 +165,7 @@ export default function NewsEventInfoDialogue({ content, index, open, handleClos
             </DialogContent>
             <DialogActions>
                 <div className="Dialogue-Button">
-                    <Button text="Update" onClickCallback={() => buttonClickCallBack(formContent)}/> 
+                    <Button text={buttonText} onClickCallback={() => buttonClickCallBack(formContent)}/> 
                 </div>
                 
             </DialogActions>

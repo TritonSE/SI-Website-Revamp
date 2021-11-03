@@ -3,6 +3,7 @@ import React from "react";
 import NewsEventItem from "../../components/Home/NewsEventsSlider/NewsEventItem";
 import NewsEventInfoDialogue from "../../components/Home/NewsEventsSlider/NewsEventInfoDialogue";
 import DeleteModal from "../../components/DeleteModal";
+import AddButton from "../../components/AddButton";
 import Loader from "../../components/Loader";
 import { fetchNewsEvents, updateNewsEvent, deleteNewsEvent, addNewsEvent } from "../../util/requests/Home/NewsEventsSlider";
 import "../../css/NewsEventsSlider.css";
@@ -59,6 +60,11 @@ export default function NewsEventsSlider() {
         if(isDeleteSuccessful) await refreshNewsEvents(); 
     }
 
+    const handleAddButtonClick = () =>{
+        changeSlideIndex(-1);
+        handleInfoDialogueOpen(true);
+    }
+
     const handleDeleteModalOpen = () => {
         showDeleteModal(true);
     };
@@ -88,7 +94,8 @@ export default function NewsEventsSlider() {
     else {
         return (
             <div id="news-events-slider">
-                <h1> News & Events Slider </h1>      
+                <h1> News & Events Slider </h1>   
+                <AddButton onClickCallback={handleAddButtonClick}/>   
                 <div id="news-events-grid">
                     {newsEventsItems.map((slideInfo, i) => {
                         return (
@@ -101,7 +108,12 @@ export default function NewsEventsSlider() {
                         );
                     })}
                 </div>
-                <NewsEventInfoDialogue buttonClickCallBack={handleSlideUpdateRequest} open={isInfoDialogueOpen} handleClose={handleDialogueClose} content={slideIndex > -1 ? newsEventsItems[slideIndex]: {}} index={slideIndex} />
+                {
+                    slideIndex > -1 ?
+                    <NewsEventInfoDialogue buttonText="Update" buttonClickCallBack={handleSlideUpdateRequest} open={isInfoDialogueOpen} handleClose={handleDialogueClose} content={newsEventsItems[slideIndex]} index={slideIndex} />
+                    :
+                    <NewsEventInfoDialogue buttonText="Post" buttonClickCallBack={handleSlideAddRequest} open={isInfoDialogueOpen} handleClose={handleDialogueClose} content={{}} index={newsEventsItems.length} />
+                }
                 <DeleteModal open={isDeleteModalOpen} handleClose={handleDeleteModalClose} deleteButtonCallback={handleSlideDeleteRequest} itemToBeDeletedTxt={slideIndex > -1 ? formatDeleteConfirmStr(): null}/>
             </div>
         );

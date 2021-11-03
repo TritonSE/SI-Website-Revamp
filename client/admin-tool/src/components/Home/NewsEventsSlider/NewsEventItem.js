@@ -36,7 +36,7 @@ export default function NewsEventItem({ content, index, onEditCallBack, onDelete
                 src={content["imageLink"]}
                 alt="Slide-Photo"
             />
-            <p> Uploaded on {formatDate(content["createdAt"])}</p>
+            <p> Uploaded {formatDate(content["createdAt"])}, Last Edited {formatDate(content["updatedAt"])}</p>
         </div>
     );
 }
