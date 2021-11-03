@@ -1,0 +1,19 @@
+.add-button {
+  background-color: var(--lightpurple);
+  color: white;
+  font-family: var(--text-font);
+  font-size: 18px;
+  border: none;
+  border-left: none;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  transition: 0.2s ease-out;
+}
+
+.add-button:hover {
+  background-color: var(--darkpurple);
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
