@@ -19,6 +19,13 @@
     color: gray;
 }
 
+.info-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .Dialogue-Button {
    width: 100%;
    text-align: center;

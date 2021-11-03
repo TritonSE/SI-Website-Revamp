@@ -9,6 +9,9 @@ import DialogContent from "@mui/material/DialogContent";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
 import "../../../css/NewsEventInfoDialogue.css";
 
 const TITLE_MAX_CHARS = 20;
@@ -35,6 +38,14 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
 
     React.useEffect(() => {
 
+        // reset any errors
+        updateFormErrors({
+            title: false,
+            imageLink: false,
+            redirectLink: false
+        });
+
+        // reset form content 
         updateFormContent({
             title: content['title'] || '',
             description: content['description'] || '',
@@ -42,6 +53,10 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
             redirectLink: content['redirectLink'] || '',
             openInSameTab: content['openInSameTab'] || false
         });
+
+        // enable form
+        setIsFormDisabled(false);
+
     }, [content]);
 
     const asterisk = () => {
@@ -120,7 +135,16 @@ export default function NewsEventInfoDialogue({ content, buttonText, index, open
     return (
         <Dialog open={open} onClose={handleClose} id="news-event-info-dialogue">
             <DialogContent>
-            <p className="slide-num"> Slide #{index + 1}</p>
+                <div className="info-header">
+                    <FontAwesomeIcon
+                            className="slide-icon slide-icon-delete"
+                            style={{"fontSize": "18px"}}
+                            onClick={handleClose}
+                            icon={faTimes}
+                    />
+                    <p className="slide-num"> Slide #{index + 1}</p>
+                </div>
+           
             <form className={helperTextStyles.form} autoComplete="off" >
 
                     Title  {asterisk()}
