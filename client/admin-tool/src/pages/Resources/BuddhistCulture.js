@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TextEditor from "../../components/TextEditor";
+import AddButton from "../../components/AddButton";
 
 export default function BuddhistCulture() {
     const [html, setHTML] = useState("");
@@ -9,6 +10,11 @@ export default function BuddhistCulture() {
             <p> This is the BuddhistCulture Page </p>
             <TextEditor editorUpdateCallback={setHTML} />
             <p style={{ maxWidth: "60vw" }}>{html}</p>
+            <AddButton
+                onClickCallback={() => {
+                    alert("Click");
+                }}
+            />
         </div>
     );
 }

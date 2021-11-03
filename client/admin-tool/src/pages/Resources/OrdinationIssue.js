@@ -23,10 +23,7 @@ export default function OrdinationIssue() {
     const handleNodeClick = (ind) => {
         setIndex(ind);
     };
-    const addNewNode = (list) => {
-        alert("Add New Clicked");
-        console.log(list);
-    };
+    const addNewNode = () => {};
     const formatNodeTitle = (item) => item.a;
 
     const addSpecialNodeClass = (item) => {
