@@ -42,6 +42,7 @@ const DESCRIPTION_MAX_CHARS = 175;
  * @param {boolean} open - Controls dialogue visibility. True indicates show, false indicates hide.
  * @param {function} handleClose - Callback function called whenever the user wants to close/hide the dialogue.
  * @param {function} buttonClickCallBack - Callback function called whenever the user clicks the form button. Only called if form fields are validated.
+ *
  * @returns {Dialogue Object}
  */
 export default function NewsEventInfoDialogue({
