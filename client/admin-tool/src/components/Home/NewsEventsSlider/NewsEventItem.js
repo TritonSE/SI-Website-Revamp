@@ -32,7 +32,7 @@ import "../../../css/NewsEventItem.css";
 export default function NewsEventItem({ content, index, onEditCallBack, onDeleteCallback }) {
     // formats datetime string into MM/DD/YYYY format
     const formatDate = (dateStr) => {
-        let date = new Date(dateStr);
+        const date = new Date(dateStr);
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     };
 
@@ -63,7 +63,7 @@ export default function NewsEventItem({ content, index, onEditCallBack, onDelete
                 </div>
             </div>
             {/* Image Preview */}
-            <img className="slide-img" src={content["imageLink"]} alt="Slide-Photo" />
+            <img className="slide-img" src={content["imageLink"]} alt="Slide Preview" />
             {/* Item Upload/Last Updated Information */}
             <p>
                 {" "}

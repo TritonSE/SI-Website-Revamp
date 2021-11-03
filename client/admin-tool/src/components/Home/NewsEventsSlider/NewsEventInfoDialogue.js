@@ -14,7 +14,6 @@
  */
 
 import React from "react";
-import Button from "../../Button";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@mui/material/TextField";
@@ -27,6 +26,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import Button from "../../Button";
 
 import "../../../css/NewsEventInfoDialogue.css";
 
@@ -99,11 +100,8 @@ export default function NewsEventInfoDialogue({
         setIsFormDisabled(false);
     }, [content]);
 
-    const asterisk = () => {
-        return <span className="asterisk"> * </span>;
-    };
-
-    const useHelperTextStyles = makeStyles((theme) => ({
+    const asterisk = () => <span className="asterisk"> * </span>;
+    const useHelperTextStyles = makeStyles(() => ({
         helperText: {
             textAlign: "right !important",
             color: "var(--darkorange) !important",
@@ -136,7 +134,7 @@ export default function NewsEventInfoDialogue({
     const handleFormContentChange = (key) => (event) => {
         if (key === "openInSameTab")
             updateFormContent({ ...formContent, [key]: event.target.checked });
-        //checkbox
+        // checkbox
         else updateFormContent({ ...formContent, [key]: event.target.value });
     };
 
@@ -154,13 +152,13 @@ export default function NewsEventInfoDialogue({
 
         // loop through all required fields and check if they values
         let doesFormHaveErrors = false;
-        for (const key in errors) {
+        Object.keys(errors).forEach((key) => {
             const value = formContent[key];
             if (value.length < 1) {
                 doesFormHaveErrors = true;
                 errors[key] = true;
             }
-        }
+        });
 
         // update errors (if any)
         updateFormErrors(errors);

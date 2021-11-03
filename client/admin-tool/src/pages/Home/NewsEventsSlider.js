@@ -16,12 +16,13 @@
 
 import React from "react";
 
+import { Snackbar } from "@material-ui/core";
+
 import NewsEventItem from "../../components/Home/NewsEventsSlider/NewsEventItem";
 import NewsEventInfoDialogue from "../../components/Home/NewsEventsSlider/NewsEventInfoDialogue";
 import DeleteModal from "../../components/DeleteModal";
 import AddButton from "../../components/AddButton";
 import Loader from "../../components/Loader";
-import { Snackbar } from "@material-ui/core";
 
 import {
     fetchNewsEvents,
@@ -45,13 +46,25 @@ export default function NewsEventsSlider() {
         message: "", // what message to show
     });
 
-    // fetches server data upon component mount
-    React.useEffect(async () => {
-        await refreshNewsEvents();
-    }, []);
+    const formatDeleteConfirmStr = () =>
+        `Slide ${slideIndex + 1}: ${newsEventsItems[slideIndex]["title"]}`;
 
-    const formatDeleteConfirmStr = () => {
-        return `Slide ${slideIndex + 1}: ${newsEventsItems[slideIndex]["title"]}`;
+    /** Dialogue & Modal Visibility Controls */
+
+    const handleDeleteModalOpen = () => {
+        showDeleteModal(true);
+    };
+
+    const handleDeleteModalClose = () => {
+        showDeleteModal(false);
+    };
+
+    const handleDialogueOpen = () => {
+        handleInfoDialogueOpen(true);
+    };
+
+    const handleDialogueClose = () => {
+        handleInfoDialogueOpen(false);
     };
 
     /** News & Event Action Callbacks */
@@ -125,23 +138,12 @@ export default function NewsEventsSlider() {
         handleInfoDialogueOpen(true);
     };
 
-    /** Dialogue & Modal Visibility Controls */
+    /** Initialization  */
 
-    const handleDeleteModalOpen = () => {
-        showDeleteModal(true);
-    };
-
-    const handleDeleteModalClose = () => {
-        showDeleteModal(false);
-    };
-
-    const handleDialogueOpen = () => {
-        handleInfoDialogueOpen(true);
-    };
-
-    const handleDialogueClose = () => {
-        handleInfoDialogueOpen(false);
-    };
+    // fetches server data upon component mount
+    React.useEffect(async () => {
+        await refreshNewsEvents();
+    }, []);
 
     // special display while fetch calls are made to server
     if (isPageLoading) {
@@ -156,74 +158,70 @@ export default function NewsEventsSlider() {
     }
 
     // general display once server calls are done
-    else {
-        return (
-            <div id="news-events-slider">
-                <h1> News & Events Slider </h1>
-                {/* Add Button   */}
-                <AddButton onClickCallback={handleAddButtonClick} />
-                {newsEventsItems.length > 0 ? (
-                    // Display News & Events in a grid format (at least 1 found)
-                    <div id="news-events-grid">
-                        {newsEventsItems.map((slideInfo, i) => {
-                            return (
-                                <NewsEventItem
-                                    content={slideInfo}
-                                    index={i}
-                                    onEditCallBack={onEditCallback}
-                                    onDeleteCallback={onDeleteCallback}
-                                />
-                            );
-                        })}
-                    </div>
-                ) : (
-                    // Special message (no News & Events found)
-                    <div className="no-events-available">
-                        {" "}
-                        <br /> <br />
-                        <br /> There are no News & Events Available.
-                    </div>
-                )}
+    return (
+        <div id="news-events-slider">
+            <h1> News & Events Slider </h1>
+            {/* Add Button   */}
+            <AddButton onClickCallback={handleAddButtonClick} />
+            {newsEventsItems.length > 0 ? (
+                // Display News & Events in a grid format (at least 1 found)
+                <div id="news-events-grid">
+                    {newsEventsItems.map((slideInfo, i) => (
+                        <NewsEventItem
+                            content={slideInfo}
+                            index={i}
+                            onEditCallBack={onEditCallback}
+                            onDeleteCallback={onDeleteCallback}
+                        />
+                    ))}
+                </div>
+            ) : (
+                // Special message (no News & Events found)
+                <div className="no-events-available">
+                    {" "}
+                    <br /> <br />
+                    <br /> There are no News & Events Available.
+                </div>
+            )}
 
-                {/* Add/Edit Event Dialogue  */}
-                {slideIndex > -1 ? (
-                    // Update An Existing Event
-                    <NewsEventInfoDialogue
-                        buttonText="Update"
-                        buttonClickCallBack={handleSlideUpdateRequest}
-                        open={isInfoDialogueOpen}
-                        handleClose={handleDialogueClose}
-                        content={newsEventsItems[slideIndex]}
-                        index={slideIndex}
-                    />
-                ) : (
-                    // Add A New Event
-                    <NewsEventInfoDialogue
-                        buttonText="Post"
-                        buttonClickCallBack={handleSlideAddRequest}
-                        open={isInfoDialogueOpen}
-                        handleClose={handleDialogueClose}
-                        content={{}}
-                        index={newsEventsItems.length}
-                    />
-                )}
-
-                {/* Delete Modal  */}
-                <DeleteModal
-                    open={isDeleteModalOpen}
-                    handleClose={handleDeleteModalClose}
-                    deleteButtonCallback={handleSlideDeleteRequest}
-                    itemToBeDeletedTxt={slideIndex > -1 ? formatDeleteConfirmStr() : null}
+            {/* Add/Edit Event Dialogue  */}
+            {slideIndex > -1 ? (
+                // Update An Existing Event
+                <NewsEventInfoDialogue
+                    buttonText="Update"
+                    buttonClickCallBack={handleSlideUpdateRequest}
+                    open={isInfoDialogueOpen}
+                    handleClose={handleDialogueClose}
+                    content={newsEventsItems[slideIndex]}
+                    index={slideIndex}
                 />
-
-                {/* Snackbar for Error Displays */}
-                <Snackbar
-                    open={snackbar.open}
-                    autoHideDuration={6000}
-                    onClose={() => handleSnackBar({ ...snackbar, open: false })}
-                    message={snackbar.message}
+            ) : (
+                // Add A New Event
+                <NewsEventInfoDialogue
+                    buttonText="Post"
+                    buttonClickCallBack={handleSlideAddRequest}
+                    open={isInfoDialogueOpen}
+                    handleClose={handleDialogueClose}
+                    content={{}}
+                    index={newsEventsItems.length}
                 />
-            </div>
-        );
-    }
+            )}
+
+            {/* Delete Modal  */}
+            <DeleteModal
+                open={isDeleteModalOpen}
+                handleClose={handleDeleteModalClose}
+                deleteButtonCallback={handleSlideDeleteRequest}
+                itemToBeDeletedTxt={slideIndex > -1 ? formatDeleteConfirmStr() : null}
+            />
+
+            {/* Snackbar for Error Displays */}
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={() => handleSnackBar({ ...snackbar, open: false })}
+                message={snackbar.message}
+            />
+        </div>
+    );
 }
