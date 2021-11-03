@@ -1,8 +1,7 @@
 import React from "react";
-import NewsEventInfoDialogue from "./NewsEventInfoDialogue";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 
 import "../../../css/NewsEventItem.css";
 
@@ -23,7 +22,7 @@ export default function NewsEventItem({ content, index, onEditCallBack, onDelete
                     <FontAwesomeIcon
                         className="slide-icon"
                         onClick={() => onEditCallBack(index)}
-                        icon={faPencilAlt}
+                        icon={faEllipsisH}
                     />
                     <FontAwesomeIcon
                         className="slide-icon"

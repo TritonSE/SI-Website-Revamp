@@ -7,6 +7,7 @@ import "../../css/NewsEventsSlider.css";
 
 export default function NewsEventsSlider() {
     const [isInfoDialogueOpen, handleInfoDialogueOpen] = React.useState(false);
+    const [slideIndex, changeSlideIndex] = React.useState(0);
 
     const handleClick = () => {};
 
@@ -54,7 +55,9 @@ export default function NewsEventsSlider() {
     ];
 
     const onEditCallback = (index) => {
-        alert(`Edit: ${index}`);
+        // alert(`Edit: ${index}`);
+        changeSlideIndex(index);
+        handleDialogueOpen();
     };
 
     const onDeleteCallback = (index) => {
@@ -89,7 +92,7 @@ export default function NewsEventsSlider() {
                     );
                 })}
             </div>
-            <NewsEventInfoDialogue open={isInfoDialogueOpen} handleClose={handleDialogueClose} />
+            <NewsEventInfoDialogue onClickCallback={handleClick} open={isInfoDialogueOpen} handleClose={handleDialogueClose} content={data[slideIndex]} index={slideIndex} />
             {/* <Modal
                 open={true}
                 negativeButtonText="Cancel"
