@@ -25,7 +25,7 @@ export default function NewsEventItem({ content, index, onEditCallBack, onDelete
                         icon={faEllipsisH}
                     />
                     <FontAwesomeIcon
-                        className="slide-icon"
+                        className="slide-icon slide-icon-delete"
                         onClick={() => onDeleteCallback(index)}
                         icon={faTrashAlt}
                     />
@@ -33,7 +33,7 @@ export default function NewsEventItem({ content, index, onEditCallBack, onDelete
             </div>
             <img
                 className="slide-img"
-                src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-182880589-1493334765.jpg"
+                src={content["imageLink"]}
                 alt="Slide-Photo"
             />
             <p> Uploaded on {formatDate(content["createdAt"])}</p>

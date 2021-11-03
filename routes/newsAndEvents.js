@@ -107,6 +107,8 @@ router.put(
 
             const entries = await edit(Number(id), req.body);
 
+            console.log(entries);
+
             // success upon edit
             if (entries[0] === 1) return res.status(200).json({ message: "Success" });
 

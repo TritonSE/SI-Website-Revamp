@@ -24,6 +24,17 @@ export default function NewsEventInfoDialogue({ content, index, open, handleClos
         openInSameTab: false
     });
 
+    React.useEffect(() => {
+
+        updateFormContent({
+            title: content['title'] || '',
+            description: content['description'] || '',
+            imageLink: content['imageLink'] || '',
+            redirectLink: content['redirectLink'] || '',
+            openInSameTab: content['openInSameTab'] || false
+        });
+    }, [content]);
+
     const asterisk = () => {
         return <span className="asterisk"> * </span>;
     }
@@ -42,7 +53,7 @@ export default function NewsEventInfoDialogue({ content, index, open, handleClos
             // default rendering of field
             "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
                 borderColor: "black",
-                borderRadius: "10px",
+                borderRadius: "30px",
             },
             // on focus rendering of field
             "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -58,12 +69,8 @@ export default function NewsEventInfoDialogue({ content, index, open, handleClos
         },
     }));
 
-    const test = () => {
-        alert(JSON.stringify(formContent));
-    }
-
     const handleFormContentChange = key => event => {
-        if( key === "openInSameTab") updateFormContent({ ...formContent, [key]: event.target.checked });
+        if( key === "openInSameTab") updateFormContent({ ...formContent, [key]: event.target.checked }); //checkbox
         else updateFormContent({ ...formContent, [key]: event.target.value });
     };
 
@@ -71,10 +78,9 @@ export default function NewsEventInfoDialogue({ content, index, open, handleClos
 
     return (
         <Dialog open={open} onClose={handleClose} id="news-event-info-dialogue">
-            {/* <DialogTitle>Subscribe</DialogTitle> */}
             <DialogContent>
             <p className="slide-num"> Slide #{index + 1}</p>
-            <form  className={helperTextStyles.form} autoComplete="off" >
+            <form className={helperTextStyles.form} autoComplete="off" >
 
                     Title  {asterisk()}
                     <TextField
@@ -119,9 +125,11 @@ export default function NewsEventInfoDialogue({ content, index, open, handleClos
                  Image {asterisk()}
                   <TextField
                     margin="dense"
+                    value={formContent.imageLink}
                     placeholder="Insert Image Link"
                     fullWidth
                     variant="outlined" 
+                    onChange={handleFormContentChange("imageLink")}
                 />
 
 
@@ -129,16 +137,13 @@ export default function NewsEventInfoDialogue({ content, index, open, handleClos
                 <TextField
                     margin="dense"
                     placeholder="Website or PDF Link"
+                    value={formContent.redirectLink}
                     fullWidth
                     variant="outlined" 
                     helperText={`To link to a page on Sakyadhita's website, paste page's url link.`}
+                    onChange={handleFormContentChange("redirectLink")}
                 />
-                {/* <Checkbox
-                    checked={formContent.openInSameTab}
-                    onChange={handleFormContentChange("openInSameTab")}
-                    label="Open link in same tab"
-                    inputProps={{ 'aria-label': 'controlled' }}
-                /> */}
+            
                 <FormControlLabel  
                     control={
                     <Checkbox 
@@ -159,7 +164,7 @@ export default function NewsEventInfoDialogue({ content, index, open, handleClos
             </DialogContent>
             <DialogActions>
                 <div className="Dialogue-Button">
-                    <Button text="Update" onClickCallback={buttonClickCallBack}/> 
+                    <Button text="Update" onClickCallback={() => buttonClickCallBack(formContent)}/> 
                 </div>
                 
             </DialogActions>
