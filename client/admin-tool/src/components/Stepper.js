@@ -91,8 +91,11 @@ const Stepper = ({
             {/* The add button at the top of the stepper */}
             <button
                 type="button"
-                className="add-stepper-button"
-                onClick={() => handleAddNodeClick(items)}
+                className={`add-stepper-button ${indexButton === "button" ? "active-btn" : null}`}
+                onClick={() => {
+                    handleAddNodeClick(items);
+                    setIndexButton("button");
+                }}
             >
                 {addIcon} {addButtonTitle}
             </button>

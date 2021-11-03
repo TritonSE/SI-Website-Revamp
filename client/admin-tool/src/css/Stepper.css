@@ -21,6 +21,10 @@
   transition: 0.2s ease-out;
 }
 
+.active-btn {
+  background-color: var(--darkpurple);
+}
+
 .add-stepper-button:hover {
   background-color: var(--lightpurple);
   transition: 0.2s ease-in;
