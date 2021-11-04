@@ -43,3 +43,24 @@ export const fetchConferences = async () => {
     }
     return [];
 };
+
+export const fetchEpubs = async () => {
+    try {
+        const response = await fetch(`${BACKEND_URL}publications/`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        }
+        // any server issue
+        return [];
+    } catch {
+        // any server issue
+        return [];
+    }
+};

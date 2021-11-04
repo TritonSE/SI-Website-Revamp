@@ -14,8 +14,10 @@ import EPubSection from "../../components/EPubs/EPubSection";
 import EPubCard from "../../components/EPubs/EPubCard";
 import "../../css/EPublications.css";
 
+import { fetchEpubs } from "../../util/requests";
+
 // dummy data for each publication list
-const page_data = {
+/* const page_data = {
     sections: [
         {
             section_title: "Section 1",
@@ -225,7 +227,7 @@ const page_data = {
             ],
         },
     ],
-};
+}; */
 
 // renders selected section from state, including each card in that page,
 // and a button to go back to the main EPublications screen
@@ -315,6 +317,8 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
 };
 // No props
 export default function EPublications() {
+    const [epublications, setEpublications] = useState([]);
+    // const [loadingEpubs, setLoadingEpubs] = useState(true);
     const [selectedSection, setSelectedSection] = useState("");
     const [isMobile, setIsMobile] = useState(false);
 
@@ -333,10 +337,33 @@ export default function EPublications() {
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []); // Empty array ensures that effect is only run on mount
+
     useEffect(() => {
         // scroll to top whenever a new section is selected / left
         document.getElementById("page-layout").scrollTo({ top: 0, behavior: "smooth" });
     }, [selectedSection]);
+
+    useEffect(async () => {
+        await (async () => {
+            const d = await fetchEpubs();
+            // old seeding
+            // fill newsletterList
+            // const d = [];
+            // let i = 0;
+            // for (i; i < 50; i++) {
+            //     d.push({
+            //         title: `Newsletter ${i}`,
+            //         volume: i,
+            //         year: "2019",
+            //         imageLink:
+            //             "https://cdn2.wanderlust.co.uk/media/1069/lists-the-worlds-most-awesome-giant-buddhas.jpg?anchor=center&mode=crop&width=1200&height=0&rnd=131482975350000000",
+            //         pdfLink: "https://google.com",
+            //     });
+            // }
+            setEpublications(d);
+        })();
+    }, []);
+
     return (
         <div id="EPubPage">
             {selectedSection === "" ? (
@@ -402,7 +429,7 @@ export default function EPublications() {
                     </Slideshow>
                     {/* Render a new publications section for each section in data, pass in each card */}
                     <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>
-                        {page_data.sections.map((section) => (
+                        {epublications.map((section) => (
                             <EPubSection
                                 publication_section={section}
                                 setSelectedSection={setSelectedSection}
@@ -413,7 +440,7 @@ export default function EPublications() {
                 </>
             ) : (
                 renderSelectedSection(
-                    page_data.sections.filter((e) => e.section_title === selectedSection)[0],
+                    epublications.sections.filter((e) => e.section_title === selectedSection)[0],
                     setSelectedSection,
                     isMobile
                 )
