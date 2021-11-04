@@ -317,7 +317,17 @@ export default function Volunteer() {
         });
 
         // checks if any required fields are empty
-        if (firstName || lastName || email || country || address || city || state || zipcode) {
+        if (
+            firstName ||
+            lastName ||
+            email ||
+            country ||
+            address ||
+            city ||
+            state ||
+            zipcode ||
+            selectedCommittees.length === 0
+        ) {
             setSnackBar({ open: true, message: "Missing required fields" });
             setIsFormDisabled(false);
             document.body.style.cursor = null;
