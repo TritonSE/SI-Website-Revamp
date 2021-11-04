@@ -53,15 +53,16 @@ export const addSection = async (content) => {
 
         // successfull
         if (res.ok) {
-            return true;
+            const json = await res.json();
+            return json;
         }
 
         // any server issue
-        return false;
+        return null;
 
         // fetch fails
     } catch {
-        return false;
+        return null;
     }
 };
 

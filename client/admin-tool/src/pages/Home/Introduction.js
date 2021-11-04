@@ -43,15 +43,27 @@ export default function Introduction() {
     };
 
     const handleDeleteSection = async () => {
+        const index = currentIndex; 
         const isSuccessful = await deleteSection(sections[currentIndex]["id"]);
         if (isSuccessful) {
             await refreshSections();
+            if(sections.length <= currentIndex) setIndex(sections.length - 1);
+            else setIndex(index);
         }
     };
 
     const handleUpdateSection = async (data) => {
-        const isSuccessful = await updateSection(sections[currentIndex]["id"], data);
-        if (isSuccessful) await refreshSections();
+        const id =  sections[currentIndex]["id"];
+        const isSuccessful = await updateSection(id, data);
+        if (isSuccessful) {
+            await refreshSections();
+            sections.forEach((obj, i) => {
+                if(obj.id === id){
+                    setIndex(i);
+                    return;
+                }
+            })
+        }
     };
 
     const handleAddSection = async (data) => {
@@ -59,6 +71,14 @@ export default function Introduction() {
         const isSuccessful = await addSection(data);
         if (isSuccessful) {
             await refreshSections();
+            // setIndex(-1);
+            alert(JSON.stringify(isSuccessful));
+            sections.forEach((obj, i) => {
+                if(obj.id === isSuccessful.id){
+                    setIndex(i);
+                    return;
+                }
+            })
         }
     };
 
@@ -92,7 +112,7 @@ export default function Introduction() {
             <div className="sections-container">
                 <Stepper
                     displayItems={sections}
-                    startingIndex={-1}
+                    startingIndex={currentIndex}
                     handleNodeClick={handleNodeClick}
                     handleAddNodeClick={addNewNode}
                     formatNodeTitle={formatNodeTitle}
