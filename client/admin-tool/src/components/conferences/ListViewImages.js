@@ -8,7 +8,7 @@ import "../../css/ListViewImages.css";
 const ListViewImages = ({ items, classes, handleChange }) => {
     const [singleUrl, setSingleUrl] = useState("");
     const [imageUrls, setImageUrls] = useState();
-    const [urlText, setUrlText] = useState("Add url");
+    const [urlButtonText, setUrlButtonText] = useState("Add url");
     const [index, setIndex] = useState(-1);
 
     useEffect(() => {
@@ -19,10 +19,11 @@ const ListViewImages = ({ items, classes, handleChange }) => {
         let text = "Add url";
         if (index >= 0) text = "Edit url";
 
-        setUrlText(text);
+        setUrlButtonText(text);
     }, [index]);
 
-    const handleNodeClick = (url, nodeIndex) => {
+    const handleNodeClick = (url, nodeIndex, e) => {
+        e.stopPropagation();
         setSingleUrl(url);
         setIndex(nodeIndex);
     };
@@ -35,22 +36,27 @@ const ListViewImages = ({ items, classes, handleChange }) => {
     const urlButtonClick = () => {
         if (singleUrl === "") return;
 
+        const images = imageUrls;
         if (index === -1) {
-            const images = imageUrls;
             images.push(singleUrl);
-            const event = {
-                target: {
-                    name: "slideShowImages",
-                    value: { urls: images },
-                },
-            };
-
-            handleChange(event);
-            setSingleUrl("");
+        } else {
+            images[index] = singleUrl;
         }
+
+        const event = {
+            target: {
+                name: "slideShowImages",
+                value: { urls: images },
+            },
+        };
+
+        handleChange(event);
+        setSingleUrl("");
+        setIndex(-1);
     };
 
-    const deleteUrl = (ind) => {
+    const deleteUrl = (ind, e) => {
+        e.stopPropagation();
         const images = imageUrls;
         images.splice(ind, 1);
         const event = {
@@ -59,7 +65,10 @@ const ListViewImages = ({ items, classes, handleChange }) => {
                 value: { urls: images },
             },
         };
+
         handleChange(event);
+        setSingleUrl("");
+        setIndex(-1);
     };
 
     const node = (url, i) => (
@@ -67,7 +76,7 @@ const ListViewImages = ({ items, classes, handleChange }) => {
             role="button"
             tabIndex={i}
             className="listviewimages-node"
-            onClick={() => handleNodeClick(url, i)}
+            onClick={(e) => handleNodeClick(url, i, e)}
             onKeyDown={(e) => {
                 if (e.key === "Enter") {
                     handleNodeClick(url, i);
@@ -78,14 +87,18 @@ const ListViewImages = ({ items, classes, handleChange }) => {
             <FontAwesomeIcon
                 icon={faTrash}
                 className="listviewimages-node-icon"
-                onClick={() => deleteUrl(i)}
+                onClick={(e) => deleteUrl(i, e)}
             />
         </div>
     );
 
     return (
         <div>
-            <div className="listviewimages-container">
+            <div
+                className={`listviewimages-container ${
+                    items.length === 0 ? "empty-listviewimages" : null
+                }`}
+            >
                 {items.map((item, itemIndex) => node(item, itemIndex))}
             </div>
 
@@ -106,7 +119,11 @@ const ListViewImages = ({ items, classes, handleChange }) => {
                     variant="outlined"
                 />
 
-                <Button text={urlText} onClickCallback={() => urlButtonClick()} />
+                <Button
+                    text={urlButtonText}
+                    onClickCallback={() => urlButtonClick()}
+                    style={{ padding: "5px 15px", width: "100px", marginLeft: "20px" }}
+                />
             </div>
         </div>
     );

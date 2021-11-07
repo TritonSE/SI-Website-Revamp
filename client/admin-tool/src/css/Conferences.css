@@ -19,6 +19,7 @@
   margin-left: 50px;
   width: 800px;
   min-width: 50%;
+  padding-bottom: 50px;
 }
 
 .conferences-title {
@@ -32,8 +33,13 @@
   line-height: 44.64px;
 }
 
-.conferences-theme-section {
+.conferences-theme-section,
+.conferences-overview-section {
   width: 100%;
+}
+
+.conferences-overview-section {
+  margin-top: -20px;
 }
 
 .conferences-num-location {
@@ -77,6 +83,18 @@
   margin-top: 20px;
 }
 
+.conferences-brochures-header h2,
+.conferences-abstracts-header h2,
+.conferences-presentations-header h2,
+.conferences-programs-header h2,
+.conferences-video-div h2 {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--heading-font);
+  line-height: 30.6px;
+}
+
+/* The start of the tab styling */
 .conferences-tabs {
   display: flex;
   flex-direction: row;

@@ -1,15 +1,15 @@
-.listviewimages-container {
+.listview-container {
   border: 1px solid var(--grey);
   border-radius: 5px;
   overflow-y: auto;
   max-height: 120px;
 }
 
-.empty-listviewimages {
+.empty-listview {
   border: none;
 }
 
-.listviewimages-node {
+.listview-node {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -17,7 +17,7 @@
   height: 40px;
 }
 
-.listviewimages-node p {
+.listview-node p {
   display: inline;
   white-space: nowrap;
   width: 80%;
@@ -25,32 +25,38 @@
   overflow-x: hidden;
 }
 
-.listviewimages-node-icon {
-  margin-right: 40px;
-  display: none;
-}
-
-.listviewimages-node:hover {
+.listview-node:hover {
   background-color: var(--grey);
   cursor: pointer;
 }
 
-.listviewimages-node:hover > .listviewimages-node-icon {
+.listview-node:hover {
+  background-color: var(--grey);
+  cursor: pointer;
+}
+
+.listview-node-icon {
+  margin-right: 40px;
+  display: none;
+}
+
+.listview-node:hover > .listview-node-icon {
   display: block;
 }
 
-.listviewimages-node:first-child {
+.listview-node:first-child {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.listviewimages-node:last-child {
+.listview-node:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.listviewimages-forms {
+.listview-forms {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }

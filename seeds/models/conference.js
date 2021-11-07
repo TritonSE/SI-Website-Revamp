@@ -22,6 +22,14 @@ module.exports = async () => {
                         },
                     ],
                 },
+                brochures: {
+                    data: [
+                        {
+                            description: "Emminent Buddhist Women",
+                            url: "eminentbuddhists.com",
+                        },
+                    ],
+                },
                 presentations: {
                     data: [
                         {
@@ -66,6 +74,14 @@ module.exports = async () => {
                 },
                 presentations: {
                     data: [],
+                },
+                brochures: {
+                    data: [
+                        {
+                            description: "Emminent Buddhist Women",
+                            url: "eminentbuddhists.com",
+                        },
+                    ],
                 },
                 abstracts: {
                     data: [
@@ -143,6 +159,14 @@ module.exports = async () => {
                         {
                             description: "abstracts",
                             url: "google",
+                        },
+                    ],
+                },
+                brochures: {
+                    data: [
+                        {
+                            description: "Emminent Buddhist Women",
+                            url: "eminentbuddhists.com",
                         },
                     ],
                 },

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "../components/Stepper";
 import Theme from "../components/conferences/Theme";
-// import Overview from "../components/conferences/Overview";
+import Overview from "../components/conferences/Overview";
 
 import "../css/Conferences.css";
 
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     resizeDetails: {
         fontSize: "18px",
         fontFamily: "Nunito",
+        padding: "5px 15px",
     },
 }));
 
@@ -47,6 +48,7 @@ export default function Conferences() {
         title: { value: "", error: false },
         confNum: { value: "", error: false },
         location: { value: "", error: false },
+        brochures: { value: { data: [] }, error: false },
         slideShowImages: { value: { urls: [] }, error: false },
         programs: { value: { data: [] }, error: false },
         presentations: { value: { data: [] }, error: false },
@@ -70,6 +72,7 @@ export default function Conferences() {
             .then((res) => res.json())
             .then((data) => {
                 setConferences(data);
+                console.log("data: ", data);
                 setLoading(false);
             });
     }, []);
@@ -137,11 +140,19 @@ export default function Conferences() {
                     <h1>{title}</h1>
                 </div>
 
-                <Theme
-                    classes={classes}
-                    conferenceItem={conferenceItem}
-                    handleChange={handleChange}
-                />
+                {tab === "theme" ? (
+                    <Theme
+                        classes={classes}
+                        conferenceItem={conferenceItem}
+                        handleChange={handleChange}
+                    />
+                ) : (
+                    <Overview
+                        classes={classes}
+                        conferenceItem={conferenceItem}
+                        handleChange={handleChange}
+                    />
+                )}
             </section>
 
             <section className="conferences-tabs">
