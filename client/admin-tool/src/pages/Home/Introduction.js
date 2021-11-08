@@ -2,6 +2,7 @@ import React from "react";
 
 import Stepper from "../../components/Stepper";
 import SectionItem from "../../components/SectionItem";
+import { Snackbar } from "@material-ui/core";
 
 import {
     fetchSectionsForPage,
@@ -18,6 +19,12 @@ export default function Introduction() {
     const [sections, setSections] = React.useState([]);
     const [currentIndex, setIndex] = React.useState(-1);
     const [isPageLoading, setIsPageLoading] = React.useState(true);
+
+    // display any error messages to user
+    const [snackbar, handleSnackBar] = React.useState({
+        open: false, // whether to show message
+        message: "", // what message to show
+    });
 
     const handleNodeClick = (index) => {
         setIndex(index);
@@ -43,43 +50,35 @@ export default function Introduction() {
     };
 
     const handleDeleteSection = async () => {
-        const index = currentIndex; 
+
         const isSuccessful = await deleteSection(sections[currentIndex]["id"]);
         if (isSuccessful) {
+            handleSnackBar({open: true, message: "Section successfully deleted"});
             await refreshSections();
-            if(sections.length <= currentIndex) setIndex(sections.length - 1);
-            else setIndex(index);
         }
+        else handleSnackBar({open: true, message: "Error: Section Could Not Be Deleted"});
     };
 
     const handleUpdateSection = async (data) => {
         const id =  sections[currentIndex]["id"];
         const isSuccessful = await updateSection(id, data);
         if (isSuccessful) {
+
             await refreshSections();
-            sections.forEach((obj, i) => {
-                if(obj.id === id){
-                    setIndex(i);
-                    return;
-                }
-            })
+            handleSnackBar({open: true, message: "Section successfully updated"});
+
         }
+        else handleSnackBar({open: true, message: "Error: Section Could Not Be Updated"});
     };
 
     const handleAddSection = async (data) => {
         data["page"] = PAGE;
         const isSuccessful = await addSection(data);
         if (isSuccessful) {
-            await refreshSections();
-            // setIndex(-1);
-            alert(JSON.stringify(isSuccessful));
-            sections.forEach((obj, i) => {
-                if(obj.id === isSuccessful.id){
-                    setIndex(i);
-                    return;
-                }
-            })
+            handleSnackBar({open: true, message: "Section successfully added"});
+            window.location.reload();
         }
+        else handleSnackBar({open: true, message: "Error: Section Could Not Be Added"});
     };
 
     React.useEffect(async () => {
@@ -112,7 +111,6 @@ export default function Introduction() {
             <div className="sections-container">
                 <Stepper
                     displayItems={sections}
-                    startingIndex={currentIndex}
                     handleNodeClick={handleNodeClick}
                     handleAddNodeClick={addNewNode}
                     formatNodeTitle={formatNodeTitle}
@@ -140,6 +138,13 @@ export default function Introduction() {
                     )}
                 </div>
             </div>
+             {/* Snackbar for Error Displays & Messages */}
+             <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={() => handleSnackBar({ ...snackbar, open: false })}
+                message={snackbar.message}
+            />
         </div>
     );
 }

@@ -40,7 +40,7 @@ const Stepper = ({
     addButtonTitle = "Add New",
     handleAddNodeClick,
     formatNodeTitle,
-    startingIndex = undefined,
+    // startingIndex = undefined,
     addSpecialNodeClass = (item) => {
         console.log(item);
         return "";
@@ -58,7 +58,7 @@ const Stepper = ({
     // Calls whenever the prop for items changes in the parent
     useEffect(() => {
         setItems(displayItems);
-        setIndexButton(startingIndex);
+        setIndexButton(-1);
     }, [displayItems]);
 
     const onPageChange = (itemList, currentPage) => {
