@@ -429,7 +429,7 @@ export default function EPublications() {
                     </Slideshow>
                     {/* Render a new publications section for each section in data, pass in each card */}
                     <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>
-                        {epublications.map((section) => (
+                        {epublications.sections.map((section) => (
                             <EPubSection
                                 publication_section={section}
                                 setSelectedSection={setSelectedSection}
