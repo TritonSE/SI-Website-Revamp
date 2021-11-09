@@ -10,6 +10,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { SITE_PAGES } from "../constants/links";
+import { useHistory } from 'react-router-dom';
+import {removeCookie, JWT_TOKEN_KEY} from "../util/cookies";
 import "../css/NavBar.css";
 
 /**
@@ -34,6 +36,13 @@ function isSubPageActive(pageToCheck) {
 export default function NavBar() {
     const [expanded, setExpanded] = useState("");
     const navRef = useRef(null);
+
+    const history = useHistory();
+
+    const handleLogout = () =>{
+        removeCookie(JWT_TOKEN_KEY);
+        history.push(SITE_PAGES.ACCOUNTS_LOGIN);
+    }
 
     useEffect(() => {
         // reset expanded if click outside of nav
@@ -280,7 +289,7 @@ export default function NavBar() {
                 </Navbar.Collapse>
 
                 {/* Log Out Button */}
-                <Nav.Link className="logout_button">Log Out</Nav.Link>
+                <Nav.Link className="logout_button" onClick={handleLogout}>Log Out</Nav.Link>
             </Container>
         </Navbar>
     );

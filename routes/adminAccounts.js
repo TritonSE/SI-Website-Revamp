@@ -115,7 +115,7 @@ router.post(
 router.post(
     "/login",
     [
-        body("email").notEmpty().isEmail(),
+        body("email").notEmpty().isString(),
         body("password").notEmpty().isString().isLength({ min: 6 }),
         isValidated,
     ],

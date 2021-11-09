@@ -13,4 +13,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.page-links-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 10px;
+}
+
+.page-link {
+    text-decoration: none;
+    color: white;
+}
+
+.page-link:hover {
+    text-decoration: underline var(--darkorange);
 }
