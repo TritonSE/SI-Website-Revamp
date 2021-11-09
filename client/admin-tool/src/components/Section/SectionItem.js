@@ -1,10 +1,11 @@
 /**
- * Reusable button for the admin page. Allows for customization
- * as needed.
+ * Renders exactly one section component, including a title textfield, Text Editor, 
+ * and corresponding actions. 
+ * 
+ * This is used in conjunction with SectionWrapper, which is responsible for 
+ * populating this component with relevent data. 
  *
- * By default, renders as orange with white text.
- *
- * @summary Customizable Button Component
+ * @summary Renders One Section Component
  * @author  Amrit Singh
  */
 import React from "react";
@@ -24,31 +25,36 @@ import Button from "../Button";
 import "../../css/SectionItem.css";
 
 /**
- *
- * @param {string} text - Button content as it will be shown to the user
- * @param {function} onClickCallback - Function will be callbacked whenever the button is clicked
- * @param {JSON} style - Any in-line css customizations on the button
+ * All params are required
+ * @param {JSON} content - A JSON object representing all information to populate this component, including TextEditor
+ * @param {bool} newSection - True if this section is a 'Add New' section, false otherwise
+ * @param {function} onDeleteCallback - Callback whenever the user wants to delete this section
+ * @param {function} onSaveCallback - Callback whenever the user wants to save any changes made to this section. Only called if all required fields are validated first
+ * 
  * @returns
  */
 export default function SectionItem({ content, newSection, onDeleteCallback, onSaveCallback }) {
-    const asterisk = () => <span className="asterisk"> * </span>;
+
+     /** React States */
+
+    // holds section data
     const [data, setData] = React.useState({
         title: "",
         content: "",
         isPublished: false,
     });
-
+    // used for tracking required fields
     const [dataErrors, setDataErrors] = React.useState({
         title: false,
     });
-
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
-
     // error message displays
     const [snackbar, handleSnackBar] = React.useState({
         open: false,
         message: "",
     });
+
+     /** Initialization */
 
     // re-initializes states for each dialogue usage
     React.useEffect(() => {
@@ -69,6 +75,46 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
         // enable form
         setIsPageDisabled(false);
     }, [content]);
+
+     /** Functions/Validators */
+
+    // clicked when the user wants to save this section, validating section information and only triggering
+    // a callback if information is valid
+    const validateData = () => {
+
+        // freeze section, user cannot edit while validation is in progress
+        setIsPageDisabled(true);
+
+        let hasErrors = false;
+        const errors = { title: false };
+
+        // check if all required fields are valid
+        Object.keys(errors).forEach((key) => {
+            if (data[key].length < 1) {
+                errors[key] = true;
+                hasErrors = true;
+            }
+        });
+
+        // update section based on errors encountered
+        setDataErrors(errors);
+        setIsPageDisabled(false);
+
+        // no errors --> callback with section information passed as a JSON 
+        if (!hasErrors) onSaveCallback(data);
+        // errors --> display an error for the user 
+        else handleSnackBar({ open: true, message: "Error: Missing required fields." });
+    };
+
+    // determines which starter HTML code to pass to the TextEditor (buggy otherwise)
+    const handleHtmlInitial = () => {
+        if (!content || !content["content"]) return "<p></p>";
+        return content["content"];
+    };
+
+    /** Styling/Formatting */
+
+    const asterisk = () => <span className="asterisk"> * </span>;
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -95,26 +141,6 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
         },
     }));
 
-    const validateData = () => {
-        setIsPageDisabled(true);
-
-        let hasErrors = false;
-        const errors = { title: false };
-
-        Object.keys(errors).forEach((key) => {
-            if (data[key].length < 1) {
-                errors[key] = true;
-                hasErrors = true;
-            }
-        });
-
-        setDataErrors(errors);
-        setIsPageDisabled(false);
-
-        if (!hasErrors) onSaveCallback(data);
-        else handleSnackBar({ open: true, message: "Error: Missing required fields." });
-    };
-
     const ColoredSwitch = styled(Switch)(() => ({
         "& .MuiSwitch-switchBase.Mui-checked": {
             color: "var(--darkpurple)",
@@ -126,13 +152,9 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
 
     const classes = useHelperTextStyles();
 
-    const handleHtmlInitial = () => {
-        if (!content || !content["content"]) return "<p></p>";
-        return content["content"];
-    };
-
     return (
         <div style={{ marginLeft: "60px" }}>
+            {/* Section Title Field */}
             <span className="title"> Section Title </span> {asterisk()}
             <TextField
                 margin="dense"
@@ -148,7 +170,9 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
             <br />
             <br />
             <br />
+            {/* Action Buttons/Clickable For Section */}
             <div className="section-actions">
+                {/* Draft/Publish Slider  */}
                 <Stack direction="row" spacing={1} alignItems="center">
                     <Typography>Draft</Typography>
                     <ColoredSwitch
@@ -161,6 +185,7 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
                     <Typography>Published</Typography>
                 </Stack>
                 <div className="section-actions-right">
+                    {/* Style Infomation  */}
                     <SectionPopover>
                         <b> Header Style: </b>
                         <ul>
@@ -173,6 +198,7 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
                             <li>  Font Size: 16 pt </li>
                         </ul>
                     </SectionPopover>
+                    {/* Delete Button */}
                     {!newSection && (
                         <Button
                             disabled={isPageDisabled}
@@ -181,6 +207,7 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
                             onClickCallback={onDeleteCallback}
                         />
                     )}
+                    {/* Save Button  */}
                     <Button
                         disabled={isPageDisabled}
                         text={newSection ? "Post" : "Update"}
@@ -188,6 +215,7 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
                     />
                 </div>
             </div>
+            {/* TextEditor  */}
             <TextEditor
                 isDisabled={isPageDisabled}
                 initialHtmlLoadStr={handleHtmlInitial()}

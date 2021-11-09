@@ -1,3 +1,16 @@
+/**
+ * This is the parent component, that is responsible for formatting a given 'Section' page - inclusive
+ * of a Stepper on the left, and all SectionItem objects on the right. It manages callbacks and section tracking 
+ * for any actions done on this page, making heavy usage of React states. Utilizing props, it populates and updates
+ * the page as needed.  
+ * 
+ * This is used in conjunction with SectionItem, which is responsible for 
+ * rendering a single section item. 
+ *
+ * @summary Renders Section Page
+ * @author  Amrit Singh
+ */
+
 import React from "react";
 import { Snackbar } from "@material-ui/core";
 
@@ -7,10 +20,22 @@ import SectionPopover from "../PopOver";
 
 import "../../css/SectionWrapper.css";
 
+/**
+ * All params are required
+ * @param {string} PAGE - Required for any backend requests, as it denotes the page in the Sections DB all components will affect
+ * @param {string} pageTitle - The title of the page, for user readability
+ * @param {function} addItemRequestCallback - Callback whenever the user wants to add a new section
+ * @param {function} deleteItemRequestCallback - Callback whenever the user wants to delete an existing section
+ * @param {function} updateItemRequestCallback - Callback whenever the user wants to update an existing section
+ * @param {function} getItemsRequestCallback - Callback whenever the user wants to retrieve all sections
+ * 
+ * @returns
+ */
 export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback, deleteItemRequestCallback, updateItemRequestCallback, getItemsRequestCallback}) {
-    const [sections, setSections] = React.useState([]);
-    const [currentIndex, setIndex] = React.useState(-1);
-    const [isPageLoading, setIsPageLoading] = React.useState(true);
+    /** React States */
+    const [sections, setSections] = React.useState([]); // array of JSON objects, denoting sections
+    const [currentIndex, setIndex] = React.useState(-1); // tracks current section being looked at via index, -1 indicates "Add New" button
+    const [isPageLoading, setIsPageLoading] = React.useState(true); 
 
     // display any error messages to user
     const [snackbar, handleSnackBar] = React.useState({
@@ -18,20 +43,7 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
         message: "", // what message to show
     });
 
-    const handleNodeClick = (index) => {
-        setIndex(index);
-    };
-
-    const addNewNode = () => {
-        setIndex(-1);
-    };
-
-    const formatNodeTitle = (section) => section.title;
-
-    const addSpecialNodeClass = (section) => {
-        if (!section.isPublished) return "orange-border";
-        return "";
-    };
+    /** Functions */
 
     const refreshSections = async () => {
         setIsPageLoading(true);
@@ -73,9 +85,30 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
         else handleSnackBar({open: true, message: "Error: Section Could Not Be Added"});
     };
 
+     /** Initialization */
+
     React.useEffect(async () => {
         await refreshSections();
     }, []);
+
+    /** Stepper Info */
+
+    const handleNodeClick = (index) => {
+        setIndex(index);
+    };
+
+    const addNewNode = () => {
+        setIndex(-1);
+    };
+
+    const formatNodeTitle = (section) => section.title;
+
+    const addSpecialNodeClass = (section) => {
+        if (!section.isPublished) return "orange-border";
+        return "";
+    };
+
+    /** Stlye/Formatting */
 
     // formats datetime string into MM/DD/YYYY format
     const formatDate = (dateStr) => {
@@ -83,6 +116,9 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     };
 
+
+
+    // special layout for when the page is loading data
     if (isPageLoading) {
         <div className="sections-main-wrapper">
             <h1> Sections </h1>
@@ -90,11 +126,13 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
     }
     return (
         <div className="sections-main-wrapper">
+            {/* Header - Above Stepper/SectionItem */}
             <div className="section-top-header">
                 <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}> 
-
+                    {/* Page Title */}
                     <h1> {pageTitle} </h1>
                     &nbsp; 
+                      {/* Info Icon for Borders */}
                     <SectionPopover>
                     <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
                         <b> Borders </b>
@@ -112,6 +150,7 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
                 </SectionPopover>
 
                 </div>
+                  {/* Right Side - Text */}
                 {currentIndex > -1 ? (
                     <div style={{ fontStyle: "italic" }}>
                         Uploaded on {formatDate(sections[currentIndex]["createdAt"])}
@@ -121,6 +160,7 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
                 ) : <h3> Add New Section </h3>}
             </div>
             <div className="sections-container">
+                  {/*S tepper */}
                 <Stepper
                     displayItems={sections}
                     handleNodeClick={handleNodeClick}
@@ -129,6 +169,7 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
                     addSpecialNodeClass={addSpecialNodeClass}
                 />
 
+                {/* Section Component Based on Index */}
                 <div className="section-item-wrapper">
                     {currentIndex > -1 ? (
                         // update section

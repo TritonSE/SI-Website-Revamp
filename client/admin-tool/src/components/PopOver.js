@@ -1,10 +1,13 @@
 /**
- * Reusable button for the admin page. Allows for customization
- * as needed.
+ * Reusable pop-over for any additional information to show to the user, that needs
+ * to be initially hidden. 
+ * 
+ * By default, it is rendered as a circular info icon that upon click, will give a little pop-over
+ * of the additional information that is to be shown. The popover information is absolutately positioned,
+ * and can be clicked away. 
  *
- * By default, renders as orange with white text.
  *
- * @summary Customizable Button Component
+ * @summary Customizable PopOver Info Icon
  * @author  Amrit Singh
  */
  import React from "react";
@@ -17,10 +20,8 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import "../css/Popover.css";
  
  /**
-  *
-  * @param {string} text - Button content as it will be shown to the user
-  * @param {function} onClickCallback - Function will be callbacked whenever the button is clicked
-  * @param {JSON} style - Any in-line css customizations on the button
+  * All params are required.
+  * @param {Html} children - Represents any content information you want to put on the popover (will appear on click)
   * @returns
   */
  export default function SectionPopover({children}) {
