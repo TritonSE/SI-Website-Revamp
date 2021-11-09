@@ -1,9 +1,9 @@
 /**
- * Renders exactly one section component, including a title textfield, Text Editor, 
- * and corresponding actions. 
- * 
- * This is used in conjunction with SectionWrapper, which is responsible for 
- * populating this component with relevent data. 
+ * Renders exactly one section component, including a title textfield, Text Editor,
+ * and corresponding actions.
+ *
+ * This is used in conjunction with SectionWrapper, which is responsible for
+ * populating this component with relevent data.
  *
  * @summary Renders One Section Component
  * @author  Amrit Singh
@@ -30,12 +30,11 @@ import "../../css/SectionItem.css";
  * @param {bool} newSection - True if this section is a 'Add New' section, false otherwise
  * @param {function} onDeleteCallback - Callback whenever the user wants to delete this section
  * @param {function} onSaveCallback - Callback whenever the user wants to save any changes made to this section. Only called if all required fields are validated first
- * 
+ *
  * @returns
  */
 export default function SectionItem({ content, newSection, onDeleteCallback, onSaveCallback }) {
-
-     /** React States */
+    /** React States */
 
     // holds section data
     const [data, setData] = React.useState({
@@ -54,7 +53,7 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
         message: "",
     });
 
-     /** Initialization */
+    /** Initialization */
 
     // re-initializes states for each dialogue usage
     React.useEffect(() => {
@@ -76,12 +75,11 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
         setIsPageDisabled(false);
     }, [content]);
 
-     /** Functions/Validators */
+    /** Functions/Validators */
 
     // clicked when the user wants to save this section, validating section information and only triggering
     // a callback if information is valid
     const validateData = () => {
-
         // freeze section, user cannot edit while validation is in progress
         setIsPageDisabled(true);
 
@@ -100,9 +98,9 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
         setDataErrors(errors);
         setIsPageDisabled(false);
 
-        // no errors --> callback with section information passed as a JSON 
+        // no errors --> callback with section information passed as a JSON
         if (!hasErrors) onSaveCallback(data);
-        // errors --> display an error for the user 
+        // errors --> display an error for the user
         else handleSnackBar({ open: true, message: "Error: Missing required fields." });
     };
 
@@ -190,12 +188,12 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
                         <b> Header Style: </b>
                         <ul>
                             <li> Font Family: Libre Baskerville </li>
-                            <li>  Font Size: 32 pt </li>
+                            <li> Font Size: 32 pt </li>
                         </ul>
                         <b> Content Style: </b>
                         <ul>
                             <li> Font Family: Nunito </li>
-                            <li>  Font Size: 16 pt </li>
+                            <li> Font Size: 16 pt </li>
                         </ul>
                     </SectionPopover>
                     {/* Delete Button */}

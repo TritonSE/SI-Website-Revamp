@@ -9,15 +9,14 @@ import {
 } from "../../util/requests/Sections";
 
 export default function EditSections() {
-
     return (
         <SectionWrapper
-        PAGE="AboutUs"
-        pageTitle="About Us: Sections"
-        getItemsRequestCallback={fetchSectionsForPage}
-        addItemRequestCallback={addSection}
-        deleteItemRequestCallback={deleteSection}
-        updateItemRequestCallback={updateSection}
+            PAGE="AboutUs"
+            pageTitle="About Us: Sections"
+            getItemsRequestCallback={fetchSectionsForPage}
+            addItemRequestCallback={addSection}
+            deleteItemRequestCallback={deleteSection}
+            updateItemRequestCallback={updateSection}
         />
     );
 }

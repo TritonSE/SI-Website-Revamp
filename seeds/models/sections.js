@@ -168,7 +168,8 @@ module.exports = async () => {
             {
                 page: "BuddhistCulture",
                 title: "Bodhisattvas",
-                content: "<p> In Buddhism, a bodhisattva is any person who is on the path towards Buddhahood. In the Early Buddhist schools as well as modern Theravada Buddhism, a bodhisattva refers to anyone who has made a resolution to become a Buddha and has also received a confirmation or prediction from a living Buddha that this will be so. </p>",
+                content:
+                    "<p> In Buddhism, a bodhisattva is any person who is on the path towards Buddhahood. In the Early Buddhist schools as well as modern Theravada Buddhism, a bodhisattva refers to anyone who has made a resolution to become a Buddha and has also received a confirmation or prediction from a living Buddha that this will be so. </p>",
                 isPublished: true,
             },
             { logging: false }
@@ -177,7 +178,8 @@ module.exports = async () => {
             {
                 page: "BuddhistCulture",
                 title: "Eight Fold Path",
-                content: "<p> The Eightfold Path consists of eight practices: right view, right resolve, right speech, right conduct, right livelihood, right effort, right mindfulness, and right samadhi ('meditative absorption or union'). </p>",
+                content:
+                    "<p> The Eightfold Path consists of eight practices: right view, right resolve, right speech, right conduct, right livelihood, right effort, right mindfulness, and right samadhi ('meditative absorption or union'). </p>",
                 isPublished: true,
             },
             { logging: false }
@@ -186,7 +188,8 @@ module.exports = async () => {
             {
                 page: "BuddhistCulture",
                 title: "Bhikku",
-                content: "<p>A <a href=\"https://en.wikipedia.org/wiki/Bhikkhu#:~:text=A%20bhikkhu%20\" target=\"_self\">bhikkhu</a>  is an ordained male in Buddhist monasticism. Male and female monastics are members of the Sangha. The lives of all Buddhist monastics are governed by a set of rules called the prātimokṣa or pātimokkha.&nbsp;</p>\n<p></p>\n<p></p>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/e/e6/Bhikkhu_Analayo.jpg\" alt=\"undefined\" style=\"height: 600px;width: 400px\"/>\n<p></p>",
+                content:
+                    '<p>A <a href="https://en.wikipedia.org/wiki/Bhikkhu#:~:text=A%20bhikkhu%20" target="_self">bhikkhu</a>  is an ordained male in Buddhist monasticism. Male and female monastics are members of the Sangha. The lives of all Buddhist monastics are governed by a set of rules called the prātimokṣa or pātimokkha.&nbsp;</p>\n<p></p>\n<p></p>\n<img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Bhikkhu_Analayo.jpg" alt="undefined" style="height: 600px;width: 400px"/>\n<p></p>',
                 isPublished: false,
             },
             { logging: false }
@@ -195,7 +198,8 @@ module.exports = async () => {
             {
                 page: "BuddhistCulture",
                 title: "The Buddha",
-                content: "<p> Gautama Buddha, popularly known as the Buddha or Lord Buddha, was a Śramaṇa who lived in ancient India. </p>",
+                content:
+                    "<p> Gautama Buddha, popularly known as the Buddha or Lord Buddha, was a Śramaṇa who lived in ancient India. </p>",
                 isPublished: true,
             },
             { logging: false }
@@ -213,7 +217,8 @@ module.exports = async () => {
             {
                 page: "OrdinationIssue",
                 title: "Requirements",
-                content: "<p> The latter are young boys who live and often grow up in monasteries and temples throughout Thailand, set to spend their lives devoted to the faith. The vast majority of monks in Thailand only do so temporarily, taking on short term ordinations for any period between a week to three months. </p>",
+                content:
+                    "<p> The latter are young boys who live and often grow up in monasteries and temples throughout Thailand, set to spend their lives devoted to the faith. The vast majority of monks in Thailand only do so temporarily, taking on short term ordinations for any period between a week to three months. </p>",
                 isPublished: false,
             },
             { logging: false }
@@ -222,7 +227,8 @@ module.exports = async () => {
             {
                 page: "OrdinationIssue",
                 title: "Five Śīlas",
-                content: "<p> The lay pratimokṣa consists of five vows that are also known as the Five Śīlas: To refrain from killing. To refrain from stealing. To refrain from false speech. </p>",
+                content:
+                    "<p> The lay pratimokṣa consists of five vows that are also known as the Five Śīlas: To refrain from killing. To refrain from stealing. To refrain from false speech. </p>",
                 isPublished: false,
             },
             { logging: false }

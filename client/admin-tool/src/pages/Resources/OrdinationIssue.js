@@ -9,15 +9,14 @@ import {
 } from "../../util/requests/Sections";
 
 export default function OrdinationIssue() {
-
     return (
         <SectionWrapper
-        PAGE="OrdinationIssue"
-        pageTitle="Ordination Issue"
-        getItemsRequestCallback={fetchSectionsForPage}
-        addItemRequestCallback={addSection}
-        deleteItemRequestCallback={deleteSection}
-        updateItemRequestCallback={updateSection}
+            PAGE="OrdinationIssue"
+            pageTitle="Ordination Issue"
+            getItemsRequestCallback={fetchSectionsForPage}
+            addItemRequestCallback={addSection}
+            deleteItemRequestCallback={deleteSection}
+            updateItemRequestCallback={updateSection}
         />
     );
 }

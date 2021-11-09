@@ -1,11 +1,11 @@
 /**
  * This is the parent component, that is responsible for formatting a given 'Section' page - inclusive
- * of a Stepper on the left, and all SectionItem objects on the right. It manages callbacks and section tracking 
+ * of a Stepper on the left, and all SectionItem objects on the right. It manages callbacks and section tracking
  * for any actions done on this page, making heavy usage of React states. Utilizing props, it populates and updates
- * the page as needed.  
- * 
- * This is used in conjunction with SectionItem, which is responsible for 
- * rendering a single section item. 
+ * the page as needed.
+ *
+ * This is used in conjunction with SectionItem, which is responsible for
+ * rendering a single section item.
  *
  * @summary Renders Section Page
  * @author  Amrit Singh
@@ -28,14 +28,21 @@ import "../../css/SectionWrapper.css";
  * @param {function} deleteItemRequestCallback - Callback whenever the user wants to delete an existing section
  * @param {function} updateItemRequestCallback - Callback whenever the user wants to update an existing section
  * @param {function} getItemsRequestCallback - Callback whenever the user wants to retrieve all sections
- * 
+ *
  * @returns
  */
-export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback, deleteItemRequestCallback, updateItemRequestCallback, getItemsRequestCallback}) {
+export default function SectionWrapper({
+    PAGE,
+    pageTitle,
+    addItemRequestCallback,
+    deleteItemRequestCallback,
+    updateItemRequestCallback,
+    getItemsRequestCallback,
+}) {
     /** React States */
     const [sections, setSections] = React.useState([]); // array of JSON objects, denoting sections
     const [currentIndex, setIndex] = React.useState(-1); // tracks current section being looked at via index, -1 indicates "Add New" button
-    const [isPageLoading, setIsPageLoading] = React.useState(true); 
+    const [isPageLoading, setIsPageLoading] = React.useState(true);
 
     // display any error messages to user
     const [snackbar, handleSnackBar] = React.useState({
@@ -54,38 +61,31 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
     };
 
     const handleDeleteSection = async () => {
-
         const isSuccessful = await deleteItemRequestCallback(sections[currentIndex]["id"]);
         if (isSuccessful) {
-            handleSnackBar({open: true, message: "Section successfully deleted"});
+            handleSnackBar({ open: true, message: "Section successfully deleted" });
             await refreshSections();
-        }
-        else handleSnackBar({open: true, message: "Error: Section Could Not Be Deleted"});
+        } else handleSnackBar({ open: true, message: "Error: Section Could Not Be Deleted" });
     };
 
     const handleUpdateSection = async (data) => {
-        const id =  sections[currentIndex]["id"];
-        const isSuccessful = await updateItemRequestCallback(id, data);
+        const isSuccessful = await updateItemRequestCallback(sections[currentIndex]["id"], data);
         if (isSuccessful) {
-
             await refreshSections();
-            handleSnackBar({open: true, message: "Section successfully updated"});
-
-        }
-        else handleSnackBar({open: true, message: "Error: Section Could Not Be Updated"});
+            handleSnackBar({ open: true, message: "Section successfully updated" });
+        } else handleSnackBar({ open: true, message: "Error: Section Could Not Be Updated" });
     };
 
     const handleAddSection = async (data) => {
         data["page"] = PAGE;
         const isSuccessful = await addItemRequestCallback(data);
         if (isSuccessful) {
-            handleSnackBar({open: true, message: "Section successfully added"});
+            handleSnackBar({ open: true, message: "Section successfully added" });
             window.location.reload();
-        }
-        else handleSnackBar({open: true, message: "Error: Section Could Not Be Added"});
+        } else handleSnackBar({ open: true, message: "Error: Section Could Not Be Added" });
     };
 
-     /** Initialization */
+    /** Initialization */
 
     React.useEffect(async () => {
         await refreshSections();
@@ -116,8 +116,6 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     };
 
-
-
     // special layout for when the page is loading data
     if (isPageLoading) {
         <div className="sections-main-wrapper">
@@ -128,39 +126,65 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
         <div className="sections-main-wrapper">
             {/* Header - Above Stepper/SectionItem */}
             <div className="section-top-header">
-                <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}> 
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
                     {/* Page Title */}
                     <h1> {pageTitle} </h1>
-                    &nbsp; 
-                      {/* Info Icon for Borders */}
+                    &nbsp;
+                    {/* Info Icon for Borders */}
                     <SectionPopover>
-                    <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
-                        <b> Borders </b>
-                        <div style={{display: "flex", flexDirection: "row"}}>
-                                <hr style={{backgroundColor: "var(--darkorange)", border: "none", height: "3px", width: "40px"}}/>
-                                &nbsp; = &nbsp;
-                                Draft
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "flex-start",
+                            }}
+                        >
+                            <b> Borders </b>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <hr
+                                    style={{
+                                        backgroundColor: "var(--darkorange)",
+                                        border: "none",
+                                        height: "3px",
+                                        width: "40px",
+                                    }}
+                                />
+                                &nbsp; = &nbsp; Draft
                             </div>
-                            <div style={{display: "flex", flexDirection: "row"}}>
-                                <hr style={{backgroundColor: "black", border: "none", height: "3px", width: "40px"}}/>
-                                &nbsp; = &nbsp;
-                                Published
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <hr
+                                    style={{
+                                        backgroundColor: "black",
+                                        border: "none",
+                                        height: "3px",
+                                        width: "40px",
+                                    }}
+                                />
+                                &nbsp; = &nbsp; Published
                             </div>
-                    </div>
-                </SectionPopover>
-
+                        </div>
+                    </SectionPopover>
                 </div>
-                  {/* Right Side - Text */}
+                {/* Right Side - Text */}
                 {currentIndex > -1 ? (
                     <div style={{ fontStyle: "italic" }}>
                         Uploaded on {formatDate(sections[currentIndex]["createdAt"])}
                         <br />
                         Last Edited on {formatDate(sections[currentIndex]["updatedAt"])}
                     </div>
-                ) : <h3> Add New Section </h3>}
+                ) : (
+                    <h3> Add New Section </h3>
+                )}
             </div>
             <div className="sections-container">
-                  {/*S tepper */}
+                {/* Stepper */}
                 <Stepper
                     displayItems={sections}
                     handleNodeClick={handleNodeClick}
@@ -184,15 +208,15 @@ export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback,
                         // add new section
                         <SectionItem
                             i={currentIndex}
-                            newSection={true}
+                            newSection
                             content={{ content: "<p></p>" }}
                             onSaveCallback={handleAddSection}
                         />
                     )}
                 </div>
             </div>
-             {/* Snackbar for Error Displays & Messages */}
-             <Snackbar
+            {/* Snackbar for Error Displays & Messages */}
+            <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}
                 onClose={() => handleSnackBar({ ...snackbar, open: false })}
