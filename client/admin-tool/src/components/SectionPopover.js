@@ -23,7 +23,7 @@ import "../css/SectionPopover.css";
   * @param {JSON} style - Any in-line css customizations on the button
   * @returns
   */
- export default function SectionPopover() {
+ export default function SectionPopover({children}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -56,16 +56,7 @@ import "../css/SectionPopover.css";
             }}
         >
             <Typography sx={{ p: 2 }}>
-                <b> Header Style: </b>
-                <ul>
-                    <li> Font Family: Libre Baskerville </li>
-                    <li>  Font Size: 32 pt </li>
-                </ul>
-                <b> Content Style: </b>
-                <ul>
-                    <li> Font Family: Nunito </li>
-                    <li>  Font Size: 16 pt </li>
-                </ul>
+                {children}
             </Typography>
         </Popover>
         </div>

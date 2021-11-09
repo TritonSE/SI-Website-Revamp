@@ -3,6 +3,7 @@ import { Snackbar } from "@material-ui/core";
 
 import Stepper from "../../components/Stepper";
 import SectionItem from "../../components/SectionItem";
+import SectionPopover from "../../components/SectionPopover";
 
 import {
     fetchSectionsForPage,
@@ -37,7 +38,7 @@ export default function Introduction() {
     const formatNodeTitle = (section) => section.title;
 
     const addSpecialNodeClass = (section) => {
-        if (section.isPublished) return "orange-border";
+        if (!section.isPublished) return "orange-border";
         return "";
     };
 
@@ -99,7 +100,27 @@ export default function Introduction() {
     return (
         <div className="sections-main-wrapper">
             <div className="section-top-header">
-                <h1> Sections </h1>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}> 
+
+                    <h1> Sections </h1>
+                    &nbsp; 
+                    <SectionPopover>
+                    <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
+                        <b> Borders </b>
+                        <div style={{display: "flex", flexDirection: "row"}}>
+                                <hr style={{backgroundColor: "var(--darkorange)", border: "none", height: "3px", width: "40px"}}/>
+                                &nbsp; = &nbsp;
+                                Draft
+                            </div>
+                            <div style={{display: "flex", flexDirection: "row"}}>
+                                <hr style={{backgroundColor: "black", border: "none", height: "3px", width: "40px"}}/>
+                                &nbsp; = &nbsp;
+                                Published
+                            </div>
+                    </div>
+                </SectionPopover>
+
+                </div>
                 {currentIndex > -1 ? (
                     <div style={{ fontStyle: "italic" }}>
                         Uploaded on {formatDate(sections[currentIndex]["createdAt"])}

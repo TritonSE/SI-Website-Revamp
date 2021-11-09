@@ -160,7 +160,18 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
                     <Typography>Published</Typography>
                 </Stack>
                 <div className="section-actions-right">
-                    <SectionPopover/>
+                    <SectionPopover>
+                        <b> Header Style: </b>
+                        <ul>
+                            <li> Font Family: Libre Baskerville </li>
+                            <li>  Font Size: 32 pt </li>
+                        </ul>
+                        <b> Content Style: </b>
+                        <ul>
+                            <li> Font Family: Nunito </li>
+                            <li>  Font Size: 16 pt </li>
+                        </ul>
+                    </SectionPopover>
                     {!newSection && (
                         <Button
                             disabled={isPageDisabled}
