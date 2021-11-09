@@ -18,6 +18,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import TextEditor from "./TextEditor";
+import SectionPopover from "./SectionPopover";
 import Button from "./Button";
 import "../css/SectionItem.css";
 
@@ -158,7 +159,8 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
                     />
                     <Typography>Published</Typography>
                 </Stack>
-                <div>
+                <div className="section-actions-right">
+                    <SectionPopover/>
                     {!newSection && (
                         <Button
                             disabled={isPageDisabled}

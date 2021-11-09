@@ -1,8 +1,8 @@
 import React from "react";
+import { Snackbar } from "@material-ui/core";
 
 import Stepper from "../../components/Stepper";
 import SectionItem from "../../components/SectionItem";
-import { Snackbar } from "@material-ui/core";
 
 import {
     fetchSectionsForPage,
@@ -106,7 +106,7 @@ export default function Introduction() {
                         <br />
                         Last Edited on {formatDate(sections[currentIndex]["updatedAt"])}
                     </div>
-                ) : null}
+                ) : <h3> Add New Section </h3>}
             </div>
             <div className="sections-container">
                 <Stepper
