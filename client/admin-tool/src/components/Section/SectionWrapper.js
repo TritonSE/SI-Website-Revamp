@@ -1,22 +1,13 @@
 import React from "react";
 import { Snackbar } from "@material-ui/core";
 
-import Stepper from "../../components/Stepper";
-import SectionItem from "../../components/SectionItem";
-import SectionPopover from "../../components/SectionPopover";
+import Stepper from "../Stepper";
+import SectionItem from "./SectionItem";
+import SectionPopover from "../PopOver";
 
-import {
-    fetchSectionsForPage,
-    addSection,
-    deleteSection,
-    updateSection,
-} from "../../util/requests/Home/Introduction";
+import "../../css/SectionWrapper.css";
 
-import "../../css/Introduction.css";
-
-const PAGE = "Home";
-
-export default function Introduction() {
+export default function SectionWrapper({PAGE, pageTitle, addItemRequestCallback, deleteItemRequestCallback, updateItemRequestCallback, getItemsRequestCallback}) {
     const [sections, setSections] = React.useState([]);
     const [currentIndex, setIndex] = React.useState(-1);
     const [isPageLoading, setIsPageLoading] = React.useState(true);
@@ -44,7 +35,7 @@ export default function Introduction() {
 
     const refreshSections = async () => {
         setIsPageLoading(true);
-        const data = await fetchSectionsForPage(PAGE);
+        const data = await getItemsRequestCallback(PAGE);
         setSections(data);
         setIndex(-1);
         setIsPageLoading(false);
@@ -52,7 +43,7 @@ export default function Introduction() {
 
     const handleDeleteSection = async () => {
 
-        const isSuccessful = await deleteSection(sections[currentIndex]["id"]);
+        const isSuccessful = await deleteItemRequestCallback(sections[currentIndex]["id"]);
         if (isSuccessful) {
             handleSnackBar({open: true, message: "Section successfully deleted"});
             await refreshSections();
@@ -62,7 +53,7 @@ export default function Introduction() {
 
     const handleUpdateSection = async (data) => {
         const id =  sections[currentIndex]["id"];
-        const isSuccessful = await updateSection(id, data);
+        const isSuccessful = await updateItemRequestCallback(id, data);
         if (isSuccessful) {
 
             await refreshSections();
@@ -74,7 +65,7 @@ export default function Introduction() {
 
     const handleAddSection = async (data) => {
         data["page"] = PAGE;
-        const isSuccessful = await addSection(data);
+        const isSuccessful = await addItemRequestCallback(data);
         if (isSuccessful) {
             handleSnackBar({open: true, message: "Section successfully added"});
             window.location.reload();
@@ -102,7 +93,7 @@ export default function Introduction() {
             <div className="section-top-header">
                 <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}> 
 
-                    <h1> Sections </h1>
+                    <h1> {pageTitle} </h1>
                     &nbsp; 
                     <SectionPopover>
                     <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>

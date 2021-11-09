@@ -17,10 +17,11 @@ import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import TextEditor from "./TextEditor";
-import SectionPopover from "./SectionPopover";
-import Button from "./Button";
-import "../css/SectionItem.css";
+import TextEditor from "../TextEditor";
+import SectionPopover from "../PopOver";
+import Button from "../Button";
+
+import "../../css/SectionItem.css";
 
 /**
  *

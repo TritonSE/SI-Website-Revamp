@@ -40,7 +40,6 @@ const Stepper = ({
     addButtonTitle = "Add New",
     handleAddNodeClick,
     formatNodeTitle,
-    // startingIndex = undefined,
     addSpecialNodeClass = (item) => {
         console.log(item);
         return "";
