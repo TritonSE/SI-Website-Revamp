@@ -20,3 +20,9 @@ export const removeCookie = (key) => {
     const cookies = new Cookies();
     cookies.remove(key,  { path: '/' });
 }
+
+export const isAuthorized = () => {
+    const cookies = new Cookies();
+    if(cookies.get(JWT_TOKEN_KEY)) return true;
+    return false; 
+}

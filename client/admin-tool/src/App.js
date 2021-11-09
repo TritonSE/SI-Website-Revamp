@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useHistory, Redirect } from "react-router-dom";
 import "./App.css";
 
 import { SITE_PAGES } from "./constants/links";
@@ -20,7 +20,11 @@ import ResetPassword from "./pages/Accounts/ResetPassword";
 import ForgotPassword from "./pages/Accounts/ForgotPassword";
 import Conferences from "./pages/Conferences";
 
+import {isAuthorized} from "./util/cookies";
+
 function App() {
+    const history = useHistory();
+
     return (
         <Router>
             {/* Switch gurantees that a URL can match to only one route */}
@@ -40,13 +44,20 @@ function App() {
                     <ResetPassword />
                 </Route>
 
+                   {/* Home Page */}
+                   <Route exact path={SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER}
+                                render={() => {
+                                    isAuthorized() ? ( <PageLayout> <NewsEventsSlider /> </PageLayout>):
+                                    (
+                                        <Redirect to={SITE_PAGES.ACCOUNTS_LOGIN}/>
+                                    )
+                                }}
+                            />
+
                 <Route>
                     <PageLayout>
                         <Switch>
-                            {/* Home Page */}
-                            <Route exact path={SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER}>
-                                <NewsEventsSlider />
-                            </Route>
+                         
                             <Route exact path={SITE_PAGES.HOME_INTRODUCTION}>
                                 <HomeIntro />
                             </Route>
