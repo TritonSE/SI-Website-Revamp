@@ -81,7 +81,7 @@ const Stepper = ({
 
     // determine the class for the node (active vs normal)
     const determineClassname = (index, item) =>
-        index !== indexButton
+        index !== indexButton || item !== activeItem
             ? `stepper-item-div ${addSpecialNodeClass(item)}`
             : `stepper-item-div active ${addSpecialNodeClass(item)}`;
 
