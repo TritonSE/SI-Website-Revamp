@@ -16,7 +16,7 @@ const Sections = require("../models/sections");
 async function getSections(queryFilter = null) {
     return Sections.findAll({
         ...queryFilter,
-        order: [["createdAt", "ASC"]],
+        order: [["updatedAt", "DESC"]],
     });
 }
 
