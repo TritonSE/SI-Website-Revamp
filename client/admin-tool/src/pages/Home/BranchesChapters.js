@@ -1,13 +1,26 @@
-import React from "react";
+/**
+ * Displays the Branches and Chapters page on the admin tool. It allows the user to view and modify all the
+ * current branches and chapters that are in the database as well as add new branches/chapters as necessary.
+ *
+ * All server requests are made in a separate file that is imported for east access
+ *
+ * @summary Branches and Chapters Page
+ * @author Jacob Au
+ */
+
+import React, { useState } from "react";
 import { TextField, Snackbar, MenuItem } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "../../components/Button";
 import "../../css/BranchesChapters.css";
+import {
+    putBranchChapters,
+    postBranchChapters,
+    getBranchChapters,
+} from "../../util/BranchesChapters";
+import Stepper from "../../components/Stepper";
 
-import config from "../../config";
-
-const BACKEND_URL = config.backend.uri;
-
+// style for text fields
 const useStyles = makeStyles((theme) => ({
     form: {
         // input field - general layout
@@ -35,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+// style for dropdown menu
 const CustomSelectField = withStyles({
     root: {
         "& .MuiOutlinedInput-input": {
@@ -89,6 +103,10 @@ export default function BranchesChapters() {
         message: "",
     });
 
+    const testArray = [{ name: "placeholder" }];
+
+    const [branchesAndChapters, setBranchesAndChapters] = React.useState(testArray);
+
     const [values, setValues] = React.useState({
         name: {
             value: "", // field value given by user
@@ -116,6 +134,7 @@ export default function BranchesChapters() {
         },
     });
 
+    // when an input field is edited
     const handleChange = (event) => {
         setValues({
             ...values,
@@ -129,6 +148,52 @@ export default function BranchesChapters() {
         setSnackBar({ open: false });
     };
 
+    const [index, setIndex] = useState(0);
+
+    const [isNewNode, setIsNewNode] = useState(true);
+
+    // when a node in the stepper is clicked
+    const handleNodeClick = (ind) => {
+        setIsNewNode(false);
+        setIndex(ind);
+        setValues({
+            ...values,
+            name: { ...values.name, value: branchesAndChapters[ind].name },
+            longitude: { ...values.longitude, value: branchesAndChapters[ind].longitude },
+            latitude: { ...values.latitude, value: branchesAndChapters[ind].latitude },
+            siteLink: { ...values.siteLink, value: branchesAndChapters[ind].siteLink },
+            email: { ...values.email, value: branchesAndChapters[ind].email },
+            isBranch: { ...values.isBranch, value: branchesAndChapters[ind].isBranch },
+        });
+    };
+
+    // when user clicks add new node on the stepper
+    const addNewNode = () => {
+        setIsNewNode(true);
+        setValues({
+            ...values,
+            name: { ...values.name, value: "" },
+            longitude: { ...values.longitude, value: "" },
+            latitude: { ...values.latitude, value: "" },
+            siteLink: { ...values.siteLink, value: "" },
+            email: { ...values.email, value: "" },
+            isBranch: { ...values.isBranch, value: "" },
+        });
+    };
+
+    const formatNodeTitle = (item) => item.name;
+
+    const addSpecialNodeClass = (item) => {
+        if (item) return "orange-border";
+        return "";
+    };
+
+    const refreshBranchesChapters = async () => {
+        const data = await getBranchChapters();
+        setBranchesAndChapters(data);
+    };
+
+    // when the user clicks the post button
     const handleFormSubmit = async () => {
         // do nothing if form is already processing a request
         if (isFormDisabled) return;
@@ -141,7 +206,6 @@ export default function BranchesChapters() {
         let name = false;
         let longitude = false;
         let latitude = false;
-        let siteLink = false;
         let isBranch = false;
         let email = false;
 
@@ -149,18 +213,7 @@ export default function BranchesChapters() {
         if (values.longitude.value === "") longitude = true;
         if (values.latitude.value === "") latitude = true;
         if (values.isBranch.value === "") isBranch = true;
-        if (values.siteLink.value === "") siteLink = true;
         if (values.email.value === "") email = true;
-
-        setValues({
-            ...values,
-            name: { ...values.name, error: name },
-            longitude: { ...values.longitude, error: longitude },
-            latitude: { ...values.latitude, error: latitude },
-            siteLink: { ...values.siteLink, error: siteLink },
-            isBranch: { ...values.isBranch, error: isBranch },
-            email: { ...values.email, error: email },
-        });
 
         // check to see if any required fields are empty
         if (name || longitude || latitude || isBranch || email) {
@@ -171,156 +224,170 @@ export default function BranchesChapters() {
         }
 
         if (values.isBranch.value === "branch") {
-            isBranch = true;
+            values.isBranch.value = true;
         } else {
-            isBranch = false;
+            values.isBranch.value = false;
         }
 
-        // attempt to post new branch and chapter
-        await fetch(`${BACKEND_URL}branchesAndChapters/`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                name: values.name.value,
-                email: values.email.value,
-                longitude: values.longitude.value,
-                latitude: values.latitude.value,
-                isBranch,
-                siteLink: values.siteLink.value,
-            }),
-        }).then((res) => {
-            // message sent
-            if (res.ok) {
-                // clear form values
-                setValues({
-                    ...values,
-                    name: { ...values.name, value: "" },
-                    longitude: { ...values.longitude, value: "" },
-                    latitude: { ...values.latitude, value: "" },
-                    siteLink: { ...values.siteLink, value: "" },
-                    email: { ...values.email, value: "" },
-                    isBranch: { ...values.isBranch, value: "" },
+        // makes the post request to backend here if successful clear all the values
+        if (!isNewNode) {
+            if (await putBranchChapters(branchesAndChapters[index]["id"], values)) {
+                await refreshBranchesChapters();
+                setSnackBar({
+                    open: true,
+                    message: "Existing branch/chapter updated",
                 });
-                // message could not be sent
             } else {
-                // show snackbar to notify message could not be sent
                 setSnackBar({
                     open: true,
                     message: "An internal error occurred. Message not sent.",
                 });
             }
-        });
+        } else if (await postBranchChapters(values)) {
+            await refreshBranchesChapters();
+            setSnackBar({
+                open: true,
+                message: "New branch/chapter added",
+            });
+        } else {
+            setSnackBar({
+                open: true,
+                message: "An internal error occurred. Message not sent.",
+            });
+        }
 
         // allow form to be editable again
+        setIsNewNode(false);
         document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
 
+    // set up the initial values for Branches and Chapters to be used in the Stepper
+    React.useState(async () => {
+        const data = await getBranchChapters();
+        await setBranchesAndChapters(data);
+    }, [handleFormSubmit]);
+
     return (
         <div className="Branches-Chapters">
-            <section className="left-container">
-                <h2>Branches & Chapters</h2>
-                <form className={classes.form} autoComplete="off">
-                    {/* Full Name of Branch Chapter Field */}
-                    <div>
-                        <div className="form-field-wrapper">
-                            <TextField
-                                name="name"
-                                value={values.name.value}
-                                error={values.name.error}
-                                onChange={handleChange}
-                                placeholder="Name of Branch"
-                                disabled={isFormDisabled}
-                                variant="outlined"
-                            />
-                            <span className="required-asterisk"> * </span>
-                        </div>
-                        {/* Longitute of Branch/Chapter */}
-                        <div className="form-field-wrapper">
-                            <TextField
-                                name="latitude"
-                                value={values.latitude.value}
-                                error={values.latitude.error}
-                                onChange={handleChange}
-                                placeholder="Latitude"
-                                disabled={isFormDisabled}
-                                variant="outlined"
-                            />
-                            <span className="required-asterisk"> * </span>
-                        </div>
-                        {/* Latitude of Branch/Chapter */}
-                        <div className="form-field-wrapper">
-                            <TextField
-                                name="longitude"
-                                value={values.longitude.value}
-                                error={values.longitude.error}
-                                onChange={handleChange}
-                                placeholder="Longitude"
-                                disabled={isFormDisabled}
-                                variant="outlined"
-                            />
-                            <span className="required-asterisk"> * </span>
-                        </div>
-                        {/* Type of Branch/Chapter */}
-
-                        <div className="form-field-wrapper">
-                            <CustomSelectField
-                                name="isBranch"
-                                error={values.isBranch.error}
-                                value={values.isBranch.value}
-                                placeholder="Branch"
-                                onChange={handleChange}
-                                disabled={isFormDisabled}
-                                variant="outlined"
-                                label="Branch"
-                                select
-                                // autoWidth={false}
-                            >
-                                <MenuItem value="branch">Branch</MenuItem>
-                                <MenuItem value="chapter">Chapter</MenuItem>
-                            </CustomSelectField>
-                            <span className="required-asterisk"> * </span>
-                        </div>
-
-                        {/* Email of Branch/Chapter */}
-                        <div className="form-field-wrapper">
-                            <TextField
-                                name="email"
-                                value={values.email.value}
-                                error={values.email.error}
-                                onChange={handleChange}
-                                placeholder="Email of Branch"
-                                disabled={isFormDisabled}
-                                variant="outlined"
-                            />
-                            <span className="required-asterisk"> * </span>
-                        </div>
-                        {/* Site Link of Branch/Chapter */}
-                        <div className="form-field-wrapper">
-                            <TextField
-                                name="siteLink"
-                                value={values.siteLink.value}
-                                error={values.siteLink.error}
-                                onChange={handleChange}
-                                placeholder="Insert a Site Link"
-                                disabled={isFormDisabled}
-                                variant="outlined"
-                            />
-                        </div>
-                    </div>
-                </form>
-            </section>
-            <section className="right-container">
-                <div className="post-button">
-                    <Button text="Post" onClickCallback={handleFormSubmit} />
+            <h1>Branches & Chapters</h1>
+            <div className="body-container">
+                <div className="column">
+                    <Stepper
+                        displayItems={branchesAndChapters}
+                        handleNodeClick={handleNodeClick}
+                        // addButtonTitle="Add new"
+                        // numItemsPerPage ={5}
+                        handleAddNodeClick={addNewNode}
+                        formatNodeTitle={formatNodeTitle}
+                        addSpecialNodeClass={addSpecialNodeClass}
+                    />
+                    {`${branchesAndChapters[index].name} `}
                 </div>
-            </section>
-            <Snackbar
-                open={snackbar.open}
-                autoHideDuration={6000}
-                onClose={handleSnackClose}
-                message={snackbar.message}
-            />
+
+                <div className="middle-container">
+                    <form className={classes.form} autoComplete="off">
+                        {/* Full Name of Branch Chapter Field */}
+                        <div>
+                            <div className="form-field-wrapper">
+                                <TextField
+                                    name="name"
+                                    value={values.name.value}
+                                    error={values.name.error}
+                                    onChange={handleChange}
+                                    placeholder="Name of Branch"
+                                    disabled={isFormDisabled}
+                                    variant="outlined"
+                                />
+                                <span className="required-asterisk"> * </span>
+                            </div>
+                            {/* Longitute of Branch/Chapter */}
+                            <div className="form-field-wrapper">
+                                <TextField
+                                    name="latitude"
+                                    value={values.latitude.value}
+                                    error={values.latitude.error}
+                                    onChange={handleChange}
+                                    placeholder="Latitude"
+                                    disabled={isFormDisabled}
+                                    variant="outlined"
+                                />
+                                <span className="required-asterisk"> * </span>
+                            </div>
+                            {/* Latitude of Branch/Chapter */}
+                            <div className="form-field-wrapper">
+                                <TextField
+                                    name="longitude"
+                                    value={values.longitude.value}
+                                    error={values.longitude.error}
+                                    onChange={handleChange}
+                                    placeholder="Longitude"
+                                    disabled={isFormDisabled}
+                                    variant="outlined"
+                                />
+                                <span className="required-asterisk"> * </span>
+                            </div>
+                            {/* Type of Branch/Chapter */}
+
+                            <div className="form-field-wrapper">
+                                <CustomSelectField
+                                    name="isBranch"
+                                    error={values.isBranch.error}
+                                    value={values.isBranch.value}
+                                    placeholder="Branch"
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    variant="outlined"
+                                    label="Branch"
+                                    select
+                                    // autoWidth={false}
+                                >
+                                    <MenuItem value="true">Branch</MenuItem>
+                                    <MenuItem value="false">Chapter</MenuItem>
+                                </CustomSelectField>
+                                <span className="required-asterisk"> * </span>
+                            </div>
+
+                            {/* Email of Branch/Chapter */}
+                            <div className="form-field-wrapper">
+                                <TextField
+                                    name="email"
+                                    value={values.email.value}
+                                    error={values.email.error}
+                                    onChange={handleChange}
+                                    placeholder="Email of Branch"
+                                    disabled={isFormDisabled}
+                                    variant="outlined"
+                                />
+                                <span className="required-asterisk"> * </span>
+                            </div>
+                            {/* Site Link of Branch/Chapter */}
+                            <div className="form-field-wrapper">
+                                <TextField
+                                    name="siteLink"
+                                    value={values.siteLink.value}
+                                    error={values.siteLink.error}
+                                    onChange={handleChange}
+                                    placeholder="Insert a Site Link"
+                                    disabled={isFormDisabled}
+                                    variant="outlined"
+                                />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div className="column">
+                    <div className="post-button">
+                        <Button text="Post" onClickCallback={handleFormSubmit} />
+                    </div>
+                </div>
+                <Snackbar
+                    open={snackbar.open}
+                    autoHideDuration={6000}
+                    onClose={handleSnackClose}
+                    message={snackbar.message}
+                />
+            </div>
         </div>
     );
 }
