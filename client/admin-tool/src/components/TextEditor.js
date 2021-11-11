@@ -94,6 +94,7 @@ const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr, isDisabled = fal
                     options: [
                         "inline",
                         "fontSize",
+                        "list",
                         "fontFamily",
                         "textAlign",
                         "colorPicker",
