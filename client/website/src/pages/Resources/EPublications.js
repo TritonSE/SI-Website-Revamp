@@ -8,16 +8,20 @@
  * @Author PatrickBrown1
  */
 
+/* eslint-disable */
+
 import React, { useState, useEffect } from "react";
 import Slideshow from "../../components/Slideshow";
 import EPubSection from "../../components/EPubs/EPubSection";
 import EPubCard from "../../components/EPubs/EPubCard";
 import "../../css/EPublications.css";
 
+import Loader from "../../components/Main/Loader";
+
 import { fetchEpubs } from "../../util/requests";
 
 // dummy data for each publication list
-/* const page_data = {
+const page_data = {
     sections: [
         {
             section_title: "Section 1",
@@ -227,7 +231,7 @@ import { fetchEpubs } from "../../util/requests";
             ],
         },
     ],
-}; */
+}; 
 
 // renders selected section from state, including each card in that page,
 // and a button to go back to the main EPublications screen
@@ -260,8 +264,8 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                             <EPubCard
                                 title={pub.title}
                                 author={pub.author}
-                                image_url={pub.image_url}
-                                redirect_link={pub.redirect_link}
+                                image_url={pub.imageLink}
+                                redirect_link={pub.pdfLInk}
                                 isMobile={isMobile}
                             />
                         ))
@@ -317,8 +321,8 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
 };
 // No props
 export default function EPublications() {
-    const [epublications, setEpublications] = useState([]);
-    // const [loadingEpubs, setLoadingEpubs] = useState(true);
+    const [epublications, setEpublications] = useState({});
+    const [loadingEpubs, setLoadingEpubs] = useState(true);
     const [selectedSection, setSelectedSection] = useState("");
     const [isMobile, setIsMobile] = useState(false);
 
@@ -330,6 +334,7 @@ export default function EPublications() {
         function handleResize() {
             setIsMobile(window.innerWidth <= MAX_MOBILE_VIEW_WIDTH);
         }
+
         // Add event listener
         window.addEventListener("resize", handleResize);
         handleResize();
@@ -341,29 +346,25 @@ export default function EPublications() {
     useEffect(() => {
         // scroll to top whenever a new section is selected / left
         document.getElementById("page-layout").scrollTo({ top: 0, behavior: "smooth" });
-    }, [selectedSection]);
+    }, []);
 
     useEffect(async () => {
         await (async () => {
-            const d = await fetchEpubs();
-            // old seeding
-            // fill newsletterList
-            // const d = [];
-            // let i = 0;
-            // for (i; i < 50; i++) {
-            //     d.push({
-            //         title: `Newsletter ${i}`,
-            //         volume: i,
-            //         year: "2019",
-            //         imageLink:
-            //             "https://cdn2.wanderlust.co.uk/media/1069/lists-the-worlds-most-awesome-giant-buddhas.jpg?anchor=center&mode=crop&width=1200&height=0&rnd=131482975350000000",
-            //         pdfLink: "https://google.com",
-            //     });
-            // }
-            setEpublications(d);
+            const returnVal = await fetchEpubs();
+
+            setEpublications(returnVal)
         })();
+
+        setLoadingEpubs(false)
     }, []);
 
+    if (loadingEpubs) {
+        return (
+            <div id="EPubPage">
+                <Loader />
+            </div>
+        )
+    }
     return (
         <div id="EPubPage">
             {selectedSection === "" ? (
@@ -429,6 +430,7 @@ export default function EPublications() {
                     </Slideshow>
                     {/* Render a new publications section for each section in data, pass in each card */}
                     <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>
+                        {console.log(epublications)}
                         {epublications.sections.map((section) => (
                             <EPubSection
                                 publication_section={section}

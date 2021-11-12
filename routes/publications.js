@@ -195,10 +195,12 @@ router.get("/", [isValidated], async (req, res) => {
     try {
         const filterId = req.query.filterId || null;
 
+        console.log("filterId")
+
         // default: get all publications
         let queryFilter = null;
 
-        // retrive publications with a specific filter
+        // retrieve publications with a specific filter
         if (filterId) {
             let pubIds = await filteredMethods.getAllEntriesWithFilter(filterId);
             pubIds = pubIds.map((val) => val["publicationId"]);
