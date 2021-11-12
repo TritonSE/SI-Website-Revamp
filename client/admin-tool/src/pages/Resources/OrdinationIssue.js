@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+
 import Stepper from "../../components/Stepper";
 
 import "../../css/OrdinationIssue.css";
@@ -19,7 +20,7 @@ export default function OrdinationIssue() {
         { a: "Conference number #1345", feature: false },
         { a: "Conference number #22323", feature: false },
     ];
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = React.useState(0);
     const handleNodeClick = (ind) => {
         setIndex(ind);
     };

@@ -1,0 +1,16 @@
+.delete-wrapper {
+  margin: 20px 30px !important;
+}
+
+.delete-confirmation-text {
+  text-align: center;
+  color: black !important;
+}
+
+.delete-modal-actions {
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
