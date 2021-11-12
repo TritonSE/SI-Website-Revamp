@@ -7,7 +7,7 @@
  */
 const express = require("express");
 const { body } = require("express-validator");
-const { create, getAll, edit, remove} = require("../db/services/conference");
+const { create, getAll, edit, remove } = require("../db/services/conference");
 const { isValidated } = require("../middleware/validation");
 
 const router = express.Router();
@@ -206,7 +206,7 @@ router.put(
  *
  * @param {Number} id - id of the conference to be removed.
  */
- router.delete("/:id", [isValidated], async (req, res) => {
+router.delete("/:id", [isValidated], async (req, res) => {
     try {
         const { id } = req.params;
 

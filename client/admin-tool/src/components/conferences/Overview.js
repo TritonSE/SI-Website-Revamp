@@ -3,7 +3,7 @@ import { TextField } from "@material-ui/core";
 import ListView from "./ListView";
 import "../../css/Conferences.css";
 
-const Overview = ({ classes, conferenceItem, handleChange }) => (
+const Overview = ({ classes, conferenceItem, handleChange, formDisabled }) => (
     <section className="conferences-overview-section">
         <div className="conferences-brochures">
             <div className="conferences-brochures-header">
@@ -15,6 +15,7 @@ const Overview = ({ classes, conferenceItem, handleChange }) => (
                 classes={classes}
                 handleChange={handleChange}
                 keyword="brochures"
+                formDisabled={formDisabled}
             />
         </div>
 
@@ -28,6 +29,7 @@ const Overview = ({ classes, conferenceItem, handleChange }) => (
                 classes={classes}
                 handleChange={handleChange}
                 keyword="programs"
+                formDisabled={formDisabled}
             />
         </div>
 
@@ -41,6 +43,7 @@ const Overview = ({ classes, conferenceItem, handleChange }) => (
                 classes={classes}
                 handleChange={handleChange}
                 keyword="abstracts"
+                formDisabled={formDisabled}
             />
         </div>
 
@@ -54,6 +57,7 @@ const Overview = ({ classes, conferenceItem, handleChange }) => (
                 classes={classes}
                 handleChange={handleChange}
                 keyword="presentations"
+                formDisabled={formDisabled}
             />
         </div>
 
@@ -65,6 +69,7 @@ const Overview = ({ classes, conferenceItem, handleChange }) => (
                 value={conferenceItem.video.value}
                 error={conferenceItem.video.error}
                 onChange={(e) => handleChange(e)}
+                disable={formDisabled}
                 placeholder="Start writing here "
                 InputProps={{
                     classes: {

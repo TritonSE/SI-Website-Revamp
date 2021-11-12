@@ -4,7 +4,7 @@ import ListViewImages from "./ListViewImages";
 
 import "../../css/Conferences.css";
 
-const Theme = ({ classes, conferenceItem, handleChange }) => (
+const Theme = ({ classes, conferenceItem, handleChange, formDisabled }) => (
     <section className="conferences-theme-section">
         <div className="conferences-title">
             <TextField
@@ -12,6 +12,7 @@ const Theme = ({ classes, conferenceItem, handleChange }) => (
                 value={conferenceItem.title.value}
                 error={conferenceItem.title.error}
                 onChange={(e) => handleChange(e)}
+                disabled={formDisabled}
                 placeholder="Title"
                 InputProps={{
                     classes: {
@@ -19,9 +20,9 @@ const Theme = ({ classes, conferenceItem, handleChange }) => (
                     },
                 }}
                 style={{ fontSize: "36px", width: "100%" }}
-                // disabled={isFormDisabled}
                 variant="outlined"
             />
+            <span className="required-asterisk"> * </span>
         </div>
 
         <div className="conferences-num-location">
@@ -31,15 +32,16 @@ const Theme = ({ classes, conferenceItem, handleChange }) => (
                 error={conferenceItem.confNum.error}
                 onChange={(e) => handleChange(e)}
                 placeholder="Conference number"
+                disabled={formDisabled}
                 InputProps={{
                     classes: {
                         input: classes.resizeDetails,
                     },
                 }}
-                style={{ width: "45%" }}
-                // disabled={isFormDisabled}
+                style={{ width: "48%" }}
                 variant="outlined"
             />
+            <span className="required-asterisk-conf-num"> * </span>
 
             <TextField
                 name="location"
@@ -47,15 +49,16 @@ const Theme = ({ classes, conferenceItem, handleChange }) => (
                 error={conferenceItem.location.error}
                 onChange={(e) => handleChange(e)}
                 placeholder="Location"
+                disabled={formDisabled}
                 InputProps={{
                     classes: {
                         input: classes.resizeDetails,
                     },
                 }}
-                style={{ width: "45%" }}
-                // disabled={isFormDisabled}
+                style={{ width: "48%" }}
                 variant="outlined"
             />
+            <span className="required-asterisk-location"> * </span>
         </div>
 
         <div className="conferences-theme-div">
@@ -69,13 +72,13 @@ const Theme = ({ classes, conferenceItem, handleChange }) => (
                 error={conferenceItem.theme.error}
                 onChange={(e) => handleChange(e)}
                 placeholder="Start writing here "
+                disabled={formDisabled}
                 InputProps={{
                     classes: {
                         input: classes.resizeDetails,
                     },
                 }}
                 style={{ width: "100%" }}
-                // disabled={isFormDisabled}
                 variant="outlined"
             />
         </div>
@@ -83,22 +86,22 @@ const Theme = ({ classes, conferenceItem, handleChange }) => (
         <div className="conferences-signup-div">
             <div className="conferences-signup-header">
                 <h2>Sign-up Redirect</h2>
-                <p>Leave black if there is no sign up link</p>
+                <p>Leave blank if there is no sign up link</p>
             </div>
 
             <TextField
-                name="theme"
+                name="signUpLink"
                 value={conferenceItem.signUpLink.value}
                 error={conferenceItem.signUpLink.error}
                 onChange={(e) => handleChange(e)}
                 placeholder="Start writing here "
+                disabled={formDisabled}
                 InputProps={{
                     classes: {
                         input: classes.resizeDetails,
                     },
                 }}
                 style={{ width: "100%" }}
-                // disabled={isFormDisabled}
                 variant="outlined"
             />
         </div>
@@ -106,11 +109,14 @@ const Theme = ({ classes, conferenceItem, handleChange }) => (
         <div className="conferences-images">
             <div className="conferences-images-header">
                 <h2>Images</h2>
+                <p>One image is required</p>
             </div>
             <ListViewImages
                 items={conferenceItem.slideShowImages.value.urls}
+                error={conferenceItem.slideShowImages.error}
                 classes={classes}
                 handleChange={handleChange}
+                formDisabled={formDisabled}
             />
         </div>
     </section>

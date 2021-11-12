@@ -50,7 +50,7 @@ async function edit(index, body) {
  * @param {int} index -
  * @returns {[object]} - Array of objects/null.
  */
- async function remove(index) {
+async function remove(index) {
     return Conference.destroy({
         where: {
             id: index,
@@ -62,5 +62,5 @@ module.exports = {
     getAll,
     create,
     edit,
-    remove
+    remove,
 };

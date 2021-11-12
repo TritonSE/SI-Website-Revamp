@@ -6,7 +6,7 @@ import Button from "../Button";
 
 import "../../css/ListView.css";
 
-const ListView = ({ items, classes, handleChange, keyword }) => {
+const ListView = ({ items, classes, handleChange, keyword, formDisabled }) => {
     const [itemUrl, setItemUrl] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [overviewData, setOverviewData] = useState();
@@ -120,6 +120,7 @@ const ListView = ({ items, classes, handleChange, keyword }) => {
                     error={false}
                     onChange={(e) => onInputChange(e)}
                     placeholder="Enter description"
+                    formDisabled={formDisabled}
                     InputProps={{
                         classes: {
                             input: classes.resizeDetails,

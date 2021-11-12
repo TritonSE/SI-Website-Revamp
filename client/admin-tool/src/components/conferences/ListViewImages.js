@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button";
 import "../../css/ListViewImages.css";
 
-const ListViewImages = ({ items, classes, handleChange }) => {
+const ListViewImages = ({ items, classes, handleChange, formDisabled, error }) => {
     const [singleUrl, setSingleUrl] = useState("");
     const [imageUrls, setImageUrls] = useState();
     const [urlButtonText, setUrlButtonText] = useState("Add url");
@@ -106,18 +106,20 @@ const ListViewImages = ({ items, classes, handleChange }) => {
                 <TextField
                     name="theme"
                     value={singleUrl}
-                    error={false}
+                    error={error}
                     onChange={(e) => onInputChange(e)}
                     placeholder="Start writing here "
+                    formDisabled={formDisabled}
                     InputProps={{
                         classes: {
                             input: classes.resizeDetails,
                         },
                     }}
                     style={{ width: "100%" }}
-                    // disabled={isFormDisabled}
+                    disabled={formDisabled}
                     variant="outlined"
                 />
+                <span className="required-asterisk"> * </span>
 
                 <Button
                     text={urlButtonText}

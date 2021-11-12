@@ -18,19 +18,22 @@
   flex-direction: column;
   margin-left: 50px;
   width: 800px;
-  min-width: 50%;
+  min-width: 60%;
   padding-bottom: 50px;
 }
 
 .conferences-title {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.conferences-title h1 {
+.conferences-title-h1 {
+  width: 100%;
   font-weight: 700;
   font-family: var(--heading-font);
   font-size: 36px;
-  line-height: 44.64px;
+  margin-block-end: 0;
 }
 
 .conferences-theme-section,
@@ -53,6 +56,13 @@
   margin-top: 30px;
 }
 
+.conferences-images-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: -12px;
+}
+
 .conferences-theme-div h2,
 .conferences-signup-header h2,
 .conferences-images-header h2 {
@@ -66,17 +76,19 @@
   margin-top: 20px;
 }
 
-.conferences-signup-header {
+.conferences-signup-header,
+.conferences-images-header {
   display: flex;
   align-items: flex-end;
 }
 
-.conferences-signup-header p {
+.conferences-signup-header p,
+.conferences-images-header p {
   margin-left: 20px;
   font-size: 12px;
   font-family: var(--text-font);
   font-weight: 500;
-  line-height: 30.6px;
+  line-height: 32px;
 }
 
 .conferences-images {
@@ -97,18 +109,15 @@
 /* The start of the tab styling */
 .conferences-tabs {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 70%;
-  height: 100px;
+  width: 300px;
+  margin-bottom: 30px;
 }
 
 .conferences-tabs section {
-  margin-top: 50px;
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid transparent;
 }
@@ -133,6 +142,31 @@
 
 .active-tab {
   border-bottom: 2px solid var(--orange);
+}
+
+.post-buttons {
+  margin-left: 50px;
+}
+
+.add-conference {
+  margin-top: 100px;
+}
+
+.delete-conference {
+  margin-top: 30px;
+}
+
+.required-asterisk,
+.required-asterisk-conf-num,
+.required-asterisk-location {
+  color: #ea4444;
+  font-size: 25px;
+  margin-left: 5px;
+}
+
+.required-asterisk-conf-num,
+.required-asterisk-location {
+  margin-left: -10px;
 }
 
 /* Styling the scroll bar for the overview/theme */
