@@ -2,8 +2,6 @@ const config = require("../config.js");
 
 const BACKEND_URL = config.backend.uri;
 
-/* eslint-disable */
-
 export const fetchNewsletters = async () => {
     try {
         const res = await fetch(`${BACKEND_URL}newsletters/`, {
@@ -30,79 +28,38 @@ export const fetchNewsletters = async () => {
 
 export const fetchEpubs = async () => {
     try {
-        const returnObj = {sections: []}
+        const returnObj = { sections: [] };
 
         await fetch(`${BACKEND_URL}publications/epubFilters`, {
             method: "get",
             headers: {
                 "content-type": "application/json",
             },
-        })
-        .then(async value => {
+        }).then(async (value) => {
             const filters = await value.json();
 
-            await Promise.all(filters.map(filter => {
-                return fetch(`${BACKEND_URL}publications?filterId=${filter.id}`, {
-                    method: "get",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                })
-                .then(response => response.json())
-                .then(value => {
-                    if(value.length > 0) {
-                        returnObj.sections.push({
-                            section_title: filter.title,
-                            section_list: value
+            await Promise.all(
+                filters.map((filter) =>
+                    fetch(`${BACKEND_URL}publications?filterId=${filter.id}`, {
+                        method: "get",
+                        headers: {
+                            "content-type": "application/json",
+                        },
+                    })
+                        .then((response) => response.json())
+                        .then((section_list) => {
+                            if (section_list.length > 0) {
+                                returnObj.sections.push({
+                                    section_title: filter.title,
+                                    section_list,
+                                });
+                            }
                         })
-                    }
-                })
-            }))
-        })
+                )
+            );
+        });
 
         return returnObj;
-
-        // if(response.ok) {
-        //     const d = await response.json();
-
-        //     console.log(d)
-
-        //     return d
-        // }
-
-        // return returnObj
-
-        // console.log("called")
-
-        // if(response.ok) {
-        //     const filters = await response.json();
-
-        //     filters.map(filter => {
-        //         fetch(`${BACKEND_URL}publications?filterId=${filter.id}`, {
-        //             method: "get",
-        //             headers: {
-        //                 "content-type": "application/json",
-        //             },
-        //         })
-        //         .then((result) => result.json())
-        //         .then((value) => {
-        //             if(value.length > 0) {
-        //                 returnObj.sections.push({
-        //                     section_title: filter.title,
-        //                     section_list: value
-        //                 })
-        //             }
-        //         });
-    
-        //         return filters;
-        //     })
-
-        //     return returnObj;
-        // }
-
-        // console.log("failed")
-
-        // return [];
     } catch {
         // any server issue
         return [];

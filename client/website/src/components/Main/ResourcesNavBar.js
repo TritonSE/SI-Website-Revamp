@@ -70,7 +70,7 @@ export default function ResourcesNavBar(props) {
                     <text>Newsletters</text>
                 </a>
                 <a className={`resources-link ${isPageActive(epub)}`} href={epub}>
-                    <text>E-Publications</text>
+                    <text>Publications</text>
                 </a>
                 <a className={`resources-link ${isPageActive(culture)}`} href={culture}>
                     <text>Buddhist Culture</text>
