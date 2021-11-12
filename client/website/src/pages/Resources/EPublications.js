@@ -320,6 +320,8 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
 // No props
 export default function EPublications() {
     const [epublications, setEpublications] = useState({});
+
+    // enable loading by default and have
     const [loadingEpubs, setLoadingEpubs] = useState(true);
     const [selectedSection, setSelectedSection] = useState("");
     const [isMobile, setIsMobile] = useState(false);
@@ -346,13 +348,18 @@ export default function EPublications() {
         document.getElementById("page-layout").scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
+    // get list of publications from backend
     useEffect(async () => {
         await (async () => {
+
+            // set value to the return object in fetchEpubs
             const returnVal = await fetchEpubs();
 
+            // set state variable to the returned value
             setEpublications(returnVal);
         })();
 
+        // disable loading screen
         setLoadingEpubs(false);
     }, []);
 
