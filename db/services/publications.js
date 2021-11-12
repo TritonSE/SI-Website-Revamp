@@ -131,16 +131,16 @@ async function deleteById(id) {
             id,
         },
     })
-    .then((count) => {
-        if (count === 0) {
+        .then((count) => {
+            if (count === 0) {
+                return false;
+            }
+            return true;
+        })
+        .catch((err) => {
+            console.log(err);
             return false;
-        }
-        return true;
-    })
-    .catch((err) => {
-        console.log(err);
-        return false;
-    });
+        });
 }
 
 module.exports = {

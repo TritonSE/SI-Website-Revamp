@@ -38,36 +38,35 @@ export const fetchEpubs = async () => {
                 "content-type": "application/json",
             },
         })
-        .then(async (value) => {
-            const filters = await value.json();
+            .then(async (value) => {
+                const filters = await value.json();
 
-            // loop through filters and get back publications in those filters
-            await Promise.all(
-                filters.map((filter) =>
-                    fetch(`${BACKEND_URL}publications?filterId=${filter.id}`, {
-                        method: "get",
-                        headers: {
-                            "content-type": "application/json",
-                        },
-                    })
-                    .then((response) => response.json())
-                    .then((section_list) => {
-                        // only display sections with at least one book
-                        if (section_list.length > 0) {
+                // loop through filters and get back publications in those filters
+                await Promise.all(
+                    filters.map((filter) =>
+                        fetch(`${BACKEND_URL}publications?filterId=${filter.id}`, {
+                            method: "get",
+                            headers: {
+                                "content-type": "application/json",
+                            },
+                        })
+                            .then((response) => response.json())
+                            .then((section_list) => {
+                                // only display sections with at least one book
+                                if (section_list.length > 0) {
+                                    // add section to object in order to display
+                                    returnObj.sections.push({
+                                        section_title: filter.title,
+                                        section_list,
+                                    });
+                                }
+                            })
+                    )
+                );
 
-                            // add section to object in order to display
-                            returnObj.sections.push({
-                                section_title: filter.title,
-                                section_list,
-                            });
-                        }
-                    })
-                )
-            );
-
-            return returnObj;
-        })
-        .catch(() => []);
+                return returnObj;
+            })
+            .catch(() => []);
     } catch {
         // any server issue
         return [];

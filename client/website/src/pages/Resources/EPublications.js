@@ -351,7 +351,6 @@ export default function EPublications() {
     // get list of publications from backend
     useEffect(async () => {
         await (async () => {
-
             // set value to the return object in fetchEpubs
             const returnVal = await fetchEpubs();
 
