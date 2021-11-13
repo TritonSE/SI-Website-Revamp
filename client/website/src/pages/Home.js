@@ -113,11 +113,18 @@ export default function Home() {
         if (isTabletVertical) return "55vh";
         return "85vh";
     }
+
+    const formatLoader = (
+        <div className="loader-wrapper">
+             <Loader />
+        </div>
+       
+    );
     return (
         <div className="Home">
             {/* Slideshow component */}
             {isPageLoading ? (
-                <Loader />
+                formatLoader
             ) : (
                 <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
                     {/* All Slides mapped here with display information  */}
@@ -137,27 +144,18 @@ export default function Home() {
             )}
             {/* Body of Page - Everthing below slideshow */}
             <section className="home-body">
-                {/* Introduction */}
-                <section id="home-intro">
-                    <h1 ref={introTitle}>Introduction </h1>
+               
+                  {/* Introduction */}
+                  <section id="home-intro">
+                    <h1 ref={introTitle}> Introduction </h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
-                        condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula
-                        eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat
-                        arcu, in efficitur sem tortor vel lectus. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet
-                        lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed
-                        porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem
-                        tortor vel lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                        Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales,
-                        orci neque volutpat arcu, in efficitur sem tortor vel lectus.Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum
-                        massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut
-                        laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in
-                        efficitur sem tortor vel lectus.Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia
-                        massa commodo sed.
+                        In 2014, I was elected as the president of Sakyadhita. Since I had been associated with Sakyadhita for many years and had already attended several Sakyadhita conferences, I was honored to be chosen to represent this unique and esteemed international association of Buddhist women.
+                        {"\n\n"}
+                        After the Hong Kong conference, in June 2017, several Asian groups suggested the possibility of holding the next conference in a non-Buddhist country to see what the Dharma looked like in the West. Sakyadhita Australia kindly agreed to help us host the event. We quickly assembled a small team with our vice president, Eun-su Cho from Korea, former president Christie Chang from Taiwan, Yeo May Ling from Singapore as treasurer, and Ven. Aileen Barry from India as secretary, plus myself as president. Later we also engaged Lynn Bain in Sydney, who had already organized a number of His Holiness the Dalai Lama’s visits to Australia.
+                        {"\n\n"}
+                        For the first time, I was closely involved in setting up a Sakyadhita conference with all the endless decisions that had to be made. Thank heaven for Zoom! Although the organizers lived in various countries, we managed to put together a conference in the Blue Mountains that was highly successful and enjoyed by over 800 Buddhist women, both monastic and lay, from all traditions. That is the wonder that is Sakyadhita!
+                        {"\n\n"}
+                        Now, it is time to pass on this position as president – with the hope that our future Sakyadhita presidents will bring a clear vision and direction to the role. With their dedication, Sakyadhita will continue to be a beacon of inspiration for countless Buddhist women around the world.
                     </p>
                 </section>
 
@@ -168,7 +166,7 @@ export default function Home() {
                 <section id="branches-and-chapters">
                     {/* Interactive Map */}
                     {isPageLoading ? (
-                        <Loader />
+                        formatLoader
                     ) : (
                         <InteractiveMap
                             disableZooming={disableZoom}
@@ -245,6 +243,7 @@ export default function Home() {
                         </section>
                     </div>
                 </section>
+
                 {/* Be Involved Section  */}
                 <section id="home-be-involved">
                     <h1>Be Involved </h1>
@@ -275,7 +274,30 @@ export default function Home() {
                             button_title="Donate"
                         />
                     </div>
+
                 </section>
+
+                <section className="home-section">
+                     {/* Mini Divider */}
+                     <div className=".divider-wrapper">
+                     <hr className="divider" />
+                     </div>
+                    
+                    <h1 className="home-section-title"> Sakyadhita: A Beacon of Inspiration </h1>
+                    <div>
+                        <h4>by Jetsunma Tenzin Palmo</h4>
+                        In 2014, I was elected as the president of Sakyadhita. Since I had been associated with Sakyadhita for many years and had already attended several Sakyadhita conferences, I was honored to be chosen to represent this unique and esteemed international association of Buddhist women.
+                        {"\n\n"}
+                        After the Hong Kong conference, in June 2017, several Asian groups suggested the possibility of holding the next conference in a non-Buddhist country to see what the Dharma looked like in the West. Sakyadhita Australia kindly agreed to help us host the event. We quickly assembled a small team with our vice president, Eun-su Cho from Korea, former president Christie Chang from Taiwan, Yeo May Ling from Singapore as treasurer, and Ven. Aileen Barry from India as secretary, plus myself as president. Later we also engaged Lynn Bain in Sydney, who had already organized a number of His Holiness the Dalai Lama’s visits to Australia.
+                        {"\n\n"}
+                        For the first time, I was closely involved in setting up a Sakyadhita conference with all the endless decisions that had to be made. Thank heaven for Zoom! Although the organizers lived in various countries, we managed to put together a conference in the Blue Mountains that was highly successful and enjoyed by over 800 Buddhist women, both monastic and lay, from all traditions. That is the wonder that is Sakyadhita!
+                        {"\n\n"}
+                        Now, it is time to pass on this position as president – with the hope that our future Sakyadhita presidents will bring a clear vision and direction to the role. With their dedication, Sakyadhita will continue to be a beacon of inspiration for countless Buddhist women around the world.
+
+                        <img width="350px" height="auto" src="https://lh3.googleusercontent.com/TuZIw8B_WNgaRnBwET-LMcJlsA2HS8s-JBDa9pN53umukCo8vwmvKFIv7GUiSlIhrOfl7ItgBmwZmcOfUveAPM496Ey-gyB97o1CbvB6VNRooFfZ6AxI9je_e40cqrEYFJP5Nv9C3lWYFavbTqYntfu-yaPvwHm7Cwppx0xytpiN8yEEFX6-vDnRzj1MesPy5eBkX1Y4DAaVGaiZTqDWz1M5NrCRnl_UVSn8OuTONXaEJGAi2c7ogPjRSRaikvWEWMbuk-sn01bKziBHB-voxPy7RMLgvDmjaGL9qWKLVs6mhKmGNXIHX5XV0jw3-TKCgI1STOjtRBvusfCv0mZhej5c32alyxFqX7cGAIVPL_YikcnfD3np96WGLiBSmdapjIx7zlYtX1XWKyoEGCFrC6Trh9bDfjqCKoHrw3RNWu1gnHAToA3JGYxCam72jUWZ4X9UH7xoFNZZ0Mc4m3B2Xr3alVubTVwMkdyjYSWa3rVXGselifN9FpVWmN84VHYYDD6O27snW3jV_Vo0TB5YEqvRIZEeD6QK31GG8yzyK2p2LpjfEfCbYgfhpJQWF2xRjdhKCDgtGbKCk0yLeEAR7UxH9kxsCzMbnxfuPlnNiwzLnua8mL0UQZygN78xa_z69X3l9j6c8noorBrn8eNcF6YMT5BZDx2xPG2MZegRV3Igf3Ta4a5iTmobx58Kt2tyu2dx7RgQjDVSwa9z-hf8JVI=w309-h250-no?authuser=1" />
+                    </div>
+                </section>
+                 
             </section>
         </div>
     );

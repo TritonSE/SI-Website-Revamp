@@ -65,6 +65,18 @@ module.exports = async () => {
             },
             { logging: false }
         ),
+        newsAndEvents.create(
+            {
+                title: "Sakyadhita eBooks",
+                description: "Sakyadhita eBooks available for all!",
+                imageLink:
+                    "https://lh3.googleusercontent.com/h5har4-FfudF42AVB5ra6ntFXyrc-zSFJ6Q6opNGKQIFv7S7ETrORWhlPd0PJbmO_DQE4KTjcPN4Ks14oJHuRupouVhcS3HOcQnUIFn2oyQnYAKS2NaUF9IgEflP8JxzdpfSXnL41X1WtBmkYG5I_BcVAGVBj115UmXpBAQZ0GYD7yF5u0jDB55jQ2LfQS4t6Uk8lkw44nlalS8fzyMHYJk7sqO1zgpuEOpCIkIqIbCDgDUeqihhZvpSmeGEZ57Kn6rNX9LDU9d1bKaEq_FwkEQ78nmwjiMmUkOjKubZnV9GKD4HOHo8lvuDJkO_xXnG9Fs7iL9bAAoL9X1vGKXvfu7P10qhb0YV-TNVbV5qdZC9fkP4SyCrPIZB2jPyLoLN_2ceJZzc9fyE8j5hQ9r6-eiMdOktl-9GyPD2TMoy5xYim0MVHaaXoE3C5shIJIafnPIUDuRoZItuip_-2eeNE5pJZLfx7-E3tNcKM5sdt-v5U1a4SxASgEQeKdYbUNdt3-EKt86zsp4tts96_JyX1jBQIY7UkNn1_pG8rpOLEQ_Sfx_9jvgWwziLHRvRMDcHvByIi7bTKS_xDe12Cfcbc1PBEmZDvHgMMEmoQehHsPGzjokDfnUtQaRLKforzEeAiHEdWvkgmBv4NkEdXUVqMM2D4WKoMXnLDcYrWG5ddnVZgbDLd1onRy-qSbIKvk1OeyU-LEJx-FBcl--Z3WSmwyI=w694-h318-no?authuser=1",
+                redirectLink:
+                    "/resources/epublications",
+                openInSameTab: true,
+            },
+            { logging: false }
+        ),
     ])
         .then(() => {
             // successfull population
