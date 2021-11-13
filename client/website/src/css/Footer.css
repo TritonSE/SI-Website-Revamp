@@ -63,6 +63,7 @@
 
 .Footer-Bottom {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-top: 50px;
@@ -84,13 +85,25 @@
 
 .cc-notice {
   color: white;
+  text-align: center;
 }
 
 .cc-notice a:hover {
   color: var(--orange);
 }
 
+@media only screen and (max-width: 950px) {
+  .Footer-Bottom {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 750px) {
+  .Footer-Main-Container::before,
+  .Footer-Main-Container {
+    height: 600px;
+  }
+
   .Footer-Main-Container {
     overflow: hidden;
     align-items: flex-end;

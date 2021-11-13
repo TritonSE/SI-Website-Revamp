@@ -121,6 +121,22 @@ export default function Footer() {
         </a>
     );
 
+    const cclicense = (
+        <p className="cc-notice">
+            <img src="https://licensebuttons.net/l/by-nc-nd/3.0/80x15.png" />
+            &nbsp;Website is licensed under a
+            <a
+                target="_blank"
+                rel="noreferrer"
+                href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US"
+            >
+                {" "}
+                Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
+            </a>
+            . Contact if enquiries.
+        </p>
+    );
+
     // desktop rendering
     if (windowSize.width > MAX_MOBILE_VIEW_WIDTH) {
         return (
@@ -152,20 +168,7 @@ export default function Footer() {
                         <Brand location="footer" />
                     </section>
                     <br />
-                    <p className="cc-notice">
-                        <img src="https://licensebuttons.net/l/by-nc-nd/3.0/80x15.png" />
-                        &nbsp; This and all other work by Sakyadhita International Association of
-                        Buddhist Women, a registered U.S. 501(c)3 non-profit, is licensed under a{" "}
-                        <a
-                            target="_blank"
-                            rel="noreferrer"
-                            href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US"
-                        >
-                            {" "}
-                            Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
-                        </a>
-                        . Contact us if inquiries.{" "}
-                    </p>
+                    {cclicense}
                 </div>
             </div>
         );
@@ -203,6 +206,8 @@ export default function Footer() {
                 </section>
                 {/* site logo */}
                 <Brand location="footer" />
+                <br />
+                {cclicense}
             </div>
         </div>
     );
