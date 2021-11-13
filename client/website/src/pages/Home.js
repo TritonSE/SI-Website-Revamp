@@ -16,11 +16,13 @@ import InteractiveMap from "../components/Home/InteractiveMap";
 import Slideshow from "../components/Slideshow";
 import NewsEventsSlide from "../components/Home/NewsEventsSlide";
 import BeInvolved from "../components/Home/BeInvolved";
+import Loader from "../components/Main/Loader";
 
 import { SITE_PAGES } from "../constants/links";
+import { fetchBranchesAndChapters, fetchNewsAndEvents } from "../util/requests";
 
-import PinkFlower from "../media/Lotus_Flower.png";
-import PurpleFlower from "../media/JoinUs_Header.png";
+// import PinkFlower from "../media/Lotus_Flower.png";
+// import PurpleFlower from "../media/JoinUs_Header.png";
 
 import "../css/Home.css";
 
@@ -40,13 +42,16 @@ const DONATE_REDIRECT_LINK =
 
 export default function Home() {
     // tracks layout of screen
+    const [newsAndEvents, setNewsAndEvents] = useState([]);
+    const [branchesAndChapters, setBranchesAndChapters] = useState([]);
+    const [isPageLoading, setIsPageLoading] = useState(true);
     const [isMobile, setMobileView] = useState(false);
     const [isHorizontalMobile, setHorizontalMobile] = useState(false);
     const [isTabletVertical, setTebletVertical] = useState(false);
     const introTitle = React.createRef();
 
     // handler to call on window resize
-    useEffect(() => {
+    useEffect(async () => {
         function handleResize() {
             // check if now in mobile mode
             if (window.innerWidth <= MAX_MOBILE_WIDTH) {
@@ -74,6 +79,14 @@ export default function Home() {
                 setTebletVertical(false);
             }
         }
+
+        setNewsAndEvents(await fetchNewsAndEvents());
+        setBranchesAndChapters(await fetchBranchesAndChapters());
+        setIsPageLoading(false);
+
+        console.log(newsAndEvents);
+        console.log(branchesAndChapters);
+
         // add event listener
         window.addEventListener("resize", handleResize);
         handleResize();
@@ -93,69 +106,24 @@ export default function Home() {
     };
 
     // dummy slideshow data
-    const slideData = [
-        {
-            openInSameTab: true,
-            redirect_link: "https://www.google.com/",
-            title: "News & Events",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
-            image_url: PinkFlower,
-        },
-        {
-            openInSameTab: false,
-            title: "Upcoming Hawaii Conference!",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
-            redirect_link: "https://www.google.com/",
-            image_url: PurpleFlower,
-        },
-    ];
-
-    const markers = [
-        {
-            name: "Buenos Aires",
-            coordinates: [-58.3816, -34.6037],
-            isBranch: true,
-            email: "sakyadhita@buenos.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "La Paz",
-            coordinates: [-68.1193, -16.4897],
-            isBranch: true,
-            email: "sakyadhita@lapaz.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "Brasilia",
-            coordinates: [-47.8825, -15.7942],
-            isBranch: false,
-            email: "sakyadhita@brasilia.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "Budapest",
-            coordinates: [19.0402, 47.4979],
-            isBranch: false,
-            email: "sakyadhita@budapest.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "Delhi",
-            coordinates: [77.1025, 28.7041],
-            isBranch: false,
-            email: "sakyadhita@delhi.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "California",
-            coordinates: [-119.4179, 36.7783],
-            isBranch: true,
-            email: "sakyadhita@california.com",
-            urlLink: "https://www.google.com/",
-        },
-    ];
+    // const slideData = [
+    //     {
+    //         openInSameTab: true,
+    //         redirect_link: "https://www.google.com/",
+    //         title: "News & Events",
+    //         description:
+    //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
+    //         image_url: PinkFlower,
+    //     },
+    //     {
+    //         openInSameTab: false,
+    //         title: "Upcoming Hawaii Conference!",
+    //         description:
+    //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
+    //         redirect_link: "https://www.google.com/",
+    //         image_url: PurpleFlower,
+    //     },
+    // ];
 
     function getSlideshowHeight() {
         if (isHorizontalMobile) return "500px";
@@ -166,21 +134,25 @@ export default function Home() {
     return (
         <div className="Home">
             {/* Slideshow component */}
-            <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
-                {/* All Slides mapped here with display information  */}
-                {slideData.map((slideInfo) => (
-                    <NewsEventsSlide
-                        height={getSlideshowHeight()}
-                        showButton="true"
-                        openInSameTab={slideInfo.openInSameTab}
-                        redirect_link={slideInfo.redirect_link}
-                        title={slideInfo.title}
-                        description={slideInfo.description}
-                        image_url={slideInfo.image_url}
-                        arrowClickCallback={scrollToIntro}
-                    />
-                ))}
-            </Slideshow>
+            {isPageLoading ? (
+                <Loader />
+            ) : (
+                <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
+                    {/* All Slides mapped here with display information  */}
+                    {newsAndEvents.map((slideInfo) => (
+                        <NewsEventsSlide
+                            height={getSlideshowHeight()}
+                            showButton="true"
+                            openInSameTab={slideInfo.openInSameTab}
+                            redirect_link={slideInfo.redirectLink}
+                            title={slideInfo.title}
+                            description={slideInfo.description}
+                            image_url={slideInfo.imageLink}
+                            arrowClickCallback={scrollToIntro}
+                        />
+                    ))}
+                </Slideshow>
+            )}
             {/* Body of Page - Everthing below slideshow */}
             <section className="home-body">
                 {/* Introduction */}
@@ -213,31 +185,33 @@ export default function Home() {
                 {/* Branches & Chapters Section */}
                 <section id="branches-and-chapters">
                     {/* Interactive Map */}
-                    <InteractiveMap markers={markers} />
-
+                    {isPageLoading ? <Loader /> : <InteractiveMap markers={branchesAndChapters} />}
                     {/* Custom Tooltip for Interactive Map */}
-                    <ReactTooltip
-                        place="left"
-                        effect="solid"
-                        type="light"
-                        border="true"
-                        globalEventOff="click"
-                        id="soclose"
-                        getContent={(dataTip) => (
-                            <div>
-                                <a
-                                    href={markers[Math.floor(dataTip)].urlLink}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    {markers[Math.floor(dataTip)].name}
-                                    <FiExternalLink />
-                                </a>
-                                <br />
-                                {markers[Math.floor(dataTip)].email}
-                            </div>
-                        )}
-                    />
+                    {isPageLoading ? null : (
+                        <ReactTooltip
+                            place="left"
+                            effect="solid"
+                            type="light"
+                            border="true"
+                            globalEventOff="click"
+                            id="soclose"
+                            getContent={(dataTip) => (
+                                <div>
+                                    <a
+                                        href={branchesAndChapters[Math.floor(dataTip)].siteLink}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {branchesAndChapters[Math.floor(dataTip)].name}
+                                        <FiExternalLink />
+                                    </a>
+                                    <br />
+                                    {branchesAndChapters[Math.floor(dataTip)].email}
+                                </div>
+                            )}
+                        />
+                    )}
+
                     {/* Branch/Chapter Information  */}
                     <div className="branch-info">
                         <h1>Branches </h1>

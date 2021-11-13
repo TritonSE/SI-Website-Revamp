@@ -25,6 +25,52 @@ export const fetchNewsletters = async () => {
     }
 };
 
+export const fetchNewsAndEvents = async () => {
+    try {
+        const res = await fetch(`${BACKEND_URL}newsAndEvents/`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        // successfull
+        if (res.ok) {
+            const data = await res.json();
+            return data;
+        }
+
+        // any server issue
+        return [];
+
+        // fetch fails
+    } catch {
+        return [];
+    }
+};
+
+export const fetchBranchesAndChapters = async () => {
+    try {
+        const res = await fetch(`${BACKEND_URL}branchesAndChapters/`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        // successfull
+        if (res.ok) {
+            const data = await res.json();
+            return data;
+        }
+
+        // any server issue
+        return [];
+
+        // fetch fails
+    } catch {
+        return [];
+    }
+};
+
 export const fetchConferences = async () => {
     try {
         const response = await fetch(`${BACKEND_URL}conference/`, {

@@ -59,7 +59,7 @@ export default function InteractiveMap({ markers }) {
                         }
                     </Geographies>
                     {/* Creates custom markers for all information passed */}
-                    {markers.map(({ name, coordinates, isBranch }, i) => (
+                    {markers.map(({ name, latitude, longitude, isBranch }, i) => (
                         <Marker
                             data-for="soclose"
                             data-tip={i}
@@ -67,7 +67,7 @@ export default function InteractiveMap({ markers }) {
                             key={name}
                             className="marker"
                             // coordinates of marker
-                            coordinates={coordinates}
+                            coordinates={[longitude, latitude]}
                         >
                             {/* Outline/style of custom marker defined here */}
                             <g
