@@ -7,15 +7,20 @@
  * @author Amrit Kaur Singh
  */
 import React, { useEffect, useState } from "react";
-import { AiOutlineFacebook, AiOutlineInstagram } from "react-icons/ai";
+import { AiOutlineFacebook, AiOutlineYoutube } from "react-icons/ai";
+import { ImPinterest2 } from "react-icons/im";
+import { FaGoodreads, FaBloggerB } from "react-icons/fa";
 import Brand from "./Brand";
 import { SITE_PAGES } from "../../constants/links";
 import "../../css/Footer.css";
 
-export default function Footer() {
-    const FACEBOOK_LINK = "https://www.facebook.com/";
-    const INSTAGRAM_LINK = "https://www.instagram.com/";
+const FACEBOOK_LINK = "https://www.facebook.com/sakyadhita.international";
+const YOUTUBE_LINK = "https://www.youtube.com/channel/UCLOIc4vqaqPKcjaRqmn6-yg/playlists";
+const PINTEREST_LINK = "https://www.pinterest.com/sakyadhita/";
+const ABW_BLOG_LINK = "http://awakeningbuddhistwomen.blogspot.com/";
+const GOODREADS_LINK = "https://www.goodreads.com/group/show/94269-women-in-buddhism";
 
+export default function Footer() {
     // max width size that mobile view will be rendered
     const MAX_MOBILE_VIEW_WIDTH = 750;
 
@@ -38,6 +43,84 @@ export default function Footer() {
         return () => window.removeEventListener("resize", handleResize);
     }, []); // Empty array ensures that effect is only run on mount
 
+    const facebook = (
+        <a href={FACEBOOK_LINK} target="_blank" rel="noreferrer">
+            <AiOutlineFacebook
+                title="Facebook"
+                style={{ color: "white" }}
+                onMouseOut={({ target }) => {
+                    target.style.color = "white";
+                    target.style.backgroundColor = null;
+                }}
+                onMouseOver={({ target }) => {
+                    target.style.backgroundColor = "#3b5998";
+                }}
+            />
+        </a>
+    );
+
+    const youtube = (
+        <a href={YOUTUBE_LINK} target="_blank" rel="noreferrer">
+            <AiOutlineYoutube
+                title="YouTube"
+                style={{ color: "white", borderRadius: "10px" }}
+                onMouseOut={({ target }) => {
+                    target.style.color = "white";
+                    target.style.backgroundColor = null;
+                }}
+                onMouseOver={({ target }) => {
+                    target.style.backgroundColor = "#c4302b";
+                }}
+            />
+        </a>
+    );
+
+    const pinterest = (
+        <a href={PINTEREST_LINK} target="_blank" rel="noreferrer">
+            <ImPinterest2
+                title="Pinterest"
+                style={{ color: "white", borderRadius: "20px" }}
+                onMouseOut={({ target }) => {
+                    target.style.color = "white";
+                    target.style.backgroundColor = null;
+                }}
+                onMouseOver={({ target }) => {
+                    target.style.backgroundColor = "#E60023";
+                }}
+            />
+        </a>
+    );
+
+    const blog = (
+        <a href={ABW_BLOG_LINK} target="_blank" rel="noreferrer">
+            <FaBloggerB
+                title="ABW Blog"
+                style={{ color: "white", borderRadius: "20px" }}
+                onMouseOut={({ target }) => {
+                    target.style.color = "white";
+                }}
+                onMouseOver={({ target }) => {
+                    target.style.color = "#EA8644";
+                }}
+            />
+        </a>
+    );
+
+    const goodreads = (
+        <a href={GOODREADS_LINK} target="_blank" rel="noreferrer">
+            <FaGoodreads
+                title="goodreads"
+                style={{ color: "white" }}
+                onMouseOut={({ target }) => {
+                    target.style.color = "white";
+                }}
+                onMouseOver={({ target }) => {
+                    target.style.color = "#e9e5cd";
+                }}
+            />
+        </a>
+    );
+
     // desktop rendering
     if (windowSize.width > MAX_MOBILE_VIEW_WIDTH) {
         return (
@@ -55,34 +138,34 @@ export default function Footer() {
                     <section className="Footer-Bottom">
                         {/* social media icons + links */}
                         <section className="Footer-Social-Media">
-                            {/* facebook */}
-                            <a href={FACEBOOK_LINK} target="_blank" rel="noreferrer">
-                                <AiOutlineFacebook
-                                    style={{ color: "white", borderRadius: "20px" }}
-                                    onMouseOut={({ target }) => {
-                                        target.style.color = "white";
-                                    }}
-                                    onMouseOver={({ target }) => {
-                                        target.style.color = "#EA8644";
-                                    }}
-                                />
-                            </a>
-                            {/* instagram */}
-                            <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer">
-                                <AiOutlineInstagram
-                                    style={{ color: "white" }}
-                                    onMouseOut={({ target }) => {
-                                        target.style.color = "white";
-                                    }}
-                                    onMouseOver={({ target }) => {
-                                        target.style.color = "#EA8644";
-                                    }}
-                                />
-                            </a>
+                            {facebook}
+                            {/* youtube */}
+                            {youtube}
+                            {/* pinterest */}
+                            {pinterest}
+                            {/* Blog */}
+                            {blog}
+                            {/* GoodReads */}
+                            {goodreads}
                         </section>
                         {/* site logo */}
                         <Brand location="footer" />
                     </section>
+                    <br />
+                    <p className="cc-notice">
+                        <img src="https://licensebuttons.net/l/by-nc-nd/3.0/80x15.png" />
+                        &nbsp; This and all other work by Sakyadhita International Association of
+                        Buddhist Women, a registered U.S. 501(c)3 non-profit, is licensed under a{" "}
+                        <a
+                            target="_blank"
+                            rel="noreferrer"
+                            href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US"
+                        >
+                            {" "}
+                            Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
+                        </a>
+                        . Contact us if inquiries.{" "}
+                    </p>
                 </div>
             </div>
         );
@@ -107,29 +190,15 @@ export default function Footer() {
                     {/* social media icons + links */}
                     <section className="Footer-Social-Media">
                         {/* facebook */}
-                        <a href={FACEBOOK_LINK} target="_blank" rel="noreferrer">
-                            <AiOutlineFacebook
-                                style={{ color: "white", borderRadius: "20px" }}
-                                onMouseOut={({ target }) => {
-                                    target.style.color = "white";
-                                }}
-                                onMouseOver={({ target }) => {
-                                    target.style.color = "#EA8644";
-                                }}
-                            />
-                        </a>
-                        {/* instagram */}
-                        <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer">
-                            <AiOutlineInstagram
-                                style={{ color: "white" }}
-                                onMouseOut={({ target }) => {
-                                    target.style.color = "white";
-                                }}
-                                onMouseOver={({ target }) => {
-                                    target.style.color = "#EA8644";
-                                }}
-                            />
-                        </a>
+                        <div>{facebook}</div>
+
+                        <div>{youtube}</div>
+
+                        <div>{pinterest}</div>
+
+                        <div>{blog}</div>
+
+                        <div>{goodreads}</div>
                     </section>
                 </section>
                 {/* site logo */}

@@ -203,37 +203,42 @@ export default function ContactUs() {
                 {/* Main paragraph at top  */}
                 <h2>{isMobile ? "Thank you for your interest in Sakyadhita!" : "Contact Us"}</h2>
                 <p>
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
-                    condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget
-                    arcu ut laoreet.{" "}
+                    Thank you for your interest in Sakyadhita International and our work to awaken
+                    women to their tremendous potential for social and spiritual transformation.
+                    Please contact us for general inquiries and comments, resource and women&apos;s
+                    initiative updates, Dharma offerings, questions about donations or sponsorships,
+                    or general correspondence.
                 </p>
                 {/* Contact Information */}
                 <h4>Reach us at: </h4>
                 {/* Email */}
                 <p>
                     {" "}
-                    <GoMail /> <a href="mailto:email@domain.org"> email@domain.org </a>{" "}
+                    <GoMail /> <a href="mailto:info@sakyadhita.org"> info@sakyadhita.org </a>{" "}
+                    (General Email Inquiries){" "}
+                </p>
+                {/* Email */}
+                <p>
+                    {" "}
+                    <GoMail />{" "}
+                    <a href="mailto:webmaster@sakyadhita.org"> webmaster@sakyadhita.org </a>{" "}
+                    (Webmaster){" "}
                 </p>
                 {/* Phone Number */}
                 <p>
                     {" "}
-                    <FaPhoneAlt /> 619-260-4600 x4921{" "}
+                    <FaPhoneAlt /> 619-260-4600 x4921*{" "}
                 </p>
                 {/* Address */}
                 <div className="address">
                     <BsHouseFill className="address-icon" />
-                    <p>
-                        <a
-                            href="https://goo.gl/maps/CKvzmNnzRsdtgLLE9"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                        >
-                            Sakyadhita International, 7331 Princess View Drive, <br /> San Diego, CA
-                            92120 U.S.A.
-                        </a>
-                    </p>
+                    <p>11474 McDowell Court, San Diego, CA 92131 USA</p>
                 </div>
+                <p>
+                    {" "}
+                    *Please note during academic breaks phone messages may not be returned in a
+                    timely manner. Please email for quicker assistance.
+                </p>
                 {/* Renders Form */}
                 <h4>Send us a message!</h4>
                 <form className={classes.form} autoComplete="off">
