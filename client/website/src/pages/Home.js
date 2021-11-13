@@ -11,6 +11,7 @@
 
 import React, { useState, useEffect } from "react";
 import { FiExternalLink } from "react-icons/fi";
+import { MdEmail } from "react-icons/md";
 import ReactTooltip from "react-tooltip";
 import InteractiveMap from "../components/Home/InteractiveMap";
 import Slideshow from "../components/Slideshow";
@@ -45,6 +46,8 @@ export default function Home() {
     const [newsAndEvents, setNewsAndEvents] = useState([]);
     const [branchesAndChapters, setBranchesAndChapters] = useState([]);
     const [isPageLoading, setIsPageLoading] = useState(true);
+    const [disableZoom, setDisableZoom] = useState(false);
+
     const [isMobile, setMobileView] = useState(false);
     const [isHorizontalMobile, setHorizontalMobile] = useState(false);
     const [isTabletVertical, setTebletVertical] = useState(false);
@@ -55,8 +58,10 @@ export default function Home() {
         function handleResize() {
             // check if now in mobile mode
             if (window.innerWidth <= MAX_MOBILE_WIDTH) {
+                setDisableZoom(false);
                 setMobileView(true);
             } else {
+                setDisableZoom(true);
                 setMobileView(false);
             }
 
@@ -84,9 +89,6 @@ export default function Home() {
         setBranchesAndChapters(await fetchBranchesAndChapters());
         setIsPageLoading(false);
 
-        console.log(newsAndEvents);
-        console.log(branchesAndChapters);
-
         // add event listener
         window.addEventListener("resize", handleResize);
         handleResize();
@@ -104,26 +106,6 @@ export default function Home() {
             });
         }
     };
-
-    // dummy slideshow data
-    // const slideData = [
-    //     {
-    //         openInSameTab: true,
-    //         redirect_link: "https://www.google.com/",
-    //         title: "News & Events",
-    //         description:
-    //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
-    //         image_url: PinkFlower,
-    //     },
-    //     {
-    //         openInSameTab: false,
-    //         title: "Upcoming Hawaii Conference!",
-    //         description:
-    //             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
-    //         redirect_link: "https://www.google.com/",
-    //         image_url: PurpleFlower,
-    //     },
-    // ];
 
     function getSlideshowHeight() {
         if (isHorizontalMobile) return "500px";
@@ -185,7 +167,14 @@ export default function Home() {
                 {/* Branches & Chapters Section */}
                 <section id="branches-and-chapters">
                     {/* Interactive Map */}
-                    {isPageLoading ? <Loader /> : <InteractiveMap markers={branchesAndChapters} />}
+                    {isPageLoading ? (
+                        <Loader />
+                    ) : (
+                        <InteractiveMap
+                            disableZooming={disableZoom}
+                            markers={branchesAndChapters}
+                        />
+                    )}
                     {/* Custom Tooltip for Interactive Map */}
                     {isPageLoading ? null : (
                         <ReactTooltip
@@ -206,6 +195,8 @@ export default function Home() {
                                         <FiExternalLink />
                                     </a>
                                     <br />
+                                    <MdEmail />
+                                    &nbsp;
                                     {branchesAndChapters[Math.floor(dataTip)].email}
                                 </div>
                             )}
@@ -216,8 +207,26 @@ export default function Home() {
                     <div className="branch-info">
                         <h1>Branches </h1>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
+                            The benefits of the National Branches is immediately obvious. The number
+                            of women who can afford or set aside time to attend the Sakyadhita
+                            International Conferences on Buddhist Women are limited. Activities on
+                            the national and local level are far easier to organize and more
+                            affordable for larger numbers of people. Designated contact persons for
+                            the national branches are listed on the Sakyadhita website and serve the
+                            important role of disseminating information about Sakyadhita’s goals and
+                            activities to large numbers of people on the national and local level.
+                            {"\n\n"}
+                            The national branches help raise awareness of Sakyadhita’s mission by
+                            distributing publicity materials and organizing activities on the
+                            national level. They serve an important function in helping publicize
+                            the Sakyadhita International Conferences on Buddhist Women. They have
+                            also been very helpful in coordinating the registrations for conferences
+                            on the national level in the local currency, booking group flights, and
+                            translating conference materials (abstracts, papers, etc.) into national
+                            languages. Sakyadhita Taiwan has done exceptional work in cultivating
+                            and training translators who are qualified to translate abstracts,
+                            papers, and publicity materials on Buddhism and issues of Buddhist women
+                            into Chinese.
                             {"\n\n\n"}
                             Click on a pin for more information about the branch!
                             {"\n\n"}
