@@ -8,6 +8,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import ResourcesHeader from "../components/ResourcesHeader";
 import "../css/About.css";
 import "../css/animations.css";
 
@@ -101,11 +102,14 @@ export default function AboutUs() {
 
     return (
         <div className="page">
-            {/* Page header with image and title */}
-            <div className="header">
-                <div className="page-title">About Us</div>
-                <img src={Header} alt="Lotus Header" />
-            </div>
+
+            <ResourcesHeader
+                image={Header}
+                title="About Us"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                height="max(75vh, 400px)"
+                width="100%"
+            />
 
             {/* Sticky Nav */}
             <div className="slider-wrapper">

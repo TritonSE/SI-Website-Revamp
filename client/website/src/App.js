@@ -16,6 +16,7 @@ import BuddhistCulture from "./pages/Resources/BuddhistCulture";
 import OrdinationIssue from "./pages/Resources/OrdinationIssue";
 import JoinUs from "./pages/JoinUs";
 import Volunteer from "./pages/Volunteer";
+import Donate from "./pages/Donate";
 import Custom404 from "./pages/Custom404";
 
 function App() {
@@ -59,6 +60,13 @@ function App() {
                 <Route exact path={SITE_PAGES.VOLUNTEER}>
                     <PageLayout>
                         <Volunteer />
+                    </PageLayout>
+                </Route>
+
+                  {/* Donate Page */}
+                  <Route exact path={SITE_PAGES.DONATE}>
+                    <PageLayout>
+                        <Donate />
                     </PageLayout>
                 </Route>
 

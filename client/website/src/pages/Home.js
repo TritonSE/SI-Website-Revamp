@@ -23,9 +23,6 @@ import CustomButton from "../components/CustomButton";
 import { SITE_PAGES } from "../constants/links";
 import { fetchBranchesAndChapters, fetchNewsAndEvents } from "../util/requests";
 
-// import PinkFlower from "../media/Lotus_Flower.png";
-// import PurpleFlower from "../media/JoinUs_Header.png";
-
 import "../css/Home.css";
 
 // Mobile Screens
@@ -37,10 +34,6 @@ const TABLET_MIN_WIDTH = 756;
 const TABLET_MAX_WIDTH = 1050;
 const TABLET_MIN_HEIGHT = 1000;
 const TABLET_MAX_HEIGHT = 2500;
-
-// Donate Button Redirect Link
-const DONATE_REDIRECT_LINK =
-    "https://www.paypal.com/donate?token=n4Ck5RvK_epLMZQxmIloFbLpby9p3_H9lVfDuvDpLJljY9dxYbwORh3UJCEaI7C9jXyWD8ajukVhKAaa";
 
 export default function Home() {
     // tracks layout of screen
@@ -272,8 +265,8 @@ export default function Home() {
                         <BeInvolved
                             description="Help us grow and continue to connect by donating in any amount"
                             image_url="https://cdn9.dissolve.com/p/D1024_57_273/D1024_57_273_1200.jpg"
-                            openInSameTab={false}
-                            redirect_link={DONATE_REDIRECT_LINK}
+                            openInSameTab="true"
+                            redirect_link={SITE_PAGES.DONATE}
                             button_title="Donate"
                         />
                     </div>

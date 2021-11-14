@@ -207,7 +207,7 @@ export default function ContactUs() {
                     women to their tremendous potential for social and spiritual transformation.
                     Please contact us for general inquiries and comments, resource and women&apos;s
                     initiative updates, Dharma offerings, questions about donations or sponsorships,
-                    or general correspondence.
+                    or general correspondence. Sakyadhita is volunteer run, so please have patience with us as we answer your email. We always strive to answer in a timely manner.
                 </p>
                 {/* Contact Information */}
                 <h4>Reach us at: </h4>

@@ -79,6 +79,7 @@ export default function OrdinationIssue() {
                     <ResourcesHeader
                         image={Header}
                         title="The Ordination Issue"
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
                         height="max(75vh, 400px)"
                         width="100%"
                     />

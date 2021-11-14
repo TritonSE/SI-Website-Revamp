@@ -17,6 +17,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import ResourcesHeader from "../../components/ResourcesHeader";
 import "../../css/Buddhist.css";
 import "../../css/animations.css";
 
@@ -140,10 +141,13 @@ export default function BuddhistCulture() {
     return (
         <div className="buddhist-container">
             {/* Page header with image and title */}
-            <div className="buddhist-header">
-                <div className="buddhist-title">Buddhist Culture</div>
-                <img src={Header} alt="Lotus Header" />
-            </div>
+            <ResourcesHeader
+                    title="Buddhist Culture"
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                    image={Header}
+                    height="max(75vh, 400px)"
+                    width="100%"
+                />
 
             {/* Sticky Nav */}
             <div className="buddhist-slider-wrapper">

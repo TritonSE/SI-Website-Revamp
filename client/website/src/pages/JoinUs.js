@@ -308,7 +308,7 @@ export default function JoinUs() {
                 condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula
                 eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat
                 arcu, in efficitur sem tortor vel lectus."
-                height={isMobile ? "95vh" : "600px"}
+                height={isMobile ? "95vh" : "max(75vh, 400px)"}
                 width="100%"
             />
             <div className="main-content">
