@@ -106,4 +106,8 @@ h5 {
     width: 80%;
     height: auto;
   }
+
+  .paypal-donate-button-wrapper {
+      height: 50px;
+  }
 }
