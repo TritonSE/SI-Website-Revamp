@@ -142,12 +142,12 @@ export default function BuddhistCulture() {
         <div className="buddhist-container">
             {/* Page header with image and title */}
             <ResourcesHeader
-                    title="Buddhist Culture"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
-                    image={Header}
-                    height="max(75vh, 400px)"
-                    width="100%"
-                />
+                title="Buddhist Culture"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                image={Header}
+                height="max(75vh, 400px)"
+                width="100%"
+            />
 
             {/* Sticky Nav */}
             <div className="buddhist-slider-wrapper">
@@ -156,7 +156,17 @@ export default function BuddhistCulture() {
                     <ul className="buddhist-slider-nav">
                         {data.map((item) => (
                             <li>
-                                <a href={`#${item.title.replaceAll(" ", "")}`} > <p className={`hover-underline-animation ${computeNavUnderline(item.title.replaceAll(" ", ""))}`}> {item.title} </p></a>
+                                <a href={`#${item.title.replaceAll(" ", "")}`}>
+                                    {" "}
+                                    <p
+                                        className={`hover-underline-animation ${computeNavUnderline(
+                                            item.title.replaceAll(" ", "")
+                                        )}`}
+                                    >
+                                        {" "}
+                                        {item.title}{" "}
+                                    </p>
+                                </a>
                             </li>
                         ))}
                     </ul>

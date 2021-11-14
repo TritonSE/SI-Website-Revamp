@@ -102,7 +102,6 @@ export default function AboutUs() {
 
     return (
         <div className="page">
-
             <ResourcesHeader
                 image={Header}
                 title="About Us"
@@ -116,16 +115,54 @@ export default function AboutUs() {
                 <div className="slider">
                     <ul className="slider-nav">
                         <li>
-                            <a href="#mission"> <p className={`hover-underline-animation ${computeNavUnderline("mission")}`}> Mission & Activities </p> </a>
+                            <a href="#mission">
+                                {" "}
+                                <p
+                                    className={`hover-underline-animation ${computeNavUnderline(
+                                        "mission"
+                                    )}`}
+                                >
+                                    {" "}
+                                    Mission & Activities{" "}
+                                </p>{" "}
+                            </a>
                         </li>
                         <li>
-                            <a href="#history"> <p className={`hover-underline-animation ${computeNavUnderline("history")}`}> History & Goals </p></a>
+                            <a href="#history">
+                                {" "}
+                                <p
+                                    className={`hover-underline-animation ${computeNavUnderline(
+                                        "history"
+                                    )}`}
+                                >
+                                    {" "}
+                                    History & Goals{" "}
+                                </p>
+                            </a>
                         </li>
                         <li>
-                            <a href="#committee"><p className={`hover-underline-animation ${computeNavUnderline("committee")}`}> Executive Committee </p></a>
+                            <a href="#committee">
+                                <p
+                                    className={`hover-underline-animation ${computeNavUnderline(
+                                        "committee"
+                                    )}`}
+                                >
+                                    {" "}
+                                    Executive Committee{" "}
+                                </p>
+                            </a>
                         </li>
                         <li>
-                            <a href="#founders"><p className={`hover-underline-animation ${computeNavUnderline("founders")}`}> Founding Members </p></a>
+                            <a href="#founders">
+                                <p
+                                    className={`hover-underline-animation ${computeNavUnderline(
+                                        "founders"
+                                    )}`}
+                                >
+                                    {" "}
+                                    Founding Members{" "}
+                                </p>
+                            </a>
                         </li>
                     </ul>
                     <div className="vbar" />

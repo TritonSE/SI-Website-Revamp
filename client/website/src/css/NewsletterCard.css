@@ -46,7 +46,6 @@
   box-shadow: 0px 0px 6px 2px var(--darkorange);
 }
 
-
 /* Mobile */
 @media only screen and (min-width: 301px) {
   .NewsletterCard--mobile {

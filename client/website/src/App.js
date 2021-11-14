@@ -63,8 +63,8 @@ function App() {
                     </PageLayout>
                 </Route>
 
-                  {/* Donate Page */}
-                  <Route exact path={SITE_PAGES.DONATE}>
+                {/* Donate Page */}
+                <Route exact path={SITE_PAGES.DONATE}>
                     <PageLayout>
                         <Donate />
                     </PageLayout>

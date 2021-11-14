@@ -146,31 +146,45 @@ export default function Footer() {
                 <div className="Footer-Main-Container">
                     {/* all linked pages in website  */}
                     <section className="Footer-Pages">
-                        <a href={SITE_PAGES.HOME}> <p className="hover-underline-animation"> Home </p> </a>
-                        <a href={SITE_PAGES.CONFERENCES}> <p className="hover-underline-animation"> Conferences </p> </a>
-                        <a href={SITE_PAGES.RESOURCES_LANDING}> <p className="hover-underline-animation"> Resources </p> </a>
-                        <a href={SITE_PAGES.ABOUT_US}> <p className="hover-underline-animation"> About Us </p> </a>
-                        <a href={SITE_PAGES.CONTACT_US}> <p className="hover-underline-animation"> Contact Us </p> </a>
+                        <a href={SITE_PAGES.HOME}>
+                            {" "}
+                            <p className="hover-underline-animation"> Home </p>{" "}
+                        </a>
+                        <a href={SITE_PAGES.CONFERENCES}>
+                            {" "}
+                            <p className="hover-underline-animation"> Conferences </p>{" "}
+                        </a>
+                        <a href={SITE_PAGES.RESOURCES_LANDING}>
+                            {" "}
+                            <p className="hover-underline-animation"> Resources </p>{" "}
+                        </a>
+                        <a href={SITE_PAGES.ABOUT_US}>
+                            {" "}
+                            <p className="hover-underline-animation"> About Us </p>{" "}
+                        </a>
+                        <a href={SITE_PAGES.CONTACT_US}>
+                            {" "}
+                            <p className="hover-underline-animation"> Contact Us </p>{" "}
+                        </a>
                     </section>
                     <section className="Footer-Bottom">
                         {/* social media icons + links */}
-                        
-                        <div className="Footer-Social-Media-Wrapper"> 
+
+                        <div className="Footer-Social-Media-Wrapper">
                             Check us out on these platforms!
                             <section className="Footer-Social-Media">
-                            
-                            {facebook}
-                            {/* youtube */}
-                            {youtube}
-                            {/* pinterest */}
-                            {pinterest}
-                            {/* Blog */}
-                            {blog}
-                            {/* GoodReads */}
-                            {goodreads}
-                        </section>
+                                {facebook}
+                                {/* youtube */}
+                                {youtube}
+                                {/* pinterest */}
+                                {pinterest}
+                                {/* Blog */}
+                                {blog}
+                                {/* GoodReads */}
+                                {goodreads}
+                            </section>
                         </div>
-                       
+
                         {/* site logo */}
                         <Brand location="footer" />
                     </section>

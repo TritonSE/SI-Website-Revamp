@@ -53,10 +53,6 @@
     width: 70.5vw;
     margin-top: 10%;
   }
-
-  .NewsEventsSlide .circle-arrow {
-    font-size: 54px;
-  }
 }
 
 @media only screen and (max-width: 350px) {
