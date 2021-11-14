@@ -25,6 +25,14 @@
 
 #home-intro {
   white-space: pre-line;
+  width: 100%;
+}
+
+.home-section-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .Home .divider-wrapper {
