@@ -113,27 +113,36 @@ export default function Home() {
             <Loader />
         </div>
     );
+
+    const renderSlideshow = (
+        newsAndEvents.length > 0
+        ?
+        <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
+            {/* All Slides mapped here with display information  */}
+            {newsAndEvents.map((slideInfo) => (
+                <NewsEventsSlide
+                    height={getSlideshowHeight()}
+                    showButton="true"
+                    openInSameTab={slideInfo.openInSameTab}
+                    redirect_link={slideInfo.redirectLink}
+                    title={slideInfo.title}
+                    description={slideInfo.description}
+                    image_url={slideInfo.imageLink}
+                    arrowClickCallback={scrollToIntro}
+                />
+            ))}
+        </Slideshow>
+        :null
+    );
     return (
         <div className="Home">
             {/* Slideshow component */}
             {isPageLoading ? (
                 formatLoader
             ) : (
-                <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
-                    {/* All Slides mapped here with display information  */}
-                    {newsAndEvents.map((slideInfo) => (
-                        <NewsEventsSlide
-                            height={getSlideshowHeight()}
-                            showButton="true"
-                            openInSameTab={slideInfo.openInSameTab}
-                            redirect_link={slideInfo.redirectLink}
-                            title={slideInfo.title}
-                            description={slideInfo.description}
-                            image_url={slideInfo.imageLink}
-                            arrowClickCallback={scrollToIntro}
-                        />
-                    ))}
-                </Slideshow>
+                
+                renderSlideshow
+
             )}
             {/* Body of Page - Everthing below slideshow */}
             <section className="home-body">
