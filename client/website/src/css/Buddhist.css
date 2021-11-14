@@ -73,10 +73,11 @@
   color: inherit;
 }
 
-.buddhist-slider-nav li a:hover {
+.orange-underline {
   text-decoration: underline solid var(--orange) 2px;
   text-underline-offset: 6px;
 }
+
 
 .buddhist-vbar {
   position: absolute;

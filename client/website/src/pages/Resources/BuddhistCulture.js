@@ -18,6 +18,7 @@
 
 import React, { useState, useEffect } from "react";
 import "../../css/Buddhist.css";
+import "../../css/animations.css";
 
 import Header from "../../media/Lotus_Header.png";
 import LotusPink from "../../media/Lotus_Flower.png";
@@ -132,7 +133,7 @@ export default function BuddhistCulture() {
      * @returns {String} - underline class if desired location matches current
      */
     function computeNavUnderline(location) {
-        if (location === scrollLocation) return "underline";
+        if (location === scrollLocation) return "orange-underline";
         return "";
     }
 
@@ -150,8 +151,8 @@ export default function BuddhistCulture() {
                     {/* generate the nav item links dynamically */}
                     <ul className="buddhist-slider-nav">
                         {data.map((item) => (
-                            <li className={computeNavUnderline(item.title.replaceAll(" ", ""))}>
-                                <a href={`#${item.title.replaceAll(" ", "")}`}>{item.title}</a>
+                            <li>
+                                <a href={`#${item.title.replaceAll(" ", "")}`} > <p className={`hover-underline-animation ${computeNavUnderline(item.title.replaceAll(" ", ""))}`}> {item.title} </p></a>
                             </li>
                         ))}
                     </ul>

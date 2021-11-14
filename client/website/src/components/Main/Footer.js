@@ -13,6 +13,7 @@ import { FaGoodreads, FaBloggerB } from "react-icons/fa";
 import Brand from "./Brand";
 import { SITE_PAGES } from "../../constants/links";
 import "../../css/Footer.css";
+import "../../css/animations.css";
 
 const FACEBOOK_LINK = "https://www.facebook.com/sakyadhita.international";
 const YOUTUBE_LINK = "https://www.youtube.com/channel/UCLOIc4vqaqPKcjaRqmn6-yg/playlists";
@@ -145,15 +146,19 @@ export default function Footer() {
                 <div className="Footer-Main-Container">
                     {/* all linked pages in website  */}
                     <section className="Footer-Pages">
-                        <a href={SITE_PAGES.HOME}> Home </a>
-                        <a href={SITE_PAGES.CONFERENCES}> Conferences </a>
-                        <a href={SITE_PAGES.RESOURCES_LANDING}> Resources </a>
-                        <a href={SITE_PAGES.ABOUT_US}> About Us </a>
-                        <a href={SITE_PAGES.CONTACT_US}> Contact Us </a>
+                        <a href={SITE_PAGES.HOME}> <p className="hover-underline-animation"> Home </p> </a>
+                        <a href={SITE_PAGES.CONFERENCES}> <p className="hover-underline-animation"> Conferences </p> </a>
+                        <a href={SITE_PAGES.RESOURCES_LANDING}> <p className="hover-underline-animation"> Resources </p> </a>
+                        <a href={SITE_PAGES.ABOUT_US}> <p className="hover-underline-animation"> About Us </p> </a>
+                        <a href={SITE_PAGES.CONTACT_US}> <p className="hover-underline-animation"> Contact Us </p> </a>
                     </section>
                     <section className="Footer-Bottom">
                         {/* social media icons + links */}
-                        <section className="Footer-Social-Media">
+                        
+                        <div className="Footer-Social-Media-Wrapper"> 
+                            Check us out on these platforms!
+                            <section className="Footer-Social-Media">
+                            
                             {facebook}
                             {/* youtube */}
                             {youtube}
@@ -164,6 +169,8 @@ export default function Footer() {
                             {/* GoodReads */}
                             {goodreads}
                         </section>
+                        </div>
+                       
                         {/* site logo */}
                         <Brand location="footer" />
                     </section>

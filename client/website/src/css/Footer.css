@@ -71,6 +71,12 @@
   width: 100%;
 }
 
+.Footer-Social-Media-Wrapper {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
 /* Social Media Icons */
 .Footer-Social-Media {
   display: flex;
@@ -95,6 +101,10 @@
 @media only screen and (max-width: 950px) {
   .Footer-Bottom {
     flex-direction: column;
+  }
+
+  .Footer-Social-Media-Wrapper {
+    text-align: center;
   }
 }
 

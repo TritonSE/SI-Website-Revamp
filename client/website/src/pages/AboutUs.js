@@ -9,6 +9,7 @@
 
 import React, { useState, useEffect } from "react";
 import "../css/About.css";
+import "../css/animations.css";
 
 import Header from "../media/lotus-header.svg";
 import LotusPink from "../media/lotus-pink.svg";
@@ -66,7 +67,7 @@ export default function AboutUs() {
      * @returns {String} - underline class if desired location matches current
      */
     function computeNavUnderline(location) {
-        if (location === scrollLocation) return "underline";
+        if (location === scrollLocation) return "orange-underline";
         return "";
     }
 
@@ -110,17 +111,17 @@ export default function AboutUs() {
             <div className="slider-wrapper">
                 <div className="slider">
                     <ul className="slider-nav">
-                        <li className={computeNavUnderline("mission")}>
-                            <a href="#mission">Mission & Activities</a>
+                        <li>
+                            <a href="#mission"> <p className={`hover-underline-animation ${computeNavUnderline("mission")}`}> Mission & Activities </p> </a>
                         </li>
-                        <li className={computeNavUnderline("history")}>
-                            <a href="#history">History & Goals</a>
+                        <li>
+                            <a href="#history"> <p className={`hover-underline-animation ${computeNavUnderline("history")}`}> History & Goals </p></a>
                         </li>
-                        <li className={computeNavUnderline("committee")}>
-                            <a href="#committee">Executive Committee</a>
+                        <li>
+                            <a href="#committee"><p className={`hover-underline-animation ${computeNavUnderline("committee")}`}> Executive Committee </p></a>
                         </li>
-                        <li className={computeNavUnderline("founders")}>
-                            <a href="#founders">Founding Members</a>
+                        <li>
+                            <a href="#founders"><p className={`hover-underline-animation ${computeNavUnderline("founders")}`}> Founding Members </p></a>
                         </li>
                     </ul>
                     <div className="vbar" />
