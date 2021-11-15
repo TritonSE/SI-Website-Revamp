@@ -25,7 +25,6 @@
 .conferences-title {
   width: 100%;
   display: flex;
-  flex-direction: column;
 }
 
 .conferences-title-h1 {
@@ -161,7 +160,7 @@
 .required-asterisk-location {
   color: #ea4444;
   font-size: 25px;
-  margin-left: 5px;
+  margin-left: 3px;
 }
 
 .required-asterisk-conf-num,

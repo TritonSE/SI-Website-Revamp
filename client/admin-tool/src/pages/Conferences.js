@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Snackbar } from "@material-ui/core";
+import Loader from "../components/Loader";
 import Stepper from "../components/Stepper";
 import Theme from "../components/conferences/Theme";
 import Overview from "../components/conferences/Overview";
@@ -228,9 +229,7 @@ export default function Conferences() {
 
     if (loading) {
         return (
-            <div>
-                <span>loading</span>
-            </div>
+            <Loader />
         );
     }
 
