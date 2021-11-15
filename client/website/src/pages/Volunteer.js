@@ -201,6 +201,8 @@ export default function Volunteer() {
     const [isThankYouNoteOpen, setIsThankYouNoteOpen] = React.useState(false);
     // tracks whether the form is disabled
     const [isFormDisabled, setIsFormDisabled] = useState(false);
+    // tracks whether error message for commitees is displayed
+    const [committeesError, setCommitteesError] = useState(false);
 
     // snackbar used to display error messages
     const [snackbar, setSnackBar] = useState({
@@ -316,6 +318,10 @@ export default function Volunteer() {
             zipcode: { ...values.zipcode, error: zipcode },
         });
 
+        if (selectedCommittees.length === 0) {
+            setCommitteesError(true);
+        }
+
         // checks if any required fields are empty
         if (
             firstName ||
@@ -372,6 +378,7 @@ export default function Volunteer() {
                     zipcode: { ...values.zipcode, value: "" },
                 });
                 setSelectedCommittees([]);
+                setCommitteesError(false);
             } else {
                 // show snackbar to notify form could not be submitted
                 setSnackBar({
@@ -581,6 +588,11 @@ export default function Volunteer() {
                     <p className="select-committees-text">
                         Select all committees you are interested in.
                     </p>
+                    {committeesError ? (
+                        <p className="committees-error-text">
+                            At least one committee must be selected.
+                        </p>
+                    ) : null}
                     {/* displays all committee options or spinner if loading data */}
                     {loadingCommittees ? (
                         <Loader />

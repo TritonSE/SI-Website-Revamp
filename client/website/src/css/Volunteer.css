@@ -37,6 +37,16 @@
   color: var(--black);
 }
 
+.committees-error-text {
+  font-family: var(--text-font);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+
+  color: var(--red);
+}
+
 .volunteer-options {
   margin-top: 3.98vw;
 }
