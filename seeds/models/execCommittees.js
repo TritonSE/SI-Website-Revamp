@@ -2,124 +2,160 @@ const ExecCommittee = require("../../db/models/execCommittee");
 
 module.exports = async () => {
     await Promise.all([
+        // 2013 - 2021
         ExecCommittee.create(
             {
-                startYear: 2021,
-                endYear: 2025,
+                startYear: 2013,
+                endYear: 2021,
                 rank: 1,
-                name: "Carly Shay",
+                name: "Jetsunma Tenzin Palmo",
                 position: "President",
-                bio: "I'm the president of this committee!",
-                imageLink: "https://image14.photobiz.com/10164/3_20180601100153_22858585_large.jpg",
-                redirectLink: "https://google.com",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "http://tenzinpalmo.com/tenzin_palmo/biography.htm",
                 openInSameTab: false,
             },
             { logging: false }
         ),
         ExecCommittee.create(
             {
-                startYear: 2021,
-                endYear: 2025,
+                startYear: 2013,
+                endYear: 2021,
                 rank: 2,
-                name: "Sam Puckett",
-                position: "Vice President",
-                bio: null,
-                imageLink:
-                    "https://i.pinimg.com/originals/77/71/68/7771683223d86b237a3304d6f32828b9.jpg",
-                redirectLink: null,
+                name: "Eun-su Cho",
+                position: "Vice-president",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "http://sakyadhita.org/home/exec-eunsu-cho.html",
                 openInSameTab: false,
             },
             { logging: false }
         ),
         ExecCommittee.create(
             {
-                startYear: 2021,
-                endYear: 2025,
+                startYear: 2013,
+                endYear: 2021,
                 rank: 3,
-                name: "Cat Valentine",
+                name: "Kaytee Sumida",
                 position: "Secretary",
-                bio: "I'm the secretary of this committee!",
-                imageLink:
-                    "https://i.pinimg.com/originals/83/2a/46/832a460b522c84fa9650c11face5927e.jpg",
-                redirectLink: "https://google.com",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "https://sakyadhita.org/home/exec-kaytee-sumida.html",
                 openInSameTab: false,
             },
             { logging: false }
         ),
         ExecCommittee.create(
             {
-                startYear: 2021,
-                endYear: 2025,
+                startYear: 2013,
+                endYear: 2021,
                 rank: 4,
-                name: "Tori Vega",
+                name: "Lien Bui",
                 position: "Treasurer",
-                bio: "I'm the secretary of this committee!",
-                imageLink:
-                    "https://expertphotography.b-cdn.net/wp-content/uploads/2019/12/professional-headshots-girl-laughing-outdoors-1.jpg",
-                redirectLink: "https://google.com",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "http://sakyadhita.org/home/exec-lien-bui.html",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2013,
+                endYear: 2021,
+                rank: 5,
+                name: "Bhikshuni Karma Lekshe Tsomo",
+                position: "Branch & Chapter Coordinator",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296",
                 openInSameTab: false,
             },
             { logging: false }
         ),
 
-        // 2020
+        // 2009 - 2013
         ExecCommittee.create(
             {
-                startYear: 2016,
-                endYear: 2019,
+                startYear: 2009,
+                endYear: 2013,
                 rank: 1,
-                name: "Superman",
+                name: "Christie Yuling Chang",
                 position: "President",
-                bio: "I'm the president of this committee!",
-                imageLink:
-                    "https://www.looper.com/img/gallery/supermans-live-action-costumes-ranked-worst-to-best/l-intro-1616093733.jpg",
-                redirectLink: null,
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "mailto:sakyadhita@gmail.com",
                 openInSameTab: false,
             },
             { logging: false }
         ),
         ExecCommittee.create(
             {
-                startYear: 2016,
-                endYear: 2019,
+                startYear: 2009,
+                endYear: 2013,
                 rank: 2,
-                name: "Iron Man",
-                position: "Vice President",
-                bio: "I'm the vice president of this committee!",
-                imageLink:
-                    "https://cdn-www.comingsoon.net/assets/uploads/2011/09/file_82704_1_ewavengersheadshots2.jpg",
-                redirectLink: "https://google.com",
+                name: "Paula Arai",
+                position: "Vice-president",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "mailto:parai@lsu.edu",
                 openInSameTab: false,
             },
             { logging: false }
         ),
         ExecCommittee.create(
             {
-                startYear: 2016,
-                endYear: 2019,
-                rank: 2,
-                name: "Batman",
-                position: "Vice President",
-                bio: "I'm the vice president of this committee!",
-                imageLink: "https://pbs.twimg.com/media/DBj6fhYWsAAl8Ya.jpg",
-                redirectLink: "https://google.com",
+                startYear: 2009,
+                endYear: 2013,
+                rank: 3,
+                name: "Melissa Vincenty",
+                position: "Secretary",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "mailto:melissa@HanaleiRugCompany.com",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2009,
+                endYear: 2013,
+                rank: 4,
+                name: "Maria Arroyo",
+                position: "Treasurer",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "mailto:marroyo@crs.org",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2009,
+                endYear: 2013,
+                rank: 5,
+                name: "Bhikshuni Karma Lekshe Tsomo",
+                position: "Branch & Chapter Coordinator",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296",
                 openInSameTab: false,
             },
             { logging: false }
         ),
 
-        // 2019
+        // 2000-2009
         ExecCommittee.create(
             {
                 startYear: 2000,
-                endYear: 2015,
+                endYear: 2009,
                 rank: 1,
-                name: "Joker",
+                name: "Bhikkshuni Karma Lekshe Tsomo",
                 position: "President",
-                bio: "I'm the president of this committee!",
-                imageLink:
-                    "http://images6.fanpop.com/image/photos/39700000/Jared-as-The-Joker-jared-leto-39790684-236-354.jpg",
-                redirectLink: "https://google.com",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 openInSameTab: false,
             },
             { logging: false }
@@ -127,14 +163,12 @@ module.exports = async () => {
         ExecCommittee.create(
             {
                 startYear: 2000,
-                endYear: 2015,
+                endYear: 2009,
                 rank: 2,
-                name: "Harley Quinn",
-                position: "Vice President",
-                bio: "I'm the vice president of this committee!",
-                imageLink:
-                    "https://c4.wallpaperflare.com/wallpaper/879/96/967/harley-quinn-margot-robbie-makeup-women-wallpaper-preview.jpg",
-                redirectLink: "https://google.com",
+                name: "Christie Yuling Chang",
+                position: "Vice-president",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 openInSameTab: false,
             },
             { logging: false }
@@ -142,12 +176,38 @@ module.exports = async () => {
         ExecCommittee.create(
             {
                 startYear: 2000,
-                endYear: 2015,
+                endYear: 2009,
+                rank: 3,
+                name: "Carol Stevens",
+                position: "Secretary",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2000,
+                endYear: 2009,
                 rank: 4,
-                name: "Deadshot",
+                name: "Rebecca Paxton",
                 position: "Treasurer",
-                bio: null,
-                redirectLink: "https://google.com",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2000,
+                endYear: 2009,
+                rank: 5,
+                name: "Evelyn Diane Cowie",
+                position: "Branch & Chapter Coordinator",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 openInSameTab: false,
             },
             { logging: false }
