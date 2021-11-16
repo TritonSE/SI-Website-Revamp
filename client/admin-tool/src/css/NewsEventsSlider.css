@@ -1,0 +1,22 @@
+#news-events-slider {
+  margin-left: 20px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#news-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 10px;
+}
+
+.loader-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.no-events-available {
+  text-align: center;
+  font-size: 22px;
+}

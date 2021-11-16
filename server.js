@@ -45,6 +45,7 @@ app.use(cors({ methods: ["GET", "POST", "PUT", "DELETE"] }));
 
 // Routers
 app.use("/sample", require("./routes/sample"));
+app.use("/publications", require("./routes/publications"));
 app.use("/conference", require("./routes/conference"));
 app.use("/emailList", require("./routes/emailList"));
 app.use("/volunteers", require("./routes/volunteers"));
