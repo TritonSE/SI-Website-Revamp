@@ -40,7 +40,13 @@ export default function ConferencesDesktop(props) {
      */
     useEffect(() => {
         // initalially set the page to render the first conference
-        setItem(itemList[index]);
+        if (props.location.search) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            const ind = itemList.findIndex((x) => x.confNum === confNum);
+            setIndex(ind);
+            setItem(itemList[ind]);
+        } else setItem(itemList[index]);
     }, []);
 
     /**
@@ -56,6 +62,7 @@ export default function ConferencesDesktop(props) {
      * @param {number} step - the index clicked on the vertical stepper
      */
     const setParentIndex = (step) => {
+        console.log("here");
         setIndex(step);
         setItem(itemList[step]);
     };

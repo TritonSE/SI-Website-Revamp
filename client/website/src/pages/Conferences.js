@@ -34,7 +34,6 @@ export default function Conferences() {
         // fetch the conferences
         const data = await fetchConferences();
         setConferencesData(data);
-        console.log(location);
         setLoading(false);
     }, []);
 

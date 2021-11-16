@@ -38,7 +38,13 @@ export default function MobileConferences(props) {
      */
     useEffect(() => {
         // initalially set the page to render the first conference
-        setItem(itemList[index]);
+        if (props.location.search) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            const ind = itemList.findIndex((x) => x.confNum === confNum);
+            setIndex(ind);
+            setItem(itemList[ind]);
+        } else setItem(itemList[index]);
     }, []);
 
     /**

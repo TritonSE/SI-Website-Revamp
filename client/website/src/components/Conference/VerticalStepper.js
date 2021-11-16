@@ -154,32 +154,6 @@ export default function VerticalStepper(props) {
     };
 
     /**
-     * This is called when the page is rendered
-     */
-    useEffect(() => {
-        // render only the first nine items
-        setSplitSteps(steps.slice(indices[0], indices[1]));
-        if (props.location) {
-            const confNum = parseInt(props.location.search.split("=")[1], 10);
-            // find the index of the conference in the items list
-            let i = props.items.findIndex((x) => x.confNum === confNum);
-            // determine the page to change to
-            if (Math.floor(i / 9) > 0) {
-                const page = Math.floor(i / 9);
-                i %= 9;
-                updatePage(page + 1);
-            }
-
-            setActiveIndex(i);
-        }
-    }, []);
-
-    // update the items on the stepper when the indices updates
-    useEffect(() => {
-        setSplitSteps(steps.slice(indices[0], indices[1]));
-    }, [indices]);
-
-    /**
      * When an item in the stepper is clicked, it's parent
      * index is updated accordingly
      *
@@ -190,6 +164,33 @@ export default function VerticalStepper(props) {
         setActiveIndex(step);
         props.setParentIndex(indices[0] + step);
     };
+
+    /**
+     * This is called when the page is rendered
+     */
+    useEffect(() => {
+        // render only the first nine items
+        setSplitSteps(steps.slice(indices[0], indices[1]));
+        if (props.location) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            const ind = props.items.findIndex((x) => x.confNum === confNum);
+            let i = ind;
+            // determine the page to change to
+            if (Math.floor(i / 9) > 0) {
+                const page = Math.floor(i / 9);
+                i %= 9;
+                updatePage(page + 1);
+            }
+
+            handleStep(i);
+        }
+    }, []);
+
+    // update the items on the stepper when the indices updates
+    useEffect(() => {
+        setSplitSteps(steps.slice(indices[0], indices[1]));
+    }, [indices]);
 
     return (
         <div className={classes.root}>
