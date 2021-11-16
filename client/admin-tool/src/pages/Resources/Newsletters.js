@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Newsletters() {
+    /** Snackbar and Form */
     const classes = useStyles();
 
     const users = [
@@ -190,11 +191,15 @@ export default function Newsletters() {
         setIsFormDisabled(false);
     };
 
+    /** Server Requests */
+
+
+
     return (
         <div className="Newsletters">
             <section className="left-container">
                 <h1>Newsletters</h1>
-                {/* Stepper of Newsletters */}
+                {/* Stepper for Newsletters */}
                 <div>
                     <Stepper
                         displayItems={users}
@@ -204,9 +209,11 @@ export default function Newsletters() {
                         handleAddNodeClick={addNewNode}
                         formatNodeTitle={formatNodeTitle}
                     />
-                    {/* {`${users[index].a} `} */}
+                    {`${users[index].a} `}
                 </div>
             </section>
+
+            {/* Newsletters Form */}
             <section className="middle-container">
                 <form className={classes.form} autoComplete="off">
                     <div>
@@ -280,11 +287,15 @@ export default function Newsletters() {
                     </div>
                 </form>
             </section>
+
+            {/* Post Button */}
             <section className="right-container">
                 <div className="post-button">
                     <Button text="Post" onClickCallback={handleFormSubmit} />
                 </div>
             </section>
+
+            {/* Snackbar for Error Displays */}
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}
