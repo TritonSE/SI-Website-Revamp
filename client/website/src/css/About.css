@@ -218,6 +218,19 @@
   text-align: center;
 }
 
+.profile .position {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profile .link-holder {
+  width: 0;
+  height: 0;
+  position: relative;
+}
+
 .profile h3 {
   margin: 5px 0px;
 
@@ -227,6 +240,12 @@
   text-align: center;
 }
 
+.profile-link {
+  position: absolute;
+  transform: translate(-150%, 65%);
+  height: 1.2em;
+  
+}
 .profile-paragraph {
   position: relative;
 }
@@ -238,13 +257,6 @@
   padding: 20px 10px;
 }
 
-.profile-link {
-  position: absolute;
-  top: 1.5em;
-  left: -1em;
-  height: 1em;
-  
-}
 
 /* This is a really gross an hacky method, but it works */
 .profile-link:hover {

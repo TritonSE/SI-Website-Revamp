@@ -53,13 +53,15 @@ const CommitteeProfiles = ({committees, year, computeProfileDisplay}) => {
                     <div className="profile">
                         <img className="headshot" src={member.imageLink} alt="Exec Headshot" />
                         <h2>{member.name}</h2>
-                        <h3>{member.position}</h3>
-                        <div className="profile-paragraph">
-                            <a href={member.redirectLink} target={member.openInSameTab ? "" : "_blank"} rel="noreferrer">
-                                {member.redirectLink === null ? null : <img className="profile-link" src={Link} alt="Profile Link" />}
-                            </a>
-                            <p>{member.bio}</p>
+                        <div className="position">
+                            <div className="link-holder">
+                                <a href={member.redirectLink} target={member.openInSameTab ? "" : "_blank"} rel="noreferrer">
+                                    {member.redirectLink === null ? null : <img className="profile-link" src={Link} alt="Profile Link" />}
+                                </a>
+                            </div>
+                            <h3>{member.position}</h3>
                         </div>
+                        <p>{member.bio}</p>
                     </div>
                 )
             }
