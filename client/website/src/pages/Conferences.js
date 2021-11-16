@@ -12,6 +12,7 @@
  */
 
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Loader from "../components/Main/Loader";
 import { fetchConferences } from "../util/requests";
 import useWindowSize from "../util/ScreenListener";
@@ -26,11 +27,14 @@ export default function Conferences() {
     const [loading, setLoading] = useState(true);
     const [conferencesData, setConferencesData] = useState({});
 
+    const location = useLocation();
+
     useEffect(async () => {
         setLoading(true);
         // fetch the conferences
         const data = await fetchConferences();
         setConferencesData(data);
+        console.log(location);
         setLoading(false);
     }, []);
 
@@ -41,11 +45,11 @@ export default function Conferences() {
     const isDesktop = () =>
         listener.width > 1050 ? (
             <div>
-                <ConferenceDesktop data={conferencesData} />
+                <ConferenceDesktop data={conferencesData} location={location} />
             </div>
         ) : (
             <div>
-                <MobileConference data={conferencesData} />
+                <MobileConference data={conferencesData} location={location} />
             </div>
         );
 

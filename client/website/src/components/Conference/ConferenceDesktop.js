@@ -145,6 +145,7 @@ export default function ConferencesDesktop(props) {
                         items={props.data}
                         color="#6652a0"
                         setParentIndex={setParentIndex}
+                        location={props.location}
                     />
                 </div>
 

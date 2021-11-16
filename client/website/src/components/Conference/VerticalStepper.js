@@ -62,7 +62,7 @@ export default function VerticalStepper(props) {
         step_label_root: {
             fontSize: "16px",
             color: `${props.color} !important`,
-            width: "calc(200px)",
+            width: "calc(150px)",
             textAlign: "left",
             marginLeft: "calc(15px)",
         },
@@ -144,11 +144,34 @@ export default function VerticalStepper(props) {
     const steps = getSteps();
 
     /**
+     * Update the stepper to render the 9 items depending on the page
+     * @param {number} index
+     */
+    const updatePage = (index) => {
+        setIndices([(index - 1) * 9, index * 9]);
+        setActiveIndex(0);
+        props.setParentIndex((index - 1) * 9);
+    };
+
+    /**
      * This is called when the page is rendered
      */
     useEffect(() => {
         // render only the first nine items
         setSplitSteps(steps.slice(indices[0], indices[1]));
+        if (props.location) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            let i = props.items.findIndex((x) => x.confNum === confNum);
+            // determine the page to change to
+            if (Math.floor(i / 9) > 0) {
+                const page = Math.floor(i / 9);
+                i %= 9;
+                updatePage(page + 1);
+            }
+
+            setActiveIndex(i);
+        }
     }, []);
 
     // update the items on the stepper when the indices updates
@@ -166,16 +189,6 @@ export default function VerticalStepper(props) {
         setActiveStep(indices[0] + step);
         setActiveIndex(step);
         props.setParentIndex(indices[0] + step);
-    };
-
-    /**
-     * Update the stepper to render the 9 items depending on the page
-     * @param {number} index
-     */
-    const updatePage = (index) => {
-        setIndices([(index - 1) * 9, index * 9]);
-        setActiveIndex(0);
-        props.setParentIndex((index - 1) * 9);
     };
 
     return (

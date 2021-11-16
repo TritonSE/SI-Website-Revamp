@@ -148,9 +148,37 @@ export default function HorizontalStepper(props) {
         } else setIndices([0, 4]);
     }, [listener]);
 
+    /**
+     * Update the stepper to render the 9 items depending on the page
+     * @param {number} index
+     */
+    const updatePage = (index, count) => {
+        // determine if it is a mobile screen or tablet
+        const size = count;
+        // update the indices range
+        setIndices([(index - 1) * size, index * size]);
+        // when updating to new page, set the active index to 0
+        setActiveIndex(0);
+        // update the parent index to display proper information
+        props.setParentIndex((index - 1) * size);
+    };
+
     // render only the first nine items
     useEffect(() => {
         setSplitSteps(steps.slice(indices[0], indices[1]));
+        if (props.location) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            let i = props.items.findIndex((x) => x.confNum === confNum);
+            // determine the page to change to
+            if (Math.floor(i / 9) > 0) {
+                const page = Math.floor(i / 9);
+                i %= 9;
+                updatePage(page + 1);
+            }
+
+            setActiveIndex(i);
+        }
     }, []);
 
     // update the items on the stepper when the indices updates
@@ -168,21 +196,6 @@ export default function HorizontalStepper(props) {
         setActiveStep(indices[0] + step);
         setActiveIndex(step);
         props.setParentIndex(indices[0] + step);
-    };
-
-    /**
-     * Update the stepper to render the 9 items depending on the page
-     * @param {number} index
-     */
-    const updatePage = (index, count) => {
-        // determine if it is a mobile screen or tablet
-        const size = count;
-        // update the indices range
-        setIndices([(index - 1) * size, index * size]);
-        // when updating to new page, set the active index to 0
-        setActiveIndex(0);
-        // update the parent index to display proper information
-        props.setParentIndex((index - 1) * size);
     };
 
     const updateSize = () => {
