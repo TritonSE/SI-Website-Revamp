@@ -235,14 +235,14 @@
   margin: 5px 0px;
 
   font-family: var(--heading-font);
-  font-size: 1.875em;
-  font-weight: 700;
+  font-size: 1.5em;
+  font-weight: 400;
   text-align: center;
 }
 
 .profile-link {
   position: absolute;
-  transform: translate(-150%, 65%);
+  transform: translate(-150%, 40%);
   height: 1.2em;
   
 }
@@ -363,11 +363,13 @@ h2 #conference {
   .profile h2 {
     font-size: 1.25em;
     margin: 5px 15px;
+    text-align: left;
   }
 
   .profile h3 {
     font-size: 1.125em;
     margin: 5px 15px;
+    text-align: left;
   }
 
   .profile p {
@@ -377,9 +379,8 @@ h2 #conference {
   }
 
   .profile-link {
-    top: .75em;
     height: 0.9em;
-    left: -.5em;
+    left: .75em;
   }
 
   .headshot {
