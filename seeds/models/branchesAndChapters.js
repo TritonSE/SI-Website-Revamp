@@ -118,7 +118,7 @@ module.exports = async () => {
                 latitude: 19.8968,
                 longitude: -155.5828,
                 isBranch: false,
-                email: null, 
+                email: null,
                 siteLink: "http://www.hawaii.sakyadhita.org",
             },
             { logging: false }

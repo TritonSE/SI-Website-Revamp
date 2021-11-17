@@ -1,8 +1,8 @@
 /**
  * Displays Donate Screen of website, including a link to monetory support options as well
- * as volunteer support options. This includes a PayPal Donate button. 
- * 
- * This page has no backend calls, and for the most part no major dependencies. 
+ * as volunteer support options. This includes a PayPal Donate button.
+ *
+ * This page has no backend calls, and for the most part no major dependencies.
  *
  * @summary Renders and formats Donate Page.
  *
@@ -46,23 +46,46 @@ export default function Donate() {
                             scholarships to female monastics who otherwise would not be able to
                             attend our bi-annual conferences.
                         </p>
-                        <br/>
-                        <p> <b> Make a One-Time or Reoccuring Donation </b> </p>
+                        <br />
+                        <p>
+                            {" "}
+                            <b> Make a One-Time or Reoccuring Donation </b>{" "}
+                        </p>
                         {/* PayPal Donate Button */}
                         <div className="paypal-donate-button-wrapper">
-                            <form action="https://www.paypal.com/donate" method="post" target="_blank">
-                                <input type="hidden" name="hosted_button_id" value="78ZSMXL4ZSYJQ" />
-                                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                                <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                            <form
+                                action="https://www.paypal.com/donate"
+                                method="post"
+                                target="_blank"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="hosted_button_id"
+                                    value="78ZSMXL4ZSYJQ"
+                                />
+                                <input
+                                    type="image"
+                                    src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
+                                    border="0"
+                                    name="submit"
+                                    title="PayPal - The safer, easier way to pay online!"
+                                    alt="Donate with PayPal button"
+                                />
+                                <img
+                                    alt=""
+                                    border="0"
+                                    src="https://www.paypal.com/en_US/i/scr/pixel.gif"
+                                    width="1"
+                                    height="1"
+                                />
                             </form>
                         </div>
-                        <br/>
+                        <br />
                         <img
                             width="400px"
                             height="auto"
                             src="https://lh3.googleusercontent.com/x4JvEpJzki8FRtAsBZ2fdWQUUAjorJfgJNYklcDHDmp_MOf8ZD-mDTKz_sLXi1uhUwWrT_UOZT0OjhFWImI41X1VOVQNySlPqPDiShG7Zd5K2KC8c5SqK1WLy77LIYDKPPt2Hgn2w7okpDqw8N7yJPQ8xbZ56sQRVx7s0rmrGPX9fB5CPulk8FqGYjZzAXvBhqdIAFdkVJlvYNTQGpzJb3eUGnGZY4zTcrD6P3ibR5YjlrZu_1diwvDxLQKVPXoHHT1-jgJQDlaXJtMyE7UjPJ_QR0QBzgp5MIV0suF4SteJBO_9B2ny3UaSXw4-7HFxkTR60QQr0XJ7XIX-I00VDI8TYP_QIO_Nf-vuFWMqmL1LOcK4XJQJRTSkaNXxVFKBaiuMvXcx42X0iT7npJWy7ocFrxI9ue3V6y5K9piL2-_G6J8HNloimTQkyjWOy7GKc8mbPWWQ_GrK-lJB9zhQYJNoe_VBFwNjyAzZKCLZ1ndy3VMYjJ-uYHIqbiPSK2JtY2IkHn1jXVEFIGcxdN6TVjZUmJEsQTgm_1z7IKUeWmW2joyurGVbaqOSqnGRkMxSnYX8_H8wg8dSTIRI6zFyLTaH0wp_dLmXBE7NVnk_kOm6TZyQncFcwkuDuZnW_A3HiiBsfhZat320jSurioM417SIJSblvfWWKBuzpngWx7sTjkh9OzOQRpSXQElOIdhIfw7MzsMu-qwLKVm6O0L8HIIK=w440-h292-no?authuser=1"
                         />
-
                     </section>
                     {/* AmazonSmile Info */}
                     <section className="donate-section">

@@ -114,36 +114,28 @@ export default function Home() {
         </div>
     );
 
-    const renderSlideshow = (
-        newsAndEvents.length > 0
-        ?
-        <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
-            {/* All Slides mapped here with display information  */}
-            {newsAndEvents.map((slideInfo) => (
-                <NewsEventsSlide
-                    height={getSlideshowHeight()}
-                    showButton="true"
-                    openInSameTab={slideInfo.openInSameTab}
-                    redirect_link={slideInfo.redirectLink}
-                    title={slideInfo.title}
-                    description={slideInfo.description}
-                    image_url={slideInfo.imageLink}
-                    arrowClickCallback={scrollToIntro}
-                />
-            ))}
-        </Slideshow>
-        :null
-    );
+    const renderSlideshow =
+        newsAndEvents.length > 0 ? (
+            <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
+                {/* All Slides mapped here with display information  */}
+                {newsAndEvents.map((slideInfo) => (
+                    <NewsEventsSlide
+                        height={getSlideshowHeight()}
+                        showButton="true"
+                        openInSameTab={slideInfo.openInSameTab}
+                        redirect_link={slideInfo.redirectLink}
+                        title={slideInfo.title}
+                        description={slideInfo.description}
+                        image_url={slideInfo.imageLink}
+                        arrowClickCallback={scrollToIntro}
+                    />
+                ))}
+            </Slideshow>
+        ) : null;
     return (
         <div className="Home">
             {/* Slideshow component */}
-            {isPageLoading ? (
-                formatLoader
-            ) : (
-                
-                renderSlideshow
-
-            )}
+            {isPageLoading ? formatLoader : renderSlideshow}
             {/* Body of Page - Everthing below slideshow */}
             <section className="home-body">
                 {/* Introduction */}
@@ -151,7 +143,7 @@ export default function Home() {
                     <h1 ref={introTitle}> Upcoming 17th Conference! </h1>
                     <div className="home-section-body">
                         <img
-                            width={isMobile ? "100%": "65%"}
+                            width={isMobile ? "100%" : "65%"}
                             height="auto"
                             src="https://sakyadhita.org/images/home/Sakyadhita-21%20Revised.jpg"
                         />
@@ -192,33 +184,30 @@ export default function Home() {
                                 branchesAndChapters.length > 0 ? (
                                     <div>
                                         {/* Display name (with hyperlink if given) */}
-                                        {
-                                            branchesAndChapters[Math.floor(dataTip)].siteLink ?
+                                        {branchesAndChapters[Math.floor(dataTip)].siteLink ? (
                                             <a
-                                            href={branchesAndChapters[Math.floor(dataTip)].siteLink}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            {branchesAndChapters[Math.floor(dataTip)].name}
-                                            <FiExternalLink />
-                                        </a>
-                                        :
-                                        branchesAndChapters[Math.floor(dataTip)].name
-                                        }
+                                                href={
+                                                    branchesAndChapters[Math.floor(dataTip)]
+                                                        .siteLink
+                                                }
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                {branchesAndChapters[Math.floor(dataTip)].name}
+                                                <FiExternalLink />
+                                            </a>
+                                        ) : (
+                                            branchesAndChapters[Math.floor(dataTip)].name
+                                        )}
                                         <br />
                                         {/* Display email if it given */}
-                                        {
-                                            branchesAndChapters[Math.floor(dataTip)].email
-                                            ?
+                                        {branchesAndChapters[Math.floor(dataTip)].email ? (
                                             <div>
-                                                 <MdEmail />
-                                                  &nbsp;
-                                                  {branchesAndChapters[Math.floor(dataTip)].email}
+                                                <MdEmail />
+                                                &nbsp;
+                                                {branchesAndChapters[Math.floor(dataTip)].email}
                                             </div>
-                                            :
-                                            null
-                                        }
-                                      
+                                        ) : null}
                                     </div>
                                 ) : (
                                     <div> </div>
@@ -252,10 +241,8 @@ export default function Home() {
                             papers, and publicity materials on Buddhism and issues of Buddhist women
                             into Chinese.
                             {"\n\n\n"}
-                            Click on a pin for more information about the branch! 
-                            {
-                                isMobile ? " Pinch the screen to zoom in and out of the map.": null
-                            }
+                            Click on a pin for more information about the branch!
+                            {isMobile ? " Pinch the screen to zoom in and out of the map." : null}
                             {"\n\n"}
                         </p>
                         {/* Mini Color Legend  */}
@@ -344,7 +331,7 @@ export default function Home() {
                         <br />
                         <span style={{ textAlign: "center" }}>
                             <img
-                                 width={isMobile ? "100%": "40%"}
+                                width={isMobile ? "100%" : "40%"}
                                 height="auto"
                                 src="https://sakyadhita.org/images/home/Pic1_201707-execcom-revised.jpg"
                             />

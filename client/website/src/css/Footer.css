@@ -57,14 +57,13 @@
 }
 
 .Footer-Pages a:hover {
-  color: white; 
+  color: white;
   text-decoration: none;
 }
 
 .Footer-Page-Expanded {
   display: flex;
   flex-direction: column;
-
 }
 
 .Footer-Page-Expanded .sub-item {
@@ -74,7 +73,7 @@
   color: rgb(206, 229, 236);
 }
 
-.Footer-Page-Expanded .sub-item:hover{
+.Footer-Page-Expanded .sub-item:hover {
   color: var(--orange);
 }
 
