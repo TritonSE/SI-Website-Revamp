@@ -1,3 +1,14 @@
+/**
+ * Displays Donate Screen of website, including a link to monetory support options as well
+ * as volunteer support options. This includes a PayPal Donate button. 
+ * 
+ * This page has no backend calls, and for the most part no major dependencies. 
+ *
+ * @summary Renders and formats Donate Page.
+ *
+ * @author Amrit Kaur Singh
+ */
+
 import React from "react";
 import CustomButton from "../components/CustomButton";
 import ResourcesHeader from "../components/ResourcesHeader";
@@ -11,6 +22,7 @@ import "../css/Donate.css";
 export default function Donate() {
     return (
         <div id="donate-page">
+            {/* Image Header */}
             <ResourcesHeader
                 title="Donate & Support"
                 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
@@ -18,8 +30,10 @@ export default function Donate() {
                 height="max(75vh, 400px)"
                 width="100%"
             />
+            {/* All page content  */}
             <div className="donate-content-container">
                 <div className="monetory-container">
+                    {/* PayPal Info */}
                     <section className="donate-section">
                         <h1> PayPal </h1>
                         <hr />
@@ -34,6 +48,7 @@ export default function Donate() {
                         </p>
                         <br/>
                         <p> <b> Make a One-Time or Reoccuring Donation </b> </p>
+                        {/* PayPal Donate Button */}
                         <div className="paypal-donate-button-wrapper">
                             <form action="https://www.paypal.com/donate" method="post" target="_blank">
                                 <input type="hidden" name="hosted_button_id" value="78ZSMXL4ZSYJQ" />
@@ -49,6 +64,7 @@ export default function Donate() {
                         />
 
                     </section>
+                    {/* AmazonSmile Info */}
                     <section className="donate-section">
                         <h1> AmazonSmile </h1>
                         <hr />
@@ -76,6 +92,7 @@ export default function Donate() {
                     <hr className="donate-divider" />
                 </div>
 
+                {/* Support Us Section */}
                 <section>
                     <h1 style={{ marginBottom: "30px" }}> Support Us via Involvement </h1>
                     <p>
