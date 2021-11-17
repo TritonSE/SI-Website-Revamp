@@ -1,6 +1,6 @@
 .Footer-Main-Container::before,
 .Footer-Main-Container {
-  height: 500px;
+  height: 550px;
 }
 
 /* Background image */
@@ -52,13 +52,30 @@
   color: var(--white);
   font-family: var(--heading-font);
   font-weight: 700;
-  font-size: 22px;
+  font-size: 24px;
   text-transform: capitalize;
 }
 
 .Footer-Pages a:hover {
-  color: var(--white);
-  text-decoration-color: var(--darkorange);
+  color: white; 
+  text-decoration: none;
+}
+
+.Footer-Page-Expanded {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.Footer-Page-Expanded .sub-item {
+  font-size: 14px;
+  padding-right: 20px;
+  margin-top: 5px;
+  color: rgb(206, 229, 236);
+}
+
+.Footer-Page-Expanded .sub-item:hover{
+  color: var(--orange);
 }
 
 .Footer-Bottom {
@@ -101,6 +118,14 @@
 @media only screen and (max-width: 950px) {
   .Footer-Bottom {
     flex-direction: column;
+  }
+
+  .Footer-Pages a {
+    font-size: 20px;
+  }
+
+  .Footer-Page-Expanded .sub-item {
+    font-size: 12px;
   }
 
   .Footer-Social-Media-Wrapper {

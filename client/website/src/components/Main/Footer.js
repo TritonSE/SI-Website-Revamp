@@ -11,6 +11,7 @@ import { AiOutlineFacebook, AiOutlineYoutube } from "react-icons/ai";
 import { ImPinterest2 } from "react-icons/im";
 import { FaGoodreads, FaBloggerB } from "react-icons/fa";
 import Brand from "./Brand";
+import Logo from "../../media/logo.svg";
 import { SITE_PAGES } from "../../constants/links";
 import "../../css/Footer.css";
 import "../../css/animations.css";
@@ -122,6 +123,14 @@ export default function Footer() {
         </a>
     );
 
+    const subitem = (text, redirect_link) =>  (
+        <a href={redirect_link} className="sub-item"> 
+         <img width="20px" height="auto" src={Logo} alt="Logo" id="logo" />
+            &nbsp;
+            {text}
+        </a>
+    );
+
     const cclicense = (
         <p className="cc-notice">
             <img src="https://licensebuttons.net/l/by-nc-nd/3.0/80x15.png" />
@@ -146,26 +155,47 @@ export default function Footer() {
                 <div className="Footer-Main-Container">
                     {/* all linked pages in website  */}
                     <section className="Footer-Pages">
-                        <a href={SITE_PAGES.HOME}>
-                            {" "}
-                            <p className="hover-underline-animation"> Home </p>{" "}
-                        </a>
+                    <div className="Footer-Page-Expanded">
+                            <a href={SITE_PAGES.HOME}>
+                                    {" "}
+                                    <p className="hover-underline-animation"> Home </p>{" "}
+                                </a>
+                            {subitem("Join Us", SITE_PAGES.JOIN_US)}
+                            {subitem("Volunteer", SITE_PAGES.VOLUNTEER)}
+                            {subitem("Donate", SITE_PAGES.DONATE)}
+                        </div>
+                    <div>
                         <a href={SITE_PAGES.CONFERENCES}>
                             {" "}
                             <p className="hover-underline-animation"> Conferences </p>{" "}
                         </a>
-                        <a href={SITE_PAGES.RESOURCES_LANDING}>
-                            {" "}
-                            <p className="hover-underline-animation"> Resources </p>{" "}
-                        </a>
-                        <a href={SITE_PAGES.ABOUT_US}>
-                            {" "}
-                            <p className="hover-underline-animation"> About Us </p>{" "}
-                        </a>
+                    </div>
+                      
+                    <div className="Footer-Page-Expanded">
+                            <a href={SITE_PAGES.RESOURCES_LANDING}>
+                                    {" "}
+                                    <p className="hover-underline-animation"> Resources </p>{" "}
+                                </a>
+                            {subitem("Newsletters", SITE_PAGES.RESOURCES_NEWSLETTERS)}
+                            {subitem("Publications", SITE_PAGES.RESOURCES_EPUBS)}
+                            {subitem("Buddhist Culture", SITE_PAGES.RESOURCES_BUDDHIST_CULTURE)}
+                            {subitem("Ordination", SITE_PAGES.RESOURCES_ORDINATION_ISSUE)}
+                        </div>
+                        
+                        <div>
+                            <a href={SITE_PAGES.ABOUT_US}>
+                                {" "}
+                                <p className="hover-underline-animation"> About </p>{" "}
+                            </a>
+                        </div>
+
+                    <div>
                         <a href={SITE_PAGES.CONTACT_US}>
                             {" "}
-                            <p className="hover-underline-animation"> Contact Us </p>{" "}
+                            <p className="hover-underline-animation"> Contact </p>{" "}
                         </a>
+                    </div>
+                      
                     </section>
                     <section className="Footer-Bottom">
                         {/* social media icons + links */}
@@ -204,11 +234,26 @@ export default function Footer() {
                 <section className="Footer-Bottom">
                     {/* all linked pages in website  */}
                     <section className="Footer-Pages">
-                        <a href={SITE_PAGES.HOME}> Home </a>
-                        <a href={SITE_PAGES.CONFERENCES}> Conferences </a>
-                        <a href={SITE_PAGES.RESOURCES_LANDING}> Resources </a>
-                        <a href={SITE_PAGES.ABOUT_US}> About Us </a>
-                        <a href={SITE_PAGES.CONTACT_US}> Contact Us </a>
+                    <a href={SITE_PAGES.RESOURCES_LANDING}>
+                                    {" "}
+                                    <p className="hover-underline-animation"> Resources </p>{" "}
+                                </a>
+                                <a href={SITE_PAGES.CONFERENCES}>
+                            {" "}
+                            <p className="hover-underline-animation"> Conferences </p>{" "}
+                        </a>
+                        <a href={SITE_PAGES.RESOURCES_LANDING}>
+                                    {" "}
+                                    <p className="hover-underline-animation"> Resources </p>{" "}
+                                </a>
+                                <a href={SITE_PAGES.ABOUT_US}>
+                                {" "}
+                                <p className="hover-underline-animation"> About </p>{" "}
+                            </a>
+                            <a href={SITE_PAGES.CONTACT_US}>
+                            {" "}
+                            <p className="hover-underline-animation"> Contact </p>{" "}
+                        </a>
                     </section>
 
                     {/* social media icons + links */}
