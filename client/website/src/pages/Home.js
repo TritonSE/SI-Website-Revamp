@@ -153,7 +153,7 @@ export default function Home() {
                         <img
                             width="850px"
                             height="auto"
-                            src="https://lh3.googleusercontent.com/ykejm8tgK4dBs7ng31eTMDT1m9g0divFCb7f6NK-uqpLsx0Ro8P1EYi97vfjGZ86E-gp3eb-rownzFEL7QYYQceAD-VnU4o9_UYIerdC4yAhKgNqiU05blASZ0w9eGJg5dGhVjMcrHDdqG1xwA_s_3GK7te5Bdup3052E-avFaHJQyowMKz4uaJ-j1o3lTXx4LZJJ-O3MlBURjY8Iady-eegFen82N1NUIAHs2UVCLxtgF0grvgQahlhr3B9eGJiXu2KDeyu7PG_br_Yz7Ryi24jrqFHpYcaN8sFEEzgdt3V7F-3cAFEjhlGS1tHi4pj9wQZkdYwAtDk4bj87MkOGm4-umi8nRzr4wuSbMKa_rns9u-srOl8rggBAXyqBjGGvQEruN0fcV-DYbiRmNjAc9TcL857mSdun7lYB9-2Q3ezT9dzprFlISR8Q3HZJc9GY11FCFxnqyBLUiUd4_O20akEhd_sQ2Qk4sPCVkRTP1vLPnPM5u1h2T9xWBwLy3kT4BHr9CB0X1xCwMfukquQR_tT5DuqNLaure1s-uIOfjVPheJFLqsbLnbBmPDlWKNNl7uBGL0xfrg2Ef2Q1tPO-308GzOa4IfI31jVrBzFjWEmlbhMuxytb-V-laBODgCNDk52uz28Z8VJPDXkiTarYpuf2f6rWYkbjLGq4TqSca851docIOvSaUqBeuVBlboGUpYRHSV-oOUPmZ4iAZ0erVk=w800-h450-no?authuser=1"
+                            src="https://sakyadhita.org/images/home/Sakyadhita-21%20Revised.jpg"
                         />
                         <br />
                         <CustomButton
@@ -325,7 +325,7 @@ export default function Home() {
                             <img
                                 width="550px"
                                 height="auto"
-                                src="https://lh3.googleusercontent.com/MmcqPN2rclOztZpF30v4ptgj36dGkzXAAZzOVMYHiUj5dN6wMrHnaRYVmoWp8CV_aF5u_k-7a7lqjkUjW6iyIYLKWCoyj_Osol7m0MqcXPsS6N4bd751snLMRcrVQjnm_M9P2Dzc7FO-lXtuj53ZqpR9Hi0NWUVh9GWOrmn1q0ePe6MM9Vt2ch-sPlKX-_RT54rYfv3lwPrLg4A7hNp56jyzw1ufE3V0DAxWe35fJp13MkNeTkrRUGID3uetifa3zdoIjukhYJmDgtn5IGjc60l8rSnPSQ8Wx-iEYKgCwejPiBLT6wmaTJJaU10sIQNreV09qm-FdGfETz0IehnZWihy6cX0yIJGrFK_RRgBz6GOUZpHb_fDaI2IIeWNuv4PnWbo4tBCnXNQs5znsrqQOd01bi44EcyGD5tKB9AWgTUdr18A58z4hxD0fPO3Df-STfG6z1obI8AYjCKYdGV35pRTZ_nTTPjCTFdjwOc7IWwPSGFrURV4FzSR9JloFQ2YtBgkc0Z97yT5OUKeCvOLgwOps3ld9BczyEuRaxLJfvQTdBTWDIAdbe_D9lM28kHhOOx1udiIijLDixf7sbZTa4PVk55hIJPAdCovEQDmCpE5eVP9gf6zvIBDWkqaiyDbkDTMzBNe4FcWGwwYuTBoZw-fLMY_AZDj5rNOy2dw-hhn2TIX_RS6vUOy6wmuNvrP_ni5PynWDkcO1JRKNK88XJk=w309-h250-no?authuser=1"
+                                src="https://sakyadhita.org/images/home/Pic1_201707-execcom-revised.jpg"
                             />
                         </span>
                     </div>
