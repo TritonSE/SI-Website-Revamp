@@ -24,7 +24,7 @@ const BACKEND_URL = config.backend.uri;
 
 const MAX_MOBILE_WIDTH = 1050;
 const MAIN_IMG_URL_LINK =
-    "https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1623024000&Signature=SCONX7E-9B-btNQQ0a8fn1kh2A4i8I3-aZjQlNXgBZSJnw~N8fCz7YzTOmI6hq0iinH~f~2cTCB2mvuab1dM3sLLIqbF1ZwaOcYlCXMiOAkhAYMkzVbcbZgrN6s4X67Jq2fSmA7D-kgk9KzDjiXkLnxn0n8l~TMh6huoB18N5MbJrighV~Hl2YaoJrHmEWhjoBu8Jhm8TDPB99ghsGKIOR9xQMIuULa4STzVHCkoCtzWzWBLgd1-BDv2hhE67pH5PYqoIJnzZwEemddHpUtI-RMW2xHPaq6J8P1LnvRfL9Kuq00ULLl3h04474LC9EjWGr2cACW0lhgyX~ei0roR3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+    "https://images.unsplash.com/photo-1616435577207-ca90abc6b732?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG90dXMlMjBmbG93ZXJzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80";
 
 // provides custom style/border colors for form fields
 const useStyles = makeStyles((theme) => ({
