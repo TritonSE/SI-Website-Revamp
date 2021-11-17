@@ -145,6 +145,7 @@ export default function Home() {
                         <img
                             width={isMobile ? "100%" : "65%"}
                             height="auto"
+                            alt="17th Conference Promo"
                             src="https://sakyadhita.org/images/home/Sakyadhita-21%20Revised.jpg"
                         />
                         <br />
@@ -333,6 +334,7 @@ export default function Home() {
                             <img
                                 width={isMobile ? "100%" : "40%"}
                                 height="auto"
+                                alt="Org Members"
                                 src="https://sakyadhita.org/images/home/Pic1_201707-execcom-revised.jpg"
                             />
                         </span>

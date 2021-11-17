@@ -133,7 +133,7 @@ export default function Footer() {
 
     const cclicense = (
         <p className="cc-notice">
-            <img src="https://licensebuttons.net/l/by-nc-nd/3.0/80x15.png" />
+            <img src="https://licensebuttons.net/l/by-nc-nd/3.0/80x15.png" alt="license" />
             &nbsp;Website is licensed under a
             <a
                 target="_blank"
