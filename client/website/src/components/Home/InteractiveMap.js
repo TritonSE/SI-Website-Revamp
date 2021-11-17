@@ -63,7 +63,7 @@ export default function InteractiveMap({ markers, disableZooming = false }) {
                     {/* Creates custom markers for all information passed */}
                     {markers.map(({ name, latitude, longitude, isBranch }, i) => (
                         <Marker
-                            data-for="soclose"
+                            data-for="tooltip"
                             data-tip={i}
                             data-event="click"
                             key={name}

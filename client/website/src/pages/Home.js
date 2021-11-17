@@ -184,8 +184,10 @@ export default function Home() {
                             effect="solid"
                             type="light"
                             border="true"
-                            globalEventOff="click"
-                            id="soclose"
+                            data-iscapture="true"
+                            event="mouseover mouseenter"
+                            globalEventOff="click scroll mousewheel blur"
+                            id="tooltip"
                             getContent={(dataTip) =>
                                 branchesAndChapters.length > 0 ? (
                                     <div>
