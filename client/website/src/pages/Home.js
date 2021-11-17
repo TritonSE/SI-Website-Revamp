@@ -151,7 +151,7 @@ export default function Home() {
                     <h1 ref={introTitle}> Upcoming 17th Conference! </h1>
                     <div className="home-section-body">
                         <img
-                            width="850px"
+                            width={isMobile ? "100%": "65%"}
                             height="auto"
                             src="https://sakyadhita.org/images/home/Sakyadhita-21%20Revised.jpg"
                         />
@@ -189,7 +189,10 @@ export default function Home() {
                             getContent={(dataTip) =>
                                 branchesAndChapters.length > 0 ? (
                                     <div>
-                                        <a
+                                        {/* Display name (with hyperlink if given) */}
+                                        {
+                                            branchesAndChapters[Math.floor(dataTip)].siteLink ?
+                                            <a
                                             href={branchesAndChapters[Math.floor(dataTip)].siteLink}
                                             target="_blank"
                                             rel="noreferrer"
@@ -197,10 +200,23 @@ export default function Home() {
                                             {branchesAndChapters[Math.floor(dataTip)].name}
                                             <FiExternalLink />
                                         </a>
+                                        :
+                                        branchesAndChapters[Math.floor(dataTip)].name
+                                        }
                                         <br />
-                                        <MdEmail />
-                                        &nbsp;
-                                        {branchesAndChapters[Math.floor(dataTip)].email}
+                                        {/* Display email if it given */}
+                                        {
+                                            branchesAndChapters[Math.floor(dataTip)].email
+                                            ?
+                                            <div>
+                                                 <MdEmail />
+                                                  &nbsp;
+                                                  {branchesAndChapters[Math.floor(dataTip)].email}
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                      
                                     </div>
                                 ) : (
                                     <div> </div>
@@ -234,7 +250,10 @@ export default function Home() {
                             papers, and publicity materials on Buddhism and issues of Buddhist women
                             into Chinese.
                             {"\n\n\n"}
-                            Click on a pin for more information about the branch!
+                            Click on a pin for more information about the branch! 
+                            {
+                                isMobile ? " Pinch the screen to zoom in and out of the map.": null
+                            }
                             {"\n\n"}
                         </p>
                         {/* Mini Color Legend  */}
@@ -323,7 +342,7 @@ export default function Home() {
                         <br />
                         <span style={{ textAlign: "center" }}>
                             <img
-                                width="550px"
+                                 width={isMobile ? "100%": "40%"}
                                 height="auto"
                                 src="https://sakyadhita.org/images/home/Pic1_201707-execcom-revised.jpg"
                             />

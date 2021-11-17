@@ -20,7 +20,7 @@ module.exports = async () => {
                 longitude: 2.2137,
                 isBranch: true,
                 email: "gabriela.frey@free.fr",
-                siteLink: "www.google.com",
+                siteLink: null,
             },
             { logging: false }
         ),
@@ -108,7 +108,7 @@ module.exports = async () => {
                 longitude: -46.6396,
                 isBranch: false,
                 email: "patriciagpalazzotsai.adv@gmail.com",
-                siteLink: "www.google.com",
+                siteLink: null,
             },
             { logging: false }
         ),
@@ -118,8 +118,8 @@ module.exports = async () => {
                 latitude: 19.8968,
                 longitude: -155.5828,
                 isBranch: false,
-                email: "", // Missing contact
-                siteLink: "hawaii.sakyadhita.org",
+                email: null, 
+                siteLink: "http://www.hawaii.sakyadhita.org",
             },
             { logging: false }
         ),

@@ -145,7 +145,11 @@
 
 @media only screen and (max-width: 800px) {
   .Home > .home-body {
-    padding: 1rem 1rem 2rem 1rem;
+    padding: 3rem 1rem 3rem 1rem;
+  }
+
+  .home-section .home-section-title {
+    margin-top: 3rem;
   }
 
   .Home h1 {
@@ -153,9 +157,8 @@
     font-size: 28px;
   }
 
-  .Home .divider {
-    width: 70%;
-    margin: 30px 0px;
+  .Home h4 {
+    font-size: 20px;
   }
 
   .Home #home-be-involved .involve-sections-container {
