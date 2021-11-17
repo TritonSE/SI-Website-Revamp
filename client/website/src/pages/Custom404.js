@@ -1,21 +1,18 @@
 import React from "react";
-import PayPal from "../components/PayPal";
+import ResourcesHeader from "../components/ResourcesHeader";
+
+import Header from "../media/Lotus_Header.png";
 
 export default function Custom404() {
     return (
         <div>
-            <p> This is the 404 Page </p>
-            <PayPal
-                membershipTitle="Nun/Student/Unemployed"
-                membershipID={1}
-                membershipCost={15}
-                donationAmount={0}
-                isNewMember
-                affiliatedOrgs="affiliated org 1"
-                disable={false}
-                transactionCompleted={() => {
-                    alert("completed transaction yay");
-                }}
+            <ResourcesHeader
+                title="404"
+                text="Page Not Found"
+                image={Header}
+                height="max(75vh, 400px)"
+                width="100%"
+                showArrow={false}
             />
         </div>
     );

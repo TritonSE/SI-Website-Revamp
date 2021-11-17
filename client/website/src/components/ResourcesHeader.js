@@ -8,7 +8,7 @@ import React from "react";
 import { FiArrowDownCircle } from "react-icons/fi";
 import "../css/ResourcesHeader.css";
 
-export default function ResourcesHeader({ image, height, width, title, text }) {
+export default function ResourcesHeader({ image, height, width, title, text, showArrow = true }) {
     return (
         <div
             className="header-div"
@@ -24,9 +24,11 @@ export default function ResourcesHeader({ image, height, width, title, text }) {
                 {text ? <p className="header-info">{text}</p> : null}
             </div>
             {/* Displays white arrow on bottom left of slide */}
-            <div className="circle-arrow">
-                <FiArrowDownCircle />
-            </div>
+            {showArrow ? (
+                <div className="circle-arrow">
+                    <FiArrowDownCircle />
+                </div>
+            ) : null}
         </div>
     );
 }
