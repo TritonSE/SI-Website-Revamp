@@ -24,7 +24,7 @@ export default function EPubCard({ title, author, image_url, redirect_link, isMo
                             </a>
                         </>
                     )}
-                    <div data-tip={title} className="EPubCard_title">{title}</div>
+                    <div className="EPubCard_title">{title}</div>
                     <div data-tip={author} className="EPubCard_author">{author}</div>
                 </div>
             ) : (
@@ -38,7 +38,7 @@ export default function EPubCard({ title, author, image_url, redirect_link, isMo
                             </a>
                         </>
                     )}
-                    <div data-tip={title} className="EPubCard_title--mobile">{title}</div>
+                    <div className="EPubCard_title--mobile">{title}</div>
                     <div data-tip={author} className="EPubCard_author--mobile">By {author}</div>
                 </div>
             )}

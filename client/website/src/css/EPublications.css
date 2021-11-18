@@ -58,6 +58,10 @@
   cursor: pointer;
 }
 .EPub_SelectedSection_body {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-wrap: wrap;
   position: relative;
   text-align: center;
   margin: 0px -25px;
@@ -112,6 +116,10 @@
   cursor: pointer;
 }
 .EPub_SelectedSection_body--mobile {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-wrap: wrap;
   position: relative;
   text-align: center;
   margin: 0px -25px;

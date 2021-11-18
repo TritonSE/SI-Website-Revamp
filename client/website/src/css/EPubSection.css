@@ -45,11 +45,14 @@
   cursor: pointer;
 }
 .EPubSection_body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
   position: relative;
   text-align: center;
-  height: 460px;
+  min-height: 460px;
   margin: 0px -25px;
-  overflow: hidden;
 }
 .EPubSection_orangebar {
   position: absolute;
@@ -110,6 +113,10 @@
   cursor: pointer;
 }
 .EPubSection_body--mobile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: center;
   position: relative;
   text-align: center;
   margin: 0px -25px;

@@ -5,7 +5,7 @@
  *
  * Calls EPubCard.js, and EPubSection.js
  *
- * @Author PatrickBrown1
+ * @Author PatrickBrown1, Navid Boloorian
  */
 
 import React, { useState, useEffect } from "react";
@@ -17,219 +17,6 @@ import "../../css/EPublications.css";
 import Loader from "../../components/Main/Loader";
 
 import { fetchEpubs } from "../../util/requests";
-
-// // dummy data for each publication list
-// const page_data = {
-//     sections: [
-//         {
-//             section_title: "Section 1",
-//             section_list: [
-//                 {
-//                     title: "title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "super duper long title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "even longer super duper long title that takes 3 lines",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 4",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 5",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 6",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//             ],
-//         },
-//         {
-//             section_title: "Section 2",
-//             section_list: [
-//                 {
-//                     title: "title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "super duper long title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//             ],
-//         },
-//         {
-//             section_title: "Section 3",
-//             section_list: [
-//                 {
-//                     title: "title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "super duper long title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "even longer super duper long title that takes 3 lines",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 4",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 5",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 6",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "super duper long title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "even longer super duper long title that takes 3 lines",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 4",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 5",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 6",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "super duper long title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "even longer super duper long title that takes 3 lines",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 4",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 5",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 6",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "super duper long title",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "even longer super duper long title that takes 3 lines",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 4",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 5",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//                 {
-//                     title: "title 6",
-//                     author: "first last",
-//                     image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-//                     redirect_link: "https://google.com",
-//                 },
-//             ],
-//         },
-//     ],
-// };
 
 // renders selected section from state, including each card in that page,
 // and a button to go back to the main EPublications screen
@@ -263,7 +50,7 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                                 title={pub.title}
                                 author={pub.author}
                                 image_url={pub.imageLink}
-                                redirect_link={pub.pdfLInk}
+                                redirect_link={pub.pdfLink}
                                 isMobile={isMobile}
                             />
                         ))
@@ -297,14 +84,14 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                             <EPubCard
                                 title={pub.title}
                                 author={pub.author}
-                                image_url={pub.image_url}
-                                redirect_link={pub.redirect_link}
+                                image_url={pub.imageLink}
+                                redirect_link={pub.pdfLink}
                                 isMobile={isMobile}
                             />
                             <button
                                 type="button"
                                 onClick={() =>
-                                    window.open(pub.redirect_link, "_blank", "norefferer")
+                                    window.open(pub.pdfLink, "_blank", "norefferer")
                                 }
                                 className="EPub_SelectedSection_body_readbutton--mobile"
                             >

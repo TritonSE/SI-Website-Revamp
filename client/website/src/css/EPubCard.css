@@ -5,8 +5,6 @@
   margin: 25px;
 }
 .EPubCard_title {
-  height: 62px;
-
   display: block;
 
   font-family: var(--heading-font);
@@ -16,10 +14,8 @@
   text-align: left;
 
   white-space: text-wrap;
-  overflow: hidden;
 }
 .EPubCard_author {
-  height: 30px;
   display: block;
 
   font-family: var(--text-font);
@@ -50,7 +46,7 @@
   margin: 25px;
 }
 .EPubCard_title--mobile {
-  height: 48px;
+  max-height: 48px;
 
   display: block;
 
@@ -64,7 +60,7 @@
   overflow: hidden;
 }
 .EPubCard_author--mobile {
-  height: 21px;
+  max-height: 21px;
   display: block;
 
   font-family: var(--text-font);
