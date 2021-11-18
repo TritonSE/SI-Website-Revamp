@@ -11,6 +11,7 @@ export default function Custom404() {
                 membershipCost={15}
                 donationAmount={0}
                 isNewMember
+                address="2469 Random"
                 affiliatedOrgs="affiliated org 1"
                 disable={false}
                 transactionCompleted={() => {

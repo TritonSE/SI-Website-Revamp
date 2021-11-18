@@ -12,14 +12,14 @@ module.exports = async () => {
         MembershipType.create(
             {
                 title: "Nun/Student/Unemployed",
-                cost: 15.0,
+                cost: 15,
             },
             { logging: false }
         ),
         MembershipType.create(
             {
                 title: "General",
-                cost: 30.0,
+                cost: 15,
             },
             { logging: false }
         ),
@@ -33,7 +33,7 @@ module.exports = async () => {
         MembershipType.create(
             {
                 title: "Lifetime",
-                cost: 300,
+                cost: 15,
             },
             { logging: false }
         ),

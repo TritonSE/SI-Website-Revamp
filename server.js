@@ -53,6 +53,7 @@ app.use("/newsletters", require("./routes/newsletters"));
 app.use("/adminAccounts", require("./routes/adminAccounts"));
 app.use("/contact", require("./routes/contact"));
 app.use("/branchesAndChapters", require("./routes/branchesAndChapters"));
+app.use("/paypal", require("./routes/paypal"));
 
 app.get("/", (req, res) => {
     res.status(200).json({ message: "Abandon All Hope Ye Who Enter Here..." });

@@ -7,6 +7,7 @@
 const Sequelize = require("sequelize");
 const db = require("../configDB");
 const MembershipType = require("./membershipTypes");
+const {PAYPAL_STATUS} = require("../services/paypal");
 
 const Memberships = db.define(
     "Memberships",
@@ -29,9 +30,9 @@ const Memberships = db.define(
             unique: true,
             allowNull: false,
         },
-        payPalVerified: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false,
+        payPalStatus: {
+            type: Sequelize.STRING(50),
+            defaultValue: PAYPAL_STATUS.PENDING,
             allowNull: false,
         },
         fName: {

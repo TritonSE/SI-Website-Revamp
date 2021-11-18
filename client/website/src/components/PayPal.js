@@ -144,7 +144,7 @@ export default function PayPal(props) {
                             address,
                             isNewMember,
                             affiliatedOrgs,
-                            membershipType: membershipID.toString(),
+                            membershipType: membershipID,
                             totalPaid: parseFloat(details.purchase_units[0].amount.value),
                             payPalTransactionId: details.purchase_units[0].payments.captures[0].id,
                         };
