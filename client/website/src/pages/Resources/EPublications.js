@@ -149,6 +149,19 @@ export default function EPublications() {
         setLoadingEpubs(false);
     }, []);
 
+    // scroll to top of div when a section is selected
+    useEffect(async () => {
+
+        if(selectedSection !== "")
+            document.getElementById("EPubPage").scrollIntoView({
+                // smooth animation on scroll
+                behavior: "smooth",
+                block: "start",
+                inline: "start"
+            })
+
+    }, [selectedSection]); // called again when selectedSection is changed
+
     if (loadingEpubs) {
         return (
             <div id="EPubPage">
