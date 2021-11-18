@@ -22,7 +22,7 @@ const Memberships = db.define(
             allowNull: true,
         },
         totalPaid: {
-            type: Sequelize.DECIMAL(4, 2),
+            type: Sequelize.DECIMAL(8, 2),
             allowNull: false,
         },
         payPalTransactionId: {

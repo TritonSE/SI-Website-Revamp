@@ -16,18 +16,22 @@ const BACKEND_URL = config.backend.uri;
 const TAX_RATE = 0.08;
 
 // PayPal script is located in public/index.html (contains Client ID)
-export default function PayPal(props) {
-    const {
-        membershipTitle,
-        membershipID,
-        membershipCost,
-        donationAmount,
-        isNewMember,
-        affiliatedOrgs,
-        disable,
-        transactionCompleted,
-        address,
-    } = props;
+export default function PayPal({
+    fName,
+    mName,
+    lName,
+    email,
+    phone,
+    membershipTitle,
+    membershipID,
+    membershipCost,
+    donationAmount,
+    isNewMember,
+    affiliatedOrgs,
+    disable,
+    transactionCompleted,
+    address
+}) {
 
     // only add values to itemTotal and taxTotal if they are positive
     let itemTotal;
@@ -137,10 +141,11 @@ export default function PayPal(props) {
 
                         // create membership object
                         const membershipObject = {
-                            fName: details.payer.name.given_name,
-                            lName: details.payer.name.surname,
-                            phone: details.payer.phone.phone_number.national_number,
-                            email: details.payer.email_address,
+                            fName: fName || details.payer.name.given_name,
+                            lName: lName || details.payer.name.surname,
+                            email: email || details.payer.email_address,
+                            phone,
+                            mName,
                             address,
                             isNewMember,
                             affiliatedOrgs,

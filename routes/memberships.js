@@ -25,7 +25,7 @@ router.post(
         body("mName").isString().optional(),
         body("lName").isString(),
         body("phone").isString().optional(),
-        body("email").isEmail(),
+        body("email").isString(),
         body("address").isString(),
         body("isNewMember").isBoolean(),
         body("affiliatedOrgs").isString(),

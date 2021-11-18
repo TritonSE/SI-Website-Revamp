@@ -23,6 +23,11 @@ export default function PayPalModal(props) {
                     {/* displays PayPal buttons component */}
                     <PayPal
                         key={props.key}
+                        fName={props.fName}
+                        mName={props.mName}
+                        lName={props.lName}
+                        email={props.email}
+                        phone={props.phoneNumber}
                         membershipTitle={props.membershipTitle}
                         membershipID={props.membershipID}
                         membershipCost={props.membershipCost}

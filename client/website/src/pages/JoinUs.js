@@ -749,6 +749,11 @@ export default function JoinUs() {
                             {displayPayPalModal ? (
                                 <PayPalModal
                                     key={displayPayPal}
+                                    fName={values.firstName.value}
+                                    mName={values.middleName.value}
+                                    lName={values.lastName.value}
+                                    email={values.emailAddress.value}
+                                    phoneNumber={values.phoneNumber.value}
                                     membershipTitle={memberships[membership - 1].title}
                                     membershipID={memberships[membership - 1].id}
                                     membershipCost={parseFloat(memberships[membership - 1].cost)}
