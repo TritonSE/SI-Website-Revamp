@@ -11,12 +11,15 @@ const ePubFilters = require("../../db/models/ePubFilters");
 module.exports = async () => {
     await Promise.all([
         // make dummy data, and make sure to disable logging to reduce clutter
-        ePubFilters.create({ title: "french" }, { logging: false }),
-        ePubFilters.create({ title: "english" }, { logging: false }),
-        ePubFilters.create({ title: "japanese" }, { logging: false }),
-        ePubFilters.create({ title: "persian" }, { logging: false }),
-        ePubFilters.create({ title: "spanish" }, { logging: false }),
-        ePubFilters.create({ title: "chinese" }, { logging: false }),
+        ePubFilters.create({ title: "Conferences" }, { logging: false }),
+        ePubFilters.create({ title: "Bibliographies" }, { logging: false }),
+        ePubFilters.create({ title: "Articles" }, { logging: false }),
+        ePubFilters.create({ title: "Brochures" }, { logging: false }),
+        ePubFilters.create({ title: "Chinese Translations" }, { logging: false }),
+        ePubFilters.create({ title: "English Translations" }, { logging: false }),
+        ePubFilters.create({ title: "French Translations" }, { logging: false }),
+        ePubFilters.create({ title: "German Translations" }, { logging: false }),
+        ePubFilters.create({ title: "Spanish Translations" }, { logging: false }),
     ])
         .then(() => {
             // successfull population
