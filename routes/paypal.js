@@ -41,7 +41,7 @@ async function inspectValidIPNResponse(req, res) {
   if (!membershipObj) return;
 
   // verify gross amount paid are same
-  if (payment_amount != order.PayPal.Amount) {
+  if (payment_amount != membershipObj.totalPaid) {
       updatePayPalStatus(txn_id, PAYPAL_STATUS.REJECTED);
       return;
   }
