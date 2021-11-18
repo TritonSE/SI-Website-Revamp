@@ -70,7 +70,7 @@ export default function MobileConferences(props) {
                     {/* Loop through all the images associated with the conference */}
                     {item && item.slideShowImages
                         ? item.slideShowImages.urls.map((image) => (
-                              <div>
+                              <div key={image}>
                                   {/* Set styling on the img */}
                                   <div className="mobile-slideshow-label">
                                       <h1>{item.title}</h1>
@@ -124,12 +124,11 @@ export default function MobileConferences(props) {
                 signup={item.signUpLink}
                 location={item.location}
                 isMobile
-                slideShow={slideshowVideo}
             />
             <div className="overview-header-mobile">
                 <h2>Overview</h2>
             </div>
-            <ConferenceOverview info={item} slideShow={slideshowVideo} />
+            <ConferenceOverview info={item} />
         </div>
     );
 

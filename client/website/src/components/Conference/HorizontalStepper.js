@@ -214,7 +214,7 @@ export default function HorizontalStepper(props) {
             >
                 {/* loop through each item in splitSteps */}
                 {splitSteps.map((step, index) => (
-                    <Step>
+                    <Step key={step.confNum}>
                         {/* add a button with custom icon */}
                         <StepButton
                             onClick={() => handleStep(index)}

@@ -62,7 +62,6 @@ export default function ConferencesDesktop(props) {
      * @param {number} step - the index clicked on the vertical stepper
      */
     const setParentIndex = (step) => {
-        console.log("here");
         setIndex(step);
         setItem(itemList[step]);
     };
@@ -105,7 +104,7 @@ export default function ConferencesDesktop(props) {
                 <Slideshow height="430px" width="100%">
                     {/* Loop through all the images associated with the conference */}
                     {item.slideShowImages.urls.map((image) => (
-                        <div>
+                        <div key={image}>
                             {/* Set styling on the img */}
                             <img
                                 style={{

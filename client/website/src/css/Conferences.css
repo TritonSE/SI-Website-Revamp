@@ -75,6 +75,8 @@
 }
 
 .conference-vertical-stepper {
+  position: -webkit-sticky;
+  position: sticky;
   min-width: calc(200px);
   margin-top: calc(65px);
   margin-bottom: calc(170px);
@@ -122,10 +124,12 @@
   font-size: calc(35px);
   font-weight: 600;
   font-family: var(--heading-font);
+  width: 35vw;
 }
 
 .conference-info-location {
   padding-bottom: calc(1.5vh);
+  width: 35vw;
 }
 
 .conference-info-resource-title {
@@ -388,6 +392,10 @@
     padding: 0;
   }
 
+  .slideshow-div {
+    display: none;
+  }
+
   .conference-vertical-stepper {
     width: 100%;
     display: flex;
@@ -403,6 +411,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .conference-info-slideshow {
+    display: none;
+  }
+
+  .conferences-info-section {
+    width: 100%;
   }
 
   .conference-info-location {

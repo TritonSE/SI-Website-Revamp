@@ -38,7 +38,7 @@ export default function ConferenceTheme(props) {
             {props.title ? (
                 <section className="conference-info-title">
                     <h1>{props.title}</h1>
-                    {props.tabs()}
+                    {props.tabs ? props.tabs() : null}
                 </section>
             ) : null}
 
@@ -59,7 +59,7 @@ export default function ConferenceTheme(props) {
 
             {/* The text describing the specific conference */}
             <div className="conference-theme-paragraph-div">
-                <div className="slideshow-div">{props.slideShow()}</div>
+                <div className="slideshow-div">{props.slideShow ? props.slideShow() : null}</div>
                 <p className="conference-theme-paragraph">{props.theme}</p>
             </div>
 

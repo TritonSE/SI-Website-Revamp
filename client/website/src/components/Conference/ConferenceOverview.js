@@ -31,7 +31,7 @@ export default function ConferenceOverview(props) {
                 </div>
             ) : (
                 item.data.map((program) => (
-                    <a href={program.url} download className="program">
+                    <a href={program.url} download className="program" key={program.url}>
                         {/* The download font icon */}
                         <FontAwesomeIcon icon={faDownload} />
                         <p>{program.description}</p>
@@ -46,7 +46,7 @@ export default function ConferenceOverview(props) {
             {/* The title of the conference */}
             <section className="conference-info-title">
                 <h1>{props.title}</h1>
-                {props.tabs()}
+                {props.tabs ? props.tabs() : null}
             </section>
 
             {/* Header section for file downloads */}
@@ -69,7 +69,9 @@ export default function ConferenceOverview(props) {
                     {itemList(items.abstracts)}
                 </div>
 
-                <div className="conference-info-slideshow">{props.slideShow()}</div>
+                <div className="conference-info-slideshow">
+                    {props.slideShow ? props.slideShow() : null}
+                </div>
             </div>
         </div>
     );

@@ -154,6 +154,22 @@ export default function VerticalStepper(props) {
     };
 
     /**
+     * Convert the location string to a shorter location string if
+     * it contains more than the format (city, state)
+     *
+     * @param {string} location - the location for the conference
+     * @returns a string
+     */
+    const determineLocationLabel = (location) => {
+        const splitLocation = location.split(",");
+        if (splitLocation.length > 2) {
+            splitLocation.shift();
+        }
+
+        return splitLocation.join(", ");
+    };
+
+    /**
      * When an item in the stepper is clicked, it's parent
      * index is updated accordingly
      *
@@ -204,7 +220,7 @@ export default function VerticalStepper(props) {
                 >
                     {/* for each item in our splitSteps array */}
                     {splitSteps.map((step, index) => (
-                        <Step>
+                        <Step key={step.location}>
                             {/* add a step button that is clickable */}
                             <StepButton
                                 onClick={() => handleStep(index)}
@@ -223,7 +239,7 @@ export default function VerticalStepper(props) {
                                         active: classes.step_label_root,
                                     }}
                                 >
-                                    {step.location}
+                                    {determineLocationLabel(step.location)}
                                 </StepLabel>
                             </StepButton>
                         </Step>
