@@ -48,14 +48,14 @@
 
 .conferences-outer-container {
   width: 100%;
-  margin-left: calc(101px);
+  margin-left: calc(50px);
   margin-right: calc(101px);
 }
 
 /* The Conferences page */
 .conference-container {
   /* min-width: 440px; */
-  width: calc(30.24vw);
+  width: 100%;
   display: flex;
   justify-content: flex-start;
 }
@@ -65,6 +65,7 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  height: auto;
 }
 
 .small-desktop-div-container {
@@ -77,29 +78,44 @@
   min-width: calc(200px);
   margin-top: calc(65px);
   margin-bottom: calc(170px);
+  margin-right: 20px;
 }
 
 /* Conference information */
 .conference-info,
 .conference-overview {
   /* min-width: 400px; */
-  width: calc(30.24vw);
-  margin: 15.5vh 1.5vw 9vh 1vw;
+  width: calc(80.24vw);
+  margin: 10.5vh 6vw 9vh 1vw;
+  height: auto;
 }
 
-.conference-info-divider-div,
-.conference-theme-paragraph-div {
-  max-height: 342px;
+.conferences-info-section {
+  display: flex;
+  flex-direction: row;
+  width: calc(80.24vw);
+}
+
+.conference-info-slideshow {
+  width: calc(49vw);
+  margin-left: 50px;
+  margin-top: -25px;
+  margin-right: 25px;
+}
+
+.conference-info-divider-div {
+  max-height: 400px;
+  width: calc(31vw);
   overflow-y: hidden;
 }
 
-.conference-theme-paragraph-div {
-  max-height: 304px;
+.conference-info-divider-div:hover {
+  overflow-y: auto;
 }
 
-.conference-info-divider-div:hover,
-.conference-theme-paragraph-div:hover {
-  overflow-y: auto;
+.conference-info-title {
+  display: flex;
+  flex-direction: row;
 }
 
 .conference-info-title h1 {
@@ -175,9 +191,9 @@
 /* Slideshow section  */
 
 .slideshow-section {
-  width: calc(50.064vw - 100px);
+  width: calc(50vw);
   float: left;
-  margin-top: calc(120px);
+  margin-left: calc(50px);
 }
 
 .slideshow-section-theme-active,
@@ -256,11 +272,18 @@
   font-family: var(--text-font);
 }
 
+.slideshow-div {
+  float: right;
+  width: 60%;
+  margin-left: 25px;
+  padding-bottom: 25px;
+}
+
 .conference-info-location h3 {
   font-family: var(--heading-font);
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1250px) {
   .conference-container,
   .small-desktop-div-container {
     width: calc(53vw);
@@ -270,12 +293,12 @@
   .conference-vertical-stepper {
     margin-bottom: 0;
     min-width: calc(100%);
-    width: calc(200px);
+    width: calc(170px);
   }
 
   .conference-info,
   .conference-overview {
-    min-width: calc(53vw);
+    min-width: calc(66vw);
     margin: 0;
     margin-top: calc(60px);
   }
@@ -291,17 +314,49 @@
   }
 
   .slideshow-section {
-    width: calc(53vw);
-    grid-area: slideshowArea;
-    margin-top: calc(30px);
-    margin-bottom: calc(90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+  }
+
+  .conference-info-slideshow {
+    width: calc(60vw);
+    margin: 25px 0 50px 0;
+  }
+
+  .slideshow-section-theme-active,
+  .slideshow-section-overview-active {
+    margin-left: calc(0vw);
+  }
+
+  .slideshow-section-theme,
+  .slideshow-section-overview {
+    margin-left: calc(0vw);
+  }
+
+  .slideshow-section-theme-active,
+  .slideshow-section-theme {
+    margin-left: 0;
+  }
+
+  .slideshow-section {
+    width: auto;
+  }
+
+  .conferences-info-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .conference-info-divider-div {
+    width: calc(60vw);
   }
 
   .conferences-outer-container {
     width: 100%;
     margin: 0;
     padding-right: calc(10vw);
-    padding-left: calc(10vw);
+    padding-left: calc(6vw);
   }
 
   .conference-info-resource-title {
@@ -309,12 +364,14 @@
     width: calc(400.2px);
   }
 
-  .conference-overview {
-    min-width: calc(53vw);
-  }
-
   .conference-info-signup button {
     width: 150px;
+  }
+
+  .slideshow-div {
+    float: none;
+    width: 100%;
+    margin-left: 0;
   }
 }
 
@@ -418,14 +475,12 @@
 
   .conference-theme-paragraph-div {
     overflow-y: visible;
-    max-height: fit-content;
     width: 100%;
     display: flex;
     justify-content: space-around;
   }
 
-  .conference-info-divider-div:hover,
-  .conference-theme-paragraph-div:hover {
+  .conference-info-divider-div:hover {
     overflow-y: hidden;
   }
 

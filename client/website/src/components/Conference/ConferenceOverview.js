@@ -44,27 +44,32 @@ export default function ConferenceOverview(props) {
     return (
         <div className="conference-overview">
             {/* The title of the conference */}
-            <div className="conference-info-title">
+            <section className="conference-info-title">
                 <h1>{props.title}</h1>
-            </div>
+                {props.tabs()}
+            </section>
 
             {/* Header section for file downloads */}
             <section className="conference-info-resource-title">
                 <h4>Conference resources are available for download as a PDF.</h4>
             </section>
 
-            <div className="conference-info-divider-div">
-                {/* render the files for 'programs' */}
-                <div className="conference-info-divider">Programs</div>
-                {itemList(items.programs)}
+            <div className="conferences-info-section">
+                <div className="conference-info-divider-div">
+                    {/* render the files for 'programs' */}
+                    <div className="conference-info-divider">Programs</div>
+                    {itemList(items.programs)}
 
-                {/* render the files for 'presentations' */}
-                <div className="conference-info-divider">Presentations</div>
-                {itemList(items.presentations)}
+                    {/* render the files for 'presentations' */}
+                    <div className="conference-info-divider">Presentations</div>
+                    {itemList(items.presentations)}
 
-                {/* render the files for 'abstracts' */}
-                <div className="conference-info-divider">Abstracts</div>
-                {itemList(items.abstracts)}
+                    {/* render the files for 'abstracts' */}
+                    <div className="conference-info-divider">Abstracts</div>
+                    {itemList(items.abstracts)}
+                </div>
+
+                <div className="conference-info-slideshow">{props.slideShow()}</div>
             </div>
         </div>
     );

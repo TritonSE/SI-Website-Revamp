@@ -67,32 +67,32 @@ export default function ConferencesDesktop(props) {
         setItem(itemList[step]);
     };
 
-    /**
-     * Rendersthe conference theme information
-     *      title - the title of the conference
-     *      location - location of the conference
-     *      redirect - redirect url for registration
-     *      theme - information about the conference
-     *      info - overview of conference, files
-     * @returns Node - component to render
-     */
-    const displayInformation = () => {
-        if (isInfo) {
-            return (
-                <ConferenceTheme
-                    title={item.title}
-                    location={item.location}
-                    redirect={item.signUpLink}
-                    theme={item.theme}
-                    signup={item.signUpLink}
-                    isMobile={false}
-                />
-            );
-        }
-
-        // if it is not the info tab, then render the overview tab
-        return <ConferenceOverview info={item} title={item.title} />;
-    };
+    const tabs = () => (
+        <div className="slideshow-section">
+            <div className="slideshow-section-tabs">
+                {/* The 'theme' tab button */}
+                <button
+                    className={
+                        isInfo ? "slideshow-section-theme-active" : "slideshow-section-theme"
+                    }
+                    onClick={() => updateInformation()}
+                    type="button"
+                >
+                    Theme
+                </button>
+                {/* The 'overview' tab button */}
+                <button
+                    className={
+                        isInfo ? "slideshow-section-overview" : "slideshow-section-overview-active"
+                    }
+                    onClick={() => updateInformation()}
+                    type="button"
+                >
+                    Overview
+                </button>
+            </div>
+        </div>
+    );
 
     /**
      * Renders a slideshow or video depending on the tab
@@ -134,6 +134,42 @@ export default function ConferencesDesktop(props) {
         );
     };
 
+    /**
+     * Rendersthe conference theme information
+     *      title - the title of the conference
+     *      location - location of the conference
+     *      redirect - redirect url for registration
+     *      theme - information about the conference
+     *      info - overview of conference, files
+     * @returns Node - component to render
+     */
+    const displayInformation = () => {
+        if (isInfo) {
+            return (
+                <ConferenceTheme
+                    title={item.title}
+                    location={item.location}
+                    redirect={item.signUpLink}
+                    theme={item.theme}
+                    signup={item.signUpLink}
+                    isMobile={false}
+                    slideShow={slideshowVideo}
+                    tabs={tabs}
+                />
+            );
+        }
+
+        // if it is not the info tab, then render the overview tab
+        return (
+            <ConferenceOverview
+                info={item}
+                title={item.title}
+                slideShow={slideshowVideo}
+                tabs={tabs}
+            />
+        );
+    };
+
     // check to see if data exists
     if (props.data.length === 0) {
         return (
@@ -159,39 +195,9 @@ export default function ConferencesDesktop(props) {
                 {/* This outer div is used for 1050 < x < 1200 screen widths */}
                 <div className="small-desktop-div-container">
                     {/* Display the information for either theme or overview */}
-                    <div className="conference-container">{displayInformation()}</div>
-
-                    {/* The tabs to switch between theme and overview */}
-                    <div className="slideshow-section">
-                        <div className="slideshow-section-tabs">
-                            {/* The 'theme' tab button */}
-                            <button
-                                className={
-                                    isInfo
-                                        ? "slideshow-section-theme-active"
-                                        : "slideshow-section-theme"
-                                }
-                                onClick={() => updateInformation()}
-                                type="button"
-                            >
-                                Theme
-                            </button>
-                            {/* The 'overview' tab button */}
-                            <button
-                                className={
-                                    isInfo
-                                        ? "slideshow-section-overview"
-                                        : "slideshow-section-overview-active"
-                                }
-                                onClick={() => updateInformation()}
-                                type="button"
-                            >
-                                Overview
-                            </button>
-                        </div>
-
-                        {/* Render either the associated video or the slideshow of images */}
-                        <div style={{ width: "100%" }}>{slideshowVideo()}</div>
+                    <div className="conference-container">
+                        {displayInformation()}
+                        {/* <div style={{ width: "100%" }}>{slideshowVideo()}</div> */}
                     </div>
                 </div>
             </div>

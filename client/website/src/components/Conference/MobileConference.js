@@ -58,34 +58,6 @@ export default function MobileConferences(props) {
     };
 
     /**
-     * Rendersthe conference theme information
-     * title - the title of the conference
-     * location - location of the conference
-     * redirect - redirect url for registration
-     * theme - information about the conference
-     * info - overview of conference, files
-     * @returns Node - component to render
-     */
-    const displayInformation = () => (
-        <div>
-            <div className="theme-header-mobile">
-                <h2>Theme</h2>
-            </div>
-            <ConferenceTheme
-                redirect={item.signUpLink}
-                theme={item.theme}
-                signup={item.signUpLink}
-                location={item.location}
-                isMobile
-            />
-            <div className="overview-header-mobile">
-                <h2>Overview</h2>
-            </div>
-            <ConferenceOverview info={item} />
-        </div>
-    );
-
-    /**
      * Renders a slideshow or video depending on the tab
      * If theme, slideshow, otherwise video
      * @param {boolean} - display video or slideshow
@@ -131,6 +103,35 @@ export default function MobileConferences(props) {
             />
         );
     };
+
+    /**
+     * Rendersthe conference theme information
+     * title - the title of the conference
+     * location - location of the conference
+     * redirect - redirect url for registration
+     * theme - information about the conference
+     * info - overview of conference, files
+     * @returns Node - component to render
+     */
+    const displayInformation = () => (
+        <div>
+            <div className="theme-header-mobile">
+                <h2>Theme</h2>
+            </div>
+            <ConferenceTheme
+                redirect={item.signUpLink}
+                theme={item.theme}
+                signup={item.signUpLink}
+                location={item.location}
+                isMobile
+                slideShow={slideshowVideo}
+            />
+            <div className="overview-header-mobile">
+                <h2>Overview</h2>
+            </div>
+            <ConferenceOverview info={item} slideShow={slideshowVideo} />
+        </div>
+    );
 
     // check to see if data exists
     if (props.data.length === 0) {

@@ -31,7 +31,6 @@ export default function ConferenceTheme(props) {
     const hide = () => setOpen(false);
 
     // determine the height of text depeding on the signup button
-    const determineHeight = props.signup ? { maxHeight: "304px" } : { maxHeight: "370px" };
 
     return (
         <div className="conference-info">
@@ -39,6 +38,7 @@ export default function ConferenceTheme(props) {
             {props.title ? (
                 <section className="conference-info-title">
                     <h1>{props.title}</h1>
+                    {props.tabs()}
                 </section>
             ) : null}
 
@@ -58,10 +58,8 @@ export default function ConferenceTheme(props) {
             ) : null}
 
             {/* The text describing the specific conference */}
-            <div
-                className="conference-theme-paragraph-div"
-                style={props.isMobile ? null : determineHeight}
-            >
+            <div className="conference-theme-paragraph-div">
+                <div className="slideshow-div">{props.slideShow()}</div>
                 <p className="conference-theme-paragraph">{props.theme}</p>
             </div>
 
