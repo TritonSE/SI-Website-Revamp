@@ -31,6 +31,7 @@
   text-align: left;
   padding-top: 5px;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .EPubCard_image {
@@ -73,6 +74,7 @@
   text-align: center;
   padding-top: 5px;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .EPubCard_image--mobile {

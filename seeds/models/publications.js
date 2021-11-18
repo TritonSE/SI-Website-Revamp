@@ -14,7 +14,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Biographies, Profiles and Interviews",
-                author: "Kate Crosby, Karma Lekshe Tsomo",
+                author: "Kate Crosby, Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-biographies+profiles+interviews.pdf",
@@ -26,7 +26,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Contemprary Regional, Ethnographic, and Anthropological Studies",
-                author: "Kate Crosby and Karma Lekshe Tsomo",
+                author: "Kate Crosby, Karma Tsomo",
                 feature: true,
                 description: "Description",
                 pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-contemporary+regional+ethnographic+anthropological.pdf",
@@ -38,7 +38,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "General and Miscellaneous",
-                author: "Kate Crosby and Karma Lekshe Tsomo",
+                author: "Kate Crosby, Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-general+misc.pdf",
@@ -49,7 +49,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Historical",
-                author: "Kate Crosby and Karma Lekshe Tsomo",
+                author: "Kate Crosby, Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-historical.pdf",
@@ -60,7 +60,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Textual Studies",
-                author: "Kate Crosby and Karma Lekshe Tsomo",
+                author: "Kate Crosby, Karma Tsomo",
                 feature: false,
                 description:
                     "Description",
@@ -119,7 +119,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Bridging Worlds",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "https://sakyadhita.org/docs/resources/epublications/Tsomo%20Bridging%20Worlds.pdf",
@@ -130,7 +130,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Buddhist Women in a Global Multicultural Community",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "https://sakyadhita.org/docs/resources/epublications/BuddhistWomenInAMulticulturalCommunity-Sakyadhita2009.pdf",
@@ -141,7 +141,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Bridging Worlds: Buddhist Women’s Voices Across Generations",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "https://sakyadhita.org/docs/resources/epublications/Bridging%20Worlds%20Buddhist%20Women's%20Voices%20Across%20Generations%20Karma%20Lekshe%20Tsomo.pdf",
@@ -152,7 +152,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Eminent Buddhist Women",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.sunypress.edu/p-5853-eminent-buddhist-women.aspx",
@@ -163,7 +163,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Buddhist Women in a Global Multicultural Community",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.amazon.com/Buddhist-Women-Global-Multicultural-Community/dp/B005FHW8A8/ref=sr_1_1?s=books&ie=UTF8&qid=1381809952&sr=1-1&keywords=Buddhist+Women+in+a+Global+Multicultural+Community",
@@ -174,7 +174,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Out of the Shadows",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.amazon.com/Out-Shadows-Socially-Bibliotheca-Indio-Buddhica/dp/8170308496/ref=sr_1_26?s=books&ie=UTF8&qid=1381809693&sr=1-26&keywords=karma+lekshe+tsomo",
@@ -185,7 +185,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Buddhist Women and Social Justice",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.sunypress.edu/p-4016-buddhist-women-and-social-justi.aspx",
@@ -196,7 +196,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Innovative Women in Buddhism",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.amazon.com/Innovative-Buddhist-Women-Swimming-Routledge/dp/0700712534",
@@ -207,7 +207,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Buddhist Women Across Cultures",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.sunypress.edu/p-2949-buddhist-women-across-cultures.aspx",
@@ -218,7 +218,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Sisters in Solitude",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.sunypress.edu/p-2429-sisters-in-solitude.aspx",
@@ -229,7 +229,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Buddhism Through American Women's Eyes",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.shambhala.com/buddhism-through-american-women-s-eyes-1.html",
@@ -240,7 +240,7 @@ module.exports = async () => {
         Publications.create(
             {
                 title: "Sakyadhita: Daughters of the Buddha",
-                author: "Karma Lekshe Tsomo",
+                author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
                 pdfLink: "http://www.amazon.com/Sakyadhita-Daughters-Karma-Lekshe-Tsomo/dp/0937938726/ref=sr_1_1?s=books&ie=UTF8&qid=1381810826&sr=1-1&keywords=sakyadhita",
