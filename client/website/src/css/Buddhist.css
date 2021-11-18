@@ -48,6 +48,7 @@
   position: sticky;
   top: 210px;
   margin-bottom: calc(18vh);
+  margin-top: 100px;
   display: flex;
 }
 
