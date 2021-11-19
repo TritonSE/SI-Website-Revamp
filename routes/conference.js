@@ -64,6 +64,18 @@ router.post(
                 }
                 return true;
             }),
+        body("brochures.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            }),
         body("video").isString().optional(),
         body("theme").isString().optional(),
         body("signUpLink").isString().optional(),
@@ -139,6 +151,19 @@ router.put(
             })
             .optional(),
         body("abstracts.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            .optional(),
+        body("brochures.data")
             .isArray()
             .custom((value) => {
                 if (!value) return false;
