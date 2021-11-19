@@ -353,7 +353,8 @@ h2 #conference {
 
   #committee-err {
     text-align: center;
-    font-size: 1.25em;
+    font-family: var(--text-font);
+    font-size: 1.125em;
   }
 
   .profiles {

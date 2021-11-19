@@ -41,7 +41,7 @@ const CommitteeSelector = ({committees, toggleDropdown, dropdownOn, clickDropdow
 };
 
 const CommitteeProfiles = ({committees, year, computeProfileDisplay}) => {
-    if(committees.length === 0) return <h2 id="committee-err">No Executive Committees to Show</h2>;
+    if(committees.length === 0) return <p id="committee-err">No Committees to Show</p>;
     const data = committees.find(x => x.startYear === year);
     if(data === undefined) return null;
     const committee = data.data;
