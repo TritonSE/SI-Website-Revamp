@@ -30,8 +30,6 @@ export default function ConferenceTheme(props) {
      */
     const hide = () => setOpen(false);
 
-    // determine the height of text depeding on the signup button
-
     return (
         <div className="conference-info">
             {/* The title of the conference */}
@@ -60,18 +58,11 @@ export default function ConferenceTheme(props) {
             {/* The text describing the specific conference */}
             <div className="conference-theme-paragraph-div">
                 <div className="slideshow-div">{props.slideShow ? props.slideShow() : null}</div>
-                <p className="conference-theme-paragraph">{props.theme}</p>
+                <p
+                    className="conference-theme-paragraph"
+                    dangerouslySetInnerHTML={{ __html: props.theme }}
+                />
             </div>
-
-            {/* Button that opens the modal */}
-            {props.signup && props.isMobile ? (
-                <section className="conference-info-signup">
-                    {/* When button is clicked, it will render the modal */}
-                    <button onClick={() => redirect()} type="button">
-                        Sign Up
-                    </button>
-                </section>
-            ) : null}
 
             {/* The Modal that renders if the signup button is clicked under 'overview' 
             on conferences */}

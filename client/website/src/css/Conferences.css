@@ -198,6 +198,8 @@
   width: calc(50vw);
   float: left;
   margin-left: calc(50px);
+  display: flex;
+  align-items: flex-end;
 }
 
 .slideshow-section-theme-active,
@@ -268,6 +270,10 @@
   color: var(--white);
 }
 
+.conference-theme-paragraph-div {
+  margin-right: 3.5vw;
+}
+
 .MuiPaginationItem-icon {
   color: var(--darkpurple) !important;
 }
@@ -278,9 +284,10 @@
 
 .slideshow-div {
   float: right;
-  width: 60%;
+  width: 55%;
   margin-left: 25px;
   padding-bottom: 25px;
+  padding-right: 5px;
 }
 
 .conference-info-location h3 {
@@ -359,6 +366,7 @@
   .conferences-outer-container {
     width: 100%;
     margin: 0;
+    margin-bottom: 50px;
     padding-right: calc(10vw);
     padding-left: calc(6vw);
   }

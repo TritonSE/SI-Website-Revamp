@@ -56,17 +56,21 @@ export default function ConferenceOverview(props) {
 
             <div className="conferences-info-section">
                 <div className="conference-info-divider-div">
+                    {/* render the files for 'brochures' */}
+                    <div className="conference-info-divider">Brochures</div>
+                    {itemList(items.brochures)}
+
                     {/* render the files for 'programs' */}
                     <div className="conference-info-divider">Programs</div>
                     {itemList(items.programs)}
 
-                    {/* render the files for 'presentations' */}
-                    <div className="conference-info-divider">Presentations</div>
-                    {itemList(items.presentations)}
-
                     {/* render the files for 'abstracts' */}
                     <div className="conference-info-divider">Abstracts</div>
                     {itemList(items.abstracts)}
+
+                    {/* render the files for 'presentations' */}
+                    <div className="conference-info-divider">Presentations</div>
+                    {itemList(items.presentations)}
                 </div>
 
                 <div className="conference-info-slideshow">
