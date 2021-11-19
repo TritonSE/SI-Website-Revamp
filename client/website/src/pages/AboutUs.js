@@ -19,6 +19,8 @@ import Founders from "../media/founders.png";
 import { fetchExecCommittees } from "../util/requests";
 import Loader from "../components/Main/Loader";
 
+const Cat = "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg";
+
 const CommitteeSelector = ({committees, toggleDropdown, dropdownOn, clickDropdown, committeeIndex}) => {
     if(committees.length === 0) return null;
     return (
@@ -287,7 +289,7 @@ export default function AboutUs() {
 
                     <h1>Founding Members</h1>
                     <img src={Founders} alt="Founding Members" />
-                    <h2>
+                    <h2 id="founding-subtitle">
                         <span id="year">
                             1987
                             <br />
@@ -305,7 +307,146 @@ export default function AboutUs() {
                         porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem
                         tortor vel lectus.
                     </p>
+
+                    {/* Founding Members */}
+                    {/* Members must be entered in reverse order */}
+                    <div className="profiles" style={computeProfileDisplay(year)}>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://www.sylvia-wetzel.de/">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Sylvia Wetzel</h2>
+                            </div>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://www.zeninstitute.org/en/iziae/tradition/zenji.html">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Gesshin Myoko Prabhasa Dharma</h2>
+                            </div>
+                            <h3>(1931-1999)</h3>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://pemachodronfoundation.org/">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Bhikshuni Pema Chodron</h2>
+                            </div>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://en.wikipedia.org/wiki/Preah_Maha_Ghosananda">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Bhikkhu Mahaghosananda</h2>
+                            </div>
+                            <h3>(1929-2007)</h3>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://ayyakhematalks.org/">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Ayya Khema Bhikkhuni</h2>
+                            </div>
+                            <h3>(1923-1997)</h3>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://www.karunadharma.info/">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Bhikshuni Karuna Dharma</h2>
+                            </div>
+                            <h3>(?-2014)</h3>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Bhikshuni Karma Lekshe Tsomo</h2>
+                            </div>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://www.thaibhikkhunis.org/old/eng/index.php?option=com_content&task=view&id=121&Itemid=3">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Chatsumarn Kabilsingh</h2>
+                            </div>
+                            <h3>(now Bhikkhuni Dhammananda)</h3>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://www.carolaroloff.de/">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Bhikshuni Jampa Tsedroen</h2>
+                            </div>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <div className="title">
+                                <div className="link-holder">
+                                    <a href="http://www.bhikkhunikusuma.info/">
+                                        <img className="profile-link" src={Link} alt="Profile Link" />
+                                    </a>
+                                </div>
+                                <h2>Kusuma Devendra</h2>
+                            </div>
+                            <h3>(now Bhikkhuni Kusuma)</h3>
+                        </div>
+
+                        <div className="profile">
+                            <img className="headshot" src={Cat} alt="Exec Headshot" />
+                            <h2>Ranjani de Silva</h2>
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
         </div>
     );
