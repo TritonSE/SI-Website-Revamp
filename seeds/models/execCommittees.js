@@ -2,6 +2,78 @@ const ExecCommittee = require("../../db/models/execCommittee");
 
 module.exports = async () => {
     await Promise.all([
+        // 2021 - 2025
+        ExecCommittee.create(
+            {
+                startYear: 2021,
+                endYear: 2025,
+                rank: 1,
+                name: "Sharon A. Suh",
+                position: "President",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Sharon%20A,%20Suh.pdf",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2021,
+                endYear: 2025,
+                rank: 2,
+                name: "Hsiao-Lan Hu",
+                position: "Vice-president",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Hsiao-Lan%20Hu.pdf",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2021,
+                endYear: 2025,
+                rank: 3,
+                name: "Kaytee Sumida",
+                position: "Treasurer",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Kaytee%20Sumida.pdf",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2021,
+                endYear: 2025,
+                rank: 4,
+                name: "Thich Nu Tien Lien",
+                position: "Corresponding Secretary",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Thich%20Nu%20Tien%20Lien.pdf",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2021,
+                endYear: 2025,
+                rank: 5,
+                name: "Buphyun Sunim",
+                position: "Recording Secretary",
+                bio: "",
+                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Buphyun%20Sunim.pdf",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+
         // 2013 - 2021
         ExecCommittee.create(
             {
