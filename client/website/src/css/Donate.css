@@ -101,12 +101,15 @@ h5 {
     display: none;
   }
 
-  .donate-content-container img {
-    width: 100%;
-    height: auto;
-  }
-
   .paypal-donate-button-wrapper {
     height: 50px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .donate-content-container img {
+    width: calc(100% + 2rem);
+    height: auto;
+    margin: 0;
   }
 }

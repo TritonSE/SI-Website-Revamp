@@ -34,7 +34,7 @@ export default function InteractiveMap({ markers, disableZooming = false }) {
                 {/* Makes map zoomable/pannable, with default zoom set as zoomed out as possible */}
                 <ZoomableGroup
                     zoom={1}
-                    maxZoom={disableZooming ? 1 : 2}
+                    maxZoom={disableZooming ? 1 : 3}
                     center={[-5, 0]}
                     translateExtent={[
                         [-10, 0],

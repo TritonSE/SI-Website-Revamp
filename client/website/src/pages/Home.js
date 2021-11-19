@@ -333,7 +333,7 @@ export default function Home() {
                         <br />
                         <span style={{ textAlign: "center" }}>
                             <img
-                                width={isMobile ? "100%" : "40%"}
+                                width={isMobile ? "100%" : "45%"}
                                 height="auto"
                                 alt="Org Members"
                                 src="https://sakyadhita.org/images/home/Pic1_201707-execcom-revised.jpg"
