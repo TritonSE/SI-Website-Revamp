@@ -84,9 +84,13 @@ module.exports = async () => {
                     ],
                 },
                 video: "https://www.youtube.com/watch?v=xa7Jt8uVyGw",
-                theme: `The 15th Sakyadhita Conference in Hong Kong was a resounding success, with over 800 participants from 31 countries. The theme “Contemporary Buddhist Women: Contemplation, Cultural Exchange & Social Action” led to lively conversations. A week of workshops and meditation at The University of Hong Kong, from June 22 to 28, was followed by a two-day tour to Lantau Island and other cultural attractions. Olivier Adam kindly shares glimpses of this joyful, meaningful gathering of Buddhist women leaders and their allies. \n
-                The conference theme, “Contemporary Buddhist Women: Contemplation, Cultural Exchang e & Social Action,” highlights the diversity of contemporary Buddhist women throughout the world. \n
-                Buddhism is a significant cultural force in our world, influencing virtually every sphere of human activity from business to popular music. This global spread of Buddhist ethics, iconography, meditation, and philosophy is having an impact on science, psychology, government, and the arts. Today, women have more pathways to self-enrichment than at any time in recorded history. Whether the choice is career, family, or monastery, women are expanding beyond traditional roles in creative and beneficial ways. Women also take different paths and approaches to spirituality. Depending on their cultural backgrounds and personal interests, they may be inclined to meditation, scholarship, social activism, or the arts. The 2017 conference theme is broad enough to encompass the many aspects of what Buddhism means to women and to embrace the range of Buddhist women's experiences.`,
+                theme: `<p>The 15th Sakyadhita Conference in Hong Kong was a resounding success, with over 800 participants from 31 countries. The theme &ldquo;Contemporary Buddhist Women: Contemplation, Cultural Exchange &amp; Social Action&rdquo; led to lively conversations. A week of workshops and meditation at The University of Hong Kong, from June 22 to 28, was followed by a two-day tour to Lantau Island and other cultural attractions. Olivier Adam kindly shares glimpses of this joyful, meaningful gathering of Buddhist women leaders and their allies.</p>
+                <p>The conference theme, &ldquo;Contemporary Buddhist Women: Contemplation, Cultural Exchange &amp; Social Action,&rdquo; highlights the diversity of contemporary Buddhist women throughout the world.&nbsp;</p>
+                <p>Buddhism is a significant cultural force in our world, influencing virtually every sphere of human activity from business to popular music. This global spread of Buddhist ethics, iconography, meditation, and philosophy is having an impact on science, psychology, government, and the arts. Today, women have more pathways to self-enrichment than at any time in recorded history. Whether the choice is a career, family, or monastery, women are expanding beyond traditional roles in creative and beneficial ways. Women also take different paths and approaches to spirituality. Depending on their cultural backgrounds and personal interests, they may be inclined to meditation, scholarship, social activism, or the arts. The 2017 conference theme is broad enough to encompass the many aspects of what Buddhism means to women and to embrace the range of Buddhist women&apos;s experiences.</p>
+                <p><strong>&quot;Contemplation&quot;</strong> includes personal introspection, mindfulness practice, meditation, and reflection on contemporary life issues.</p>
+                <p><strong>&quot;Cultural exchange&quot;</strong> incorporates interreligious dialogue, indigenous Buddhist experience, inter-generational dialogue, and Buddhist transcultural exchange, expressed through music, literature, drama, painting, social media, and the martial arts.</p>
+                <p><strong>&quot;Social action&quot;</strong> takes many forms, including charitable activities, social entrepreneurship, community leadership, and other ways of transforming society. The 15th Sakyadhita Conference will be a forum for making connections across cultures and traditions, exploring a wide range of Buddhist teachings, values, and techniques for living a meaningful life.</p>
+                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>`,
                 signUpLink: "",
             },
             { logging: false }
@@ -199,12 +203,10 @@ module.exports = async () => {
                     ],
                 },
                 video: "https://youtu.be/GRw_hiaiJ28",
-                theme: `The 14th Sakyadhita Conference was held in Indonesia at the Sambi Resort, located in the highlands on the outskirts of Yogyakarta, Indonesia. The tropical ambiance and spacious grounds at Sambi were an ideal setting for meditation, educational presentations, workshops, interactive discussions, and cultural exchanges. As with all Sakyadhita International Conferences, all voices were welcome; women and men, lay and ordained of all ages, nationalities, and perspectives. \n
-                Over many centuries, Buddhist women have made significant contributions to the spiritual and social well-being of their communities. Nevertheless, Buddhist women are frequently excluded from the processes that shape their communities, such as negotiations among religious, governmental, and social leaders. Decision makers and social activists may be unfamiliar with Buddhist women's contributions, while Buddhist women may remain disconnected from the overarching issues that affect their daily lives.
-
-                The 14th Sakyadhita International Conference provided an opportunity to discuss creating better connections between Dharma and the social and political dimensions of women's experience. Together, we explored how compassion and spiritual development can help shape a more just and peaceful world.
-
-                Yogyakarta is a city and the capital of Yogyakarta Special Region in Java, Indonesia. It is renowned as a center of classical Javanese fine art and culture such as batik, ballet, drama, music, poetry, and puppet shows. Additionally, Yogyakarta was the center of a refined and sophisticated Javanese Hindu-Buddhist culture for three centuries, beginning in the 8th Century CE. Consequently, there were numerous candi constructed including Borobudur and Prambanan.`,
+                theme: `<p>The 14th Sakyadhita Conference was held in Indonesia at the Sambi Resort, located in the highlands on the outskirts of Yogyakarta, Indonesia. The tropical ambiance and spacious grounds at Sambi were an ideal setting for meditation, educational presentations, workshops, interactive discussions, and cultural exchanges. As with all Sakyadhita International Conferences, all voices were welcome; women and men lay and ordained of all ages, nationalities, and perspectives.</p>
+                <p>Over many centuries, Buddhist women have made significant contributions to the spiritual and social well-being of their communities. Nevertheless, Buddhist women are frequently excluded from the processes that shape their communities, such as negotiations among religious, governmental, and social leaders. Decision-makers and social activists may be unfamiliar with Buddhist women&apos;s contributions, while Buddhist women may remain disconnected from the overarching issues that affect their daily lives.</p>
+                <p>The 14th Sakyadhita International Conference provided an opportunity to discuss creating better connections between Dharma and the social and political dimensions of women&apos;s experience. Together, we explored how compassion and spiritual development can help shape a more just and peaceful world.</p>
+                <p>Yogyakarta is a city and the capital of Yogyakarta Special Region in Java, Indonesia. It is renowned as a center of classical Javanese fine art and culture such as batik, ballet, drama, music, poetry, and puppet shows. Additionally, Yogyakarta was the center of a refined and sophisticated Javanese Hindu-Buddhist culture for three centuries, beginning in the 8th Century CE. Consequently, there were numerous candi constructed including <a href="https://en.wikipedia.org/wiki/Borobudur">Borobudur&nbsp;</a>and <a href="https://en.wikipedia.org/wiki/Prambanan">Prambanan</a>. &nbsp; &nbsp;&nbsp;</p>`,
                 signUpLink: "",
             },
             { logging: false }
@@ -258,7 +260,7 @@ module.exports = async () => {
                     ],
                 },
                 video: "",
-                theme: `The conference theme, “Buddhism at the Grassroots,” highlights the efforts and achievements of Buddhist women who work to alleviate the sufferings of living beings “on the ground.” Presenters will share their own work and a variety of approaches, including social activism, performance, education, meditation, and philosophy. Since the 1950s, Buddhism has undergone a renewal throughout the world. No longer confined to monasteries and retreat centers, Buddhism is being taught as a practice for everyday living. Until recently, Buddhist women primarily supported the practice of others, but today women are among the most dedicated and diligent practitioners. The 13th Sakyadhita Conference will highlight the achievements of Buddhist women from earliest times until today.`,
+                theme: `<p>The conference theme, &ldquo;Buddhism at the Grassroots,&rdquo; highlights the efforts and achievements of Buddhist women who work to alleviate the sufferings of living beings &ldquo;on the ground.&rdquo; Presenters will share their own work and a variety of approaches, including social activism, performance, education, meditation, and philosophy. Since the 1950s, Buddhism has undergone a renewal throughout the world. No longer confined to monasteries and retreat centers, Buddhism is being taught as a practice for everyday living. Until recently, Buddhist women primarily supported the practice of others, but today women are among the most dedicated and diligent practitioners. The 13th Sakyadhita Conference will highlight the achievements of Buddhist women from earliest times until today.</p>`,
                 signUpLink: "",
             },
             { logging: false }
@@ -334,7 +336,7 @@ module.exports = async () => {
                     ],
                 },
                 video: "",
-                theme: `The 12th Sakyadhita International Conference on Buddhist Women was held in Bangkok from June 12 to 18, 2011. The conference's theme was “Leading to Liberation," and a variety of issues were addressed including issues that people don’t generally associate with Buddhist women, such as the environment and LGBTQ concerns. The 12th Sakyadhita Conference was hosted at Sathira- Dhammasathan, a learning community founded in central Bangkok in 1987 by Maechee Sansanee Sthirasuta. The center’s programs for children, teenagers, parents, and abused women promote peace, harmony, compassion, and enlightenment among people of all ages, genders, and walks of life. The eco-friendly center is home to Savika Sikkahalaya Buddhist Institute, an educational project based on the experiences gained from over 20 years of Sathira Dhammasathan’s social services. The center is a delightful and inspiring venue for this historical gathering.`,
+                theme: `<p>The 12th Sakyadhita International Conference on Buddhist Women was held in Bangkok from June 12 to 18, 2011. The conference&apos;s theme was &ldquo;Leading to Liberation,&quot; and a variety of issues were addressed including issues that people don&rsquo;t generally associate with Buddhist women, such as the environment and LGBTQ concerns. The 12th Sakyadhita Conference was hosted at Sathira- Dhammasathan, a learning community founded in central Bangkok in 1987 by Maechee Sansanee Sthirasuta. The center&rsquo;s programs for children, teenagers, parents, and abused women promote peace, harmony, compassion, and enlightenment among people of all ages, genders, and walks of life. The eco-friendly center is home to Savika Sikkahalaya Buddhist Institute, an educational project based on the experiences gained from over 20 years of Sathira Dhammasathan&rsquo;s social services. The center is a delightful and inspiring venue for this historical gathering.</p>`,
                 signUpLink: "",
             },
             { logging: false }
@@ -398,7 +400,7 @@ module.exports = async () => {
                     ],
                 },
                 video: "",
-                theme: `The 10th Sakyadhita International Conference on Buddhist Women was held at Hotel Mongolia, Ulaanbataar, Mongolia from July 1 to July 5, 2008. The conference theme, “Buddhism in Transition: Tradition, Changes, and Challenges,” brought together leading Buddhist scholars, practitioners, artists, and social activists from around the world who offered ideas and insights on critical issues facing contemporary society. Morning meditations and evening chanting provided glimpses of the world’s rich Buddhist traditions. Small group discussions, interdisciplinary panels, and workshops facilitated dialogue among participants.`,
+                theme: `<p>The 10th Sakyadhita International Conference on Buddhist Women was held at Hotel Mongolia, Ulaanbataar, Mongolia from July 1 to July 5, 2008. The conference theme, &ldquo;Buddhism in Transition: Tradition, Changes, and Challenges,&rdquo; brought together leading Buddhist scholars, practitioners, artists, and social activists from around the world who offered ideas and insights on critical issues facing contemporary society. Morning meditations and evening chanting provided glimpses of the world&rsquo;s rich Buddhist traditions. Small group discussions, interdisciplinary panels, and workshops facilitated dialogue among participants.</p>`,
                 signUpLink: "",
             },
             { logging: false }
@@ -436,7 +438,7 @@ module.exports = async () => {
                     ],
                 },
                 video: "",
-                theme: `The 9th Sakyadhita International Conference on Buddhist Women was held at Sau Seng Lum (Puchong) Exhibition Center in Kuala Lumpur, the capital of Malaysia from June 17 to 21, 2006. The conference theme was “Buddhist Women in a Global Multicultural Community.”`,
+                theme: `<p>The 9th Sakyadhita International Conference on Buddhist Women was held at Sau Seng Lum (Puchong) Exhibition Center in Kuala Lumpur, the capital of Malaysia from June 17 to 21, 2006. The conference theme was &ldquo;Buddhist Women in a Global Multicultural Community.&rdquo;</p>`,
                 signUpLink: "",
             },
             { logging: false }
@@ -469,7 +471,7 @@ module.exports = async () => {
                     ],
                 },
                 video: "",
-                theme: `The 8th Sakyadhita International Conference on Buddhist Women was held on June 27 through July 2, 2004. The conference's theme was "Discipline and Practice of Buddhist Women: Present and Past."`,
+                theme: `<p>The 8th Sakyadhita International Conference on Buddhist Women was held on June 27 through July 2, 2004. The conference&apos;s theme was &quot;Discipline and Practice of Buddhist Women: Present and Past.&quot;</p>`,
                 signUpLink: "",
             },
             { logging: false }
@@ -502,8 +504,8 @@ module.exports = async () => {
                     ],
                 },
                 video: "",
-                theme: `Sakyadhita aims to empower women and transform their lives, their communities, and their worlds. Continuing this mission, the 7th International Conference on Buddhist Women focused on how women can fulfill this potential by joining their efforts. \n
-                In our increasingly complex world, we are presented each day with new challenges and opportunities. Buddhists around the world are meeting frequently to discuss how Buddhist ideas and practices, such as compassion, skillful means, and uncompromising integrity, can help people maximize their potential to meet these challenges. More than ever before in history, women are playing leading roles in these crosscultural, interreligious exchanges.`,
+                theme: `<p>Sakyadhita aims to empower women and transform their lives, their communities, and their worlds. Continuing this mission, the 7th International Conference on Buddhist Women focused on how women can fulfill this potential by joining their efforts.</p>
+                <p>In our increasingly complex world, we are presented each day with new challenges and opportunities. Buddhists around the world are meeting frequently to discuss how Buddhist ideas and practices, such as compassion, skillful means, and uncompromising integrity, can help people maximize their potential to meet these challenges. More than ever before in history, women are playing leading roles in these crosscultural, interreligious exchanges.</p>`,
                 signUpLink: "",
             },
             { logging: false }
@@ -677,8 +679,8 @@ module.exports = async () => {
                     data: [],
                 },
                 video: "",
-                theme: `The name Sakyadhita means “Daughter of the Buddha.” Based on Pali and Sanskrit, two ancient Buddhist languages, the term was coined at the first international gathering of Buddhist women held in Bodhgaya, India, in 1987. The initiative for the conference came from the German nun Ayya Khema; the American nun Karma Lekshe Tsomo; and the Thai professor Chatsumarn Kabilsingh (now Bhikkhuni Dhammananda). \n
-                Sakyadhita International was formed that year, at the conclusion of a truly historic gathering, as an independent non-governmental organization. The aim was to work together to benefit Buddhist women, to reduce gender injustice, and awaken women to their potential for awakening the world.`,
+                theme: `<p>The name Sakyadhita means &ldquo;Daughter of the Buddha.&rdquo; Based on Pali and Sanskrit, two ancient Buddhist languages, the term was coined at the first international gathering of Buddhist women held in Bodhgaya, India, in 1987. The initiative for the conference came from the German nun Ayya Khema; the American nun Karma Lekshe Tsomo; and the Thai professor Chatsumarn Kabilsingh (now Bhikkhuni Dhammananda).</p>
+                <p>Sakyadhita International was formed that year, at the conclusion of a truly historic gathering, as an independent non-governmental organization. The aim was to work together to benefit Buddhist women, to reduce gender injustice, and awaken women to their potential for awakening the world.</p>`,
                 signUpLink: "",
             },
             { logging: false }
