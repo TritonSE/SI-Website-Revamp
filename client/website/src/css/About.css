@@ -225,6 +225,10 @@
   justify-content: center;
 }
 
+.profile .position h3 {
+  width: min-content;
+}
+
 .profile .link-holder {
   width: 0;
   height: 0;
