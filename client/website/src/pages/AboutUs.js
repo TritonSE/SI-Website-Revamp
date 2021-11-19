@@ -303,7 +303,7 @@ export default function AboutUs() {
 
                     {/* Founding Members */}
                     {/* Members must be entered in reverse order */}
-                    <div className="profiles" style={computeProfileDisplay(year)}>
+                    <div className="founding-profiles" style={computeProfileDisplay(year)}>
 
                         <div className="profile">
                             <img className="headshot" src={Cat} alt="Exec Headshot" />
