@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 /**
  * The contact us page on the website.It displays contact information, including email,
  * phone number, and address (on click opens up google maps). It also includes a small form
@@ -16,7 +17,9 @@ import { TextField, Snackbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageHeader from "../components/Contact/ImageHeader";
 import CustomButton from "../components/CustomButton";
+import ResourcesHeader from "../components/ResourcesHeader";
 import Modal from "../components/Modal";
+import Header from "../media/lotus-header.svg";
 import "../css/ContactUs.css";
 import config from "../config";
 
@@ -308,13 +311,24 @@ export default function ContactUs() {
                     </div>
                 </form>
             </section>
-            {/* Image Header */}
-            <ImageHeader
-                image={MAIN_IMG_URL_LINK}
-                width={isMobile ? "100%" : "50%"}
-                height={isMobile ? "400px" : "auto"}
-                title={isMobile ? "Contact Us" : null}
-            />
+
+            {isMobile || window.innerHeight <= 500 ? (
+                    <ResourcesHeader
+                        image={Header}
+                        title="Contact Us"
+                        height="max(40vh, 300px)"
+                        width="100%"
+                        showArrow={false}
+                    />
+                ) : (
+
+                    <ImageHeader
+                        image={MAIN_IMG_URL_LINK}
+                        width="50%"
+                        height="auto"
+                    />
+                )}
+
             {/* Thank You Modal Once Form Submitted */}
             <Modal
                 text="Thank you for contacting us. We will get in touch with you shortly."

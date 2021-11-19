@@ -20,22 +20,68 @@ import Header from "../media/Lotus_Header.png";
 import "../css/Donate.css";
 
 export default function Donate() {
+
+    const [isMobile, setIsMobile] = React.useState(false);
+    const arrowScrollToRef = React.createRef();
+
+    // Effect to update the sticky nav on scroll
+    React.useEffect(() => {
+
+        function handleResize() {
+            if (window.innerWidth <= 600) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        }
+
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+
+    }, []);
+
+    const scrollToRef = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (arrowScrollToRef.current) {
+            arrowScrollToRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+            });
+        }
+    };
+
     return (
         <div id="donate-page">
-            {/* Image Header */}
-            <ResourcesHeader
-                title="Donate & Support"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
-                image={Header}
-                height="max(75vh, 400px)"
-                width="100%"
-            />
+
+            {isMobile || window.innerHeight <= 500 ? (
+                    <ResourcesHeader
+                        title="Donate & Support"
+                        image={Header}
+                        height="max(40vh, 300px)"
+                        width="100%"
+                        showArrow={false}
+                    />
+                ) : (
+                    <ResourcesHeader
+                        title="Donate & Support"
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                        image={Header}
+                        height="max(75vh, 400px)"
+                        width="100%"
+                        arrowClickCallback={scrollToRef}
+                    />
+                )}
+
             {/* All page content  */}
             <div className="donate-content-container">
                 <div className="monetory-container">
                     {/* PayPal Info */}
                     <section className="donate-section">
-                        <h1> PayPal </h1>
+                        <h1 ref={arrowScrollToRef}> PayPal </h1>
                         <hr />
                         <p>
                             Your donation makes a difference. In the tradition of the Buddha our

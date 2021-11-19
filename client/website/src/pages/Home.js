@@ -79,6 +79,7 @@ export default function Home() {
             }
         }
 
+        // backend calls to get page content
         setNewsAndEvents(await fetchNewsAndEvents());
         setBranchesAndChapters(await fetchBranchesAndChapters());
         setIsPageLoading(false);

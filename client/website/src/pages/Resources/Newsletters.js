@@ -57,6 +57,8 @@ export default function Newsletters() {
         () => newsletters.slice(currentPage * numPerPage, (currentPage + 1) * numPerPage),
         [maxPages, numPerPage, currentPage, newsletters]
     );
+    const arrowScrollToRef = React.createRef();
+
     // track window resizes to determine rerender
     useEffect(() => {
         function handleResize() {
@@ -74,7 +76,7 @@ export default function Newsletters() {
                 setMaxPages(Math.ceil(newsletters.length / 9));
             }
 
-            if (window.innerWidth <= 450) {
+            if (window.innerWidth <= 600) {
                 setIsMobile(true);
             } else {
                 setIsMobile(false);
@@ -109,34 +111,30 @@ export default function Newsletters() {
     useEffect(async () => {
         await (async () => {
             const d = await fetchNewsletters();
-            // old seeding
-            // fill newsletterList
-            // const d = [];
-            // let i = 0;
-            // for (i; i < 50; i++) {
-            //     d.push({
-            //         title: `Newsletter ${i}`,
-            //         volume: i,
-            //         year: "2019",
-            //         imageLink:
-            //             "https://cdn2.wanderlust.co.uk/media/1069/lists-the-worlds-most-awesome-giant-buddhas.jpg?anchor=center&mode=crop&width=1200&height=0&rnd=131482975350000000",
-            //         pdfLink: "https://google.com",
-            //     });
-            // }
             setNewsletters(d);
         })();
         setLoadingNewsletters(false);
     }, []);
+
+    const scrollToRef = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (arrowScrollToRef.current) {
+            arrowScrollToRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+            });
+        }
+    };
 
     return (
         <>
             {isMobile || window.innerHeight <= 500 ? (
                 <ResourcesHeader
                     title="Sakyadhita Newsletters"
-                    text=""
                     image={Header}
-                    height="max(40%, 300px)"
+                    height="max(40vh, 300px)"
                     width="100%"
+                    showArrow={false}
                 />
             ) : (
                 <ResourcesHeader
@@ -145,11 +143,13 @@ export default function Newsletters() {
                     image={Header}
                     height="max(75vh, 400px)"
                     width="100%"
+                    arrowClickCallback={scrollToRef}
                 />
             )}
 
             <div className="NewsletterPage">
                 <h1
+                    ref={arrowScrollToRef}
                     className={
                         !isMobile ? "NewsletterPage__title" : "NewsletterPage__title--mobile"
                     }

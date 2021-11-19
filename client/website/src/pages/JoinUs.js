@@ -116,6 +116,7 @@ export default function JoinUs() {
     // const classes = useStyles();
 
     const [isMobile, setIsMobile] = useState(false);
+    const arrowScrollToRef = React.createRef();
 
     const [membershipCheck, setMembershipCheck] = useState(false);
     const [donateCheck, setDonateCheck] = useState(false);
@@ -160,6 +161,7 @@ export default function JoinUs() {
         },
     });
 
+    
     const [addressTwo, setAddressTwo] = useState("");
     const [middleName, setMiddleName] = useState("");
 
@@ -217,6 +219,16 @@ export default function JoinUs() {
                 value: val,
             },
         });
+    };
+
+    const scrollToRef = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (arrowScrollToRef.current) {
+            arrowScrollToRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+            });
+        }
     };
 
     const handleSubmit = async () => {
@@ -301,20 +313,29 @@ export default function JoinUs() {
 
     return (
         <div>
-            <ResourcesHeader
-                image={HeaderImage}
-                title="Join Us"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
-                condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula
-                eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat
-                arcu, in efficitur sem tortor vel lectus."
-                height={isMobile ? "95vh" : "max(75vh, 400px)"}
-                width="100%"
-            />
+             {isMobile || window.innerHeight <= 500 ? (
+                    <ResourcesHeader
+                        title="Join Us"
+                        image={HeaderImage}
+                        height="max(40vh, 300px)"
+                        width="100%"
+                        showArrow={false}
+                    />
+                ) : (
+                    <ResourcesHeader
+                        title="Join Us"
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                        image={HeaderImage}
+                        height="max(75vh, 400px)"
+                        width="100%"
+                        arrowClickCallback={scrollToRef}
+                    />
+                )}
+
             <div className="main-content">
                 {isMobile ? (
                     <div>
-                        <h1 className="thank-you">Thank you for your interest in Sakyadhita!</h1>
+                        <h1 ref={arrowScrollToRef} className="thank-you">Thank you for your interest in Sakyadhita!</h1>
                         <p className="page-info">
                             By filling out this form, you will be added to the email list and be
                             asked to pay a membership fee. Once all required fields are filled out,
@@ -330,7 +351,7 @@ export default function JoinUs() {
                     </div>
                 ) : (
                     <div>
-                        <h1 className="thank-you">Thank you for your interest!</h1>
+                        <h1 ref={arrowScrollToRef} className="thank-you">Thank you for your interest!</h1>
                         <p className="page-info">
                             By filling out this form, you will be added to the email list. If you
                             wish to also have a membership with Sakyadhita, you will be asked to pay

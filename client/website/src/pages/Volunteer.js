@@ -72,6 +72,7 @@ const CustomTextField = withStyles({
 
 export default function Volunteer() {
     const [isMobile, setIsMobile] = useState(false);
+    const arrowScrollToRef = React.createRef();
 
     const [values, setValues] = useState({
         firstName: {
@@ -242,22 +243,43 @@ export default function Volunteer() {
         border: "1px solid #ea4444",
     };
 
+    const scrollToRef = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (arrowScrollToRef.current) {
+            arrowScrollToRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+            });
+        }
+    };
+
     return (
         <div>
-            <ResourcesHeader
-                image={HeaderImage}
-                title="Volunteer"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus."
-                height={isMobile ? "95vh" : "max(75vh, 400px)"}
-                width="100%"
-            />
+            {isMobile || window.innerHeight <= 500 ? (
+                    <ResourcesHeader
+                        title="Volunteer"
+                        image={HeaderImage}
+                        height="max(40vh, 300px)"
+                        width="100%"
+                        showArrow={false}
+                    />
+                ) : (
+                    <ResourcesHeader
+                        title="Volunteer"
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                        image={HeaderImage}
+                        height="max(75vh, 400px)"
+                        width="100%"
+                        arrowClickCallback={scrollToRef}
+                    />
+                )}
             <div className="volunteer-content">
                 <form autoComplete="off">
                     <p className="required-note">
                         {" "}
                         <span className="error-asterisk"> * </span> indicates a required field
                     </p>
-                    <h1 className="signup-text">Sign Me Up!</h1>
+                    <h1 ref={arrowScrollToRef} className="signup-text">Sign Me Up!</h1>
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"

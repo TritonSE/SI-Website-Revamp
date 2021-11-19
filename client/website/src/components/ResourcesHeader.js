@@ -2,13 +2,26 @@
  * This file creates a component for the resources header with an image, title, and description text.
  *
  * @summary Creates a component for resources header
- * @author Dhanush Nanjunda Reddy
+ * @author Dhanush Nanjunda Reddy, Amrit Kaur Singh
  */
 import React from "react";
 import { FiArrowDownCircle } from "react-icons/fi";
 import "../css/ResourcesHeader.css";
 
-export default function ResourcesHeader({ image, height, width, title, text, showArrow = true }) {
+/**
+ * 
+ * Required Params
+ * @param {string} image - Url to background image 
+ * @param {int} height - height of background image
+ * @param {int} width - width of background image 
+ * 
+ * Optional Params
+ * @param {string} title - Title for resource header
+ * @param {string} text - Subtext for resource header (displayed below title)
+ * @param {bool} showArrow - Default true. Indicates whether to show white arrow on bottom right
+ * @param {function} arrowClickCallback - Only applicable if showArrow is also set to true. Callback used when arrow is clicked by user. 
+ */
+export default function ResourcesHeader({ image, height, width, title, text, showArrow = true, arrowClickCallback = null }) {
     return (
         <div
             className="header-div"
@@ -26,7 +39,7 @@ export default function ResourcesHeader({ image, height, width, title, text, sho
             {/* Displays white arrow on bottom left of slide */}
             {showArrow ? (
                 <div className="circle-arrow">
-                    <FiArrowDownCircle />
+                    <FiArrowDownCircle onClick={arrowClickCallback} />
                 </div>
             ) : null}
         </div>

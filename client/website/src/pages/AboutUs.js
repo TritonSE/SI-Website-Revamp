@@ -30,6 +30,7 @@ const SECRETARY_IMG =
     "https://s3-alpha-sig.figma.com/img/1ea9/b253/1f1c11ec63457da2fb702e9d13d83625?Expires=1623628800&Signature=MNohndscPkfd2rhPOWuyX1Fygg6DMlnIWa6W3l4OlPsvzvjNEEiY6z6YaXRZ1H5s9KoJCsNkedcsxE0FLAVJwrIBWURQFl2k0Tjk8-uTScVGs6tV~sHC4GKT7PCRjvSsTyaehacDT8iTRX5akL3fgVGou~evJL5kZe46SPLUCXQNGegbbSNubvlTwPFPpJlEuwU8eK5yHTcrjZ90LZhoR9GXpliFVLb-t2Mcm~uIQH2hWWXNSok9IOQF4GCYH9P5uA9Rbf9VmoKp9H2ZQ5DHRd5dRdw8D1jbkPdMSHfN78Af1bpuHB~FYHQQet~PjFpShm0ByfdasRtg3ZlRkSKrtQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
 const TREASURER_IMG =
     "https://s3-alpha-sig.figma.com/img/6389/021f/c830549123e26f5691128675beaec067?Expires=1623628800&Signature=BEkaqzUNySmevf57u~MwcY5yypfviX-cAFEDm3wc7bELKbP2lkgSt~nNv89fjDZQEDtiTgP9fINJ6wF0J~yLK1ev0S6Z0ODiQoWhfh7YyR-uWJE0ma9sAcnaJuwz9J1ivcud0N9vT19QELV~fORiBQ3HFizCMTEKLIUE4l8DTiJn3ysEKXy2Y6s0jW9hqxZJR3IaJZJUVRV-4qsdj8BkYBVgv9BxhqOQ467UyRcSvmTe8KQVdcWqbPQ2LrfE-8Hjuk0cDKyjPuQRr8LIZ3KZjLUXjkWxC2zCENa3OnAdN-0RCmH95KsObiUh6dddZDcmjqIJbTGdaRsJaCRLjq1Yfg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+
 export default function AboutUs() {
     // Keeps track of the current location for the sticky navbar
     const [scrollLocation, setScrollLocation] = useState("mission");
@@ -37,9 +38,23 @@ export default function AboutUs() {
     const [dropdownOn, setDropdownOn] = useState(false);
     // Currently viewed year's executive committee
     const [year, setYear] = useState("2021");
+    const [isMobile, setIsMobile] = useState(false);
 
     // Effect to update the sticky nav on scroll
     useEffect(() => {
+
+        function handleResize() {
+            if (window.innerWidth <= 600) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        }
+
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
         document.querySelector("#page-layout").addEventListener("scroll", () => {
             const mission = document.querySelector("#mission").getBoundingClientRect().top;
             const history = document.querySelector("#history").getBoundingClientRect().top;
@@ -102,13 +117,24 @@ export default function AboutUs() {
 
     return (
         <div className="page">
-            <ResourcesHeader
-                image={Header}
-                title="About Us"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
-                height="max(75vh, 400px)"
-                width="100%"
-            />
+
+            {isMobile || window.innerHeight <= 500 ? (
+                    <ResourcesHeader
+                        image={Header}
+                        title="About Us"
+                        height="max(40vh, 300px)"
+                        width="100%"
+                        showArrow={false}
+                    />
+                ) : (
+                    <ResourcesHeader
+                        image={Header}
+                        title="About Us"
+                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                        height="max(75vh, 400px)"
+                        width="100%"
+                    />
+                )}
 
             {/* Sticky Nav */}
             <div className="slider-wrapper">
