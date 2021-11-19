@@ -298,14 +298,7 @@ export default function AboutUs() {
                         <span id="conference-mobile">1st Sakyadhita Conference</span>
                     </h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
-                        condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula
-                        eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat
-                        arcu, in efficitur sem tortor vel lectus. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet
-                        lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed
-                        porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem
-                        tortor vel lectus.
+                    Sakyadhita International Association of Buddhist Women is a global alliance founded at the conclusion of the first International Conference on Buddhist Women, held in Bodhgaya, India, in 1987, under the patronage of the Dalai Lama. The initiative for the conference came from the German nun Ayya Khema; the American nun Karma Lekshe Tsomo; and the Thai professor Chatsumarn Kabilsingh (now Bhikkhuni Dhammananda). The organization aims to unite Buddhist women of various countries and traditions, to promote their welfare, and to facilitate their work for the benefit of humanity. Sakyadhita now has nearly 2,000 members in 45 countries around the world. Biennial international conferences bring laywomen and nuns from various countries and traditions together to share their research and experience and to encourage projects to improve conditions for Buddhist women, especially in developing countries. Sakyadhita has been registered as a 501(c)3 non-profit in the State of California since 1988.
                     </p>
 
                     {/* Founding Members */}
@@ -444,6 +437,22 @@ export default function AboutUs() {
                         </div>
 
                     </div>
+                   
+                    <h2 id="founding-subtitle">
+                        <span id="conference">Were you a founding member?</span>
+                    </h2>
+                    <img height="500px" src="https://sakyadhita.org/images/home/1stConference-bw_Lekshe+Dhammananda.jpg" alt="Founding Members" />
+                    <p>
+                    <br/>
+                    <b> <i> Thank you! </i> </b>
+                    <br/>
+                    <i>
+                    Because of your dedication to gender equality in Buddhism, a movement was started that would become Sakyadhita.
+                    </i>
+                    
+                    <br/><br/>
+                    Were you there for the first International Conference on Buddhist Nuns? This conference paved the path for future generations, so we would like to hear from you! Please email us with photos and stories. If you&apos;d like to set up an interview for the Awakening Buddhist Women blog please contact the blog&apos;s coordinators at this link.
+                    </p>
 
                 </div>
 
