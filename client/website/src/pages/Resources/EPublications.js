@@ -165,7 +165,9 @@ export default function EPublications() {
     if (loadingEpubs) {
         return (
             <div id="EPubPage">
-                <Loader />
+                <div id="LoaderWrapper">
+                    <Loader className="loader" />
+                </div>
             </div>
         );
     }
