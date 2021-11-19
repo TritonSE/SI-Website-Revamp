@@ -233,9 +233,9 @@ export default function Footer() {
                 <section className="Footer-Bottom">
                     {/* all linked pages in website  */}
                     <section className="Footer-Pages">
-                        <a href={SITE_PAGES.RESOURCES_LANDING}>
+                        <a href={SITE_PAGES.HOME}>
                             {" "}
-                            <p className="hover-underline-animation"> Resources </p>{" "}
+                            <p className="hover-underline-animation"> Home </p>{" "}
                         </a>
                         <a href={SITE_PAGES.CONFERENCES}>
                             {" "}
