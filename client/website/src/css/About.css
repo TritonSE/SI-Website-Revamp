@@ -358,7 +358,7 @@ h2 #conference {
     font-size: 1em;
   }
 
-  .section img:not(.profile img, button img) {
+  .section img:not(.profile img, button img, .profile-link) {
     margin-top: 85px;
     width: 100vw;
     height: 300px;
@@ -392,6 +392,10 @@ h2 #conference {
     text-align: left;
   }
 
+  .profile .position h3 {
+    width: auto;
+  }
+
   .profile p {
     font-size: 1em;
     margin: 5px 15px;
@@ -408,14 +412,26 @@ h2 #conference {
     height: 200px;
   }
 
-  #founding img {
+  #founding {
+    margin-bottom: 100px;
+  }
+
+  #founding-img {
     height: auto;
     margin: 0;
   }
 
-  #founding h2 {
+  #founding-subtitle {
     margin-top: 50px;
     font-size: 1.125em;
+  }
+
+  #founding .profile {
+    margin-bottom: 10px;
+  }
+
+  .profile .title h2 {
+    width: auto;
   }
 
   h2 #year {

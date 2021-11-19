@@ -288,7 +288,7 @@ export default function AboutUs() {
                     <div className="scroll" id="founders" />
 
                     <h1>Founding Members</h1>
-                    <img src={Founders} alt="Founding Members" />
+                    <img id="founding-img" src={Founders} alt="Founding Members" />
                     <h2 id="founding-subtitle">
                         <span id="year">
                             1987
