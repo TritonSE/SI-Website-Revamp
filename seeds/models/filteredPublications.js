@@ -70,16 +70,16 @@ module.exports = async () => {
         FilteredPublications.create({ publicationId: "47", filterId: "7" }, { logging: false }),
 
         // German translations
-        FilteredPublications.create({ publicationId: "48", filterId: "7" }, { logging: false }),
-        FilteredPublications.create({ publicationId: "49", filterId: "7" }, { logging: false }),
-        FilteredPublications.create({ publicationId: "50", filterId: "7" }, { logging: false }),
-        FilteredPublications.create({ publicationId: "51", filterId: "7" }, { logging: false }),
-        FilteredPublications.create({ publicationId: "52", filterId: "7" }, { logging: false }),
-        FilteredPublications.create({ publicationId: "53", filterId: "7" }, { logging: false }),
-        FilteredPublications.create({ publicationId: "54", filterId: "7" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "48", filterId: "8" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "49", filterId: "8" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "50", filterId: "8" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "51", filterId: "8" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "52", filterId: "8" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "53", filterId: "8" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "54", filterId: "8" }, { logging: false }),
 
         // Spanish translations
-        FilteredPublications.create({ publicationId: "55", filterId: "8" }, { logging: false }),
+        FilteredPublications.create({ publicationId: "55", filterId: "9" }, { logging: false }),
     ])
         .then(() => {
             // successfull population
