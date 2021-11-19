@@ -149,7 +149,7 @@ export default function AboutUs() {
                                     )}`}
                                 >
                                     {" "}
-                                    Mission & Activities{" "}
+                                    Grassroots Efforts{" "}
                                 </p>{" "}
                             </a>
                         </li>
@@ -202,27 +202,24 @@ export default function AboutUs() {
                     {/* Anchor for navigation */}
                     <div className="scroll" id="mission" />
 
-                    <h1>Mission & Activities</h1>
+                    <h1>Grassroots Efforts</h1>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, distinctio
-                        sequi? Ducimus qui, sequi nulla esse aperiam commodi, voluptates officiis
-                        consequatur atque similique, velit provident dolor non eum possimus. Aut
-                        unde tempora molestias nobis sunt. Pariatur nesciunt quae non adipisci unde
-                        reiciendis, nulla perspiciatis temporibus aliquam tempora similique iure
-                        quasi reprehenderit sed velit culpa porro est blanditiis fugit alias
-                        necessitatibus quaerat quia. Aspernatur, repellat ad. Sunt repellendus
-                        nostrum, ratione iste animi cum sint sit, maxime enim voluptate iure est
-                        consequuntur atque ea. Nulla veniam voluptates amet placeat pariatur error
-                        itaque ipsum libero obcaecati! Exercitationem laboriosam animi culpa! Quod
-                        sit, accusamus inventore esse provident totam? Eum aperiam aliquid deleniti
-                        incidunt aliquam. Rerum animi in deserunt nostrum, sapiente quis maxime
-                        asperiores quos iusto adipisci, nam ipsum sequi! Asperiores deleniti
-                        praesentium ad rem mollitia, eligendi ducimus saepe quisquam? Ratione
-                        mollitia voluptate ipsum praesentium similique, consequatur asperiores
-                        voluptatibus repellat aperiam a ipsa eaque earum harum aliquid nam,
-                        perspiciatis numquam ullam odit cupiditate laudantium ab. Exercitationem
-                        adipisci illo quos ea aliquam sed, id temporibus incidunt, tempora, laborum
-                        molestiae blanditiis ducimus!
+                    Working at the grassroots level, Sakyadhita provides a communications network among Buddhist women internationally. We promote research and publications on Buddhist women&apos;s history and other topics of interest. Our members strive to create equal opportunities for women in all Buddhist traditions. We work to empower the world&apos;s 300 million Buddhist women to work for peace and social justice through local branches, the content we offer free of charge online, and through our biannual conferences.
+                    <br/><br/>
+                    This website provides information on Buddhist women and a forum for sharing research, ideas, and experiences. <b> Working together Buddhist women are realizing their tremendous potential for social and spiritual transformation!</b>
+                    <br/><br/>
+                    Since 1987, Sakyadhita: International Association of Buddhist Women has been working to benefit Buddhist women around the world. Established at the conclusion of the 1st Sakyadhita Conference in Bodhgaya, India, in 1987, the organization has nearly 2,000 members in 45 countries worldwide.
+                    <br/><br/>
+                    Sakyadhita&apos;s objectives are:
+                    <ul>
+                        <li> <p> To establish an international alliance of Buddhist women </p></li>
+                        <li> <p> To advance the spiritual and secular welfare of the world&apos;s women </p></li>
+                        <li> <p> To work for gender equity in Buddhist education, training institutional structures, and ordination </p></li>
+                        <li> <p> To promote harmony and dialogue among the Buddhist traditions and other religions </p></li>
+                        <li> <p> To encourage research and publications on topics of interest to Buddhist women </p></li>
+                        <li> <p> To foster compassionate social action for the benefit of humanity </p></li>
+                        <li> <p> To promote world peace through the teachings of the Buddha </p></li>
+                    </ul>
                     </p>
                     <img src={LotusPink} alt="Mission & Activities" />
                 </div>
