@@ -351,6 +351,11 @@ h2 #conference {
     object-fit: cover;
   }
 
+  #committee-err {
+    text-align: center;
+    font-size: 1.25em;
+  }
+
   .profiles {
     max-width: 599px;
   }

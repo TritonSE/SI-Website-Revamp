@@ -20,7 +20,6 @@ import { fetchExecCommittees } from "../util/requests";
 import Loader from "../components/Main/Loader";
 
 const CommitteeSelector = ({committees, toggleDropdown, dropdownOn, clickDropdown, committeeIndex}) => {
-    console.log(committees);
     if(committees.length === 0) return null;
     return (
         <div className="dropdown">
@@ -42,7 +41,7 @@ const CommitteeSelector = ({committees, toggleDropdown, dropdownOn, clickDropdow
 };
 
 const CommitteeProfiles = ({committees, year, computeProfileDisplay}) => {
-    if(committees.length === 0) return null;
+    if(committees.length === 0) return <h2 id="committee-err">No Executive Committees to Show</h2>;
     const data = committees.find(x => x.startYear === year);
     if(data === undefined) return null;
     const committee = data.data;
@@ -75,7 +74,7 @@ export default function AboutUs() {
     // Toggles the dropdown menu for different executive committees
     const [dropdownOn, setDropdownOn] = useState(false);
     // Currently viewed year's executive committee
-    const [year, setYear] = useState("2021");
+    const [year, setYear] = useState();
     const [committees, setCommittees] = useState([]);
     const [committeeIndex, setCommitteeIndex] = useState(0);
     const [loadingCommittees, setLoadingCommittees] = useState(true);
@@ -107,7 +106,7 @@ export default function AboutUs() {
         await (async () => {
             const response = await fetchExecCommittees();
             setCommittees(response);
-            setYear(response[0].startYear);
+            if(response[0]) setYear(response[0].startYear);
             setLoadingCommittees(false);
         })();
     }, []);
