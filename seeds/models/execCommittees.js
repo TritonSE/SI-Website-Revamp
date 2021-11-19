@@ -11,7 +11,8 @@ module.exports = async () => {
                 name: "Sharon A. Suh",
                 position: "President",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Sharon%20A,%20Suh.pdf",
                 openInSameTab: false,
             },
@@ -25,7 +26,8 @@ module.exports = async () => {
                 name: "Hsiao-Lan Hu",
                 position: "Vice President",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Hsiao-Lan%20Hu.pdf",
                 openInSameTab: false,
             },
@@ -39,7 +41,8 @@ module.exports = async () => {
                 name: "Kaytee Sumida",
                 position: "Treasurer",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Kaytee%20Sumida.pdf",
                 openInSameTab: false,
             },
@@ -53,8 +56,10 @@ module.exports = async () => {
                 name: "Thich Nu Tien Lien",
                 position: "Corresponding Secretary",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
-                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Thich%20Nu%20Tien%20Lien.pdf",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                redirectLink:
+                    "https://sakyadhita.org/docs/home/bio/Bio%20Thich%20Nu%20Tien%20Lien.pdf",
                 openInSameTab: false,
             },
             { logging: false }
@@ -67,7 +72,8 @@ module.exports = async () => {
                 name: "Buphyun Sunim",
                 position: "Recording Secretary",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Buphyun%20Sunim.pdf",
                 openInSameTab: false,
             },
@@ -83,7 +89,8 @@ module.exports = async () => {
                 name: "Jetsunma Tenzin Palmo",
                 position: "President",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "http://tenzinpalmo.com/tenzin_palmo/biography.htm",
                 openInSameTab: false,
             },
@@ -97,7 +104,8 @@ module.exports = async () => {
                 name: "Eun-su Cho",
                 position: "Vice President",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "http://sakyadhita.org/home/exec-eunsu-cho.html",
                 openInSameTab: false,
             },
@@ -111,7 +119,8 @@ module.exports = async () => {
                 name: "Kaytee Sumida",
                 position: "Secretary",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "https://sakyadhita.org/home/exec-kaytee-sumida.html",
                 openInSameTab: false,
             },
@@ -125,7 +134,8 @@ module.exports = async () => {
                 name: "Lien Bui",
                 position: "Treasurer",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "http://sakyadhita.org/home/exec-lien-bui.html",
                 openInSameTab: false,
             },
@@ -139,7 +149,8 @@ module.exports = async () => {
                 name: "Bhikshuni Karma Lekshe Tsomo",
                 position: "Branch & Chapter Coordinator",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296",
                 openInSameTab: false,
             },
@@ -155,7 +166,8 @@ module.exports = async () => {
                 name: "Christie Yuling Chang",
                 position: "President",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "mailto:sakyadhita@gmail.com",
                 openInSameTab: false,
             },
@@ -169,7 +181,8 @@ module.exports = async () => {
                 name: "Paula Arai",
                 position: "Vice President",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "mailto:parai@lsu.edu",
                 openInSameTab: false,
             },
@@ -183,7 +196,8 @@ module.exports = async () => {
                 name: "Melissa Vincenty",
                 position: "Secretary",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "mailto:melissa@HanaleiRugCompany.com",
                 openInSameTab: false,
             },
@@ -197,7 +211,8 @@ module.exports = async () => {
                 name: "Maria Arroyo",
                 position: "Treasurer",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "mailto:marroyo@crs.org",
                 openInSameTab: false,
             },
@@ -211,7 +226,8 @@ module.exports = async () => {
                 name: "Bhikshuni Karma Lekshe Tsomo",
                 position: "Branch & Chapter Coordinator",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 redirectLink: "http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296",
                 openInSameTab: false,
             },
@@ -227,7 +243,8 @@ module.exports = async () => {
                 name: "Bhikkshuni Karma Lekshe Tsomo",
                 position: "President",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 openInSameTab: false,
             },
             { logging: false }
@@ -240,7 +257,8 @@ module.exports = async () => {
                 name: "Christie Yuling Chang",
                 position: "Vice President",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 openInSameTab: false,
             },
             { logging: false }
@@ -253,7 +271,8 @@ module.exports = async () => {
                 name: "Carol Stevens",
                 position: "Secretary",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 openInSameTab: false,
             },
             { logging: false }
@@ -266,7 +285,8 @@ module.exports = async () => {
                 name: "Rebecca Paxton",
                 position: "Treasurer",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 openInSameTab: false,
             },
             { logging: false }
@@ -279,7 +299,8 @@ module.exports = async () => {
                 name: "Evelyn Diane Cowie",
                 position: "Branch & Chapter Coordinator",
                 bio: "",
-                imageLink: "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                imageLink:
+                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
                 openInSameTab: false,
             },
             { logging: false }

@@ -256,7 +256,6 @@
   position: absolute;
   transform: translate(-150%, 40%);
   height: 1.2em;
-  
 }
 .profile-paragraph {
   position: relative;
@@ -268,7 +267,6 @@
   font-weight: 400;
   padding: 20px 10px;
 }
-
 
 /* This is a really gross an hacky method, but it works */
 .profile-link:hover {
@@ -404,7 +402,7 @@
 
   .profile-link {
     height: 0.9em;
-    left: .75em;
+    left: 0.75em;
   }
 
   .headshot {
