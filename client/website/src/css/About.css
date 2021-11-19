@@ -189,6 +189,14 @@
   justify-content: space-evenly;
 }
 
+.founding-profiles {
+  position: relative;
+  width: min(9999px, 100%);
+  display: flex;
+  flex-flow: row-reverse wrap-reverse;
+  justify-content: space-evenly;
+}
+
 .profile {
   position: relative;
   width: 250px;
@@ -271,20 +279,16 @@
   align-self: center;
 }
 
+#founding-img {
+  margin-top: 0;
+}
+
 #founding-subtitle {
   align-self: flex-start;
   margin-top: 85px;
   font-family: var(--heading-font);
   font-weight: 700;
   font-size: 1.875em;
-}
-
-h2 #year {
-  display: none;
-}
-
-h2 #conference {
-  font-size: 1em;
 }
 
 #founding p {
@@ -300,14 +304,6 @@ h2 #conference {
 
 .profile .title h2 {
   width: min-content;
-}
-
-#conference {
-  display: initial;
-}
-
-#conference-mobile {
-  display: none;
 }
 
 .divider {
@@ -375,6 +371,10 @@ h2 #conference {
     max-width: 599px;
   }
 
+  .founding-profiles {
+    max-width: 849px;
+  }
+
   .profile {
     width: 200px;
     align-items: flex-start;
@@ -434,20 +434,7 @@ h2 #conference {
     width: auto;
   }
 
-  h2 #year {
-    display: initial;
-    font-size: 0.8em;
-  }
-
   .divider {
     display: none;
-  }
-
-  #conference {
-    display: none;
-  }
-
-  #conference-mobile {
-    display: initial;
   }
 }

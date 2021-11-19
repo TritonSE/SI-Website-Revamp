@@ -289,21 +289,14 @@ export default function AboutUs() {
 
                     <h1>Founding Members</h1>
                     <img id="founding-img" src={Founders} alt="Founding Members" />
-                    <h2 id="founding-subtitle">
-                        <span id="year">
-                            1987
-                            <br />
-                        </span>
-                        <span id="conference">1st Sakyadhita Conference, 1987</span>
-                        <span id="conference-mobile">1st Sakyadhita Conference</span>
-                    </h2>
+                    <h2 id="founding-subtitle">1st Sakyadhita Conference, 1987</h2>
                     <p>
                     Sakyadhita International Association of Buddhist Women is a global alliance founded at the conclusion of the first International Conference on Buddhist Women, held in Bodhgaya, India, in 1987, under the patronage of the Dalai Lama. The initiative for the conference came from the German nun Ayya Khema; the American nun Karma Lekshe Tsomo; and the Thai professor Chatsumarn Kabilsingh (now Bhikkhuni Dhammananda). The organization aims to unite Buddhist women of various countries and traditions, to promote their welfare, and to facilitate their work for the benefit of humanity. Sakyadhita now has nearly 2,000 members in 45 countries around the world. Biennial international conferences bring laywomen and nuns from various countries and traditions together to share their research and experience and to encourage projects to improve conditions for Buddhist women, especially in developing countries. Sakyadhita has been registered as a 501(c)3 non-profit in the State of California since 1988.
                     </p>
 
                     {/* Founding Members */}
                     {/* Members must be entered in reverse order */}
-                    <div className="profiles" style={computeProfileDisplay(year)}>
+                    <div className="founding-profiles" style={computeProfileDisplay(year)}>
 
                         <div className="profile">
                             <img className="headshot" src={Cat} alt="Exec Headshot" />
@@ -401,9 +394,8 @@ export default function AboutUs() {
                                         <img className="profile-link" src={Link} alt="Profile Link" />
                                     </a>
                                 </div>
-                                <h2>Chatsumarn Kabilsingh</h2>
+                                <h2>Bhikkhuni Dhammananda</h2>
                             </div>
-                            <h3>(now Bhikkhuni Dhammananda)</h3>
                         </div>
 
                         <div className="profile">
@@ -426,9 +418,8 @@ export default function AboutUs() {
                                         <img className="profile-link" src={Link} alt="Profile Link" />
                                     </a>
                                 </div>
-                                <h2>Kusuma Devendra</h2>
+                                <h2>Bhikkhuni Kusuma</h2>
                             </div>
-                            <h3>(now Bhikkhuni Kusuma)</h3>
                         </div>
 
                         <div className="profile">
