@@ -130,7 +130,7 @@ export default function AboutUs() {
                     <ResourcesHeader
                         image={Header}
                         title="About Us"
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                        text="Working at the grassroots level, Sakyadhita provides a communications network among Buddhist women internationally. We promote research and publications on Buddhist women's history and other topics of interest. Our members strive to create equal opportunities for women in all Buddhist traditions."
                         height="max(75vh, 400px)"
                         width="100%"
                     />

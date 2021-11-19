@@ -324,7 +324,7 @@ export default function JoinUs() {
                 ) : (
                     <ResourcesHeader
                         title="Join Us"
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                        text="You join the world's leading international organization committed to transforming the lives of women in Buddhist societies. Sakyadhita seeks to unite Buddhist women of diverse countries and traditions, to promote their welfare, and to facilitate their work for the benefit of humanity. We invite you to join us in developing comprehensive resources to globally assist Buddhist women in creating a better world."
                         image={HeaderImage}
                         height="max(75vh, 400px)"
                         width="100%"

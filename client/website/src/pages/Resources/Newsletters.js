@@ -16,11 +16,6 @@ import Header from "../../media/Lotus_Header.png";
 
 import { fetchNewsletters } from "../../util/requests";
 
-// const useCustomScreenSizes = (newsletters, loadingNewsletters, setLoadingPagination) => {
-
-//     return [maxPages, numPerPage, currentPage, setCurrentPage, isMobile];
-// }
-
 // renders the current newsletters from props in a grid
 const PublicationGrid = ({ displayedNewsletters, isMobile }) => {
     if (displayedNewsletters.length === 0) {
@@ -138,8 +133,8 @@ export default function Newsletters() {
                 />
             ) : (
                 <ResourcesHeader
-                    title="Sakyadhita Newsletters"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                    title="Newsletters"
+                    text="The Sakyadhita newsletter has been published once or twice a year since 1990 and currently is mailed to its members. It contains information on the Sakyadhita International conferences,  reviews of published books related to women and Buddhism, and other articles of interest to women practitioners. All articles are written by Sakyadhita members on a volunteer basis."
                     image={Header}
                     height="max(75vh, 400px)"
                     width="100%"
