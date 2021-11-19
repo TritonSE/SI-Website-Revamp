@@ -408,9 +408,8 @@ export default function AboutUs() {
                                         <img className="profile-link" src={Link} alt="Profile Link" />
                                     </a>
                                 </div>
-                                <h2>Chatsumarn Kabilsingh</h2>
+                                <h2>Bhikkhuni Dhammananda</h2>
                             </div>
-                            <h3>(now Bhikkhuni Dhammananda)</h3>
                         </div>
 
                         <div className="profile">
@@ -433,9 +432,8 @@ export default function AboutUs() {
                                         <img className="profile-link" src={Link} alt="Profile Link" />
                                     </a>
                                 </div>
-                                <h2>Kusuma Devendra</h2>
+                                <h2>Bhikkhuni Kusuma</h2>
                             </div>
-                            <h3>(now Bhikkhuni Kusuma)</h3>
                         </div>
 
                         <div className="profile">
