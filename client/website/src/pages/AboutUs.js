@@ -289,14 +289,7 @@ export default function AboutUs() {
 
                     <h1>Founding Members</h1>
                     <img id="founding-img" src={Founders} alt="Founding Members" />
-                    <h2 id="founding-subtitle">
-                        <span id="year">
-                            1987
-                            <br />
-                        </span>
-                        <span id="conference">1st Sakyadhita Conference, 1987</span>
-                        <span id="conference-mobile">1st Sakyadhita Conference</span>
-                    </h2>
+                    <h2 id="founding-subtitle">1st Sakyadhita Conference, 1987</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
                         condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula

@@ -279,14 +279,6 @@
   font-size: 1.875em;
 }
 
-h2 #year {
-  display: none;
-}
-
-h2 #conference {
-  font-size: 1em;
-}
-
 #founding p {
   margin-top: 10px;
 }
@@ -300,14 +292,6 @@ h2 #conference {
 
 .profile .title h2 {
   width: min-content;
-}
-
-#conference {
-  display: initial;
-}
-
-#conference-mobile {
-  display: none;
 }
 
 .divider {
@@ -434,20 +418,7 @@ h2 #conference {
     width: auto;
   }
 
-  h2 #year {
-    display: initial;
-    font-size: 0.8em;
-  }
-
   .divider {
     display: none;
-  }
-
-  #conference {
-    display: none;
-  }
-
-  #conference-mobile {
-    display: initial;
   }
 }
