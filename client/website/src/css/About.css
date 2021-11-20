@@ -353,7 +353,7 @@
   }
 
   .section img:not(.profile img, button img, .profile-link) {
-    margin-top: 85px;
+    margin-top: 5px;
     width: 100vw;
     height: 300px;
 
