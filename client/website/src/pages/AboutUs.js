@@ -469,7 +469,7 @@ export default function AboutUs() {
                         {" "}
                         <i> 1st Sakyadhita International Conference Participants, 1987 </i>
                     </figcaption>
-                    <h2 id="founding-subtitle">1st Sakyadhita Conference, 1987</h2>
+                    <h2 id="founding-subtitle-1">1st Sakyadhita Conference, 1987</h2>
                     <p>
                         Sakyadhita International Association of Buddhist Women is a global alliance
                         founded at the conclusion of the first International Conference on Buddhist
@@ -660,7 +660,7 @@ export default function AboutUs() {
                         </div>
                     </div>
 
-                    <h2 id="founding-subtitle">
+                    <h2 id="founding-subtitle-2">
                         <span id="conference">Were you a founding member?</span>
                     </h2>
 

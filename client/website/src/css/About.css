@@ -124,7 +124,7 @@
 }
 
 .section img:not(button img, .headshot, .profile-link) {
-  margin-top: 85px;
+  margin-top: 50px;
   width: 100%;
 }
 
@@ -281,7 +281,15 @@
   margin-top: 0;
 }
 
-#founding-subtitle {
+#founding-subtitle-1 {
+  align-self: flex-start;
+  margin-top: 85px;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 1.875em;
+}
+
+#founding-subtitle-2 {
   align-self: flex-start;
   margin-top: 85px;
   font-family: var(--heading-font);
@@ -353,7 +361,7 @@
   }
 
   .section img:not(.profile img, button img, .profile-link) {
-    margin-top: 5px;
+    margin-top: 0px;
     width: 100vw;
     height: 300px;
 
@@ -419,7 +427,13 @@
     margin: 0;
   }
 
-  #founding-subtitle {
+  #founding-subtitle-1 {
+    margin-top: 50px;
+    font-size: 1.125em;
+  }
+
+  #founding-subtitle-2 {
+    margin-bottom: 15px;
     margin-top: 50px;
     font-size: 1.125em;
   }
