@@ -147,7 +147,7 @@ export default function Home() {
                             width={isMobile ? "100%" : "65%"}
                             height="auto"
                             alt="17th Conference Promo"
-                            src="https://sakyadhita.org/images/home/Sakyadhita-21%20Revised.jpg"
+                            src="https://www.dropbox.com/s/rdeyizxkm2bwqcq/17th_Conference_Promotional.jpeg?raw=1"
                         />
                         <br />
                         <CustomButton
@@ -336,7 +336,7 @@ export default function Home() {
                                 width={isMobile ? "100%" : "45%"}
                                 height="auto"
                                 alt="Org Members"
-                                src="https://sakyadhita.org/images/home/Pic1_201707-execcom-revised.jpg"
+                                src="https://www.dropbox.com/s/s114yzew1uxd2ic/Beacon_Of_Hope.jpeg?raw=1"
                             />
                         </span>
                     </div>

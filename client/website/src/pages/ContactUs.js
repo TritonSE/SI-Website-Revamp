@@ -27,7 +27,7 @@ const BACKEND_URL = config.backend.uri;
 
 const MAX_MOBILE_WIDTH = 1050;
 const MAIN_IMG_URL_LINK =
-    "https://images.unsplash.com/photo-1616435577207-ca90abc6b732?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG90dXMlMjBmbG93ZXJzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80";
+    "https://www.dropbox.com/s/lxjx5vmfvvnqmnd/Hong%20Kong%20Conference%20Video.jpeg?raw=1";
 
 // provides custom style/border colors for form fields
 const useStyles = makeStyles((theme) => ({
