@@ -187,10 +187,10 @@ export default function AboutUs() {
             <div className="slider-wrapper">
                 <div className="slider">
                     <ul className="slider-nav">
-                        <li className={computeNavUnderline("grassroots")}>
+                        <li className={computeNavUnderline("mission")}>
                             <a href="#mission"> Mission & Vision </a>
                         </li>
-                        <li className={computeNavUnderline("mission")}>
+                        <li className={computeNavUnderline("grassroots")}>
                             <a href="#grassroots"> Grassroots Efforts </a>
                         </li>
                         <li className={computeNavUnderline("history")}>
