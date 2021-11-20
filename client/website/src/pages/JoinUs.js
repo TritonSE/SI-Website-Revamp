@@ -16,12 +16,13 @@ import { Checkbox, MenuItem, TextField, InputAdornment, Snackbar } from "@materi
 import { CountryDropdown } from "react-country-region-selector";
 import ResourcesHeader from "../components/ResourcesHeader";
 
-import HeaderImage from "../media/JoinUs_Header.png";
 import CustomButton from "../components/CustomButton";
 
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
+
+const IMG_HEADER_URL = "https://www.dropbox.com/s/ddla609ji70bu8u/1stConference.jpeg?raw=1";
 
 const CustomSelectField = withStyles({
     root: {
@@ -316,7 +317,7 @@ export default function JoinUs() {
              {isMobile || window.innerHeight <= 500 ? (
                     <ResourcesHeader
                         title="Join Us"
-                        image={HeaderImage}
+                        image={IMG_HEADER_URL}
                         height="max(40vh, 300px)"
                         width="100%"
                         showArrow={false}
@@ -325,7 +326,7 @@ export default function JoinUs() {
                     <ResourcesHeader
                         title="Join Us"
                         text="You join the world's leading international organization committed to transforming the lives of women in Buddhist societies. Sakyadhita seeks to unite Buddhist women of diverse countries and traditions, to promote their welfare, and to facilitate their work for the benefit of humanity. We invite you to join us in developing comprehensive resources to globally assist Buddhist women in creating a better world."
-                        image={HeaderImage}
+                        image={IMG_HEADER_URL}
                         height="max(75vh, 400px)"
                         width="100%"
                         arrowClickCallback={scrollToRef}

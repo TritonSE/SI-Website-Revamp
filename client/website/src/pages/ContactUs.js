@@ -314,7 +314,7 @@ export default function ContactUs() {
 
             {isMobile || window.innerHeight <= 500 ? (
                     <ResourcesHeader
-                        image={Header}
+                        image={MAIN_IMG_URL_LINK}
                         title="Contact Us"
                         height="max(40vh, 300px)"
                         width="100%"
