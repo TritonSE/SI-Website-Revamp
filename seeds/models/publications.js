@@ -17,7 +17,7 @@ module.exports = async () => {
                 author: "Kate Crosby, Karma Tsomo",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-biographies+profiles+interviews.pdf",
+                pdfLink: "https://www.dropbox.com/s/qhbmay8z8liapiy/bibligraphies-biographies%2Bprofiles%2Binterviews.pdf?dl=0",
                 imageLink:
                     "https://upload.wikimedia.org/wikipedia/en/5/5a/It_%282017%29_poster.jpg",
             },
@@ -29,7 +29,7 @@ module.exports = async () => {
                 author: "Kate Crosby, Karma Tsomo",
                 feature: true,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-contemporary+regional+ethnographic+anthropological.pdf",
+                pdfLink: "https://www.dropbox.com/s/6uy6ubuiwbh889e/bibligraphies-contemporary%2Bregional%2Bethnographic%2Banthropological.pdf?dl=0",
                 imageLink:
                     "https://stepheniemeyer.com/wp-content/uploads/2008/08/breaking-dawn-book-cover-678x1024.jpg",
             },
@@ -41,7 +41,7 @@ module.exports = async () => {
                 author: "Kate Crosby, Karma Tsomo",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-general+misc.pdf",
+                pdfLink: "https://www.dropbox.com/s/9agrd720x8sl9na/bibligraphies-general%2Bmisc.pdf?dl=0",
                 imageLink: "https://images-na.ssl-images-amazon.com/images/I/61JfGcL2ljL.jpg",
             },
             { logging: false }
@@ -52,7 +52,7 @@ module.exports = async () => {
                 author: "Kate Crosby, Karma Tsomo",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-historical.pdf",
+                pdfLink: "https://www.dropbox.com/s/0fmejgutizk09e3/bibligraphies-historical.pdf?dl=0",
                 imageLink: "https://images-na.ssl-images-amazon.com/images/I/91RQ5d-eIqL.jpg",
             },
             { logging: false }
@@ -64,7 +64,7 @@ module.exports = async () => {
                 feature: false,
                 description:
                     "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/bibliographies/bibligraphies-textualstudies.pdf",
+                pdfLink: "https://www.dropbox.com/s/a7wsf6553zaoaox/bibligraphies-textualstudies.pdf?dl=0",
                 imageLink:
                     "https://i2.wp.com/books.disney.com/content/uploads/2013/09/9780786856862.jpg?fit=405%2C612&ssl=1",
             },
@@ -122,7 +122,7 @@ module.exports = async () => {
                 author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/epublications/Tsomo%20Bridging%20Worlds.pdf",
+                pdfLink: "https://www.dropbox.com/s/6xij29j8ru9yd90/Tsomo%20Bridging%20Worlds.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -133,7 +133,7 @@ module.exports = async () => {
                 author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/epublications/BuddhistWomenInAMulticulturalCommunity-Sakyadhita2009.pdf",
+                pdfLink: "https://www.dropbox.com/s/f6anxpbk6a2fdly/BuddhistWomenInAMulticulturalCommunity-Sakyadhita2009.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -144,7 +144,7 @@ module.exports = async () => {
                 author: "Karma Tsomo",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/epublications/Bridging%20Worlds%20Buddhist%20Women's%20Voices%20Across%20Generations%20Karma%20Lekshe%20Tsomo.pdf",
+                pdfLink: "https://www.dropbox.com/s/6xij29j8ru9yd90/Tsomo%20Bridging%20Worlds.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -256,7 +256,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/Indonesia-sak-brochure2010-sm.pdf",
+                pdfLink: "https://www.dropbox.com/s/p48tpviqd64n1yj/Indonesia-sak-brochure2010-sm.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -267,7 +267,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/Bangla-SI-mbrshp-brochure2011.pdf",
+                pdfLink: "https://www.dropbox.com/s/kuirm655byzhx7h/Bangla-SI-mbrshp-brochure2011.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -278,7 +278,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/SimplfiedChns-SakBroch.pdf",
+                pdfLink: "https://www.dropbox.com/s/qdbfy3wfu3ovmfj/SimplfiedChns-SakBroch.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -289,7 +289,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/TradChns-SakBroch-2010-sm.pdf",
+                pdfLink: "https://www.dropbox.com/s/eh1anb10ji0fm7v/French-SI-mbership-brochure-2011.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -300,7 +300,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/English-sakyadhitabrochure2011.pdf",
+                pdfLink: "https://www.dropbox.com/s/iqzykm67tgrw175/TradChns-SakBroch-2010-sm.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -311,7 +311,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/French-SI-mbership-brochure-2011.pdf",
+                pdfLink: "https://www.dropbox.com/s/hlry1dhoi2slvyf/English-sakyadhitabrochure2011.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -322,7 +322,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/Japanese-brochure2010sm.pdf",
+                pdfLink: "https://www.dropbox.com/s/n7k6inwrqcjz8y8/Japanese-brochure2010sm.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -333,7 +333,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/Korean-sakbrochure2011.pdf",
+                pdfLink: "https://www.dropbox.com/s/eos0n85xtvhe7sp/Korean-sakbrochure2011.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -344,7 +344,7 @@ module.exports = async () => {
                 author: "Sakhyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/docs/resources/brochures/Mongolian-Sakyadhita-brochure.pdf",
+                pdfLink: "https://www.dropbox.com/s/8fmsit8sx9sh47a/Mongolian-Sakyadhita-brochure.pdf?dl=0",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
