@@ -101,16 +101,13 @@ export default function ConferencesDesktop(props) {
     const slideshowVideo = () => {
         if (isInfo || !item.video) {
             return (
-                <Slideshow height="430px" width="100%">
+                <Slideshow height="430px" width="100%" isMobile={false}>
                     {/* Loop through all the images associated with the conference */}
                     {item.slideShowImages.urls.map((image) => (
                         <div key={image}>
                             {/* Set styling on the img */}
                             <img
-                                style={{
-                                    height: "430px",
-                                    width: "100%",
-                                }}
+                                className="img-slideshow-conferences"
                                 alt="Event Visual"
                                 src={image}
                             />
@@ -183,12 +180,14 @@ export default function ConferencesDesktop(props) {
             <div className="component-display">
                 {/* The vertical stepper */}
                 <div className="conference-vertical-stepper">
-                    <VerticalStepper
-                        items={props.data}
-                        color="#6652a0"
-                        setParentIndex={setParentIndex}
-                        location={props.location}
-                    />
+                    <div className="sticky-vertical-stepper">
+                        <VerticalStepper
+                            items={props.data}
+                            color="#6652a0"
+                            setParentIndex={setParentIndex}
+                            location={props.location}
+                        />
+                    </div>
                 </div>
 
                 {/* This outer div is used for 1050 < x < 1200 screen widths */}

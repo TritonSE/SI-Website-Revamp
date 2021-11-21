@@ -9,33 +9,30 @@ module.exports = async () => {
                 location: "Hong Kong",
                 slideShowImages: {
                     urls: [
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipNN101vlcZTBarrgTzdzPIBRz_5AbDbHCcbO_R_",
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipMvWtChfJtGnQAEhCRa7u4EMiZ4jIfT4VnueOWO",
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipPwETqQXNwJiaJbplBqd6701K047XRDmgFVEbOf",
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipPWaBMDEnyzZDhXge_VrmNffTs_yvkprNsTpJy6",
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipMeeZ0QfzEZMug73BdXFkqDHKdkTUHM7TJvM3wT",
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipM-GFgbDS9Va3sI_3ZsOPPKCiu2lRoUXD40Tqvo",
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipO5WRqvKYN5JtD4ZBitJDyF-6fxJkcHDZk2qWlq",
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipMXYe6NkiweD--E8TiBkql7tYt1EBE4oCRc4SDO",
-                        // "https://photos.google.com/u/4/album/AF1QipMxSxsFeA7wyRowxGGMsJo0nuBB0dsrzvbbBS4p/photo/AF1QipPiSK8eQNXrOERvSGNstjjOwwVNh5cSOYSTsbMh",
-                        "https://media.istockphoto.com/photos/green-leaf-with-dew-on-dark-nature-background-picture-id1050634172?k=6&m=1050634172&s=612x612&w=0&h=C6CWho9b4RDhCqvaivYOLV2LK6FzygYpAyLPBlF1i2c=",
-                        "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg",
-                        "https://st2.depositphotos.com/2001755/5408/i/600/depositphotos_54081723-stock-photo-beautiful-nature-landscape.jpg",
+                        "https://www.dropbox.com/s/x7kwjr74hfdp5xe/SICon17-CoverPhotos1.png?raw=1",
+                        "https://www.dropbox.com/s/jc5xrunxl2dh2rf/SICon17-CoverPhotos2.png?raw=1",
+                        "https://www.dropbox.com/s/wzy1f5d2u1nzewh/SICon17-CoverPhotos3.png?raw=1",
+                        "https://www.dropbox.com/s/lawjrkmip0oli6d/SICon17-CoverPhotos4.png?raw=1",
+                        "https://www.dropbox.com/s/lo26hgdc3nqb1ja/SICon17-CoverPhotos5.png?raw=1",
+                        "https://www.dropbox.com/s/3ruabdoxgfqbkas/SICon17-CoverPhotos6.png?raw=1",
+                        "https://www.dropbox.com/s/5js5xepgssyvcat/SICon17-CoverPhotos7.png?raw=1",
+                        "https://www.dropbox.com/s/ao8jp63h413tzz0/SICon17-CoverPhotos8.png?raw=1",
+                        "https://www.dropbox.com/s/fhqr9g6lnu70woa/SICon17-CoverPhotos9.png?raw=1",
                     ],
                 },
                 programs: {
                     data: [
                         {
                             description: "English Call for papers",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-SIConferenceCFP-English.pdf",
+                            url: "https://www.dropbox.com/s/d92wq9okw0rh7xe/15-SIConferenceCFP-English.pdf?raw=1",
                         },
                         {
                             description: "Chinese Call for papers",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-SIConferenceCFP-Chinese.pdf",
+                            url: "https://www.dropbox.com/s/gj3m9z0wdqjka6j/15-SIConferenceCFP-Chinese.pdf?raw=1",
                         },
                         {
                             description: "Simplified Chinese Call for papers",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-SIConferenceCFP-SmpCh.pdf",
+                            url: "https://www.dropbox.com/s/d92wq9okw0rh7xe/15-SIConferenceCFP-English.pdf?raw=1",
                         },
                     ],
                 },
@@ -43,11 +40,11 @@ module.exports = async () => {
                     data: [
                         {
                             description: "Panel List",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-SIConferencePanelPresentations_10112016.pdf",
+                            url: "https://www.dropbox.com/s/xn3bv6gbk6e00df/15-SIConferencePanelPresentations_10112016.pdf?raw=1",
                         },
                         {
                             description: "Workshop List",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-WorkshopAbstractsList_SI2017Conference_03192017.pdf",
+                            url: "https://www.dropbox.com/s/m81hhna8xx9t9r9/15-WorkshopAbstractsList_SI2017Conference_03192017.pdf?raw=1",
                         },
                     ],
                 },
@@ -55,11 +52,11 @@ module.exports = async () => {
                     data: [
                         {
                             description: "Panel Abstracts",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-Abstracts_SI2017Conference_03192017.pdf",
+                            url: "https://www.dropbox.com/s/z6yb7jiad8hhc5d/15-Abstracts_SI2017Conference_03192017.pdf?raw=1",
                         },
                         {
                             description: "Workshop Abstracts",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-WorkshopAbstracts_SI2017Conference_03192017.pdf",
+                            url: "https://www.dropbox.com/s/acicexz9gqfit0i/15-WorkshopAbstracts_SI2017Conference_03192017.pdf?raw=1",
                         },
                     ],
                 },
@@ -67,19 +64,19 @@ module.exports = async () => {
                     data: [
                         {
                             description: "Poster",
-                            url: "https://sakyadhita.org/images/conferences/15-SIConferencePoster-2017.jpg",
+                            url: "https://www.dropbox.com/s/ollrpr197np34pa/15-SIConferencePoster-2017.jpg?raw=1",
                         },
                         {
                             description: "English Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-ENGLISH-SIConferenceBrochure_12042016.pdf",
+                            url: "https://www.dropbox.com/s/womyp3ws8li580s/15-ENGLISH-SIConferenceBrochure_12042016.pdf?raw=1",
                         },
                         {
                             description: "简化字 Simplified Chinese Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-SimpChinese-SIConferenceBrochure_12222016.pdf",
+                            url: "https://www.dropbox.com/s/oteb1dzp92jxtqg/15-SimpChinese-SIConferenceBrochure_12222016.pdf?raw=1",
                         },
                         {
                             description: "正體字Traditional Chinese Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/15-TradChinese-SIConferenceBrochure_12222016.pdf",
+                            url: "https://www.dropbox.com/s/ez77etb3precf9u/15-TradChinese-SIConferenceBrochure_12222016.pdf?raw=1",
                         },
                     ],
                 },
@@ -103,26 +100,26 @@ module.exports = async () => {
                 location: "Yogyakarta, Indonesia",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipPFHHtzzSlBIGi0T8bEFWwkaaP9QXs_kcTbMtyB/photo/AF1QipPAMhlmn2vWcv2pLq2hYTxq0YsqBvkLmDGnYJ3g",
+                        "https://www.dropbox.com/s/hw4rfjbb5h7z8zz/14ConferenceHeader_09292013.jpg?raw=1",
                     ],
                 },
                 programs: {
                     data: [
                         {
                             description: "Bahasa Indonesia Language Program",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-Program-SI2015Conference-BAHASAINDONESIA_05212015.pdf",
+                            url: "https://www.dropbox.com/s/9k88il8422ztmpr/14-Program-SI2015Conference-BAHASAINDONESIA_05212015.pdf?raw=1",
                         },
                         {
                             description: "English Language Program",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-Program_SI2015Conference_06022015.pdf",
+                            url: "https://www.dropbox.com/s/jkgnd6vgkawaphk/14-Program_SI2015Conference_06022015.pdf?raw=1",
                         },
                         {
                             description: "French Language Program",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-Program-SI2015Conference-FRENCH.pdf",
+                            url: "https://www.dropbox.com/s/uyyndzs7zrgsrkk/14-Program-SI2015Conference-FRENCH.pdf?raw=1",
                         },
                         {
                             description: "German Language Program",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-GermanProgram.pdf",
+                            url: "https://www.dropbox.com/s/io944hikcw10qym/14-GermanProgram.pdf?raw=1",
                         },
                     ],
                 },
@@ -130,19 +127,19 @@ module.exports = async () => {
                     data: [
                         {
                             description: "14th SI Press Release",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-PressRelease_06162015.pdf",
+                            url: "https://www.dropbox.com/s/zh37ylim6uwzbyt/14-PressRelease_06162015.pdf?raw=1",
                         },
                         {
                             description: "14th SI Conference Resolution",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-Resolution_06302015.pdf",
+                            url: "https://www.dropbox.com/s/nq2b896aitd3amm/14-Resolution_06302015.pdf?raw=1",
                         },
                         {
                             description: "14th SI Conference Resolution Press Release",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-PressRelease-Resolution_06302015.pdf",
+                            url: "https://www.dropbox.com/s/1efygj0d4921xw8/14-PressRelease-Resolution_06302015.pdf?raw=1",
                         },
                         {
                             description: "Italian 14th SI Conference Resolution Press Release",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-ITALIAN-PressRelease-Resolution_06302015.pdf",
+                            url: "https://www.dropbox.com/s/bq6mme9rhp4oiu5/14-ITALIAN-PressRelease-Resolution_06302015.pdf?raw=1",
                         },
                     ],
                 },
@@ -150,7 +147,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "Conference Program Abstracts",
-                            url: "https://sakyadhita.org/conferences/14th-si-con/14th-si-con-abstracts.html",
+                            url: "https://sakyadhita.org/conferences/14th-si-con/14th-si-con-abstracts.html", // not sure what to do about this
                         },
                     ],
                 },
@@ -158,47 +155,47 @@ module.exports = async () => {
                     data: [
                         {
                             description: "Bahasa Indonesia Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-BAHASAINDONESIA-SIConference_Brochure_03142015.pdf",
+                            url: "https://www.dropbox.com/s/nwm6uscnff8zafi/14-BAHASAINDONESIA-SIConference_Brochure_03142015.pdf?raw=1",
                         },
                         {
                             description: "Simplified Chinese Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-ChineseSimplifiedBrochure.pdf",
+                            url: "https://www.dropbox.com/s/ygany7m8fextkih/14-ChineseSimplifiedBrochure.pdf?raw=1",
                         },
                         {
                             description: "Traditional Chinese Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-ChineseTraditionalBrochure.pdf",
+                            url: "https://www.dropbox.com/s/x1tunjnqvolzbdj/14-ChineseTraditionalBrochure.pdf?raw=1",
                         },
                         {
                             description: "English Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-EnglishBrochure_02142015.pdf",
+                            url: "https://www.dropbox.com/s/uf0ly83po2oxxw5/14-EnglishBrochure_02142015.pdf?raw=1",
                         },
                         {
                             description: "French Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-FRENCH-SIConference_Brochure_03302015.pdf",
+                            url: "https://www.dropbox.com/s/0clfzujyjwiacz9/14-FRENCH-SIConference_Brochure_03302015.pdf?raw=1",
                         },
                         {
                             description: "German Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-GERMAN-SIConference_Brochure_10072014.pdf",
+                            url: "https://www.dropbox.com/s/unvu6dmn5z2acff/14-GERMAN-SIConference_Brochure_10072014.pdf?raw=1",
                         },
                         {
                             description: "Japanese Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-JAPANESE-SIConference_Brochure_03302015.pdf",
+                            url: "https://www.dropbox.com/s/ar7rchrhrh8ycp9/14-JAPANESE-SIConference_Brochure_03142015.pdf?raw=1",
                         },
                         {
                             description: "Korean Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-KOREAN-SIConference_Brochure_03302015.pdf",
+                            url: "https://www.dropbox.com/s/fe72y6ss4g67mwn/14-KOREAN-SIConference_Brochure_03302015.pdf?raw=1",
                         },
                         {
                             description: "Russian Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-RUSSIAN-SIConference_Brochure_03142015.pdf",
+                            url: "https://www.dropbox.com/s/ds0c8c8hu9omxmm/14-RUSSIAN-SIConference_Brochure_03142015.pdf?raw=1",
                         },
                         {
                             description: "Spanish Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-SPANISH-SIConference_Brochure_03302015.pdf",
+                            url: "https://www.dropbox.com/s/81u6609lsgu9n9u/14-SPANISH-SIConference_Brochure_03302015.pdf?raw=1",
                         },
                         {
                             description: "Tibetan Language Brochure",
-                            url: "https://sakyadhita.org/docs/resources/conferences/14-TIBETAN-SIConference_Brochure_03302015.pdf",
+                            url: "https://www.dropbox.com/s/yi8tgrkmnbvzpg1/14-TIBETAN-SIConference_Brochure_03302015.pdf?raw=1",
                         },
                     ],
                 },
@@ -219,14 +216,14 @@ module.exports = async () => {
                 location: "Vaishali, India",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipMch9FMMx2tcDHRqC3t2F7r4l1o5jB76ZW0JAgK/photo/AF1QipNYuWEan5HEMT3ouFwf457vlmBQiQAXoGc6uars",
+                        "https://www.dropbox.com/s/trxb3n0ddlz6ya0/13thConferenceHeader2_web.jpg?raw=1",
                     ],
                 },
                 programs: {
                     data: [
                         {
                             description: "English Language",
-                            url: "https://sakyadhita.org/docs/resources/conferences/13-English-ConferenceProgram.pdf",
+                            url: "https://www.dropbox.com/s/dtsvjvb9ltki8p2/13-English-ConferenceProgram.pdf?raw=1",
                         },
                     ],
                 },
@@ -234,12 +231,12 @@ module.exports = async () => {
                     data: [
                         {
                             description: "Table of Contents",
-                            url: "https://sakyadhita.org/docs/resources/conferences/13-ThaiAbstracts-Content.pdf",
+                            url: "https://www.dropbox.com/s/w8i590hod1vijaw/13-ThaiAbstracts-Content.pdf?raw=1",
                         },
                         {
                             description:
                                 "Korean Sakyadhita National Chapter 13th Sakyashite Conference Slideshow",
-                            url: "https://sakyadhita.org/docs/resources/conferences/13-Korea-GEP2.pdf",
+                            url: "https://www.dropbox.com/s/m8pslgij9owfl3w/13-Korea-GEP2.pdf?raw=1",
                         },
                     ],
                 },
@@ -247,7 +244,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "Thai Language 13th Sakyadhita Conference",
-                            url: "https://sakyadhita.org/docs/resources/conferences/13-ThaiAbstracts.pdf",
+                            url: "https://www.dropbox.com/s/ivp3jsggkob8qrs/13-ThaiAbstracts.pdf?raw=1",
                         },
                     ],
                 },
@@ -255,7 +252,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "English Language",
-                            url: "https://sakyadhita.org/docs/resources/conferences/13-English-SakyadhitaBrochure.pdf",
+                            url: "https://www.dropbox.com/s/k3bdmzrpkava8x5/13-English-SakyadhitaBrochure.pdf?raw=1",
                         },
                     ],
                 },
@@ -272,14 +269,14 @@ module.exports = async () => {
                 location: "Bangkok, Thailand",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipMXLxBKv6MjvVgkXGSWdacoBFLP4KngN6bj9L40/photo/AF1QipPrKL3FYHnV1n_rMjYKPQ9uz7tI4l-URysWpAUN",
+                        "https://www.dropbox.com/s/kwsrzi4wk75dwyt/12ConferenceHeader_09292013.jpg?raw=1",
                     ],
                 },
                 programs: {
                     data: [
                         {
                             description: "English Language 12th Sakyadhita Conference",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-EnglishProgram.pdf",
+                            url: "https://www.dropbox.com/s/j02g88z91u7pibf/12-EnglishProgram.pdf?raw=1",
                         },
                     ],
                 },
@@ -287,43 +284,39 @@ module.exports = async () => {
                     data: [
                         {
                             description: "Chinese Language 12th Sakyadhita Conference Paper",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-ChinesePapers.pdf",
+                            url: "https://www.dropbox.com/s/nanjo00wcvj3vmv/12-ChinesePapers.pdf?raw=1",
                         },
                         {
                             description: "English Language 12th Sakyadhita Conference Paper",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-EnglishPapers.pdf",
+                            url: "https://www.dropbox.com/s/afpwgk7m7l4pzl8/12-EnglishPapers.pdf?raw=1",
                         },
                         {
                             description: "Japanese Language 12th Sakyadhita Conference Paper",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-JapanesePapers.pdf",
+                            url: "https://www.dropbox.com/s/l3k0lc7vt93afqw/12-JapanesePapers.pdf?raw=1",
                         },
                         {
                             description: "Korean Language 12th Sakyadhita Conference Paper",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-KoreanPapers.zip",
+                            url: "https://www.dropbox.com/s/rnkjng55t6ox3en/12-KoreanPapers.zip?raw=1", // another zip file
                         },
                         {
                             description: "Thai Language 12th Sakyadhita Conference Paper",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-ThaiPapers.pdf",
+                            url: "https://www.dropbox.com/s/hgmcm0hito1eomi/12-ThaiPapers.pdf?raw=1",
                         },
                         {
                             description: "Vietnamese Language 12th Conference Paper",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-VietnamesePapers-%20TienToiGiaiThoat.pdf",
+                            url: "https://www.dropbox.com/s/4usmuvaep5gj7hc/12-VietnamesePapers-%20TienToiGiaiThoat.pdf?raw=1",
                         },
                     ],
                 },
                 abstracts: {
                     data: [
                         {
-                            description: "Thai Language 13th Sakyadhita Conference Content",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-VietnameseContent.pdf",
-                        },
-                        {
                             description: "Chinese Language 12th Sakyadhita Conference Content",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-Chinese-Contents.pdf",
+                            url: "https://www.dropbox.com/s/03rbxh25gg22ivr/12-Chinese-Contents.pdf?raw=1",
                         },
                         {
                             description: "Vietnamese Language 12th Conference Content",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-VietnameseContent.pdf",
+                            url: "https://www.dropbox.com/s/k0b4y9nkbjzpxwb/12-VietnameseContent.pdf?raw=1",
                         },
                     ],
                 },
@@ -331,7 +324,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "English Language 12th Sakyadhita Conference",
-                            url: "https://sakyadhita.org/docs/resources/conferences/12-EnglishBrochure.pdf",
+                            url: "https://www.dropbox.com/s/7fsf9yd7xfj9047/12-EnglishBrochure.pdf?raw=1",
                         },
                     ],
                 },
@@ -362,7 +355,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "English Language 11th Sakyadhita Conference",
-                            url: "https://sakyadhita.org/docs/resources/conferences/11-EnglishBrochure.pdf",
+                            url: "https://www.dropbox.com/s/hin547gatqund5l/11-EnglishBrochure.pdf?raw=1",
                         },
                     ],
                 },
@@ -379,7 +372,7 @@ module.exports = async () => {
                 location: "Ulaanbataar, Mongolia",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipOf7YPmV_dE_LptJxQfRdTcCFfK7gGEVbmkiZTS/photo/AF1QipMtvCbhZxwesqSdrB7ulG6Lx9rS1-EIDCjLbrHp",
+                        "https://www.dropbox.com/s/7rh04yk18wlkbfk/10thConferenceHeader2_Web.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -395,7 +388,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "English Language 10th Sakyadhita Conference",
-                            url: "https://sakyadhita.org/docs/resources/conferences/10-Mongolia.pdf",
+                            url: "https://www.dropbox.com/s/l4ranwzlj7l7c9l/10-Mongolia.pdf?raw=1",
                         },
                     ],
                 },
@@ -412,7 +405,7 @@ module.exports = async () => {
                 location: "Kuala Lumpar, Malaysia",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipMuV22b0jHf93gcJ94ag7k4bK0xtbnzr9FDcrBo/photo/AF1QipM6A_g-C24fAc2VrLtu3GswGPrNnpzAnDFYIFYF",
+                        "https://www.dropbox.com/s/6ferqowq8bmhfqb/9thConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -425,7 +418,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "English Language 9th Sakyadhita Conference Book",
-                            url: "https://sakyadhita.org/docs/resources/epublications/BuddhistWomenInAMulticulturalCommunity-Sakyadhita2009.pdf",
+                            url: "https://www.dropbox.com/s/l8xbgwawrualhjf/BuddhistWomenInAMulticulturalCommunity-Sakyadhita2009.pdf?raw=1",
                         },
                     ],
                 },
@@ -433,7 +426,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "English Language 9th Sakyadhita Conference",
-                            url: "https://sakyadhita.org/docs/resources/conferences/09-Malaysia.pdf",
+                            url: "https://www.dropbox.com/s/htuqyiv9xvjj9qi/09-Malaysia.pdf?raw=1",
                         },
                     ],
                 },
@@ -450,7 +443,7 @@ module.exports = async () => {
                 location: "Seoul, Korea",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipOFSh209mfVo2iwy6mlJvpgpwVn7SdAfEPs5sDy/photo/AF1QipONskREzTc5mnTXqz0tCJO7RFs4yO5ZNmiFyC8P",
+                        "https://www.dropbox.com/s/zt5f9qv3p2fzmvi/8thConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -466,7 +459,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "English Language 8th Sakyadhita Conference",
-                            url: "https://sakyadhita.org/docs/resources/conferences/08-Korea.pdf",
+                            url: "https://www.dropbox.com/s/jrq4mqkx5v6wbvx/08-Korea.pdf?raw=1",
                         },
                     ],
                 },
@@ -483,7 +476,7 @@ module.exports = async () => {
                 location: "Huafan University, Taipei, Taiwan",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipOnnj0WEY_fpVEGKRt3mjDzx7o8cJwGexuQeCrt/photo/AF1QipNChM6LswUbzgR92zPkAMbC3rlPTLYx-lbImaMF",
+                        "https://www.dropbox.com/s/fp75twhx7zd8nkp/7thConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -499,7 +492,7 @@ module.exports = async () => {
                     data: [
                         {
                             description: "English Language 7th Sakyadhita Conference",
-                            url: "https://sakyadhita.org/docs/resources/conferences/07-Taiwan.pdf",
+                            url: "https://www.dropbox.com/s/meact7q93ivmh3m/07-Taiwan.pdf?raw=1",
                         },
                     ],
                 },
@@ -517,7 +510,7 @@ module.exports = async () => {
                 location: "Lumbini, Nepal",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipO5e3gA2faN4u6Oi2H_rU_T_A0RGKCBVpJdW7v2/photo/AF1QipOAqIr_l-99oO2Jx_pIj0N1sPjeNynWSzuY04jy",
+                        "https://www.dropbox.com/s/py2uzb9ckqrlz8j/6thConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -545,7 +538,7 @@ module.exports = async () => {
                 location: "Wat Onaloum, Phnom Penh, Cambodia",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipPvQlhJ1Ra6U3VWCtNgiPTsO0-gTawyZQrdDiVU/photo/AF1QipMQAb7GBRVP1aA9H_PBuYRgpaMfRhK5QMGnEZdS",
+                        "https://www.dropbox.com/s/x45cvypc0xrzio3/5thConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -573,7 +566,7 @@ module.exports = async () => {
                 location: "Mahabodhi Meditation Center, Leh, Ladakh, India",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipM36WdB-7k0-ADvYB5IVe_rptjIFaJLHX_oWiMq/photo/AF1QipPvIgzt4nT87JcYuq1y87IHi_aDwaG1l0Zx5kbS",
+                        "https://www.dropbox.com/s/3kiycf5xbr0co89/4thConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -601,7 +594,7 @@ module.exports = async () => {
                 location: "International Centre, Colombo, Sri Lanka",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipO9bZ2zyeW2uVpKlKAZqfz0P4rdlHzHEC7hbpOu/photo/AF1QipPeAunRU1Vy7FD26DzHpezN7U_BqUicjFkrorzx",
+                        "https://www.dropbox.com/s/ziimbc7xj9k5ga2/3rdConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -629,7 +622,7 @@ module.exports = async () => {
                 location: "Thammasat University (Ransit Campus), Bangkok, Thailand",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipO4TXgStZgK-da26u9iD_2WKQayRybtL8w49aDx/photo/AF1QipPEF5q5YhyCvlVRlQYz-gdoYOC0rNy6O9AyyE7C",
+                        "https://www.dropbox.com/s/senc7vgrqqh4ae5/2ndConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -657,7 +650,7 @@ module.exports = async () => {
                 location: "Kalachakra Temple, Bodhgaya, India",
                 slideShowImages: {
                     urls: [
-                        "https://photos.google.com/u/4/album/AF1QipO4TXgStZgK-da26u9iD_2WKQayRybtL8w49aDx/photo/AF1QipPEF5q5YhyCvlVRlQYz-gdoYOC0rNy6O9AyyE7C",
+                        "https://www.dropbox.com/s/za4wx2hh0mrj6gn/1stConferenceHeader.jpg?raw=1",
                     ],
                 },
                 programs: {
@@ -671,7 +664,7 @@ module.exports = async () => {
                         {
                             description:
                                 "Special 20th Anniversary Sakyadhita International Newsletter, 2007",
-                            url: "https://sakyadhita.org/docs/resources/newsletters/16-1-2007.pdf",
+                            url: "https://www.dropbox.com/s/l824lri1aa4e8jp/16-1-2007.pdf?raw=1",
                         },
                     ],
                 },

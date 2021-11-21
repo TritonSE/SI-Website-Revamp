@@ -15,55 +15,62 @@ import RightArrow from "../media/rightarrow.svg";
 
 import "../css/Slideshow.css";
 
-const Slideshow = (props) => (
+const Slideshow = (props) => {
     // required props: height, width, isMobile
-    <Fade
-        autoPlay
-        duration={3000}
-        transitionDuration={500}
-        prevArrow={
-            // custom left arrow component
-            <div
-                style={
-                    !props.isMobile
-                        ? { width: "50px", marginRight: "-50px" }
-                        : { width: "25px", marginRight: "-25px" }
+
+    // custom left arrow component
+    const prevArrowDesign = () => (
+        <div
+            style={
+                !props.isMobile
+                    ? { width: "50px", marginRight: "-50px" }
+                    : { width: "25px", marginRight: "-25px" }
+            }
+        >
+            <img
+                className={!props.isMobile ? "Slideshow_arrowleft" : "Slideshow_arrowleft--mobile"}
+                src={LeftArrow}
+                alt="left arrow"
+            />
+        </div>
+    );
+
+    // custom right arrow component
+    const nextArrowDesign = () => (
+        <div
+            style={
+                !props.isMobile
+                    ? { width: "50px", marginLeft: "-100px" }
+                    : { width: "25px", marginLeft: "-40px" }
+            }
+        >
+            <img
+                className={
+                    !props.isMobile ? "Slideshow_arrowright" : "Slideshow_arrowright--mobile"
                 }
-            >
-                <img
-                    className={
-                        !props.isMobile ? "Slideshow_arrowleft" : "Slideshow_arrowleft--mobile"
-                    }
-                    src={LeftArrow}
-                    alt="left arrow"
-                />
-            </div>
-        }
-        nextArrow={
-            // custom right arrow component
-            <div
-                style={
-                    !props.isMobile
-                        ? { width: "50px", marginLeft: "-100px" }
-                        : { width: "25px", marginLeft: "-40px" }
-                }
-            >
-                <img
-                    className={
-                        !props.isMobile ? "Slideshow_arrowright" : "Slideshow_arrowright--mobile"
-                    }
-                    src={RightArrow}
-                    alt="right arrow"
-                />
-            </div>
-        }
-        arrows={!props.isMobile}
-        pauseOnHover
-        indicators={() => <div className="dot" />}
-        style={{ maxHeight: props.height, minHeight: props.height, width: props.width }}
-        className="Slideshow"
-    >
-        {props.children}
-    </Fade>
-);
+                src={RightArrow}
+                alt="right arrow"
+            />
+        </div>
+    );
+
+    const amountOfImages = props.children.length;
+
+    return (
+        <Fade
+            autoPlay
+            duration={3000}
+            transitionDuration={500}
+            prevArrow={prevArrowDesign()}
+            nextArrow={nextArrowDesign()}
+            arrows={!props.isMobile && amountOfImages > 1}
+            pauseOnHover
+            indicators={amountOfImages > 1 ? () => <div className="dot" /> : null}
+            style={{ maxHeight: props.height, minHeight: props.height, width: props.width }}
+            className="Slideshow"
+        >
+            {props.children}
+        </Fade>
+    );
+};
 export default Slideshow;

@@ -26,7 +26,7 @@ export default function ConferenceOverview(props) {
             {/* Loop thorugh each item and display it */}
 
             {item.data.length === 0 ? (
-                <div className="program">
+                <div className="program no-hover">
                     <p>No info available</p>
                 </div>
             ) : (
