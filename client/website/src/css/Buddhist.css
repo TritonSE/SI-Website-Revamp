@@ -39,7 +39,7 @@
 
 .buddhist-slider-wrapper {
   position: absolute;
-  top: 650px;
+  top: 75vh;
   margin-left: min(50px, 2.5vw);
   height: calc(100% - 615px);
 }
