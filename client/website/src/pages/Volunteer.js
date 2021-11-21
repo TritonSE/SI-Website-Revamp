@@ -248,7 +248,7 @@ export default function Volunteer() {
         if (arrowScrollToRef.current) {
             arrowScrollToRef.current.scrollIntoView({
                 behavior: "smooth",
-                block: "nearest",
+                block: "center",
             });
         }
     };
@@ -256,30 +256,32 @@ export default function Volunteer() {
     return (
         <div>
             {isMobile || window.innerHeight <= 500 ? (
-                    <ResourcesHeader
-                        title="Volunteer"
-                        image={HeaderImage}
-                        height="max(40vh, 300px)"
-                        width="100%"
-                        showArrow={false}
-                    />
-                ) : (
-                    <ResourcesHeader
-                        title="Volunteer"
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
-                        image={HeaderImage}
-                        height="max(75vh, 400px)"
-                        width="100%"
-                        arrowClickCallback={scrollToRef}
-                    />
-                )}
+                <ResourcesHeader
+                    title="Volunteer"
+                    image={HeaderImage}
+                    height="max(40vh, 300px)"
+                    width="100%"
+                    showArrow={false}
+                />
+            ) : (
+                <ResourcesHeader
+                    title="Volunteer"
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                    image={HeaderImage}
+                    height="max(75vh, 400px)"
+                    width="100%"
+                    arrowClickCallback={scrollToRef}
+                />
+            )}
             <div className="volunteer-content">
                 <form autoComplete="off">
                     <p className="required-note">
                         {" "}
                         <span className="error-asterisk"> * </span> indicates a required field
                     </p>
-                    <h1 ref={arrowScrollToRef} className="signup-text">Sign Me Up!</h1>
+                    <h1 ref={arrowScrollToRef} className="signup-text">
+                        Sign Me Up!
+                    </h1>
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"

@@ -116,7 +116,7 @@ export default function Newsletters() {
         if (arrowScrollToRef.current) {
             arrowScrollToRef.current.scrollIntoView({
                 behavior: "smooth",
-                block: "nearest",
+                block: "center",
             });
         }
     };

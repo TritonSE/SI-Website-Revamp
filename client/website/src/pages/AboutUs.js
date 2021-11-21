@@ -42,7 +42,6 @@ export default function AboutUs() {
 
     // Effect to update the sticky nav on scroll
     useEffect(() => {
-
         function handleResize() {
             if (window.innerWidth <= 600) {
                 setIsMobile(true);
@@ -117,24 +116,23 @@ export default function AboutUs() {
 
     return (
         <div className="page">
-
             {isMobile || window.innerHeight <= 500 ? (
-                    <ResourcesHeader
-                        image={Header}
-                        title="About Us"
-                        height="max(40vh, 300px)"
-                        width="100%"
-                        showArrow={false}
-                    />
-                ) : (
-                    <ResourcesHeader
-                        image={Header}
-                        title="About Us"
-                        text="Working at the grassroots level, Sakyadhita provides a communications network among Buddhist women internationally. We promote research and publications on Buddhist women's history and other topics of interest. Our members strive to create equal opportunities for women in all Buddhist traditions."
-                        height="max(75vh, 400px)"
-                        width="100%"
-                    />
-                )}
+                <ResourcesHeader
+                    image={Header}
+                    title="About Us"
+                    height="max(40vh, 300px)"
+                    width="100%"
+                    showArrow={false}
+                />
+            ) : (
+                <ResourcesHeader
+                    image={Header}
+                    title="About Us"
+                    text="Working at the grassroots level, Sakyadhita provides a communications network among Buddhist women internationally. We promote research and publications on Buddhist women's history and other topics of interest. Our members strive to create equal opportunities for women in all Buddhist traditions."
+                    height="max(75vh, 400px)"
+                    width="100%"
+                />
+            )}
 
             {/* Sticky Nav */}
             <div className="slider-wrapper">
@@ -204,22 +202,81 @@ export default function AboutUs() {
 
                     <h1>Grassroots Efforts</h1>
                     <p>
-                    Working at the grassroots level, Sakyadhita provides a communications network among Buddhist women internationally. We promote research and publications on Buddhist women&apos;s history and other topics of interest. Our members strive to create equal opportunities for women in all Buddhist traditions. We work to empower the world&apos;s 300 million Buddhist women to work for peace and social justice through local branches, the content we offer free of charge online, and through our biannual conferences.
-                    <br/><br/>
-                    This website provides information on Buddhist women and a forum for sharing research, ideas, and experiences. <b> Working together Buddhist women are realizing their tremendous potential for social and spiritual transformation!</b>
-                    <br/><br/>
-                    Since 1987, Sakyadhita: International Association of Buddhist Women has been working to benefit Buddhist women around the world. Established at the conclusion of the 1st Sakyadhita Conference in Bodhgaya, India, in 1987, the organization has nearly 2,000 members in 45 countries worldwide.
-                    <br/><br/>
-                    Sakyadhita&apos;s objectives are:
-                    <ul>
-                        <li> <p> To establish an international alliance of Buddhist women </p></li>
-                        <li> <p> To advance the spiritual and secular welfare of the world&apos;s women </p></li>
-                        <li> <p> To work for gender equity in Buddhist education, training institutional structures, and ordination </p></li>
-                        <li> <p> To promote harmony and dialogue among the Buddhist traditions and other religions </p></li>
-                        <li> <p> To encourage research and publications on topics of interest to Buddhist women </p></li>
-                        <li> <p> To foster compassionate social action for the benefit of humanity </p></li>
-                        <li> <p> To promote world peace through the teachings of the Buddha </p></li>
-                    </ul>
+                        Working at the grassroots level, Sakyadhita provides a communications
+                        network among Buddhist women internationally. We promote research and
+                        publications on Buddhist women&apos;s history and other topics of interest.
+                        Our members strive to create equal opportunities for women in all Buddhist
+                        traditions. We work to empower the world&apos;s 300 million Buddhist women
+                        to work for peace and social justice through local branches, the content we
+                        offer free of charge online, and through our biannual conferences.
+                        <br />
+                        <br />
+                        This website provides information on Buddhist women and a forum for sharing
+                        research, ideas, and experiences.{" "}
+                        <b>
+                            {" "}
+                            Working together Buddhist women are realizing their tremendous potential
+                            for social and spiritual transformation!
+                        </b>
+                        <br />
+                        <br />
+                        Since 1987, Sakyadhita: International Association of Buddhist Women has been
+                        working to benefit Buddhist women around the world. Established at the
+                        conclusion of the 1st Sakyadhita Conference in Bodhgaya, India, in 1987, the
+                        organization has nearly 2,000 members in 45 countries worldwide.
+                        <br />
+                        <br />
+                        Sakyadhita&apos;s objectives are:
+                        <ul>
+                            <li>
+                                {" "}
+                                <p> To establish an international alliance of Buddhist women </p>
+                            </li>
+                            <li>
+                                {" "}
+                                <p>
+                                    {" "}
+                                    To advance the spiritual and secular welfare of the world&apos;s
+                                    women{" "}
+                                </p>
+                            </li>
+                            <li>
+                                {" "}
+                                <p>
+                                    {" "}
+                                    To work for gender equity in Buddhist education, training
+                                    institutional structures, and ordination{" "}
+                                </p>
+                            </li>
+                            <li>
+                                {" "}
+                                <p>
+                                    {" "}
+                                    To promote harmony and dialogue among the Buddhist traditions
+                                    and other religions{" "}
+                                </p>
+                            </li>
+                            <li>
+                                {" "}
+                                <p>
+                                    {" "}
+                                    To encourage research and publications on topics of interest to
+                                    Buddhist women{" "}
+                                </p>
+                            </li>
+                            <li>
+                                {" "}
+                                <p>
+                                    {" "}
+                                    To foster compassionate social action for the benefit of
+                                    humanity{" "}
+                                </p>
+                            </li>
+                            <li>
+                                {" "}
+                                <p> To promote world peace through the teachings of the Buddha </p>
+                            </li>
+                        </ul>
                     </p>
                     <img src={LotusPink} alt="Mission & Activities" />
                 </div>

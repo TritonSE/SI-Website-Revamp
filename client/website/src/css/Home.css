@@ -173,7 +173,8 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .home-body img, .home-section img {
+  .home-body img,
+  .home-section img {
     width: calc(100% + 2rem);
     height: auto;
   }

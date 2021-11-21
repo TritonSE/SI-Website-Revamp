@@ -9,19 +9,27 @@ import { FiArrowDownCircle } from "react-icons/fi";
 import "../css/ResourcesHeader.css";
 
 /**
- * 
+ *
  * Required Params
- * @param {string} image - Url to background image 
+ * @param {string} image - Url to background image
  * @param {int} height - height of background image
- * @param {int} width - width of background image 
- * 
+ * @param {int} width - width of background image
+ *
  * Optional Params
  * @param {string} title - Title for resource header
  * @param {string} text - Subtext for resource header (displayed below title)
  * @param {bool} showArrow - Default true. Indicates whether to show white arrow on bottom right
- * @param {function} arrowClickCallback - Only applicable if showArrow is also set to true. Callback used when arrow is clicked by user. 
+ * @param {function} arrowClickCallback - Only applicable if showArrow is also set to true. Callback used when arrow is clicked by user.
  */
-export default function ResourcesHeader({ image, height, width, title, text, showArrow = true, arrowClickCallback = null }) {
+export default function ResourcesHeader({
+    image,
+    height,
+    width,
+    title,
+    text,
+    showArrow = true,
+    arrowClickCallback = null,
+}) {
     return (
         <div
             className="header-div"

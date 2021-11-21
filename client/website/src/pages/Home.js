@@ -97,7 +97,7 @@ export default function Home() {
         if (introTitle.current) {
             introTitle.current.scrollIntoView({
                 behavior: "smooth",
-                block: "nearest",
+                block: "center",
             });
         }
     };
@@ -178,7 +178,7 @@ export default function Home() {
                             effect="solid"
                             type="light"
                             border="true"
-                            data-iscapture="true"
+                            data-iscapture="false"
                             event="mouseover mouseenter"
                             globalEventOff="click scroll mousewheel blur"
                             id="tooltip"

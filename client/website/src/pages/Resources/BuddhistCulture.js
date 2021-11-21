@@ -107,7 +107,6 @@ export default function BuddhistCulture() {
 
     // Effect to update the sticky nav on scroll
     useEffect(() => {
-
         function handleResize() {
             if (window.innerWidth <= 600) {
                 setIsMobile(true);
@@ -142,7 +141,6 @@ export default function BuddhistCulture() {
 
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
-
     }, []);
 
     /**
@@ -162,7 +160,7 @@ export default function BuddhistCulture() {
         if (arrowScrollToRef.current) {
             arrowScrollToRef.current.scrollIntoView({
                 behavior: "smooth",
-                block: "nearest",
+                block: "center",
             });
         }
     };
@@ -171,23 +169,23 @@ export default function BuddhistCulture() {
         <div className="buddhist-container">
             {/* Page header with image and title */}
             {isMobile || window.innerHeight <= 500 ? (
-                    <ResourcesHeader
-                        title="Buddhist Culture"
-                        image={Header}
-                        height="max(40vh, 300px)"
-                        width="100%"
-                        showArrow={false}
-                    />
-                ) : (
-                    <ResourcesHeader
-                        title="Buddhist Culture"
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
-                        image={Header}
-                        height="max(75vh, 400px)"
-                        width="100%"
-                        arrowClickCallback={scrollToRef}
-                    />
-                )}
+                <ResourcesHeader
+                    title="Buddhist Culture"
+                    image={Header}
+                    height="max(40vh, 300px)"
+                    width="100%"
+                    showArrow={false}
+                />
+            ) : (
+                <ResourcesHeader
+                    title="Buddhist Culture"
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                    image={Header}
+                    height="max(75vh, 400px)"
+                    width="100%"
+                    arrowClickCallback={scrollToRef}
+                />
+            )}
 
             {/* Sticky Nav */}
             <div className="buddhist-slider-wrapper">
@@ -224,12 +222,11 @@ export default function BuddhistCulture() {
                             <div className="buddhist-scroll" id={item.title.replaceAll(" ", "")} />
 
                             {/* The title of the paragraph */}
-                            {
-                                index === 0 ?
+                            {index === 0 ? (
                                 <h1 ref={arrowScrollToRef}>{item.title}</h1>
-                                :
+                            ) : (
                                 <h1>{item.title}</h1>
-                            }
+                            )}
                             {/* The text of the div */}
                             <p>{item.text}</p>
                             {/* The image associated with the div */}
