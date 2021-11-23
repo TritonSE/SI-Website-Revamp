@@ -14,13 +14,12 @@ import Header from "../media/lotus-header.svg";
 // import LotusPink from "../media/lotus-pink.svg";
 import DownArrow from "../media/down-arrow.svg";
 import Link from "../media/link.svg";
-import Founders from "../media/founders.png";
 
 import { fetchExecCommittees } from "../util/requests";
 import Loader from "../components/Main/Loader";
 
 const Cat =
-    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg";
+    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1";
 
 const CommitteeSelector = ({
     committees,
@@ -289,7 +288,7 @@ export default function AboutUs() {
                     </p>
 
                     <img
-                        src="https://sakyadhita.org/images/home/mg_1399.jpg"
+                        src="https://www.dropbox.com/s/v7nzzd4efi25z34/Mission.jpg?raw=1"
                         height="500px"
                         alt="History & Goals"
                     />
@@ -335,7 +334,7 @@ export default function AboutUs() {
                         organization has nearly 2,000 members in 45 countries worldwide.
                     </p>
                     <img
-                        src="https://sakyadhita.org/images/home/WorkingTogether-440px.jpg"
+                        src="https://www.dropbox.com/s/d4rx1j2c5y0b0mq/Grassroots%20Efforts.jpg?raw=1"
                         height="500px"
                         alt="Mission & Activities"
                     />
@@ -398,7 +397,7 @@ export default function AboutUs() {
                             <a
                                 target="_blank"
                                 rel="noreferrer"
-                                href="https://sakyadhita.org/docs/home/Sakyadhita%20Brief%20History.pdf"
+                                href="https://www.dropbox.com/s/jy4or5eihhw68cg/Sakyadhita%20Brief%20History.pdf?raw=1"
                             >
                                 {" "}
                                 here{" "}
@@ -406,7 +405,7 @@ export default function AboutUs() {
                         </i>
                     </p>
                     <img
-                        src="https://sakyadhita.org/images/home/Bhikkhuni%20Pratimoksa%20Reading%20in%20Bodhgaya.jpg"
+                        src="https://www.dropbox.com/s/z4gytwllla3o5yp/A%20Brief%20History.jpg?raw=1"
                         height="500px"
                         alt="Mission & Activities"
                     />
@@ -464,7 +463,7 @@ export default function AboutUs() {
                     <div className="scroll" id="founders" />
 
                     <h1>Founding Members</h1>
-                    <img id="founding-img" height="500px" src={Founders} alt="Founding Members" />
+                    <img id="founding-img" height="500px" src="https://www.dropbox.com/s/645ctixcxgxlvfs/Founding%20Members.png?raw=1" alt="Founding Members" />
                     <figcaption>
                         {" "}
                         <i> 1st Sakyadhita International Conference Participants, 1987 </i>
@@ -666,7 +665,7 @@ export default function AboutUs() {
 
                     <img
                         height="400px"
-                        src="https://sakyadhita.org/images/home/1stConference-bw_Lekshe+Dhammananda.jpg"
+                        src="https://www.dropbox.com/s/tf52qbak6wibyxs/Were%20you%20a%20founding%20member.jpg?raw=1"
                         alt="Founding Members"
                     />
                     <figcaption>

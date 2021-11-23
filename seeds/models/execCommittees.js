@@ -12,8 +12,8 @@ module.exports = async () => {
                 position: "President",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
-                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Sharon%20A,%20Suh.pdf",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "https://www.dropbox.com/s/xcl700fofxmcdbu/Bio%20Sharon%20A%2C%20Suh.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -27,8 +27,8 @@ module.exports = async () => {
                 position: "Vice President",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
-                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Hsiao-Lan%20Hu.pdf",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "https://www.dropbox.com/s/a9dtefbzka23wj4/Bio%20Hsiao-Lan%20Hu.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -42,8 +42,8 @@ module.exports = async () => {
                 position: "Treasurer",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
-                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Kaytee%20Sumida.pdf",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "https://www.dropbox.com/s/oi65xrhqx3ekn44/Bio%20Kaytee%20Sumida.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -57,9 +57,9 @@ module.exports = async () => {
                 position: "Corresponding Secretary",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink:
-                    "https://sakyadhita.org/docs/home/bio/Bio%20Thich%20Nu%20Tien%20Lien.pdf",
+                    "https://www.dropbox.com/s/k5h0mw3dnu5xip8/Bio%20Thich%20Nu%20Tien%20Lien.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -73,8 +73,8 @@ module.exports = async () => {
                 position: "Recording Secretary",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
-                redirectLink: "https://sakyadhita.org/docs/home/bio/Bio%20Buphyun%20Sunim.pdf",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "https://www.dropbox.com/s/1m9e56opgy2vfya/Bio%20Buphyun%20Sunim.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -90,7 +90,7 @@ module.exports = async () => {
                 position: "President",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "http://tenzinpalmo.com/tenzin_palmo/biography.htm",
                 openInSameTab: false,
             },
@@ -105,7 +105,7 @@ module.exports = async () => {
                 position: "Vice President",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "http://sakyadhita.org/home/exec-eunsu-cho.html",
                 openInSameTab: false,
             },
@@ -120,7 +120,7 @@ module.exports = async () => {
                 position: "Secretary",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "https://sakyadhita.org/home/exec-kaytee-sumida.html",
                 openInSameTab: false,
             },
@@ -135,7 +135,7 @@ module.exports = async () => {
                 position: "Treasurer",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "http://sakyadhita.org/home/exec-lien-bui.html",
                 openInSameTab: false,
             },
@@ -150,7 +150,7 @@ module.exports = async () => {
                 position: "Branch & Chapter Coordinator",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296",
                 openInSameTab: false,
             },
@@ -167,7 +167,7 @@ module.exports = async () => {
                 position: "President",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "mailto:sakyadhita@gmail.com",
                 openInSameTab: false,
             },
@@ -182,7 +182,7 @@ module.exports = async () => {
                 position: "Vice President",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "mailto:parai@lsu.edu",
                 openInSameTab: false,
             },
@@ -197,7 +197,7 @@ module.exports = async () => {
                 position: "Secretary",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "mailto:melissa@HanaleiRugCompany.com",
                 openInSameTab: false,
             },
@@ -212,7 +212,7 @@ module.exports = async () => {
                 position: "Treasurer",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "mailto:marroyo@crs.org",
                 openInSameTab: false,
             },
@@ -227,7 +227,7 @@ module.exports = async () => {
                 position: "Branch & Chapter Coordinator",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 redirectLink: "http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296",
                 openInSameTab: false,
             },
@@ -244,7 +244,7 @@ module.exports = async () => {
                 position: "President",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -258,7 +258,7 @@ module.exports = async () => {
                 position: "Vice President",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -272,7 +272,7 @@ module.exports = async () => {
                 position: "Secretary",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -286,7 +286,7 @@ module.exports = async () => {
                 position: "Treasurer",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -300,7 +300,7 @@ module.exports = async () => {
                 position: "Branch & Chapter Coordinator",
                 bio: "",
                 imageLink:
-                    "https://www.thesprucepets.com/thmb/hThcFCxT20ql0opGe4B8WGICbc4=/1851x1851/smart/filters:no_upscale()/cat-talk-eyes-553942-hero-df606397b6ff47b19f3ab98589c3e2ce.jpg",
+                    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
