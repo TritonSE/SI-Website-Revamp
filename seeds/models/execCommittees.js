@@ -106,7 +106,6 @@ module.exports = async () => {
                 bio: "",
                 imageLink:
                     "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
-                redirectLink: "http://sakyadhita.org/home/exec-eunsu-cho.html",
                 openInSameTab: false,
             },
             { logging: false }
@@ -121,7 +120,6 @@ module.exports = async () => {
                 bio: "",
                 imageLink:
                     "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
-                redirectLink: "https://sakyadhita.org/home/exec-kaytee-sumida.html",
                 openInSameTab: false,
             },
             { logging: false }
@@ -136,7 +134,6 @@ module.exports = async () => {
                 bio: "",
                 imageLink:
                     "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
-                redirectLink: "http://sakyadhita.org/home/exec-lien-bui.html",
                 openInSameTab: false,
             },
             { logging: false }
