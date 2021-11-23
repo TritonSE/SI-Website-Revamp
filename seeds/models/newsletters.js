@@ -210,7 +210,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/11-1-2000.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/xzkjmvy0ck06n9j/newsletter-11-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -264,13 +264,25 @@ module.exports = async () => {
         ),
         Newsletters.create(
             {
+                volume: 13,
+                number: 2,
+                year: 2003,
+                pdfLink:
+                    "https://sakyadhita.org/docs/resources/newsletters/13-2-2003.pdf",
+                imageLink: 
+                    "https://www.dropbox.com/s/dyca9g6emf12086/newsletter-13-2.png?raw=1",
+            },
+            { logging: false }
+        ),
+        Newsletters.create(
+            {
                 volume: 14,
                 number: 1,
                 year: 2004,
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/14-1-2004.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/2e4zlktqfoh3hvf/newsletter-14-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -282,7 +294,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/15-1-2006.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/7cip4yozbao8rci/newsletter-15-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -294,7 +306,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/15-2-2006.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/l2oy9f9xdzxt74d/newsletter-15-2.png?raw=1",
             },
             { logging: false }
         ),
@@ -306,7 +318,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/16-1-2007.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/imxazfuvx7r6jqi/newsletter-16-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -318,7 +330,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/16-2-2008.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/li73nmxp6m64ea2/newsletter-16-2.png?raw=1",
             },
             { logging: false }
         ),
@@ -330,7 +342,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/18-1-2009.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/kis7gahk7pstsw6/newsletter-18-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -342,7 +354,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/19.1-2010.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/9ekoa0zzyhhdoen/newsletter-19-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -354,7 +366,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/20-1-2011.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/nqnyyi61ej8zqyd/newsletter-20-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -366,7 +378,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/21-1-2012.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/sec4nkz918j4q6n/newsletter-21-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -378,7 +390,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/22-1-2013.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/rp85ew0r6xm2o9g/newsletter-22-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -390,7 +402,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/23-1-2014.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/a65nnx3s2xua7ua/newsletter-23-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -402,7 +414,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/24-1-2015.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/lqcaacheqy7a1s4/newsletter-24-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -414,7 +426,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/2016%20Sakyadhita%20Newsletter.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/vkkmfisysdyu6i1/newsletter-25-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -426,7 +438,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/2017%20Sakyadhita%20Newsletter.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/vzeb8p2ivwjuvdd/newsletter-26-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -438,7 +450,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/2018%20Sakyadhita%20Newsletter.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/8kdrddepwau0ttc/newsletter-27-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -450,7 +462,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/2019%20Sakyadhita%20Newsletter.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/ej11k9guuraw3xg/newsletter-28-1.png?raw=1",
             },
             { logging: false }
         ),
@@ -462,7 +474,7 @@ module.exports = async () => {
                 pdfLink:
                     "https://sakyadhita.org/docs/resources/newsletters/2021%20Sakyadhita%20Newsletter%20Vol.%2029.pdf",
                 imageLink: 
-                    "https://www.invaluable.com/blog/wp-content/uploads/2019/03/buddhist-art-hero.jpg",
+                    "https://www.dropbox.com/s/znd3z49zu2jydhg/newsletter-29-1.png?raw=1",
             },
             { logging: false }
         ),
