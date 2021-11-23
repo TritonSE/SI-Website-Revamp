@@ -65,6 +65,25 @@ export default function MobileConferences(props) {
      */
     const slideshowVideo = (isInfo) => {
         if (isInfo) {
+            if (item.slideShowImages.urls.length === 1) {
+                return (
+                    <div key={item.slideShowImages.urls[0]} height="400px" width="100%">
+                        {/* Set styling on the img */}
+                        <div className="mobile-slideshow-label">
+                            <h1>{item.title}</h1>
+                            <h3>{item.location}</h3>
+                        </div>
+                        <img
+                            style={{
+                                height: "400px",
+                                width: "100%",
+                            }}
+                            alt="Event Visual"
+                            src={item.slideShowImages.urls[0]}
+                        />
+                    </div>
+                );
+            }
             return (
                 <Slideshow height="400px" width="100%" isMobile>
                     {/* Loop through all the images associated with the conference */}

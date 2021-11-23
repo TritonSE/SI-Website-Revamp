@@ -100,6 +100,18 @@ export default function ConferencesDesktop(props) {
      */
     const slideshowVideo = () => {
         if (isInfo || !item.video) {
+            if (item.slideShowImages.urls.length === 1) {
+                return (
+                    <div key={item.slideShowImages.urls[0]} height="430px" width="100%">
+                        {/* Set styling on the img */}
+                        <img
+                            className="img-slideshow-conferences"
+                            alt="Event Visual"
+                            src={item.slideShowImages.urls[0]}
+                        />
+                    </div>
+                );
+            }
             return (
                 <Slideshow height="430px" width="100%" isMobile={false}>
                     {/* Loop through all the images associated with the conference */}

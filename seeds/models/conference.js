@@ -144,12 +144,7 @@ module.exports = async () => {
                     ],
                 },
                 abstracts: {
-                    data: [
-                        {
-                            description: "Conference Program Abstracts",
-                            url: "https://sakyadhita.org/conferences/14th-si-con/14th-si-con-abstracts.html", // not sure what to do about this
-                        },
-                    ],
+                    data: [],
                 },
                 brochures: {
                     data: [
@@ -340,7 +335,7 @@ module.exports = async () => {
                 confNum: 11,
                 location: "Ho Chi Minh City, Vietnam",
                 slideShowImages: {
-                    urls: [],
+                    urls: ["https://www.dropbox.com/s/0cwhw797wmryac6/Lotus_Flower.png?raw=1"],
                 },
                 programs: {
                     data: [],

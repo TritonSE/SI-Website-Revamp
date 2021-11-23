@@ -186,6 +186,16 @@ export default function HorizontalStepper(props) {
         setSplitSteps(steps.slice(indices[0], indices[1]));
     }, [indices]);
 
+    // set the active index and step to 0 upon loading
+    useEffect(() => {
+        if (activeStep === -1) {
+            setActiveStep(0);
+        }
+        if (activeIndex === -1) {
+            setActiveIndex(0);
+        }
+    }, [activeStep, activeIndex]);
+
     /**
      * When an item in the stepper is clicked, it's parent
      * index is updated accordingly

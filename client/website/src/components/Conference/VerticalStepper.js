@@ -169,6 +169,7 @@ export default function VerticalStepper(props) {
         return splitLocation.join(", ");
     };
 
+    // set the active index and step to 0 upon loading
     useEffect(() => {
         if (activeStep === -1) {
             setActiveStep(0);
