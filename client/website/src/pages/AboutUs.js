@@ -39,6 +39,7 @@ export default function AboutUs() {
     // Currently viewed year's executive committee
     const [year, setYear] = useState("2021");
     const [isMobile, setIsMobile] = useState(false);
+    const introSection = React.createRef();
 
     // Effect to update the sticky nav on scroll
     useEffect(() => {
@@ -86,6 +87,17 @@ export default function AboutUs() {
         return "";
     }
 
+    // Scroll to the first section when clicking arrow button on resource header
+    const scrollToSection = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (introSection.current) {
+            introSection.current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    };
+
     /**
      * Toggles the dropdown state
      */
@@ -123,6 +135,7 @@ export default function AboutUs() {
                     height="max(40vh, 300px)"
                     width="100%"
                     showArrow={false}
+                    arrowClickCallback={scrollToSection}
                 />
             ) : (
                 <ResourcesHeader
@@ -131,6 +144,7 @@ export default function AboutUs() {
                     text="Working at the grassroots level, Sakyadhita provides a communications network among Buddhist women internationally. We promote research and publications on Buddhist women's history and other topics of interest. Our members strive to create equal opportunities for women in all Buddhist traditions."
                     height="max(75vh, 400px)"
                     width="100%"
+                    arrowClickCallback={scrollToSection}
                 />
             )}
 
@@ -139,7 +153,7 @@ export default function AboutUs() {
                 <div className="slider">
                     <ul className="slider-nav">
                         <li>
-                            <a href="#mission">
+                            <a href="#mission" ref={introSection}>
                                 {" "}
                                 <p
                                     className={`hover-underline-animation ${computeNavUnderline(
