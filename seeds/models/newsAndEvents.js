@@ -37,7 +37,7 @@ module.exports = async () => {
                 imageLink:
                     "https://www.dropbox.com/s/gcx7b8ej9pid32v/Indonesia%20Conference.jpeg?raw=1",
                 redirectLink: "/conferences?confNum=14",
-                openInSameTab: false,
+                openInSameTab: true,
             },
             { logging: false }
         ),
