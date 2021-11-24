@@ -42,7 +42,7 @@
 }
 
 .NewsletterCard:hover .NewsletterCard_image {
-  transform: scale(1.08);
+  transform: scale(1.04);
   box-shadow: 0px 0px 6px 2px var(--darkorange);
 }
 
