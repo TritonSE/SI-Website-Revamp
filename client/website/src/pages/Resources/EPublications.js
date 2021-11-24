@@ -5,7 +5,7 @@
  *
  * Calls EPubCard.js, and EPubSection.js
  *
- * @Author PatrickBrown1
+ * @Author PatrickBrown1, Navid Boloorian
  */
 
 import React, { useState, useEffect } from "react";
@@ -14,218 +14,9 @@ import EPubSection from "../../components/EPubs/EPubSection";
 import EPubCard from "../../components/EPubs/EPubCard";
 import "../../css/EPublications.css";
 
-// dummy data for each publication list
-const page_data = {
-    sections: [
-        {
-            section_title: "Section 1",
-            section_list: [
-                {
-                    title: "title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "super duper long title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "even longer super duper long title that takes 3 lines",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 4",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 5",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 6",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-            ],
-        },
-        {
-            section_title: "Section 2",
-            section_list: [
-                {
-                    title: "title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "super duper long title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-            ],
-        },
-        {
-            section_title: "Section 3",
-            section_list: [
-                {
-                    title: "title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "super duper long title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "even longer super duper long title that takes 3 lines",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 4",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 5",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 6",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "super duper long title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "even longer super duper long title that takes 3 lines",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 4",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 5",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 6",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "super duper long title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "even longer super duper long title that takes 3 lines",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 4",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 5",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 6",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "super duper long title",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "even longer super duper long title that takes 3 lines",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 4",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 5",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-                {
-                    title: "title 6",
-                    author: "first last",
-                    image_url: "https://m.media-amazon.com/images/I/51Xam3Ue3yL.jpg",
-                    redirect_link: "https://google.com",
-                },
-            ],
-        },
-    ],
-};
+import Loader from "../../components/Main/Loader";
+
+import { fetchEpubs } from "../../util/requests";
 
 // renders selected section from state, including each card in that page,
 // and a button to go back to the main EPublications screen
@@ -258,8 +49,8 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                             <EPubCard
                                 title={pub.title}
                                 author={pub.author}
-                                image_url={pub.image_url}
-                                redirect_link={pub.redirect_link}
+                                image_url={pub.imageLink}
+                                redirect_link={pub.pdfLink}
                                 isMobile={isMobile}
                             />
                         ))
@@ -293,14 +84,14 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                             <EPubCard
                                 title={pub.title}
                                 author={pub.author}
-                                image_url={pub.image_url}
-                                redirect_link={pub.redirect_link}
+                                image_url={pub.imageLink}
+                                redirect_link={pub.pdfLink}
                                 isMobile={isMobile}
                             />
                             <button
                                 type="button"
                                 onClick={() =>
-                                    window.open(pub.redirect_link, "_blank", "norefferer")
+                                    window.open(pub.pdfLink, "_blank", "norefferer")
                                 }
                                 className="EPub_SelectedSection_body_readbutton--mobile"
                             >
@@ -315,6 +106,10 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
 };
 // No props
 export default function EPublications() {
+    const [epublications, setEpublications] = useState({});
+
+    // enable loading by default and have
+    const [loadingEpubs, setLoadingEpubs] = useState(true);
     const [selectedSection, setSelectedSection] = useState("");
     const [isMobile, setIsMobile] = useState(false);
 
@@ -326,6 +121,7 @@ export default function EPublications() {
         function handleResize() {
             setIsMobile(window.innerWidth <= MAX_MOBILE_VIEW_WIDTH);
         }
+
         // Add event listener
         window.addEventListener("resize", handleResize);
         handleResize();
@@ -333,10 +129,48 @@ export default function EPublications() {
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []); // Empty array ensures that effect is only run on mount
+
     useEffect(() => {
         // scroll to top whenever a new section is selected / left
         document.getElementById("page-layout").scrollTo({ top: 0, behavior: "smooth" });
-    }, [selectedSection]);
+    }, []);
+
+    // get list of publications from backend
+    useEffect(async () => {
+        await (async () => {
+            // set value to the return object in fetchEpubs
+            const returnVal = await fetchEpubs();
+
+            // set state variable to the returned value
+            setEpublications(returnVal);
+        })();
+
+        // disable loading screen
+        setLoadingEpubs(false);
+    }, []);
+
+    // scroll to top of div when a section is selected
+    useEffect(async () => {
+
+        if(selectedSection !== "")
+            document.getElementById("EPubPage").scrollIntoView({
+                // smooth animation on scroll
+                behavior: "smooth",
+                block: "start",
+                inline: "start"
+            })
+
+    }, [selectedSection]); // called again when selectedSection is changed
+
+    if (loadingEpubs) {
+        return (
+            <div id="EPubPage">
+                <div id="LoaderWrapper">
+                    <Loader className="loader" />
+                </div>
+            </div>
+        );
+    }
     return (
         <div id="EPubPage">
             {selectedSection === "" ? (
@@ -350,7 +184,7 @@ export default function EPublications() {
                         <div>
                             <div className="EPub_Slide">
                                 <div className="EPub_Slide_body">
-                                    <h1>E-Publications</h1>
+                                    <h1>Publications</h1>
                                     <h2>Author</h2>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -376,7 +210,7 @@ export default function EPublications() {
                         <div>
                             <div className="EPub_Slide">
                                 <div className="EPub_Slide_body">
-                                    <h1>E-Publications</h1>
+                                    <h1>Publications</h1>
                                     <h2>Author</h2>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -402,7 +236,7 @@ export default function EPublications() {
                     </Slideshow>
                     {/* Render a new publications section for each section in data, pass in each card */}
                     <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>
-                        {page_data.sections.map((section) => (
+                        {epublications.sections.map((section) => (
                             <EPubSection
                                 publication_section={section}
                                 setSelectedSection={setSelectedSection}
@@ -413,7 +247,7 @@ export default function EPublications() {
                 </>
             ) : (
                 renderSelectedSection(
-                    page_data.sections.filter((e) => e.section_title === selectedSection)[0],
+                    epublications.sections.filter((e) => e.section_title === selectedSection)[0],
                     setSelectedSection,
                     isMobile
                 )

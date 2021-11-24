@@ -16,7 +16,7 @@ module.exports = db.define(
         // id field column by default
 
         title: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(100),
         },
     }
 );
