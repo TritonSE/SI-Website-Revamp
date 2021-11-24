@@ -88,7 +88,7 @@ module.exports = async () => {
                 author: "Sakyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/conferences/11th-si-con.html",
+                pdfLink: "/conferences?confNum=11",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -100,7 +100,7 @@ module.exports = async () => {
                 author: "Sakyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/conferences/12th-si-con.html",
+                pdfLink: "/conferences?confNum=12",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -112,7 +112,7 @@ module.exports = async () => {
                 author: "Sakyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/conferences/13th-si-con.html",
+                pdfLink: "/conferences?confNum=13",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
@@ -124,7 +124,7 @@ module.exports = async () => {
                 author: "Sakyadhita",
                 feature: false,
                 description: "Description",
-                pdfLink: "https://sakyadhita.org/conferences/14th-si-con.html",
+                pdfLink: "/conferences?confNum=14",
                 imageLink: "https://images.booksense.com/images/248/357/9781408357248.jpg",
             },
             { logging: false }
