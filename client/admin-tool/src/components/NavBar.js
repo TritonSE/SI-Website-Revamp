@@ -196,7 +196,7 @@ export default function NavBar() {
                                         : ""
                                 }
                             >
-                                E-Publications
+                                Publications
                             </Nav.Link>
                             <Nav.Link
                                 href={SITE_PAGES.RESOURCE_BUDDHIST_CULTURE}
