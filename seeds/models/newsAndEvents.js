@@ -60,7 +60,7 @@ module.exports = async () => {
                 imageLink:
                     "https://www.dropbox.com/s/dtuggjn3ouuaul5/Sakyadhita%20Newsletters.jpeg?raw=1",
                 redirectLink:
-                    "https://sakyadhita.org/docs/resources/newsletters/2021%20Sakyadhita%20Newsletter%20Vol.%2029.pdf",
+                    "https://www.dropbox.com/s/2o4pv6kpvnogv7m/2021%20Sakyadhita%20Newsletter%20Vol.%2029.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
