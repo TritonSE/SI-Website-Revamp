@@ -13,6 +13,7 @@ module.exports = async () => {
         // bibliographies
         Publications.create(
             {
+                id: 1,
                 title: "Biographies, Profiles and Interviews",
                 author: "Kate Crosby, Karma Tsomo",
                 feature: false,
@@ -25,6 +26,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 2,
                 title: "Contemprary Regional, Ethnographic, and Anthropological Studies",
                 author: "Kate Crosby, Karma Tsomo",
                 feature: true,
@@ -37,6 +39,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 3,
                 title: "General and Miscellaneous",
                 author: "Kate Crosby, Karma Tsomo",
                 feature: false,
@@ -48,6 +51,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 4,
                 title: "Historical",
                 author: "Kate Crosby, Karma Tsomo",
                 feature: false,
@@ -59,6 +63,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 5,
                 title: "Textual Studies",
                 author: "Kate Crosby, Karma Tsomo",
                 feature: false,
@@ -74,6 +79,7 @@ module.exports = async () => {
         // conferences
         Publications.create(
             {
+                id: 6,
                 title: "11th Sakyadhita International Conference",
                 author: "Sakyadhita",
                 feature: false,
@@ -85,6 +91,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 7,
                 title: "12th Sakyadhita International Conference",
                 author: "Sakyadhita",
                 feature: false,
@@ -96,6 +103,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 8,
                 title: "13th Sakyadhita International Conference",
                 author: "Sakyadhita",
                 feature: false,
@@ -107,6 +115,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 9,
                 title: "14th Sakyadhita International Conference",
                 author: "Sakyadhita",
                 feature: false,
@@ -118,6 +127,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 10,
                 title: "Bridging Worlds",
                 author: "Karma Tsomo",
                 feature: false,
@@ -129,6 +139,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 11,
                 title: "Buddhist Women in a Global Multicultural Community",
                 author: "Karma Tsomo",
                 feature: false,
@@ -140,6 +151,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 12,
                 title: "Bridging Worlds: Buddhist Women’s Voices Across Generations",
                 author: "Karma Tsomo",
                 feature: false,
@@ -151,6 +163,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 13,
                 title: "Eminent Buddhist Women",
                 author: "Karma Tsomo",
                 feature: false,
@@ -162,6 +175,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 14,
                 title: "Buddhist Women in a Global Multicultural Community",
                 author: "Karma Tsomo",
                 feature: false,
@@ -173,6 +187,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 15,
                 title: "Out of the Shadows",
                 author: "Karma Tsomo",
                 feature: false,
@@ -184,6 +199,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 16,
                 title: "Buddhist Women and Social Justice",
                 author: "Karma Tsomo",
                 feature: false,
@@ -195,6 +211,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 17,
                 title: "Innovative Women in Buddhism",
                 author: "Karma Tsomo",
                 feature: false,
@@ -206,6 +223,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 18,
                 title: "Buddhist Women Across Cultures",
                 author: "Karma Tsomo",
                 feature: false,
@@ -217,6 +235,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 19,
                 title: "Sisters in Solitude",
                 author: "Karma Tsomo",
                 feature: false,
@@ -228,6 +247,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 20,
                 title: "Buddhism Through American Women's Eyes",
                 author: "Karma Tsomo",
                 feature: false,
@@ -239,6 +259,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 21,
                 title: "Sakyadhita: Daughters of the Buddha",
                 author: "Karma Tsomo",
                 feature: false,
@@ -252,6 +273,7 @@ module.exports = async () => {
         // brochures
         Publications.create(
             {
+                id: 22,
                 title: "Bahasa Indonesia",
                 author: "Sakhyadhita",
                 feature: false,
@@ -263,6 +285,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 23,
                 title: "Bangla",
                 author: "Sakhyadhita",
                 feature: false,
@@ -274,6 +297,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 24,
                 title: "Chinese (Simplified)",
                 author: "Sakhyadhita",
                 feature: false,
@@ -285,6 +309,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 25,
                 title: "Chinese (Traditional)",
                 author: "Sakhyadhita",
                 feature: false,
@@ -296,6 +321,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 26,
                 title: "English",
                 author: "Sakhyadhita",
                 feature: false,
@@ -307,6 +333,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 27,
                 title: "French",
                 author: "Sakhyadhita",
                 feature: false,
@@ -318,6 +345,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 28,
                 title: "Japanese",
                 author: "Sakhyadhita",
                 feature: false,
@@ -329,6 +357,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 29,
                 title: "Korean",
                 author: "Sakhyadhita",
                 feature: false,
@@ -340,6 +369,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 30,
                 title: "Mongolian",
                 author: "Sakhyadhita",
                 feature: false,
@@ -353,6 +383,7 @@ module.exports = async () => {
         // Chinese translations
         Publications.create(
             {
+                id: 31,
                 title: "Assorted Articles",
                 author: "Bhikkhu Analaayo",
                 feature: false,
@@ -366,6 +397,7 @@ module.exports = async () => {
         // English translations
         Publications.create(
             {
+                id: 32,
                 title: "Assorted Articles",
                 author: "Agama Research Group",
                 feature: false,
@@ -377,6 +409,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 33,
                 title: "Assorted Articles",
                 author: "Alliance for Bhikkhunis",
                 feature: false,
@@ -388,6 +421,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 34,
                 title: "Assorted Articles",
                 author: "Bikkhunis Thubten Chodron",
                 feature: false,
@@ -399,6 +433,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 35,
                 title: "Assorted Articles",
                 author: "Dhammadharini",
                 feature: false,
@@ -410,6 +445,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 36,
                 title: "Assorted Articles",
                 author: "Network of Buddhist Women in Europe",
                 feature: false,
@@ -421,6 +457,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 37,
                 title: "Attitudes Towards Nuns – A Case Study of the Nandakovāda in the Light of its Parallels",
                 author: "Bhikku Analaayo",
                 feature: false,
@@ -432,6 +469,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 38,
                 title: "The Bahudhātuka-sutta and its Parallels on Women’s Inabilities",
                 author: "Bhikku Analaayo",
                 feature: false,
@@ -443,6 +481,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 39,
                 title: "The Legality of Bhikkhunī Ordination",
                 author: "Bhikku Analaayo",
                 feature: false,
@@ -454,6 +493,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 40,
                 title: "Theories on the Foundation of the Nuns' Order - A Critical Evaluation",
                 author: "Bhikku Analaayo",
                 feature: false,
@@ -465,6 +505,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 41,
                 title: "Amazing Transformations of Arahant Theri Uppalavanna",
                 author: "Bhikkuni Tathaaloka",
                 feature: false,
@@ -476,6 +517,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 42,
                 title: "Lasting Inspiration: A Look into the Guiding and Determining Mental and Emotional States of Liberated Arahant Women in Their Path of Practice and its Fulfillment as Expressed in the Sacred Biographies of the Theri Apadana",
                 author: "Bhikkuni Tathaaloka",
                 feature: false,
@@ -487,6 +529,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 43,
                 title: "Saffron and Green in the Clear Forest Pool: The Environmental Practices of American Buddhist Monastic Communities",
                 author: "Bhikkuni Tathaaloka",
                 feature: false,
@@ -498,6 +541,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 44,
                 title: "Buddhist Nuns in South India as Reflected in the Andhakatthakatha and in Vajirabuddhi's Anuganthipada",
                 author: "Petra Kieffer-Pülz",
                 feature: false,
@@ -509,6 +553,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 45,
                 title: "Presuppositions for a Valid Ordination with Respect to the Restoration of the Bhikhuni Ordination in the Mulasarvastivada Tradition",
                 author: "Petra Kieffer-Pülz",
                 feature: false,
@@ -520,6 +565,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 46,
                 title: "Women's Monasteries",
                 author: "Petra Kieffer-Pülz",
                 feature: false,
@@ -533,6 +579,7 @@ module.exports = async () => {
         // French translations
         Publications.create(
             {
+                id: 47,
                 title: "Assorted Articles",
                 author: "Network of Buddhist Women in Europe",
                 feature: false,
@@ -546,6 +593,7 @@ module.exports = async () => {
         // German translations
         Publications.create(
             {
+                id: 48,
                 title: "Assorted Articles",
                 author: "Network of Buddhist Women in Europe",
                 feature: false,
@@ -557,6 +605,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 49,
                 title: "Die Rechtmäßigkeit der Bhikkhunī Ordination",
                 author: "Bhikkhu Analaayo",
                 feature: false,
@@ -568,6 +617,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 50,
                 title: "Nonnenordination das eis Scheint Gebrochen!",
                 author: "Bhikkhuni Jampa Tsedroen (Carola Roloff)",
                 feature: false,
@@ -579,6 +629,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 51,
                 title: "Die Nonnen Brauchen eine Lobby",
                 author: "Bhikkhuni Jampa Tsedroen (Carola Roloff)",
                 feature: false,
@@ -590,6 +641,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 52,
                 title: "Die Wiedereinrichtung des Nonnenordens in der Theraväda-Tradition",
                 author: "Petra Kieffer-Pülz",
                 feature: false,
@@ -601,6 +653,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 53,
                 title: "Voraussetzungen für eine gültige Ordination im Hinblick auf die Einführung einer Bhikhuni-Ordination in der Mulasarvastivada-Tradition",
                 author: "Petra Kieffer-Pülz",
                 feature: false,
@@ -612,6 +665,7 @@ module.exports = async () => {
         ),
         Publications.create(
             {
+                id: 54,
                 title: "Das Patriarchat ist zu Ende",
                 author: "Sylvia Wetzel",
                 feature: false,
@@ -625,6 +679,7 @@ module.exports = async () => {
         // Spanish Translations
         Publications.create(
             {
+                id: 55,
                 title: "Assorted Articles",
                 author: "Dhammadharini",
                 feature: false,

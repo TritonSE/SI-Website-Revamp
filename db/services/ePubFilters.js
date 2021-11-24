@@ -47,7 +47,7 @@ async function filterCount(filter) {
  * @returns {[JSON]}- JSON entries of all filters in ePubFilters table
  */
 async function getAllFilters() {
-    return ePubFilters.findAll({ order: [["id", "ASC"]] });
+    return ePubFilters.findAll({ order: [["title", "ASC"]] });
 }
 
 module.exports = {
