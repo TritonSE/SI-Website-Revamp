@@ -692,7 +692,13 @@ export default function AboutUs() {
                         <br />
                         Were you there for the first International Conference on Buddhist Nuns? This
                         conference paved the path for future generations, so we would like to hear
-                        from you! Please email us with photos and stories. If you&apos;d like to set
+                        from you! Please 
+                        <a
+                            href="/contact"
+                        >
+                            {" "}email{" "}
+                        </a>
+                         us with photos and stories. If you&apos;d like to set
                         up an interview for the{" "}
                         <a
                             target="_blank"
@@ -706,7 +712,7 @@ export default function AboutUs() {
                         <a
                             target="_blank"
                             rel="noreferrer"
-                            href="https://sakyadhita.org/home/awakeningwomen@sakyadhita.org"
+                            href="http://awakeningbuddhistwomen.blogspot.com/p/contact-us.html"
                         >
                             {" "}
                             link{" "}
