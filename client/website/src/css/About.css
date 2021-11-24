@@ -124,7 +124,7 @@
 }
 
 .section img:not(button img, .headshot, .profile-link) {
-  margin-top: 85px;
+  margin-top: 50px;
   width: 100%;
 }
 
@@ -189,6 +189,14 @@
   justify-content: space-evenly;
 }
 
+.founding-profiles {
+  position: relative;
+  width: min(9999px, 100%);
+  display: flex;
+  flex-flow: row-reverse wrap-reverse;
+  justify-content: space-evenly;
+}
+
 .profile {
   position: relative;
   width: 250px;
@@ -225,6 +233,10 @@
   justify-content: center;
 }
 
+.profile .position h3 {
+  width: min-content;
+}
+
 .profile .link-holder {
   width: 0;
   height: 0;
@@ -244,7 +256,6 @@
   position: absolute;
   transform: translate(-150%, 40%);
   height: 1.2em;
-  
 }
 .profile-paragraph {
   position: relative;
@@ -257,7 +268,6 @@
   padding: 20px 10px;
 }
 
-
 /* This is a really gross an hacky method, but it works */
 .profile-link:hover {
   filter: invert(54%) sepia(100%) saturate(466%) hue-rotate(334deg) brightness(101%) contrast(84%) !important;
@@ -267,7 +277,11 @@
   align-self: center;
 }
 
-#founding h2 {
+#founding-img {
+  margin-top: 0;
+}
+
+#founding-subtitle-1 {
   align-self: flex-start;
   margin-top: 85px;
   font-family: var(--heading-font);
@@ -275,24 +289,27 @@
   font-size: 1.875em;
 }
 
-h2 #year {
-  display: none;
-}
-
-h2 #conference {
-  font-size: 1em;
+#founding-subtitle-2 {
+  align-self: flex-start;
+  margin-top: 85px;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 1.875em;
 }
 
 #founding p {
   margin-top: 10px;
 }
 
-#conference {
-  display: initial;
+.profile .title {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-#conference-mobile {
-  display: none;
+.profile .title h2 {
+  width: min-content;
 }
 
 .divider {
@@ -343,8 +360,8 @@ h2 #conference {
     font-size: 1em;
   }
 
-  .section img:not(.profile img, button img) {
-    margin-top: 85px;
+  .section img:not(.profile img, button img, .profile-link) {
+    margin-top: 0px;
     width: 100vw;
     height: 300px;
 
@@ -359,6 +376,10 @@ h2 #conference {
 
   .profiles {
     max-width: 599px;
+  }
+
+  .founding-profiles {
+    max-width: 799px;
   }
 
   .profile {
@@ -378,6 +399,10 @@ h2 #conference {
     text-align: left;
   }
 
+  .profile .position h3 {
+    width: auto;
+  }
+
   .profile p {
     font-size: 1em;
     margin: 5px 15px;
@@ -386,7 +411,7 @@ h2 #conference {
 
   .profile-link {
     height: 0.9em;
-    left: .75em;
+    left: 0.75em;
   }
 
   .headshot {
@@ -394,30 +419,35 @@ h2 #conference {
     height: 200px;
   }
 
-  #founding img {
+  #founding {
+    margin-bottom: 100px;
+  }
+
+  #founding-img {
     height: auto;
     margin: 0;
   }
 
-  #founding h2 {
+  #founding-subtitle-1 {
     margin-top: 50px;
     font-size: 1.125em;
   }
 
-  h2 #year {
-    display: initial;
-    font-size: 0.8em;
+  #founding-subtitle-2 {
+    margin-bottom: 15px;
+    margin-top: 50px;
+    font-size: 1.125em;
+  }
+
+  #founding .profile {
+    margin-bottom: 10px;
+  }
+
+  .profile .title h2 {
+    width: auto;
   }
 
   .divider {
     display: none;
-  }
-
-  #conference {
-    display: none;
-  }
-
-  #conference-mobile {
-    display: initial;
   }
 }
