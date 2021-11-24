@@ -2,7 +2,8 @@
 .EPubSection {
   display: block;
   position: relative;
-  margin: 44px 10vw;
+  padding: 44px 0px;
+  margin: 0px 10vw;
 }
 .EPubSection_header {
   display: block;
@@ -45,11 +46,13 @@
   cursor: pointer;
 }
 .EPubSection_body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
   position: relative;
   text-align: center;
-  height: 460px;
   margin: 0px -25px;
-  overflow: hidden;
 }
 .EPubSection_orangebar {
   position: absolute;
@@ -66,7 +69,8 @@
 .EPubSection--mobile {
   display: block;
   position: relative;
-  margin: 44px 10vw;
+  padding: 44px 0px;
+  margin: 0px 10vw;
 }
 .EPubSection_header--mobile {
   display: flex;
@@ -110,6 +114,10 @@
   cursor: pointer;
 }
 .EPubSection_body--mobile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
   position: relative;
   text-align: center;
   margin: 0px -25px;
