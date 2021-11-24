@@ -26,6 +26,93 @@ export const fetchNewsletters = async () => {
     }
 };
 
+export const fetchNewsAndEvents = async () => {
+    try {
+        const res = await fetch(`${BACKEND_URL}newsAndEvents/`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        // successfull
+        if (res.ok) {
+            const data = await res.json();
+            return data;
+        }
+
+        // any server issue
+        return [];
+
+        // fetch fails
+    } catch {
+        return [];
+    }
+};
+
+export const fetchBranchesAndChapters = async () => {
+    try {
+        const res = await fetch(`${BACKEND_URL}branchesAndChapters/`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        // successfull
+        if (res.ok) {
+            const data = await res.json();
+            return data;
+        }
+
+        // any server issue
+        return [];
+
+        // fetch fails
+    } catch {
+        return [];
+    }
+};
+
+
+
+export const fetchConferences = async () => {
+    try {
+        const response = await fetch(`${BACKEND_URL}conference/`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        }
+    } catch {
+        // pass through if any error
+    }
+    return [];
+};
+
+export const fetchExecCommittees = async () => {
+    try {
+        const response = await fetch(`${BACKEND_URL}execCommittees/`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        }
+    } catch {
+        // pass through if any error
+    }
+    return [];
+};
+
 export const fetchEpubs = async () => {
     try {
         // create the skeleton for the returnObj
@@ -76,43 +163,4 @@ export const fetchEpubs = async () => {
         // any server issue
         return [];
     }
-};
-
-export const fetchConferences = async () => {
-    try {
-        const response = await fetch(`${BACKEND_URL}conference/`, {
-            method: "get",
-            headers: {
-                "content-type": "application/json",
-            },
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            return data;
-        }
-    } catch {
-        // pass through if any error
-    }
-    return [];
-};
-
-export const fetchExecCommittees = async () => {
-    try {
-        const response = await fetch(`${BACKEND_URL}execCommittees/`, {
-            method: "get",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            return data;
-        }
-    } catch {
-        // pass through if any error
-    }
-    return [];
 };

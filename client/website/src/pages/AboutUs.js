@@ -8,7 +8,9 @@
  */
 
 import React, { useState, useEffect } from "react";
+import ResourcesHeader from "../components/ResourcesHeader";
 import "../css/About.css";
+import "../css/animations.css";
 
 import Header from "../media/lotus-header.svg";
 // import LotusPink from "../media/lotus-pink.svg";
@@ -92,6 +94,9 @@ export default function AboutUs() {
     // Toggles the dropdown menu for different executive committees
     const [dropdownOn, setDropdownOn] = useState(false);
     // Currently viewed year's executive committee
+    const [isMobile, setIsMobile] = useState(false);
+    const introSection = React.createRef();
+    
     const [year, setYear] = useState();
     const [committees, setCommittees] = useState([]);
     const [committeeIndex, setCommitteeIndex] = useState(0);
@@ -99,6 +104,18 @@ export default function AboutUs() {
 
     // Effect to update the sticky nav on scroll
     useEffect(() => {
+        function handleResize() {
+            if (window.innerWidth <= 600) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        }
+
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
         document.querySelector("#page-layout").addEventListener("scroll", () => {
             const mission = document.querySelector("#mission").getBoundingClientRect().top;
             const grassroots = document.querySelector("#grassroots").getBoundingClientRect().top;
@@ -140,9 +157,20 @@ export default function AboutUs() {
      * @returns {String} - underline class if desired location matches current
      */
     function computeNavUnderline(location) {
-        if (location === scrollLocation) return "underline";
+        if (location === scrollLocation) return "orange-underline";
         return "";
     }
+
+    // Scroll to the first section when clicking arrow button on resource header
+    const scrollToSection = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (introSection.current) {
+            introSection.current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    };
 
     /**
      * Toggles the dropdown state
@@ -175,11 +203,25 @@ export default function AboutUs() {
 
     return (
         <div className="page">
-            {/* Page header with image and title */}
-            <div className="header">
-                <div className="page-title">About Us</div>
-                <img src={Header} alt="Lotus Header" />
-            </div>
+            {isMobile || window.innerHeight <= 500 ? (
+                <ResourcesHeader
+                    image={Header}
+                    title="About Us"
+                    height="max(40vh, 300px)"
+                    width="100%"
+                    showArrow={false}
+                    arrowClickCallback={scrollToSection}
+                />
+            ) : (
+                <ResourcesHeader
+                    image={Header}
+                    title="About Us"
+                    text="Working at the grassroots level, Sakyadhita provides a communications network among Buddhist women internationally. We promote research and publications on Buddhist women's history and other topics of interest. Our members strive to create equal opportunities for women in all Buddhist traditions."
+                    height="max(75vh, 400px)"
+                    width="100%"
+                    arrowClickCallback={scrollToSection}
+                />
+            )}
 
             {/* Sticky Nav */}
             <div className="slider-wrapper">
@@ -194,11 +236,29 @@ export default function AboutUs() {
                         <li className={computeNavUnderline("history")}>
                             <a href="#history"> A Brief History </a>
                         </li>
-                        <li className={computeNavUnderline("committee")}>
-                            <a href="#committee">Executive Committee</a>
+                        <li>
+                            <a href="#committee">
+                                <p
+                                    className={`hover-underline-animation ${computeNavUnderline(
+                                        "committee"
+                                    )}`}
+                                >
+                                    {" "}
+                                    Executive Committee{" "}
+                                </p>
+                            </a>
                         </li>
-                        <li className={computeNavUnderline("founders")}>
-                            <a href="#founders">Founding Members</a>
+                        <li>
+                            <a href="#founders">
+                                <p
+                                    className={`hover-underline-animation ${computeNavUnderline(
+                                        "founders"
+                                    )}`}
+                                >
+                                    {" "}
+                                    Founding Members{" "}
+                                </p>
+                            </a>
                         </li>
                     </ul>
                     <div className="vbar" />
