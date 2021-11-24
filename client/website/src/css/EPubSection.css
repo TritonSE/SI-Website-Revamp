@@ -2,7 +2,8 @@
 .EPubSection {
   display: block;
   position: relative;
-  margin: 44px 10vw;
+  padding: 44px 0px;
+  margin: 0px 10vw;
 }
 .EPubSection_header {
   display: block;
@@ -51,7 +52,6 @@
   align-items: flex-start;
   position: relative;
   text-align: center;
-  min-height: 460px;
   margin: 0px -25px;
 }
 .EPubSection_orangebar {
@@ -69,7 +69,8 @@
 .EPubSection--mobile {
   display: block;
   position: relative;
-  margin: 44px 10vw;
+  padding: 44px 0px;
+  margin: 0px 10vw;
 }
 .EPubSection_header--mobile {
   display: flex;
