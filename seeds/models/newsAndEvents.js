@@ -70,7 +70,7 @@ module.exports = async () => {
                 title: "Sakyadhita eBooks",
                 description: "Sakyadhita eBooks available for all!",
                 imageLink: "https://www.dropbox.com/s/u7chwhkcjkwed36/Sakyadhita%20Books.png?raw=1",
-                redirectLink: "/resources/epublications",
+                redirectLink: "/resources/publications",
                 openInSameTab: true,
             },
             { logging: false }
