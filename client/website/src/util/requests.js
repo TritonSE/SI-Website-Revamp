@@ -72,8 +72,6 @@ export const fetchBranchesAndChapters = async () => {
     }
 };
 
-
-
 export const fetchConferences = async () => {
     try {
         const response = await fetch(`${BACKEND_URL}conference/`, {
@@ -139,7 +137,6 @@ export const fetchEpubs = async () => {
                         })
                             .then((response) => response.json())
                             .then((section_list) => {
-
                                 // only display sections with at least one book
                                 if (section_list.length > 0) {
                                     // add section to object in order to display
@@ -148,13 +145,12 @@ export const fetchEpubs = async () => {
                                         section_list,
                                     };
                                 }
-                                return null; 
+                                return null;
                             })
                     )
                 ).then((sectionedPublications) => {
-                    
-                    sectionedPublications.forEach(section => {
-                        if(section) returnObj.sections.push(section);
+                    sectionedPublications.forEach((section) => {
+                        if (section) returnObj.sections.push(section);
                     });
                 });
 

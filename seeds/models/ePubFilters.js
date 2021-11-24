@@ -14,12 +14,12 @@ module.exports = async () => {
         ePubFilters.create({ title: "Bibliographies", id: 1 }, { logging: false }),
         ePubFilters.create({ title: "Conferences", id: 2 }, { logging: false }),
         ePubFilters.create({ title: "Articles", id: 3 }, { logging: false }),
-        ePubFilters.create({ title: "Brochures", id: 4}, { logging: false }),
+        ePubFilters.create({ title: "Brochures", id: 4 }, { logging: false }),
         ePubFilters.create({ title: "Chinese Translations", id: 5 }, { logging: false }),
         ePubFilters.create({ title: "English Translations", id: 6 }, { logging: false }),
-        ePubFilters.create({ title: "French Translations", id:7 }, { logging: false }),
-        ePubFilters.create({ title: "German Translations", id:8 }, { logging: false }),
-        ePubFilters.create({ title: "Spanish Translations", id:9 }, { logging: false }),
+        ePubFilters.create({ title: "French Translations", id: 7 }, { logging: false }),
+        ePubFilters.create({ title: "German Translations", id: 8 }, { logging: false }),
+        ePubFilters.create({ title: "Spanish Translations", id: 9 }, { logging: false }),
     ])
         .then(() => {
             // successfull population

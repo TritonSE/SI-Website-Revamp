@@ -90,9 +90,7 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
                             />
                             <button
                                 type="button"
-                                onClick={() =>
-                                    window.open(pub.pdfLink, "_blank", "norefferer")
-                                }
+                                onClick={() => window.open(pub.pdfLink, "_blank", "norefferer")}
                                 className="EPub_SelectedSection_body_readbutton--mobile"
                             >
                                 Read
@@ -151,15 +149,13 @@ export default function EPublications() {
 
     // scroll to top of div when a section is selected
     useEffect(async () => {
-
-        if(selectedSection !== "")
+        if (selectedSection !== "")
             document.getElementById("EPubPage").scrollIntoView({
                 // smooth animation on scroll
                 behavior: "smooth",
                 block: "start",
-                inline: "start"
-            })
-
+                inline: "start",
+            });
     }, [selectedSection]); // called again when selectedSection is changed
 
     if (loadingEpubs) {
