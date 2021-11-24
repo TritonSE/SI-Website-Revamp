@@ -22,7 +22,7 @@ router.post(
     [
         body("name").isString(),
         body("isBranch").isBoolean(),
-        body("email").isString(),
+        body("email").isString().optional(),
         body("latitude").isFloat(),
         body("longitude").isFloat(),
         body("siteLink").isString().optional(),

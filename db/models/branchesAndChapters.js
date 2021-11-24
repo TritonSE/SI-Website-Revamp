@@ -22,7 +22,7 @@ module.exports = db.define(
         },
         email: {
             type: Sequelize.STRING(320),
-            allowNull: false,
+            allowNull: true,
         },
         latitude: {
             type: Sequelize.FLOAT(),

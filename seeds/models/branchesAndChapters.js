@@ -4,56 +4,122 @@ module.exports = async () => {
     await Promise.all([
         branchesAndChapters.create(
             {
-                name: "Budapest Branch",
-                latitude: 47.497913,
-                longitude: 19.040236,
+                name: "Canada",
+                latitude: 56.1304,
+                longitude: -106.3468,
                 isBranch: true,
-                email: "sakyadhita@budapest.com",
-                siteLink: "https://en.wikipedia.org/wiki/Barbara_Palvin",
+                email: "info@sakyadhitacanada.org",
+                siteLink: "http://www.sakyadhitacanada.org/",
             },
             { logging: false }
         ),
         branchesAndChapters.create(
             {
-                name: "San Diego Chapter",
-                latitude: 32.732346,
-                longitude: -117.196053,
+                name: "France",
+                latitude: 46.2276,
+                longitude: 2.2137,
+                isBranch: true,
+                email: "gabriela.frey@free.fr",
+                siteLink: null,
+            },
+            { logging: false }
+        ),
+        branchesAndChapters.create(
+            {
+                name: "Germany",
+                latitude: 51.1657,
+                longitude: 10.4515,
+                isBranch: true,
+                email: "sakyadhitagermany@gmail.com",
+                siteLink: "https://www.facebook.com/Sakyadhita.Germany", // Facebook link
+            },
+            { logging: false }
+        ),
+        branchesAndChapters.create(
+            {
+                name: "South Korea",
+                latitude: 35.9078,
+                longitude: 127.7669,
+                isBranch: true,
+                email: "escho@snu.ac.kr",
+                siteLink: "http://sakyadhita.kr/",
+            },
+            { logging: false }
+        ),
+        branchesAndChapters.create(
+            {
+                name: "Nepal",
+                latitude: 28.3949,
+                longitude: 84.124,
+                isBranch: true,
+                email: "sakyadhitanepal@gmail.com",
+                siteLink: "https://www.facebook.com/sakyadhitanepal", // Facebook Link
+            },
+            { logging: false }
+        ),
+        branchesAndChapters.create(
+            {
+                name: "Spain",
+                latitude: 40.4637,
+                longitude: -3.7492,
+                isBranch: true,
+                email: "mcastellaolive@gmail.com",
+                siteLink: "https://sakyadhitaspain.wordpress.com/",
+            },
+            { logging: false }
+        ),
+        branchesAndChapters.create(
+            {
+                name: "Taiwan",
+                latitude: 23.6978,
+                longitude: 120.9605,
+                isBranch: true,
+                email: "sakyadhita2012@gmail.com",
+                siteLink: "https://www.facebook.com/SakyadhitaTaiwan", // Facebook link
+            },
+            { logging: false }
+        ),
+        branchesAndChapters.create(
+            {
+                name: "United Kingdom",
+                latitude: 55.3781,
+                longitude: -3.436,
+                isBranch: true,
+                email: "enquiries@the-hermit-online.co.uk",
+                siteLink: "https://sakyadhitauk.org",
+            },
+            { logging: false }
+        ),
+        branchesAndChapters.create(
+            {
+                name: "United States of America",
+                latitude: 37.0902,
+                longitude: -95.7129,
+                isBranch: true,
+                email: "susa@sakyadhitausa.org",
+                siteLink: "http://www.sakyadhitausa.org/index.html",
+            },
+            { logging: false }
+        ),
+        branchesAndChapters.create(
+            {
+                name: "São Paulo (Brazil)",
+                latitude: -23.5558,
+                longitude: -46.6396,
                 isBranch: false,
-                email: "sakyadhita@sandiego.com",
-                siteLink: "https://en.wikipedia.org/wiki/Taylor_Hill_(model)",
+                email: "patriciagpalazzotsai.adv@gmail.com",
+                siteLink: null,
             },
             { logging: false }
         ),
         branchesAndChapters.create(
             {
-                name: "Amesterdam Chapter",
-                latitude: 52.377956,
-                longitude: 4.89707,
+                name: "Hawai'i",
+                latitude: 19.8968,
+                longitude: -155.5828,
                 isBranch: false,
-                email: "sakyadhita@amesterdam.com",
-                siteLink: "https://en.wikipedia.org/wiki/Romee_Strijd",
-            },
-            { logging: false }
-        ),
-        branchesAndChapters.create(
-            {
-                name: "Bangkok Branch",
-                latitude: 100.591507,
-                longitude: 13.726316,
-                isBranch: true,
-                email: "sakyadhita@bangkok.com",
-                siteLink: "https://en.wikipedia.org/wiki/Davika_Hoorne",
-            },
-            { logging: false }
-        ),
-        branchesAndChapters.create(
-            {
-                name: "Delhi Branch",
-                latitude: 28.679079,
-                longitude: 77.06971,
-                isBranch: true,
-                email: "sakyadhita@delhi.com",
-                siteLink: "https://en.wikipedia.org/wiki/Anushka_Sharma",
+                email: null,
+                siteLink: "http://www.hawaii.sakyadhita.org",
             },
             { logging: false }
         ),

@@ -18,6 +18,8 @@ import ResourcesHeader from "../components/ResourcesHeader";
 import VolunteerOption from "../components/VolunteerOption";
 import CustomButton from "../components/CustomButton";
 
+import HeaderImage from "../media/JoinUs_Header.png";
+
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
@@ -70,6 +72,7 @@ const CustomTextField = withStyles({
 
 export default function Volunteer() {
     const [isMobile, setIsMobile] = useState(false);
+    const arrowScrollToRef = React.createRef();
 
     const [values, setValues] = useState({
         firstName: {
@@ -240,22 +243,45 @@ export default function Volunteer() {
         border: "1px solid #ea4444",
     };
 
+    const scrollToRef = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (arrowScrollToRef.current) {
+            arrowScrollToRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    };
+
     return (
         <div>
-            <ResourcesHeader
-                image="https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1623024000&Signature=SCONX7E-9B-btNQQ0a8fn1kh2A4i8I3-aZjQlNXgBZSJnw~N8fCz7YzTOmI6hq0iinH~f~2cTCB2mvuab1dM3sLLIqbF1ZwaOcYlCXMiOAkhAYMkzVbcbZgrN6s4X67Jq2fSmA7D-kgk9KzDjiXkLnxn0n8l~TMh6huoB18N5MbJrighV~Hl2YaoJrHmEWhjoBu8Jhm8TDPB99ghsGKIOR9xQMIuULa4STzVHCkoCtzWzWBLgd1-BDv2hhE67pH5PYqoIJnzZwEemddHpUtI-RMW2xHPaq6J8P1LnvRfL9Kuq00ULLl3h04474LC9EjWGr2cACW0lhgyX~ei0roR3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                title="Volunteer"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus."
-                height={isMobile ? "95vh" : "600px"}
-                width="100%"
-            />
+            {isMobile || window.innerHeight <= 500 ? (
+                <ResourcesHeader
+                    title="Volunteer"
+                    image={HeaderImage}
+                    height="max(40vh, 300px)"
+                    width="100%"
+                    showArrow={false}
+                />
+            ) : (
+                <ResourcesHeader
+                    title="Volunteer"
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                    image={HeaderImage}
+                    height="max(75vh, 400px)"
+                    width="100%"
+                    arrowClickCallback={scrollToRef}
+                />
+            )}
             <div className="volunteer-content">
                 <form autoComplete="off">
                     <p className="required-note">
                         {" "}
                         <span className="error-asterisk"> * </span> indicates a required field
                     </p>
-                    <h1 className="signup-text">Sign Me Up!</h1>
+                    <h1 ref={arrowScrollToRef} className="signup-text">
+                        Sign Me Up!
+                    </h1>
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"

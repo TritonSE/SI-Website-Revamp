@@ -29,7 +29,7 @@
   margin: 0px 0px 20px 30px;
 }
 
-.NewsEventsSlide .circle-arrow:hover {
+.circle-arrow:hover {
   cursor: pointer;
 }
 
@@ -44,7 +44,7 @@
   }
 
   .NewsEventsSlide .circle-arrow {
-    font-size: 54px;
+    font-size: 56px;
   }
 }
 
@@ -53,9 +53,11 @@
     width: 70.5vw;
     margin-top: 10%;
   }
+}
 
+@media only screen and (max-width: 600px) {
   .NewsEventsSlide .circle-arrow {
-    font-size: 54px;
+    margin: 0px 0px 1em 30px;
   }
 }
 

@@ -9,6 +9,7 @@ export class SITE_PAGES {
     // Side Pages
     static VOLUNTEER = "/volunteer";
     static JOIN_US = "/join";
+    static DONATE = "/donate";
 
     // Resource SubPages
     static RESOURCES_LANDING = "/resources";
