@@ -48,10 +48,10 @@ const CommitteeSelector = ({
     );
 };
 
-const CommitteeProfiles = ({ committees, year, computeProfileDisplay }) => {
-    if (committees.length === 0) return <h2 id="committee-err">No Executive Committees to Show</h2>;
-    const data = committees.find((x) => x.startYear === year);
-    if (data === undefined) return null;
+const CommitteeProfiles = ({committees, year, computeProfileDisplay}) => {
+    if(committees.length === 0) return <p id="committee-err">No Committees to Show</p>;
+    const data = committees.find(x => x.startYear === year);
+    if(data === undefined) return null;
     const committee = data.data;
     return (
         <div className="profiles" style={computeProfileDisplay(year)}>
