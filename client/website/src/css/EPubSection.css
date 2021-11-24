@@ -48,7 +48,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   position: relative;
   text-align: center;
   min-height: 460px;
@@ -115,7 +115,7 @@
 .EPubSection_body--mobile {
   display: flex;
   flex-wrap: wrap;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   text-align: center;

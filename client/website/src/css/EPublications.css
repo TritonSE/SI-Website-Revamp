@@ -67,7 +67,7 @@
 }
 .EPub_SelectedSection_body {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
   position: relative;
@@ -125,7 +125,7 @@
 }
 .EPub_SelectedSection_body--mobile {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
   position: relative;
