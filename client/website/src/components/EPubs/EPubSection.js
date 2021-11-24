@@ -51,8 +51,8 @@ const EPubSectionMobile = (
                 <EPubCard
                     title={currentPub.title}
                     author={currentPub.author}
-                    image_url={currentPub.image_url}
-                    redirect_link={currentPub.redirect_link}
+                    image_url={currentPub.imageLink}
+                    redirect_link={currentPub.pdfLink}
                     isMobile={isMobile}
                 />
                 {currentIndex < publication_section.section_list.length - 1 ? (
@@ -92,8 +92,8 @@ const EPubSectionDesktop = (publication_section, setSelectedSection, isMobile) =
                 <EPubCard
                     title={pub.title}
                     author={pub.author}
-                    image_url={pub.image_url}
-                    redirect_link={pub.redirect_link}
+                    image_url={pub.imageLink}
+                    redirect_link={pub.pdfLink}
                     isMobile={isMobile}
                 />
             ))}

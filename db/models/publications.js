@@ -17,7 +17,7 @@ module.exports = db.define(
 
         title: {
             // creates varchar of specified length
-            type: Sequelize.STRING(100),
+            type: Sequelize.STRING(250),
             allowNull: false,
         },
         author: {
