@@ -18,8 +18,7 @@ import Link from "../media/link.svg";
 import { fetchExecCommittees } from "../util/requests";
 import Loader from "../components/Main/Loader";
 
-const Cat =
-    "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1";
+const Cat = "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1";
 
 const CommitteeSelector = ({
     committees,
@@ -48,10 +47,10 @@ const CommitteeSelector = ({
     );
 };
 
-const CommitteeProfiles = ({committees, year, computeProfileDisplay}) => {
-    if(committees.length === 0) return <p id="committee-err">No Committees to Show</p>;
-    const data = committees.find(x => x.startYear === year);
-    if(data === undefined) return null;
+const CommitteeProfiles = ({ committees, year, computeProfileDisplay }) => {
+    if (committees.length === 0) return <p id="committee-err">No Committees to Show</p>;
+    const data = committees.find((x) => x.startYear === year);
+    if (data === undefined) return null;
     const committee = data.data;
     return (
         <div className="profiles" style={computeProfileDisplay(year)}>
@@ -463,7 +462,12 @@ export default function AboutUs() {
                     <div className="scroll" id="founders" />
 
                     <h1>Founding Members</h1>
-                    <img id="founding-img" height="500px" src="https://www.dropbox.com/s/645ctixcxgxlvfs/Founding%20Members.png?raw=1" alt="Founding Members" />
+                    <img
+                        id="founding-img"
+                        height="500px"
+                        src="https://www.dropbox.com/s/645ctixcxgxlvfs/Founding%20Members.png?raw=1"
+                        alt="Founding Members"
+                    />
                     <figcaption>
                         {" "}
                         <i> 1st Sakyadhita International Conference Participants, 1987 </i>
@@ -692,14 +696,10 @@ export default function AboutUs() {
                         <br />
                         Were you there for the first International Conference on Buddhist Nuns? This
                         conference paved the path for future generations, so we would like to hear
-                        from you! Please 
-                        <a
-                            href="/contact"
-                        >
-                            {" "}email{" "}
-                        </a>
-                         us with photos and stories. If you&apos;d like to set
-                        up an interview for the{" "}
+                        from you! Please
+                        <a href="/contact"> email </a>
+                        us with photos and stories. If you&apos;d like to set up an interview for
+                        the{" "}
                         <a
                             target="_blank"
                             rel="noreferrer"

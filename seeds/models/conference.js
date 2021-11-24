@@ -335,7 +335,9 @@ module.exports = async () => {
                 confNum: 11,
                 location: "Ho Chi Minh City, Vietnam",
                 slideShowImages: {
-                    urls: ["https://www.dropbox.com/s/0cwhw797wmryac6/Lotus_Flower.png?raw=1"],
+                    urls: [
+                        "https://www.dropbox.com/s/dtuggjn3ouuaul5/Sakyadhita%20Newsletters.jpeg?raw=1",
+                    ],
                 },
                 programs: {
                     data: [],
