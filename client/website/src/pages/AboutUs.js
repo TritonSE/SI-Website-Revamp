@@ -96,7 +96,7 @@ export default function AboutUs() {
     // Currently viewed year's executive committee
     const [isMobile, setIsMobile] = useState(false);
     const introSection = React.createRef();
-    
+
     const [year, setYear] = useState();
     const [committees, setCommittees] = useState([]);
     const [committeeIndex, setCommitteeIndex] = useState(0);

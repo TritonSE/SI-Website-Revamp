@@ -72,8 +72,6 @@ export const fetchBranchesAndChapters = async () => {
     }
 };
 
-
-
 export const fetchConferences = async () => {
     try {
         const response = await fetch(`${BACKEND_URL}conference/`, {

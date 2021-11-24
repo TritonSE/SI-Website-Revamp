@@ -25,7 +25,7 @@ module.exports = async () => {
                     28, 2017.`,
                 imageLink:
                     "https://www.dropbox.com/s/cyekye3qrwi9737/Hong%20Kong%20Conference.jpeg?raw=1",
-                redirectLink: "https://en.wikipedia.org/wiki/Taylor_Hill_(model)",
+                redirectLink: "/conferences?confNum=15",
                 openInSameTab: true,
             },
             { logging: false }
@@ -36,7 +36,7 @@ module.exports = async () => {
                 description: "​14th Sakyadhita Conference in Yogyakarta, Indonesia (2015)",
                 imageLink:
                     "https://www.dropbox.com/s/gcx7b8ej9pid32v/Indonesia%20Conference.jpeg?raw=1",
-                redirectLink: "https://en.wikipedia.org/wiki/Romee_Strijd",
+                redirectLink: "/conferences?confNum=14",
                 openInSameTab: false,
             },
             { logging: false }
