@@ -228,9 +228,7 @@ export default function Conferences() {
     };
 
     if (loading) {
-        return (
-            <Loader />
-        );
+        return <Loader />;
     }
 
     return (

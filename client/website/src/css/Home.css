@@ -2,6 +2,11 @@
   pointer-events: auto !important;
 }
 
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .Home > .home-body {
   width: 100%;
   padding: 3rem 3rem 6rem 3rem;
@@ -18,27 +23,52 @@
   margin-bottom: 30px;
 }
 
+#home-intro {
+  white-space: pre-line;
+  width: 100%;
+}
+
+.home-section-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home .divider-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .Home .divider {
   background-color: var(--orange);
   width: 50%;
   border-width: 2px;
   border-radius: 1px;
-  margin: 70px 0px 30px 0px;
+  margin: 70px 0px 40px 0px;
 }
 
 .Home #branches-and-chapters {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
 }
 
 .Home #branches-and-chapters .branch-info {
-  margin-left: 30px;
+  /*
+  margin-left: 30px; 
   width: 50%;
-  padding: 20px 40px;
+  padding: 20px 40px; 
+  */
   white-space: pre-wrap;
+
+  margin-left: 0px;
+  width: 100%;
+  padding: 20px 0px 0px;
 }
 
 .Home #branches-and-chapters .branch-info .legend-container {
@@ -69,7 +99,7 @@
 }
 
 .Home #home-be-involved {
-  margin-top: 50px;
+  margin-top: 30px;
   width: 100%;
 }
 
@@ -82,6 +112,17 @@
 
 .involve-section + .involve-section {
   margin-left: 40px;
+}
+
+.home-section .home-section-title {
+  margin-top: 20px;
+}
+
+.home-section > div {
+  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -104,7 +145,11 @@
 
 @media only screen and (max-width: 800px) {
   .Home > .home-body {
-    padding: 1rem 1rem 2rem 1rem;
+    padding: 3rem 1rem 3rem 1rem;
+  }
+
+  .home-section .home-section-title {
+    margin-top: 3rem;
   }
 
   .Home h1 {
@@ -112,9 +157,8 @@
     font-size: 28px;
   }
 
-  .Home .divider {
-    width: 70%;
-    margin: 30px 0px;
+  .Home h4 {
+    font-size: 20px;
   }
 
   .Home #home-be-involved .involve-sections-container {
@@ -125,5 +169,13 @@
   .involve-section + .involve-section {
     margin-left: 0px;
     margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home-body img,
+  .home-section img {
+    width: calc(100% + 2rem);
+    height: auto;
   }
 }

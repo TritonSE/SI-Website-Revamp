@@ -83,9 +83,9 @@ h4 {
 }
 
 /* Galaxy Fold */
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 600px) {
   .Contact-Us .address .address-icon {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .Contact-Us > .left-container > h2,

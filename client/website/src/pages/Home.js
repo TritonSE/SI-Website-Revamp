@@ -11,16 +11,17 @@
 
 import React, { useState, useEffect } from "react";
 import { FiExternalLink } from "react-icons/fi";
+import { MdEmail } from "react-icons/md";
 import ReactTooltip from "react-tooltip";
 import InteractiveMap from "../components/Home/InteractiveMap";
 import Slideshow from "../components/Slideshow";
 import NewsEventsSlide from "../components/Home/NewsEventsSlide";
 import BeInvolved from "../components/Home/BeInvolved";
+import Loader from "../components/Main/Loader";
+import CustomButton from "../components/CustomButton";
 
 import { SITE_PAGES } from "../constants/links";
-
-import PinkFlower from "../media/Lotus_Flower.png";
-import PurpleFlower from "../media/JoinUs_Header.png";
+import { fetchBranchesAndChapters, fetchNewsAndEvents } from "../util/requests";
 
 import "../css/Home.css";
 
@@ -34,24 +35,27 @@ const TABLET_MAX_WIDTH = 1050;
 const TABLET_MIN_HEIGHT = 1000;
 const TABLET_MAX_HEIGHT = 2500;
 
-// Donate Button Redirect Link
-const DONATE_REDIRECT_LINK =
-    "https://www.paypal.com/donate?token=n4Ck5RvK_epLMZQxmIloFbLpby9p3_H9lVfDuvDpLJljY9dxYbwORh3UJCEaI7C9jXyWD8ajukVhKAaa";
-
 export default function Home() {
     // tracks layout of screen
+    const [newsAndEvents, setNewsAndEvents] = useState([]);
+    const [branchesAndChapters, setBranchesAndChapters] = useState([]);
+    const [isPageLoading, setIsPageLoading] = useState(true);
+    const [disableZoom, setDisableZoom] = useState(false);
+
     const [isMobile, setMobileView] = useState(false);
     const [isHorizontalMobile, setHorizontalMobile] = useState(false);
     const [isTabletVertical, setTebletVertical] = useState(false);
     const introTitle = React.createRef();
 
     // handler to call on window resize
-    useEffect(() => {
+    useEffect(async () => {
         function handleResize() {
             // check if now in mobile mode
             if (window.innerWidth <= MAX_MOBILE_WIDTH) {
+                setDisableZoom(false);
                 setMobileView(true);
             } else {
+                setDisableZoom(true);
                 setMobileView(false);
             }
 
@@ -74,6 +78,12 @@ export default function Home() {
                 setTebletVertical(false);
             }
         }
+
+        // backend calls to get page content
+        setNewsAndEvents(await fetchNewsAndEvents());
+        setBranchesAndChapters(await fetchBranchesAndChapters());
+        setIsPageLoading(false);
+
         // add event listener
         window.addEventListener("resize", handleResize);
         handleResize();
@@ -87,75 +97,10 @@ export default function Home() {
         if (introTitle.current) {
             introTitle.current.scrollIntoView({
                 behavior: "smooth",
-                block: "nearest",
+                block: "center",
             });
         }
     };
-
-    // dummy slideshow data
-    const slideData = [
-        {
-            openInSameTab: true,
-            redirect_link: "https://www.google.com/",
-            title: "News & Events",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
-            image_url: PinkFlower,
-        },
-        {
-            openInSameTab: false,
-            title: "Upcoming Hawaii Conference!",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet.",
-            redirect_link: "https://www.google.com/",
-            image_url: PurpleFlower,
-        },
-    ];
-
-    const markers = [
-        {
-            name: "Buenos Aires",
-            coordinates: [-58.3816, -34.6037],
-            isBranch: true,
-            email: "sakyadhita@buenos.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "La Paz",
-            coordinates: [-68.1193, -16.4897],
-            isBranch: true,
-            email: "sakyadhita@lapaz.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "Brasilia",
-            coordinates: [-47.8825, -15.7942],
-            isBranch: false,
-            email: "sakyadhita@brasilia.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "Budapest",
-            coordinates: [19.0402, 47.4979],
-            isBranch: false,
-            email: "sakyadhita@budapest.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "Delhi",
-            coordinates: [77.1025, 28.7041],
-            isBranch: false,
-            email: "sakyadhita@delhi.com",
-            urlLink: "https://www.google.com/",
-        },
-        {
-            name: "California",
-            coordinates: [-119.4179, 36.7783],
-            isBranch: true,
-            email: "sakyadhita@california.com",
-            urlLink: "https://www.google.com/",
-        },
-    ];
 
     function getSlideshowHeight() {
         if (isHorizontalMobile) return "500px";
@@ -163,48 +108,53 @@ export default function Home() {
         if (isTabletVertical) return "55vh";
         return "85vh";
     }
-    return (
-        <div className="Home">
-            {/* Slideshow component */}
+
+    const formatLoader = (
+        <div className="loader-wrapper">
+            <Loader />
+        </div>
+    );
+
+    const renderSlideshow =
+        newsAndEvents.length > 0 ? (
             <Slideshow height={getSlideshowHeight()} width="100%" isMobile={isMobile}>
                 {/* All Slides mapped here with display information  */}
-                {slideData.map((slideInfo) => (
+                {newsAndEvents.map((slideInfo) => (
                     <NewsEventsSlide
                         height={getSlideshowHeight()}
                         showButton="true"
                         openInSameTab={slideInfo.openInSameTab}
-                        redirect_link={slideInfo.redirect_link}
+                        redirect_link={slideInfo.redirectLink}
                         title={slideInfo.title}
                         description={slideInfo.description}
-                        image_url={slideInfo.image_url}
+                        image_url={slideInfo.imageLink}
                         arrowClickCallback={scrollToIntro}
                     />
                 ))}
             </Slideshow>
+        ) : null;
+    return (
+        <div className="Home">
+            {/* Slideshow component */}
+            {isPageLoading ? formatLoader : renderSlideshow}
             {/* Body of Page - Everthing below slideshow */}
             <section className="home-body">
                 {/* Introduction */}
                 <section id="home-intro">
-                    <h1 ref={introTitle}>Introduction </h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
-                        condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula
-                        eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat
-                        arcu, in efficitur sem tortor vel lectus. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet
-                        lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed
-                        porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem
-                        tortor vel lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                        Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales,
-                        orci neque volutpat arcu, in efficitur sem tortor vel lectus.Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum
-                        massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut
-                        laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in
-                        efficitur sem tortor vel lectus.Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia
-                        massa commodo sed.
-                    </p>
+                    <h1 ref={introTitle}> Upcoming 17th Conference! </h1>
+                    <div className="home-section-body">
+                        <img
+                            width={isMobile ? "100%" : "65%"}
+                            height="auto"
+                            alt="17th Conference Promo"
+                            src="https://www.dropbox.com/s/rdeyizxkm2bwqcq/17th_Conference_Promotional.jpeg?raw=1"
+                        />
+                        <br />
+                        <CustomButton
+                            text="Register Now"
+                            redirect_link="https://sakyadhita-international-association-of-buddhist.heysummit.com/"
+                        />
+                    </div>
                 </section>
 
                 {/* Mini Divider */}
@@ -213,39 +163,88 @@ export default function Home() {
                 {/* Branches & Chapters Section */}
                 <section id="branches-and-chapters">
                     {/* Interactive Map */}
-                    <InteractiveMap markers={markers} />
-
+                    {isPageLoading ? (
+                        formatLoader
+                    ) : (
+                        <InteractiveMap
+                            disableZooming={disableZoom}
+                            markers={branchesAndChapters}
+                        />
+                    )}
                     {/* Custom Tooltip for Interactive Map */}
-                    <ReactTooltip
-                        place="left"
-                        effect="solid"
-                        type="light"
-                        border="true"
-                        globalEventOff="click"
-                        id="soclose"
-                        getContent={(dataTip) => (
-                            <div>
-                                <a
-                                    href={markers[Math.floor(dataTip)].urlLink}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    {markers[Math.floor(dataTip)].name}
-                                    <FiExternalLink />
-                                </a>
-                                <br />
-                                {markers[Math.floor(dataTip)].email}
-                            </div>
-                        )}
-                    />
+                    {isPageLoading ? null : (
+                        <ReactTooltip
+                            place="left"
+                            effect="solid"
+                            type="light"
+                            border="true"
+                            data-iscapture="false"
+                            event="mouseover mouseenter"
+                            globalEventOff="click scroll mousewheel blur"
+                            id="tooltip"
+                            getContent={(dataTip) =>
+                                branchesAndChapters.length > 0 ? (
+                                    <div>
+                                        {/* Display name (with hyperlink if given) */}
+                                        {branchesAndChapters[Math.floor(dataTip)].siteLink ? (
+                                            <a
+                                                href={
+                                                    branchesAndChapters[Math.floor(dataTip)]
+                                                        .siteLink
+                                                }
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                {branchesAndChapters[Math.floor(dataTip)].name}
+                                                <FiExternalLink />
+                                            </a>
+                                        ) : (
+                                            branchesAndChapters[Math.floor(dataTip)].name
+                                        )}
+                                        <br />
+                                        {/* Display email if it given */}
+                                        {branchesAndChapters[Math.floor(dataTip)].email ? (
+                                            <div>
+                                                <MdEmail />
+                                                &nbsp;
+                                                {branchesAndChapters[Math.floor(dataTip)].email}
+                                            </div>
+                                        ) : null}
+                                    </div>
+                                ) : (
+                                    <div> </div>
+                                )
+                            }
+                        />
+                    )}
+
                     {/* Branch/Chapter Information  */}
                     <div className="branch-info">
                         <h1>Branches </h1>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
+                            The benefits of the National Branches is immediately obvious. The number
+                            of women who can afford or set aside time to attend the Sakyadhita
+                            International Conferences on Buddhist Women are limited. Activities on
+                            the national and local level are far easier to organize and more
+                            affordable for larger numbers of people. Designated contact persons for
+                            the national branches are listed on the Sakyadhita website and serve the
+                            important role of disseminating information about Sakyadhita’s goals and
+                            activities to large numbers of people on the national and local level.
+                            {"\n\n"}
+                            The national branches help raise awareness of Sakyadhita’s mission by
+                            distributing publicity materials and organizing activities on the
+                            national level. They serve an important function in helping publicize
+                            the Sakyadhita International Conferences on Buddhist Women. They have
+                            also been very helpful in coordinating the registrations for conferences
+                            on the national level in the local currency, booking group flights, and
+                            translating conference materials (abstracts, papers, etc.) into national
+                            languages. Sakyadhita Taiwan has done exceptional work in cultivating
+                            and training translators who are qualified to translate abstracts,
+                            papers, and publicity materials on Buddhism and issues of Buddhist women
+                            into Chinese.
                             {"\n\n\n"}
                             Click on a pin for more information about the branch!
+                            {isMobile ? " Pinch the screen to zoom in and out of the map." : null}
                             {"\n\n"}
                         </p>
                         {/* Mini Color Legend  */}
@@ -262,6 +261,7 @@ export default function Home() {
                         </section>
                     </div>
                 </section>
+
                 {/* Be Involved Section  */}
                 <section id="home-be-involved">
                     <h1>Be Involved </h1>
@@ -287,10 +287,58 @@ export default function Home() {
                         <BeInvolved
                             description="Help us grow and continue to connect by donating in any amount"
                             image_url="https://cdn9.dissolve.com/p/D1024_57_273/D1024_57_273_1200.jpg"
-                            openInSameTab={false}
-                            redirect_link={DONATE_REDIRECT_LINK}
+                            openInSameTab="true"
+                            redirect_link={SITE_PAGES.DONATE}
                             button_title="Donate"
                         />
+                    </div>
+                </section>
+
+                <section className="home-section">
+                    {/* Mini Divider */}
+                    <div className=".divider-wrapper">
+                        <hr className="divider" />
+                    </div>
+
+                    <h1 className="home-section-title"> Sakyadhita: A Beacon of Inspiration </h1>
+                    <div>
+                        <h4>by Jetsunma Tenzin Palmo</h4>
+                        In 2014, I was elected as the president of Sakyadhita. Since I had been
+                        associated with Sakyadhita for many years and had already attended several
+                        Sakyadhita conferences, I was honored to be chosen to represent this unique
+                        and esteemed international association of Buddhist women.
+                        {"\n\n"}
+                        After the Hong Kong conference, in June 2017, several Asian groups suggested
+                        the possibility of holding the next conference in a non-Buddhist country to
+                        see what the Dharma looked like in the West. Sakyadhita Australia kindly
+                        agreed to help us host the event. We quickly assembled a small team with our
+                        vice president, Eun-su Cho from Korea, former president Christie Chang from
+                        Taiwan, Yeo May Ling from Singapore as treasurer, and Ven. Aileen Barry from
+                        India as secretary, plus myself as president. Later we also engaged Lynn
+                        Bain in Sydney, who had already organized a number of His Holiness the Dalai
+                        Lama’s visits to Australia.
+                        {"\n\n"}
+                        For the first time, I was closely involved in setting up a Sakyadhita
+                        conference with all the endless decisions that had to be made. Thank heaven
+                        for Zoom! Although the organizers lived in various countries, we managed to
+                        put together a conference in the Blue Mountains that was highly successful
+                        and enjoyed by over 800 Buddhist women, both monastic and lay, from all
+                        traditions. That is the wonder that is Sakyadhita!
+                        {"\n\n"}
+                        Now, it is time to pass on this position as president – with the hope that
+                        our future Sakyadhita presidents will bring a clear vision and direction to
+                        the role. With their dedication, Sakyadhita will continue to be a beacon of
+                        inspiration for countless Buddhist women around the world.
+                        <br />
+                        <br />
+                        <span style={{ textAlign: "center" }}>
+                            <img
+                                width={isMobile ? "100%" : "45%"}
+                                height="auto"
+                                alt="Org Members"
+                                src="https://www.dropbox.com/s/s114yzew1uxd2ic/Beacon_Of_Hope.jpeg?raw=1"
+                            />
+                        </span>
                     </div>
                 </section>
             </section>

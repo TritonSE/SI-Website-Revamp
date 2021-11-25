@@ -53,7 +53,7 @@ export default function LandingPage() {
         <ResourcesHeader
             image={PurpleFlower}
             title="Sakyadhita Resources"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            text="All information related and central to Sakyadhita."
             // height takes up rest of screen, excluding mobile navbar
             // first conditional takes care of mobile - landscape view
             height={screenDim.height <= 700 ? "calc(100vh - 50px)" : "calc(100vh - 190px)"}
