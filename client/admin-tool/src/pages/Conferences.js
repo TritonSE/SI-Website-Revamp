@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Snackbar } from "@material-ui/core";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
 import Loader from "../components/Loader";
 import Stepper from "../components/Stepper";
 import Theme from "../components/conferences/Theme";
@@ -86,6 +89,14 @@ export default function Conferences() {
     const loadData = async () => {
         setLoading(true);
         const data = await getConferences();
+        data.forEach((item) => {
+            const blocksFromHtml = htmlToDraft(item.theme);
+            const { contentBlocks, entityMap } = blocksFromHtml;
+            const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+            // update the editor state
+            const setEditorState = EditorState.createWithContent(contentState);
+            item.theme = setEditorState;
+        });
         setConferences(data);
         setIndex(-1);
         setLoading(false);
@@ -105,6 +116,7 @@ export default function Conferences() {
     }, [index]);
 
     const handleNodeClick = (ind) => {
+        console.log("index: ", ind);
         setIndex(ind);
         const conference = conferences[ind];
         const updateConferenceItem = conferenceItem;
@@ -119,13 +131,38 @@ export default function Conferences() {
         setConferenceItem(conferenceTemplate);
     };
 
-    const formatNodeTitle = (item) => `${item.confNum} - ${item.location}`;
+    /**
+     * Convert the location string to a shorter location string if
+     * it contains more than the format (city, state)
+     *
+     * @param {string} location - the location for the conference
+     * @returns a string
+     */
+    const determineLocationLabel = (location) => {
+        const splitLocation = location.split(",");
+        if (splitLocation.length > 2) {
+            splitLocation.shift();
+        }
+
+        return splitLocation.join(", ");
+    };
+
+    const formatNodeTitle = (item) => `${item.confNum} - ${determineLocationLabel(item.location)}`;
 
     const handleChange = (event) => {
         setConferenceItem({
             ...conferenceItem,
             [event.target.name]: {
                 value: event.target.value,
+            },
+        });
+    };
+
+    const handleThemeChange = (item) => {
+        setConferenceItem({
+            ...conferenceItem,
+            theme: {
+                value: item,
             },
         });
     };
@@ -146,6 +183,8 @@ export default function Conferences() {
             });
         }
     };
+
+    const handleClose = () => setModal(false);
 
     const handleFormSubmit = async () => {
         if (formDisabled) return;
@@ -180,7 +219,12 @@ export default function Conferences() {
 
         const data = {};
         Object.keys(conferenceItem).forEach((key) => {
-            if (key === "confNum") {
+            console.log(key);
+            if (key === "theme") {
+                data[key] = draftToHtml(
+                    convertToRaw(conferenceItem[key].value.getCurrentContent())
+                );
+            } else if (key === "confNum") {
                 data[key] = parseInt(conferenceItem[key].value, 10);
             } else data[key] = conferenceItem[key].value;
         });
@@ -293,6 +337,7 @@ export default function Conferences() {
                             conferenceItem={conferenceItem}
                             handleChange={handleChange}
                             formDisabled={formDisabled}
+                            handleThemeChange={handleThemeChange}
                         />
                     ) : (
                         <Overview
@@ -333,7 +378,7 @@ export default function Conferences() {
 
             <DeleteModal
                 open={modal}
-                handleClose={() => setModal(false)}
+                handleClose={handleClose}
                 itemToBeDeletedTxt={`Conference #${conferenceItem.confNum.value} - ${conferenceItem.title.value}`}
                 deleteButtonCallback={deleteButtonCallback}
             />

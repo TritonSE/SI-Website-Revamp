@@ -1,4 +1,4 @@
-const config = require("../config.js");
+const config = require("../config");
 
 const BACKEND_URL = config.backend.uri;
 /**
