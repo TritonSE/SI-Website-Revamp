@@ -270,7 +270,7 @@ export default function AboutUs() {
                 {/* Mission / Activities Section */}
                 <div className="section">
                     {/* Anchor for navigation */}
-                    <div className="scroll" id="mission" />
+                    <div className="scroll" id="mission" ref={introSection} />
 
                     <h1> Mission & Vision </h1>
                     <p>

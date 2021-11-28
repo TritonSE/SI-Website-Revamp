@@ -182,7 +182,11 @@ export default function MobileConferences(props) {
                 {displayInformation()}
 
                 {/* Render either the associated video or the slideshow of images */}
-                {item.video ? <div style={{ width: "100%" }}>{slideshowVideo(false)}</div> : null}
+                {item.video ? (
+                    <div style={{ width: "100%", marginBottom: "25px" }}>
+                        {slideshowVideo(false)}
+                    </div>
+                ) : null}
             </div>
         </div>
     );

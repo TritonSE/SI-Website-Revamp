@@ -1,23 +1,23 @@
 /* Styling the scroll bar for the overview/theme */
 /* width */
-::-webkit-scrollbar {
+.conference-info-divider-div::-webkit-scrollbar {
   width: 6px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+.conference-info-divider-div::-webkit-scrollbar-track {
   background: rgb(240, 240, 240);
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.conference-info-divider-div::-webkit-scrollbar-thumb {
   background: var(--lightpurple);
   height: 20px;
   border-radius: 50px;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.conference-info-divider-div::-webkit-scrollbar-thumb:hover {
   background: var(--darkpurple);
 }
 
@@ -338,9 +338,10 @@
   }
 
   .slideshow-section {
+    width: 40%;
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    text-align: center;
   }
 
   .conference-info-slideshow {
@@ -358,13 +359,8 @@
     margin-left: calc(0vw);
   }
 
-  .slideshow-section-theme-active,
-  .slideshow-section-theme {
-    margin-left: 0;
-  }
-
-  .slideshow-section {
-    width: auto;
+  .conference-info-location {
+    margin-top: -20px;
   }
 
   .conferences-info-section {
@@ -444,6 +440,7 @@
 
   .conference-info-location {
     width: 90%;
+    margin-top: 0;
   }
 
   .conference-info-location h3 {
