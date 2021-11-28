@@ -5,7 +5,7 @@
   border: 1px solid var(--grey);
   border-radius: 5px;
   overflow-y: auto;
-  height: 120px;
+  max-height: 120px;
 }
 
 .empty-listview {
@@ -67,4 +67,26 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+/* Styling the scroll bar for the overview/theme */
+/* width */
+.listview-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.listview-container::-webkit-scrollbar-track {
+  background: rgb(240, 240, 240);
+}
+
+/* Handle */
+.listview-container::-webkit-scrollbar-thumb {
+  background: var(--lightpurple);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+.listview-container::-webkit-scrollbar-thumb:hover {
+  background: var(--darkpurple);
 }

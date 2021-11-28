@@ -269,7 +269,11 @@ export default function Conferences() {
     };
 
     if (loading) {
-        return <Loader />;
+        return (
+            <div className="conferences-loader">
+                <Loader />
+            </div>
+        );
     }
 
     return (

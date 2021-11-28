@@ -54,3 +54,25 @@
   display: flex;
   flex-direction: row;
 }
+
+/* Styling the scroll bar for the overview/theme */
+/* width */
+.listviewimages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.listviewimages-container::-webkit-scrollbar-track {
+  background: rgb(240, 240, 240);
+}
+
+/* Handle */
+.listviewimages-container::-webkit-scrollbar-thumb {
+  background: var(--lightpurple);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+.listviewimages-container::-webkit-scrollbar-thumb:hover {
+  background: var(--darkpurple);
+}

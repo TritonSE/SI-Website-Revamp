@@ -100,15 +100,14 @@
   margin-top: 20px;
 }
 
-/* .conferences-brochures,
-.conferences-abstracts,
-.conferences-presentations,
-.conferences-programs,
-.conferences-video-div {
-  display: flex;
-  flex-direction: column;
+.conferences-loader {
   width: 100%;
-}  */
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
 .conferences-brochures-header h2,
 .conferences-abstracts-header h2,
@@ -185,29 +184,6 @@
 .required-asterisk-conf-num,
 .required-asterisk-location {
   margin-left: -10px;
-}
-
-/* Styling the scroll bar for the overview/theme */
-/* width */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgb(240, 240, 240);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--lightpurple);
-  height: 20px;
-  border-radius: 50px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--darkpurple);
 }
 
 @media only screen and (max-width: 1500px) {
