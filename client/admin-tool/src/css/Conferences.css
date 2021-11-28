@@ -7,6 +7,7 @@
 .stepper-section {
   height: 100%;
   border-right: 1px solid var(--lightpurple);
+  margin-right: 50px;
 }
 
 .stepper-section-div {
@@ -16,15 +17,20 @@
 .conferences-edit-section {
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
-  width: 800px;
-  min-width: 60%;
+  width: 60%;
   padding-bottom: 50px;
 }
 
 .conferences-title {
   width: 100%;
   display: flex;
+  flex-direction: column;
+}
+
+.conferences-conference-title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .conferences-title-h1 {
@@ -35,13 +41,13 @@
   margin-block-end: 0;
 }
 
-.conferences-theme-section,
-.conferences-overview-section {
+.conferences-theme-section {
   width: 100%;
 }
 
 .conferences-overview-section {
   margin-top: -20px;
+  width: 100%;
 }
 
 .conferences-num-location {
@@ -94,6 +100,16 @@
   margin-top: 20px;
 }
 
+/* .conferences-brochures,
+.conferences-abstracts,
+.conferences-presentations,
+.conferences-programs,
+.conferences-video-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}  */
+
 .conferences-brochures-header h2,
 .conferences-abstracts-header h2,
 .conferences-presentations-header h2,
@@ -113,7 +129,7 @@
 }
 
 .conferences-tabs section {
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -144,7 +160,10 @@
 }
 
 .post-buttons {
-  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 15%;
 }
 
 .add-conference {
@@ -189,4 +208,19 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--darkpurple);
+}
+
+@media only screen and (max-width: 1500px) {
+  .conferences-theme-section {
+    margin-right: -25px;
+  }
+
+  .post-buttons {
+    width: 20%;
+  }
+
+  .required-asterisk-conf-num,
+  .required-asterisk-location {
+    margin-left: 0px;
+  }
 }

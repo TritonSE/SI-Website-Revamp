@@ -116,7 +116,6 @@ export default function Conferences() {
     }, [index]);
 
     const handleNodeClick = (ind) => {
-        console.log("index: ", ind);
         setIndex(ind);
         const conference = conferences[ind];
         const updateConferenceItem = conferenceItem;
@@ -219,7 +218,6 @@ export default function Conferences() {
 
         const data = {};
         Object.keys(conferenceItem).forEach((key) => {
-            console.log(key);
             if (key === "theme") {
                 data[key] = draftToHtml(
                     convertToRaw(conferenceItem[key].value.getCurrentContent())
@@ -232,7 +230,6 @@ export default function Conferences() {
         // makes the post request to backend here if successful clear all the values
         if (index >= 0) {
             const res = await putConference(data.id, data);
-            console.log(res);
             if (res) {
                 setSnackBar({
                     open: true,
@@ -330,24 +327,22 @@ export default function Conferences() {
                     </section>
                 </div>
 
-                <div>
-                    {tab === "theme" ? (
-                        <Theme
-                            classes={classes}
-                            conferenceItem={conferenceItem}
-                            handleChange={handleChange}
-                            formDisabled={formDisabled}
-                            handleThemeChange={handleThemeChange}
-                        />
-                    ) : (
-                        <Overview
-                            classes={classes}
-                            conferenceItem={conferenceItem}
-                            handleChange={handleChange}
-                            formDisabled={formDisabled}
-                        />
-                    )}
-                </div>
+                {tab === "theme" ? (
+                    <Theme
+                        classes={classes}
+                        conferenceItem={conferenceItem}
+                        handleChange={handleChange}
+                        formDisabled={formDisabled}
+                        handleThemeChange={handleThemeChange}
+                    />
+                ) : (
+                    <Overview
+                        classes={classes}
+                        conferenceItem={conferenceItem}
+                        handleChange={handleChange}
+                        formDisabled={formDisabled}
+                    />
+                )}
             </section>
 
             <section className="post-buttons">

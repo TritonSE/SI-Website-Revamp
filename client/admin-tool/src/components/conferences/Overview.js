@@ -10,13 +10,15 @@ const Overview = ({ classes, conferenceItem, handleChange, formDisabled }) => (
                 <h2>Brochures</h2>
             </div>
 
-            <ListView
-                items={conferenceItem.brochures.value.data}
-                classes={classes}
-                handleChange={handleChange}
-                keyword="brochures"
-                formDisabled={formDisabled}
-            />
+            <div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
+                <ListView
+                    items={conferenceItem.brochures.value.data}
+                    classes={classes}
+                    handleChange={handleChange}
+                    keyword="brochures"
+                    formDisabled={formDisabled}
+                />
+            </div>
         </div>
 
         <div className="conferences-programs">
@@ -24,13 +26,15 @@ const Overview = ({ classes, conferenceItem, handleChange, formDisabled }) => (
                 <h2>Programs</h2>
             </div>
 
-            <ListView
-                items={conferenceItem.programs.value.data}
-                classes={classes}
-                handleChange={handleChange}
-                keyword="programs"
-                formDisabled={formDisabled}
-            />
+            <div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
+                <ListView
+                    items={conferenceItem.programs.value.data}
+                    classes={classes}
+                    handleChange={handleChange}
+                    keyword="programs"
+                    formDisabled={formDisabled}
+                />
+            </div>
         </div>
 
         <div className="conferences-abstracts">
@@ -38,13 +42,15 @@ const Overview = ({ classes, conferenceItem, handleChange, formDisabled }) => (
                 <h2>Abstracts</h2>
             </div>
 
-            <ListView
-                items={conferenceItem.abstracts.value.data}
-                classes={classes}
-                handleChange={handleChange}
-                keyword="abstracts"
-                formDisabled={formDisabled}
-            />
+            <div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
+                <ListView
+                    items={conferenceItem.abstracts.value.data}
+                    classes={classes}
+                    handleChange={handleChange}
+                    keyword="abstracts"
+                    formDisabled={formDisabled}
+                />
+            </div>
         </div>
 
         <div className="conferences-presentations">
@@ -52,13 +58,15 @@ const Overview = ({ classes, conferenceItem, handleChange, formDisabled }) => (
                 <h2>Presentations</h2>
             </div>
 
-            <ListView
-                items={conferenceItem.presentations.value.data}
-                classes={classes}
-                handleChange={handleChange}
-                keyword="presentations"
-                formDisabled={formDisabled}
-            />
+            <div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
+                <ListView
+                    items={conferenceItem.presentations.value.data}
+                    classes={classes}
+                    handleChange={handleChange}
+                    keyword="presentations"
+                    formDisabled={formDisabled}
+                />
+            </div>
         </div>
 
         <div className="conferences-video-div">
@@ -69,15 +77,14 @@ const Overview = ({ classes, conferenceItem, handleChange, formDisabled }) => (
                 value={conferenceItem.video.value}
                 error={conferenceItem.video.error}
                 onChange={(e) => handleChange(e)}
-                disable={formDisabled}
-                placeholder="Start writing here "
+                disabled={formDisabled}
+                placeholder="Insert Video link "
                 InputProps={{
                     classes: {
                         input: classes.resizeDetails,
                     },
                 }}
                 style={{ width: "100%" }}
-                // disabled={isFormDisabled}
                 variant="outlined"
             />
         </div>

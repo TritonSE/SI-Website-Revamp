@@ -108,8 +108,8 @@ const ListView = ({ items, classes, handleChange, keyword, formDisabled }) => {
     );
 
     return (
-        <div>
-            <div className={`listview-container ${items.length === 0 ? "empty-listview" : null}`}>
+        <section>
+            <div className={`${items.length === 0 ? "empty-listview" : "listview-container"}`}>
                 {items.map((item, idx) => node(item, idx))}
             </div>
 
@@ -126,8 +126,7 @@ const ListView = ({ items, classes, handleChange, keyword, formDisabled }) => {
                             input: classes.resizeDetails,
                         },
                     }}
-                    style={{ width: "50vw" }}
-                    // disabled={isFormDisabled}
+                    style={{ width: "50%" }}
                     variant="outlined"
                 />
 
@@ -142,18 +141,17 @@ const ListView = ({ items, classes, handleChange, keyword, formDisabled }) => {
                             input: classes.resizeDetails,
                         },
                     }}
-                    style={{ width: "100%" }}
-                    // disabled={isFormDisabled}
+                    style={{ width: "50%", marginLeft: "10px" }}
                     variant="outlined"
                 />
 
                 <Button
                     text={urlButtonText}
                     onClickCallback={() => urlButtonClick()}
-                    style={{ padding: "5px 15px", minWidth: "150px", marginLeft: "20px" }}
+                    style={{ padding: "5px 15px", minWidth: "150px", marginLeft: "10px" }}
                 />
             </div>
-        </div>
+        </section>
     );
 };
 

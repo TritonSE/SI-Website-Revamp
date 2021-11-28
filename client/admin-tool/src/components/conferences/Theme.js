@@ -10,7 +10,7 @@ const Theme = ({ classes, conferenceItem, handleChange, formDisabled, handleThem
 
     return (
         <section className="conferences-theme-section">
-            <div className="conferences-title">
+            <div className="conferences-conference-title">
                 <TextField
                     name="title"
                     value={conferenceItem.title.value}
@@ -26,7 +26,7 @@ const Theme = ({ classes, conferenceItem, handleChange, formDisabled, handleThem
                     style={{ fontSize: "36px", width: "100%" }}
                     variant="outlined"
                 />
-                <span className="required-asterisk"> * </span>
+                <span className="required-asterisk">*</span>
             </div>
 
             <div className="conferences-num-location">
