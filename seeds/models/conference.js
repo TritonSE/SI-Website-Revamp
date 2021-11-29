@@ -336,7 +336,7 @@ module.exports = async () => {
                 location: "Ho Chi Minh City, Vietnam",
                 slideShowImages: {
                     urls: [
-                        "https://www.dropbox.com/s/dtuggjn3ouuaul5/Sakyadhita%20Newsletters.jpeg?raw=1",
+                        "https://www.dropbox.com/s/qnabgbloxtkb9eu/11th%20Sakyadhita%20Conference%20Vietnam.jpg?raw=1",
                     ],
                 },
                 programs: {
