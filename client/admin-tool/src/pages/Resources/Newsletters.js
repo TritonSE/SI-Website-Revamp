@@ -14,10 +14,13 @@ import Button from "../../components/Button";
 import Stepper from "../../components/Stepper";
 
 import {
-    fetchNewsletters, addNewsletters, updateNewsletters
+    fetchNewsletters,
+    addNewsletters,
+    updateNewsletters,
 } from "../../util/requests/Resources/Newsletters";
 
 import "../../css/Newsletters.css";
+import { faGlassCheers } from "@fortawesome/free-solid-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -85,6 +88,7 @@ export default function Newsletters() {
     const [isNewNode, setIsNewNode] = useState(true);
 
     const handleNodeClick = (ind) => {
+        setIsNewNode(false);
         setIndex(ind);
         setValues({
             ...values,
@@ -108,7 +112,7 @@ export default function Newsletters() {
         });
     };
 
-    const formatNodeTitle = (item) => item.volume;
+    const formatNodeTitle = (item) => "Volume " + item.volume + ", Number " + item.number;
 
     // tracks whether form is disabled
     const [isFormDisabled, setIsFormDisabled] = React.useState(false);
@@ -197,7 +201,7 @@ export default function Newsletters() {
         }
 
         // allow form to be editable again
-        setIsNewNode(true);
+        setIsNewNode(false);
         document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
@@ -205,9 +209,10 @@ export default function Newsletters() {
     /** Initialization  */
 
     // fetches server data upon component mount
-    React.useEffect(async () => {
-        await refreshNewsletters();
-    }, []);
+    React.useState(async () => {
+        const data = await fetchNewsletters();
+        await updateNewsletters(data);
+    }, [handleFormSubmit]);
 
     return (
         <div className="Newsletters">
