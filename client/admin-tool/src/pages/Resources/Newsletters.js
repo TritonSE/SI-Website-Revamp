@@ -3,7 +3,7 @@
  * the ability to view, edit, and post newsletter details and thumbnail
  * photos.
  *
- * @summary     Newsletters Section
+ * @summary     Newsletters section.
  * @author      Elias Fang
  */
 
@@ -12,11 +12,12 @@ import { TextField, Snackbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "../../components/Button";
 import Stepper from "../../components/Stepper";
-import config from "../../config";
+
+import {
+    fetchNewsletters, addNewsletters, updateNewsletters
+} from "../../util/requests/Resources/Newsletters";
 
 import "../../css/Newsletters.css";
-
-const BACKEND_URL = config.backend.uri;
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -49,35 +50,11 @@ export default function Newsletters() {
     /** Snackbar and Form */
     const classes = useStyles();
 
-    const users = [
-        { a: "Volume #, Year #13131" },
-        { a: "Volume #, Year #2" },
-        { a: "Volume #, Year #3" },
-        { a: "Volume #, Year #6" },
-        { a: "Volume #, Year #10" },
-        { a: "Volume #, Year #27" },
-        { a: "Volume #, Year #18" },
-        { a: "Volume #, Year #25" },
-        { a: "Volume #, Year #19" },
-        { a: "Volume #, Year #20" },
-        { a: "Volume #, Year #212" },
-        { a: "Volume #, Year #1345" },
-        { a: "Volume #, Year #22323" },
+    const test = [
+        { volume: "1", number: "2", year: "3", pdfLink: "123.com", imageLink: "321.com" },
     ];
-    const [index, setIndex] = useState(0);
-    const handleNodeClick = (ind) => {
-        setIndex(ind);
-    };
-    const addNewNode = () => {};
-    const formatNodeTitle = (item) => item.a;
 
-    // tracks whether form is disabled
-    const [isFormDisabled, setIsFormDisabled] = React.useState(false);
-
-    const [snackbar, setSnackBar] = React.useState({
-        open: false,
-        message: "",
-    });
+    const [newsletters, setNewsletters] = React.useState(test);
 
     const [values, setValues] = React.useState({
         volume: {
@@ -101,6 +78,45 @@ export default function Newsletters() {
             error: false,
         },
     });
+    
+    // set index of current newsletter
+    const [index, setIndex] = useState(0);
+
+    const [isNewNode, setIsNewNode] = useState(true);
+
+    const handleNodeClick = (ind) => {
+        setIndex(ind);
+        setValues({
+            ...values,
+            volume: { ...values.volume, value: newsletters[ind].volume },
+            number: { ...values.number, value: newsletters[ind].number },
+            year: { ...values.year, value: newsletters[ind].year },
+            pdfLink: { ...values.pdfLink, value: newsletters[ind].pdfLink },
+            imageLink: { ...values.imageLink, value: newsletters[ind].imageLink },
+        });
+    };
+
+    const addNewNode = () => {
+        setIsNewNode(true);
+        setValues({
+            ...values,
+            volume: { ...values.name, value: "" },
+            number: { ...values.number, value: "" },
+            year: { ...values.year, value: "" },
+            pdfLink: { ...values.pdfLink, value: "" },
+            imageLink: { ...values.imageLink, value: "" },
+        });
+    };
+
+    const formatNodeTitle = (item) => item.volume;
+
+    // tracks whether form is disabled
+    const [isFormDisabled, setIsFormDisabled] = React.useState(false);
+
+    const [snackbar, setSnackBar] = React.useState({
+        open: false,
+        message: "",
+    });
 
     const handleChange = (event) => {
         setValues({
@@ -115,6 +131,15 @@ export default function Newsletters() {
         setSnackBar({ open: false });
     };
 
+    /** Server Requests */
+
+    // fetch newsletterss
+    const refreshNewsletters = async () => {
+        const data = await fetchNewsletters();
+        setNewsletters(data); 
+    }
+
+    // add/update newsletters
     const handleFormSubmit = async () => {
         // do nothing if form is already processing a request
         if (isFormDisabled) return;
@@ -128,88 +153,74 @@ export default function Newsletters() {
         let number = false;
         let year = false;
         let pdfLink = false;
-        let imagelink = false;
+        let imageLink = false;
 
         if (values.volume.value === "") volume = true;
         if (values.number.value === "") number = true;
         if (values.year.value === "") year = true;
         if (values.pdfLink.value === "") pdfLink = true;
-        if (values.imagelink.value === "") imagelink = true;
-
-        setValues({
-            ...values,
-            volume: { ...values.volume, error: volume },
-            number: { ...values.number, error: number },
-            year: { ...values.year, error: year },
-            pdfLink: { ...values.pdfLink, error: pdfLink },
-            imagelink: { ...values.imagelink, error: imagelink },
-        });
+        if (values.imageLink.value === "") imageLink = true;
 
         // check to see if any required fields are empty
-        if (volume || number || year || pdfLink || imagelink) {
+        if (volume || number || year || pdfLink || imageLink) {
             setSnackBar({ open: true, message: "Missing required fields" });
             setIsFormDisabled(false);
             document.body.style.cursor = null;
             return;
         }
 
-        // attempt to post new branch and chapter
-        await fetch(`${BACKEND_URL}branchesAndChapters/`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                volume: values.volume.value,
-                number: values.number.value,
-                year: values.year.value,
-                pdfLink: values.pdfLink.value,
-                imagelink: values.imagelink.value,
-            }),
-        }).then((res) => {
-            // message sent
-            if (res.ok) {
-                // clear form values
-                setValues({
-                    ...values,
-                    volume: { ...values.volume, value: "" },
-                    number: { ...values.number, value: "" },
-                    year: { ...values.year, value: "" },
-                    pdfLink: { ...values.pdfLink, value: "" },
-                    imagelink: { ...values.imagelink, value: "" },
+        // makes post request to backend, clears all values if successful
+        if (!isNewNode) {
+            if (await updateNewsletters(newsletters[index]["id"], values)) {
+                await refreshNewsletters();
+                setSnackBar({
+                    open: true,
+                    message: "Existing newsetters updated",
                 });
-                // message could not be sent
             } else {
-                // show snackbar to notify message could not be sent
                 setSnackBar({
                     open: true,
                     message: "An internal error occurred. Message not sent.",
                 });
             }
-        });
+        } else if (await addNewsletters(values)) {
+            await refreshNewsletters();
+            setSnackBar({
+                open: true,
+                message: "New newsletter added",
+            });
+        } else {
+            setSnackBar({
+                open: true,
+                message: "An internal error occurred. Message not sent.",
+            });
+        }
 
         // allow form to be editable again
+        setIsNewNode(true);
         document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
 
-    /** Server Requests */
+    /** Initialization  */
 
-
+    // fetches server data upon component mount
+    React.useEffect(async () => {
+        await refreshNewsletters();
+    }, []);
 
     return (
         <div className="Newsletters">
+            {/* Title and Stepper for Newsletters */}
             <section className="left-container">
                 <h1>Newsletters</h1>
-                {/* Stepper for Newsletters */}
                 <div>
                     <Stepper
-                        displayItems={users}
+                        displayItems={newsletters}
                         handleNodeClick={handleNodeClick}
-                        // addButtonTitle="Add new"
-                        // numItemsPerPage ={5}
                         handleAddNodeClick={addNewNode}
                         formatNodeTitle={formatNodeTitle}
                     />
-                    {`${users[index].a} `}
                 </div>
             </section>
 
