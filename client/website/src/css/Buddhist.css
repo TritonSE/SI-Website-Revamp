@@ -39,7 +39,7 @@
 
 .buddhist-slider-wrapper {
   position: absolute;
-  top: 650px;
+  top: 75vh;
   margin-left: min(50px, 2.5vw);
   height: calc(100% - 615px);
 }
@@ -48,6 +48,7 @@
   position: sticky;
   top: 210px;
   margin-bottom: calc(18vh);
+  margin-top: 100px;
   display: flex;
 }
 
@@ -73,7 +74,7 @@
   color: inherit;
 }
 
-.buddhist-slider-nav li a:hover {
+.orange-underline {
   text-decoration: underline solid var(--orange) 2px;
   text-underline-offset: 6px;
 }

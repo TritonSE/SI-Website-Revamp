@@ -39,6 +39,10 @@ module.exports = db.define(
             type: Sequelize.JSON,
             allowNull: true,
         },
+        brochures: {
+            type: Sequelize.JSON,
+            allowNull: true,
+        },
         video: {
             type: Sequelize.STRING(500),
             allowNull: true,
