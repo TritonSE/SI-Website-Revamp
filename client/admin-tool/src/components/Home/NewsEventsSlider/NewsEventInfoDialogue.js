@@ -31,8 +31,8 @@ import Button from "../../Button";
 
 import "../../../css/NewsEventInfoDialogue.css";
 
-const TITLE_MAX_CHARS = 50;
-const DESCRIPTION_MAX_CHARS = 300;
+const TITLE_MAX_CHARS = 40;
+const DESCRIPTION_MAX_CHARS = 200;
 
 /**
  * All of the following params are required.
