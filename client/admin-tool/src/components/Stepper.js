@@ -57,6 +57,7 @@ const Stepper = ({
     // Calls whenever the prop for items changes in the parent
     useEffect(() => {
         setItems(displayItems);
+        setIndexButton("button");
     }, []);
 
     const onPageChange = (itemList, currentPage) => {

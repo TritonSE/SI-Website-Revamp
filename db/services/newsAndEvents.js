@@ -14,9 +14,7 @@ const newsAndEvents = require("../models/newsAndEvents");
  */
 async function getAll() {
     return newsAndEvents.findAll({
-        order: [
-            ["updatedAt", "DESC"]
-        ],
+        order: [["updatedAt", "DESC"]],
     });
 }
 

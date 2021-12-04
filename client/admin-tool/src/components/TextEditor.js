@@ -20,7 +20,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import "../css/TextEditor.css";
 
-const TextEditor = ({ editorUpdateCallback, initialLoadEditorState }) => {
+const TextEditor = ({ editorUpdateCallback, initialLoadEditorState, isImagesAllowed = true }) => {
     // initialize the editor state
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -38,6 +38,25 @@ const TextEditor = ({ editorUpdateCallback, initialLoadEditorState }) => {
         setEditorState(initialLoadEditorState);
     }, [initialLoadEditorState]);
 
+    const determineOptions = () => {
+        const options = [
+            "inline",
+            "fontSize",
+            "fontFamily",
+            "textAlign",
+            "colorPicker",
+            "link",
+            "embedded",
+            "remove",
+            "history",
+        ];
+
+        if (isImagesAllowed) {
+            options.splice(6, 0, "image");
+        }
+        return options;
+    };
+
     return (
         <div className="text-editor">
             <Editor
@@ -47,18 +66,7 @@ const TextEditor = ({ editorUpdateCallback, initialLoadEditorState }) => {
                 editorClassName="editor-class"
                 toolbarClassName="toolbar-class"
                 toolbar={{
-                    options: [
-                        "inline",
-                        "fontSize",
-                        "fontFamily",
-                        "textAlign",
-                        "colorPicker",
-                        "link",
-                        "embedded",
-                        "image",
-                        "remove",
-                        "history",
-                    ],
+                    options: determineOptions(),
                     image: {
                         defaultSize: {
                             height: "400",

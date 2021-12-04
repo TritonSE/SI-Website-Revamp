@@ -65,11 +65,23 @@ const Theme = ({ classes, conferenceItem, handleChange, formDisabled, handleThem
                 <span className="required-asterisk-location"> * </span>
             </div>
 
+            <div className="confNum-location-labels">
+                <div className="confNum-label">
+                    <label>Enter a number for conference Number. Ex) 10</label>
+                </div>
+                <div className="location-label">
+                    <label>
+                        Enter the location as comma-seperated items. Ex) University, Beijing, China
+                    </label>
+                </div>
+            </div>
+
             <div className="conferences-theme-div">
                 <h2>Theme</h2>
                 <TextEditor
                     editorUpdateCallback={handleThemeChange}
                     initialLoadEditorState={conferenceItem.theme.value}
+                    isImagesAllowed={false}
                 />
             </div>
 

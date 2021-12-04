@@ -146,7 +146,13 @@ export default function Conferences() {
         return splitLocation.join(", ");
     };
 
-    const formatNodeTitle = (item) => `${item.confNum} - ${determineLocationLabel(item.location)}`;
+    // formats datetime string into MM/DD/YYYY format
+    const formatDate = (dateStr) => {
+        const date = new Date(dateStr.value);
+        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    };
+
+    const formatNodeTitle = (item) => `#${item.confNum} - ${determineLocationLabel(item.location)}`;
 
     const handleChange = (event) => {
         setConferenceItem({
@@ -367,6 +373,12 @@ export default function Conferences() {
                     </div>
                 ) : null}
             </section>
+
+            {index >= 0 ? (
+                <section className="last-edited-section">
+                    <p>Last Updated: {formatDate(conferenceItem.updatedAt)}</p>
+                </section>
+            ) : null}
 
             <Snackbar
                 open={snackbar.open}

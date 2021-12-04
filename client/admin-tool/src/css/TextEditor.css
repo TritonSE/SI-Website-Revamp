@@ -9,7 +9,7 @@
 
 /* The editor component containing the blank space for input */
 .editor-class {
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(245, 245, 245);
   height: 50vh;
   border: 2px solid var(--lightpurple);
   border-top: none;

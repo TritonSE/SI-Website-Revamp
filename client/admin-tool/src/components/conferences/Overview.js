@@ -5,6 +5,10 @@ import "../../css/Conferences.css";
 
 const Overview = ({ classes, conferenceItem, handleChange, formDisabled }) => (
     <section className="conferences-overview-section">
+        <p className="overview-helper-text">
+            Click on an entry to edit it. Hover over an entry and click on the trash icon to delete
+            it.
+        </p>
         <div className="conferences-brochures">
             <div className="conferences-brochures-header">
                 <h2>Brochures</h2>

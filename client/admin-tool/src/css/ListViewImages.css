@@ -15,6 +15,7 @@
   justify-content: space-between;
   align-items: center;
   height: 40px;
+  transition: 0.2s ease-out;
 }
 
 .listviewimages-node p {
@@ -31,12 +32,17 @@
 }
 
 .listviewimages-node:hover {
-  background-color: var(--grey);
+  transition: 0.2s ease-in;
+  background-color: rgb(228, 228, 228);
   cursor: pointer;
 }
 
 .listviewimages-node:hover > .listviewimages-node-icon {
   display: block;
+}
+
+.listviewimages-node-icon:hover {
+  color: rgb(234, 68, 68);
 }
 
 .listviewimages-node:first-child {
