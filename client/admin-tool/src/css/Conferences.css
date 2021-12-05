@@ -113,9 +113,9 @@
 .overview-helper-text {
   font-size: 15px;
   font-style: italic;
-  color: rgb(234, 68, 68);
-  margin-bottom: -10px;
-  margin-top: 0px;
+  color: black;
+  margin-bottom: 0px;
+  margin-top: 5px;
 }
 
 .conferences-brochures-header h2,
@@ -205,7 +205,7 @@
 .location-label label {
   font-size: 14px;
   font-style: italic;
-  color: rgb(234, 68, 68);
+  color: black;
 }
 
 .required-asterisk,
@@ -233,7 +233,7 @@
 .last-edited-section p {
   font-size: 16px;
   font-style: italic;
-  color: rgb(234, 68, 68);
+  color: black;
 }
 
 @media only screen and (max-width: 1500px) {
