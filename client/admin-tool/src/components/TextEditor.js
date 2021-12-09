@@ -13,20 +13,16 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
 // import DOMPurify from 'dompurify';
-import htmlToDraft from "html-to-draftjs";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import "../css/TextEditor.css";
 
-const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr }) => {
+const TextEditor = ({ editorUpdateCallback, initialLoadEditorState, isImagesAllowed = true }) => {
     // initialize the editor state
-    const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
-    // store the stringified html content
-    const [convertedContent, setConvertedContent] = useState(null);
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     /**
      * Handle any changes inside the editor
@@ -34,42 +30,32 @@ const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr }) => {
      */
     const handleEditorChange = (state) => {
         setEditorState(state);
+        editorUpdateCallback(state);
     };
 
-    // Converts the editor state to stringified HTML
-    const convertContentToHTML = () => {
-        const currentContentAsHTML = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-        setConvertedContent(currentContentAsHTML);
+    // If an editorState is passed in, then set the Editor to this state
+    useEffect(() => {
+        setEditorState(initialLoadEditorState);
+    }, [initialLoadEditorState]);
+
+    const determineOptions = () => {
+        const options = [
+            "inline",
+            "fontSize",
+            "fontFamily",
+            "textAlign",
+            "colorPicker",
+            "link",
+            "embedded",
+            "remove",
+            "history",
+        ];
+
+        if (isImagesAllowed) {
+            options.splice(6, 0, "image");
+        }
+        return options;
     };
-
-    // If the html code is passed in, then put it into the text editor
-    if (initialHtmlLoadStr) {
-        useEffect(() => {
-            // convert to draft.js state
-            const blocksFromHtml = htmlToDraft(initialHtmlLoadStr);
-            const { contentBlocks, entityMap } = blocksFromHtml;
-            const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-            // update the editor state
-            const updateEditorState = EditorState.createWithContent(contentState);
-            setEditorState(updateEditorState);
-        }, []);
-    }
-
-    // convert to HTML whenever there is a change to the editor state
-    useEffect(() => {
-        convertContentToHTML();
-    }, [editorState]);
-
-    // update the parent state to hold the stringified html
-    useEffect(() => {
-        editorUpdateCallback(convertedContent);
-    }, [convertedContent]);
-
-    // const createHtml = (html) => {
-    //   return  {
-    //     __html: DOMPurify.sanitize(html)
-    //   }
-    // }
 
     return (
         <div className="text-editor">
@@ -80,18 +66,7 @@ const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr }) => {
                 editorClassName="editor-class"
                 toolbarClassName="toolbar-class"
                 toolbar={{
-                    options: [
-                        "inline",
-                        "fontSize",
-                        "fontFamily",
-                        "textAlign",
-                        "colorPicker",
-                        "link",
-                        "embedded",
-                        "image",
-                        "remove",
-                        "history",
-                    ],
+                    options: determineOptions(),
                     image: {
                         defaultSize: {
                             height: "400",
@@ -112,7 +87,6 @@ const TextEditor = ({ editorUpdateCallback, initialHtmlLoadStr }) => {
                     },
                 }}
             />
-            {/* <div className="preview" dangerouslySetInnerHTML={createHtml(convertedContent)}></div> */}
         </div>
     );
 };
