@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+
 import TextEditor from "../../components/TextEditor";
 import AddButton from "../../components/AddButton";
 
 export default function BuddhistCulture() {
-    const [html, setHTML] = useState("");
+    const [html, setHTML] = React.useState("");
 
     return (
         <div style={{ marginLeft: "60px" }}>

@@ -38,7 +38,13 @@ export default function MobileConferences(props) {
      */
     useEffect(() => {
         // initalially set the page to render the first conference
-        setItem(itemList[index]);
+        if (props.location.search) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            const ind = itemList.findIndex((x) => x.confNum === confNum);
+            setIndex(ind);
+            setItem(itemList[ind]);
+        } else setItem(itemList[index]);
     }, []);
 
     /**
@@ -52,34 +58,6 @@ export default function MobileConferences(props) {
     };
 
     /**
-     * Rendersthe conference theme information
-     * title - the title of the conference
-     * location - location of the conference
-     * redirect - redirect url for registration
-     * theme - information about the conference
-     * info - overview of conference, files
-     * @returns Node - component to render
-     */
-    const displayInformation = () => (
-        <div>
-            <div className="theme-header-mobile">
-                <h2>Theme</h2>
-            </div>
-            <ConferenceTheme
-                redirect={item.signUpLink}
-                theme={item.theme}
-                signup={item.signUpLink}
-                location={item.location}
-                isMobile
-            />
-            <div className="overview-header-mobile">
-                <h2>Overview</h2>
-            </div>
-            <ConferenceOverview info={item} />
-        </div>
-    );
-
-    /**
      * Renders a slideshow or video depending on the tab
      * If theme, slideshow, otherwise video
      * @param {boolean} - display video or slideshow
@@ -87,12 +65,31 @@ export default function MobileConferences(props) {
      */
     const slideshowVideo = (isInfo) => {
         if (isInfo) {
+            if (item.slideShowImages.urls.length === 1) {
+                return (
+                    <div key={item.slideShowImages.urls[0]} height="400px" width="100%">
+                        {/* Set styling on the img */}
+                        <div className="mobile-slideshow-label">
+                            <h1>{item.title}</h1>
+                            <h3>{item.location}</h3>
+                        </div>
+                        <img
+                            style={{
+                                height: "400px",
+                                width: "100%",
+                            }}
+                            alt="Event Visual"
+                            src={item.slideShowImages.urls[0]}
+                        />
+                    </div>
+                );
+            }
             return (
                 <Slideshow height="400px" width="100%" isMobile>
                     {/* Loop through all the images associated with the conference */}
                     {item && item.slideShowImages
                         ? item.slideShowImages.urls.map((image) => (
-                              <div>
+                              <div key={image}>
                                   {/* Set styling on the img */}
                                   <div className="mobile-slideshow-label">
                                       <h1>{item.title}</h1>
@@ -126,6 +123,34 @@ export default function MobileConferences(props) {
         );
     };
 
+    /**
+     * Rendersthe conference theme information
+     * title - the title of the conference
+     * location - location of the conference
+     * redirect - redirect url for registration
+     * theme - information about the conference
+     * info - overview of conference, files
+     * @returns Node - component to render
+     */
+    const displayInformation = () => (
+        <div>
+            <div className="theme-header-mobile">
+                <h2>Theme</h2>
+            </div>
+            <ConferenceTheme
+                redirect={item.signUpLink}
+                theme={item.theme}
+                signup={item.signUpLink}
+                location={item.location}
+                isMobile
+            />
+            <div className="overview-header-mobile">
+                <h2>Overview</h2>
+            </div>
+            <ConferenceOverview info={item} />
+        </div>
+    );
+
     // check to see if data exists
     if (props.data.length === 0) {
         return (
@@ -148,6 +173,7 @@ export default function MobileConferences(props) {
                             items={props.data}
                             color="#6652a0"
                             setParentIndex={setParentIndex}
+                            location={props.location}
                         />
                     </div>
                 </div>

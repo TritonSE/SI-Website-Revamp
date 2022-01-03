@@ -9,11 +9,12 @@ export class SITE_PAGES {
     // Side Pages
     static VOLUNTEER = "/volunteer";
     static JOIN_US = "/join";
+    static DONATE = "/donate";
 
     // Resource SubPages
     static RESOURCES_LANDING = "/resources";
     static RESOURCES_NEWSLETTERS = "/resources/newsletters";
-    static RESOURCES_EPUBS = "/resources/epublications";
+    static RESOURCES_EPUBS = "/resources/publications";
     static RESOURCES_BUDDHIST_CULTURE = "/resources/buddhist-culture";
     static RESOURCES_ORDINATION_ISSUE = "/resources/ordination-issue";
 }

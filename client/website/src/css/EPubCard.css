@@ -5,8 +5,6 @@
   margin: 25px;
 }
 .EPubCard_title {
-  height: 62px;
-
   display: block;
 
   font-family: var(--heading-font);
@@ -16,10 +14,8 @@
   text-align: left;
 
   white-space: text-wrap;
-  overflow: hidden;
 }
 .EPubCard_author {
-  height: 30px;
   display: block;
 
   font-family: var(--text-font);
@@ -31,6 +27,7 @@
   text-align: left;
   padding-top: 5px;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .EPubCard_image {
@@ -41,6 +38,11 @@
   margin-bottom: 20px;
 }
 
+.EPubCard_image:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 0px 12px 3px var(--darkorange);
+}
+
 /* Mobile */
 .EPubCard--mobile {
   position: relative;
@@ -49,7 +51,7 @@
   margin: 25px;
 }
 .EPubCard_title--mobile {
-  height: 48px;
+  max-height: 48px;
 
   display: block;
 
@@ -63,7 +65,7 @@
   overflow: hidden;
 }
 .EPubCard_author--mobile {
-  height: 21px;
+  max-height: 21px;
   display: block;
 
   font-family: var(--text-font);
@@ -73,6 +75,7 @@
   text-align: center;
   padding-top: 5px;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .EPubCard_image--mobile {

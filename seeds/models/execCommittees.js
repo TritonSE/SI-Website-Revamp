@@ -2,16 +2,18 @@ const ExecCommittee = require("../../db/models/execCommittee");
 
 module.exports = async () => {
     await Promise.all([
+        // 2021 - 2025
         ExecCommittee.create(
             {
                 startYear: 2021,
                 endYear: 2025,
                 rank: 1,
-                name: "Carly Shay",
+                name: "Sharon A. Suh",
                 position: "President",
-                bio: "I'm the president of this committee!",
-                imageLink: "https://image14.photobiz.com/10164/3_20180601100153_22858585_large.jpg",
-                redirectLink: "https://google.com",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink:
+                    "https://www.dropbox.com/s/xcl700fofxmcdbu/Bio%20Sharon%20A%2C%20Suh.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -21,12 +23,12 @@ module.exports = async () => {
                 startYear: 2021,
                 endYear: 2025,
                 rank: 2,
-                name: "Sam Puckett",
+                name: "Hsiao-Lan Hu",
                 position: "Vice President",
-                bio: null,
-                imageLink:
-                    "https://i.pinimg.com/originals/77/71/68/7771683223d86b237a3304d6f32828b9.jpg",
-                redirectLink: null,
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink:
+                    "https://www.dropbox.com/s/a9dtefbzka23wj4/Bio%20Hsiao-Lan%20Hu.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -36,12 +38,12 @@ module.exports = async () => {
                 startYear: 2021,
                 endYear: 2025,
                 rank: 3,
-                name: "Cat Valentine",
-                position: "Secretary",
-                bio: "I'm the secretary of this committee!",
-                imageLink:
-                    "https://i.pinimg.com/originals/83/2a/46/832a460b522c84fa9650c11face5927e.jpg",
-                redirectLink: "https://google.com",
+                name: "Kaytee Sumida",
+                position: "Treasurer",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink:
+                    "https://www.dropbox.com/s/oi65xrhqx3ekn44/Bio%20Kaytee%20Sumida.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
@@ -51,103 +53,235 @@ module.exports = async () => {
                 startYear: 2021,
                 endYear: 2025,
                 rank: 4,
-                name: "Tori Vega",
-                position: "Treasurer",
-                bio: "I'm the secretary of this committee!",
-                imageLink:
-                    "https://expertphotography.b-cdn.net/wp-content/uploads/2019/12/professional-headshots-girl-laughing-outdoors-1.jpg",
-                redirectLink: "https://google.com",
+                name: "Thich Nu Tien Lien",
+                position: "Corresponding Secretary",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink:
+                    "https://www.dropbox.com/s/k5h0mw3dnu5xip8/Bio%20Thich%20Nu%20Tien%20Lien.pdf?raw=1",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2021,
+                endYear: 2025,
+                rank: 5,
+                name: "Buphyun Sunim",
+                position: "Recording Secretary",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink:
+                    "https://www.dropbox.com/s/1m9e56opgy2vfya/Bio%20Buphyun%20Sunim.pdf?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
         ),
 
-        // 2020
+        // 2013 - 2021
         ExecCommittee.create(
             {
-                startYear: 2016,
-                endYear: 2019,
+                startYear: 2013,
+                endYear: 2021,
                 rank: 1,
-                name: "Superman",
+                name: "Jetsunma Tenzin Palmo",
                 position: "President",
-                bio: "I'm the president of this committee!",
-                imageLink:
-                    "https://www.looper.com/img/gallery/supermans-live-action-costumes-ranked-worst-to-best/l-intro-1616093733.jpg",
-                redirectLink: null,
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "http://tenzinpalmo.com/tenzin_palmo/biography.htm",
                 openInSameTab: false,
             },
             { logging: false }
         ),
         ExecCommittee.create(
             {
-                startYear: 2016,
-                endYear: 2019,
+                startYear: 2013,
+                endYear: 2021,
                 rank: 2,
-                name: "Iron Man",
+                name: "Eun-su Cho",
                 position: "Vice President",
-                bio: "I'm the vice president of this committee!",
-                imageLink:
-                    "https://cdn-www.comingsoon.net/assets/uploads/2011/09/file_82704_1_ewavengersheadshots2.jpg",
-                redirectLink: "https://google.com",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
         ),
         ExecCommittee.create(
             {
-                startYear: 2016,
-                endYear: 2019,
-                rank: 2,
-                name: "Batman",
-                position: "Vice President",
-                bio: "I'm the vice president of this committee!",
-                imageLink: "https://pbs.twimg.com/media/DBj6fhYWsAAl8Ya.jpg",
-                redirectLink: "https://google.com",
-                openInSameTab: false,
-            },
-            { logging: false }
-        ),
-
-        // 2019
-        ExecCommittee.create(
-            {
-                startYear: 2000,
-                endYear: 2015,
-                rank: 1,
-                name: "Joker",
-                position: "President",
-                bio: "I'm the president of this committee!",
-                imageLink:
-                    "http://images6.fanpop.com/image/photos/39700000/Jared-as-The-Joker-jared-leto-39790684-236-354.jpg",
-                redirectLink: "https://google.com",
+                startYear: 2013,
+                endYear: 2021,
+                rank: 3,
+                name: "Kaytee Sumida",
+                position: "Secretary",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 openInSameTab: false,
             },
             { logging: false }
         ),
         ExecCommittee.create(
             {
-                startYear: 2000,
-                endYear: 2015,
-                rank: 2,
-                name: "Harley Quinn",
-                position: "Vice President",
-                bio: "I'm the vice president of this committee!",
-                imageLink:
-                    "https://c4.wallpaperflare.com/wallpaper/879/96/967/harley-quinn-margot-robbie-makeup-women-wallpaper-preview.jpg",
-                redirectLink: "https://google.com",
-                openInSameTab: false,
-            },
-            { logging: false }
-        ),
-        ExecCommittee.create(
-            {
-                startYear: 2000,
-                endYear: 2015,
+                startYear: 2013,
+                endYear: 2021,
                 rank: 4,
-                name: "Deadshot",
+                name: "Lien Bui",
                 position: "Treasurer",
-                bio: null,
-                redirectLink: "https://google.com",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2013,
+                endYear: 2021,
+                rank: 5,
+                name: "Bhikshuni Karma Lekshe Tsomo",
+                position: "Branch & Chapter Coordinator",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+
+        // 2009 - 2013
+        ExecCommittee.create(
+            {
+                startYear: 2009,
+                endYear: 2013,
+                rank: 1,
+                name: "Christie Yuling Chang",
+                position: "President",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "mailto:sakyadhita@gmail.com",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2009,
+                endYear: 2013,
+                rank: 2,
+                name: "Paula Arai",
+                position: "Vice President",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "mailto:parai@lsu.edu",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2009,
+                endYear: 2013,
+                rank: 3,
+                name: "Melissa Vincenty",
+                position: "Secretary",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "mailto:melissa@HanaleiRugCompany.com",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2009,
+                endYear: 2013,
+                rank: 4,
+                name: "Maria Arroyo",
+                position: "Treasurer",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "mailto:marroyo@crs.org",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2009,
+                endYear: 2013,
+                rank: 5,
+                name: "Bhikshuni Karma Lekshe Tsomo",
+                position: "Branch & Chapter Coordinator",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                redirectLink: "http://www.sandiego.edu/cas/theo/faculty/biography.php?ID=296",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+
+        // 2000-2009
+        ExecCommittee.create(
+            {
+                startYear: 2000,
+                endYear: 2009,
+                rank: 1,
+                name: "Bhikkshuni Karma Lekshe Tsomo",
+                position: "President",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2000,
+                endYear: 2009,
+                rank: 2,
+                name: "Christie Yuling Chang",
+                position: "Vice President",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2000,
+                endYear: 2009,
+                rank: 3,
+                name: "Carol Stevens",
+                position: "Secretary",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2000,
+                endYear: 2009,
+                rank: 4,
+                name: "Rebecca Paxton",
+                position: "Treasurer",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
+                openInSameTab: false,
+            },
+            { logging: false }
+        ),
+        ExecCommittee.create(
+            {
+                startYear: 2000,
+                endYear: 2009,
+                rank: 5,
+                name: "Evelyn Diane Cowie",
+                position: "Branch & Chapter Coordinator",
+                bio: "",
+                imageLink: "https://www.dropbox.com/s/ipsrms2hhq5c0q4/sexy.jpg?raw=1",
                 openInSameTab: false,
             },
             { logging: false }

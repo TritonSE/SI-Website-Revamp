@@ -7,7 +7,7 @@
  */
 const express = require("express");
 const { body } = require("express-validator");
-const { create, getAll, edit } = require("../db/services/conference");
+const { create, getAll, edit, remove } = require("../db/services/conference");
 const { isValidated } = require("../middleware/validation");
 
 const router = express.Router();
@@ -53,6 +53,18 @@ router.post(
                 return true;
             }),
         body("abstracts.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            }),
+        body("brochures.data")
             .isArray()
             .custom((value) => {
                 if (!value) return false;
@@ -151,6 +163,19 @@ router.put(
                 return true;
             })
             .optional(),
+        body("brochures.data")
+            .isArray()
+            .custom((value) => {
+                if (!value) return false;
+                // make sure that every entry in the array has a description/url
+                for (const i of value) {
+                    if (i === undefined || i.description === undefined || i.url === undefined) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            .optional(),
         body("video").isString().optional(),
         body("theme").isString().optional(),
         body("signUpLink").isString().optional(),
@@ -175,5 +200,29 @@ router.put(
         }
     }
 );
+
+/**
+ * Removes a single Conference event from DB.
+ *
+ * @param {Number} id - id of the conference to be removed.
+ */
+router.delete("/:id", [isValidated], async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // checks that id is a number
+        if (Number(id) < 0) return res.status(500).json({ message: "Id must be a valid number" });
+
+        const entries = await remove(Number(id));
+
+        // success upon removal
+        if (entries === 1) return res.status(200).json({ message: "Success" });
+
+        // failure upon removal
+        return res.status(500).json({ message: "Unsuccessful removal" });
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
 
 module.exports = router;

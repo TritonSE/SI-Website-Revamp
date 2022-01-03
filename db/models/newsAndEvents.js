@@ -12,16 +12,16 @@ module.exports = db.define(
         // By default, there will be a column called 'id' that will
         // auto-increment an integer value
         title: {
-            type: Sequelize.STRING(20),
+            type: Sequelize.STRING(40),
             allowNull: false,
         },
         description: {
-            type: Sequelize.STRING(175),
+            type: Sequelize.STRING(200),
             allowNull: true,
             defaultValue: "",
         },
         imageLink: {
-            type: Sequelize.STRING(500),
+            type: Sequelize.STRING(1000),
             allowNull: false,
         },
         redirectLink: {

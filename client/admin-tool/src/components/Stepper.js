@@ -57,7 +57,8 @@ const Stepper = ({
     // Calls whenever the prop for items changes in the parent
     useEffect(() => {
         setItems(displayItems);
-    }, [displayItems]);
+        setIndexButton("button");
+    }, []);
 
     const onPageChange = (itemList, currentPage) => {
         console.log(itemList);
@@ -71,7 +72,7 @@ const Stepper = ({
      * @param {object} item - the current item in the data list
      */
     const onNodeClick = (index, item) => {
-        handleNodeClick(pageNumber * 10 + index);
+        handleNodeClick(pageNumber * numItemsPerPage + index);
         // set the current index of the node
         setIndexButton(index);
         // remember the current active item
