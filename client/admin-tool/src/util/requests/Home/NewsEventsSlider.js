@@ -2,7 +2,7 @@
  * Contains any server calls made for the News & Events page on the admin tool.
  */
 
-const config = require("../../../config.js");
+const config = require("../../../config");
 
 const BACKEND_URL = config.backend.uri;
 

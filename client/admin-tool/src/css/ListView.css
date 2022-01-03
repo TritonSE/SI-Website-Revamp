@@ -1,0 +1,92 @@
+.listview-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  overflow-y: auto;
+  max-height: 120px;
+}
+
+.empty-listview {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.listview-node {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  transition: 0.2s ease-out;
+}
+
+.listview-node p {
+  display: inline;
+  white-space: nowrap;
+  width: 80%;
+  margin-left: 20px;
+  overflow-x: hidden;
+}
+
+.listview-node:hover {
+  transition: 0.2s ease-in;
+  background-color: rgb(228, 228, 228);
+  cursor: pointer;
+}
+
+.listview-node-icon {
+  margin-right: 40px;
+  display: none;
+}
+
+.listview-node:hover > .listview-node-icon {
+  display: block;
+}
+
+.listview-node-icon:hover {
+  color: rgb(234, 68, 68);
+}
+
+.listview-node:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.listview-node:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.listview-forms {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* Styling the scroll bar for the overview/theme */
+/* width */
+.listview-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.listview-container::-webkit-scrollbar-track {
+  background: rgb(240, 240, 240);
+}
+
+/* Handle */
+.listview-container::-webkit-scrollbar-thumb {
+  background: var(--lightpurple);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+.listview-container::-webkit-scrollbar-thumb:hover {
+  background: var(--darkpurple);
+}

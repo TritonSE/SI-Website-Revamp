@@ -35,11 +35,11 @@ module.exports = db.define(
             type: Sequelize.JSON,
             allowNull: true,
         },
-        abstracts: {
+        brochures: {
             type: Sequelize.JSON,
             allowNull: true,
         },
-        brochures: {
+        abstracts: {
             type: Sequelize.JSON,
             allowNull: true,
         },
