@@ -1,4 +1,9 @@
-.asterisk {
-    color: #ea444;
-    font-size: 18px;
+.newsletter-grid {
+    display: grid;
+    grid-template-columns: auto 200px;
+}
+
+.newsletter-grid-right {
+    text-align: center;
+    padding-top: 60px;
 }

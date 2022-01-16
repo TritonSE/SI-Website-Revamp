@@ -7,6 +7,8 @@ import { Snackbar } from "@material-ui/core";
 
 import Button from "../Button";
 
+import "../../css/NewsletterItem.css"
+
 export default function NewsletterItem() {
     /** React States */
 
@@ -61,11 +63,6 @@ export default function NewsletterItem() {
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
-            // form - general layout
-            "& .MuiFormControl-root": {
-                display: "inline",
-            },
-
             // input field - general layout
             "& .MuiTextField-root": {
                 width: "100%",
@@ -101,24 +98,33 @@ export default function NewsletterItem() {
 
     return (
         <div>
-            {
-                inputLabels.map((input, key) => {
-                    return <>
-                        { input.title == "" ? "" : <div className="title">{input.title}</div> }
+            <div className="newsletter-grid">
+                <div className="newsletter-grid-left">
+                {
+                    inputLabels.map((input, key) => {
+                        return <>
+                            { input.title == "" ? "" : <h2 className="title">{input.title}</h2> }
 
-                        <TextField
-                            margin="dense"
-                            disabled={isPageDisabled}
-                            error={dataErrors.title}
-                            placeholder={input.label}
-                            variant="outlined"
-                            className={classes.root}
-                        />
-                        {asterisk()}
-                        <br />
-                    </>
-                })
-            }
+                            <TextField
+                                margin="dense"
+                                disabled={isPageDisabled}
+                                error={dataErrors.title}
+                                placeholder={input.label}
+                                variant="outlined"
+                                className={classes.root}
+                            />
+                            {asterisk()}
+                            <br />
+                        </>
+                    })
+                }
+                </div>
+                <div className="newsletter-grid-right">
+                    <Button 
+                        text="Post"
+                    />
+                </div>
+            </div>
         </div>
     )
 }
