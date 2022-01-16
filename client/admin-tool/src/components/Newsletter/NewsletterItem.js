@@ -61,6 +61,11 @@ export default function NewsletterItem() {
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
+            // form - general layout
+            "& .MuiFormControl-root": {
+                display: "inline",
+            },
+
             // input field - general layout
             "& .MuiTextField-root": {
                 width: "100%",
@@ -86,19 +91,34 @@ export default function NewsletterItem() {
 
     const classes = useHelperTextStyles();
 
+    const inputLabels = [
+        { title: "Details", name: "volume", label: "Volume #" },
+        { title: "", name: "number", label: "Number #" },
+        { title: "", name: "year", label: "Year" },
+        { title: "", name: "pdfLink", label: "PDF link"},
+        { title: "Thumbnail Image", name: "thumbnailImg", label: "Insert image link" }
+    ]
+
     return (
         <div>
-            <span className="title">Newsletter Title</span> {asterisk()}
-            <TextField
-                margin="dense"
-                value="title"
-                disabled={isPageDisabled}
-                error={dataErrors.title}
-                placeholder="Insert title"
-                fullWidth
-                variant="outlined"
-                className={classes.root}
-            />
+            {
+                inputLabels.map((input, key) => {
+                    return <>
+                        { input.title == "" ? "" : <div className="title">{input.title}</div> }
+
+                        <TextField
+                            margin="dense"
+                            disabled={isPageDisabled}
+                            error={dataErrors.title}
+                            placeholder={input.label}
+                            variant="outlined"
+                            className={classes.root}
+                        />
+                        {asterisk()}
+                        <br />
+                    </>
+                })
+            }
         </div>
     )
 }
