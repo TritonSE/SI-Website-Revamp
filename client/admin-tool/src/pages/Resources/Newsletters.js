@@ -7,8 +7,10 @@
  * @author      Navid Boloorian, Elias Fang
  */
 
+import NewsletterWrapper from "../../components/Newsletter/NewsletterWrapper";
+
 export default function Newsletters() {
     return (
-        <div>Newsletters</div>
+        <NewsletterWrapper />
     )
 }

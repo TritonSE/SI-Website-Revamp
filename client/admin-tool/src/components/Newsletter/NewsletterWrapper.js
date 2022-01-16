@@ -6,6 +6,6 @@ import NewsletterItem from "./NewsletterItem";
 
 export default function NewsletterWrapper() {
     return (
-        <div>NewsletterWrapper</div>
+        <NewsletterItem />
     )
 }
