@@ -21,6 +21,52 @@ export default function NewsletterWrapper() {
         setIsPageLoading(true);
     };
 
+    const handleDeleteNewsletter = async () => {
+
+    }
+
+    const handleUpdateNewsletter = async (data) => {
+
+    }
+
+    const handleAddNewsletter = async (data) => {
+
+    }
+
+    /** Initialization */
+
+    React.useEffect(async () => {
+        await refreshNewsletters();
+    }, []);
+
+    /** Stepper */
+
+    const handNodeClick = (index) => {
+        setIndex(index);
+    };
+
+    const addNewNode = () => {
+        setIndex(-1);
+    };
+
+    const formatNodeTitle = (section) => section.title;
+
+    const addSpecialNodeClass = (section) =>  {
+
+    };
+
+    /** Formatting */
+
+    const formatDate = (dateStr) => {
+
+    };
+
+    if (isPageLoading) {
+        <div className = "newsletters-main-wrapper">
+            <h1>Newsletters</h1>
+        </div>
+    }
+
     return (
         <NewsletterItem />
     )
