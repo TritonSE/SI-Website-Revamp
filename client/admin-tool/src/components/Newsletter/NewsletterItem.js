@@ -9,12 +9,14 @@ import Button from "../Button";
 
 import "../../css/NewsletterItem.css"
 
-export default function NewsletterItem() {
+export default function NewsletterItem({ content, newNewlsetter, onDeleteCallback, onSaveCallback }) {
     /** React States */
 
     // holds newsletter data
     const [data, setData] = React.useState({
-        
+        title: "",
+        content: "",
+        isPublished: false,
     });
 
     // used for tracking required fields
@@ -32,8 +34,20 @@ export default function NewsletterItem() {
     /** Initialization */
 
     React.useEffect(() => {
-        
-    })
+        if(!content) return;
+
+        setDataErrors({
+            title: false,
+        });
+
+        setData({
+            title: content["title"] || "",
+            content: content["content"] || "",
+            isPublished: content["isPublished"] || false,
+        })
+
+        setIsPageDisabled(false);
+    }, [content])
 
     /** Functions/Validators */
 
@@ -55,7 +69,7 @@ export default function NewsletterItem() {
 
         if(!hasErrors) console.log("nice!");
         else handleSnackbar({ open: true, message: "there was an error"});
-    }
+    };
 
     /** Styling/Formatting */
     

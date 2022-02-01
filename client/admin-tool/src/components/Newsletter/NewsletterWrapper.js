@@ -58,8 +58,17 @@ export default function NewsletterWrapper({
     /** Initialization */
 
     React.useEffect(async () => {
-        await refreshNewsletters();
+        setIsPageLoading(true);
+        const data = await getItemsRequestCallback();
+        setNewsletters(data);
+        setIndex(-1);
+        setIsPageLoading(false);
     }, []);
+
+    React.useEffect(() => {
+        console.log(currentIndex);
+        console.log(newsletters)
+    }, [currentIndex, newsletters])
 
     /** Stepper */
 
@@ -71,7 +80,7 @@ export default function NewsletterWrapper({
         setIndex(-1);
     };
 
-    const formatNodeTitle = (newsletter) => newsletter.title;
+    const formatNodeTitle = (newsletter) => `Volume ${newsletter.volume} ${newsletter.year  }`;
 
     const addSpecialNodeClass = (newsletter) =>  {
         if(!newsletter.isPublished) return "orange-border";
