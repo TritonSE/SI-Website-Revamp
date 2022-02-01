@@ -7,11 +7,10 @@ import NewsletterItem from "./NewsletterItem";
 import "../../css/NewsletterWrapper.css";
 
 export default function NewsletterWrapper({
-    PAGE,
     pageTitle,
     addItemRequestCallback,
     deleteItemRequestCallback,
-    updateeItemRequestCallback,
+    updateItemRequestCallback,
     getItemsRequestCallback
 }) {
     const [newsletters, setNewsletters] = React.useState([]);
@@ -26,22 +25,34 @@ export default function NewsletterWrapper({
     /** Functions */
     const refreshNewsletters = async () => {
         setIsPageLoading(true);
-        const data = await getItemsRequestCallback(PAGE);
-        setSections(data);
+        const data = await getItemsRequestCallback();
+        setNewsletters(data);
         setIndex(-1);
         setIsPageLoading(false);
     };
 
     const handleDeleteNewsletter = async () => {
         const isSuccessful = await deleteItemRequestCallback(newsletters[currentIndex]["id"]);
+        if(isSuccessful) {
+            handleSnackbar({ open: true, message: "Newsletter successfully deleted"});
+            await refreshSections();
+        } else handleSnackbar({ open: true, message: "Error: Section could not be deleted"})
     }
 
     const handleUpdateNewsletter = async (data) => {
         const isSuccessful = await updateItemRequestCallback(newsletters[currentIndex]["id"], data);
+        if(isSuccessful) {
+            handleSnackbar({ open: true, message: "Newsletter successfully updated"});
+            await refreshSections();
+        } else handleSnackbar({ open: true, message: "Error: Section could not be updated"})
     }
 
     const handleAddNewsletter = async (data) => {
         const isSuccessful = await addItemRequestCallback(newsletters[currentIndex]["id"], data);
+        if(isSuccessful) {
+            handleSnackbar({ open: true, message: "Newsletter successfully added"});
+            await refreshSections();
+        } else handleSnackbar({ open: true, message: "Error: Section could not be added"})
     }
 
     /** Initialization */
@@ -131,6 +142,12 @@ export default function NewsletterWrapper({
                     )}
                 </div>
             </div>
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={() => handleSnackBar({ ...snackbar, open: false })}
+                message={snackbar.message}
+            />
         </div>
     )
 }

@@ -19,7 +19,7 @@ const BACKEND_URL = config.backend.uri;
  */
 export const fetchNewsletters = async () => {
     try {
-        const res = await fetch(`${BACKEND_URL}newsletters/`, {
+        const res = await fetch(`${BACKEND_URL}newsletters`, {
             method: "get",
             headers: {
                 "content-type": "application/json",
@@ -48,10 +48,43 @@ export const fetchNewsletters = async () => {
  * 
  * @returns { boolean } - True if successful, false otherwise
  */
-export const addNewsletters = async (content) => {
+export const addNewsletter = async (content) => {
     try {
         const res = await fetch(`${BACKEND_URL}newsletters/`, {
             method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(content),
+        });
+        // successfull
+        if (res.ok) {
+            const json = await res.json();
+            return json;
+        }
+
+        // any server issue
+        return null;
+
+        // fetch fails
+    } catch {
+        return null;
+    }
+};
+
+/**
+ * Edit an existing Newsletters object in the database.
+ *
+ * @param { int } id - Object Id in the database.
+ * @param { JSON } content - Object to edit. Must conform to model 
+ * schema
+ * 
+ * @returns { boolean } - True if successful, false otherwise
+ */
+export const updateNewsletter = async (id, content) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}newsletters/${id}`, {
+            method: "put",
             headers: {
                 "content-type": "application/json",
             },
@@ -72,22 +105,19 @@ export const addNewsletters = async (content) => {
 };
 
 /**
- * Edit an existing Newsletters object in the database.
+ * Delete an existing Newsletter object from the database.
  *
  * @param { int } id - Object Id in the database.
- * @param { JSON } content - Object to edit. Must conform to model 
- * schema
- * 
+ *
  * @returns { boolean } - True if successful, false otherwise
  */
-export const updateNewsletters = async (id, content) => {
+ export const deleteNewsletter = async (id) => {
     try {
         const res = await fetch(`${BACKEND_URL}newsletters/${id}`, {
-            method: "put",
+            method: "delete",
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(content),
         });
         // successfull
         if (res.ok) {

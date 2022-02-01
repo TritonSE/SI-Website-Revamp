@@ -8,9 +8,21 @@
  */
 
 import NewsletterWrapper from "../../components/Newsletter/NewsletterWrapper";
+import {
+    fetchNewsletters,
+    addNewsletter,
+    updateNewsletter,
+    deleteNewsletter,
+} from "../../util/requests/Resources/Newsletters";
 
 export default function Newsletters() {
     return (
-        <NewsletterWrapper />
+        <NewsletterWrapper 
+            pageTitle="Newsletters"
+            getItemsRequestCallback={fetchNewsletters}
+            addItemRequestCallback={addNewsletter}
+            updateNewsletter={updateNewsletter}
+            deleteItemRequestCallback={deleteNewsletter}
+        />
     )
 }
