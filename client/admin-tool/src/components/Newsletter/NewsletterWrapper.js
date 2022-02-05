@@ -20,7 +20,7 @@ export default function NewsletterWrapper({
 }) {
 
     const [isLoading, setIsLoading] = React.useState(false);
-    const [index, setIndex] = React.useState(-1);
+    const [currentIndex, setCurrentIndex] = React.useState(-1);
     const [newsletters, setNewsletters] = React.useState([]);
     const [snackbar, setSnackbar] = React.useState({
         open: false,
@@ -31,25 +31,56 @@ export default function NewsletterWrapper({
         setIsLoading(true);
         const data = await fetchNewsletters();
         setNewsletters(data);
-        setIndex(-1);
+        setCurrentIndex(-1);
         setIsLoading(false);
 
         console.log(newsletters);
+    };
+
+    const handleDeleteNewsletter = async() => {
+        const isSuccessful = await deleteItemRequestCallback(newsletters[currentIndex]["id"]);
+
+        if(isSuccessful) {
+            handleSnackBar({open: true, message: "Newsletter succesfully deleted"});
+            await loadData();
+        } else handleSnackBar({open: true, message: "Error: Newsletter could not be deleted"});
+    }
+
+    const handleUpdateNewsletter = async(data) => {
+        const isSuccessful = await updateItemRequestCallback(newsletters[currentIndex]["id"], data);
+
+        if(isSuccessful) {
+            await loadData();
+            handleSnackBar({open: true, message: "Newsletter succesfully updated"});
+        } else handleSnackBar({open: true, message: "Error: Newsletter could not be updated"});
+    }
+
+    const handleAddNewsletter = async(data) => {
+        const isSuccessful = await addItemRequestCallback(data);
+
+        if(isSuccessful) {
+            handleSnackBar({open: true, message: "Newsletter succesfully added"});
+            window.location.reload();
+        } else handleSnackBar({open: true, message: "Error: Newsletter could not be added"});
     }
 
     React.useEffect(async () => {
         await loadData();
     }, [])
 
-    const handleNodeClick = (ind) => {
-        setIndex(ind);
-        const newsletter = newsletters[ind];
+    const handleNodeClick = (index) => {
+        setCurrentIndex(index);
+    };
+
+    const addNewNode = () => {
+        setCurrentIndex(-1);
     };
 
     const formatNodeTitle = (newsletter) => `Volume ${newsletter.volume}, ${newsletter.year}`;
 
-    const addNewNode = () => {
-        setIndex(-1);
+    const addSpecialNodeClass = (newsletter) => {
+        if(!newsletter.isPublished) return "orange-border";
+        return "";
     };
 
     const handleSnackClose = () => {
@@ -87,7 +118,23 @@ export default function NewsletterWrapper({
                     <h1 className = "newsletters-title-h1">{pageTitle}</h1>
                 </div>
                 <div className = "newsletter-item-container">
-                    <NewsletterItem />
+                    {currentIndex > -1 ? (
+                        <NewsletterItem 
+                            i = {currentIndex}
+                            newNewlsetter = {false}
+                            content = {newsletters[currentIndex]}
+                            onDeleteCallback = {handleDeleteNewsletter}
+                            onSaveCallback = {handleUpdateNewsletter}
+                        />
+                    ) : (
+                        <NewsletterItem
+                            i = {currentIndex}
+                            newSection
+                            content = {{ content: "<p></p>" }}
+                            onSaveCallback = {handleAddNewsletter}
+                        />
+                    )
+                    }
                 </div>
             </section>
 

@@ -57,7 +57,7 @@ export default function NewsletterItem({ content, newNewlsetter, onDeleteCallbac
         let hasErrors = false;
         const errors = { title: false };
 
-        Object.keys(errors).forEch((key) => {
+        Object.keys(errors).forEach((key) => {
             if(data[key].length < 1) {
                 errors[key] = true;
                 hasErrors = true;
@@ -107,7 +107,7 @@ export default function NewsletterItem({ content, newNewlsetter, onDeleteCallbac
         { title: "", name: "number", label: "Number #" },
         { title: "", name: "year", label: "Year" },
         { title: "", name: "pdfLink", label: "PDF link"},
-        { title: "Thumbnail Image", name: "thumbnailImg", label: "Insert image link" }
+        { title: "Thumbnail Image", name: "imageLink", label: "Insert image link" }
     ]
 
     return (
@@ -121,11 +121,15 @@ export default function NewsletterItem({ content, newNewlsetter, onDeleteCallbac
 
                             <TextField
                                 margin="dense"
+                                value={content[input.name]}
                                 disabled={isPageDisabled}
                                 error={dataErrors.title}
                                 placeholder={input.label}
                                 variant="outlined"
                                 className={classes.root}
+                                style = {{
+                                    minWidth: 400
+                                }}
                             />
                             {asterisk()}
                             <br />
