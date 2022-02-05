@@ -9,7 +9,7 @@ import Button from "../Button";
 
 import "../../css/NewsletterItem.css"
 
-export default function NewsletterItem({ content, newNewlsetter, onDeleteCallback, onSaveCallback }) {
+export default function NewsletterItem({ content, newNewsletter, onDeleteCallback, onSaveCallback }) {
     /** React States */
 
     // holds newsletter data
@@ -138,9 +138,24 @@ export default function NewsletterItem({ content, newNewlsetter, onDeleteCallbac
                 }
                 </div>
                 <div className="newsletter-grid-right">
-                    <Button 
-                        text="Post"
-                    />
+                    {newNewsletter ? (
+                        <Button 
+                            text="Post"
+                        />
+                    ) : (
+                        <>
+                            <Button
+                                style={{display: "inline", marginRight: 20}}
+                                text="Update"
+                            />
+                            <Button
+                                style={{backgroundColor: "rgb(234, 68, 68)"}}
+                                text="Delete"
+                            />
+                        </>
+                    )
+
+                    }
                 </div>
             </div>
         </div>

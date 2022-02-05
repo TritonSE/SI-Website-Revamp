@@ -1,6 +1,7 @@
 .newsletter-grid {
     display: grid;
-    grid-template-columns: auto 200px;
+    grid-template-columns: auto auto;
+    grid-gap: 30px;
 }
 
 .newsletter-grid-right {

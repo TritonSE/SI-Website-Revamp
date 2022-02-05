@@ -22,6 +22,7 @@ export default function NewsletterWrapper({
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
     const [newsletters, setNewsletters] = React.useState([]);
+    const [title, setTitle] = React.useState(pageTitle);
     const [snackbar, setSnackbar] = React.useState({
         open: false,
         message: "",
@@ -68,6 +69,15 @@ export default function NewsletterWrapper({
         await loadData();
     }, [])
 
+    React.useEffect(() => {
+        if (currentIndex == -1) {
+            setTitle("Add Newsletter")
+        }
+        else {
+            setTitle("Edit Newsletter")
+        }
+    }, [currentIndex])
+
     const handleNodeClick = (index) => {
         setCurrentIndex(index);
     };
@@ -101,7 +111,11 @@ export default function NewsletterWrapper({
     return(
         <div className = "newsletters-container">
             <section className = "stepper-section">
-                <div className = "stepper-section-div">
+                <div 
+                    className = "stepper-section-div"
+                    style = {{
+                        marginTop: 40
+                    }}>
                     <Stepper
                         displayItems={newsletters}
                         handleNodeClick={handleNodeClick}
@@ -115,8 +129,8 @@ export default function NewsletterWrapper({
             
             <section className = "newsletters-edit-section">
                 <div className = "newsletters-title">
-                    <h1 style = {{ fontSize: 40, fontWeight: 700, marginBottom: 20 }} className = "newsletters-title-h1">
-                            {pageTitle}
+                    <h1 style = {{ fontSize: 40, fontWeight: 700, marginBottom: 10 }} className = "newsletters-title-h1">
+                        {title}
                     </h1>
                 </div>
                 <div className = "newsletter-item-container">
@@ -131,22 +145,12 @@ export default function NewsletterWrapper({
                     ) : (
                         <NewsletterItem
                             i = {currentIndex}
-                            newSection
+                            newNewsletter
                             content = {{ content: "<p></p>" }}
                             onSaveCallback = {handleAddNewsletter}
                         />
                     )
                     }
-                </div>
-            </section>
-
-            <section className = "post-buttons">
-                <div className = "add-conference">
-
-                </div>
-
-                <div className = "delete-conference">
-
                 </div>
             </section>
 
