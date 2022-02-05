@@ -5,11 +5,11 @@ import Stepper from "../Stepper";
 import NewsletterItem from "./NewsletterItem";
 import Loader from "../Loader";
 
-import "../../css/NewsletterWrapper.css";
-
 import {
     fetchNewsletters
 } from "../../util/requests/Resources/Newsletters"
+
+import "../../css/NewsletterWrapper.css";
 
 export default function NewsletterWrapper({
     pageTitle,
@@ -115,7 +115,9 @@ export default function NewsletterWrapper({
             
             <section className = "newsletters-edit-section">
                 <div className = "newsletters-title">
-                    <h1 className = "newsletters-title-h1">{pageTitle}</h1>
+                    <h1 style = {{ fontSize: 40, fontWeight: 700, marginBottom: 20 }} className = "newsletters-title-h1">
+                            {pageTitle}
+                    </h1>
                 </div>
                 <div className = "newsletter-item-container">
                     {currentIndex > -1 ? (
