@@ -18,15 +18,23 @@ export default function NewsletterWrapper({
     updateItemRequestCallback,
     getItemsRequestCallback
 }) {
-
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
     const [newsletters, setNewsletters] = React.useState([]);
     const [title, setTitle] = React.useState(pageTitle);
+
     const [snackbar, setSnackbar] = React.useState({
         open: false,
         message: "",
     });
+
+    const [newsletterTemplate, setNewsletterTemplate] = React.useState({
+        volume: "",
+        number: "",
+        year: "",
+        pdfLink: "",
+        imageLink: ""
+    })
 
     const loadData = async () => {
         setIsLoading(true);
@@ -146,7 +154,7 @@ export default function NewsletterWrapper({
                         <NewsletterItem
                             i = {currentIndex}
                             newNewsletter
-                            content = {{ content: "<p></p>" }}
+                            content = {newsletterTemplate}
                             onSaveCallback = {handleAddNewsletter}
                         />
                     )
