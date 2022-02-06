@@ -17,12 +17,12 @@ import {
 
 export default function Newsletters() {
     return (
-        <NewsletterWrapper 
+        <NewsletterWrapper
             pageTitle="Newsletters"
             getItemsRequestCallback={fetchNewsletters}
             addItemRequestCallback={addNewsletter}
             updateItemRequestCallback={updateNewsletter}
             deleteItemRequestCallback={deleteNewsletter}
         />
-    )
+    );
 }

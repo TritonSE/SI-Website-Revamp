@@ -1,7 +1,7 @@
 /**
- * Contains any server calls made for the Newsletters page 
+ * Contains any server calls made for the Newsletters page
  * on the admin tool.
- * 
+ *
  * @summary     Newsletters server calls.
  * @author      Elias Fang
  * @author      Navid Boloorian
@@ -15,7 +15,7 @@ const BACKEND_URL = config.backend.uri;
  * Retrieves all newsletters items from database. [] \
  * is returned if any issues occur.
  *
- * @returns { [JSON] } - Each object denotes a unique Newsletters 
+ * @returns { [JSON] } - Each object denotes a unique Newsletters
  * item stored in the database
  */
 export const fetchNewsletters = async () => {
@@ -44,14 +44,14 @@ export const fetchNewsletters = async () => {
 /**
  * Add a new Newsletters object to the database.
  *
- * @param { JSON } content - Object to add. Must conform to model 
+ * @param { JSON } content - Object to add. Must conform to model
  * schema
- * 
+ *
  * @returns { boolean } - True if successful, false otherwise
  */
 export const addNewsletter = async (content) => {
     try {
-        console.log(content)
+        console.log(content);
 
         const res = await fetch(`${BACKEND_URL}newsletters/`, {
             method: "post",
@@ -61,7 +61,7 @@ export const addNewsletter = async (content) => {
             body: JSON.stringify(content),
         });
 
-        console.log(res)
+        console.log(res);
 
         // successfull
         if (res.ok) {
@@ -82,9 +82,9 @@ export const addNewsletter = async (content) => {
  * Edit an existing Newsletters object in the database.
  *
  * @param { int } id - Object Id in the database.
- * @param { JSON } content - Object to edit. Must conform to model 
+ * @param { JSON } content - Object to edit. Must conform to model
  * schema
- * 
+ *
  * @returns { boolean } - True if successful, false otherwise
  */
 export const updateNewsletter = async (id, content) => {
@@ -117,7 +117,7 @@ export const updateNewsletter = async (id, content) => {
  *
  * @returns { boolean } - True if successful, false otherwise
  */
- export const deleteNewsletter = async (id) => {
+export const deleteNewsletter = async (id) => {
     try {
         const res = await fetch(`${BACKEND_URL}newsletters/${id}`, {
             method: "delete",

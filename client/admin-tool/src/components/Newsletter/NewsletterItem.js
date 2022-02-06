@@ -2,14 +2,18 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@mui/material/TextField";
-import { styled } from "@mui/material/styles";
 import { Snackbar } from "@material-ui/core";
 
 import Button from "../Button";
 
-import "../../css/NewsletterItem.css"
+import "../../css/NewsletterItem.css";
 
-export default function NewsletterItem({ content, newNewsletter, onDeleteCallback, onSaveCallback }) {
+export default function NewsletterItem({
+    content,
+    newNewsletter,
+    onDeleteCallback,
+    onSaveCallback,
+}) {
     /** React States */
 
     // holds newsletter data
@@ -18,7 +22,7 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
         number: "",
         year: "",
         pdfLink: "",
-        imageLink: ""
+        imageLink: "",
     });
 
     // used for tracking required fields
@@ -27,7 +31,7 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
         number: false,
         year: false,
         pdfLink: false,
-        imageLink: false
+        imageLink: false,
     });
 
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
@@ -40,14 +44,14 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
     /** Initialization */
 
     React.useEffect(() => {
-        if(!content) return;
+        if (!content) return;
 
         setDataErrors({
             volume: false,
             number: false,
             year: false,
             pdfLink: false,
-            imageLink: false
+            imageLink: false,
         });
 
         setData({
@@ -59,7 +63,7 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
         });
 
         setIsPageDisabled(false);
-    }, [content])
+    }, [content]);
 
     /** Functions/Validators */
 
@@ -71,50 +75,62 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
             number: false,
             year: false,
             pdfLink: false,
-            imageLink: false
+            imageLink: false,
         };
 
         let hasErrors = false;
         let errorString = "Error: ";
 
         Object.keys(data).forEach((key) => {
-            if(data[key].length < 1) {
+            if (data[key].length < 1) {
                 errors[key] = true;
                 hasErrors = true;
-                errorString += " all fields are required;"
+                errorString += " all fields are required;";
             }
         });
 
-        console.log(typeof data["year"])
+<<<<<<< Updated upstream
+        console.log(typeof data["year"]);
 
-        if(data["year"].toString().length != 4) {
+        if (data["year"].toString().length != 4) {
+=======
+        if (data["year"].toString().length !== 4 || Number.isNaN(data["year"])) {
+>>>>>>> Stashed changes
             errors["year"] = true;
             hasErrors = true;
             errorString += " year must be a 4 digit integer;";
         }
 
-        if(isNaN(data["volume"])) {
+<<<<<<< Updated upstream
+        if (isNaN(data["volume"])) {
+=======
+        if (Number.isNaN(data["volume"])) {
+>>>>>>> Stashed changes
             errors["year"] = true;
             hasErrors = true;
-            errorString += " volume must be an integer;"
+            errorString += " volume must be an integer;";
         }
 
-        if(isNaN(data["number"])) {
+<<<<<<< Updated upstream
+        if (isNaN(data["number"])) {
+=======
+        if (Number.isNaN(data["number"])) {
+>>>>>>> Stashed changes
             errors["year"] = true;
             hasErrors = true;
-            errorString += " number must be an integer;"
+            errorString += " number must be an integer;";
         }
 
         setDataErrors(errors);
         setIsPageDisabled(false);
 
-        if(!hasErrors) onSaveCallback(data);
-        else handleSnackbar({ open: true, message: errorString});
+        if (!hasErrors) onSaveCallback(data);
+        else handleSnackbar({ open: true, message: errorString });
     };
 
     /** Styling/Formatting */
-    
-    const asterisk = () => <span className="asterisk">*</span>
+
+    const asterisk = () => <span className="asterisk">*</span>;
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -147,64 +163,57 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
         { title: "Details", name: "volume", label: "Volume #" },
         { title: "", name: "number", label: "Number #" },
         { title: "", name: "year", label: "Year" },
-        { title: "", name: "pdfLink", label: "PDF link"},
-        { title: "Thumbnail Image", name: "imageLink", label: "Insert image link" }
-    ]
+        { title: "", name: "pdfLink", label: "PDF link" },
+        { title: "Thumbnail Image", name: "imageLink", label: "Insert image link" },
+    ];
 
     return (
-
-        
         <div>
             <div className="newsletter-grid">
                 <div className="newsletter-grid-left">
-                {
-                    inputLabels.map((input, key) => {
-                        return <>
-                            { input.title == "" ? "" : <h2 className="title">{input.title}</h2> }
+                    {inputLabels.map((input) => {
+                        return (
+                            <>
+                                {input.title === "" ? "" : <h2 className="title">{input.title}</h2>}
 
-                            <TextField
-                                margin="dense"
-                                value={data[input.name]}
-                                disabled={isPageDisabled}
-                                placeholder={input.label}
-                                error={dataErrors[input.label]}
-                                variant="outlined"
-                                className={classes.root}
-                                onChange={(event) => {
-                                    setData({...data, [input.name]: event.target.value})}
-                                }
-                                style = {{
-                                    minWidth: 400
-                                }}
-                            />
-                            {asterisk()}
-                            <br />
-                        </>
-                    })
-                }
+                                <TextField
+                                    margin="dense"
+                                    value={data[input.name]}
+                                    disabled={isPageDisabled}
+                                    placeholder={input.label}
+                                    error={dataErrors[input.label]}
+                                    variant="outlined"
+                                    className={classes.root}
+                                    onChange={(event) => {
+                                        setData({ ...data, [input.name]: event.target.value });
+                                    }}
+                                    style={{
+                                        minWidth: 400,
+                                    }}
+                                />
+                                {asterisk()}
+                                <br />
+                            </>
+                        );
+                    })}
                 </div>
                 <div className="newsletter-grid-right">
                     {newNewsletter ? (
-                        <Button 
-                            text="Post"
-                            onClickCallback={validateData}
-                        />
+                        <Button text="Post" onClickCallback={validateData} />
                     ) : (
                         <>
                             <Button
-                                style={{display: "inline", marginRight: 20}}
+                                style={{ display: "inline", marginRight: 20 }}
                                 text="Update"
                                 onClickCallback={validateData}
                             />
                             <Button
-                                style={{backgroundColor: "rgb(234, 68, 68)"}}
+                                style={{ backgroundColor: "rgb(234, 68, 68)" }}
                                 text="Delete"
                                 onClickCallback={onDeleteCallback}
                             />
                         </>
-                    )
-
-                    }
+                    )}
                 </div>
             </div>
             <Snackbar
@@ -214,5 +223,5 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
                 message={snackbar.message}
             />
         </div>
-    )
+    );
 }

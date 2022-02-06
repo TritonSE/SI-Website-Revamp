@@ -1,13 +1,11 @@
 import React from "react";
-import {Snackbar} from "@material-ui/core";
+import { Snackbar } from "@material-ui/core";
 
 import Stepper from "../Stepper";
 import NewsletterItem from "./NewsletterItem";
 import Loader from "../Loader";
 
-import {
-    fetchNewsletters
-} from "../../util/requests/Resources/Newsletters"
+import { fetchNewsletters } from "../../util/requests/Resources/Newsletters";
 
 import "../../css/NewsletterWrapper.css";
 
@@ -16,15 +14,15 @@ export default function NewsletterWrapper({
     addItemRequestCallback,
     deleteItemRequestCallback,
     updateItemRequestCallback,
-    getItemsRequestCallback
+    getItemsRequestCallback,
 }) {
     const newsletterTemplate = {
         volume: "",
         number: "",
         year: "",
         pdfLink: "",
-        imageLink: ""
-    }
+        imageLink: "",
+    };
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
@@ -38,53 +36,59 @@ export default function NewsletterWrapper({
 
     const loadData = async () => {
         setIsLoading(true);
-        const data = await fetchNewsletters();
+        const data = await getItemsRequestCallback();
         setNewsletters(data);
         setCurrentIndex(-1);
         setIsLoading(false);
     };
 
-    const handleDeleteNewsletter = async() => {
+    const handleDeleteNewsletter = async () => {
         const isSuccessful = await deleteItemRequestCallback(newsletters[currentIndex]["id"]);
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Newsletter succesfully deleted"});
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Newsletter succesfully deleted" });
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Newsletter could not be deleted"});
-    }
+        } else handleSnackbar({ open: true, message: "Error: Newsletter could not be deleted" });
+    };
 
-    const handleUpdateNewsletter = async(data) => {
+    const handleUpdateNewsletter = async (data) => {
         const isSuccessful = await updateItemRequestCallback(newsletters[currentIndex]["id"], data);
 
-        if(isSuccessful) {
+        if (isSuccessful) {
             await loadData();
-            handleSnackbar({open: true, message: "Newsletter succesfully updated"});
-        } else handleSnackbar({open: true, message: "Error: Newsletter could not be updated"});
-    }
+            handleSnackbar({ open: true, message: "Newsletter succesfully updated" });
+        } else handleSnackbar({ open: true, message: "Error: Newsletter could not be updated" });
+    };
 
-    const handleAddNewsletter = async(data) => {
+    const handleAddNewsletter = async (data) => {
         const isSuccessful = await addItemRequestCallback(data);
 
+<<<<<<< Updated upstream
         console.log(isSuccessful);
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Newsletter succesfully added"});
+=======
+>>>>>>> Stashed changes
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Newsletter succesfully added" });
             window.location.reload();
-        } else handleSnackbar({open: true, message: "Error: Newsletter could not be added"});
-    }
+        } else handleSnackbar({ open: true, message: "Error: Newsletter could not be added" });
+    };
 
     React.useEffect(async () => {
         await loadData();
-    }, [])
+    }, []);
 
     React.useEffect(() => {
+<<<<<<< Updated upstream
         if (currentIndex == -1) {
-            setTitle("Add Newsletter")
+=======
+        if (currentIndex === -1) {
+>>>>>>> Stashed changes
+            setTitle("Add Newsletter");
+        } else {
+            setTitle("Edit Newsletter");
         }
-        else {
-            setTitle("Edit Newsletter")
-        }
-    }, [currentIndex])
+    }, [currentIndex]);
 
     const handleNodeClick = (index) => {
         setCurrentIndex(index);
@@ -96,31 +100,27 @@ export default function NewsletterWrapper({
 
     const formatNodeTitle = (newsletter) => `Volume ${newsletter.volume}, ${newsletter.year}`;
 
-    const addSpecialNodeClass = (newsletter) => {
-        if(!newsletter.isPublished) return "orange-border";
-        return "";
-    };
-
     const handleSnackClose = () => {
         handleSnackbar({ open: false });
     };
 
-    if(isLoading) {
-        return(
+    if (isLoading) {
+        return (
             <div>
                 <Loader />
             </div>
-        )
+        );
     }
 
-    return(
-        <div className = "newsletters-container">
-            <section className = "stepper-section">
-                <div 
-                    className = "stepper-section-div"
-                    style = {{
-                        marginTop: 40
-                    }}>
+    return (
+        <div className="newsletters-container">
+            <section className="stepper-section">
+                <div
+                    className="stepper-section-div"
+                    style={{
+                        marginTop: 40,
+                    }}
+                >
                     <Stepper
                         displayItems={newsletters}
                         handleNodeClick={handleNodeClick}
@@ -131,31 +131,33 @@ export default function NewsletterWrapper({
                     />
                 </div>
             </section>
-            
-            <section className = "newsletters-edit-section">
-                <div className = "newsletters-title">
-                    <h1 style = {{ fontSize: 40, fontWeight: 700, marginBottom: 10 }} className = "newsletters-title-h1">
+
+            <section className="newsletters-edit-section">
+                <div className="newsletters-title">
+                    <h1
+                        style={{ fontSize: 40, fontWeight: 700, marginBottom: 10 }}
+                        className="newsletters-title-h1"
+                    >
                         {title}
                     </h1>
                 </div>
-                <div className = "newsletter-item-container">
+                <div className="newsletter-item-container">
                     {currentIndex > -1 ? (
-                        <NewsletterItem 
-                            i = {currentIndex}
-                            newNewlsetter = {false}
-                            content = {newsletters[currentIndex]}
-                            onDeleteCallback = {handleDeleteNewsletter}
-                            onSaveCallback = {handleUpdateNewsletter}
+                        <NewsletterItem
+                            i={currentIndex}
+                            newNewlsetter={false}
+                            content={newsletters[currentIndex]}
+                            onDeleteCallback={handleDeleteNewsletter}
+                            onSaveCallback={handleUpdateNewsletter}
                         />
                     ) : (
                         <NewsletterItem
-                            i = {currentIndex}
+                            i={currentIndex}
                             newNewsletter
-                            content = {newsletterTemplate}
-                            onSaveCallback = {handleAddNewsletter}
+                            content={newsletterTemplate}
+                            onSaveCallback={handleAddNewsletter}
                         />
-                    )
-                    }
+                    )}
                 </div>
             </section>
 
@@ -166,5 +168,5 @@ export default function NewsletterWrapper({
                 message={snackbar.message}
             />
         </div>
-    )
+    );
 }

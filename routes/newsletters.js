@@ -84,26 +84,25 @@ router.put(
 );
 
 router.delete("/:id", [isValidated], async (req, res) => {
-        const { id } = req.params;
+    const { id } = req.params;
 
-        // checks if id is invalid and returns 400 status
-        if (Number(id) < 0) {
-            return res.status(400).json({ message: "Syntax Error in Request" });
-        }
-
-        try {
-            const numDeleted = await deleteOne(Number(id));
-
-            // checks if an entry was updated
-            if (numDeleted === 1) {
-                return res.status(200).json({ message: "Success" });
-            }
-            return res.status(500).json({ message: "Delete Unsuccessful" });
-        } catch (err) {
-            return res.status(500).json({ message: err });
-        }
+    // checks if id is invalid and returns 400 status
+    if (Number(id) < 0) {
+        return res.status(400).json({ message: "Syntax Error in Request" });
     }
-);
+
+    try {
+        const numDeleted = await deleteOne(Number(id));
+
+        // checks if an entry was updated
+        if (numDeleted === 1) {
+            return res.status(200).json({ message: "Success" });
+        }
+        return res.status(500).json({ message: "Delete Unsuccessful" });
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
 
 /**
  * Retrieves all entries in the Newsletters table.

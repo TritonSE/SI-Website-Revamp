@@ -55,13 +55,13 @@ async function editOne(id, data) {
 
 /**
  * Deletes the entry in the Newsletters table with the specified id
- * 
- * @param {*} id - id of newsletter entry to delete 
+ *
+ * @param {*} id - id of newsletter entry to delete
  */
 async function deleteOne(id) {
     return Newsletters.destroy({
         where: {
-            id: id,
+            id,
         },
     });
 }
@@ -70,5 +70,5 @@ module.exports = {
     getAll,
     addOne,
     editOne,
-    deleteOne
+    deleteOne,
 };
