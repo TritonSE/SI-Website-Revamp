@@ -1,0 +1,84 @@
+.listviewimages-container {
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  overflow-y: auto;
+  max-height: 120px;
+}
+
+.empty-listviewimages {
+  border: none;
+}
+
+.listviewimages-node {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  transition: 0.2s ease-out;
+}
+
+.listviewimages-node p {
+  display: inline;
+  white-space: nowrap;
+  width: 80%;
+  margin-left: 20px;
+  overflow-x: hidden;
+}
+
+.listviewimages-node-icon {
+  margin-right: 40px;
+  display: none;
+}
+
+.listviewimages-node:hover {
+  transition: 0.2s ease-in;
+  background-color: rgb(228, 228, 228);
+  cursor: pointer;
+}
+
+.listviewimages-node:hover > .listviewimages-node-icon {
+  display: block;
+}
+
+.listviewimages-node-icon:hover {
+  color: rgb(234, 68, 68);
+}
+
+.listviewimages-node:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.listviewimages-node:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.listviewimages-forms {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Styling the scroll bar for the overview/theme */
+/* width */
+.listviewimages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.listviewimages-container::-webkit-scrollbar-track {
+  background: rgb(240, 240, 240);
+}
+
+/* Handle */
+.listviewimages-container::-webkit-scrollbar-thumb {
+  background: var(--lightpurple);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+.listviewimages-container::-webkit-scrollbar-thumb:hover {
+  background: var(--darkpurple);
+}

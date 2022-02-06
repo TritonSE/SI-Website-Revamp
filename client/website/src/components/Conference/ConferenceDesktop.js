@@ -40,7 +40,13 @@ export default function ConferencesDesktop(props) {
      */
     useEffect(() => {
         // initalially set the page to render the first conference
-        setItem(itemList[index]);
+        if (props.location.search) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            const ind = itemList.findIndex((x) => x.confNum === confNum);
+            setIndex(ind);
+            setItem(itemList[ind]);
+        } else setItem(itemList[index]);
     }, []);
 
     /**
@@ -60,32 +66,32 @@ export default function ConferencesDesktop(props) {
         setItem(itemList[step]);
     };
 
-    /**
-     * Rendersthe conference theme information
-     *      title - the title of the conference
-     *      location - location of the conference
-     *      redirect - redirect url for registration
-     *      theme - information about the conference
-     *      info - overview of conference, files
-     * @returns Node - component to render
-     */
-    const displayInformation = () => {
-        if (isInfo) {
-            return (
-                <ConferenceTheme
-                    title={item.title}
-                    location={item.location}
-                    redirect={item.signUpLink}
-                    theme={item.theme}
-                    signup={item.signUpLink}
-                    isMobile={false}
-                />
-            );
-        }
-
-        // if it is not the info tab, then render the overview tab
-        return <ConferenceOverview info={item} title={item.title} />;
-    };
+    const tabs = () => (
+        <div className="slideshow-section">
+            <div className="slideshow-section-tabs">
+                {/* The 'theme' tab button */}
+                <button
+                    className={
+                        isInfo ? "slideshow-section-theme-active" : "slideshow-section-theme"
+                    }
+                    onClick={() => updateInformation()}
+                    type="button"
+                >
+                    Theme
+                </button>
+                {/* The 'overview' tab button */}
+                <button
+                    className={
+                        isInfo ? "slideshow-section-overview" : "slideshow-section-overview-active"
+                    }
+                    onClick={() => updateInformation()}
+                    type="button"
+                >
+                    Overview
+                </button>
+            </div>
+        </div>
+    );
 
     /**
      * Renders a slideshow or video depending on the tab
@@ -94,17 +100,26 @@ export default function ConferencesDesktop(props) {
      */
     const slideshowVideo = () => {
         if (isInfo || !item.video) {
+            if (item.slideShowImages.urls.length === 1) {
+                return (
+                    <div key={item.slideShowImages.urls[0]} height="430px" width="100%">
+                        {/* Set styling on the img */}
+                        <img
+                            className="img-slideshow-conferences"
+                            alt="Event Visual"
+                            src={item.slideShowImages.urls[0]}
+                        />
+                    </div>
+                );
+            }
             return (
-                <Slideshow height="430px" width="100%">
+                <Slideshow height="430px" width="100%" isMobile={false}>
                     {/* Loop through all the images associated with the conference */}
                     {item.slideShowImages.urls.map((image) => (
-                        <div>
+                        <div key={image}>
                             {/* Set styling on the img */}
                             <img
-                                style={{
-                                    height: "430px",
-                                    width: "100%",
-                                }}
+                                className="img-slideshow-conferences"
                                 alt="Event Visual"
                                 src={image}
                             />
@@ -127,6 +142,42 @@ export default function ConferencesDesktop(props) {
         );
     };
 
+    /**
+     * Rendersthe conference theme information
+     *      title - the title of the conference
+     *      location - location of the conference
+     *      redirect - redirect url for registration
+     *      theme - information about the conference
+     *      info - overview of conference, files
+     * @returns Node - component to render
+     */
+    const displayInformation = () => {
+        if (isInfo) {
+            return (
+                <ConferenceTheme
+                    title={item.title}
+                    location={item.location}
+                    redirect={item.signUpLink}
+                    theme={item.theme}
+                    signup={item.signUpLink}
+                    isMobile={false}
+                    slideShow={slideshowVideo}
+                    tabs={tabs}
+                />
+            );
+        }
+
+        // if it is not the info tab, then render the overview tab
+        return (
+            <ConferenceOverview
+                info={item}
+                title={item.title}
+                slideShow={slideshowVideo}
+                tabs={tabs}
+            />
+        );
+    };
+
     // check to see if data exists
     if (props.data.length === 0) {
         return (
@@ -141,49 +192,22 @@ export default function ConferencesDesktop(props) {
             <div className="component-display">
                 {/* The vertical stepper */}
                 <div className="conference-vertical-stepper">
-                    <VerticalStepper
-                        items={props.data}
-                        color="#6652a0"
-                        setParentIndex={setParentIndex}
-                    />
+                    <div className="sticky-vertical-stepper">
+                        <VerticalStepper
+                            items={props.data}
+                            color="#6652a0"
+                            setParentIndex={setParentIndex}
+                            location={props.location}
+                        />
+                    </div>
                 </div>
 
                 {/* This outer div is used for 1050 < x < 1200 screen widths */}
                 <div className="small-desktop-div-container">
                     {/* Display the information for either theme or overview */}
-                    <div className="conference-container">{displayInformation()}</div>
-
-                    {/* The tabs to switch between theme and overview */}
-                    <div className="slideshow-section">
-                        <div className="slideshow-section-tabs">
-                            {/* The 'theme' tab button */}
-                            <button
-                                className={
-                                    isInfo
-                                        ? "slideshow-section-theme-active"
-                                        : "slideshow-section-theme"
-                                }
-                                onClick={() => updateInformation()}
-                                type="button"
-                            >
-                                Theme
-                            </button>
-                            {/* The 'overview' tab button */}
-                            <button
-                                className={
-                                    isInfo
-                                        ? "slideshow-section-overview"
-                                        : "slideshow-section-overview-active"
-                                }
-                                onClick={() => updateInformation()}
-                                type="button"
-                            >
-                                Overview
-                            </button>
-                        </div>
-
-                        {/* Render either the associated video or the slideshow of images */}
-                        <div style={{ width: "100%" }}>{slideshowVideo()}</div>
+                    <div className="conference-container">
+                        {displayInformation()}
+                        {/* <div style={{ width: "100%" }}>{slideshowVideo()}</div> */}
                     </div>
                 </div>
             </div>

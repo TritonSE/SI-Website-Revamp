@@ -1,0 +1,36 @@
+#news-event-info-dialogue .entry-wrapper {
+  width: 100%;
+}
+
+.title {
+  font-size: 17px;
+}
+
+.asterisk {
+  color: red;
+  font-size: 20px;
+}
+
+.field-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.slide-num {
+  text-align: right;
+  margin-bottom: 0px;
+  color: gray;
+}
+
+.info-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Dialogue-Button {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
