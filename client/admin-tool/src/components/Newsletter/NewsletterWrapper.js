@@ -63,11 +63,6 @@ export default function NewsletterWrapper({
     const handleAddNewsletter = async (data) => {
         const isSuccessful = await addItemRequestCallback(data);
 
-<<<<<<< Updated upstream
-        console.log(isSuccessful);
-
-=======
->>>>>>> Stashed changes
         if (isSuccessful) {
             handleSnackbar({ open: true, message: "Newsletter succesfully added" });
             window.location.reload();
@@ -79,11 +74,7 @@ export default function NewsletterWrapper({
     }, []);
 
     React.useEffect(() => {
-<<<<<<< Updated upstream
-        if (currentIndex == -1) {
-=======
         if (currentIndex === -1) {
->>>>>>> Stashed changes
             setTitle("Add Newsletter");
         } else {
             setTitle("Edit Newsletter");

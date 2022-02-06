@@ -89,33 +89,19 @@ export default function NewsletterItem({
             }
         });
 
-<<<<<<< Updated upstream
-        console.log(typeof data["year"]);
-
-        if (data["year"].toString().length != 4) {
-=======
         if (data["year"].toString().length !== 4 || Number.isNaN(data["year"])) {
->>>>>>> Stashed changes
             errors["year"] = true;
             hasErrors = true;
             errorString += " year must be a 4 digit integer;";
         }
 
-<<<<<<< Updated upstream
-        if (isNaN(data["volume"])) {
-=======
         if (Number.isNaN(data["volume"])) {
->>>>>>> Stashed changes
             errors["year"] = true;
             hasErrors = true;
             errorString += " volume must be an integer;";
         }
 
-<<<<<<< Updated upstream
-        if (isNaN(data["number"])) {
-=======
         if (Number.isNaN(data["number"])) {
->>>>>>> Stashed changes
             errors["year"] = true;
             hasErrors = true;
             errorString += " number must be an integer;";
