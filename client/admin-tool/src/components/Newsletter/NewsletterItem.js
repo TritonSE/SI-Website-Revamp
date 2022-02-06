@@ -14,14 +14,20 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
 
     // holds newsletter data
     const [data, setData] = React.useState({
-        title: "",
-        content: "",
-        isPublished: false,
+        volume: "",
+        number: "",
+        year: "",
+        pdfLink: "",
+        imageLink: ""
     });
 
     // used for tracking required fields
     const [dataErrors, setDataErrors] = React.useState({
-        title: false,
+        volume: false,
+        number: false,
+        year: false,
+        pdfLink: false,
+        imageLink: false
     });
 
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
@@ -37,14 +43,20 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
         if(!content) return;
 
         setDataErrors({
-            title: false,
+            volume: false,
+            number: false,
+            year: false,
+            pdfLink: false,
+            imageLink: false
         });
 
         setData({
-            title: content["title"] || "",
-            content: content["content"] || "",
-            isPublished: content["isPublished"] || false,
-        })
+            volume: content["volume"] || "",
+            number: content["number"] || "",
+            year: content["year"] || "",
+            pdfLink: content["pdfLink"] || "",
+            imageLink: content["imageLink"] || "",
+        });
 
         setIsPageDisabled(false);
     }, [content])
@@ -54,21 +66,44 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
     const validateData = () => {
         setIsPageDisabled(true);
 
-        let hasErrors = false;
-        const errors = { title: false };
+        let errors = {
+            volume: false,
+            number: false,
+            year: false,
+            pdfLink: false,
+            imageLink: false
+        };
 
-        Object.keys(errors).forEach((key) => {
+        let hasErrors = false;
+        let errorString = "Error: ";
+
+        Object.keys(dataErrors).forEach((key) => {
             if(data[key].length < 1) {
                 errors[key] = true;
                 hasErrors = true;
+                errorString += " all fields are required;"
             }
         });
+
+        if(data["year"].length != 4 || isNaN(data["year"])) {
+            errors["year"] = true;
+            hasErrors = true;
+            errorString += " year must be a 4 digit integer;";
+        }
+
+        if(isNaN(data["volume"])) {
+            errorString += " volume must be an integer;"
+        }
+
+        if(isNaN(data["number"])) {
+            errorString += " number must be an integer;"
+        }
 
         setDataErrors(errors);
         setIsPageDisabled(false);
 
-        if(!hasErrors) console.log("nice!");
-        else handleSnackbar({ open: true, message: "there was an error"});
+        if(!hasErrors) onSaveCallback(data);
+        else handleSnackbar({ open: true, message: errorString});
     };
 
     /** Styling/Formatting */
@@ -111,6 +146,8 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
     ]
 
     return (
+
+        
         <div>
             <div className="newsletter-grid">
                 <div className="newsletter-grid-left">
@@ -121,12 +158,15 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
 
                             <TextField
                                 margin="dense"
-                                value={content[input.name]}
+                                value={data[input.name]}
                                 disabled={isPageDisabled}
-                                error={dataErrors.title}
                                 placeholder={input.label}
+                                error={dataErrors[input.label]}
                                 variant="outlined"
                                 className={classes.root}
+                                onChange={(event) => {
+                                    setData({...data, [input.name]: event.target.value})}
+                                }
                                 style = {{
                                     minWidth: 400
                                 }}
@@ -141,6 +181,7 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
                     {newNewsletter ? (
                         <Button 
                             text="Post"
+                            onClickCallback={validateData}
                         />
                     ) : (
                         <>
@@ -158,6 +199,12 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
                     }
                 </div>
             </div>
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={() => handleSnackbar({ ...snackbar, open: false })}
+                message={snackbar.message}
+            />
         </div>
     )
 }

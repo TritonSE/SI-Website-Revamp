@@ -18,23 +18,23 @@ export default function NewsletterWrapper({
     updateItemRequestCallback,
     getItemsRequestCallback
 }) {
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [currentIndex, setCurrentIndex] = React.useState(-1);
-    const [newsletters, setNewsletters] = React.useState([]);
-    const [title, setTitle] = React.useState(pageTitle);
-
-    const [snackbar, setSnackbar] = React.useState({
-        open: false,
-        message: "",
-    });
-
-    const [newsletterTemplate, setNewsletterTemplate] = React.useState({
+    const newsletterTemplate = {
         volume: "",
         number: "",
         year: "",
         pdfLink: "",
         imageLink: ""
-    })
+    }
+
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [currentIndex, setCurrentIndex] = React.useState(-1);
+    const [newsletters, setNewsletters] = React.useState([]);
+    const [title, setTitle] = React.useState(pageTitle);
+
+    const [snackbar, handleSnackbar] = React.useState({
+        open: false,
+        message: "",
+    });
 
     const loadData = async () => {
         setIsLoading(true);
@@ -50,9 +50,9 @@ export default function NewsletterWrapper({
         const isSuccessful = await deleteItemRequestCallback(newsletters[currentIndex]["id"]);
 
         if(isSuccessful) {
-            handleSnackBar({open: true, message: "Newsletter succesfully deleted"});
+            handleSnackbar({open: true, message: "Newsletter succesfully deleted"});
             await loadData();
-        } else handleSnackBar({open: true, message: "Error: Newsletter could not be deleted"});
+        } else handleSnackbar({open: true, message: "Error: Newsletter could not be deleted"});
     }
 
     const handleUpdateNewsletter = async(data) => {
@@ -60,17 +60,19 @@ export default function NewsletterWrapper({
 
         if(isSuccessful) {
             await loadData();
-            handleSnackBar({open: true, message: "Newsletter succesfully updated"});
-        } else handleSnackBar({open: true, message: "Error: Newsletter could not be updated"});
+            handleSnackbar({open: true, message: "Newsletter succesfully updated"});
+        } else handleSnackbar({open: true, message: "Error: Newsletter could not be updated"});
     }
 
     const handleAddNewsletter = async(data) => {
         const isSuccessful = await addItemRequestCallback(data);
 
+        console.log(isSuccessful);
+
         if(isSuccessful) {
-            handleSnackBar({open: true, message: "Newsletter succesfully added"});
+            handleSnackbar({open: true, message: "Newsletter succesfully added"});
             window.location.reload();
-        } else handleSnackBar({open: true, message: "Error: Newsletter could not be added"});
+        } else handleSnackbar({open: true, message: "Error: Newsletter could not be added"});
     }
 
     React.useEffect(async () => {
@@ -102,7 +104,7 @@ export default function NewsletterWrapper({
     };
 
     const handleSnackClose = () => {
-        setSnackBar({ open: false });
+        handleSnackbar({ open: false });
     };
 
     const deleteButtonCallback = async () => {

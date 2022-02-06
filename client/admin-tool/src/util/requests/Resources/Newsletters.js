@@ -50,6 +50,8 @@ export const fetchNewsletters = async () => {
  */
 export const addNewsletter = async (content) => {
     try {
+        console.log(content)
+
         const res = await fetch(`${BACKEND_URL}newsletters/`, {
             method: "post",
             headers: {
@@ -57,6 +59,9 @@ export const addNewsletter = async (content) => {
             },
             body: JSON.stringify(content),
         });
+
+        console.log(res)
+
         // successfull
         if (res.ok) {
             const json = await res.json();
