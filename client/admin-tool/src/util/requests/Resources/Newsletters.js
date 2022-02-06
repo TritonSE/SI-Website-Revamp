@@ -3,7 +3,8 @@
  * on the admin tool.
  * 
  * @summary     Newsletters server calls.
- * @author      Elias Fang, Navid Boloorian
+ * @author      Elias Fang
+ * @author      Navid Boloorian
  */
 
 const config = require("../../../config.js");

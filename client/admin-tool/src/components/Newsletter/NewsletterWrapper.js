@@ -42,8 +42,6 @@ export default function NewsletterWrapper({
         setNewsletters(data);
         setCurrentIndex(-1);
         setIsLoading(false);
-
-        console.log(newsletters);
     };
 
     const handleDeleteNewsletter = async() => {
@@ -105,9 +103,6 @@ export default function NewsletterWrapper({
 
     const handleSnackClose = () => {
         handleSnackbar({ open: false });
-    };
-
-    const deleteButtonCallback = async () => {
     };
 
     if(isLoading) {

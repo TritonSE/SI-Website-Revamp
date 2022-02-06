@@ -21,7 +21,7 @@ export default function Newsletters() {
             pageTitle="Newsletters"
             getItemsRequestCallback={fetchNewsletters}
             addItemRequestCallback={addNewsletter}
-            updateNewsletter={updateNewsletter}
+            updateItemRequestCallback={updateNewsletter}
             deleteItemRequestCallback={deleteNewsletter}
         />
     )

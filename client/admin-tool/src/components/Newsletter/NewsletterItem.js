@@ -77,7 +77,7 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
         let hasErrors = false;
         let errorString = "Error: ";
 
-        Object.keys(dataErrors).forEach((key) => {
+        Object.keys(data).forEach((key) => {
             if(data[key].length < 1) {
                 errors[key] = true;
                 hasErrors = true;
@@ -85,17 +85,23 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
             }
         });
 
-        if(data["year"].length != 4 || isNaN(data["year"])) {
+        console.log(typeof data["year"])
+
+        if(data["year"].toString().length != 4) {
             errors["year"] = true;
             hasErrors = true;
             errorString += " year must be a 4 digit integer;";
         }
 
         if(isNaN(data["volume"])) {
+            errors["year"] = true;
+            hasErrors = true;
             errorString += " volume must be an integer;"
         }
 
         if(isNaN(data["number"])) {
+            errors["year"] = true;
+            hasErrors = true;
             errorString += " number must be an integer;"
         }
 
@@ -188,10 +194,12 @@ export default function NewsletterItem({ content, newNewsletter, onDeleteCallbac
                             <Button
                                 style={{display: "inline", marginRight: 20}}
                                 text="Update"
+                                onClickCallback={validateData}
                             />
                             <Button
                                 style={{backgroundColor: "rgb(234, 68, 68)"}}
                                 text="Delete"
+                                onClickCallback={onDeleteCallback}
                             />
                         </>
                     )

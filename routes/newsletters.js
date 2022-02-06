@@ -1,15 +1,16 @@
 /**
  * This file contains the routes to modify the Newsletters table.
- * It has routes for add, get, and edit functionality for this table.
+ * It has routes for add, get, delete, and edit functionality for this table.
  *
  * @summary   Defines routes for the Newsletters table
  * @author    Dhanush Nanjunda Reddy
+ * @author    Navid Boloorian
  */
 
 const express = require("express");
 const { body } = require("express-validator");
 const { isValidated } = require("../middleware/validation");
-const { addOne, getAll, editOne } = require("../db/services/newsletters");
+const { addOne, getAll, editOne, deleteOne } = require("../db/services/newsletters");
 
 const router = express.Router();
 
@@ -76,6 +77,28 @@ router.put(
                 return res.status(200).json({ message: "Success" });
             }
             return res.status(500).json({ message: "Edit Unsuccessful" });
+        } catch (err) {
+            return res.status(500).json({ message: err });
+        }
+    }
+);
+
+router.delete("/:id", [isValidated], async (req, res) => {
+        const { id } = req.params;
+
+        // checks if id is invalid and returns 400 status
+        if (Number(id) < 0) {
+            return res.status(400).json({ message: "Syntax Error in Request" });
+        }
+
+        try {
+            const numDeleted = await deleteOne(Number(id));
+
+            // checks if an entry was updated
+            if (numDeleted === 1) {
+                return res.status(200).json({ message: "Success" });
+            }
+            return res.status(500).json({ message: "Delete Unsuccessful" });
         } catch (err) {
             return res.status(500).json({ message: err });
         }

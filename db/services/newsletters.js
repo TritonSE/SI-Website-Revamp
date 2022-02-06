@@ -4,6 +4,7 @@
  *
  * @summary   Defines services for the Newsletters table
  * @author    Dhanush Nanjunda Reddy
+ * @author    Navid Boloorian
  */
 
 const Newsletters = require("../models/newsletters");
@@ -52,8 +53,22 @@ async function editOne(id, data) {
     return null;
 }
 
+/**
+ * Deletes the entry in the Newsletters table with the specified id
+ * 
+ * @param {*} id - id of newsletter entry to delete 
+ */
+async function deleteOne(id) {
+    return Newsletters.destroy({
+        where: {
+            id: id,
+        },
+    });
+}
+
 module.exports = {
     getAll,
     addOne,
     editOne,
+    deleteOne
 };
