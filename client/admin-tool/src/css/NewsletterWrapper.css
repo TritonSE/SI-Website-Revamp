@@ -1,3 +1,12 @@
+.newsletters-loader {
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .newsletters-container {
   display: flex;
   flex-direction: row;

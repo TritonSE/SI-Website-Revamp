@@ -97,7 +97,7 @@ export default function NewsletterWrapper({
 
     if (isLoading) {
         return (
-            <div>
+            <div className="newsletters-loader">
                 <Loader />
             </div>
         );
