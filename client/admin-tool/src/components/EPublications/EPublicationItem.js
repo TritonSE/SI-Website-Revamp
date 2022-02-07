@@ -14,6 +14,8 @@ export default function EPublicationItem({
     newEPublication,
     onDeleteCallback,
     onSaveCallback,
+    getFilters,
+    countFeatured,
 }) {
     const [data, setData] = React.useState({
         title: "",
@@ -23,6 +25,9 @@ export default function EPublicationItem({
         imageLink: "",
         pdfLink: "",
     });
+
+    const [filters, setFilters] = React.useState([]);
+    const [numFeatured, setNumFeatured] = React.useState(0);
 
     const [dataErrors, setDataErrors] = React.useState({
         title: false,
@@ -40,8 +45,20 @@ export default function EPublicationItem({
         message: "",
     });
 
-    React.useEffect(() => {
+    React.useEffect(async () => {
         if (!content) return;
+
+        const filters = await getFilters();
+        let filterArray = [];
+
+        filters.map(filter => {
+            filterArray.push(filter.title);
+        })
+
+        setFilters(filterArray);
+
+        const numFeatured = await countFeatured();
+        setNumFeatured(numFeatured);
 
         setDataErrors({
             title: false,
@@ -145,7 +162,10 @@ export default function EPublicationItem({
                                     <>
                                         <label>
                                             <Checkbox 
-                                                checked={input.feature}
+                                                checked={data[input.name]}
+                                                onChange={(event) => {
+                                                    setData({ ...data, [input.name]: event.target.checked });
+                                                }}
                                             />
                                             {input.label}
                                         </label>

@@ -13,6 +13,8 @@ export default function EPublicationWrapper({
     deleteItemRequestCallback,
     updateItemRequestCallback,
     getItemsRequestCallback,
+    getFilters,
+    countFeatured,
 }) {
     const ePublicationTemplate = {
         title: "",
@@ -45,7 +47,7 @@ export default function EPublicationWrapper({
         const isSuccessful = await deleteItemRequestCallback(ePublications[currentIndex]["id"]);
 
         if (isSuccessful) {
-            handleSnackbar({ open: true, message: "EPublication succesfully deleted" });
+            handleSnackbar({ open: true, message: "Publication succesfully deleted" });
             await loadData();
         } else handleSnackbar({ open: true, message: "Error: EPublication could not be deleted" });
     };
@@ -55,7 +57,7 @@ export default function EPublicationWrapper({
 
         if (isSuccessful) {
             await loadData();
-            handleSnackbar({ open: true, message: "EPublication succesfully updated" });
+            handleSnackbar({ open: true, message: "Publication succesfully updated" });
         } else handleSnackbar({ open: true, message: "Error: EPublication could not be updated" });
     };
 
@@ -63,7 +65,7 @@ export default function EPublicationWrapper({
         const isSuccessful = await addItemRequestCallback(data);
 
         if (isSuccessful) {
-            handleSnackbar({ open: true, message: "EPublication succesfully added" });
+            handleSnackbar({ open: true, message: "Publication succesfully added" });
             window.location.reload();
         } else handleSnackbar({ open: true, message: "Error: EPublication could not be added" });
     };
@@ -138,6 +140,8 @@ export default function EPublicationWrapper({
                             content={ePublications[currentIndex]}
                             onDeleteCallback={handleDeleteEPublication}
                             onSaveCallback={handleUpdateEPublication}
+                            getFilters={getFilters}
+                            countFeatured={countFeatured}
                         />
                     ) : (
                         <EPublicationItem
@@ -145,6 +149,8 @@ export default function EPublicationWrapper({
                             newEPublication
                             content={ePublications[currentIndex]}
                             onSaveCallback={handleAddEPublication}
+                            getFilters={getFilters}
+                            countFeatured={countFeatured}
                         />
                     )}
                 </div>

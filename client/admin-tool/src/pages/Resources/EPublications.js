@@ -9,15 +9,20 @@ import "../../css/EPublications.css";
 import EPublicationWrapper from "../../components/EPublications/EPublicationWrapper";
 import {
     fetchEPublications,
+    fetchFilters,
+    countFeatured,
     addEPublication,
     updateEPublication,
     deleteEPublication,
+
 } from "../../util/requests/Resources/EPublications";
 
 export default function EPublications() {
     return (
         <EPublicationWrapper
             pageTitle="Publications"
+            getFilters={fetchFilters}
+            countFeatured={countFeatured}
             getItemsRequestCallback={fetchEPublications}
             addItemRequestCallback={addEPublication}
             updateItemRequestCallback={updateEPublication}

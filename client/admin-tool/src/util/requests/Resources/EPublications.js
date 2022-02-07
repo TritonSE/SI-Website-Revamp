@@ -35,6 +35,52 @@ export const fetchEPublications = async () => {
 }
 
 /**
+ * Get list of possible filters
+ */
+ export const fetchFilters = async () => {
+    try {
+        const res = await fetch(`${BACKEND_URL}publications/epubfilters`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        if(res.ok) {
+            const data = await res.json();
+            return data;
+        }
+
+        return null;
+    } catch {
+        return null;
+    }
+}
+
+/**
+ * Count the number of featured publications
+ */
+export const countFeatured = async () => {
+    try {
+        const res = await fetch(`${BACKEND_URL}publications/featured`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        if(res.ok) {
+            const data = await res.json();
+            return data.length;
+        }
+
+        return -1;
+    } catch {
+        return -1;
+    }
+}
+
+/**
  * Add new EPub object to the database
  * 
  * @param { JSON } content - Object to add
