@@ -6,10 +6,22 @@ import EPublicationItem from "../../components/EPublications/EPublicationItem";
 
 import "../../css/EPublications.css";
 
+import EPublicationWrapper from "../../components/EPublications/EPublicationWrapper";
+import {
+    fetchEPublications,
+    addEPublication,
+    updateEPublication,
+    deleteEPublication,
+} from "../../util/requests/Resources/EPublications";
+
 export default function EPublications() {
     return (
-        <div className="EPublications">
-            <EPublicationItem />
-        </div>
+        <EPublicationWrapper
+            pageTitle="Publications"
+            getItemsRequestCallback={fetchEPublications}
+            addItemRequestCallback={addEPublication}
+            updateItemRequestCallback={updateEPublication}
+            deleteItemRequestCallback={deleteEPublication}
+        />
     );
 }
