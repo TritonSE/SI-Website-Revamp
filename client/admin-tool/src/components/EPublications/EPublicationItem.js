@@ -2,8 +2,7 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@mui/material/TextField";
-import { Checkbox } from "@material-ui/core";
-import { Snackbar } from "@material-ui/core";
+import { Checkbox, FormGroup, FormControlLabel, FormHelperText, MenuItem, Snackbar } from "@material-ui/core";
 
 import Button from "../Button";
 
@@ -24,9 +23,11 @@ export default function EPublicationItem({
         description: "",
         imageLink: "",
         pdfLink: "",
+        filters: [],
     });
 
-    const [filters, setFilters] = React.useState([]);
+    const [filters, setFilters] = React.useState([{}]);
+    const [filterName, setFilterName] = React.useState("");
     const [numFeatured, setNumFeatured] = React.useState(0);
 
     const [dataErrors, setDataErrors] = React.useState({
@@ -36,6 +37,7 @@ export default function EPublicationItem({
         description: false,
         imageLink: false,
         pdfLink: false,
+        filters: false,
     });
 
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
@@ -49,13 +51,14 @@ export default function EPublicationItem({
         if (!content) return;
 
         const filters = await getFilters();
-        let filterArray = [];
+
+        setFilters(filters);
 
         filters.map(filter => {
-            filterArray.push(filter.title);
+            if(filter.id === content["filters"][0].filterId) {
+                setFilterName(filter.title)
+            }
         })
-
-        setFilters(filterArray);
 
         const numFeatured = await countFeatured();
         setNumFeatured(numFeatured);
@@ -67,6 +70,7 @@ export default function EPublicationItem({
             description: false,
             imageLink: false,
             pdfLink: false,
+            filters: false,
         });
 
         setData({
@@ -75,7 +79,8 @@ export default function EPublicationItem({
             feature: content["feature"] || "",
             description: content["description"] || "",
             imageLink: content["imageLink"] || "",
-            pdfLink: content["imageLink"] || "",
+            pdfLink: content["pdfLink"] || "",
+            filters: content["filters"] || "",
         });
 
         setIsPageDisabled(false);
@@ -84,6 +89,8 @@ export default function EPublicationItem({
     const validateData = () => {
         setIsPageDisabled(true);
 
+        console.log(data);
+
         let errors = {
             title: false,
             author: false,
@@ -91,6 +98,7 @@ export default function EPublicationItem({
             description: false,
             imageLink: false,
             pdfLink: false,
+            filters: false,
         };
 
         let hasErrors = false;
@@ -140,6 +148,18 @@ export default function EPublicationItem({
 
     const classes = useHelperTextStyles();
 
+    const getFilterId = (name) => {
+        let selectedId;
+
+        filters.map(filter => {
+            if(filter.title === name) {
+                selectedId = filter.id;
+            }
+        })
+
+        return selectedId;
+    }
+
     const inputLabels = [
         {title: "Details", name: "title", label: "Title"},
         {title: "", name: "author", label: "Author"},
@@ -160,24 +180,26 @@ export default function EPublicationItem({
                                 {input.title === "" ? "" : <h2 className="title">{input.title}</h2>}
                                 {input.name === "feature" ? (
                                     <>
-                                        <label>
-                                            <Checkbox 
+                                        <FormGroup>
+                                            <FormControlLabel control={<Checkbox 
                                                 checked={data[input.name]}
+                                                style={{color: "#ea8644"}}
+                                                helperText="Publications that are already featured have an orange border."
                                                 onChange={(event) => {
                                                     setData({ ...data, [input.name]: event.target.checked });
                                                 }}
-                                            />
-                                            {input.label}
-                                        </label>
+                                            />} label={input.label} />
+                                            <FormHelperText style={{fontSize:13, marginBottom:-15}}>Featured publications have an orange border. <br/> A maximum of 6 can be featured at a time.</FormHelperText>
+                                        </FormGroup>
                                         <br />
                                     </>
                                 ) : (
                                     <>
                                         <TextField
                                             margin="dense"
-                                            value={data[input.name]}
                                             disabled={isPageDisabled}
                                             placeholder={input.label}
+                                            value={input.name !== "filter" ? data[input.name] : filterName}
                                             error={dataErrors[input.label]}
                                             select={input.name === "filter" ? true : false}
                                             multiline={input.name === "description" ? true : false}
@@ -185,12 +207,28 @@ export default function EPublicationItem({
                                             variant="outlined"
                                             className={classes.root}
                                             onChange={(event) => {
-                                                setData({ ...data, [input.name]: event.target.value });
+                                                    input.name !== "filter" ? 
+                                                (
+                                                    setData({ ...data, [input.name]: event.target.value })
+                                                ) : (
+                                                    setData({ ...data, "filters": [getFilterId(event.target.value)]}),
+                                                    setFilterName(event.target.value)
+                                                )
                                             }}
                                             style={{
                                                 minWidth: 400,
                                             }}
-                                        />
+                                        >
+                                            {input.name === "filter" ? (
+                                                filters.map((filter, key) => {
+                                                    return <MenuItem key={key} value={filter.title}>
+                                                        {filter.title}
+                                                    </MenuItem>
+                                                })
+                                            ) : (
+                                                ""
+                                            )}
+                                        </TextField>
                                         {input.name !== "description" ? asterisk() : ""}
                                         <br />
                                     </>

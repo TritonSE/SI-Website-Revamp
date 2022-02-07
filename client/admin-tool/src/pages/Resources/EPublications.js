@@ -14,7 +14,6 @@ import {
     addEPublication,
     updateEPublication,
     deleteEPublication,
-
 } from "../../util/requests/Resources/EPublications";
 
 export default function EPublications() {

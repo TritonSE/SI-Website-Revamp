@@ -34,6 +34,26 @@ export const fetchEPublications = async () => {
     }
 }
 
+export const fetchFilterByName = async (name) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}publications/`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        if(res.ok) {
+            const data = await res.json();
+            return data;
+        }
+
+        return [];
+    } catch {
+        return [];
+    }
+}
+
 /**
  * Get list of possible filters
  */
