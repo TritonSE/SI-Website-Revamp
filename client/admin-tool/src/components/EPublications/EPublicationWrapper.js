@@ -41,6 +41,33 @@ export default function EPublicationWrapper({
         setIsLoading(false);
     }
 
+    const handleDeleteEPublication = async () => {
+        const isSuccessful = await deleteItemRequestCallback(ePublications[currentIndex]["id"]);
+
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "EPublication succesfully deleted" });
+            await loadData();
+        } else handleSnackbar({ open: true, message: "Error: EPublication could not be deleted" });
+    };
+
+    const handleUpdateEPublication = async (data) => {
+        const isSuccessful = await updateItemRequestCallback(ePublications[currentIndex]["id"], data);
+
+        if (isSuccessful) {
+            await loadData();
+            handleSnackbar({ open: true, message: "EPublication succesfully updated" });
+        } else handleSnackbar({ open: true, message: "Error: EPublication could not be updated" });
+    };
+
+    const handleAddEPublication = async (data) => {
+        const isSuccessful = await addItemRequestCallback(data);
+
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "EPublication succesfully added" });
+            window.location.reload();
+        } else handleSnackbar({ open: true, message: "Error: EPublication could not be added" });
+    };
+
     React.useEffect(async () => {
         await loadData();
     }, []);
@@ -54,6 +81,11 @@ export default function EPublicationWrapper({
     };
 
     const formatNodeTitle = (ePublication) => ePublication.title;
+
+    const addSpecialNodeClass = (ePublication) => {
+        if (ePublication.feature) return "orange-border";
+        return "";
+    };
 
     const handleSnackClose = () => {
         handleSnackbar({ open: false });
@@ -84,6 +116,7 @@ export default function EPublicationWrapper({
                         numItemsPerPage={12}
                         handleAddNodeClick={addNewNode}
                         formatNodeTitle={formatNodeTitle}
+                        addSpecialNodeClass={addSpecialNodeClass}
                     />
                 </div>
             </section>
@@ -103,12 +136,15 @@ export default function EPublicationWrapper({
                             i={currentIndex}
                             newEPublication={false}
                             content={ePublications[currentIndex]}
+                            onDeleteCallback={handleDeleteEPublication}
+                            onSaveCallback={handleUpdateEPublication}
                         />
                     ) : (
                         <EPublicationItem
                             i={currentIndex}
                             newEPublication
                             content={ePublications[currentIndex]}
+                            onSaveCallback={handleAddEPublication}
                         />
                     )}
                 </div>

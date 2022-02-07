@@ -11,16 +11,26 @@ import "../../css/EPublicationItem.css";
 
 export default function EPublicationItem({
     content,
-    newPublication,
+    newEPublication,
     onDeleteCallback,
     onSaveCallback,
 }) {
     const [data, setData] = React.useState({
-
+        title: "",
+        author: "",
+        feature: false,
+        description: "",
+        imageLink: "",
+        pdfLink: "",
     });
 
     const [dataErrors, setDataErrors] = React.useState({
-
+        title: false,
+        author: false,
+        feature: false,
+        description: false,
+        imageLink: false,
+        pdfLink: false,
     });
 
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
@@ -31,11 +41,57 @@ export default function EPublicationItem({
     });
 
     React.useEffect(() => {
-        
+        if (!content) return;
+
+        setDataErrors({
+            title: false,
+            author: false,
+            feature: false,
+            description: false,
+            imageLink: false,
+            pdfLink: false,
+        });
+
+        setData({
+            title: content["title"] || "",
+            author: content["author"] || "",
+            feature: content["feature"] || "",
+            description: content["description"] || "",
+            imageLink: content["imageLink"] || "",
+            pdfLink: content["imageLink"] || "",
+        });
+
+        setIsPageDisabled(false);
     }, [content])
 
     const validateData = () => {
+        setIsPageDisabled(true);
 
+        let errors = {
+            title: false,
+            author: false,
+            feature: false,
+            description: false,
+            imageLink: false,
+            pdfLink: false,
+        };
+
+        let hasErrors = false;
+        let errorString = "Error: ";
+
+        Object.keys(data).forEach((key) => {
+            if (data[key].length < 1) {
+                errors[key] = true;
+                hasErrors = true;
+                errorString += " all fields are required;";
+            }
+        });
+
+        setDataErrors(errors);
+        setIsPageDisabled(false);
+
+        if (!hasErrors) onSaveCallback(data);
+        else handleSnackbar({ open: true, message: errorString });
     }
 
     const asterisk = () => <span className = "required-asterisk">*</span>
@@ -88,7 +144,9 @@ export default function EPublicationItem({
                                 {input.name === "feature" ? (
                                     <>
                                         <label>
-                                            <Checkbox />
+                                            <Checkbox 
+                                                checked={input.feature}
+                                            />
                                             {input.label}
                                         </label>
                                         <br />
@@ -100,12 +158,15 @@ export default function EPublicationItem({
                                             value={data[input.name]}
                                             disabled={isPageDisabled}
                                             placeholder={input.label}
-                                            // error={dataErrors[input.label]}
+                                            error={dataErrors[input.label]}
                                             select={input.name === "filter" ? true : false}
                                             multiline={input.name === "description" ? true : false}
                                             minRows={input.name === "description" ? 4 : 1}
                                             variant="outlined"
                                             className={classes.root}
+                                            onChange={(event) => {
+                                                setData({ ...data, [input.name]: event.target.value });
+                                            }}
                                             style={{
                                                 minWidth: 400,
                                             }}
@@ -119,7 +180,22 @@ export default function EPublicationItem({
                     })}
                 </div>
                 <div className="epublication-grid-right">
-                    <Button text = "Post" />
+                    {newEPublication ? (
+                        <Button text="Post" onClickCallback={validateData} />
+                    ) : (
+                        <>
+                            <Button
+                                style={{ display: "inline", marginRight: 20 }}
+                                text="Update"
+                                onClickCallback={validateData}
+                            />
+                            <Button
+                                style={{ backgroundColor: "rgb(234, 68, 68)" }}
+                                text="Delete"
+                                onClickCallback={onDeleteCallback}
+                            />
+                        </>
+                    )}
                 </div>
             </div>
         </div>
