@@ -14,7 +14,7 @@ export default function EPublicationWrapper({
     updateItemRequestCallback,
     getItemsRequestCallback,
     getFilters,
-    countFeatured,
+    fetchFeatured,
 }) {
     const ePublicationTemplate = {
         title: "",
@@ -23,6 +23,7 @@ export default function EPublicationWrapper({
         description: "",
         imageLink: "",
         pdfLink: "",
+        filters: []
     };
 
     const [isLoading, setIsLoading] = React.useState(false);
@@ -141,16 +142,16 @@ export default function EPublicationWrapper({
                             onDeleteCallback={handleDeleteEPublication}
                             onSaveCallback={handleUpdateEPublication}
                             getFilters={getFilters}
-                            countFeatured={countFeatured}
+                            fetchFeatured={fetchFeatured}
                         />
                     ) : (
                         <EPublicationItem
                             i={currentIndex}
                             newEPublication
-                            content={ePublications[currentIndex]}
+                            content={ePublicationTemplate}
                             onSaveCallback={handleAddEPublication}
                             getFilters={getFilters}
-                            countFeatured={countFeatured}
+                            fetchFeatured={fetchFeatured}
                         />
                     )}
                 </div>

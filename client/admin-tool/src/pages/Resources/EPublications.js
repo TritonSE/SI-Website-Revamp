@@ -10,7 +10,7 @@ import EPublicationWrapper from "../../components/EPublications/EPublicationWrap
 import {
     fetchEPublications,
     fetchFilters,
-    countFeatured,
+    fetchFeatured,
     addEPublication,
     updateEPublication,
     deleteEPublication,
@@ -21,7 +21,7 @@ export default function EPublications() {
         <EPublicationWrapper
             pageTitle="Publications"
             getFilters={fetchFilters}
-            countFeatured={countFeatured}
+            fetchFeatured={fetchFeatured}
             getItemsRequestCallback={fetchEPublications}
             addItemRequestCallback={addEPublication}
             updateItemRequestCallback={updateEPublication}

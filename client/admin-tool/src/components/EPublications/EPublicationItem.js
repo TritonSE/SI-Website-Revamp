@@ -14,7 +14,7 @@ export default function EPublicationItem({
     onDeleteCallback,
     onSaveCallback,
     getFilters,
-    countFeatured,
+    fetchFeatured,
 }) {
     const [data, setData] = React.useState({
         title: "",
@@ -23,12 +23,12 @@ export default function EPublicationItem({
         description: "",
         imageLink: "",
         pdfLink: "",
-        filters: [],
+        filters: [{filterId: 0}],
     });
 
     const [filters, setFilters] = React.useState([{}]);
-    const [filterName, setFilterName] = React.useState("");
-    const [numFeatured, setNumFeatured] = React.useState(0);
+    const [filterName, setFilterName] = React.useState("Default");
+    const [featuredList, setFeaturedList] = React.useState([{}]);
 
     const [dataErrors, setDataErrors] = React.useState({
         title: false,
@@ -53,15 +53,16 @@ export default function EPublicationItem({
         const filters = await getFilters();
 
         setFilters(filters);
+        setFilterName("Default");
 
         filters.map(filter => {
-            if(filter.id === content["filters"][0].filterId) {
+            if(content["filters"][0] !== undefined && filter.id === content["filters"][0].filterId) {
                 setFilterName(filter.title)
             }
         })
 
-        const numFeatured = await countFeatured();
-        setNumFeatured(numFeatured);
+        const featuredList = await fetchFeatured();
+        setFeaturedList(featuredList);
 
         setDataErrors({
             title: false,
@@ -89,7 +90,7 @@ export default function EPublicationItem({
     const validateData = () => {
         setIsPageDisabled(true);
 
-        console.log(data);
+        console.log(content);
 
         let errors = {
             title: false,
@@ -105,15 +106,38 @@ export default function EPublicationItem({
         let errorString = "Error: ";
 
         Object.keys(data).forEach((key) => {
-            if (data[key].length < 1) {
+            if(key === "feature" && data[key].length < 1) {
+                data[key] = false;
+            }
+
+            if (data[key].length < 1 && key !== "description") {
                 errors[key] = true;
                 hasErrors = true;
-                errorString += " all fields are required;";
+                errorString = "Error: all fields are required;";
             }
         });
 
+        console.log(data);
+
+        if(data["feature"] === true && featuredList == 6) {
+            let alreadyFeatured = false;
+
+            featuredList.map(feature => {
+                if(feature.title == data["feature"])
+                    alreadyFeatured = true;
+            })
+
+            if(!alreadyFeatured) {
+                errors["feature"] = true;
+                hasError = true;
+                errorString += " there are already 6 featured publications;"
+            }
+        }
+
         setDataErrors(errors);
         setIsPageDisabled(false);
+
+        console.log(errors);
 
         if (!hasErrors) onSaveCallback(data);
         else handleSnackbar({ open: true, message: errorString });
@@ -149,7 +173,7 @@ export default function EPublicationItem({
     const classes = useHelperTextStyles();
 
     const getFilterId = (name) => {
-        let selectedId;
+        let selectedId = -1;
 
         filters.map(filter => {
             if(filter.title === name) {
@@ -211,7 +235,8 @@ export default function EPublicationItem({
                                                 (
                                                     setData({ ...data, [input.name]: event.target.value })
                                                 ) : (
-                                                    setData({ ...data, "filters": [getFilterId(event.target.value)]}),
+                                                    console.log(getFilterId(event.target.value)),
+                                                    setData({ ...data, "filters": [{filterId: getFilterId(event.target.value)}]}),
                                                     setFilterName(event.target.value)
                                                 )
                                             }}
@@ -219,6 +244,9 @@ export default function EPublicationItem({
                                                 minWidth: 400,
                                             }}
                                         >
+                                            <MenuItem key={1} value="Default" disabled>
+                                                Select a filter
+                                            </MenuItem>
                                             {input.name === "filter" ? (
                                                 filters.map((filter, key) => {
                                                     return <MenuItem key={key} value={filter.title}>
@@ -256,6 +284,12 @@ export default function EPublicationItem({
                     )}
                 </div>
             </div>
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={6000}
+                onClose={() => handleSnackbar({ ...snackbar, open: false })}
+                message={snackbar.message}
+            />
         </div>
     )
 

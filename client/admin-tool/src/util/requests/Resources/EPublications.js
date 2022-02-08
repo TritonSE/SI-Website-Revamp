@@ -80,7 +80,7 @@ export const fetchFilterByName = async (name) => {
 /**
  * Count the number of featured publications
  */
-export const countFeatured = async () => {
+export const fetchFeatured = async () => {
     try {
         const res = await fetch(`${BACKEND_URL}publications/featured`, {
             method: "get",
@@ -91,7 +91,7 @@ export const countFeatured = async () => {
 
         if(res.ok) {
             const data = await res.json();
-            return data.length;
+            return data;
         }
 
         return -1;
