@@ -235,7 +235,6 @@ export default function EPublicationItem({
                                                 (
                                                     setData({ ...data, [input.name]: event.target.value })
                                                 ) : (
-                                                    console.log(getFilterId(event.target.value)),
                                                     setData({ ...data, "filters": [{filterId: getFilterId(event.target.value)}]}),
                                                     setFilterName(event.target.value)
                                                 )

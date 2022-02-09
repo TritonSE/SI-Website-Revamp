@@ -24,7 +24,7 @@ export default function EPublicationWrapper({
         imageLink: "",
         pdfLink: "",
         filters: []
-    };
+    };;
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
@@ -74,6 +74,14 @@ export default function EPublicationWrapper({
     React.useEffect(async () => {
         await loadData();
     }, []);
+
+    React.useEffect(() => {
+        if (currentIndex === -1) {
+            setTitle("Add Publication");
+        } else {
+            setTitle("Edit Publication");
+        }
+    }, [currentIndex]);
 
     const handleNodeClick = (index) => {
         setCurrentIndex(index);

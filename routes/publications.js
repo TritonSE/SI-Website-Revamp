@@ -267,6 +267,25 @@ router.get("/epubfilters", [isValidated], async (req, res) => {
 });
 
 /**
+ * Get filter associated with id.
+ *
+ * @return {status} - 200 if successful, 500 otherwise
+ */
+ router.get("/filterById/:id", [isValidated], async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (Number(id) < 0) return res.status(400).json({ message: "Id must be a number" });
+
+        const filter = await ePubMethods.getFilterById(id);
+
+        return res.status(200).json(filter);
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
+
+/**
  * Get a particular publication from Publications table, indicated
  * by its unique id.
  *
