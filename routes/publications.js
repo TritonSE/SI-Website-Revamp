@@ -85,12 +85,16 @@ router.post(
 
             // loop through filters and add them to the FilteredPublications table
             await Promise.allSettled([
-                req.body.filters.map((filterId) =>
+                req.body.filters.map((filter) =>
+                {
+                    const filterId = filter["filterId"];
+
                     filteredMethods.addOne({
                         filterId,
                         publicationId,
                     })
-                ),
+                }
+            ),
             ]);
 
             return res.status(200).json(publications);
@@ -167,11 +171,15 @@ router.put(
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // loop through filters and add them to the FilteredPublications table
                 await Promise.allSettled([
-                    req.body.filters.map((filterId) =>
-                        filteredMethods.addOne({
-                            filterId,
-                            publicationId,
-                        })
+                    req.body.filters.map((filter) =>
+                        {
+                            const filterId = filter["filterId"];
+
+                            filteredMethods.addOne({
+                                filterId,
+                                publicationId,
+                            })
+                        }
                     ),
                 ]);
             }
