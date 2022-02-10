@@ -1,0 +1,34 @@
+.news-events-item {
+    width: 400px;
+}
+.news-events-item .slide-info-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-member-button {
+    background-color: red;
+}
+
+.slide-icon + .slide-icon {
+    margin-left: 10px;
+}
+
+.slide-icon:hover {
+    color: var(--darkorange);
+    cursor: pointer;
+}
+
+.slide-icon-delete:hover {
+    color: #ea4444;
+}
+
+.slide-img {
+    width: inherit;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    border: 1px solid black;
+}
