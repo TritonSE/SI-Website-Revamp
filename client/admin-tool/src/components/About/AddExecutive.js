@@ -9,6 +9,8 @@ export default function AddExecutive({
     content,
     showingBackground,
     newCommittee,
+    updateItem,
+    addItem,
 }) {
     const [data, setData] = React.useState({
         startYear: "",
@@ -21,7 +23,20 @@ export default function AddExecutive({
         redirectLink: "",
         openInSameTab: false,
     });
-    const [isDisabled, setIsDisabled] = React.useState(false);
+
+    const [dataErrors, setDataErrors] = React.useState({
+        startYear: false,
+        endYear: false,
+        rank: false,
+        name: false,
+        position: false,
+        bio: false,
+        imageLink: false,
+        redirectLink: false,
+        openInSameTab: false,
+    })
+
+    const [isPageDisabled, setIsPageDisabled] = React.useState(false);
     
     const [positionList, setPositionList] = React.useState([
         "President",
@@ -49,7 +64,7 @@ export default function AddExecutive({
     const asterisk = () => <span className="asterisk">*</span>;
 
     const validateData = () => {
-
+        console.log(data);
     }
 
     const useHelperTextStyles = makeStyles(() => ({
@@ -97,7 +112,7 @@ export default function AddExecutive({
                         <>
                             <h3>{input.title}</h3>
                             <TextField
-                                disabled={isDisabled}
+                                disabled={isPageDisabled}
                                 value={data[input.name]}
                                 margin="dense"
                                 placeholder={input.label}
@@ -141,6 +156,7 @@ export default function AddExecutive({
                 style = {{
                     justifySelf: "center"
                 }}
+                onClickCallback={validateData}
             />
         </div>
         <Snackbar
