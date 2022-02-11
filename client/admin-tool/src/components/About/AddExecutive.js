@@ -7,8 +7,20 @@ import "../../css/AddExecutive.css";
 
 export default function AddExecutive({
     content,
+    showingBackground,
 }) {
-    const [data, setData] = React.useState([]);
+    const [data, setData] = React.useState({
+        startYear: "",
+        endYear: "",
+        rank: "",
+        name: "",
+        position: "",
+        bio: "",
+        imageLink: "",
+        redirectLink: "",
+        openInSameTab: false,
+    });
+    const [isDisabled, setIsDisabled] = React.useState(false);
     
     const [positionList, setPositionList] = React.useState([
         "President",
@@ -16,6 +28,7 @@ export default function AddExecutive({
         "Secretary",
         "Recording Secretary",
         "Corresponding Secretary",
+        "Branch & Chapter Coordinator",
         "Treasurer"
     ]);
     
@@ -29,10 +42,14 @@ export default function AddExecutive({
     }
 
     React.useEffect(async () => {
-
-    });
+        setData(content);
+    }, []);
 
     const asterisk = () => <span className="asterisk">*</span>;
+
+    const validateData = () => {
+
+    }
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -70,65 +87,67 @@ export default function AddExecutive({
     ];
 
     return (
-        <div className="bg-shadow">
-            <div className="add-exec-popup">
-                {
-                    inputLabels.map((input) => {
-                        return (
-                            <>
-                                <h3>{input.title}</h3>
-                                <TextField
-                                    margin="dense"
-                                    label={input.label}
-                                    placeholder={input.label}
-                                    multiline={input.name === "bio" ? true : false}
-                                    minRows={input.name === "bio" ? 4 : 1}
-                                    variant="outlined"
-                                    className={classes.root}
-                                    select={input.name === "position" ? true : false}
-                                    onChange={(event) => {
-                                        setData({ ...data, [input.name]: event.target.value });
-                                    }}
-                                    style={input.name === "bio" ? {
-                                        borderRadius: "5px"
-                                    } : {}}
-                                >
-                                    {
-                                        input.name === "position" ? (
-                                            positionList.map((position) => {
-                                                return (
-                                                    <MenuItem key={position} value={position}>
-                                                        {position}
-                                                    </MenuItem>
-                                                )
-                                            })
-                                        ) : (
-                                            <>
-                                            </>
-                                        )
-                                    }
-                                </TextField>
-                            </>
-                        )
-                    })
-                }
-                <FormGroup>
-                    <FormControlLabel control={<Checkbox style={{color: "var(--orange)"}}/>} label="Open link in same tab" />
-                </FormGroup>
-                <Button 
-                    className="add-exec-button" 
-                    text = "Add" 
-                    style = {{
-                        justifySelf: "center"
-                    }}
-                />
-            </div>
-            <Snackbar
-                open={snackbar.open}
-                autoHideDuration={6000}
-                onClose={() => handleSnackbar({ ...snackbar, open: false })}
-                message={snackbar.message}
+        <>
+        <div className="bg-shadow" onClick={() => showingBackground(false)}></div>
+        <div className="add-exec-popup">
+            {
+                inputLabels.map((input) => {
+                    return (
+                        <>
+                            <h3>{input.title}</h3>
+                            <TextField
+                                disabled={isDisabled}
+                                value={data[input.name]}
+                                margin="dense"
+                                placeholder={input.label}
+                                multiline={input.name === "bio" ? true : false}
+                                minRows={input.name === "bio" ? 4 : 1}
+                                variant="outlined"
+                                className={classes.root}
+                                select={input.name === "position" ? true : false}
+                                onChange={(event) => {
+                                    setData({ ...data, [input.name]: event.target.value });
+                                }}
+                                style={input.name === "bio" ? {
+                                    borderRadius: "5px"
+                                } : {}}
+                            >
+                                {
+                                    input.name === "position" ? (
+                                        positionList.map((position) => {
+                                            return (
+                                                <MenuItem key={position} value={position}>
+                                                    {position}
+                                                </MenuItem>
+                                            )
+                                        })
+                                    ) : (
+                                        <>
+                                        </>
+                                    )
+                                }
+                            </TextField>
+                        </>
+                    )
+                })
+            }
+            <FormGroup>
+                <FormControlLabel control={<Checkbox style={{color: "var(--orange)"}}/>} label="Open link in same tab" />
+            </FormGroup>
+            <Button 
+                className="add-exec-button" 
+                text = "Add" 
+                style = {{
+                    justifySelf: "center"
+                }}
             />
         </div>
+        <Snackbar
+            open={snackbar.open}
+            autoHideDuration={6000}
+            onClose={() => handleSnackbar({ ...snackbar, open: false })}
+            message={snackbar.message}
+        />
+        </>
     )
 }

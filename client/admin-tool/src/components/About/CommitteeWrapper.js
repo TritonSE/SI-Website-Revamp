@@ -4,6 +4,9 @@ import { Snackbar } from "@material-ui/core";
 import Stepper from "../Stepper";
 import CommitteeItem from "./CommitteeItem";
 import Loader from "../Loader";
+import AddExecutive from "./AddExecutive";
+
+import ExecutiveMember from "./ExecutiveMember";
 
 import "../../css/CommitteeWrapper.css";
 
@@ -18,6 +21,8 @@ export default function CommitteeWrapper({
     const [currentIndex, setCurrentIndex] = React.useState(-1);
     const [committees, setCommittees] = React.useState([]);
     const [title, setTitle] = React.useState(pageTitle);
+    const [selectedMember, setSelectedMember] = React.useState({});
+    const [addExecutiveShowing, setAddExecutiveShowing] = React.useState(false);
 
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
@@ -27,7 +32,19 @@ export default function CommitteeWrapper({
     const loadData = async () => {
         setIsLoading(true);
         const data = await getItemsRequestCallback();
-        console.log(data);
+
+        setSelectedMember({
+            startYear: "",
+            endYear: "",
+            rank: "",
+            name: "",
+            position: "",
+            bio: "",
+            imageLink: "",
+            redirectLink: "",
+            openInSameTab: false,
+        });
+
         setCommittees(data);
         setCurrentIndex(-1);
         setIsLoading(false);
@@ -79,6 +96,11 @@ export default function CommitteeWrapper({
     const handleSnackClose = () => {
         handleSnackbar({open: false});
     };
+
+    const execMemberClick = (member) => {
+        setAddExecutiveShowing(true);
+        setSelectedMember(member);
+    }
 
     if(isLoading) {
         return (
@@ -135,7 +157,32 @@ export default function CommitteeWrapper({
                         />
                     )}
                 </div>
+                <div className="exec-members-container">
+                    {console.log(committees)}
+                    {currentIndex > -1 ? (
+                        committees[currentIndex].data.map((committee, index) => {
+                            return (
+                                <div onClick={() => execMemberClick(committee)}>
+                                    <ExecutiveMember      
+                                        content={committee}      
+                                    />
+                                </div>
+                            )
+                        })
+                    ) : (
+                        ""
+                    )}
+                </div>
             </section>
+
+            {addExecutiveShowing ? (    
+                <AddExecutive 
+                    content={selectedMember}
+                    showingBackground={setAddExecutiveShowing}
+                />
+            ) : (
+                ""
+            )}
 
             <Snackbar
                 open={snackbar.open}

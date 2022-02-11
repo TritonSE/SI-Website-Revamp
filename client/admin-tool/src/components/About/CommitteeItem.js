@@ -2,7 +2,6 @@ import React from "react";
 
 import { makeStyles, TextField, Snackbar } from "@material-ui/core";
 import Button from "../Button";
-import AddExecutive from "./AddExecutive";
 
 import "../../css/CommitteeItem.css";
 
@@ -197,7 +196,6 @@ export default function CommitteeItem({
                 <div className="committee-grid-right">
                 </div>
             </div>
-            <AddExecutive />
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}

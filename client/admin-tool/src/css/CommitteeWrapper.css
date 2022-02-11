@@ -12,6 +12,12 @@
     flex-direction: row;
     justify-content: flex-start;
 }
+
+.exec-members-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 25px;
+}
   
 .orange-border {
     border: 1px solid var(--darkorange);
