@@ -10,6 +10,7 @@ export default function CommitteeItem({
     newCommittee,
     onDeleteCallback,
     onSaveCallback,
+    clickExec,
 }) {
     const [data, setData] = React.useState([{
         startYear: "",
@@ -178,20 +179,22 @@ export default function CommitteeItem({
                         onClickCallback={validateData}
                     />
                     <h2 className="title">Board Members</h2>
-                    <Button 
-                        text="+ Add New Member"
-                        className="add-member-button"
-                        style={{
-                            backgroundColor: "var(--lightpurple)",
-                            borderRadius: 5,
-                            width: 250,
-                            height: 40,
-                            fontWeight: "lighter",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}
-                    />
+                    <div onClick={() => clickExec(null, true)}>
+                        <Button 
+                            text="+ Add New Member"
+                            className="add-member-button"
+                            style={{
+                                backgroundColor: "var(--lightpurple)",
+                                borderRadius: 5,
+                                width: 250,
+                                height: 40,
+                                fontWeight: "lighter",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className="committee-grid-right">
                 </div>

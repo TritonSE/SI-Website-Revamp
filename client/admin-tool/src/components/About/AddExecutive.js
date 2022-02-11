@@ -8,6 +8,7 @@ import "../../css/AddExecutive.css";
 export default function AddExecutive({
     content,
     showingBackground,
+    newCommittee,
 }) {
     const [data, setData] = React.useState({
         startYear: "",
@@ -136,7 +137,7 @@ export default function AddExecutive({
             </FormGroup>
             <Button 
                 className="add-exec-button" 
-                text = "Add" 
+                text = {newCommittee ? "Add" : "Update"} 
                 style = {{
                     justifySelf: "center"
                 }}

@@ -23,6 +23,7 @@ export default function CommitteeWrapper({
     const [title, setTitle] = React.useState(pageTitle);
     const [selectedMember, setSelectedMember] = React.useState({});
     const [addExecutiveShowing, setAddExecutiveShowing] = React.useState(false);
+    const [newCommittee, setNewCommittee] = React.useState(false);
 
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
@@ -97,9 +98,11 @@ export default function CommitteeWrapper({
         handleSnackbar({open: false});
     };
 
-    const execMemberClick = (member) => {
+    const execMemberClick = (member, newCommittee) => {
         setAddExecutiveShowing(true);
-        setSelectedMember(member);
+        setNewCommittee(newCommittee);
+
+        if(member !== null) setSelectedMember(member);
     }
 
     if(isLoading) {
@@ -122,7 +125,7 @@ export default function CommitteeWrapper({
                     <Stepper
                         displayItems={committees}
                         handleNodeClick={handleNodeClick}
-                        addButtonTitle="Add Newsletter"
+                        addButtonTitle="Add Committee"
                         numItemsPerPage={12}
                         handleAddNodeClick={addNewNode}
                         formatNodeTitle={formatNodeTitle}
@@ -147,6 +150,7 @@ export default function CommitteeWrapper({
                             content={committees[currentIndex]}
                             onDeleteCallback={handleDeleteCommittee}
                             onSaveCallback={handleUpdateCommittee}
+                            clickExec={execMemberClick}
                         />
                     ) : (
                         <CommitteeItem
@@ -154,6 +158,7 @@ export default function CommitteeWrapper({
                             newCommittee
                             content={committees[currentIndex]}
                             onSaveCallback={handleAddCommittee}
+                            clickExec={execMemberClick}
                         />
                     )}
                 </div>
@@ -162,7 +167,7 @@ export default function CommitteeWrapper({
                     {currentIndex > -1 ? (
                         committees[currentIndex].data.map((committee, index) => {
                             return (
-                                <div onClick={() => execMemberClick(committee)}>
+                                <div onClick={() => execMemberClick(committee, false)}>
                                     <ExecutiveMember      
                                         content={committee}      
                                     />
@@ -179,6 +184,7 @@ export default function CommitteeWrapper({
                 <AddExecutive 
                     content={selectedMember}
                     showingBackground={setAddExecutiveShowing}
+                    newCommittee={newCommittee}
                 />
             ) : (
                 ""
