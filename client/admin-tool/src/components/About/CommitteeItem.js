@@ -4,8 +4,15 @@ import { makeStyles, TextField, Snackbar } from "@material-ui/core";
 
 import Button from "../Button";
 
-export default function CommitteeItem() {
-    const asterisk = () => <span className="asterisk">*</span>;
+import "../../css/CommitteeItem.css";
+
+export default function CommitteeItem({
+    content,
+    newCommittee,
+    onDeleteCallback,
+    onSaveCallback,
+}) {
+    const asterisk = () => <span className="asterisk" style={{marginRight: 10}}>*</span>;
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -34,40 +41,50 @@ export default function CommitteeItem() {
 
     const classes = useHelperTextStyles();
 
+    const inputLabels = [
+        { title: "Years Active", name: "startYear", label: "Start Year"},
+        { title: "", name: "endYear", label: "End Year"},
+    ];
+
     return (
         <div>
-            <h2>Years Active</h2>
-            <TextField
-                 margin="dense"
-                 variant="outlined"
-                 className={classes.root}
-                 style={{
-                     minWidth: 400,
-                 }}
-            />
-            {asterisk()}
-            <TextField
-                 margin="dense"
-                 variant="outlined"
-                 className={classes.root}
-                 style={{
-                     minWidth: 400,
-                 }}
-            />
-            {asterisk()}
-            <Button 
-                text="Post"
-            />
-            <h2>Board Members</h2>
-            <Button 
-                text="+ Add New Member"
-                className="add-member-button"
-                style={{
-                    "background-color": "var(--lightpurple)",
-                    "border-radius": "5px",
-                    "width": "250px"
-                }}
-            />
+            <div className="committee-grid">
+                <div className="committee-grid-left">
+                    {inputLabels.map((input) => {
+                        return (
+                            <>
+                                {input.title === "" ? "" : <h2 className="title">{input.title}</h2>}
+
+                                <TextField
+                                    margin="dense"
+                                    placeholder={input.label}
+                                    variant="outlined"
+                                    className={classes.root}
+                                    style={{
+                                        minWidth: 200,
+                                    }}
+                                />
+                                {asterisk()}
+                            </>
+                        );
+                    })}
+                    <Button 
+                        text="Post"
+                    />
+                    <h2 className="title">Board Members</h2>
+                    <Button 
+                        text="+ Add New Member"
+                        className="add-member-button"
+                        style={{
+                            "background-color": "var(--lightpurple)",
+                            "border-radius": "5px",
+                            "width": "250px"
+                        }}
+                    />
+                </div>
+                <div className="committee-grid-right">
+                </div>
+            </div>
         </div>
     )
 }

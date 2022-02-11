@@ -1,4 +1,4 @@
-.newsletters-loader {
+.committees-loader {
     display: grid;
     height: 100vh;
     width: 100%;
@@ -7,7 +7,7 @@
     margin: 0 auto;
 }
   
-.newsletters-container {
+.committees-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
