@@ -27,21 +27,39 @@ export default function CommitteeWrapper({
     const loadData = async () => {
         setIsLoading(true);
         const data = await getItemsRequestCallback();
+        console.log(data);
         setCommittees(data);
         setCurrentIndex(-1);
         setIsLoading(false);
     };
 
     const handleDeleteCommittee = async () => {
+        const isSuccessful = await deleteItemRequestCallback(committees[currentIndex]["id"]);
 
+        if(isSuccessful) {
+            handleSnackbar({open: true, message: "Committee successfully deleted"});
+            await loadData();
+        } else handleSnackbar({open: true, message: "Error: Committee could not be deleted"});
     };
 
     const handleUpdateCommittee = async (data) => {
-        
+        const isSuccessful = await updateItemRequestCallback(committees[currentIndex]["id"], data);
+
+        console.log(isSuccessful)
+
+        if(isSuccessful) {
+            handleSnackbar({open: true, message: "Committee successfully updated"});
+            await loadData();
+        } else handleSnackbar({open: true, message: "Error: Committee could not be updated"});
     };
 
     const handleAddCommittee = async (data) => {
-        
+        const isSuccessful = await addItemRequestCallback(committees[currentIndex]["id"], data);
+
+        if(isSuccessful) {
+            handleSnackbar({open: true, message: "Committee successfully added"});
+            await loadData();
+        } else handleSnackbar({open: true, message: "Error: Committee could not be added"});
     };
 
     React.useEffect(async () => {
