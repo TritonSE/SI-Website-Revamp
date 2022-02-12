@@ -29,6 +29,15 @@ export default function CommitteeWrapper({
         openInSameTab: false,
     };
 
+    const yearTemplate = {
+        data: [
+            {
+                startYear: "",
+                endyear: "",
+            }
+        ]
+    }
+
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
     const [committees, setCommittees] = React.useState([]);
@@ -37,6 +46,10 @@ export default function CommitteeWrapper({
     const [selectedIndex, setSelectedIndex] = React.useState(-1);
     const [addExecutiveShowing, setAddExecutiveShowing] = React.useState(false);
     const [newCommittee, setNewCommittee] = React.useState(false);
+    const [committeeYear, setCommitteeYear] = React.useState({
+        startYear: -1,
+        endYear: -1,
+    })
 
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
@@ -66,10 +79,6 @@ export default function CommitteeWrapper({
 
     const handleDeleteCommittee = async () => {
         const isSuccessful = await deleteItemRequestCallback(committees[currentIndex]["id"]);
-
-        
-
-        alert("HERE")
 
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Committee successfully deleted"});
@@ -136,6 +145,7 @@ export default function CommitteeWrapper({
     
     return (
         <div className="committees-container">
+            {console.log(committeeYear)}
             <section className="stepper-section">
                 <div
                     className="stepper-section-div"
@@ -172,14 +182,16 @@ export default function CommitteeWrapper({
                             onDeleteCallback={handleDeleteCommittee}
                             onSaveCallback={handleUpdateCommittee}
                             clickExec={execMemberClick}
+                            setCommitteeYear={setCommitteeYear}
                         />
                     ) : (
                         <CommitteeItem
                             i={currentIndex}
                             newCommittee
-                            content={committees[currentIndex]}
+                            content={yearTemplate}
                             onSaveCallback={handleAddCommittee}
                             clickExec={execMemberClick}
+                            setCommitteeYear={setCommitteeYear}
                         />
                     )}
                 </div>
@@ -209,6 +221,7 @@ export default function CommitteeWrapper({
                     updateItem={handleUpdateCommittee}
                     addItem={handleAddCommittee}
                     index={selectedIndex}
+                    committeeYear={committeeYear}
                 />
             ) : (
                 ""

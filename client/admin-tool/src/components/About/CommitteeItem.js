@@ -11,29 +11,16 @@ export default function CommitteeItem({
     onDeleteCallback,
     onSaveCallback,
     clickExec,
+    setCommitteeYear,
 }) {
     const [data, setData] = React.useState([{
         startYear: "",
         endYear: "",
-        rank: "",
-        name: "",
-        position: "",
-        bio: "",
-        imageLink: "",
-        redirectLink: "",
-        openInSameTab: false,
     }]);
 
     const [dataErrors, setDataErrors] = React.useState([{
         startYear: false,
         endYear: false,
-        rank: false,
-        name: false,
-        position: false,
-        bio: false,
-        imageLink: false,
-        redirectLink: false,
-        openInSameTab: false,
     }])
 
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
@@ -49,13 +36,6 @@ export default function CommitteeItem({
         setDataErrors({
             startYear: false,
             endYear: false,
-            rank: false,
-            name: false,
-            position: false,
-            bio: false,
-            imageLink: false,
-            redirectLink: false,
-            openInSameTab: false,
         });
 
         const dataArray = [];
@@ -64,22 +44,17 @@ export default function CommitteeItem({
             dataArray.push({
                 startYear: content.data[i]["startYear"] || "",
                 endYear: content.data[i]["endYear"] || "",
-                rank: content.data[i]["rank"] || "",
-                name: content.data[i]["name"] || "",
-                position: content.data[i]["position"] || "",
-                bio: content.data[i]["bio"] || "",
-                imageLink: content.data[i]["imageLink"] || "",
-                redirectLink: content.data[i]["redirectLink"] || "",
-                openInSameTab: content.data[i]["openInSameTab"] || "",
             });
         }
 
         setData(dataArray);
+        setCommitteeYear(data);
         setIsPageDisabled(false);
     }, [content]);
 
     const validateData = () => {
-        console.log("HERE");
+        setCommitteeYear(data[0]);
+        handleSnackbar({open: true, message: "Years active succesfully set"});
     }
 
     const asterisk = () => <span className="asterisk" style={{marginRight: 10}}>*</span>;
@@ -133,7 +108,12 @@ export default function CommitteeItem({
                                     variant="outlined"
                                     className={classes.root}
                                     onChange={(event) => {
-                                        setData({ ...data, [input.name]: event.target.value });
+                                        let dataObj = {...data};
+                                        let dataRow = {...data[0]};
+                                        dataRow[input.name] = parseInt(event.target.value);
+                                        dataObj[0] = dataRow;
+
+                                        setData(dataObj);
                                     }}
                                     style={{
                                         minWidth: 200,
