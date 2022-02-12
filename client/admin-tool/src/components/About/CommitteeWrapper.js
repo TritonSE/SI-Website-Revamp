@@ -140,7 +140,7 @@ export default function CommitteeWrapper({
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Committee/member successfully added"});
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Committee could not be added"});
+        } else handleSnackbar({open: true, message: "Error: Committee/member could not be added"});
     };
 
     React.useEffect(async () => {

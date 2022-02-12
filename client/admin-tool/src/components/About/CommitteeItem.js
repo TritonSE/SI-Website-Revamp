@@ -61,7 +61,7 @@ export default function CommitteeItem({
                 name: "Sample Member",
                 position: "President",
                 bio: "",
-                imageLink: "https://google.com",
+                imageLink: "https://assets.ucsd.edu/img/icon/headshot.jpg",
                 redirectLink: "https://google.com",
                 openInSameTab: false
             }
