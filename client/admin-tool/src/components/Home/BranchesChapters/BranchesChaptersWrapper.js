@@ -105,7 +105,7 @@ export default function BranchesChaptersWrapper({
                 >
                     <Stepper 
                         displayItems={branchesChapters}
-                        handleAddNodeClick={handleNodeClick}
+                        handleNodeClick={handleNodeClick}
                         addButtonTitle="Add Branch/Chapter"
                         numItemsPerPage={12}
                         handleAddNodeClick={addNewNode}
@@ -127,7 +127,7 @@ export default function BranchesChaptersWrapper({
                     {currentIndex > -1 ? (
                         <BranchesChaptersItem
                             i={currentIndex}
-                            newNewlsetter={false}
+                            newBranch={false}
                             content={branchesChapters[currentIndex]}
                             onDeleteCallback={handleDeleteBranchesChapters}
                             onSaveCallback={handleUpdateBranchesChapters}
@@ -135,7 +135,7 @@ export default function BranchesChaptersWrapper({
                     ) : (
                         <BranchesChaptersItem
                             i={currentIndex}
-                            newNewsletter
+                            newBranch
                             onSaveCallback={handleAddBranchesChapters}
                         />
                     )}

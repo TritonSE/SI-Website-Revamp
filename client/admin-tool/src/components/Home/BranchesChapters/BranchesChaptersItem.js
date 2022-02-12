@@ -34,6 +34,10 @@ export default function BranchesChaptersItem({
 
     }, [content])
 
+    const validateData = () => {
+        
+    }
+
     const asterisk = () => <span className="asterisk">*</span>;
 
     const useHelperTextStyles = makeStyles(() => ({
