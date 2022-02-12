@@ -1,0 +1,10 @@
+.branch-chapter-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 30px;
+}
+  
+.branch-chapter-grid-right {
+    text-align: center;
+    padding-top: 60px;
+}
