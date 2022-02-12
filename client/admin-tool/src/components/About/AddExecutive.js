@@ -11,6 +11,7 @@ export default function AddExecutive({
     newCommittee,
     updateItem,
     addItem,
+    index
 }) {
     const [data, setData] = React.useState({
         startYear: "",
@@ -39,13 +40,13 @@ export default function AddExecutive({
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
     
     const [positionList, setPositionList] = React.useState([
-        "President",
-        "Vice President",
-        "Secretary",
-        "Recording Secretary",
-        "Corresponding Secretary",
-        "Branch & Chapter Coordinator",
-        "Treasurer"
+        {position: "President", rank: 1},
+        {position: "Vice President", rank: 2},
+        {position: "Secretary", rank: 3},
+        {position: "Recording Secretary", rank: 4},
+        {position: "Corresponding Secretary", rank: 5},
+        {position: "Branch & Chapter Coordinator", rank: 6},
+        {position: "Treasurer", rank: 7},
     ]);
     
     const [snackbar, handleSnackbar] = React.useState({
@@ -61,10 +62,12 @@ export default function AddExecutive({
         setData(content);
     }, []);
 
-    const asterisk = () => <span className="asterisk">*</span>;
-
     const validateData = () => {
-        console.log(data);
+        data["startYear"] = 2000;
+        data["endYear"] = 2003;
+
+        if(newCommittee) addItem(data);
+        else updateItem(data, index);
     }
 
     const useHelperTextStyles = makeStyles(() => ({
@@ -122,7 +125,15 @@ export default function AddExecutive({
                                 className={classes.root}
                                 select={input.name === "position" ? true : false}
                                 onChange={(event) => {
-                                    setData({ ...data, [input.name]: event.target.value });
+                                    input.name === "position" ? (
+                                        <>
+                                            {setData({ ...data, [input.name]: event.target.value, "rank": event.currentTarget.getAttribute("rank")})}
+                                        </>
+                                    ) : (
+                                        <>
+                                            {setData({ ...data, [input.name]: event.target.value})}
+                                        </>
+                                    )
                                 }}
                                 style={input.name === "bio" ? {
                                     borderRadius: "5px"
@@ -132,8 +143,8 @@ export default function AddExecutive({
                                     input.name === "position" ? (
                                         positionList.map((position) => {
                                             return (
-                                                <MenuItem key={position} value={position}>
-                                                    {position}
+                                                <MenuItem rank={position.rank} value={position.position}>
+                                                    {position.position}
                                                 </MenuItem>
                                             )
                                         })

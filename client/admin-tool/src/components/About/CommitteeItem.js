@@ -79,38 +79,7 @@ export default function CommitteeItem({
     }, [content]);
 
     const validateData = () => {
-        console.log("called")
-
-        setIsPageDisabled(true);
-
-        let errors = {
-            startYear: false,
-            endYear: false,
-            rank: false,
-            name: false,
-            position: false,
-            bio: false,
-            imageLink: false,
-            redirectLink: false,
-            openInSameTab: false,
-        };
-
-        let hasErrors = false;
-        let errorString = "Error: ";
-
-        Object.keys(data).forEach((key) => {
-            if(data[key].length < 1) {
-                errors[key] = true;
-                hasErrors = true;
-                errorString = "Error: all fields are required; ";
-            }
-        });
-
-        setDataErrors(errors);
-        setIsPageDisabled(false);
-
-        if(!hasErrors) onSaveCallback(data);
-        else handleSnackbar({open: true, message: errorString});
+        console.log("HERE");
     }
 
     const asterisk = () => <span className="asterisk" style={{marginRight: 10}}>*</span>;

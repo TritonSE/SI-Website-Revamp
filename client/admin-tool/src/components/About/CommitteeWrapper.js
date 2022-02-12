@@ -34,6 +34,7 @@ export default function CommitteeWrapper({
     const [committees, setCommittees] = React.useState([]);
     const [title, setTitle] = React.useState(pageTitle);
     const [selectedMember, setSelectedMember] = React.useState({});
+    const [selectedIndex, setSelectedIndex] = React.useState(-1);
     const [addExecutiveShowing, setAddExecutiveShowing] = React.useState(false);
     const [newCommittee, setNewCommittee] = React.useState(false);
 
@@ -76,13 +77,8 @@ export default function CommitteeWrapper({
         } else handleSnackbar({open: true, message: "Error: Committee could not be deleted"});
     };
 
-    const handleUpdateCommittee = async (data) => {
-        const isSuccessful = await updateItemRequestCallback(committees[currentIndex].data[0]["id"], data);
-
-        alert("HERE")
-
-        console.log(committees[currentIndex])
-        console.log(isSuccessful)
+    const handleUpdateCommittee = async (data, index) => {
+        const isSuccessful = await updateItemRequestCallback(committees[currentIndex].data[index]["id"], data);
 
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Committee successfully updated"});
@@ -91,11 +87,11 @@ export default function CommitteeWrapper({
     };
 
     const handleAddCommittee = async (data) => {
-        const isSuccessful = await addItemRequestCallback(committees[currentIndex]["id"], data);
+        console.log(data);
 
-        
+        const isSuccessful = await addItemRequestCallback(data);
 
-        alert("HERE")
+        console.log(isSuccessful);
 
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Committee successfully added"});
@@ -121,9 +117,10 @@ export default function CommitteeWrapper({
         handleSnackbar({open: false});
     };
 
-    const execMemberClick = (member, newCommittee) => {
+    const execMemberClick = (member, newCommittee, index) => {
         setAddExecutiveShowing(true);
         setNewCommittee(newCommittee);
+        setSelectedIndex(index);
 
         if(member !== null) setSelectedMember(member);
         else setSelectedMember(execTemplate);
@@ -189,10 +186,10 @@ export default function CommitteeWrapper({
                 <div className="exec-members-container">
                     {console.log(committees)}
                     {currentIndex > -1 ? (
-                        committees[currentIndex].data.map((committee) => {
+                        committees[currentIndex].data.map((committee, index) => {
                             return (
-                                <div onClick={() => execMemberClick(committee, false)}>
-                                    <ExecutiveMember      
+                                <div onClick={() => execMemberClick(committee, false, index)}>
+                                    <ExecutiveMember     
                                         content={committee}      
                                     />
                                 </div>
@@ -209,8 +206,9 @@ export default function CommitteeWrapper({
                     content={selectedMember}
                     showingBackground={setAddExecutiveShowing}
                     newCommittee={newCommittee}
-                    updateItem={updateItemRequestCallback}
-                    addItem={addItemRequestCallback}
+                    updateItem={handleUpdateCommittee}
+                    addItem={handleAddCommittee}
+                    index={selectedIndex}
                 />
             ) : (
                 ""
