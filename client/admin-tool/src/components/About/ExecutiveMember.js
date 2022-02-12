@@ -1,3 +1,10 @@
+/**
+ * Displays individual executive members on committee page.
+ * 
+ * @summary     Individual member display
+ * @author      Navid Boloorian
+ */
+
 import React from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

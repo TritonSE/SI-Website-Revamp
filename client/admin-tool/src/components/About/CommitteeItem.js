@@ -1,3 +1,10 @@
+/**
+ * Individual commitee item with TextFields to edit information
+ * 
+ * @summary     edit individual committee information
+ * @author      Navid Boloorian
+ */
+
 import React from "react";
 
 import { makeStyles, TextField, Snackbar } from "@material-ui/core";

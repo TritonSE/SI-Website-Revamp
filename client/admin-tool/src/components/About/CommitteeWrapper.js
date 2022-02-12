@@ -1,3 +1,10 @@
+/**
+ * Wrapper that stores states and manages overall layout of exec members page.
+ * 
+ * @summary     stores states and manages layout
+ * @author      Navid Boloorian
+ */
+
 import React from "react";
 
 import { Snackbar } from "@material-ui/core";

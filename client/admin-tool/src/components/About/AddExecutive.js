@@ -1,3 +1,10 @@
+/**
+ * Popup that allows for the addition of a member to a committee.
+ * 
+ * @summary     member addition popup
+ * @author      Navid Boloorian
+ */
+
 import React from "react";
 
 import { TextField, makeStyles, Snackbar, Checkbox, FormGroup, FormControlLabel, MenuItem} from "@material-ui/core";
