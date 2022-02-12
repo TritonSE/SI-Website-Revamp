@@ -30,12 +30,19 @@ export default function CommitteeWrapper({
     };
 
     const yearTemplate = {
-        data: [
-            {
-                startYear: "",
-                endyear: "",
-            }
-        ]
+        startYear: "",
+        endYear: "",
+        data: [{
+            startYear: "",
+            endYear: "",
+            rank: "",
+            name: "",
+            position: "",
+            bio: "",
+            imageLink: "",
+            redirectLink: "",
+            openInSameTab: false,
+        }]
     }
 
     const [isLoading, setIsLoading] = React.useState(false);
@@ -75,10 +82,17 @@ export default function CommitteeWrapper({
         setCommittees(data);
         setCurrentIndex(-1);
         setIsLoading(false);
+        setCommitteeYear({startYear: "", endYear: ""})
+
+        console.log(committees)
     };
 
     const handleDeleteCommittee = async () => {
-        const isSuccessful = await deleteItemRequestCallback(committees[currentIndex]["id"]);
+        let isSuccessful = false;
+
+        for(let i = 0; i < committees[currentIndex].data.length; i++) {
+            isSuccessful = await deleteItemRequestCallback(committees[currentIndex].data[i]["id"]);
+        }
 
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Committee successfully deleted"});
@@ -86,8 +100,29 @@ export default function CommitteeWrapper({
         } else handleSnackbar({open: true, message: "Error: Committee could not be deleted"});
     };
 
+    const handleDeleteMember = async (index) => {
+        const isSuccessful = await deleteItemRequestCallback(committees[currentIndex].data[index]["id"]);
+
+        if(isSuccessful) {
+            handleSnackbar({open: true, message: "Member successfully deleted"});
+            await loadData();
+        } else handleSnackbar({open: true, message: "Error: Member could not be deleted"});
+    };
+
     const handleUpdateCommittee = async (data, index) => {
-        const isSuccessful = await updateItemRequestCallback(committees[currentIndex].data[index]["id"], data);
+        const dataObj = {
+            startYear: parseInt(data.startYear),
+            endYear: parseInt(data.endYear),
+            rank: data.rank,
+            name: data.name,
+            position: data.position,
+            bio: data.bio,
+            imageLink: data.imageLink,
+            redirectLink: data.redirectLink,
+            openInSameTab: data.openInSameTab
+        }
+
+        const isSuccessful = await updateItemRequestCallback(committees[currentIndex].data[index]["id"], dataObj);
 
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Committee successfully updated"});
@@ -103,7 +138,7 @@ export default function CommitteeWrapper({
         console.log(isSuccessful);
 
         if(isSuccessful) {
-            handleSnackbar({open: true, message: "Committee successfully added"});
+            handleSnackbar({open: true, message: "Committee/member successfully added"});
             await loadData();
         } else handleSnackbar({open: true, message: "Error: Committee could not be added"});
     };
@@ -111,6 +146,35 @@ export default function CommitteeWrapper({
     React.useEffect(async () => {
         await loadData();
     }, [])
+
+    React.useEffect(async () => {
+        if(currentIndex > -1) {
+            setCommitteeYear({startYear: committees[currentIndex].data[0]["startYear"], endYear: committees[currentIndex].data[0]["endYear"]})
+        }
+        else {
+            setCommitteeYear({startYear: "", endYear: ""});
+        }
+    }, [currentIndex])
+
+    React.useEffect(async () => {
+        if(currentIndex > -1) {
+            for(let i = 0; i < committees[currentIndex].data.length; i++) {
+                let committeeCopy = {
+                    startYear: parseInt(committeeYear.startYear),
+                    endYear: parseInt(committeeYear.endYear),
+                    rank: committees[currentIndex].data[i].rank,
+                    name: committees[currentIndex].data[i].name,
+                    position: committees[currentIndex].data[i].position,
+                    bio: committees[currentIndex].data[i].bio,
+                    imageLink: committees[currentIndex].data[i].imageLink,
+                    redirectLink: committees[currentIndex].data[i].redirectLink,
+                    openInSameTab: committees[currentIndex].data[i].openInSameTab
+                }
+
+                await updateItemRequestCallback(committees[currentIndex].data[i]["id"], committeeCopy);
+            }
+        }
+    }, [committeeYear])
 
     const handleNodeClick = (index) => {
         setCurrentIndex(index);
@@ -127,12 +191,17 @@ export default function CommitteeWrapper({
     };
 
     const execMemberClick = (member, newCommittee, index) => {
-        setAddExecutiveShowing(true);
-        setNewCommittee(newCommittee);
-        setSelectedIndex(index);
+        if(committeeYear.startYear === undefined || committeeYear.endYear === undefined || committeeYear.startYear === "" || committeeYear.endYear === "") {
+            handleSnackbar({open: true, message: "\"Years Active\" must be set before members can be added"})
+        }
+        else {
+            setAddExecutiveShowing(true);
+            setNewCommittee(newCommittee);
+            setSelectedIndex(index);
 
-        if(member !== null) setSelectedMember(member);
-        else setSelectedMember(execTemplate);
+            if(member !== null) setSelectedMember(member);
+            else setSelectedMember(execTemplate);
+        }
     }
 
     if(isLoading) {
@@ -145,7 +214,6 @@ export default function CommitteeWrapper({
     
     return (
         <div className="committees-container">
-            {console.log(committeeYear)}
             <section className="stepper-section">
                 <div
                     className="stepper-section-div"
@@ -179,19 +247,18 @@ export default function CommitteeWrapper({
                             i={currentIndex}
                             newCommittee={false}
                             content={committees[currentIndex]}
-                            onDeleteCallback={handleDeleteCommittee}
-                            onSaveCallback={handleUpdateCommittee}
                             clickExec={execMemberClick}
                             setCommitteeYear={setCommitteeYear}
+                            handleDeleteCommittee={handleDeleteCommittee}
                         />
                     ) : (
                         <CommitteeItem
                             i={currentIndex}
                             newCommittee
                             content={yearTemplate}
-                            onSaveCallback={handleAddCommittee}
                             clickExec={execMemberClick}
                             setCommitteeYear={setCommitteeYear}
+                            handleAddCommittee={handleAddCommittee}
                         />
                     )}
                 </div>
@@ -200,9 +267,12 @@ export default function CommitteeWrapper({
                     {currentIndex > -1 ? (
                         committees[currentIndex].data.map((committee, index) => {
                             return (
-                                <div onClick={() => execMemberClick(committee, false, index)}>
+                                <div>
                                     <ExecutiveMember     
-                                        content={committee}      
+                                        content={committee} 
+                                        index={index}
+                                        execMemberClick={execMemberClick}
+                                        handleDeleteMember={handleDeleteMember}     
                                     />
                                 </div>
                             )

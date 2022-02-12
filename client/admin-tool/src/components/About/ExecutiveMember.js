@@ -6,6 +6,9 @@ import "../../css/ExecutiveMember.css";
 
 export default function ExecutiveMember({
     content,
+    handleDeleteMember,
+    index,
+    execMemberClick,
 }) {
     const [data, setData] = React.useState({});
 
@@ -15,11 +18,13 @@ export default function ExecutiveMember({
 
     return (
         <div className="executive-item-div">
-            <div>
+            <div style={{zIndex: 10000}} onClick={()=>{handleDeleteMember(index)}}>
                 <FontAwesomeIcon
                     icon={faTrash}
                     className="trash-icon"
                 />
+            </div>
+            <div onClick={() => execMemberClick(content, false, index)}>
                 <img src={data.imageLink} />
                 <div className="executive-item-text">
                     <p className="executive-item-name">{data.name}</p>

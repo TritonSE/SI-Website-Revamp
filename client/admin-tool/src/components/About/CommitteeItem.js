@@ -8,9 +8,9 @@ import "../../css/CommitteeItem.css";
 export default function CommitteeItem({
     content,
     newCommittee,
-    onDeleteCallback,
-    onSaveCallback,
     clickExec,
+    handleAddCommittee,
+    handleDeleteCommittee,
     setCommitteeYear,
 }) {
     const [data, setData] = React.useState([{
@@ -40,21 +40,34 @@ export default function CommitteeItem({
 
         const dataArray = [];
 
-        for(let i = 0; i < content.data.length; i++) {
-            dataArray.push({
-                startYear: content.data[i]["startYear"] || "",
-                endYear: content.data[i]["endYear"] || "",
-            });
-        }
+        dataArray.push({
+            startYear: content.data[0]["startYear"] || "",
+            endYear: content.data[0]["endYear"] || "",
+        });
 
         setData(dataArray);
-        setCommitteeYear(data);
         setIsPageDisabled(false);
     }, [content]);
 
     const validateData = () => {
         setCommitteeYear(data[0]);
         handleSnackbar({open: true, message: "Years active succesfully set"});
+
+        if(newCommittee) {
+            const temporaryMember = {
+                startYear: data[0].startYear,
+                endYear: data[0].endYear,
+                rank: 1,
+                name: "Sample Member",
+                position: "President",
+                bio: "",
+                imageLink: "https://google.com",
+                redirectLink: "https://google.com",
+                openInSameTab: false
+            }
+
+            handleAddCommittee(temporaryMember);
+        }
     }
 
     const asterisk = () => <span className="asterisk" style={{marginRight: 10}}>*</span>;
@@ -110,7 +123,7 @@ export default function CommitteeItem({
                                     onChange={(event) => {
                                         let dataObj = {...data};
                                         let dataRow = {...data[0]};
-                                        dataRow[input.name] = parseInt(event.target.value);
+                                        dataRow[input.name] = event.target.value;
                                         dataObj[0] = dataRow;
 
                                         setData(dataObj);
@@ -124,9 +137,27 @@ export default function CommitteeItem({
                         );
                     })}
                     <Button 
-                        text="Post"
+                        text = {newCommittee ? "Post" : "Update"} 
+                        style = {{
+                            justifySelf: "center",
+                            marginRight: "10px"
+                        }}
                         onClickCallback={validateData}
                     />
+                    {
+                        !newCommittee ? (
+                            <Button 
+                                text = "Delete"
+                                style = {{
+                                    justifySelf: "center",
+                                    backgroundColor: "var(--red)",
+                                }}
+                                onClickCallback={handleDeleteCommittee}
+                            />
+                        ) : (
+                            ""
+                        )
+                    }
                     <h2 className="title">Board Members</h2>
                     <div onClick={() => clickExec(null, true)}>
                         <Button 

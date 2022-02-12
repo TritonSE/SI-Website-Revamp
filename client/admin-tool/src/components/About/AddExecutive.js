@@ -11,7 +11,8 @@ export default function AddExecutive({
     newCommittee,
     updateItem,
     addItem,
-    index
+    index,
+    committeeYear,
 }) {
     const [data, setData] = React.useState({
         startYear: "",
@@ -63,8 +64,9 @@ export default function AddExecutive({
     }, []);
 
     const validateData = () => {
-        data["startYear"] = 2000;
-        data["endYear"] = 2003;
+        data["startYear"] = committeeYear["startYear"];
+        data["endYear"] = committeeYear["endYear"];
+        data["rank"] = parseInt(data["rank"]);
 
         if(newCommittee) addItem(data);
         else updateItem(data, index);
