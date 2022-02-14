@@ -1,5 +1,5 @@
 import React from "react";
-import { Snackbar, TextField, makeStyles } from "@material-ui/core";
+import { Snackbar, TextField, makeStyles, MenuItem } from "@material-ui/core";
 
 import Button from "../../Button";
 
@@ -31,11 +31,16 @@ export default function BranchesChaptersItem({
             siteLink: content["siteLink"] || "",
         });
 
-
+        if(data["isBranch"]) {
+            data["isBranch"] === "Branch";
+        }
+        else {
+            data["isBranch"] === "Chapter";
+        }
     }, [content])
 
     const validateData = () => {
-        
+        onSaveCallback(data);
     }
 
     const asterisk = () => <span className="asterisk">*</span>;
@@ -90,13 +95,24 @@ export default function BranchesChaptersItem({
                                     placeholder={input.label}
                                     variant="outlined"
                                     className={classes.root}
+                                    select={input.name === "isBranch" ? true : false}
                                     onChange={(event) => {
+                                        alert(event),
                                         setData({ ...data, [input.name]: event.target.value });
                                     }}
                                     style={{
                                         minWidth: 400,
                                     }}
-                                />
+                                >
+                                {input.name === "isBranch" ? (
+                                    <>
+                                        <MenuItem key="Branch" value="Branch">Branch</MenuItem>
+                                        <MenuItem key="Chapter" value="Chapter">Chapter</MenuItem>
+                                    </>
+                                ) : (
+                                    ""
+                                )}
+                                </TextField>
                                 {asterisk()}
                                 <br />
                             </>
@@ -111,6 +127,7 @@ export default function BranchesChaptersItem({
                             <Button
                                 style={{ display: "inline", marginRight: 20 }}
                                 text="Update"
+                                onClickCallback={validateData} 
                             />
                             <Button
                                 style={{ backgroundColor: "rgb(234, 68, 68)" }}

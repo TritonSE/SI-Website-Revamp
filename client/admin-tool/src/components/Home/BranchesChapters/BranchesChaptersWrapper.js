@@ -15,6 +15,15 @@ export default function BranchesChaptersWrapper({
     updateItemRequestCallback,
     getItemsRequestCallback,
 }) {
+    const branchesChaptersTemplate = {
+        name: "",
+        isBranch: "",
+        email: "",
+        latitude: "",
+        longitude: "",
+        siteLink: "",
+    }
+
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
     const [branchesChapters, setBranchesChapters] = React.useState([]);
@@ -136,6 +145,7 @@ export default function BranchesChaptersWrapper({
                         <BranchesChaptersItem
                             i={currentIndex}
                             newBranch
+                            content={branchesChaptersTemplate}
                             onSaveCallback={handleAddBranchesChapters}
                         />
                     )}
