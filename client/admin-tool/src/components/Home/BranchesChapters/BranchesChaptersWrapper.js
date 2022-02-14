@@ -1,3 +1,10 @@
+/**
+ * Manages the layout and the state variables for the branches and chapters page.
+ * 
+ * @summary     Layout/state variable manager
+ * @author      Navid Boloorian
+ */
+
 import React from "react";
 import { Snackbar } from "@material-ui/core";
 

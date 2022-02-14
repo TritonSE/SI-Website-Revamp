@@ -1,3 +1,10 @@
+/**
+ * Individual "item" that has all input fields for branches and chapters page.
+ * 
+ * @summary     Component with all input fields
+ * @author      Navid Boloorian
+ */
+
 import React from "react";
 import { Snackbar, TextField, makeStyles, MenuItem, Menu } from "@material-ui/core";
 
@@ -37,12 +44,56 @@ export default function BranchesChaptersItem({
             longitude: content["longitude"] || "",
             siteLink: content["siteLink"] || "",
         });
+
+        setDataErrors({
+            name: false,
+            isBranch: false,
+            email: false,
+            latitude: false,
+            longitude: false,
+            siteLink: false,
+        });
     }, [content])
 
     const validateData = () => {
-        console.log(data);
+        setIsPageDisabled(true);
 
-        onSaveCallback(data);
+        let errors = {
+            volume: false,
+            number: false,
+            year: false,
+            pdfLink: false,
+            imageLink: false,
+        };
+
+        let hasErrors = false;
+        let errorString = "Error: ";
+
+        Object.keys(data).forEach((key) => {
+            if (data[key].length < 1 && key != "siteLink") {
+                errors[key] = true;
+                hasErrors = true;
+                errorString = "Error: all fields are required;";
+            }
+        });
+
+        if(isNaN(data["latitude"])) {
+            errors["latitude"] = true;
+            hasErrors = true;
+            errorString += "latitude must be a number; ";
+        }
+
+        if(isNaN(data["longitude"])) {
+            errors["longitude"] = true;
+            hasErrors = true;
+            errorString += "longitude must be a number; ";
+        }
+
+        setDataErrors(errors);
+        setIsPageDisabled(false);
+
+        if (!hasErrors) onSaveCallback(data);
+        else handleSnackbar({ open: true, message: errorString });
     }
 
     const asterisk = () => <span className="asterisk">*</span>;
@@ -100,7 +151,7 @@ export default function BranchesChaptersItem({
                                     value={(input.name === "isBranch" ? dropdownValue : data[input.name]) || ""}
                                     disabled={isPageDisabled}
                                     label={input.label}
-                                    error={dataErrors[input.label]}
+                                    error={dataErrors[input.name]}
                                     variant="outlined"
                                     className={classes.root}
                                     select={input.name === "isBranch" ? true : false}
