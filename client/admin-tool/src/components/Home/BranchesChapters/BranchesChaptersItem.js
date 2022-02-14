@@ -13,6 +13,7 @@ export default function BranchesChaptersItem({
     onSaveCallback,
 }) {
     const [data, setData] = React.useState({});
+    const [dropdownValue, setDropdownValue] = React.useState("");
     const [dataErrors, setDataErrors] = React.useState({});
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
     const [snackbar, handleSnackbar] = React.useState({
@@ -23,11 +24,14 @@ export default function BranchesChaptersItem({
     React.useEffect(() => {
         if (!content) return;
 
-        let branchOrChapter = content["isBranch"] ? "Branch" : "Chapter"
+        if(content["isBranch"] !== "")
+            content["isBranch"] ? setDropdownValue("Branch") : setDropdownValue("Chapter")
+        else
+            setDropdownValue("")
  
         setData({
             name: content["name"] || "",
-            isBranch: branchOrChapter || "",
+            isBranch: content["isBranch"] || "",
             email: content["email"] || "",
             latitude: content["latitude"] || "",
             longitude: content["longitude"] || "",
@@ -36,6 +40,8 @@ export default function BranchesChaptersItem({
     }, [content])
 
     const validateData = () => {
+        console.log(data);
+
         onSaveCallback(data);
     }
 
@@ -84,37 +90,37 @@ export default function BranchesChaptersItem({
 
     return (
         <div>
-            {console.log(data)}
             <div className="branches-chapters-grid">
                 <div className="branches-chapters-grid-left">
                     {inputLabels.map((input) => {
                         return (
                             <>
-                                {console.log(input.name + " " + data[input.name])}
                                 <TextField
                                     margin="dense"
-                                    value={data[input.name]}
+                                    value={(input.name === "isBranch" ? dropdownValue : data[input.name]) || ""}
                                     disabled={isPageDisabled}
-                                    placeholder={input.label}
                                     label={input.label}
                                     error={dataErrors[input.label]}
                                     variant="outlined"
                                     className={classes.root}
                                     select={input.name === "isBranch" ? true : false}
                                     onChange={(event) => {
-                                        setData({ ...data, [input.name]: event.target.value });
+                                        {console.log(event.target.key)}
+                                        input.name === "isBranch" ? (
+                                            setDropdownValue(event.target.value),
+                                            setData({ ...data, [input.name]: event.target.value === "Branch" ? true : false })
+                                        ): setData({ ...data, [input.name]: event.target.value });
                                     }}
                                     style={{
                                         minWidth: 400,
                                     }}
                                 >
-                                {input.name === "isBranch" ? (
+                                <MenuItem key="" value="" disabled>Branch or Chapter</MenuItem>
+                                {
                                     branchChapterOptions.map((branchChapter) => {
                                         return <MenuItem key={branchChapter} value={branchChapter}>{branchChapter}</MenuItem>
                                     })
-                                ) : (
-                                    ""
-                                )}
+                                }
                                 </TextField>
                                 {input.name !== "siteLink" ? asterisk() : ""}
                                 <br />
