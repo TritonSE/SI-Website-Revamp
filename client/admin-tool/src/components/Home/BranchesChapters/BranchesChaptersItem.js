@@ -1,5 +1,5 @@
 import React from "react";
-import { Snackbar, TextField, makeStyles, MenuItem } from "@material-ui/core";
+import { Snackbar, TextField, makeStyles, MenuItem, Menu } from "@material-ui/core";
 
 import Button from "../../Button";
 
@@ -13,6 +13,7 @@ export default function BranchesChaptersItem({
     onSaveCallback,
 }) {
     const [data, setData] = React.useState({});
+    const [dataErrors, setDataErrors] = React.useState({});
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
@@ -22,21 +23,16 @@ export default function BranchesChaptersItem({
     React.useEffect(() => {
         if (!content) return;
 
+        let branchOrChapter = content["isBranch"] ? "Branch" : "Chapter"
+ 
         setData({
             name: content["name"] || "",
-            isBranch: content["isBranch"] || "",
+            isBranch: branchOrChapter || "",
             email: content["email"] || "",
             latitude: content["latitude"] || "",
             longitude: content["longitude"] || "",
             siteLink: content["siteLink"] || "",
         });
-
-        if(data["isBranch"]) {
-            data["isBranch"] === "Branch";
-        }
-        else {
-            data["isBranch"] === "Chapter";
-        }
     }, [content])
 
     const validateData = () => {
@@ -76,28 +72,36 @@ export default function BranchesChaptersItem({
         {name: "name", label: "Name of branch/chapter"},
         {name: "latitude", label: "Latitude"},
         {name: "longitude", label: "Longitude"},
-        {name: "isBranch", label: "Branch" },
+        {name: "isBranch", label: "Branch or chapter" },
         {name: "email", label: "Email" },
         {name: "siteLink", label: "Insert site link" },
     ];
 
+    const branchChapterOptions = [
+        "Branch",
+        "Chapter",
+    ]
+
     return (
         <div>
+            {console.log(data)}
             <div className="branches-chapters-grid">
                 <div className="branches-chapters-grid-left">
                     {inputLabels.map((input) => {
                         return (
                             <>
+                                {console.log(input.name + " " + data[input.name])}
                                 <TextField
                                     margin="dense"
                                     value={data[input.name]}
                                     disabled={isPageDisabled}
                                     placeholder={input.label}
+                                    label={input.label}
+                                    error={dataErrors[input.label]}
                                     variant="outlined"
                                     className={classes.root}
                                     select={input.name === "isBranch" ? true : false}
                                     onChange={(event) => {
-                                        alert(event),
                                         setData({ ...data, [input.name]: event.target.value });
                                     }}
                                     style={{
@@ -105,15 +109,14 @@ export default function BranchesChaptersItem({
                                     }}
                                 >
                                 {input.name === "isBranch" ? (
-                                    <>
-                                        <MenuItem key="Branch" value="Branch">Branch</MenuItem>
-                                        <MenuItem key="Chapter" value="Chapter">Chapter</MenuItem>
-                                    </>
+                                    branchChapterOptions.map((branchChapter) => {
+                                        return <MenuItem key={branchChapter} value={branchChapter}>{branchChapter}</MenuItem>
+                                    })
                                 ) : (
                                     ""
                                 )}
                                 </TextField>
-                                {asterisk()}
+                                {input.name !== "siteLink" ? asterisk() : ""}
                                 <br />
                             </>
                         );
