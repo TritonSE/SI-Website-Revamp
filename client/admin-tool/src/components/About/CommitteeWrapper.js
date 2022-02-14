@@ -103,6 +103,7 @@ export default function CommitteeWrapper({
 
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Committee successfully deleted"});
+            setAddExecutiveShowing(false);
             await loadData();
         } else handleSnackbar({open: true, message: "Error: Committee could not be deleted"});
     };
@@ -112,6 +113,7 @@ export default function CommitteeWrapper({
 
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Member successfully deleted"});
+            setAddExecutiveShowing(false);
             await loadData();
         } else handleSnackbar({open: true, message: "Error: Member could not be deleted"});
     };
@@ -133,6 +135,7 @@ export default function CommitteeWrapper({
 
         if(isSuccessful) {
             handleSnackbar({open: true, message: "Committee successfully updated"});
+            setAddExecutiveShowing(false);
             await loadData();
         } else handleSnackbar({open: true, message: "Error: Committee could not be updated"});
     };
