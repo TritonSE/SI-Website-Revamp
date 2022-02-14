@@ -85,26 +85,26 @@ export default function NewsletterItem({
             if (data[key].length < 1) {
                 errors[key] = true;
                 hasErrors = true;
-                errorString += " all fields are required;";
+                errorString = "Error: all fields are required; ";
             }
         });
 
         if (data["year"].toString().length !== 4 || Number.isNaN(data["year"])) {
             errors["year"] = true;
             hasErrors = true;
-            errorString += " year must be a 4 digit integer;";
+            errorString += "year must be a 4 digit integer; ";
         }
 
         if (Number.isNaN(data["volume"])) {
             errors["year"] = true;
             hasErrors = true;
-            errorString += " volume must be an integer;";
+            errorString += "volume must be an integer; ";
         }
 
         if (Number.isNaN(data["number"])) {
             errors["year"] = true;
             hasErrors = true;
-            errorString += " number must be an integer;";
+            errorString += "number must be an integer; ";
         }
 
         setDataErrors(errors);
