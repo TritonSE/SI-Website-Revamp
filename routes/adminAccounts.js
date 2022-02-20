@@ -4,6 +4,7 @@
  *
  * @summary   Routes for AdminAccounts -->
  * @author    Thomas Garry, Amrit Kaur Singh
+ * @author    Navid Boloorian
  */
 const express = require("express");
 const { body } = require("express-validator");
@@ -131,7 +132,7 @@ router.post(
             const matched = await user.validPassword(password);
 
             if (matched) {
-                // matched user, return email + name +  token
+                // matched user, return email + name + token
                 const payload = {
                     email,
                 };
