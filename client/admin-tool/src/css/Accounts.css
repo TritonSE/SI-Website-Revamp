@@ -1,4 +1,4 @@
-.register-wrapper, .login-wrapper {
+.register-wrapper, .login-wrapper, .forgot-password-wrapper, .reset-password-wrapper {
     display: grid;
     min-height: 100vh;
     width: 100%;

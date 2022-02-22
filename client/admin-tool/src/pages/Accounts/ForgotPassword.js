@@ -9,34 +9,30 @@ import { loginUser } from "../../util/requests/Accounts/account";
 import "../../css/Accounts.css";
 
 export default function Login() {
-    const [forgotPasswordData, setforgotPasswordData] = React.useState({});
-    const [forgotPasswordErrors, setforgotPasswordErrors] = React.useState({});
+    const [forgotPasswordData, setForgotPasswordData] = React.useState({});
+    const [forgotPasswordErrors, setForgotPasswordErrors] = React.useState({});
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
         message: "",
     });
 
     React.useEffect(async () => {
-        setforgotPasswordData({
+        setForgotPasswordData({
             email: "",
-            password: "",
         })
 
-        setforgotPasswordErrors({
+        setForgotPasswordErrors({
             email: false,
-            password: false,
         })
     }, [])
 
     const handleFormSubmit = async () => {
         let finalForgotPasswordData = {
             email: forgotPasswordData.email,
-            password: forgotPasswordData.password,
         }
 
         let finalForgotPasswordErrors = {
             email: false,
-            password: false,
         }
 
         let hasErrors = false;
@@ -45,12 +41,12 @@ export default function Login() {
         Object.keys(forgotPasswordData).forEach((key) => {
             if (forgotPasswordData[key].length < 1) {
                 hasErrors = true;
-                finalforgotPasswordErrors[key] = true;
+                finalForgotPasswordErrors[key] = true;
                 errorString = "Error: all fields are required; ";
             }
         });
 
-        setforgotPasswordErrors(finalForgotPasswordErrors);
+        setForgotPasswordErrors(finalForgotPasswordErrors);
 
         if (!hasErrors) {
             const res = await loginUser(finalForgotPasswordData);
@@ -111,7 +107,6 @@ export default function Login() {
 
     const inputValues = [
         {placeholder: "Email", name: "email", type: "email"},
-        {placeholder: "Password", name: "password", type: "password"},
     ]
 
     return (
@@ -130,7 +125,7 @@ export default function Login() {
                                     type={input.type}
                                     error={forgotPasswordErrors[input.name]}
                                     onChange={(event) => {
-                                        setforgotPasswordData({ ...forgotPasswordData, [input.name]: event.target.value });
+                                        setForgotPasswordData({ ...forgotPasswordData, [input.name]: event.target.value });
                                     }}
                                 />
                                 <br />
@@ -139,12 +134,12 @@ export default function Login() {
                     })
                 }
                 <div className="redirect-links">
-                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_REGISTER}>New user?</a>
-                    <a className="password-redirect" href={SITE_PAGES.ACCOUNTS_FORGOT_PASSWORD}>Forgot password</a>
+                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_REGISTER}>Login</a>
+                    <a className="password-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>Register</a>
                 </div>
                 <br />
                 <Button 
-                    text="Login"
+                    text="Email me a recovery link"
                     onClickCallback={() => handleFormSubmit()}
                 />
             </div>
