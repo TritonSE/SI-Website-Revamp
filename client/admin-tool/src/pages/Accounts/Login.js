@@ -11,6 +11,7 @@ import "../../css/Accounts.css";
 export default function Login() {
     const [loginData, setloginData] = React.useState({});
     const [loginErrors, setloginErrors] = React.useState({});
+    const [pageDisabled, setPageDisabled] = React.useState(false);
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
         message: "",
@@ -29,6 +30,8 @@ export default function Login() {
     }, [])
 
     const handleFormSubmit = async () => {
+        setPageDisabled(true);
+
         let finalLoginData = {
             email: loginData.email,
             password: loginData.password,
@@ -54,13 +57,18 @@ export default function Login() {
 
         if (!hasErrors) {
             const res = await loginUser(finalLoginData);
+            const json = await res.json();
 
             if(res.status === 401)
                 handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });
             else 
                 handleSnackbar({ open: true, message: "Success! Redirecting..." })
+
+            localStorage.setItem("token", json.token);
         }
         else handleSnackbar({ open: true, message: errorString });
+
+        setPageDisabled(false);
     }
 
     const useHelperTextStyles = makeStyles(() => ({
@@ -124,9 +132,10 @@ export default function Login() {
                             <>
                                 <TextField 
                                     variant="outlined"
+                                    disabled={pageDisabled}
                                     placeholder={input.placeholder}
                                     className={classes.root}
-                                    InputProps={{ disableUnderline: true }}
+                                    InputProps={{ disableunderline: true }}
                                     type={input.type}
                                     error={loginErrors[input.name]}
                                     onChange={(event) => {

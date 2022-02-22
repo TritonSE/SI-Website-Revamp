@@ -11,6 +11,7 @@ import "../../css/Accounts.css";
 export default function Register() {
     const [registerData, setRegisterData] = React.useState({});
     const [registerErrors, setRegisterErrors] = React.useState({});
+    const [pageDisabled, setPageDisabled] = React.useState(false);
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
         message: "",
@@ -35,6 +36,8 @@ export default function Register() {
     }, [])
 
     const handleFormSubmit = async () => {
+        setPageDisabled(true);
+
         let finalRegisterData = {
             name: registerData.name,
             email: registerData.email,
@@ -88,6 +91,8 @@ export default function Register() {
                 handleSnackbar({ open: true, message: "Success! Redirecting..." })
         }
         else handleSnackbar({ open: true, message: errorString });
+
+        setPageDisabled(false);
     }
 
     const useHelperTextStyles = makeStyles(() => ({
@@ -154,9 +159,10 @@ export default function Register() {
                             <>
                                 <TextField 
                                     variant="outlined"
+                                    disabled={pageDisabled}
                                     placeholder={input.placeholder}
                                     className={classes.root}
-                                    InputProps={{ disableUnderline: true }}
+                                    InputProps={{ disableunderline: true }}
                                     type={input.type}
                                     error={registerErrors[input.name]}
                                     onChange={(event) => {

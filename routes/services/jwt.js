@@ -5,6 +5,7 @@
  *
  * @summary   Creation and verification of JWTs via functions.
  * @author    Amrit Kaur Singh, Thomas Garry
+ * @author    Navid Boloorian
  */
 
 const jwt = require("jsonwebtoken");
@@ -35,13 +36,35 @@ async function verify(token) {
     return jwt.verify(token, config.auth.jwt_secret, (err) => {
         // invalid token
         if (err) {
-            return Promise.reject();
+            return [Promise.reject(), false];
         }
-        return Promise.resolve();
+
+        return [Promise.resolve(), true];
     });
+}
+
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+const checkToken = (req, res, next) => {
+    const header = req.headers['authorization'];
+
+    if(typeof header !== 'undefined') {
+        const bearer = header.split(' ');
+        const token = bearer[1];
+
+        req.token = token;
+        next();
+    } else {
+        res.sendStatus(403);
+    }
 }
 
 module.exports = {
     verify,
     createJWT,
+    checkToken,
 };

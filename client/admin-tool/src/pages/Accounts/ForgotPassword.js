@@ -4,13 +4,14 @@ import Brand from "../../components/Accounts/Brand"
 import Button from "../../components/Button";
 import { SITE_PAGES } from "../../constants/links";
 
-import { loginUser } from "../../util/requests/Accounts/account";
+import { sendForgotPasswordEmail } from "../../util/requests/Accounts/account";
 
 import "../../css/Accounts.css";
 
 export default function Login() {
     const [forgotPasswordData, setForgotPasswordData] = React.useState({});
     const [forgotPasswordErrors, setForgotPasswordErrors] = React.useState({});
+    const [pageDisabled, setPageDisabled] = React.useState(false);
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
         message: "",
@@ -27,6 +28,8 @@ export default function Login() {
     }, [])
 
     const handleFormSubmit = async () => {
+        setPageDisabled(true);
+
         let finalForgotPasswordData = {
             email: forgotPasswordData.email,
         }
@@ -49,7 +52,7 @@ export default function Login() {
         setForgotPasswordErrors(finalForgotPasswordErrors);
 
         if (!hasErrors) {
-            const res = await loginUser(finalForgotPasswordData);
+            const res = await sendForgotPasswordEmail(finalForgotPasswordData);
 
             if(res.status === 401)
                 handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });
@@ -57,6 +60,8 @@ export default function Login() {
                 handleSnackbar({ open: true, message: "Success! Redirecting..." })
         }
         else handleSnackbar({ open: true, message: errorString });
+
+        setPageDisabled(false);
     }
 
     const useHelperTextStyles = makeStyles(() => ({
@@ -119,9 +124,10 @@ export default function Login() {
                             <>
                                 <TextField 
                                     variant="outlined"
+                                    disabled={pageDisabled}
                                     placeholder={input.placeholder}
                                     className={classes.root}
-                                    InputProps={{ disableUnderline: true }}
+                                    InputProps={{ disableunderline: true }}
                                     type={input.type}
                                     error={forgotPasswordErrors[input.name]}
                                     onChange={(event) => {
