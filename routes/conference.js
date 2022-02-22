@@ -9,7 +9,6 @@ const express = require("express");
 const { body } = require("express-validator");
 const { create, getAll, edit, remove } = require("../db/services/conference");
 const { isValidated } = require("../middleware/validation");
-const { protect } = require("services/auth");
 
 const router = express.Router();
 
@@ -86,7 +85,7 @@ router.post(
         body("id").custom((val) => val === undefined),
         isValidated,
     ],
-    async (req, res, next) => {
+    async (req, res) => {
         try {
             const entries = await create(req.body);
             return res.status(200).json(entries);
@@ -185,7 +184,7 @@ router.put(
         body("id").custom((val) => val === undefined),
         isValidated,
     ],
-    async (req, res, next) => {
+    async (req, res) => {
         try {
             const { id } = req.params;
             // index must be a number
@@ -207,7 +206,7 @@ router.put(
  *
  * @param {Number} id - id of the conference to be removed.
  */
-router.delete("/:id", [isValidated], async (req, res, next) => {
+router.delete("/:id", [isValidated], async (req, res) => {
     try {
         const { id } = req.params;
 

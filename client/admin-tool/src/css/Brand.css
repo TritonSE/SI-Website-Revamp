@@ -18,11 +18,13 @@
   
   .branding {
     margin-left: 10px;
+    margin-bottom: 20px;
   }
   
   .branding #title {
     font-family: var(--heading-font);
     font-size: 28px;
+    margin: 0px;
   }
   
   .branding #subtitle,

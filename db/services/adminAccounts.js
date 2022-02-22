@@ -4,8 +4,10 @@
  *
  * @summary   Services for adminAccounts -->
  * @author    Thomas Garry
+ * @author    Navid Boloorian
  */
 const AdminAccounts = require("../models/adminAccounts");
+const crypto = require("crypto");
 
 /**
  * Creates Admin data.
@@ -42,8 +44,24 @@ async function updateOneUser(updated_user) {
     return updated_user.save();
 }
 
+/**
+ * 
+ */
+async function getResetPasswordToken(user) {
+    const resetToken = crypto.randomBytes(20).toString("hex");
+
+    user.resetPasswordToken = crypto.
+    createHash("sha256").update(resetToken).
+    digest("hex");
+
+    user.resetPassworedExpire = Date.now() + 120 * (60 * 10000);
+
+    return {resetToken, user};
+}
+
 module.exports = {
     addAdmin,
     findOneUser,
     updateOneUser,
+    getResetPasswordToken
 };

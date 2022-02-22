@@ -3,7 +3,7 @@
  */
 
 const { verify } = require("jwt");
-const { findOneUser } = require("../../db/services/adminAccounts");
+const { findOneUser, getResetPasswordToken, updateOneUser } = require("../../db/services/adminAccounts");
 
 
 exports.protect = async (req, res, next) => {
@@ -31,5 +31,23 @@ exports.protect = async (req, res, next) => {
         next();
     } catch (error) {
         return res.status(401).json({msg: "Not authorized to access this route"});
+    }
+}
+
+exports.forgotPassword = async (req, res, next) => {
+    const {email} = req.body;
+
+    try {
+        const user = await findOneUser(email);
+
+        if(!user) {
+            return res.status(500).json({msg: "Email could not be sent"});
+        }
+
+        const resetToken = getResetPasswordToken(user);
+    
+        await updateOneUser(user);
+    } catch (error) {
+
     }
 }
