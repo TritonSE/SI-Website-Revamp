@@ -23,3 +23,21 @@
          return false;
      }
  };
+
+ export const loginUser = async (content) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}adminAccounts/login/`, {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(content),
+        });
+        
+        return res;
+
+        // fetch fails
+    } catch {
+        return false;
+    }
+};
