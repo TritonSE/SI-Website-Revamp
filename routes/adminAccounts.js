@@ -219,7 +219,7 @@ router.put(
  * @returns {401} - Email does not match an existing account
  * @returns {500} - Internal error, user's password could not be changed/email could not be sent for some reason
  */
-router.put(
+router.post(
     "/forgotPassword",
     [body("email").notEmpty().isEmail(), isValidated],
     async (req, res) => {
@@ -229,19 +229,6 @@ router.put(
             const user = await findOneUser(email);
             if (!user) {
                 return res.status(401).json({ msg: "Invalid Credentials" });
-            }
-
-            // generate a random password
-            const passLength = getRandomArbitrary(MIN_PASS_LENGTH, MAX_PASS_LENGTH);
-            const randomlyGeneratedPass = crypto.randomBytes(passLength).toString("hex");
-
-            // set user's password to the randomly generated one
-            user.password = randomlyGeneratedPass;
-
-            // attempt to update the password for the user
-            const updatedUser = await updateOneUser(user);
-            if (!updatedUser) {
-                return res.status(500).json({ msg: "Password could not be reset for account." });
             }
 
             // send an automated email to the user containing their new randomly generated password

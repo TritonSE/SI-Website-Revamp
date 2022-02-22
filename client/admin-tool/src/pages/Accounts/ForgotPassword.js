@@ -134,8 +134,7 @@ export default function Login() {
                     })
                 }
                 <div className="redirect-links">
-                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_REGISTER}>Login</a>
-                    <a className="password-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>Register</a>
+                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>Go back</a>
                 </div>
                 <br />
                 <Button 

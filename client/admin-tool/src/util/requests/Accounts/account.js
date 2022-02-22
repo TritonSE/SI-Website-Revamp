@@ -41,3 +41,39 @@
         return false;
     }
 };
+
+export const sendForgotPasswordEmail = async (content) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}adminAccounts/forgotPassword/`, {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(content),
+        });
+        
+        return res;
+
+        // fetch fails
+    } catch {
+        return false;
+    }
+};
+
+export const changePassword = async (content) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}adminAccounts/changePassword/`, {
+            method: "put",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(content),
+        });
+        
+        return res;
+
+        // fetch fails
+    } catch {
+        return false;
+    }
+};
