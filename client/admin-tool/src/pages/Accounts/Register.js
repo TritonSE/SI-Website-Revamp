@@ -3,9 +3,27 @@ import { TextField, makeStyles } from "@material-ui/core";
 import Brand from "../../components/Accounts/Brand"
 import Button from "../../components/Button";
 
+import { registerUser } from "../../util/requests/Accounts/account";
+
 import "../../css/Register.css";
 
 export default function Register() {
+    const [registerData, setRegisterData] = React.useState({});
+
+    React.useEffect(async () => {
+        setRegisterData({
+            name: "",
+            email: "",
+            password: "",
+            confPasswrd: "",
+            secret: "",
+        })
+    }, [])
+
+    const handleFormSubmit = () => {
+        registerUser(registerData)
+    }
+
     const useHelperTextStyles = makeStyles(() => ({
         root: {
             // input field - general layout
@@ -13,7 +31,7 @@ export default function Register() {
                 width: "100%",
             },
             "& .MuiInputBase-input": {
-                width: "430px",
+                width: "430px !important",
                 borderRadius: "30px",
                 backgroundColor: "white",
                 borderBottom: "0px",
@@ -43,11 +61,11 @@ export default function Register() {
     const classes = useHelperTextStyles();
 
     const inputValues = [
-        {placeholder: "Sign-up code"},
-        {placeholder: "Full name"},
-        {placeholder: "Email"},
-        {placeholder: "Password"},
-        {placeholder: "Re-enter password"},
+        {placeholder: "Sign-up code", name: "secret", type: "text"},
+        {placeholder: "Full name", name: "name", type: "text"},
+        {placeholder: "Email", name: "email", type: "email"},
+        {placeholder: "Password", name: "password", type: "password"},
+        {placeholder: "Re-enter password", name: "confPassword", type: "password"},
     ]
 
     return (
@@ -55,13 +73,17 @@ export default function Register() {
             <div className="register-form">
                 <Brand />
                 {
-                    inputValues.map(value => {
+                    inputValues.map(input => {
                         return (
                             <>
                                 <TextField 
-                                    placeholder={value.placeholder}
+                                    placeholder={input.placeholder}
                                     className={classes.root}
                                     InputProps={{ disableUnderline: true }}
+                                    type={input.type}
+                                    onChange={(event) => {
+                                        setRegisterData({ ...registerData, [input.name]: event.target.value });
+                                    }}
                                 />
                                 <br />
                             </>
@@ -70,6 +92,7 @@ export default function Register() {
                 }
                 <Button 
                     text="Register and login"
+                    onClickCallback={() => handleFormSubmit()}
                 />
             </div>
         </div>
