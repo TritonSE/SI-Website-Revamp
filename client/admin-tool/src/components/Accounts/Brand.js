@@ -15,7 +15,6 @@
  export default function Brand(props) {
      return (
          <a
-             href={SITE_PAGES.ACCOUNTS_LOGIN}
              className="brand"
          >
              <img src={Logo} alt="Logo" id="logo" width="250px" />

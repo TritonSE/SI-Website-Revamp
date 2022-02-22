@@ -15,13 +15,8 @@
              },
              body: JSON.stringify(content),
          });
-         // successfull
-         if (res.ok) {
-             return true;
-         }
- 
-         // any server issue
-         return false;
+         
+         return res;
  
          // fetch fails
      } catch {
