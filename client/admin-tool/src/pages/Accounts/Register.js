@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField, makeStyles } from "@material-ui/core";
 import Brand from "../../components/Accounts/Brand"
+import Button from "../../components/Button";
 
 import "../../css/Register.css";
 
@@ -67,6 +68,9 @@ export default function Register() {
                         )
                     })
                 }
+                <Button 
+                    text="Register and login"
+                />
             </div>
         </div>
     );
