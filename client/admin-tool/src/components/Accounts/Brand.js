@@ -8,7 +8,6 @@
  */
 
  import React from "react";
- import { SITE_PAGES } from "../../constants/links";
  import "../../css/Brand.css";
  import Logo from "../../media/logo.svg";
  
@@ -16,6 +15,7 @@
      return (
          <a
              className="brand"
+             href="#"
          >
              <img src={Logo} alt="Logo" id="logo" width="250px" />
              <div className="branding">

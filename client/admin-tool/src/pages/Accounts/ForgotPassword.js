@@ -18,6 +18,8 @@ export default function Login() {
     });
 
     React.useEffect(async () => {
+        localStorage.clear();
+        
         setForgotPasswordData({
             email: "",
         })

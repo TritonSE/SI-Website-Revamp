@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 import { SITE_PAGES } from "./constants/links";
+import PrivateRoute from "./components/PrivateRoute";
 import PageLayout from "./components/PageLayout";
 import NewsEventsSlider from "./pages/Home/NewsEventsSlider";
 import HomeIntro from "./pages/Home/Introduction";
@@ -45,43 +46,65 @@ function App() {
                         <Switch>
                             {/* Home Page */}
                             <Route exact path={SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER}>
-                                <NewsEventsSlider />
+                                <PrivateRoute>
+                                    <NewsEventsSlider />
+                                </PrivateRoute>
                             </Route>
                             <Route exact path={SITE_PAGES.HOME_INTRODUCTION}>
-                                <HomeIntro />
+                                <PrivateRoute>
+                                    <HomeIntro />
+                                </PrivateRoute>
                             </Route>
                             <Route exact path={SITE_PAGES.HOME_BRANCHES_CHAPTERS}>
-                                <BranchesChapters />
+                                <PrivateRoute>
+                                    <BranchesChapters />
+                                </PrivateRoute>
                             </Route>
                             <Route exact path={SITE_PAGES.HOME_ADD_SECTION}>
-                                <HomeAddSection />
+                                <PrivateRoute>
+                                    <HomeAddSection />
+                                </PrivateRoute>
                             </Route>
 
                             {/* Conferences Page */}
                             <Route exact path={SITE_PAGES.CONFERENCES}>
-                                <Conferences />
+                                <PrivateRoute>
+                                    <Conferences />
+                                </PrivateRoute>
                             </Route>
 
                             {/* Resources Page */}
                             <Route exact path={SITE_PAGES.RESOURCE_NEWSLETTERS}>
-                                <Newsletters />
+                                <PrivateRoute>        
+                                    <Newsletters />
+                                </PrivateRoute>
                             </Route>
                             <Route exact path={SITE_PAGES.RESOURCE_EPUBS}>
-                                <EPublications />
+                                <PrivateRoute>
+                                    <EPublications />
+                                </PrivateRoute>
                             </Route>
                             <Route exact path={SITE_PAGES.RESOURCE_BUDDHIST_CULTURE}>
-                                <BuddhistCulture />
+                                <PrivateRoute>
+                                    <BuddhistCulture />
+                                </PrivateRoute>
                             </Route>
                             <Route exact path={SITE_PAGES.RESOURCE_ORDINATION_ISSUE}>
-                                <OrdinationIssue />
+                                <PrivateRoute>
+                                    <OrdinationIssue />
+                                </PrivateRoute>
                             </Route>
 
                             {/* About Us Page */}
                             <Route exact path={SITE_PAGES.ABOUT_EDIT_SECTION}>
-                                <AboutEditSections />
+                                <PrivateRoute>
+                                    <AboutEditSections />
+                                </PrivateRoute>
                             </Route>
                             <Route exact path={SITE_PAGES.ABOUT_EXEC_COMMITTEE}>
-                                <ExecCommittee />
+                                <PrivateRoute>
+                                    <ExecCommittee />
+                                </PrivateRoute>
                             </Route>
                         </Switch>
                     </PageLayout>

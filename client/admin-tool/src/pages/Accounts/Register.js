@@ -18,6 +18,8 @@ export default function Register() {
     });
 
     React.useEffect(async () => {
+        localStorage.clear();
+        
         setRegisterData({
             name: "",
             email: "",

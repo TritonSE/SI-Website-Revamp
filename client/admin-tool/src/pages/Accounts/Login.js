@@ -18,6 +18,8 @@ export default function Login() {
     });
 
     React.useEffect(async () => {
+        localStorage.clear();
+
         setloginData({
             email: "",
             password: "",
@@ -64,6 +66,8 @@ export default function Login() {
             else {
                 handleSnackbar({ open: true, message: "Success! Redirecting..." })
                 localStorage.setItem("token", json.token);
+
+                window.location.href = SITE_PAGES.ABOUT_EDIT_SECTION;
             }
         }
         else handleSnackbar({ open: true, message: errorString });

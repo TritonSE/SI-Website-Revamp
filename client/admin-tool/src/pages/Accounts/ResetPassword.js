@@ -22,6 +22,8 @@ export default function ResetPassword() {
     const { recoveryToken } = useParams();
 
     React.useEffect(async () => {
+        localStorage.clear();
+        
         const email = await getEmailByToken(recoveryToken);
 
         if(email == undefined) window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;
