@@ -54,15 +54,10 @@ export default function Login() {
         });
 
         setloginErrors(finalLoginErrors);
-        setloginData(finalLoginData);
 
         if (!hasErrors) {
-            console.log(finalLoginData);
-
             const res = await loginUser(finalLoginData);
             const json = await res.json();
-
-            console.log(res);
 
             if(res.status !== 200)
                 handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });

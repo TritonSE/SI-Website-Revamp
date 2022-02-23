@@ -24,7 +24,7 @@ export default function ResetPassword() {
     React.useEffect(async () => {
         const email = await getEmailByToken(recoveryToken);
 
-        if(email == undefined) alert("ERROR")
+        if(email == undefined) window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;
         else setEmail(email);
 
         setResetPasswordData({
@@ -65,6 +65,20 @@ export default function ResetPassword() {
             }
         });
 
+        if(resetPasswordData.password !== resetPasswordData.confPassword) {
+            hasErrors = true;
+            finalResetPasswordErrors["password"] = true;
+            finalResetPasswordErrors["confPassword"] = true;
+            errorString += "passwords do not match; ";
+        }
+
+        if(resetPasswordData.password.length < 6 || resetPasswordData.password > 15 ) {
+            hasErrors = true;
+            finalResetPasswordErrors["password"] = true;
+            finalResetPasswordErrors["confPassword"] = true;
+            errorString += "password must be between 6 and 15 characters long; ";
+        }
+
         setResetPasswordErrors(finalResetPasswordErrors);
 
         if (!hasErrors) {
@@ -72,8 +86,13 @@ export default function ResetPassword() {
 
             if(res.status === 401)
                 handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });
-            else 
-                handleSnackbar({ open: true, message: "Success! Redirecting..." })
+            else {
+                handleSnackbar({ open: true, message: "New password set! Redirecting to login..." })
+
+                setTimeout(function () {
+                    window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;   
+                }, 1000);
+            }
         }
         else handleSnackbar({ open: true, message: errorString });
 
@@ -128,7 +147,7 @@ export default function ResetPassword() {
 
     const inputValues = [
         {placeholder: "Password", name: "password", type: "password"},
-        {placeholder: "Confirm passwor", name: "confPassword", type: "password"},
+        {placeholder: "Confirm password", name: "confPassword", type: "password"},
     ]
 
     return (
@@ -162,7 +181,7 @@ export default function ResetPassword() {
                 </div>
                 <br />
                 <Button 
-                    text="Email me a recovery link"
+                    text="Set new password"
                     onClickCallback={() => handleFormSubmit()}
                 />
             </div>

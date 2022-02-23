@@ -4,7 +4,7 @@ import Brand from "../../components/Accounts/Brand"
 import Button from "../../components/Button";
 import { SITE_PAGES } from "../../constants/links";
 
-import { registerUser } from "../../util/requests/Accounts/account";
+import { registerUser, loginUser } from "../../util/requests/Accounts/account";
 
 import "../../css/Accounts.css";
 
@@ -87,8 +87,19 @@ export default function Register() {
                 handleSnackbar({ open: true, message: "Error: secret key is invalid" });
             else if(res.status === 409)
                 handleSnackbar({ open: true, message: "Error: email already registered" });
-            else 
+            else {
                 handleSnackbar({ open: true, message: "Success! Redirecting..." })
+
+                const loginRes = await loginUser({ 
+                    email: registerData.email,
+                    password: registerData.password,
+                });
+                const json = await loginRes.json();
+
+                localStorage.setItem("token", json.token);
+
+                window.location.href = SITE_PAGES.ABOUT_EXEC_COMMITTEE;
+            }
         }
         else handleSnackbar({ open: true, message: errorString });
 

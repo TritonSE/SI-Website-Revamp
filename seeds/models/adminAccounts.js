@@ -15,11 +15,15 @@ module.exports = async () => {
             { logging: false }
         ),
         AdminAccounts.create(
-            { name: "John Doe", email: "jdoe@random.com", password: "john" },
+            { name: "Navid Boloorian", email: "navidboloor@gmail.com", password: "password" },
             { logging: false }
         ),
         AdminAccounts.create(
-            { name: "Harry Potter", email: "hpotter@random.com", password: "harry" },
+            { name: "John Doe", email: "jdoe@random.com", password: "password" },
+            { logging: false }
+        ),
+        AdminAccounts.create(
+            { name: "Harry Potter", email: "hpotter@random.com", password: "password" },
             { logging: false }
         ),
     ])

@@ -54,10 +54,10 @@ export default function Login() {
         if (!hasErrors) {
             const res = await sendForgotPasswordEmail(finalForgotPasswordData);
 
-            if(res.status === 401)
-                handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });
+            if(res.status !== 200)
+                handleSnackbar({ open: true, message: "Error: email does not exist" });
             else 
-                handleSnackbar({ open: true, message: "Success! Redirecting..." })
+                handleSnackbar({ open: true, message: "Email sent!" })
         }
         else handleSnackbar({ open: true, message: errorString });
 

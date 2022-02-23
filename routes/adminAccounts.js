@@ -231,19 +231,18 @@ router.post(
                 return res.status(401).json({ msg: "Invalid Credentials" });
             }
 
-            // // send an automated email to the user containing their new randomly generated password
-            // const locals = {
-            //     password: randomlyGeneratedPass,
-            //     resetLink: `${config.frontend.uri}reset-password`,
-            // };
+            // send an automated email to the user containing their new randomly generated password
+            const locals = {
+                resetLink: `${config.backend.uri}admin/reset-password/${user.resetPasswordToken}`,
+            };
 
-            // const isSent = await sendEmail("forgot-password", email, locals, res);
+            const isSent = await sendEmail("forgot-password", email, locals, res);
 
-            // // email could be sent
-            // if (!isSent)
-            //     return res.status(500).json({
-            //         msg: "Password reset, but email could not be sent. Please contact an adminstrator.",
-            //     });
+            // email could be sent
+            if (!isSent)
+                return res.status(500).json({
+                    msg: "Password reset, but email could not be sent. Please contact an adminstrator.",
+                });
 
             return res.status(200).json({
                 msg: updatedUser,
