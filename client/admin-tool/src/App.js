@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
 import { SITE_PAGES } from "./constants/links";
@@ -106,6 +106,7 @@ function App() {
                                     <ExecCommittee />
                                 </PrivateRoute>
                             </Route>
+                            <Redirect path="*" to={SITE_PAGES.ACCOUNTS_LOGIN} />
                         </Switch>
                     </PageLayout>
                 </Route>
