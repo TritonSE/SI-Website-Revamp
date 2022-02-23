@@ -77,3 +77,23 @@ export const changePassword = async (content) => {
         return false;
     }
 };
+
+export const getEmailByToken = async (token) => {
+    
+    try {
+        const res = await fetch(`${BACKEND_URL}adminAccounts/emailByToken/${token}`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+
+        const json = await res.json();
+        
+        return json.email;
+        // fetch fails
+    } catch (err) {
+        console.log(err)
+        return false;
+    }
+};

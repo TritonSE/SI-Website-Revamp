@@ -162,7 +162,7 @@ export default function Register() {
                                     disabled={pageDisabled}
                                     placeholder={input.placeholder}
                                     className={classes.root}
-                                    InputProps={{ disableunderline: true }}
+                                    InputProps={{ disableUnderline: true }}
                                     type={input.type}
                                     error={registerErrors[input.name]}
                                     onChange={(event) => {

@@ -54,17 +54,22 @@ export default function Login() {
         });
 
         setloginErrors(finalLoginErrors);
+        setloginData(finalLoginData);
 
         if (!hasErrors) {
+            console.log(finalLoginData);
+
             const res = await loginUser(finalLoginData);
             const json = await res.json();
 
-            if(res.status === 401)
-                handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });
-            else 
-                handleSnackbar({ open: true, message: "Success! Redirecting..." })
+            console.log(res);
 
-            localStorage.setItem("token", json.token);
+            if(res.status !== 200)
+                handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });
+            else {
+                handleSnackbar({ open: true, message: "Success! Redirecting..." })
+                localStorage.setItem("token", json.token);
+            }
         }
         else handleSnackbar({ open: true, message: errorString });
 
@@ -135,7 +140,7 @@ export default function Login() {
                                     disabled={pageDisabled}
                                     placeholder={input.placeholder}
                                     className={classes.root}
-                                    InputProps={{ disableunderline: true }}
+                                    InputProps={{ disableUnderline: true }}
                                     type={input.type}
                                     error={loginErrors[input.name]}
                                     onChange={(event) => {

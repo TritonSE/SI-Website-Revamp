@@ -47,21 +47,13 @@ async function updateOneUser(updated_user) {
 /**
  * 
  */
-async function getResetPasswordToken(user) {
-    const resetToken = crypto.randomBytes(20).toString("hex");
-
-    user.resetPasswordToken = crypto.
-    createHash("sha256").update(resetToken).
-    digest("hex");
-
-    user.resetPassworedExpire = Date.now() + 120 * (60 * 10000);
-
-    return {resetToken, user};
+async function getEmailByResetToken(resetToken) {
+    return AdminAccounts.findOne({ where: { resetPasswordToken: resetToken } });
 }
 
 module.exports = {
     addAdmin,
     findOneUser,
     updateOneUser,
-    getResetPasswordToken
+    getEmailByResetToken
 };

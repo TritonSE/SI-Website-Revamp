@@ -3,7 +3,7 @@ export class SITE_PAGES {
     // Account Pages
     static ACCOUNTS_LOGIN = "/admin/login";
     static ACCOUNTS_REGISTER = "/admin/register";
-    static ACCOUNTS_RESET_PASSWORD = "/admin/reset-password";
+    static ACCOUNTS_RESET_PASSWORD = "/admin/reset-password/:recoveryToken";
     static ACCOUNTS_FORGOT_PASSWORD = "/admin/forgot-password";
 
     // Home Pages

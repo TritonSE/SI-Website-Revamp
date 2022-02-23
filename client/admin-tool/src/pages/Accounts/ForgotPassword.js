@@ -127,7 +127,7 @@ export default function Login() {
                                     disabled={pageDisabled}
                                     placeholder={input.placeholder}
                                     className={classes.root}
-                                    InputProps={{ disableunderline: true }}
+                                    InputProps={{ disableUnderline: true }}
                                     type={input.type}
                                     error={forgotPasswordErrors[input.name]}
                                     onChange={(event) => {
