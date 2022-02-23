@@ -1,5 +1,6 @@
 import React from "react";
 import { TextField, makeStyles, Snackbar } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import Brand from "../../components/Accounts/Brand"
 import Button from "../../components/Button";
 import { SITE_PAGES } from "../../constants/links";
@@ -90,6 +91,8 @@ export default function Register() {
             else if(res.status === 409)
                 handleSnackbar({ open: true, message: "Error: email already registered" });
             else {
+                let history = useHistory();
+
                 handleSnackbar({ open: true, message: "Success! Redirecting..." })
 
                 const loginRes = await loginUser({ 
@@ -100,7 +103,7 @@ export default function Register() {
 
                 localStorage.setItem("token", json.token);
 
-                window.location.href = SITE_PAGES.ABOUT_EXEC_COMMITTEE;
+                history.push(SITE_PAGES.ABOUT_EXEC_COMMITTEE);
             }
         }
         else handleSnackbar({ open: true, message: errorString });
