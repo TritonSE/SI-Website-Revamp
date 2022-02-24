@@ -1,5 +1,13 @@
+#LoaderWrapper {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .EPub_body {
-  margin: 100px 0px;
+  margin: 56px 0px 100px 0px;
 }
 .EPub_SelectedSection {
   display: block;
@@ -58,6 +66,10 @@
   cursor: pointer;
 }
 .EPub_SelectedSection_body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
   position: relative;
   text-align: center;
   margin: 0px -25px;
@@ -112,6 +124,10 @@
   cursor: pointer;
 }
 .EPub_SelectedSection_body--mobile {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
   position: relative;
   text-align: center;
   margin: 0px -25px;
@@ -195,6 +211,13 @@
   border: none;
 }
 @media screen and (max-width: 750px) {
+  #LoaderWrapper {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
   .EPub_Slide {
     position: relative;
     display: flex;

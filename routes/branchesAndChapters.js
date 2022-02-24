@@ -7,8 +7,9 @@
  */
 const express = require("express");
 const { body } = require("express-validator");
-const { create, getAll, edit } = require("../db/services/branchesAndChapters");
+const { create, getAll, edit, deleteOne } = require("../db/services/branchesAndChapters");
 const { isValidated } = require("../middleware/validation");
+const { checkToken, verify } = require("../routes/services/jwt");
 
 const router = express.Router();
 
@@ -20,9 +21,10 @@ const router = express.Router();
 router.post(
     "/",
     [
+        checkToken,
         body("name").isString(),
         body("isBranch").isBoolean(),
-        body("email").isString(),
+        body("email").isString().optional(),
         body("latitude").isFloat(),
         body("longitude").isFloat(),
         body("siteLink").isString().optional(),
@@ -33,6 +35,12 @@ router.post(
     ],
     async (req, res) => {
         try {
+            const verified = await verify(req.token);
+            
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
+            
             const addedEntry = await create(req.body);
             return res.status(200).json(addedEntry);
         } catch (err) {
@@ -40,6 +48,32 @@ router.post(
         }
     }
 );
+
+/**
+ * Deletes branch and chapter from DB.
+ *
+ * @returns {status} - 200 - with array of all conferences.
+ */
+router.delete("/:id", [isValidated], async (req, res) => {
+    const { id } = req.params;
+
+    // checks if id is invalid and returns 400 status
+    if (Number(id) < 0) {
+        return res.status(400).json({ message: "Syntax Error in Request" });
+    }
+
+    try {
+        const numDeleted = await deleteOne(Number(id));
+
+        // checks if an entry was updated
+        if (numDeleted === 1) {
+            return res.status(200).json({ message: "Success" });
+        }
+        return res.status(500).json({ message: "Delete Unsuccessful" });
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
 
 /**
  * Gets all branches and chapters from DB.
@@ -64,6 +98,7 @@ router.get("/", [isValidated], async (req, res) => {
 router.put(
     "/:id",
     [
+        checkToken,
         body("name").isString().optional(),
         body("isBranch").isBoolean().optional(),
         body("email").isString().optional(),
@@ -78,6 +113,11 @@ router.put(
     async (req, res) => {
         try {
             const { id } = req.params;
+            const verified = await verify(req.token);
+            
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
 
             // checks that id is a number
             if (Number(id) < 0)

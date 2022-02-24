@@ -36,6 +36,7 @@ export default function ConferenceTheme(props) {
             {props.title ? (
                 <section className="conference-info-title">
                     <h1>{props.title}</h1>
+                    {props.tabs ? props.tabs() : null}
                 </section>
             ) : null}
 
@@ -45,7 +46,7 @@ export default function ConferenceTheme(props) {
             </section>
 
             {/* Button that opens the modal */}
-            {props.signup ? (
+            {props.signup && !props.isMobile ? (
                 <section className="conference-info-signup">
                     {/* When button is clicked, it will render the modal */}
                     <button onClick={() => redirect()} type="button">
@@ -55,7 +56,13 @@ export default function ConferenceTheme(props) {
             ) : null}
 
             {/* The text describing the specific conference */}
-            <p className="conference-theme-paragraph">{props.theme}</p>
+            <div className="conference-theme-paragraph-div">
+                <div className="slideshow-div">{props.slideShow ? props.slideShow() : null}</div>
+                <p
+                    className="conference-theme-paragraph"
+                    dangerouslySetInnerHTML={{ __html: props.theme }}
+                />
+            </div>
 
             {/* The Modal that renders if the signup button is clicked under 'overview' 
             on conferences */}

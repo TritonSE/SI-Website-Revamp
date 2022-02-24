@@ -3,6 +3,7 @@
  *
  * @summary   defines schema for AdminAccounts.
  * @author    Thomas Garry
+ * @author    Navid Boloorian
  */
 const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
@@ -26,6 +27,14 @@ const AdminAccount = db.define(
             type: Sequelize.STRING,
             allowNull: false,
         },
+        resetPasswordToken: {
+            type: Sequelize.STRING,
+            allowNull: true,
+        },
+        resetPasswordExpire: {
+            type: Sequelize.DATE,
+            allowNull: true,
+        }
     },
     {
         hooks: {

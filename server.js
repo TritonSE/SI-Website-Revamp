@@ -45,6 +45,7 @@ app.use(cors({ methods: ["GET", "POST", "PUT", "DELETE"] }));
 
 // Routers
 app.use("/sample", require("./routes/sample"));
+app.use("/publications", require("./routes/publications"));
 app.use("/conference", require("./routes/conference"));
 app.use("/emailList", require("./routes/emailList"));
 app.use("/volunteers", require("./routes/volunteers"));
@@ -54,6 +55,9 @@ app.use("/adminAccounts", require("./routes/adminAccounts"));
 app.use("/contact", require("./routes/contact"));
 app.use("/branchesAndChapters", require("./routes/branchesAndChapters"));
 app.use("/paypal", require("./routes/paypal"));
+app.use("/execCommittees", require("./routes/execCommittees"));
+app.use("/newsAndEvents", require("./routes/newsAndEvents"));
+app.use("/sections", require("./routes/sections"));
 
 app.get("/", (req, res) => {
     res.status(200).json({ message: "Abandon All Hope Ye Who Enter Here..." });

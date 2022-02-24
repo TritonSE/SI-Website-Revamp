@@ -14,6 +14,10 @@ module.exports = {
     frontend: {
         uri: process.env.FRONTEND_URI || "http://localhost:3000/",
     },
+    // backend URI
+    backend: {
+        uri: process.env.BACKEND_URI || "http://localhost:5000/",
+    },
     // establish MySQL DB connection
     db: {
         host: process.env.DB_HOST || "localhost",

@@ -1,0 +1,53 @@
+.EPublications {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex: 2 1;
+  font-family: var(--text-font);
+}
+
+.EPublications .middle-container {
+  flex: 1;
+  padding: 50px;
+  text-align: left;
+}
+
+.EPublications .right-container {
+  padding: 50px;
+  text-align: left;
+}
+
+.EPublications h1,
+h3 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.EPublications h1 {
+  font-size: 36px;
+  padding-left: 26px;
+}
+
+.EPublications h3 {
+  margin-top: 40px;
+  padding-left: 12px;
+}
+
+.EPublications .form-field-wrapper {
+  display: flex;
+  width: 95% !important;
+  min-width: 95% !important;
+}
+
+.EPublications .required-asterisk {
+  color: #ea4444;
+  font-size: 25px;
+}
+
+.EPublications .post-button {
+  margin-top: 40px !important;
+  margin-left: -142px;
+  text-align: center;
+}

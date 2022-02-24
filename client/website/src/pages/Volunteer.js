@@ -21,10 +21,11 @@ import config from "../config";
 import { fetchCommittees } from "../util/requests";
 import Loader from "../components/Main/Loader";
 import Modal from "../components/Modal";
+// function to display asterisk for required fields
+import HeaderImage from "../media/JoinUs_Header.png";
 
 const BACKEND_URL = config.backend.uri;
 
-// function to display asterisk for required fields
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
@@ -142,6 +143,7 @@ const CustomTextField = withStyles({
 export default function Volunteer() {
     // tracks window width changes
     const [isMobile, setIsMobile] = useState(false);
+    const arrowScrollToRef = React.createRef();
 
     // stores values and error states for various field in form
     const [values, setValues] = useState({
@@ -401,24 +403,45 @@ export default function Volunteer() {
         border: "1px solid #ea4444",
     };
 
+    const scrollToRef = () => {
+        // only scrolls if element has been rendered on the screen by DOM first
+        if (arrowScrollToRef.current) {
+            arrowScrollToRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }
+    };
+
     return (
         <div>
-            {/* header image with title and description */}
-            <ResourcesHeader
-                image="https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1634515200&Signature=W7juSDjbFVbOKZC~AT6zXJeSdSv0kMd4jyVRZwXL2UFkox-~lUtwFG4ombOzKIsjNzCFiUidEc-auRtKwrUu6iGQlkTHVa9KMj7sWSALCtGT59iYiKXJxQBiStfj7yN-ls2G~WzCC9P1~04Yf52ODaau9~ZBElw6PC200~-JwUdasY8YzaRQEXv7JypSZ26enrYQoA6zObbDVb7CLxMp1MSwddCZH7LMZRcFBKhjBNgtK17zR5gadWOXy9IjuEyxe7IoWmkYrPl~icNFYLiJwSASNSOKBHCo-qH1kKY-McblLVS3eLVGCsFIJbM6sA0fkcfkj87mU~A2YB0KYKLQUQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                title="Volunteer"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus."
-                height={isMobile ? "95vh" : "600px"}
-                width="100%"
-            />
+            {isMobile || window.innerHeight <= 500 ? (
+                <ResourcesHeader
+                    title="Volunteer"
+                    image={HeaderImage}
+                    height="max(40vh, 300px)"
+                    width="100%"
+                    showArrow={false}
+                />
+            ) : (
+                <ResourcesHeader
+                    title="Volunteer"
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                    image={HeaderImage}
+                    height="max(75vh, 400px)"
+                    width="100%"
+                    arrowClickCallback={scrollToRef}
+                />
+            )}
             <div className="volunteer-content">
                 <form autoComplete="off">
                     <p className="required-note">
                         {" "}
                         <span className="error-asterisk"> * </span> indicates a required field
                     </p>
-                    <h1 className="signup-text">Sign Me Up!</h1>
-                    {/* first name field */}
+                    <h1 ref={arrowScrollToRef} className="signup-text">
+                        Sign Me Up!
+                    </h1>
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"

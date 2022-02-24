@@ -112,10 +112,9 @@ export default function HorizontalStepper(props) {
         for (let i = 0; i < props.items.length; i++) {
             const obj = {};
             // extract only the country/state, not city
-            const two = props.items[i].location.split(",").splice(1, 1);
-            obj.location = two;
+            obj.location = props.items[i].location;
             // get the conference number
-            obj.number = props.items[i].number;
+            obj.confNum = props.items[i].confNum;
 
             // push it to the array
             arr.push(obj);
@@ -149,28 +148,6 @@ export default function HorizontalStepper(props) {
         } else setIndices([0, 4]);
     }, [listener]);
 
-    // render only the first nine items
-    useEffect(() => {
-        setSplitSteps(steps.slice(indices[0], indices[1]));
-    }, []);
-
-    // update the items on the stepper when the indices updates
-    useEffect(() => {
-        setSplitSteps(steps.slice(indices[0], indices[1]));
-    }, [indices]);
-
-    /**
-     * When an item in the stepper is clicked, it's parent
-     * index is updated accordingly
-     *
-     * @param {index} step
-     */
-    const handleStep = (step) => {
-        setActiveStep(indices[0] + step);
-        setActiveIndex(step);
-        props.setParentIndex(indices[0] + step);
-    };
-
     /**
      * Update the stepper to render the 9 items depending on the page
      * @param {number} index
@@ -184,6 +161,51 @@ export default function HorizontalStepper(props) {
         setActiveIndex(0);
         // update the parent index to display proper information
         props.setParentIndex((index - 1) * size);
+    };
+
+    // render only the first nine items
+    useEffect(() => {
+        setSplitSteps(steps.slice(indices[0], indices[1]));
+        if (props.location) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            let i = props.items.findIndex((x) => x.confNum === confNum);
+            // determine the page to change to
+            if (Math.floor(i / 9) > 0) {
+                const page = Math.floor(i / 9);
+                i %= 9;
+                updatePage(page + 1);
+            }
+
+            setActiveIndex(i);
+        }
+    }, []);
+
+    // update the items on the stepper when the indices updates
+    useEffect(() => {
+        setSplitSteps(steps.slice(indices[0], indices[1]));
+    }, [indices]);
+
+    // set the active index and step to 0 upon loading
+    useEffect(() => {
+        if (activeStep === -1) {
+            setActiveStep(0);
+        }
+        if (activeIndex === -1) {
+            setActiveIndex(0);
+        }
+    }, [activeStep, activeIndex]);
+
+    /**
+     * When an item in the stepper is clicked, it's parent
+     * index is updated accordingly
+     *
+     * @param {index} step
+     */
+    const handleStep = (step) => {
+        setActiveStep(indices[0] + step);
+        setActiveIndex(step);
+        props.setParentIndex(indices[0] + step);
     };
 
     const updateSize = () => {
@@ -202,11 +224,11 @@ export default function HorizontalStepper(props) {
             >
                 {/* loop through each item in splitSteps */}
                 {splitSteps.map((step, index) => (
-                    <Step>
+                    <Step key={step.confNum}>
                         {/* add a button with custom icon */}
                         <StepButton
                             onClick={() => handleStep(index)}
-                            icon={stepperNode(step.number)}
+                            icon={stepperNode(step.confNum)}
                             classes={
                                 activeIndex === index
                                     ? { root: classes.buttonActive }

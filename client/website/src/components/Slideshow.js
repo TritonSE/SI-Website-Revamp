@@ -19,7 +19,7 @@ const Slideshow = (props) => (
     // required props: height, width, isMobile
     <Fade
         autoPlay
-        duration={3000}
+        duration={4000}
         transitionDuration={500}
         prevArrow={
             // custom left arrow component

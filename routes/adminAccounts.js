@@ -4,11 +4,12 @@
  *
  * @summary   Routes for AdminAccounts -->
  * @author    Thomas Garry, Amrit Kaur Singh
+ * @author    Navid Boloorian
  */
 const express = require("express");
 const { body } = require("express-validator");
 const crypto = require("crypto");
-const { addAdmin, findOneUser, updateOneUser } = require("../db/services/adminAccounts");
+const { addAdmin, findOneUser, updateOneUser, getEmailByResetToken } = require("../db/services/adminAccounts");
 const { isValidated } = require("../middleware/validation");
 const { createJWT } = require("./services/jwt");
 const { sendEmail } = require("./services/mailer");
@@ -131,7 +132,7 @@ router.post(
             const matched = await user.validPassword(password);
 
             if (matched) {
-                // matched user, return email + name +  token
+                // matched user, return email + name + token
                 const payload = {
                     email,
                 };
@@ -165,12 +166,11 @@ router.put(
     "/changePassword",
     [
         body("email").notEmpty().isEmail(),
-        body("oldPassword").notEmpty().isString(),
-        body("newPassword").notEmpty().isString().isLength({ min: 6 }),
+        body("password").notEmpty().isString().isLength({ min: 6 }),
         isValidated,
     ],
     async (req, res) => {
-        const { email, oldPassword, newPassword } = req.body;
+        const { email, password } = req.body;
         try {
             // check if user email exists
             const user = await findOneUser(email);
@@ -180,16 +180,8 @@ router.put(
                 return res.status(401).json({ msg: "Invalid Credentials" });
             }
 
-            // check if the old password matches the email (authenticated user)
-            // compare user password with passed in value
-            const matched = await user.validPassword(oldPassword);
-
-            if (!matched) {
-                return res.status(401).json({ msg: "Invalid Credentials" });
-            }
-
-            // attempt to update to the newPassword for the user
-            user.password = newPassword;
+            // attempt to update to the new password for the user
+            user.password = password;
             const updatedUser = await updateOneUser(user);
 
             // error: Password could not be updated
@@ -218,7 +210,7 @@ router.put(
  * @returns {401} - Email does not match an existing account
  * @returns {500} - Internal error, user's password could not be changed/email could not be sent for some reason
  */
-router.put(
+router.post(
     "/forgotPassword",
     [body("email").notEmpty().isEmail(), isValidated],
     async (req, res) => {
@@ -226,27 +218,22 @@ router.put(
         try {
             // check if user email exists
             const user = await findOneUser(email);
-            if (!user) {
-                return res.status(401).json({ msg: "Invalid Credentials" });
-            }
+            
+            let currentTime = new Date();
+            let expirationTime = new Date();
 
-            // generate a random password
-            const passLength = getRandomArbitrary(MIN_PASS_LENGTH, MAX_PASS_LENGTH);
-            const randomlyGeneratedPass = crypto.randomBytes(passLength).toString("hex");
+            user.resetPasswordToken = crypto.randomBytes(32).toString('hex').slice(0, 32);
+            user.resetPasswordExpire = expirationTime.setTime(currentTime.getTime() + 30 * 60000);
 
-            // set user's password to the randomly generated one
-            user.password = randomlyGeneratedPass;
-
-            // attempt to update the password for the user
             const updatedUser = await updateOneUser(user);
+
             if (!updatedUser) {
-                return res.status(500).json({ msg: "Password could not be reset for account." });
+                return res.status(401).json({ msg: "Invalid Credentials" });
             }
 
             // send an automated email to the user containing their new randomly generated password
             const locals = {
-                password: randomlyGeneratedPass,
-                resetLink: `${config.frontend.uri}reset-password`,
+                resetLink: `${config.backend.uri}admin/reset-password/${user.resetPasswordToken}`,
             };
 
             const isSent = await sendEmail("forgot-password", email, locals, res);
@@ -254,12 +241,11 @@ router.put(
             // email could be sent
             if (!isSent)
                 return res.status(500).json({
-                    msg:
-                        "Password reset, but email could not be sent. Please contact an adminstrator.",
+                    msg: "Password reset, but email could not be sent. Please contact an adminstrator.",
                 });
 
             return res.status(200).json({
-                msg: "Email Successfully Sent",
+                msg: updatedUser,
             });
         } catch (err) {
             console.error(err.message);
@@ -267,5 +253,24 @@ router.put(
         }
     }
 );
+
+
+router.get("/emailByToken/:token", [isValidated], async (req, res) => {
+
+        try {
+            const {token} = req.params;
+
+            const email = await getEmailByResetToken(token);
+
+            if(!email) {
+                return res.status(401).json({msg: "Expired"});
+            }
+
+            return res.status(200).json({email: email.email});
+        } catch (err) {
+            return res.status(500).json({ msg: "Server Error" });
+        }
+    }
+)
 
 module.exports = router;
