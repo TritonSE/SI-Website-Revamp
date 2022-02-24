@@ -13,6 +13,7 @@ const { isValidated } = require("../middleware/validation");
 const pubMethods = require("../db/services/publications");
 const filteredMethods = require("../db/services/filteredPublications");
 const ePubMethods = require("../db/services/ePubFilters");
+const { checkToken, verify } = require("../routes/services/jwt");
 
 const router = express.Router();
 
@@ -38,6 +39,7 @@ const MAX_NUM_FEATURE_PUBS = 6; // maximum number of publications that can be fe
 router.post(
     "/",
     [
+        checkToken,
         body("title").isString(),
         body("author").isString(),
         body("filters")
@@ -63,6 +65,12 @@ router.post(
         isValidated,
     ],
     async (req, res) => {
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
+
         // -1 is passed in here because the value is not being edited
         // so we don't need to check if it's already filtered
         // we pass in a value that is not in the table so it doesn't
@@ -110,6 +118,7 @@ router.post(
 router.put(
     "/:id",
     [
+        checkToken,
         body("title").isString().optional(),
         body("author").isString().optional(),
         body("filters")
@@ -137,6 +146,11 @@ router.put(
     ],
     async (req, res) => {
         const { id } = req.params;
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         // counts the number of featured publications excluding the publication with id
         const numFeatured = await pubMethods.countFeatured(id);
@@ -316,9 +330,14 @@ router.get("/:id", [isValidated], async (req, res) => {
  *
  * @return {status} - 200 if successful, 500 otherwise
  */
-router.delete("/:id", [isValidated], async (req, res) => {
+router.delete("/:id", [checkToken, isValidated], async (req, res) => {
     try {
         const { id } = req.params;
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         if (Number(id) < 0) return res.status(400).json({ message: "Id must be a number" });
 

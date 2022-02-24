@@ -9,6 +9,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const { create, getAll, edit, remove } = require("../db/services/conference");
 const { isValidated } = require("../middleware/validation");
+const { checkToken, verify } = require("../routes/services/jwt");
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ const router = express.Router();
 router.post(
     "/",
     [
+        checkToken,
         body("title").isString(),
         body("confNum").isNumeric(),
         body("location").isString(),
@@ -87,6 +89,12 @@ router.post(
     ],
     async (req, res) => {
         try {
+            const verified = await verify(req.token);
+    
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
+
             const entries = await create(req.body);
             return res.status(200).json(entries);
         } catch (err) {
@@ -101,7 +109,7 @@ router.post(
  *
  * @returns {status} - 200 - with array of all conferences.
  */
-router.get("/", [isValidated], async (req, res) => {
+router.get("/", [isValidated], async (req, res, next) => {
     const entries = await getAll();
     return res.status(200).json(entries);
 });
@@ -115,6 +123,7 @@ router.get("/", [isValidated], async (req, res) => {
 router.put(
     "/:id",
     [
+        checkToken,
         body("title").isString().optional(),
         body("confNum").isNumeric().optional(),
         body("location").isString().optional(),
@@ -186,6 +195,12 @@ router.put(
     ],
     async (req, res) => {
         try {
+            const verified = await verify(req.token);
+    
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
+            
             const { id } = req.params;
             // index must be a number
             if (Number(id) < 0) return res.status(400).json({ message: "index must be a number" });
@@ -206,9 +221,14 @@ router.put(
  *
  * @param {Number} id - id of the conference to be removed.
  */
-router.delete("/:id", [isValidated], async (req, res) => {
+router.delete("/:id", [checkToken, isValidated], async (req, res) => {
     try {
         const { id } = req.params;
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         // checks that id is a number
         if (Number(id) < 0) return res.status(500).json({ message: "Id must be a valid number" });

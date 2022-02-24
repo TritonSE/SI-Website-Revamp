@@ -10,7 +10,8 @@
 const express = require("express");
 const { body } = require("express-validator");
 const { isValidated } = require("../middleware/validation");
-const { addOne, getAll, editOne, deleteOne } = require("../db/services/newsletters");
+const { addOne, getAll, editOne } = require("../db/services/newsletters");
+const { checkToken, verify } = require("../routes/services/jwt");
 
 const router = express.Router();
 
@@ -22,6 +23,7 @@ const router = express.Router();
 router.post(
     "/",
     [
+        checkToken,
         body("volume").isNumeric(),
         body("number").isNumeric(),
         body("year").isNumeric().isLength({ min: 4, max: 4 }),
@@ -33,6 +35,12 @@ router.post(
         isValidated,
     ],
     async (req, res) => {
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
+
         try {
             const newsletters = await addOne(req.body);
             return res.status(200).json(newsletters);
@@ -51,6 +59,7 @@ router.post(
 router.put(
     "/:id",
     [
+        checkToken,
         body("volume").isNumeric().optional(),
         body("number").isNumeric().optional(),
         body("year").isNumeric().isLength({ min: 4, max: 4 }).optional(),
@@ -62,7 +71,12 @@ router.put(
         isValidated,
     ],
     async (req, res) => {
+        const verified = await verify(req.token);
         const { id } = req.params;
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         // checks if id is invalid and returns 400 status
         if (Number(id) < 0) {

@@ -9,6 +9,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const { create, getAll, remove, edit } = require("../db/services/newsAndEvents");
 const { isValidated } = require("../middleware/validation");
+const { checkToken, verify } = require("../routes/services/jwt");
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ const router = express.Router();
 router.post(
     "/",
     [
+        checkToken,
         body("title").isString(),
         body("description").isString().optional(),
         body("imageLink").isString(),
@@ -32,6 +34,12 @@ router.post(
     ],
     async (req, res) => {
         try {
+            const verified = await verify(req.token);
+    
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
+            
             const addedEntry = await create(req.body);
             return res.status(200).json(addedEntry);
         } catch (err) {
@@ -59,9 +67,14 @@ router.get("/", [isValidated], async (req, res) => {
  *
  * @param {Number} id - id of the event to be removed.
  */
-router.delete("/:id", [isValidated], async (req, res) => {
+router.delete("/:id", [checkToken, isValidated], async (req, res) => {
     try {
         const { id } = req.params;
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         // checks that id is a number
         if (Number(id) < 0) return res.status(500).json({ message: "Id must be a valid number" });
@@ -87,6 +100,7 @@ router.delete("/:id", [isValidated], async (req, res) => {
 router.put(
     "/:id",
     [
+        checkToken,
         body("title").isString().optional(),
         body("description").isString().optional(),
         body("imageLink").isURL().optional(),
@@ -100,6 +114,11 @@ router.put(
     async (req, res) => {
         try {
             const { id } = req.params;
+            const verified = await verify(req.token);
+    
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
 
             // checks that id is a number
             if (Number(id) < 0)

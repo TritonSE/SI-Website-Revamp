@@ -11,15 +11,19 @@ module.exports = async () => {
     await Promise.all([
         // make dummy data, and make sure to disable logging to reduce clutter
         AdminAccounts.create(
-            { name: "Sally Doe", email: "sdoe@random.com", password: "sally" },
+            { name: "Sally Doe", email: "sdoe@random.com", password: "password" },
             { logging: false }
         ),
         AdminAccounts.create(
-            { name: "John Doe", email: "jdoe@random.com", password: "john" },
+            { name: "Navid Boloorian", email: "navidboloor@gmail.com", password: "password" },
             { logging: false }
         ),
         AdminAccounts.create(
-            { name: "Harry Potter", email: "hpotter@random.com", password: "harry" },
+            { name: "John Doe", email: "jdoe@random.com", password: "password" },
+            { logging: false }
+        ),
+        AdminAccounts.create(
+            { name: "Harry Potter", email: "hpotter@random.com", password: "password" },
             { logging: false }
         ),
     ])
