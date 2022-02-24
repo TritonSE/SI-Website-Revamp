@@ -173,7 +173,7 @@ export default function SectionWrapper({
                     </SectionPopover>
                 </div>
                 {/* Right Side - Text */}
-                {currentIndex > -1 ? (
+                {currentIndex > -1 && sections.length < currentIndex ? (
                     <div style={{ fontStyle: "italic" }}>
                         Uploaded on {formatDate(sections[currentIndex]["createdAt"])}
                         <br />
