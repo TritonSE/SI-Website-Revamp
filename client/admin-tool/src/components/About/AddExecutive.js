@@ -54,7 +54,6 @@ export default function AddExecutive({
     });
 
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
-
     const [positionList, setPositionList] = React.useState([
         { position: "President", rank: 1 },
         { position: "Vice President", rank: 2 },
@@ -69,8 +68,6 @@ export default function AddExecutive({
         open: false,
         message: "",
     });
-
-    const loadData = () => {};
 
     React.useEffect(async () => {
         if (!content) return;
@@ -107,9 +104,21 @@ export default function AddExecutive({
             ...data,
             startYear: committeeYear["startYear"],
             endYear: committeeYear["endYear"],
-            rank: parseInt(data["rank"]),
-            openInSameTab: false,
+            rank: Number(data["rank"]),
+            openInSameTab: data["openInSameTab"],
         });
+
+        const dataVals = {
+            startYear: committeeYear["startYear"],
+            endYear: committeeYear["endYear"],
+            rank: Number(data["rank"]),
+            name: data["name"],
+            position: data["position"],
+            bio: data["bio"],
+            imageLink: data["imageLink"],
+            redirectLink: data["redirectLink"],
+            openInSameTab: data["openInSameTab"],
+        }
 
         let errors = {
             startYear: false,
@@ -126,9 +135,9 @@ export default function AddExecutive({
         let hasErrors = false;
         let errorString = "Error: ";
 
-        Object.keys(data).forEach((key) => {
+        Object.keys(dataVals).forEach((key) => {
             if (
-                (data[key].length < 1 || data[key] == null) &&
+                (dataVals[key].length < 1 || dataVals[key] == null) &&
                 key !== "bio" &&
                 key !== "openInSameTab"
             ) {
@@ -138,12 +147,26 @@ export default function AddExecutive({
             }
         });
 
+        if((dataVals["redirectLink"].indexOf("http://") === -1 && dataVals["redirectLink"].indexOf("https://") === -1) || dataVals["redirectLink"].indexOf(".") === -1)  {
+            errors["redirectLink"] = true;
+            hasErrors = true;
+            errorString += "Redirect link must be a valid link;  ";
+        }
+
+        if((dataVals["imageLink"].indexOf("http://") === -1 && dataVals["imageLink"].indexOf("https://") === -1) || dataVals["imageLink"].indexOf(".") === -1)  {
+            errors["imageLink"] = true;
+            hasErrors = true;
+            errorString += "Image link must be a valid link;  ";
+        }
+
         setDataErrors(errors);
         setIsPageDisabled(false);
 
         if (!hasErrors) {
-            if (newCommittee) addItem(data);
-            else updateItem(data, index);
+            if (newCommittee) addItem(dataVals);
+            else updateItem(dataVals, index);
+
+            showingBackground(false);
         } else handleSnackbar({ open: true, message: errorString });
     };
 
@@ -248,8 +271,8 @@ export default function AddExecutive({
                             <Checkbox
                                 style={{ color: "var(--orange)" }}
                                 checked={data["openInSameTab"]}
-                                onChange={(event) => {
-                                    setData({ ...data, ["openInSameTab"]: event.target.checked });
+                                onClick={(event) => {
+                                    setData({ ...data, "openInSameTab": event.target.checked });
                                 }}
                             />
                         }

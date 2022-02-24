@@ -12,7 +12,7 @@ import {
 export default function ExecCommittee() {
     return (
         <CommitteeWrapper
-            pageTitle="Committees"
+            pageTitle="Add Committee"
             getItemsRequestCallback={fetchCommittees}
             addItemRequestCallback={addCommittee}
             updateItemRequestCallback={updateCommittee}

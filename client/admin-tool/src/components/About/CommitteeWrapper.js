@@ -61,7 +61,7 @@ export default function CommitteeWrapper({
     const [selectedMember, setSelectedMember] = React.useState({});
     const [selectedIndex, setSelectedIndex] = React.useState(-1);
     const [addExecutiveShowing, setAddExecutiveShowing] = React.useState(false);
-    const [newCommittee, setNewCommittee] = React.useState(false);
+    const [newCommittee, setNewCommittee] = React.useState(true);
     const [committeeYear, setCommitteeYear] = React.useState({
         startYear: -1,
         endYear: -1,
@@ -93,7 +93,6 @@ export default function CommitteeWrapper({
         setIsLoading(false);
         setCommitteeYear({ startYear: "", endYear: "" });
 
-        console.log(committees);
     };
 
     const handleDeleteCommittee = async () => {
@@ -174,6 +173,8 @@ export default function CommitteeWrapper({
         } else {
             setCommitteeYear({ startYear: "", endYear: "" });
         }
+
+        newCommittee ? setTitle("Add Committee") : setTitle("Edit Committee");
     }, [currentIndex]);
 
     React.useEffect(async () => {
@@ -201,10 +202,12 @@ export default function CommitteeWrapper({
 
     const handleNodeClick = (index) => {
         setCurrentIndex(index);
+        setNewCommittee(false);
     };
 
     const addNewNode = () => {
         setCurrentIndex(-1);
+        setNewCommittee(true);
     };
 
     const formatNodeTitle = (committee) => `${committee.startYear} - ${committee.endYear}`;

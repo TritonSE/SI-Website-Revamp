@@ -61,6 +61,7 @@ export default function CommitteeItem({
     }, [content]);
 
     const validateData = () => {
+        setIsPageDisabled(true);
         setCommitteeYear(data[0]);
         handleSnackbar({ open: true, message: "Years active succesfully set" });
 
@@ -79,6 +80,7 @@ export default function CommitteeItem({
 
             handleAddCommittee(temporaryMember);
         }
+        setIsPageDisabled(false);
     };
 
     const asterisk = () => (
@@ -130,6 +132,7 @@ export default function CommitteeItem({
 
                                 <TextField
                                     margin="dense"
+                                    disabled={isPageDisabled}
                                     label={input.label}
                                     value={data[0][input.name]}
                                     placeholder={input.label}
