@@ -50,7 +50,8 @@ async function verify(token) {
  * @param {*} next 
  */
 const checkToken = (req, res, next) => {
-    const header = req.headers['authorization'];
+
+    const header = req.headers["autorization"];
 
     if(typeof header !== 'undefined') {
         const bearer = header.split(' ');

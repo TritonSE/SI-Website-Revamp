@@ -26,7 +26,7 @@ export default function ResetPassword() {
         
         const email = await getEmailByToken(recoveryToken);
 
-        if(email == undefined) history.push(SITE_PAGES.ACCOUNTS_LOGIN);
+        if(email == undefined) window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;
         else setEmail(email);
 
         setResetPasswordData({
@@ -92,7 +92,7 @@ export default function ResetPassword() {
                 handleSnackbar({ open: true, message: "New password set! Redirecting to login..." })
 
                 setTimeout(function () {
-                    history.push(SITE_PAGES.ACCOUNTS_LOGIN);   
+                    window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;   
                 }, 1000);
             }
         }

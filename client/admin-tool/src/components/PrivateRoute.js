@@ -1,6 +1,7 @@
 /**
+ * Private router component that verifies login before granting access to admin pages.
  * 
- * 
+ * @author Navid Boloorian
  */
 
 import { SITE_PAGES } from "../constants/links";
@@ -31,7 +32,7 @@ export default function PrivateRoute({ children, ...rest }) {
 
     loggedIn = verify(localStorage.getItem("token"));
 
-    if(loggedIn) return <Route {...rest} render={children} />;
+    if(loggedIn) return <Route {...rest}>{children}</Route>;
     else return <Redirect to={SITE_PAGES.ACCOUNTS_LOGIN} />;
 
 }

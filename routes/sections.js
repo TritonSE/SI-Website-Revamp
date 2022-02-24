@@ -17,6 +17,7 @@ const {
 } = require("../db/services/sections");
 
 const router = express.Router();
+const { checkToken, verify } = require("../routes/services/jwt");
 
 /**
  * Adds an entry to the Newsletters table.
@@ -26,6 +27,7 @@ const router = express.Router();
 router.post(
     "/",
     [
+        checkToken,
         body("page").isString(),
         body("title").isString(),
         body("content").isString(),
@@ -38,6 +40,12 @@ router.post(
     ],
     async (req, res) => {
         try {
+            const verified = await verify(req.token);
+    
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
+            
             const section = await createSection(req.body);
             return res.status(200).json(section);
         } catch (err) {
@@ -55,6 +63,7 @@ router.post(
 router.put(
     "/:id",
     [
+        checkToken,
         body("page").isString().optional(),
         body("title").isString().optional(),
         body("content").isString().optional(),
@@ -67,6 +76,12 @@ router.put(
     ],
     async (req, res) => {
         const { id } = req.params;
+
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         // checks if id is invalid and returns 400 status
         if (Number(id) < 0) {
@@ -92,9 +107,15 @@ router.put(
  *
  * @param {Number} id - id of the event to be removed.
  */
-router.delete("/:id", [isValidated], async (req, res) => {
+router.delete("/:id", [checkToken, isValidated], async (req, res) => {
     try {
         const { id } = req.params;
+        
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         // checks that id is a number
         if (Number(id) < 0) return res.status(500).json({ message: "Id must be a valid number" });

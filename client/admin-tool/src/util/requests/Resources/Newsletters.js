@@ -57,6 +57,7 @@ export const addNewsletter = async (content) => {
             method: "post",
             headers: {
                 "content-type": "application/json",
+                "autorization": `Bearer: ${localStorage.getItem("token")}` 
             },
             body: JSON.stringify(content),
         });
@@ -93,6 +94,7 @@ export const updateNewsletter = async (id, content) => {
             method: "put",
             headers: {
                 "content-type": "application/json",
+                "autorization": `Bearer: ${localStorage.getItem("token")}` 
             },
             body: JSON.stringify(content),
         });
@@ -123,6 +125,7 @@ export const deleteNewsletter = async (id) => {
             method: "delete",
             headers: {
                 "content-type": "application/json",
+                "autorization": `Bearer: ${localStorage.getItem("token")}` 
             },
         });
         // successfull
