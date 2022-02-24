@@ -92,7 +92,6 @@ export default function CommitteeWrapper({
         setCurrentIndex(-1);
         setIsLoading(false);
         setCommitteeYear({ startYear: "", endYear: "" });
-
     };
 
     const handleDeleteCommittee = async () => {

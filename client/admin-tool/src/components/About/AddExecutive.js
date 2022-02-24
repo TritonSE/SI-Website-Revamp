@@ -118,7 +118,7 @@ export default function AddExecutive({
             imageLink: data["imageLink"],
             redirectLink: data["redirectLink"],
             openInSameTab: data["openInSameTab"],
-        }
+        };
 
         let errors = {
             startYear: false,
@@ -147,13 +147,21 @@ export default function AddExecutive({
             }
         });
 
-        if((dataVals["redirectLink"].indexOf("http://") === -1 && dataVals["redirectLink"].indexOf("https://") === -1) || dataVals["redirectLink"].indexOf(".") === -1)  {
+        if (
+            (dataVals["redirectLink"].indexOf("http://") === -1 &&
+                dataVals["redirectLink"].indexOf("https://") === -1) ||
+            dataVals["redirectLink"].indexOf(".") === -1
+        ) {
             errors["redirectLink"] = true;
             hasErrors = true;
             errorString += "Redirect link must be a valid link;  ";
         }
 
-        if((dataVals["imageLink"].indexOf("http://") === -1 && dataVals["imageLink"].indexOf("https://") === -1) || dataVals["imageLink"].indexOf(".") === -1)  {
+        if (
+            (dataVals["imageLink"].indexOf("http://") === -1 &&
+                dataVals["imageLink"].indexOf("https://") === -1) ||
+            dataVals["imageLink"].indexOf(".") === -1
+        ) {
             errors["imageLink"] = true;
             hasErrors = true;
             errorString += "Image link must be a valid link;  ";
@@ -272,7 +280,7 @@ export default function AddExecutive({
                                 style={{ color: "var(--orange)" }}
                                 checked={data["openInSameTab"]}
                                 onClick={(event) => {
-                                    setData({ ...data, "openInSameTab": event.target.checked });
+                                    setData({ ...data, openInSameTab: event.target.checked });
                                 }}
                             />
                         }
