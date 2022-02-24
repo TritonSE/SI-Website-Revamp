@@ -17,6 +17,8 @@ import { Snackbar } from "@material-ui/core";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 import TextEditor from "../TextEditor";
 import SectionPopover from "../PopOver";
 import Button from "../Button";
@@ -32,7 +34,7 @@ import "../../css/SectionItem.css";
  *
  * @returns
  */
-export default function SectionItem({ handleContentChange, content, newSection, onDeleteCallback, onSaveCallback }) {
+export default function SectionItem({ content, newSection, onDeleteCallback, onSaveCallback }) {
     /** React States */
 
     // holds section data
@@ -85,38 +87,40 @@ export default function SectionItem({ handleContentChange, content, newSection, 
         let hasErrors = false;
         const errors = { title: false };
 
+        let tempData = {
+            title: data["title"],
+            content: data["content"],
+            isPublished: data["isPublished"]
+        }
+
+        tempData.content = draftToHtml(
+            convertToRaw(data["content"].getCurrentContent())
+        );
+
         // check if all required fields are valid
         Object.keys(errors).forEach((key) => {
-            if (data[key].length < 1) {
+            if (tempData[key].length < 1) {
                 errors[key] = true;
                 hasErrors = true;
             }
         });
 
+        console.log(tempData)
+
         // update section based on errors encountered
         setDataErrors(errors);
         setIsPageDisabled(false);
 
-        console.log(data);
-
         // no errors --> callback with section information passed as a JSON
-        if (!hasErrors) onSaveCallback(data);
+        if (!hasErrors) onSaveCallback(tempData);
         // errors --> display an error for the user
         else handleSnackBar({ open: true, message: "Error: Missing required fields." });
     };
 
     // determines which starter HTML code to pass to the TextEditor (buggy otherwise)
     const handleHtmlInitial = () => {
-        if (!content || !content["content"]) return "<p></p>";
-
-        const blocksFromHtml = htmlToDraft(content["content"]);
-        const { contentBlocks, entityMap } = blocksFromHtml;
-        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-        const setEditorState = EditorState.createWithContent(contentState);
-
-        content["content"] = setEditorState;
-
-        return setEditorState;
+        if (!content || !content["content"]) return EditorState.createEmpty();
+        return content["content"];
     };
 
     /** Styling/Formatting */
@@ -224,9 +228,9 @@ export default function SectionItem({ handleContentChange, content, newSection, 
             </div>
             {/* TextEditor  */}
             <TextEditor
-                isImagesAllowed={true}
-                initialLoadEditorState={content["content"]}
-                editorUpdateCallback={handleContentChange}
+                isDisabled={isPageDisabled}
+                initialLoadEditorState={handleHtmlInitial()}
+                editorUpdateCallback={(updatedHtml) => setData({ ...data, content: updatedHtml })}
             />
             {/* Snackbar for Error Displays */}
             <Snackbar

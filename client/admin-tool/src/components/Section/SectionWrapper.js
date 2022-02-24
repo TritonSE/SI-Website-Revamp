@@ -18,6 +18,9 @@ import Stepper from "../Stepper";
 import SectionItem from "./SectionItem";
 import SectionPopover from "../PopOver";
 import Loader from "../Loader";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
 
 import "../../css/SectionWrapper.css";
 
@@ -56,6 +59,14 @@ export default function SectionWrapper({
     const refreshSections = async () => {
         setIsPageLoading(true);
         const data = await getItemsRequestCallback(PAGE);
+        data.forEach((item) => {
+            const blocksFromHtml = htmlToDraft(item.content);
+            const { contentBlocks, entityMap } = blocksFromHtml;
+            const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+            // update the editor state
+            const setEditorState = EditorState.createWithContent(contentState);
+            item.content = setEditorState;
+        });
         setSections(data);
         setIndex(-1);
         setIsPageLoading(false);
@@ -222,7 +233,7 @@ export default function SectionWrapper({
                         <SectionItem
                             i={currentIndex}
                             newSection
-                            content={{ content: "<p></p>" }}
+                            content={{ content: EditorState.createEmpty() }}
                             onSaveCallback={handleAddSection}
                         />
                     )}
