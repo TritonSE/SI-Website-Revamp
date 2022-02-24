@@ -10,7 +10,7 @@
 const express = require("express");
 const { body } = require("express-validator");
 const { isValidated } = require("../middleware/validation");
-const { addOne, getAll, editOne } = require("../db/services/newsletters");
+const { addOne, getAll, editOne, deleteOne } = require("../db/services/newsletters");
 const { checkToken, verify } = require("../routes/services/jwt");
 
 const router = express.Router();
@@ -97,7 +97,7 @@ router.put(
     }
 );
 
-router.delete("/:id", [isValidated], async (req, res) => {
+router.delete("/:id", [checkToken, isValidated], async (req, res) => {
     const { id } = req.params;
 
     // checks if id is invalid and returns 400 status

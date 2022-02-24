@@ -128,6 +128,7 @@ export const deleteNewsletter = async (id) => {
                 "autorization": `Bearer: ${localStorage.getItem("token")}` 
             },
         });
+
         // successfull
         if (res.ok) {
             return true;
@@ -137,7 +138,7 @@ export const deleteNewsletter = async (id) => {
         return false;
 
         // fetch fails
-    } catch {
+    } catch (err) {
         return false;
     }
 };

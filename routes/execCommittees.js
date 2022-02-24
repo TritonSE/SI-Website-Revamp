@@ -67,12 +67,6 @@ router.post(
  */
 router.get("/", async (req, res) => {
     try {
-        const verified = await verify(req.token);
-
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
-        }
-
         const entries = await getAll();
         return res.status(200).json(entries);
     } catch (err) {
