@@ -17,7 +17,6 @@ import { Snackbar } from "@material-ui/core";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-
 import TextEditor from "../TextEditor";
 import SectionPopover from "../PopOver";
 import Button from "../Button";
@@ -33,7 +32,7 @@ import "../../css/SectionItem.css";
  *
  * @returns
  */
-export default function SectionItem({ content, newSection, onDeleteCallback, onSaveCallback }) {
+export default function SectionItem({ handleContentChange, content, newSection, onDeleteCallback, onSaveCallback }) {
     /** React States */
 
     // holds section data
@@ -98,6 +97,8 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
         setDataErrors(errors);
         setIsPageDisabled(false);
 
+        console.log(data);
+
         // no errors --> callback with section information passed as a JSON
         if (!hasErrors) onSaveCallback(data);
         // errors --> display an error for the user
@@ -107,7 +108,15 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
     // determines which starter HTML code to pass to the TextEditor (buggy otherwise)
     const handleHtmlInitial = () => {
         if (!content || !content["content"]) return "<p></p>";
-        return content["content"];
+
+        const blocksFromHtml = htmlToDraft(content["content"]);
+        const { contentBlocks, entityMap } = blocksFromHtml;
+        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+        const setEditorState = EditorState.createWithContent(contentState);
+
+        content["content"] = setEditorState;
+
+        return setEditorState;
     };
 
     /** Styling/Formatting */
@@ -215,9 +224,9 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
             </div>
             {/* TextEditor  */}
             <TextEditor
-                isDisabled={isPageDisabled}
-                initialHtmlLoadStr={handleHtmlInitial()}
-                editorUpdateCallback={(updatedHtml) => setData({ ...data, content: updatedHtml })}
+                isImagesAllowed={true}
+                initialLoadEditorState={content["content"]}
+                editorUpdateCallback={handleContentChange}
             />
             {/* Snackbar for Error Displays */}
             <Snackbar

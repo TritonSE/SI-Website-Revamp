@@ -11,7 +11,10 @@ async function putConference(id, values) {
     try {
         const res = await fetch(`${BACKEND_URL}conference/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "content-type": "application/json",
+                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+            },
             body: JSON.stringify({
                 title: values.title,
                 confNum: values.confNum,
@@ -42,7 +45,10 @@ async function putConference(id, values) {
 async function postConferences(values) {
     try {
         const res = await fetch(`${BACKEND_URL}conference`, {
-            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+            },
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 title: values.title,
@@ -99,7 +105,10 @@ async function deleteConference(id) {
     try {
         const res = await fetch(`${BACKEND_URL}conference/${id}`, {
             method: "DELETE",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "content-type": "application/json",
+                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+            },
         });
         // message sent
 
