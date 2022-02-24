@@ -17,7 +17,15 @@ import { CountryDropdown } from "react-country-region-selector";
 import ResourcesHeader from "../components/ResourcesHeader";
 
 import CustomButton from "../components/CustomButton";
+import PayPalModal from "../components/PayPalModal";
+import config from "../config";
+import { fetchMemberships } from "../util/requests";
+import Loader from "../components/Main/Loader";
+import Modal from "../components/Modal";
 
+const BACKEND_URL = config.backend.uri;
+
+// function to display asterisk for required fields
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
@@ -67,6 +75,7 @@ const CustomSelectField = withStyles({
     },
 })(TextField);
 
+// custom style for text fields on form
 const CustomTextField = withStyles({
     root: {
         "& label.Mui-focused": {
@@ -114,19 +123,27 @@ const CustomTextField = withStyles({
 })(TextField);
 
 export default function JoinUs() {
-    // const classes = useStyles();
-
+    // tracks window width changes
     const [isMobile, setIsMobile] = useState(false);
     const arrowScrollToRef = React.createRef();
 
     const [membershipCheck, setMembershipCheck] = useState(false);
+    // tracks whether donation field should be displayed
     const [donateCheck, setDonateCheck] = useState(false);
+    // tracks whether the form is disabled
     const [isFormDisabled, setIsFormDisabled] = useState(false);
+    // tracks whether thank you modal should be open
+    const [isThankYouNoteOpen, setIsThankYouNoteOpen] = React.useState(false);
 
+    // stores values and error states for various field in form
     const [values, setValues] = useState({
         firstName: {
             value: "", // field value given by user
             error: false, // field contains an error
+        },
+        middleName: {
+            value: "",
+            error: false,
         },
         lastName: {
             value: "",
@@ -148,6 +165,10 @@ export default function JoinUs() {
             value: "",
             error: false,
         },
+        addressTwo: {
+            value: "",
+            error: false,
+        },
         city: {
             value: "",
             error: false,
@@ -162,15 +183,26 @@ export default function JoinUs() {
         },
     });
 
-    const [addressTwo, setAddressTwo] = useState("");
-    const [middleName, setMiddleName] = useState("");
-
+    // stores value of organizations field
     const [organizations, setOrganizations] = useState("");
-    const [donation, setDonation] = useState("");
+    // stores donation amount entered
+    const [donation, setDonation] = useState(0);
+    // stores cost of memebership selected
+    const [membership, setMembership] = useState(0);
+    // stores whether user is a new member
+    const [memberType, setMemberType] = useState(false);
+    // stores options to display in new member field
+    const [isNewMember, setIsNewMember] = useState("");
+    // stores options to display in memberships dropdown
+    const [memberships, setMemberships] = useState([]);
+    // tracks whether memberships data is being loaded
+    const [loadingMemberships, setLoadingMemberships] = useState(true);
+    // tracks whether continue to payment button is displayed
+    const [displayPayPal, setDisplayPayPal] = useState(false);
+    // tracks whether paypal modal should be displayed
+    const [displayPayPalModal, setDisplayPayPalModal] = useState(false);
 
-    const [membership, setMembership] = useState("");
-    const [memberType, setMemberType] = useState("");
-
+    // snackbar used to display error messages
     const [snackbar, setSnackBar] = useState({
         open: false,
         message: "",
@@ -190,6 +222,38 @@ export default function JoinUs() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // paypal buttons are rendered if all fields are filled
+    useEffect(() => {
+        if (
+            values.firstName.value === "" ||
+            values.lastName.value === "" ||
+            values.emailAddress.value === "" ||
+            values.country.value === "" ||
+            values.addressOne.value === "" ||
+            values.city.value === "" ||
+            values.stateLocation.value === "" ||
+            values.zipcode.value === "" ||
+            memberType === "" ||
+            organizations === "" ||
+            membership === 0 ||
+            (donateCheck && donation === 0)
+        ) {
+            setDisplayPayPal(false);
+        } else {
+            setDisplayPayPal(true);
+        }
+    });
+
+    // fetch membership types from backend
+    useEffect(async () => {
+        await (async () => {
+            const data = await fetchMemberships();
+            setMemberships(data);
+        })();
+        setLoadingMemberships(false);
+    }, []);
+
+    // handles user input to any form field
     const handleChange = (event) => {
         setValues({
             ...values,
@@ -199,19 +263,33 @@ export default function JoinUs() {
         });
     };
 
+    // handle user input to new member field
+    const handleNewMember = (event) => {
+        setIsNewMember(event.target.value);
+        if (event.target.value === "new") {
+            setMemberType(true);
+        } else {
+            setMemberType(false);
+        }
+    };
+
+    // closes snackbar
     const handleSnackClose = () => {
         setSnackBar({ open: false });
     };
 
+    // handles change in membership checkbox
     const handleMembershipChange = (event) => {
         setMembershipCheck(event.target.checked);
     };
 
+    // handles change in donation checkbox
     const handleDonateChange = (event) => {
         if (donateCheck) setDonation("");
         setDonateCheck(event.target.checked);
     };
 
+    // handles user input to country field
     const handleCountryChange = (val) => {
         setValues({
             ...values,
@@ -221,6 +299,51 @@ export default function JoinUs() {
         });
     };
 
+    // handles opening/closing paypal modal
+    const openPaypalModal = () => {
+        setDisplayPayPalModal(!displayPayPalModal);
+    };
+
+    // called when user decides to close thank you modal
+    const handleModalClose = (event) => {
+        setIsThankYouNoteOpen(event);
+    };
+
+    // called when form/payment is submitted
+    const handleFormCompleted = () => {
+        // closes paypal modal
+        setDisplayPayPalModal(false);
+
+        // display thank you modal
+        setIsThankYouNoteOpen(true);
+
+        // clear form values
+        setValues({
+            ...values,
+            firstName: { ...values.firstName, value: "" },
+            middleName: { ...values.middleName, value: "" },
+            lastName: { ...values.lastName, value: "" },
+            phoneNumber: { ...values.phoneNumber, value: "" },
+            emailAddress: { ...values.emailAddress, value: "" },
+            country: { ...values.country, value: "" },
+            addressOne: { ...values.addressOne, value: "" },
+            addressTwo: { ...values.addressTwo, value: "" },
+            city: { ...values.city, value: "" },
+            stateLocation: { ...values.stateLocation, value: "" },
+            zipcode: { ...values.zipcode, value: "" },
+        });
+
+        // clear all other values
+        setOrganizations("");
+        setDonation(0);
+        setMembership(0);
+        setMemberType(false);
+        setIsNewMember("");
+        setMembershipCheck(false);
+        setDonateCheck(false);
+    };
+
+    // called when submit button is clicked
     const scrollToRef = () => {
         // only scrolls if element has been rendered on the screen by DOM first
         if (arrowScrollToRef.current) {
@@ -232,13 +355,17 @@ export default function JoinUs() {
     };
 
     const handleSubmit = async () => {
+        // ignore if form is still being processed
         if (isFormDisabled) return;
+
+        // disable form to avoid frequent requests
         setIsFormDisabled(true);
+        // display loading cursor
         document.body.style.cursor = "wait";
 
+        // variables used to check if any field is blank
         let firstName = false;
         let lastName = false;
-        let phone = false;
         let email = false;
         let country = false;
         let address = false;
@@ -248,7 +375,6 @@ export default function JoinUs() {
 
         if (values.firstName.value === "") firstName = true;
         if (values.lastName.value === "") lastName = true;
-        if (values.phoneNumber.value === "") phone = true;
         if (values.emailAddress.value === "") email = true;
         if (values.country.value === "") country = true;
         if (values.addressOne.value === "") address = true;
@@ -256,11 +382,11 @@ export default function JoinUs() {
         if (values.stateLocation.value === "") state = true;
         if (values.zipcode.value === "") zipcode = true;
 
+        // sets error values for all fields
         setValues({
             ...values,
             firstName: { ...values.firstName, error: firstName },
             lastName: { ...values.lastName, error: lastName },
-            phoneNumber: { ...values.phoneNumber, error: phone },
             emailAddress: { ...values.emailAddress, error: email },
             country: { ...values.country, error: country },
             addressOne: { ...values.addressOne, error: address },
@@ -269,25 +395,45 @@ export default function JoinUs() {
             zipcode: { ...values.zipcode, error: zipcode },
         });
 
-        if (
-            firstName ||
-            lastName ||
-            phone ||
-            email ||
-            country ||
-            address ||
-            city ||
-            state ||
-            zipcode
-        ) {
+        // checks if any required fields are empty
+        if (firstName || lastName || email || country || address || city || state || zipcode) {
             setSnackBar({ open: true, message: "Missing required fields" });
             setIsFormDisabled(false);
             document.body.style.cursor = null;
             return;
         }
 
-        // call backend route to store member data
+        // defines address to pass to backend
+        const addressOpt = values.addressTwo.value !== "" ? `${values.addressTwo.value} ` : "";
+        const givenAddress = `${values.addressOne.value} ${addressOpt}${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`;
 
+        // call backend route to store member data
+        await fetch(`${BACKEND_URL}emailList/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                fName: values.firstName.value,
+                mName: values.middleName.value,
+                lName: values.lastName.value,
+                phone: values.phoneNumber.value,
+                email: values.emailAddress.value,
+                address: givenAddress,
+            }),
+        }).then((res) => {
+            // form submitted
+            if (res.ok) {
+                // display thank you modal and clear form
+                handleFormCompleted();
+            } else {
+                // show snackbar to notify form could not be submitted
+                setSnackBar({
+                    open: true,
+                    message: "An internal error occurred. Form not submitted.",
+                });
+            }
+        });
+
+        // allow form to be edited
         document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
@@ -300,6 +446,7 @@ export default function JoinUs() {
         border: "1px solid #ea4444",
     };
 
+    // style for checkboxes
     const CustomColorCheckbox = withStyles({
         root: {
             color: "#000000",
@@ -333,6 +480,7 @@ export default function JoinUs() {
             )}
 
             <div className="main-content">
+                {/* displays info based on if device is mobile or not */}
                 {isMobile ? (
                     <div>
                         <h1 ref={arrowScrollToRef} className="thank-you">
@@ -343,6 +491,7 @@ export default function JoinUs() {
                             asked to pay a membership fee. Once all required fields are filled out,
                             you may proceed to payment through PayPal.
                         </p>
+                        {/* checkbox to only join email list */}
                         <div className="membership-check">
                             <CustomColorCheckbox
                                 checked={membershipCheck}
@@ -363,6 +512,7 @@ export default function JoinUs() {
                             If you wish to only be on the email list, please check the “Not
                             interested in membership” box below.
                         </p>
+                        {/* checkbox to only join email list */}
                         <div className="membership-check">
                             <CustomColorCheckbox
                                 checked={membershipCheck}
@@ -376,6 +526,7 @@ export default function JoinUs() {
                 )}
                 <form autoComplete="off">
                     <h1 className="signup-text">Sign Me Up!</h1>
+                    {/* first name field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -389,16 +540,19 @@ export default function JoinUs() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* middle name field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
                             className="middle-name input-field"
                             placeholder="Middle Name"
-                            value={middleName}
-                            onChange={(e) => setMiddleName(e.target.value)}
+                            value={values.middleName.value}
+                            onChange={handleChange}
                             disabled={isFormDisabled}
+                            name="middleName"
                         />
                     </div>
+                    {/* last name field */}
                     <div className="form-item last-name-field">
                         <CustomTextField
                             variant="outlined"
@@ -413,26 +567,12 @@ export default function JoinUs() {
                         {displayAsterisk()}
                     </div>
                     <h1 className="contact-info-text">Contact Information</h1>
-                    <div className="form-item">
-                        <CustomTextField
-                            variant="outlined"
-                            className="phone-number input-field"
-                            placeholder="Phone Number"
-                            type="tel"
-                            value={values.phoneNumber.value}
-                            error={values.phoneNumber.error}
-                            onChange={handleChange}
-                            disabled={isFormDisabled}
-                            name="phoneNumber"
-                        />
-                        {displayAsterisk()}
-                    </div>
+                    {/* email address field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
                             className="email-address input-field"
                             placeholder="Email Address"
-                            type="email"
                             value={values.emailAddress.value}
                             error={values.emailAddress.error}
                             onChange={handleChange}
@@ -441,6 +581,7 @@ export default function JoinUs() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* country dropdown field */}
                     <div className="form-item">
                         <CountryDropdown
                             className="input-field country-dropdown"
@@ -451,8 +592,10 @@ export default function JoinUs() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* displays other address fields if country is selected */}
                     {values.country.value !== "" ? (
                         <div>
+                            {/* address line 1 field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -466,16 +609,19 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* address line 2 field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
                                     className="address-line2 input-field"
                                     placeholder="Address Line 2"
-                                    value={addressTwo}
-                                    onChange={(e) => setAddressTwo(e.target.value)}
+                                    value={values.addressTwo.value}
+                                    onChange={handleChange}
                                     disabled={isFormDisabled}
+                                    name="addressTwo"
                                 />
                             </div>
+                            {/* city field */}
                             <div className="city-field form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -489,6 +635,7 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* state field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -502,6 +649,7 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* zipcode field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -515,17 +663,31 @@ export default function JoinUs() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* phone number field */}
+                            <div className="form-item">
+                                <CustomTextField
+                                    variant="outlined"
+                                    className="phone-number input-field"
+                                    placeholder="Phone Number"
+                                    value={values.phoneNumber.value}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="phoneNumber"
+                                />
+                            </div>
                         </div>
                     ) : null}
+                    {/* displays rest of the form if email list only isn't selected */}
                     {!membershipCheck ? (
                         <div>
                             {console.log(membershipCheck)}
                             <h1 className="additional-info-text">Additional Information</h1>
+                            {/* new member dropdown */}
                             <div className="form-item">
                                 <CustomSelectField
                                     className="input-field"
-                                    value={memberType}
-                                    onChange={(e) => setMemberType(e.target.value)}
+                                    value={isNewMember}
+                                    onChange={handleNewMember}
                                     variant="outlined"
                                     label="New or Renewing Member?"
                                     select
@@ -537,6 +699,7 @@ export default function JoinUs() {
                                 </CustomSelectField>
                                 {displayAsterisk()}
                             </div>
+                            {/* past organizations field */}
                             <div className="form-item organizations-section">
                                 <CustomTextField
                                     variant="outlined"
@@ -551,27 +714,30 @@ export default function JoinUs() {
                                 {displayAsterisk()}
                             </div>
                             <h1 className="payment-text">Payment Options</h1>
-                            <div className="form-item">
-                                <CustomSelectField
-                                    className="input-field"
-                                    value={membership}
-                                    onChange={(e) => setMembership(e.target.value)}
-                                    variant="outlined"
-                                    label="Select Membership"
-                                    select
-                                    size="small"
-                                >
-                                    <MenuItem value="option1">
-                                        Nun/Student/Unemployed $15.00 USD
-                                    </MenuItem>
-                                    <MenuItem value="option2">General $30.00 USD</MenuItem>
-                                    <MenuItem value="option3">
-                                        Lifetime - Nun/Student/Unemployed $150.00 USD
-                                    </MenuItem>
-                                    <MenuItem value="option4">Lifetime $300.00 USD</MenuItem>
-                                </CustomSelectField>
-                                {displayAsterisk()}
-                            </div>
+                            {/* displays memeberships dropdown or spinner if loading data */}
+                            {loadingMemberships ? (
+                                <Loader />
+                            ) : (
+                                <div className="form-item">
+                                    <CustomSelectField
+                                        className="input-field"
+                                        value={membership}
+                                        onChange={(e) => setMembership(e.target.value)}
+                                        variant="outlined"
+                                        label="Select Membership"
+                                        select
+                                        size="small"
+                                    >
+                                        {memberships.map((membershipItem) => (
+                                            <MenuItem value={membershipItem.id}>
+                                                {membershipItem.title} ${membershipItem.cost} USD
+                                            </MenuItem>
+                                        ))}
+                                    </CustomSelectField>
+                                    {displayAsterisk()}
+                                </div>
+                            )}
+                            {/* checkbox to add a donation */}
                             <div className="donate-check">
                                 <CustomColorCheckbox
                                     className="donate-checkbox"
@@ -582,6 +748,7 @@ export default function JoinUs() {
                                     I would like to donate in addition to membership fees
                                 </span>
                             </div>
+                            {/* displays donation field if donate checkbox is checked */}
                             {donateCheck ? (
                                 <div className="donation-num form-item">
                                     <CustomTextField
@@ -590,7 +757,7 @@ export default function JoinUs() {
                                         placeholder="Insert Donation Amount"
                                         required
                                         value={donation}
-                                        onChange={(e) => setDonation(e.target.value)}
+                                        onChange={(e) => setDonation(parseFloat(e.target.value))}
                                         type="number"
                                         step={0.01}
                                         InputProps={{
@@ -602,6 +769,42 @@ export default function JoinUs() {
                                     {displayAsterisk()}
                                 </div>
                             ) : null}
+                            {/* displays paypal modal if continue button is clicked */}
+                            {displayPayPalModal ? (
+                                <PayPalModal
+                                    key={displayPayPal}
+                                    fName={values.firstName.value}
+                                    mName={values.middleName.value}
+                                    lName={values.lastName.value}
+                                    email={values.emailAddress.value}
+                                    phoneNumber={values.phoneNumber.value}
+                                    membershipTitle={memberships[membership - 1].title}
+                                    membershipID={memberships[membership - 1].id}
+                                    membershipCost={parseFloat(memberships[membership - 1].cost)}
+                                    donationAmount={donation}
+                                    isNewMember={memberType}
+                                    affiliatedOrgs={organizations}
+                                    toggleModal={openPaypalModal}
+                                    address={`${values.addressOne.value} ${values.addressTwo.value} ${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`}
+                                    transactionCompleted={handleFormCompleted}
+                                />
+                            ) : null}
+                            <div className="paypal-buttons">
+                                {/* displays continue to payment button if all fields are filled */}
+                                {!displayPayPal ? (
+                                    <p className="error-message">
+                                        *Please fill out all required fields to proceed to payment.
+                                    </p>
+                                ) : (
+                                    <div className="continue-button">
+                                        <CustomButton
+                                            style={{ width: "fit-content" }}
+                                            text="Continue to Payment"
+                                            onClickCallback={openPaypalModal}
+                                        />
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     ) : (
                         <div>
@@ -610,19 +813,22 @@ export default function JoinUs() {
                                 <span className="error-asterisk"> * </span> indicates a required
                                 field
                             </p>
+                            {/* submit button for email list only form */}
                             <div className="submit-button">
                                 <CustomButton text="Submit" onClickCallback={handleSubmit} />
                             </div>
                         </div>
                     )}
                 </form>
-                {!membershipCheck ? (
-                    <p className="error-message">
-                        *Please fill out all required fields to proceed to payment.
-                    </p>
-                ) : null}
-                {/* {formCheck ? <p className="success-message">All required fields are filled.</p> : <p className="error-message">*Please fill out all required fields to proceed to payment.</p>} */}
             </div>
+            {/* thank you modal displayed when form is submitted */}
+            <Modal
+                text="Thank you for your support! We will get in touch with you shortly."
+                open={isThankYouNoteOpen}
+                hide={handleModalClose}
+                negativeButtonText="Ok"
+            />
+            {/* snackbar to display error messages */}
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}

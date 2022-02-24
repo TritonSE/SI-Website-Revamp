@@ -16,17 +16,22 @@ const BACKEND_URL = config.backend.uri;
 const TAX_RATE = 0.08;
 
 // PayPal script is located in public/index.html (contains Client ID)
-export default function PayPal(props) {
-    const {
-        membershipTitle,
-        membershipID,
-        membershipCost,
-        donationAmount,
-        isNewMember,
-        affiliatedOrgs,
-        disable,
-        transactionCompleted,
-    } = props;
+export default function PayPal({
+    fName,
+    mName,
+    lName,
+    email,
+    phone,
+    membershipTitle,
+    membershipID,
+    membershipCost,
+    donationAmount,
+    isNewMember,
+    affiliatedOrgs,
+    disable,
+    transactionCompleted,
+    address
+}) {
 
     // only add values to itemTotal and taxTotal if they are positive
     let itemTotal;
@@ -106,7 +111,7 @@ export default function PayPal(props) {
                 onClick(_data, actions) {
                     // Validate the membership type
                     return fetch(
-                        `${BACKEND_URL}membershipTypes/${membershipID}?cost=${membershipCost.toFixed(
+                        `${BACKEND_URL}memberships/membershipTypes/${membershipID}?cost=${membershipCost.toFixed(
                             2
                         )}`,
                         {
@@ -136,17 +141,19 @@ export default function PayPal(props) {
 
                         // create membership object
                         const membershipObject = {
-                            fName: details.payer.name.given_name,
-                            lName: details.payer.name.surname,
-                            phone: details.payer.phone.phone_number.national_number,
-                            email: details.payer.email_address,
-                            country: details.payer.address.country_code,
+                            fName: fName || details.payer.name.given_name,
+                            lName: lName || details.payer.name.surname,
+                            email: email || details.payer.email_address,
+                            phone,
+                            mName,
+                            address,
                             isNewMember,
                             affiliatedOrgs,
-                            membershipType: membershipID.toString(),
+                            membershipType: membershipID,
                             totalPaid: parseFloat(details.purchase_units[0].amount.value),
                             payPalTransactionId: details.purchase_units[0].payments.captures[0].id,
                         };
+                        console.log(membershipObject);
                         return fetch(`${BACKEND_URL}memberships/`, {
                             method: "post",
                             headers: {
@@ -173,11 +180,9 @@ export default function PayPal(props) {
                 },
                 onCancel: () => {
                     document.body.style.cursor = null;
-                    props.enableScreen();
                 },
                 onError: (_err) => {
                     document.body.style.cursor = null;
-                    props.enableScreen();
                     alert(
                         "An unexpected error occurred - your payment did not go through. Please try again later."
                     );

@@ -21,11 +21,13 @@ import "../css/CustomButton.css";
 export default function CustomButton({
     text,
     redirect_link,
-    openInSameTab = false,
+    openInSameTab=false,
     onClickCallback,
+    style = null,
 }) {
     return (
         <Button
+            style={style}
             onClick={onClickCallback}
             href={redirect_link}
             target={openInSameTab ? null : "_blank"}

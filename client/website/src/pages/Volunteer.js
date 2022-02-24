@@ -17,13 +17,83 @@ import { CountryDropdown } from "react-country-region-selector";
 import ResourcesHeader from "../components/ResourcesHeader";
 import VolunteerOption from "../components/VolunteerOption";
 import CustomButton from "../components/CustomButton";
-
+import config from "../config";
+import { fetchCommittees } from "../util/requests";
+import Loader from "../components/Main/Loader";
+import Modal from "../components/Modal";
+// function to display asterisk for required fields
 import HeaderImage from "../media/JoinUs_Header.png";
+
+const BACKEND_URL = config.backend.uri;
 
 function displayAsterisk() {
     return <span className="error-asterisk">*</span>;
 }
 
+// funcion to render all volunteer committees
+function displayCommittees(
+    isMobile,
+    volunteerCommittees,
+    selectedCommittees,
+    handleCommitteesChange
+) {
+    const mid = Math.floor(volunteerCommittees.length / 2);
+
+    if (isMobile) {
+        // renders a single column if device is mobile
+        return (
+            <div className="volunteer-options">
+                {volunteerCommittees.map((committee) => (
+                    <VolunteerOption
+                        value={committee.id}
+                        checked={selectedCommittees.includes(committee.id)}
+                        handleChange={(e) => handleCommitteesChange(e)}
+                        title={committee.title}
+                        description={committee.description}
+                    />
+                ))}
+            </div>
+        );
+    }
+
+    const volunteerOptionsLeft = [];
+    const volunteerOptionsRight = [];
+
+    // separates committees into two lists to display in two columns
+    for (let ind = 0; ind <= mid; ind++) {
+        volunteerOptionsLeft.push(
+            <VolunteerOption
+                value={volunteerCommittees[ind].id}
+                checked={selectedCommittees.includes(volunteerCommittees[ind].id)}
+                handleChange={(e) => handleCommitteesChange(e)}
+                title={volunteerCommittees[ind].title}
+                description={volunteerCommittees[ind].description}
+            />
+        );
+    }
+
+    for (let i = mid + 1; i < volunteerCommittees.length; i++) {
+        volunteerOptionsRight.push(
+            <VolunteerOption
+                value={volunteerCommittees[i].id}
+                checked={selectedCommittees.includes(volunteerCommittees[i].id)}
+                handleChange={(e) => handleCommitteesChange(e)}
+                title={volunteerCommittees[i].title}
+                description={volunteerCommittees[i].description}
+            />
+        );
+    }
+
+    // renders committees in two columns
+    return (
+        <div className="volunteer-options">
+            <div className="left-options-column">{volunteerOptionsLeft}</div>
+            <div className="right-options-column">{volunteerOptionsRight}</div>
+        </div>
+    );
+}
+
+// custom style for text fields on form
 const CustomTextField = withStyles({
     root: {
         "& label.Mui-focused": {
@@ -71,13 +141,19 @@ const CustomTextField = withStyles({
 })(TextField);
 
 export default function Volunteer() {
+    // tracks window width changes
     const [isMobile, setIsMobile] = useState(false);
     const arrowScrollToRef = React.createRef();
 
+    // stores values and error states for various field in form
     const [values, setValues] = useState({
         firstName: {
             value: "", // field value given by user
             error: false, // field contains an error
+        },
+        middleName: {
+            value: "",
+            error: false,
         },
         lastName: {
             value: "",
@@ -99,6 +175,10 @@ export default function Volunteer() {
             value: "",
             error: false,
         },
+        addressTwo: {
+            value: "",
+            error: false,
+        },
         city: {
             value: "",
             error: false,
@@ -113,30 +193,33 @@ export default function Volunteer() {
         },
     });
 
-    const [addressTwo, setAddressTwo] = useState("");
-    const [middleName, setMiddleName] = useState("");
+    // stores all volunteer committees to be displayed
+    const [volunteerCommittees, setVolunteerCommittees] = useState([]);
+    // stores all volunteer committees selected by user
+    const [selectedCommittees, setSelectedCommittees] = useState([]);
+    // tracks whether committees data is being loaded
+    const [loadingCommittees, setLoadingCommittees] = useState(true);
+    // tracks whether thank you modal should be open
+    const [isThankYouNoteOpen, setIsThankYouNoteOpen] = React.useState(false);
+    // tracks whether the form is disabled
+    const [isFormDisabled, setIsFormDisabled] = useState(false);
+    // tracks whether error message for commitees is displayed
+    const [committeesError, setCommitteesError] = useState(false);
 
-    const [editing, setEditing] = useState(false);
-    const [techSupport, setTechSupport] = useState(false);
-    const [administration, setAdministration] = useState(false);
-    const [research, setResearch] = useState(false);
-    const [socialJustice, setSocialJustice] = useState(false);
-    const [writing, setWriting] = useState(false);
-    const [building, setBuilding] = useState(false);
-    const [accounting, setAccounting] = useState(false);
-    const [programming, setProgramming] = useState(false);
-    const [planning, setPlanning] = useState(false);
-    const [arts, setArts] = useState(false);
-    const [translation, setTranslation] = useState(false);
-    const [branches, setBranches] = useState(false);
-    const [design, setDesign] = useState(false);
-    const [ordination, setOrdination] = useState(false);
-
+    // snackbar used to display error messages
     const [snackbar, setSnackBar] = useState({
         open: false,
         message: "",
     });
-    const [isFormDisabled, setIsFormDisabled] = useState(false);
+
+    // fetch volunteer committees from backend
+    useEffect(async () => {
+        await (async () => {
+            const data = await fetchCommittees();
+            setVolunteerCommittees(data);
+        })();
+        setLoadingCommittees(false);
+    }, []);
 
     // modifies isMobile state when window resizes
     useEffect(() => {
@@ -152,6 +235,7 @@ export default function Volunteer() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // handles user input to any form field
     const handleChange = (event) => {
         setValues({
             ...values,
@@ -161,10 +245,12 @@ export default function Volunteer() {
         });
     };
 
+    // closes snackbar
     const handleSnackClose = () => {
         setSnackBar({ open: false });
     };
 
+    // handles user input to country field
     const handleCountryChange = (val) => {
         setValues({
             ...values,
@@ -174,14 +260,37 @@ export default function Volunteer() {
         });
     };
 
+    // called when user decides to close thank you modal
+    const handleModalClose = (event) => {
+        setIsThankYouNoteOpen(event);
+    };
+
+    // handles any changes to committees selected
+    function handleCommitteesChange(event) {
+        if (selectedCommittees.includes(parseInt(event.target.value, 10))) {
+            setSelectedCommittees(
+                selectedCommittees.filter(
+                    (committee) => committee !== parseInt(event.target.value, 10)
+                )
+            );
+        } else {
+            setSelectedCommittees((oldArray) => [...oldArray, parseInt(event.target.value, 10)]);
+        }
+    }
+
+    // called when submit button is clicked
     const handleSubmit = async () => {
+        // ignore if form is still being processed
         if (isFormDisabled) return;
+
+        // disable form to avoid frequent requests
         setIsFormDisabled(true);
+        // display loading cursor
         document.body.style.cursor = "wait";
 
+        // variables used to check if any field is blank
         let firstName = false;
         let lastName = false;
-        let phone = false;
         let email = false;
         let country = false;
         let address = false;
@@ -191,7 +300,6 @@ export default function Volunteer() {
 
         if (values.firstName.value === "") firstName = true;
         if (values.lastName.value === "") lastName = true;
-        if (values.phoneNumber.value === "") phone = true;
         if (values.emailAddress.value === "") email = true;
         if (values.country.value === "") country = true;
         if (values.addressOne.value === "") address = true;
@@ -199,11 +307,11 @@ export default function Volunteer() {
         if (values.stateLocation.value === "") state = true;
         if (values.zipcode.value === "") zipcode = true;
 
+        // sets error values for all fields
         setValues({
             ...values,
             firstName: { ...values.firstName, error: firstName },
             lastName: { ...values.lastName, error: lastName },
-            phoneNumber: { ...values.phoneNumber, error: phone },
             emailAddress: { ...values.emailAddress, error: email },
             country: { ...values.country, error: country },
             addressOne: { ...values.addressOne, error: address },
@@ -212,16 +320,21 @@ export default function Volunteer() {
             zipcode: { ...values.zipcode, error: zipcode },
         });
 
+        if (selectedCommittees.length === 0) {
+            setCommitteesError(true);
+        }
+
+        // checks if any required fields are empty
         if (
             firstName ||
             lastName ||
-            phone ||
             email ||
             country ||
             address ||
             city ||
             state ||
-            zipcode
+            zipcode ||
+            selectedCommittees.length === 0
         ) {
             setSnackBar({ open: true, message: "Missing required fields" });
             setIsFormDisabled(false);
@@ -229,8 +342,55 @@ export default function Volunteer() {
             return;
         }
 
-        // call backend route to store volunteer data
+        // defines address to pass to backend
+        const addressOpt = values.addressTwo.value !== "" ? `${values.addressTwo.value} ` : "";
+        const givenAddress = `${values.addressOne.value} ${addressOpt}${values.city.value} ${values.stateLocation.value} ${values.country.value} ${values.zipcode.value}`;
 
+        // call backend route to store volunteer data
+        await fetch(`${BACKEND_URL}volunteers/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                fName: values.firstName.value,
+                mName: values.middleName.value,
+                lName: values.lastName.value,
+                phone: values.phoneNumber.value,
+                email: values.emailAddress.value,
+                address: givenAddress,
+                interests: selectedCommittees,
+            }),
+        }).then((res) => {
+            // form submitted
+            if (res.ok) {
+                // display thank you modal
+                setIsThankYouNoteOpen(true);
+                // clear form values
+                setValues({
+                    ...values,
+                    firstName: { ...values.firstName, value: "" },
+                    middleName: { ...values.middleName, value: "" },
+                    lastName: { ...values.lastName, value: "" },
+                    phoneNumber: { ...values.phoneNumber, value: "" },
+                    emailAddress: { ...values.emailAddress, value: "" },
+                    country: { ...values.country, value: "" },
+                    addressOne: { ...values.addressOne, value: "" },
+                    addressTwo: { ...values.addressTwo, value: "" },
+                    city: { ...values.city, value: "" },
+                    stateLocation: { ...values.stateLocation, value: "" },
+                    zipcode: { ...values.zipcode, value: "" },
+                });
+                setSelectedCommittees([]);
+                setCommitteesError(false);
+            } else {
+                // show snackbar to notify form could not be submitted
+                setSnackBar({
+                    open: true,
+                    message: "An internal error occurred. Form not submitted.",
+                });
+            }
+        });
+
+        // allow form to be edited
         document.body.style.cursor = null;
         setIsFormDisabled(false);
     };
@@ -295,16 +455,19 @@ export default function Volunteer() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* middle name field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
                             className="middle-name input-field"
                             placeholder="Middle Name"
-                            value={middleName}
-                            onChange={(e) => setMiddleName(e.target.value)}
+                            value={values.middleName.value}
+                            onChange={handleChange}
                             disabled={isFormDisabled}
+                            name="middleName"
                         />
                     </div>
+                    {/* last name field */}
                     <div className="form-item last-name-field">
                         <CustomTextField
                             variant="outlined"
@@ -319,20 +482,7 @@ export default function Volunteer() {
                         {displayAsterisk()}
                     </div>
                     <h1 className="contact-info-text">Contact Information</h1>
-                    <div className="form-item">
-                        <CustomTextField
-                            variant="outlined"
-                            className="phone-number input-field"
-                            placeholder="Phone Number"
-                            type="tel"
-                            value={values.phoneNumber.value}
-                            error={values.phoneNumber.error}
-                            onChange={handleChange}
-                            disabled={isFormDisabled}
-                            name="phoneNumber"
-                        />
-                        {displayAsterisk()}
-                    </div>
+                    {/* email address field */}
                     <div className="form-item">
                         <CustomTextField
                             variant="outlined"
@@ -347,6 +497,7 @@ export default function Volunteer() {
                         />
                         {displayAsterisk()}
                     </div>
+                    {/* country dropdown field */}
                     {values.country.error ? (
                         <div className="form-item">
                             <CountryDropdown
@@ -370,8 +521,10 @@ export default function Volunteer() {
                             {displayAsterisk()}
                         </div>
                     )}
+                    {/* displays other address fields if country is selected */}
                     {values.country.value !== "" ? (
                         <div>
+                            {/* address line 1 field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -385,16 +538,19 @@ export default function Volunteer() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* address line 2 field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
                                     className="address-line2 input-field"
                                     placeholder="Address Line 2"
-                                    value={addressTwo}
-                                    onChange={(e) => setAddressTwo(e.target.value)}
+                                    value={values.addressTwo.value}
+                                    onChange={handleChange}
                                     disabled={isFormDisabled}
+                                    name="addressTwo"
                                 />
                             </div>
+                            {/* city field */}
                             <div className="city-field form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -408,6 +564,7 @@ export default function Volunteer() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* state field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -421,6 +578,7 @@ export default function Volunteer() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* zipcode field */}
                             <div className="form-item">
                                 <CustomTextField
                                     variant="outlined"
@@ -434,208 +592,55 @@ export default function Volunteer() {
                                 />
                                 {displayAsterisk()}
                             </div>
+                            {/* phone number field */}
+                            <div className="form-item">
+                                <CustomTextField
+                                    variant="outlined"
+                                    className="phone-number input-field"
+                                    placeholder="Phone Number"
+                                    type="tel"
+                                    value={values.phoneNumber.value}
+                                    onChange={handleChange}
+                                    disabled={isFormDisabled}
+                                    name="phoneNumber"
+                                />
+                            </div>
                         </div>
                     ) : null}
                     <h1 className="help-section-title">What would you like to help with?</h1>
                     <p className="select-committees-text">
                         Select all committees you are interested in.
                     </p>
-                    {isMobile ? (
-                        <div className="volunteer-options">
-                            <VolunteerOption
-                                value={editing}
-                                handleChange={(e) => setEditing(e.target.checked)}
-                                title="Editing"
-                                description="Put together recap videos for our annual conferences."
-                            />
-                            <VolunteerOption
-                                value={techSupport}
-                                handleChange={(e) => setTechSupport(e.target.checked)}
-                                title="Tech Support"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={administration}
-                                handleChange={(e) => setAdministration(e.target.checked)}
-                                title="Administration"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={research}
-                                handleChange={(e) => setResearch(e.target.checked)}
-                                title="Research"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={socialJustice}
-                                handleChange={(e) => setSocialJustice(e.target.checked)}
-                                title="Social Justice"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={writing}
-                                handleChange={(e) => setWriting(e.target.checked)}
-                                title="Writing"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={building}
-                                handleChange={(e) => setBuilding(e.target.checked)}
-                                title="Building & Planting"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={accounting}
-                                handleChange={(e) => setAccounting(e.target.checked)}
-                                title="Accounting"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={programming}
-                                handleChange={(e) => setProgramming(e.target.checked)}
-                                title="Programming"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={planning}
-                                handleChange={(e) => setPlanning(e.target.checked)}
-                                title="Conference Planning"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={arts}
-                                handleChange={(e) => setArts(e.target.checked)}
-                                title="Arts"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={translation}
-                                handleChange={(e) => setTranslation(e.target.checked)}
-                                title="Translation"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={branches}
-                                handleChange={(e) => setBranches(e.target.checked)}
-                                title="Branches & Chapters"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={design}
-                                handleChange={(e) => setDesign(e.target.checked)}
-                                title="Design"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                            <VolunteerOption
-                                value={ordination}
-                                handleChange={(e) => setOrdination(e.target.checked)}
-                                title="Ordination"
-                                description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                            />
-                        </div>
+                    {committeesError ? (
+                        <p className="committees-error-text">
+                            At least one committee must be selected.
+                        </p>
+                    ) : null}
+                    {/* displays all committee options or spinner if loading data */}
+                    {loadingCommittees ? (
+                        <Loader />
                     ) : (
-                        <div className="volunteer-options">
-                            <div className="left-options-column">
-                                <VolunteerOption
-                                    value={editing}
-                                    handleChange={(e) => setEditing(e.target.checked)}
-                                    title="Editing"
-                                    description="Put together recap videos for our annual conferences."
-                                />
-                                <VolunteerOption
-                                    value={techSupport}
-                                    handleChange={(e) => setTechSupport(e.target.checked)}
-                                    title="Tech Support"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={administration}
-                                    handleChange={(e) => setAdministration(e.target.checked)}
-                                    title="Administration"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={research}
-                                    handleChange={(e) => setResearch(e.target.checked)}
-                                    title="Research"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={socialJustice}
-                                    handleChange={(e) => setSocialJustice(e.target.checked)}
-                                    title="Social Justice"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={writing}
-                                    handleChange={(e) => setWriting(e.target.checked)}
-                                    title="Writing"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={building}
-                                    handleChange={(e) => setBuilding(e.target.checked)}
-                                    title="Building & Planting"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={accounting}
-                                    handleChange={(e) => setAccounting(e.target.checked)}
-                                    title="Accounting"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                            </div>
-                            <div className="right-options-column">
-                                <VolunteerOption
-                                    value={programming}
-                                    handleChange={(e) => setProgramming(e.target.checked)}
-                                    title="Programming"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={planning}
-                                    handleChange={(e) => setPlanning(e.target.checked)}
-                                    title="Conference Planning"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={arts}
-                                    handleChange={(e) => setArts(e.target.checked)}
-                                    title="Arts"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={translation}
-                                    handleChange={(e) => setTranslation(e.target.checked)}
-                                    title="Translation"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={branches}
-                                    handleChange={(e) => setBranches(e.target.checked)}
-                                    title="Branches & Chapters"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={design}
-                                    handleChange={(e) => setDesign(e.target.checked)}
-                                    title="Design"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                                <VolunteerOption
-                                    value={ordination}
-                                    handleChange={(e) => setOrdination(e.target.checked)}
-                                    title="Ordination"
-                                    description="One sentence description about expected volunteer responsibilities that is limited to 110 characters for each."
-                                />
-                            </div>
-                        </div>
+                        displayCommittees(
+                            isMobile,
+                            volunteerCommittees,
+                            selectedCommittees,
+                            handleCommitteesChange
+                        )
                     )}
+                    {/* submit button */}
                     <div className="submit-form">
                         <CustomButton text="Submit" onClickCallback={handleSubmit} />
                     </div>
                 </form>
             </div>
+            {/* thank you modal displayed when form is submitted */}
+            <Modal
+                text="Thank you for your support! We will get in touch with you shortly."
+                open={isThankYouNoteOpen}
+                hide={handleModalClose}
+                negativeButtonText="Ok"
+            />
+            {/* snackbar to display error messages */}
             <Snackbar
                 open={snackbar.open}
                 autoHideDuration={6000}

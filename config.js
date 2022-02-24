@@ -33,8 +33,11 @@ module.exports = {
         OAUTH_CLIENT_SECRET: process.env.OAUTH_CLIENT_SECRET || "",
         OAUTH_REFRESH_TOKEN: process.env.OAUTH_REFRESH_TOKEN || "",
     },
+    paypal : {
+        PAYPAL_MERCHANT_EMAIL: process.env.PAYPAL_MERCHANT_EMAIL || "sb-g6ib47791447@business.example.com"
+    },
     recipientEmailList: {
         // receives any submission to volunteer or email list forms, notifications of new memberships, and contact messages
-        general: process.env.GENERAL_EMAIL_LIST || "thomas@garry.to",
+        general: process.env.GENERAL_EMAIL_LIST || "aksingh@ucsd.edu",
     },
 };

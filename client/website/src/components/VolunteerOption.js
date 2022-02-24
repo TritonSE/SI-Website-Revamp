@@ -33,7 +33,8 @@ export default function VolunteerOption(props) {
             <div className="committee-row">
                 <CustomColorCheckbox
                     className="committee-checkbox"
-                    checked={props.value}
+                    value={props.value}
+                    checked={props.checked}
                     onChange={handleCheckbox}
                 />
                 <span className="committee-title">{props.title}</span>

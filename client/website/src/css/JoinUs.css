@@ -58,9 +58,19 @@
   color: #ea4444;
   font-size: 18px;
   text-align: center;
+}
+
+.paypal-buttons {
   width: 100%;
   padding-bottom: 12.34vw;
   margin-top: 7.27vw;
+  text-align: center;
+}
+
+.continue-button {
+  width: 100%;
+  margin: 0 auto;
+  display: inline-block;
 }
 
 .error-asterisk {
@@ -87,24 +97,9 @@
 }
 
 .submit-button {
-  /* color: var(--white);
-  width: 12.5vw;
-  height: 3.67vw; */
   margin-top: 6.56vw;
   margin-bottom: 9.22vw;
   text-align: center;
-
-  /* background: #ea8644;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 24.5px;
-  border-width: 0px;
-
-  font-family: var(--text-font);
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 27px;
-  text-align: center; */
 }
 
 .select-membership-form {
@@ -181,14 +176,6 @@
   .payment-text {
     margin-top: 120px;
   }
-
-  /* .page-info {
-    font-size: 18px;
-  }
-
-  .checkbox-text {
-    font-size: 18px;
-  } */
 }
 
 @media screen and (max-width: 600px) {
@@ -211,7 +198,6 @@
     font-size: 16px;
     line-height: 22px;
     display: inline-block;
-    /* width: 85%; */
     vertical-align: top;
     margin-top: 5px;
   }
@@ -255,6 +241,9 @@
   .error-message {
     font-size: 16px;
     line-height: 22px;
+  }
+
+  .paypal-buttons {
     padding-bottom: 79px;
     margin-top: 43px;
   }
@@ -277,13 +266,7 @@
   }
 
   .submit-button {
-    /* width: 49.3vw;
-    height: 36px; */
     margin-top: 31px;
     margin-bottom: 58px;
-    /* background: #ea8644;
-    border-radius: 40px;
-    font-size: 14px;
-    line-height: 19px; */
   }
 }

@@ -14,7 +14,6 @@ import CustomButton from "../components/CustomButton";
 import ResourcesHeader from "../components/ResourcesHeader";
 import BeInvolved from "../components/Home/BeInvolved";
 import { SITE_PAGES } from "../constants/links";
-
 import Header from "../media/Lotus_Header.png";
 
 import "../css/Donate.css";

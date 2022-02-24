@@ -23,7 +23,7 @@ router.post(
         body("fName").isString(),
         body("mName").isString().optional(),
         body("lName").isString(),
-        body("phone").isString(),
+        body("phone").isString().optional(),
         body("email").isEmail(),
         body("address").isString(),
         body("createdAt").custom((val) => val === undefined),
