@@ -36,10 +36,10 @@ async function verify(token) {
     return jwt.verify(token, config.auth.jwt_secret, (err) => {
         // invalid token
         if (err) {
-            return [Promise.reject(), false];
+            return false;
         }
 
-        return [Promise.resolve(), true];
+        return true;
     });
 }
 

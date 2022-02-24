@@ -16,6 +16,7 @@ const {
     deleteCommittee,
 } = require("../db/services/execCommittee");
 const { isValidated } = require("../middleware/validation");
+const { checkToken, verify } = require("../routes/services/jwt");
 
 const router = express.Router();
 
@@ -27,6 +28,7 @@ const router = express.Router();
 router.post(
     "/",
     [
+        checkToken,
         body("startYear").isNumeric(),
         body("endYear").isNumeric(),
         body("rank").isNumeric(),
@@ -43,6 +45,12 @@ router.post(
     ],
     async (req, res) => {
         try {
+            const verified = await verify(req.token);
+    
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
+
             const entries = await addEntry(req.body);
             return res.status(200).json(entries);
         } catch (err) {
@@ -59,6 +67,12 @@ router.post(
  */
 router.get("/", async (req, res) => {
     try {
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
+
         const entries = await getAll();
         return res.status(200).json(entries);
     } catch (err) {
@@ -95,6 +109,7 @@ router.get("/:startYear", async (req, res) => {
 router.put(
     "/:id",
     [
+        checkToken,
         body("startYear").isNumeric(),
         body("endYear").isNumeric(),
         body("rank").isNumeric().optional(),
@@ -112,6 +127,11 @@ router.put(
     async (req, res) => {
         try {
             const { id } = req.params;
+            const verified = await verify(req.token);
+    
+            if(!verified) {
+                return res.status(403).json({message: "No access"});
+            }
 
             // checks that id is a number
             if (Number(id) < 0)
@@ -136,9 +156,14 @@ router.put(
  *
  * @returns {entryCode} - 200 (success), anything else is an error
  */
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", [checkToken, isValidated], async (req, res) => {
     try {
         const { id } = req.params;
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         const status = await deleteById(id);
         // success
@@ -157,9 +182,14 @@ router.delete("/:id", async (req, res) => {
  *
  * @returns {entryCode} - 200 (success), anything else is an error
  */
-router.delete("/committee/:startYear", async (req, res) => {
+router.delete("/committee/:startYear", [checkToken, isValidated], async (req, res) => {
     try {
         const { startYear } = req.params;
+        const verified = await verify(req.token);
+
+        if(!verified) {
+            return res.status(403).json({message: "No access"});
+        }
 
         const status = await deleteCommittee(startYear);
 

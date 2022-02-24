@@ -36,7 +36,7 @@ router.post(
     async (req, res) => {
         const verified = await verify(req.token);
 
-        if(!verified[1]) {
+        if(!verified) {
             return res.status(403).json({message: "No access"});
         }
 
@@ -73,7 +73,7 @@ router.put(
         const verified = await verify(req.token);
         const { id } = req.params;
 
-        if(!verified[1]) {
+        if(!verified) {
             return res.status(403).json({message: "No access"});
         }
 
