@@ -50,7 +50,10 @@ async function getAllFiltersForPub(pubId) {
  * @returns - the json object that is inserted
  */
 async function addOne(data) {
-    return FilteredPublications.create(data);
+    const { filterId } = data;
+    const { publicationId } = data;
+
+    return FilteredPublications.create({ publicationId, filterId });
 }
 
 /**
