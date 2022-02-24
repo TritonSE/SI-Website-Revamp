@@ -73,7 +73,6 @@ export const fetchFilters = async () => {
 
         return null;
     } catch (err) {
-        console.log(err);
         return null;
     }
 };

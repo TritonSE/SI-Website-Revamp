@@ -41,7 +41,6 @@ const Stepper = ({
     handleAddNodeClick,
     formatNodeTitle,
     addSpecialNodeClass = (item) => {
-        console.log(item);
         return "";
     },
     numItemsPerPage = 10,
@@ -61,7 +60,6 @@ const Stepper = ({
     }, []);
 
     const onPageChange = (itemList, currentPage) => {
-        console.log(itemList);
         setPageNumber(currentPage - 1);
     };
 

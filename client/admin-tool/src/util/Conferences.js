@@ -29,7 +29,6 @@ async function putConference(id, values) {
 
         return res.ok;
     } catch (err) {
-        console.log(err);
         return false;
     }
 }
@@ -80,7 +79,6 @@ async function getConferences() {
         // message sent
         if (res.ok) {
             const data = await res.json();
-            // console.log(JSON.stringify(data));
             return data;
         }
         return [];

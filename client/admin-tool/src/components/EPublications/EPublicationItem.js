@@ -59,8 +59,6 @@ export default function EPublicationItem({
 
         const filters = await getFilters();
 
-        console.log(filters);
-
         setFilters(filters);
         setFilterName("Default");
 
@@ -102,8 +100,6 @@ export default function EPublicationItem({
     const validateData = () => {
         setIsPageDisabled(true);
 
-        console.log(content);
-
         let errors = {
             title: false,
             author: false,
@@ -129,8 +125,6 @@ export default function EPublicationItem({
             }
         });
 
-        console.log(data);
-
         if (data["feature"] === true && featuredList == 6) {
             let alreadyFeatured = false;
 
@@ -147,8 +141,6 @@ export default function EPublicationItem({
 
         setDataErrors(errors);
         setIsPageDisabled(false);
-
-        console.log(errors);
 
         if (!hasErrors) onSaveCallback(data);
         else handleSnackbar({ open: true, message: errorString });
