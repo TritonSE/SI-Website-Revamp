@@ -17,7 +17,8 @@ import { Snackbar } from "@material-ui/core";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 import TextEditor from "../TextEditor";
 import SectionPopover from "../PopOver";
 import Button from "../Button";
@@ -86,27 +87,39 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
         let hasErrors = false;
         const errors = { title: false };
 
+        let tempData = {
+            title: data["title"],
+            content: data["content"],
+            isPublished: data["isPublished"]
+        }
+
+        tempData.content = draftToHtml(
+            convertToRaw(data["content"].getCurrentContent())
+        );
+
         // check if all required fields are valid
         Object.keys(errors).forEach((key) => {
-            if (data[key].length < 1) {
+            if (tempData[key].length < 1) {
                 errors[key] = true;
                 hasErrors = true;
             }
         });
+
+        console.log(tempData)
 
         // update section based on errors encountered
         setDataErrors(errors);
         setIsPageDisabled(false);
 
         // no errors --> callback with section information passed as a JSON
-        if (!hasErrors) onSaveCallback(data);
+        if (!hasErrors) onSaveCallback(tempData);
         // errors --> display an error for the user
         else handleSnackBar({ open: true, message: "Error: Missing required fields." });
     };
 
     // determines which starter HTML code to pass to the TextEditor (buggy otherwise)
     const handleHtmlInitial = () => {
-        if (!content || !content["content"]) return "<p></p>";
+        if (!content || !content["content"]) return EditorState.createEmpty();
         return content["content"];
     };
 
@@ -216,7 +229,7 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
             {/* TextEditor  */}
             <TextEditor
                 isDisabled={isPageDisabled}
-                initialHtmlLoadStr={handleHtmlInitial()}
+                initialLoadEditorState={handleHtmlInitial()}
                 editorUpdateCallback={(updatedHtml) => setData({ ...data, content: updatedHtml })}
             />
             {/* Snackbar for Error Displays */}

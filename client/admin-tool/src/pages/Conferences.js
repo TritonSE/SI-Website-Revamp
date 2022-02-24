@@ -223,11 +223,17 @@ export default function Conferences() {
         }
 
         const data = {};
+        
         Object.keys(conferenceItem).forEach((key) => {
             if (key === "theme") {
-                data[key] = draftToHtml(
-                    convertToRaw(conferenceItem[key].value.getCurrentContent())
-                );
+                if(conferenceItem["theme"].value !== ""){
+                    data[key] = draftToHtml(
+                        convertToRaw(conferenceItem[key].value.getCurrentContent())
+                    );
+                }
+                else {
+                    data[key] = "<p></p>"
+                }
             } else if (key === "confNum") {
                 data[key] = parseInt(conferenceItem[key].value, 10);
             } else data[key] = conferenceItem[key].value;
@@ -252,6 +258,7 @@ export default function Conferences() {
             }
         } else {
             const res = await postConferences(data);
+
             if (res) {
                 setSnackBar({
                     open: true,

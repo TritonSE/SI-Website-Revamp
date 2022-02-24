@@ -519,6 +519,7 @@ export default function JoinUs() {
                     ) : null}
                     {!membershipCheck ? (
                         <div>
+                            {console.log(membershipCheck)}
                             <h1 className="additional-info-text">Additional Information</h1>
                             <div className="form-item">
                                 <CustomSelectField

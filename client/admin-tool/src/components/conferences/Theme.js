@@ -6,8 +6,6 @@ import TextEditor from "../TextEditor";
 import "../../css/Conferences.css";
 
 const Theme = ({ classes, conferenceItem, handleChange, formDisabled, handleThemeChange }) => {
-    console.log(conferenceItem.theme.value);
-
     return (
         <section className="conferences-theme-section">
             <div className="conferences-conference-title">
