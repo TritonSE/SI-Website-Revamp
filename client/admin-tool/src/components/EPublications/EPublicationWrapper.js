@@ -23,8 +23,8 @@ export default function EPublicationWrapper({
         description: "",
         imageLink: "",
         pdfLink: "",
-        filters: []
-    };;
+        filters: [],
+    };
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
@@ -42,7 +42,7 @@ export default function EPublicationWrapper({
         setEPublications(data);
         setCurrentIndex(-1);
         setIsLoading(false);
-    }
+    };
 
     const handleDeleteEPublication = async () => {
         const isSuccessful = await deleteItemRequestCallback(ePublications[currentIndex]["id"]);
@@ -54,7 +54,10 @@ export default function EPublicationWrapper({
     };
 
     const handleUpdateEPublication = async (data) => {
-        const isSuccessful = await updateItemRequestCallback(ePublications[currentIndex]["id"], data);
+        const isSuccessful = await updateItemRequestCallback(
+            ePublications[currentIndex]["id"],
+            data
+        );
 
         if (isSuccessful) {
             await loadData();
@@ -104,17 +107,17 @@ export default function EPublicationWrapper({
 
     if (isLoading) {
         return (
-            <div className = "epublications-loader">
+            <div className="epublications-loader">
                 <Loader />
             </div>
-        )
+        );
     }
 
     return (
-        <div className = "epublications-container">
-            <section className = "stepper-section">
-                <div 
-                    className = "stepper-section-div"
+        <div className="epublications-container">
+            <section className="stepper-section">
+                <div
+                    className="stepper-section-div"
                     style={{
                         marginTop: 0,
                         paddingTop: 40,
@@ -134,14 +137,14 @@ export default function EPublicationWrapper({
 
             <section className="epublications-edit-section">
                 <div className="epublications-title">
-                <h1
-                    style={{ fontSize: 40, fontWeight: 700, marginBottom: 10 }}
-                    className="epublications-title-h1"
-                >
-                    {title}
-                </h1>
+                    <h1
+                        style={{ fontSize: 40, fontWeight: 700, marginBottom: 10 }}
+                        className="epublications-title-h1"
+                    >
+                        {title}
+                    </h1>
                 </div>
-                <div className = "epublication-item-container">
+                <div className="epublication-item-container">
                     {currentIndex > -1 ? (
                         <EPublicationItem
                             i={currentIndex}
@@ -172,5 +175,5 @@ export default function EPublicationWrapper({
                 />
             </section>
         </div>
-    )
+    );
 }

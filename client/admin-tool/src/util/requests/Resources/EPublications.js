@@ -1,6 +1,6 @@
 /**
  * Contains any server calls made for the EPublications page on the admin tool
- * 
+ *
  * @summary     EPublications server calls
  * @author      Navid Boloorian
  */
@@ -11,7 +11,7 @@ const BACKEND_URL = config.backend.uri;
 
 /**
  * Retrieves all EPub items fro database
- * 
+ *
  * @returns { [JSON] } - Each object denotes a unique EPub item
  */
 export const fetchEPublications = async () => {
@@ -23,7 +23,7 @@ export const fetchEPublications = async () => {
             },
         });
 
-        if(res.ok) {
+        if (res.ok) {
             const data = await res.json();
             return data;
         }
@@ -32,7 +32,7 @@ export const fetchEPublications = async () => {
     } catch {
         return [];
     }
-}
+};
 
 export const fetchFilterByName = async (name) => {
     try {
@@ -43,7 +43,7 @@ export const fetchFilterByName = async (name) => {
             },
         });
 
-        if(res.ok) {
+        if (res.ok) {
             const data = await res.json();
             return data;
         }
@@ -52,12 +52,12 @@ export const fetchFilterByName = async (name) => {
     } catch {
         return [];
     }
-}
+};
 
 /**
  * Get list of possible filters
  */
- export const fetchFilters = async () => {
+export const fetchFilters = async () => {
     try {
         const res = await fetch(`${BACKEND_URL}publications/epubfilters`, {
             method: "get",
@@ -66,16 +66,17 @@ export const fetchFilterByName = async (name) => {
             },
         });
 
-        if(res.ok) {
+        if (res.ok) {
             const data = await res.json();
             return data;
         }
 
         return null;
-    } catch {
+    } catch (err) {
+        console.log(err);
         return null;
     }
-}
+};
 
 /**
  * Count the number of featured publications
@@ -89,7 +90,7 @@ export const fetchFeatured = async () => {
             },
         });
 
-        if(res.ok) {
+        if (res.ok) {
             const data = await res.json();
             return data;
         }
@@ -98,13 +99,13 @@ export const fetchFeatured = async () => {
     } catch {
         return -1;
     }
-}
+};
 
 /**
  * Add new EPub object to the database
- * 
+ *
  * @param { JSON } content - Object to add
- * @returns { boolean } - True if successful, False otherwise 
+ * @returns { boolean } - True if successful, False otherwise
  */
 export const addEPublication = async (content) => {
     try {
@@ -116,7 +117,7 @@ export const addEPublication = async (content) => {
             body: JSON.stringify(content),
         });
 
-        if(res.ok) {
+        if (res.ok) {
             const json = await res.json();
             return json;
         }
@@ -125,11 +126,11 @@ export const addEPublication = async (content) => {
     } catch {
         return null;
     }
-}
+};
 
 /**
  * Update EPub object with new data
- * 
+ *
  * @param { int } id - ID of EPub to update
  * @param { JSON } content - New content
  * @returns {boolean} - True if succesful, False otherwise
@@ -144,7 +145,7 @@ export const updateEPublication = async (id, content) => {
             body: JSON.stringify(content),
         });
 
-        if(res.ok) {
+        if (res.ok) {
             return true;
         }
 
@@ -152,11 +153,11 @@ export const updateEPublication = async (id, content) => {
     } catch {
         return false;
     }
-}
+};
 
 /**
  * Delete EPub object with specified ID
- * 
+ *
  * @param { int } id - ID of EPub object to be deleted
  * @returns {boolean} - True if successful, False otherwise
  */
@@ -169,7 +170,7 @@ export const deleteEPublication = async (id) => {
             },
         });
 
-        if(res.ok) {
+        if (res.ok) {
             return true;
         }
 
@@ -177,4 +178,4 @@ export const deleteEPublication = async (id) => {
     } catch {
         return false;
     }
-}
+};

@@ -2,7 +2,14 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@mui/material/TextField";
-import { Checkbox, FormGroup, FormControlLabel, FormHelperText, MenuItem, Snackbar } from "@material-ui/core";
+import {
+    Checkbox,
+    FormGroup,
+    FormControlLabel,
+    FormHelperText,
+    MenuItem,
+    Snackbar,
+} from "@material-ui/core";
 
 import Button from "../Button";
 
@@ -23,7 +30,7 @@ export default function EPublicationItem({
         description: "",
         imageLink: "",
         pdfLink: "",
-        filters: [{filterId: 0}],
+        filters: [{ filterId: 0 }],
     });
 
     const [filters, setFilters] = React.useState([{}]);
@@ -52,14 +59,19 @@ export default function EPublicationItem({
 
         const filters = await getFilters();
 
+        console.log(filters);
+
         setFilters(filters);
         setFilterName("Default");
 
-        filters.map(filter => {
-            if(content["filters"][0] !== undefined && filter.id === content["filters"][0].filterId) {
-                setFilterName(filter.title)
+        filters.map((filter) => {
+            if (
+                content["filters"][0] !== undefined &&
+                filter.id === content["filters"][0].filterId
+            ) {
+                setFilterName(filter.title);
             }
-        })
+        });
 
         const featuredList = await fetchFeatured();
         setFeaturedList(featuredList);
@@ -85,7 +97,7 @@ export default function EPublicationItem({
         });
 
         setIsPageDisabled(false);
-    }, [content])
+    }, [content]);
 
     const validateData = () => {
         setIsPageDisabled(true);
@@ -106,7 +118,7 @@ export default function EPublicationItem({
         let errorString = "Error: ";
 
         Object.keys(data).forEach((key) => {
-            if(key === "feature" && data[key].length < 1) {
+            if (key === "feature" && data[key].length < 1) {
                 data[key] = false;
             }
 
@@ -119,18 +131,17 @@ export default function EPublicationItem({
 
         console.log(data);
 
-        if(data["feature"] === true && featuredList == 6) {
+        if (data["feature"] === true && featuredList == 6) {
             let alreadyFeatured = false;
 
-            featuredList.map(feature => {
-                if(feature.title == data["feature"])
-                    alreadyFeatured = true;
-            })
+            featuredList.map((feature) => {
+                if (feature.title == data["feature"]) alreadyFeatured = true;
+            });
 
-            if(!alreadyFeatured) {
+            if (!alreadyFeatured) {
                 errors["feature"] = true;
                 hasError = true;
-                errorString += " there are already 6 featured publications;"
+                errorString += " there are already 6 featured publications;";
             }
         }
 
@@ -141,9 +152,9 @@ export default function EPublicationItem({
 
         if (!hasErrors) onSaveCallback(data);
         else handleSnackbar({ open: true, message: errorString });
-    }
+    };
 
-    const asterisk = () => <span className = "required-asterisk">*</span>
+    const asterisk = () => <span className="required-asterisk">*</span>;
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -175,26 +186,26 @@ export default function EPublicationItem({
     const getFilterId = (name) => {
         let selectedId = -1;
 
-        filters.map(filter => {
-            if(filter.title === name) {
+        filters.map((filter) => {
+            if (filter.title === name) {
                 selectedId = filter.id;
             }
-        })
+        });
 
         return selectedId;
-    }
+    };
 
     const inputLabels = [
-        {title: "Details", name: "title", label: "Title"},
-        {title: "", name: "author", label: "Author"},
-        {title: "", name: "filter", label: "Filter"},
-        {title: "Thumbnail Image", name: "imageLink", label: "Insert site link"},
-        {title: "Redirect To", name: "pdfLink", label: "Insert PDF link"},
-        {title: "", name: "feature", label: "Feature on header"},
-        {title: "Description", name: "description", label: "Type description here"},
+        { title: "Details", name: "title", label: "Title" },
+        { title: "", name: "author", label: "Author" },
+        { title: "", name: "filter", label: "Filter" },
+        { title: "Thumbnail Image", name: "imageLink", label: "Insert site link" },
+        { title: "Redirect To", name: "pdfLink", label: "Insert PDF link" },
+        { title: "", name: "feature", label: "Feature on header" },
+        { title: "Description", name: "description", label: "Type description here" },
     ];
 
-    return(
+    return (
         <div>
             <div className="epublication-grid">
                 <div classname="epublication-grid-left">
@@ -205,15 +216,28 @@ export default function EPublicationItem({
                                 {input.name === "feature" ? (
                                     <>
                                         <FormGroup>
-                                            <FormControlLabel control={<Checkbox 
-                                                checked={data[input.name]}
-                                                style={{color: "#ea8644"}}
-                                                helperText="Publications that are already featured have an orange border."
-                                                onChange={(event) => {
-                                                    setData({ ...data, [input.name]: event.target.checked });
-                                                }}
-                                            />} label={input.label} />
-                                            <FormHelperText style={{fontSize:13, marginBottom:-15}}>Featured publications have an orange border. <br/> A maximum of 6 can be featured at a time.</FormHelperText>
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox
+                                                        checked={data[input.name]}
+                                                        style={{ color: "#ea8644" }}
+                                                        helperText="Publications that are already featured have an orange border."
+                                                        onChange={(event) => {
+                                                            setData({
+                                                                ...data,
+                                                                [input.name]: event.target.checked,
+                                                            });
+                                                        }}
+                                                    />
+                                                }
+                                                label={input.label}
+                                            />
+                                            <FormHelperText
+                                                style={{ fontSize: 13, marginBottom: -15 }}
+                                            >
+                                                Featured publications have an orange border. <br />{" "}
+                                                A maximum of 6 can be featured at a time.
+                                            </FormHelperText>
                                         </FormGroup>
                                         <br />
                                     </>
@@ -223,7 +247,11 @@ export default function EPublicationItem({
                                             margin="dense"
                                             disabled={isPageDisabled}
                                             placeholder={input.label}
-                                            value={input.name !== "filter" ? data[input.name] : filterName}
+                                            value={
+                                                input.name !== "filter"
+                                                    ? data[input.name]
+                                                    : filterName
+                                            }
                                             error={dataErrors[input.label]}
                                             select={input.name === "filter" ? true : false}
                                             multiline={input.name === "description" ? true : false}
@@ -231,13 +259,22 @@ export default function EPublicationItem({
                                             variant="outlined"
                                             className={classes.root}
                                             onChange={(event) => {
-                                                    input.name !== "filter" ? 
-                                                (
-                                                    setData({ ...data, [input.name]: event.target.value })
-                                                ) : (
-                                                    setData({ ...data, "filters": [{filterId: getFilterId(event.target.value)}]}),
-                                                    setFilterName(event.target.value)
-                                                )
+                                                input.name !== "filter"
+                                                    ? setData({
+                                                          ...data,
+                                                          [input.name]: event.target.value,
+                                                      })
+                                                    : (setData({
+                                                          ...data,
+                                                          filters: [
+                                                              {
+                                                                  filterId: getFilterId(
+                                                                      event.target.value
+                                                                  ),
+                                                              },
+                                                          ],
+                                                      }),
+                                                      setFilterName(event.target.value));
                                             }}
                                             style={{
                                                 minWidth: 400,
@@ -246,22 +283,22 @@ export default function EPublicationItem({
                                             <MenuItem key={1} value="Default" disabled>
                                                 Select a filter
                                             </MenuItem>
-                                            {input.name === "filter" ? (
-                                                filters.map((filter, key) => {
-                                                    return <MenuItem key={key} value={filter.title}>
-                                                        {filter.title}
-                                                    </MenuItem>
-                                                })
-                                            ) : (
-                                                ""
-                                            )}
+                                            {input.name === "filter"
+                                                ? filters.map((filter, key) => {
+                                                      return (
+                                                          <MenuItem key={key} value={filter.title}>
+                                                              {filter.title}
+                                                          </MenuItem>
+                                                      );
+                                                  })
+                                                : ""}
                                         </TextField>
                                         {input.name !== "description" ? asterisk() : ""}
                                         <br />
                                     </>
                                 )}
                             </>
-                        )
+                        );
                     })}
                 </div>
                 <div className="epublication-grid-right">
@@ -290,6 +327,5 @@ export default function EPublicationItem({
                 message={snackbar.message}
             />
         </div>
-    )
-
+    );
 }

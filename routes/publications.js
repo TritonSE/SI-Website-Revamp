@@ -85,16 +85,14 @@ router.post(
 
             // loop through filters and add them to the FilteredPublications table
             await Promise.allSettled([
-                req.body.filters.map((filter) =>
-                {
-                    const filterId = filter["filterId"];
+                req.body.filters.map((filter) => {
+                    const { filterId } = filter;
 
-                    filteredMethods.addOne({
+                    return filteredMethods.addOne({
                         filterId,
                         publicationId,
-                    })
-                }
-            ),
+                    });
+                }),
             ]);
 
             return res.status(200).json(publications);
@@ -171,16 +169,14 @@ router.put(
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // loop through filters and add them to the FilteredPublications table
                 await Promise.allSettled([
-                    req.body.filters.map((filter) =>
-                        {
-                            const filterId = filter["filterId"];
+                    req.body.filters.map((filter) => {
+                        const { filterId } = filter;
 
-                            filteredMethods.addOne({
-                                filterId,
-                                publicationId,
-                            })
-                        }
-                    ),
+                        return filteredMethods.addOne({
+                            filterId,
+                            publicationId,
+                        });
+                    }),
                 ]);
             }
 
@@ -279,7 +275,7 @@ router.get("/epubfilters", [isValidated], async (req, res) => {
  *
  * @return {status} - 200 if successful, 500 otherwise
  */
- router.get("/filterById/:id", [isValidated], async (req, res) => {
+router.get("/filterById/:id", [isValidated], async (req, res) => {
     try {
         const { id } = req.params;
 
