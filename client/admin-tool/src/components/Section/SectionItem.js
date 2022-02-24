@@ -17,7 +17,7 @@ import { Snackbar } from "@material-ui/core";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { EditorState, ContentState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import TextEditor from "../TextEditor";
 import SectionPopover from "../PopOver";

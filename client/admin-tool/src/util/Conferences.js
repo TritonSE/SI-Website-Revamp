@@ -45,11 +45,11 @@ async function putConference(id, values) {
 async function postConferences(values) {
     try {
         const res = await fetch(`${BACKEND_URL}conference`, {
+            method: "POST",
             headers: {
                 "content-type": "application/json",
                 "autorization": `Bearer: ${localStorage.getItem("token")}` 
             },
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 title: values.title,
                 confNum: values.confNum,
@@ -67,6 +67,7 @@ async function postConferences(values) {
 
         return res.ok;
     } catch (err) {
+        console.log(err)
         return false;
     }
 }

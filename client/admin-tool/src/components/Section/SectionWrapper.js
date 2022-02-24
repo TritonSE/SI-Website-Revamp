@@ -18,8 +18,7 @@ import Stepper from "../Stepper";
 import SectionItem from "./SectionItem";
 import SectionPopover from "../PopOver";
 import Loader from "../Loader";
-import { EditorState, ContentState, convertToRaw } from "draft-js";
-import draftToHtml from "draftjs-to-html";
+import { EditorState, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
 
 import "../../css/SectionWrapper.css";
