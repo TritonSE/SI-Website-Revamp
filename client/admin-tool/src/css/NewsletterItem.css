@@ -1,0 +1,10 @@
+.newsletter-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 30px;
+}
+
+.newsletter-grid-right {
+  text-align: center;
+  padding-top: 60px;
+}

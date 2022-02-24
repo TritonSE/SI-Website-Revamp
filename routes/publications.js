@@ -93,12 +93,14 @@ router.post(
 
             // loop through filters and add them to the FilteredPublications table
             await Promise.allSettled([
-                req.body.filters.map((filterId) =>
-                    filteredMethods.addOne({
+                req.body.filters.map((filter) => {
+                    const { filterId } = filter;
+
+                    return filteredMethods.addOne({
                         filterId,
                         publicationId,
-                    })
-                ),
+                    });
+                }),
             ]);
 
             return res.status(200).json(publications);
@@ -181,12 +183,14 @@ router.put(
             if (req.body.filters !== undefined && req.body.filters.length >= 1) {
                 // loop through filters and add them to the FilteredPublications table
                 await Promise.allSettled([
-                    req.body.filters.map((filterId) =>
-                        filteredMethods.addOne({
+                    req.body.filters.map((filter) => {
+                        const { filterId } = filter;
+
+                        return filteredMethods.addOne({
                             filterId,
                             publicationId,
-                        })
-                    ),
+                        });
+                    }),
                 ]);
             }
 
@@ -275,6 +279,25 @@ router.get("/epubfilters", [isValidated], async (req, res) => {
     try {
         const filters = await ePubMethods.getAllFilters();
         return res.status(200).json(filters);
+    } catch (err) {
+        return res.status(500).json({ message: err });
+    }
+});
+
+/**
+ * Get filter associated with id.
+ *
+ * @return {status} - 200 if successful, 500 otherwise
+ */
+router.get("/filterById/:id", [isValidated], async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (Number(id) < 0) return res.status(400).json({ message: "Id must be a number" });
+
+        const filter = await ePubMethods.getFilterById(id);
+
+        return res.status(200).json(filter);
     } catch (err) {
         return res.status(500).json({ message: err });
     }

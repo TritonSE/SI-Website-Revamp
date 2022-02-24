@@ -41,7 +41,6 @@ const Stepper = ({
     handleAddNodeClick,
     formatNodeTitle,
     addSpecialNodeClass = (item) => {
-        console.log(item);
         return "";
     },
     numItemsPerPage = 10,
@@ -61,7 +60,6 @@ const Stepper = ({
     }, []);
 
     const onPageChange = (itemList, currentPage) => {
-        console.log(itemList);
         setPageNumber(currentPage - 1);
     };
 
@@ -90,10 +88,10 @@ const Stepper = ({
             {/* The add button at the top of the stepper */}
             <AddButton
                 text={addButtonTitle}
-                className={indexButton === "button" ? "active-btn" : null}
+                className={indexButton === -1 ? "active-btn" : null}
                 onClickCallback={() => {
                     handleAddNodeClick();
-                    setIndexButton("button");
+                    setIndexButton(-1);
                 }}
             />
             <PaginatedList

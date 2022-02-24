@@ -6,7 +6,6 @@ import { SITE_PAGES } from "./constants/links";
 import PrivateRoute from "./components/PrivateRoute";
 import PageLayout from "./components/PageLayout";
 import NewsEventsSlider from "./pages/Home/NewsEventsSlider";
-import HomeIntro from "./pages/Home/Introduction";
 import BranchesChapters from "./pages/Home/BranchesChapters";
 import HomeAddSection from "./pages/Home/AddSection";
 import Newsletters from "./pages/Resources/Newsletters";
@@ -48,11 +47,6 @@ function App() {
                             <Route exact path={SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER}>
                                 <PrivateRoute>
                                     <NewsEventsSlider />
-                                </PrivateRoute>
-                            </Route>
-                            <Route exact path={SITE_PAGES.HOME_INTRODUCTION}>
-                                <PrivateRoute>
-                                    <HomeIntro />
                                 </PrivateRoute>
                             </Route>
                             <Route exact path={SITE_PAGES.HOME_BRANCHES_CHAPTERS}>

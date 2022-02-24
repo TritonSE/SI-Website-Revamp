@@ -101,7 +101,7 @@ export default function NavBar() {
                             >
                                 News & Events Slider
                             </Nav.Link>
-                            <Nav.Link
+                            {/* <Nav.Link
                                 href={SITE_PAGES.HOME_INTRODUCTION}
                                 className={
                                     isSubPageActive(SITE_PAGES.HOME_INTRODUCTION.split("/")[3])
@@ -110,7 +110,7 @@ export default function NavBar() {
                                 }
                             >
                                 Introduction
-                            </Nav.Link>
+                            </Nav.Link> */}
                             <Nav.Link
                                 href={SITE_PAGES.HOME_BRANCHES_CHAPTERS}
                                 className={
@@ -263,7 +263,7 @@ export default function NavBar() {
                                         : ""
                                 }
                             >
-                                About Us - All
+                                + Section
                             </Nav.Link>
                             <Nav.Link
                                 href={SITE_PAGES.ABOUT_EXEC_COMMITTEE}

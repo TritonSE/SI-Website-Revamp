@@ -1,0 +1,47 @@
+.Branches-Chapters {
+  width: 100%;
+  height: auto;
+
+  font-family: var(--text-font);
+}
+
+.body-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.column {
+  flex: 25%;
+}
+
+.Branches-Chapters .middle-container {
+  flex: 50%;
+}
+
+.Branches-Chapters h1,
+h2,
+h4 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  margin: 20px;
+}
+
+.select {
+  width: 95%;
+}
+
+.Branches-Chapters .form-field-wrapper {
+  width: 95% !important;
+  min-width: 95% !important;
+}
+
+.Branches-Chapters .required-asterisk {
+  color: #ea4444;
+  font-size: 25px;
+}
+
+.Branches-Chapters .left-container .post-button {
+  margin-top: 20px !important;
+  text-align: center;
+}
