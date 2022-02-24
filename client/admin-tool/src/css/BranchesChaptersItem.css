@@ -1,0 +1,9 @@
+.branches-chapters-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 30px;
+}
+
+.branches-chapters-grid-right {
+  text-align: center;
+}

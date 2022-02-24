@@ -39,8 +39,23 @@ async function edit(index, body) {
     });
 }
 
+/**
+ * Deletes Branches and Chapters data.
+ *
+ * @param {object} id - id to be deleted
+ * @returns {[object]} - Array of objects/null.
+ */
+async function deleteOne(id) {
+    return branchesAndChapters.destroy({
+        where: {
+            id,
+        },
+    });
+}
+
 module.exports = {
     getAll,
     create,
     edit,
+    deleteOne,
 };
