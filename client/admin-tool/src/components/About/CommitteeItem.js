@@ -1,6 +1,6 @@
 /**
  * Individual commitee item with TextFields to edit information
- * 
+ *
  * @summary     edit individual committee information
  * @author      Navid Boloorian
  */
@@ -20,15 +20,19 @@ export default function CommitteeItem({
     handleDeleteCommittee,
     setCommitteeYear,
 }) {
-    const [data, setData] = React.useState([{
-        startYear: "",
-        endYear: "",
-    }]);
+    const [data, setData] = React.useState([
+        {
+            startYear: "",
+            endYear: "",
+        },
+    ]);
 
-    const [dataErrors, setDataErrors] = React.useState([{
-        startYear: false,
-        endYear: false,
-    }])
+    const [dataErrors, setDataErrors] = React.useState([
+        {
+            startYear: false,
+            endYear: false,
+        },
+    ]);
 
     const [isPageDisabled, setIsPageDisabled] = React.useState(false);
 
@@ -58,9 +62,9 @@ export default function CommitteeItem({
 
     const validateData = () => {
         setCommitteeYear(data[0]);
-        handleSnackbar({open: true, message: "Years active succesfully set"});
+        handleSnackbar({ open: true, message: "Years active succesfully set" });
 
-        if(newCommittee) {
+        if (newCommittee) {
             const temporaryMember = {
                 startYear: data[0].startYear,
                 endYear: data[0].endYear,
@@ -70,14 +74,18 @@ export default function CommitteeItem({
                 bio: "",
                 imageLink: "https://assets.ucsd.edu/img/icon/headshot.jpg",
                 redirectLink: "https://google.com",
-                openInSameTab: false
-            }
+                openInSameTab: false,
+            };
 
             handleAddCommittee(temporaryMember);
         }
-    }
+    };
 
-    const asterisk = () => <span className="asterisk" style={{marginRight: 10}}>*</span>;
+    const asterisk = () => (
+        <span className="asterisk" style={{ marginRight: 10 }}>
+            *
+        </span>
+    );
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -103,12 +111,12 @@ export default function CommitteeItem({
             },
         },
     }));
-    
+
     const classes = useHelperTextStyles();
 
     const inputLabels = [
-        { title: "Years Active", name: "startYear", label: "Start Year"},
-        { title: "", name: "endYear", label: "End Year"},
+        { title: "Years Active", name: "startYear", label: "Start Year" },
+        { title: "", name: "endYear", label: "End Year" },
     ];
 
     return (
@@ -128,8 +136,8 @@ export default function CommitteeItem({
                                     variant="outlined"
                                     className={classes.root}
                                     onChange={(event) => {
-                                        let dataObj = {...data};
-                                        let dataRow = {...data[0]};
+                                        let dataObj = { ...data };
+                                        let dataRow = { ...data[0] };
                                         dataRow[input.name] = event.target.value;
                                         dataObj[0] = dataRow;
 
@@ -143,31 +151,29 @@ export default function CommitteeItem({
                             </>
                         );
                     })}
-                    <Button 
-                        text = {newCommittee ? "Post" : "Update"} 
-                        style = {{
+                    <Button
+                        text={newCommittee ? "Post" : "Update"}
+                        style={{
                             justifySelf: "center",
-                            marginRight: "10px"
+                            marginRight: "10px",
                         }}
                         onClickCallback={validateData}
                     />
-                    {
-                        !newCommittee ? (
-                            <Button 
-                                text = "Delete"
-                                style = {{
-                                    justifySelf: "center",
-                                    backgroundColor: "var(--red)",
-                                }}
-                                onClickCallback={handleDeleteCommittee}
-                            />
-                        ) : (
-                            ""
-                        )
-                    }
+                    {!newCommittee ? (
+                        <Button
+                            text="Delete"
+                            style={{
+                                justifySelf: "center",
+                                backgroundColor: "var(--red)",
+                            }}
+                            onClickCallback={handleDeleteCommittee}
+                        />
+                    ) : (
+                        ""
+                    )}
                     <h2 className="title">Board Members</h2>
                     <div onClick={() => clickExec(null, true)}>
-                        <Button 
+                        <Button
                             text="+ Add New Member"
                             className="add-member-button"
                             style={{
@@ -183,8 +189,7 @@ export default function CommitteeItem({
                         />
                     </div>
                 </div>
-                <div className="committee-grid-right">
-                </div>
+                <div className="committee-grid-right"></div>
             </div>
             <Snackbar
                 open={snackbar.open}
@@ -193,5 +198,5 @@ export default function CommitteeItem({
                 message={snackbar.message}
             />
         </div>
-    )
+    );
 }

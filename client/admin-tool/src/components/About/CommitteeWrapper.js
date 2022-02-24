@@ -1,6 +1,6 @@
 /**
  * Wrapper that stores states and manages overall layout of exec members page.
- * 
+ *
  * @summary     stores states and manages layout
  * @author      Navid Boloorian
  */
@@ -39,18 +39,20 @@ export default function CommitteeWrapper({
     const yearTemplate = {
         startYear: "",
         endYear: "",
-        data: [{
-            startYear: "",
-            endYear: "",
-            rank: "",
-            name: "",
-            position: "",
-            bio: "",
-            imageLink: "",
-            redirectLink: "",
-            openInSameTab: false,
-        }]
-    }
+        data: [
+            {
+                startYear: "",
+                endYear: "",
+                rank: "",
+                name: "",
+                position: "",
+                bio: "",
+                imageLink: "",
+                redirectLink: "",
+                openInSameTab: false,
+            },
+        ],
+    };
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
@@ -63,7 +65,7 @@ export default function CommitteeWrapper({
     const [committeeYear, setCommitteeYear] = React.useState({
         startYear: -1,
         endYear: -1,
-    })
+    });
 
     const [snackbar, handleSnackbar] = React.useState({
         open: false,
@@ -89,33 +91,35 @@ export default function CommitteeWrapper({
         setCommittees(data);
         setCurrentIndex(-1);
         setIsLoading(false);
-        setCommitteeYear({startYear: "", endYear: ""})
+        setCommitteeYear({ startYear: "", endYear: "" });
 
-        console.log(committees)
+        console.log(committees);
     };
 
     const handleDeleteCommittee = async () => {
         let isSuccessful = false;
 
-        for(let i = 0; i < committees[currentIndex].data.length; i++) {
+        for (let i = 0; i < committees[currentIndex].data.length; i++) {
             isSuccessful = await deleteItemRequestCallback(committees[currentIndex].data[i]["id"]);
         }
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Committee successfully deleted"});
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Committee successfully deleted" });
             setAddExecutiveShowing(false);
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Committee could not be deleted"});
+        } else handleSnackbar({ open: true, message: "Error: Committee could not be deleted" });
     };
 
     const handleDeleteMember = async (index) => {
-        const isSuccessful = await deleteItemRequestCallback(committees[currentIndex].data[index]["id"]);
+        const isSuccessful = await deleteItemRequestCallback(
+            committees[currentIndex].data[index]["id"]
+        );
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Member successfully deleted"});
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Member successfully deleted" });
             setAddExecutiveShowing(false);
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Member could not be deleted"});
+        } else handleSnackbar({ open: true, message: "Error: Member could not be deleted" });
     };
 
     const handleUpdateCommittee = async (data, index) => {
@@ -128,16 +132,19 @@ export default function CommitteeWrapper({
             bio: data.bio,
             imageLink: data.imageLink,
             redirectLink: data.redirectLink,
-            openInSameTab: data.openInSameTab
-        }
+            openInSameTab: data.openInSameTab,
+        };
 
-        const isSuccessful = await updateItemRequestCallback(committees[currentIndex].data[index]["id"], dataObj);
+        const isSuccessful = await updateItemRequestCallback(
+            committees[currentIndex].data[index]["id"],
+            dataObj
+        );
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Committee successfully updated"});
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Committee successfully updated" });
             setAddExecutiveShowing(false);
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Committee could not be updated"});
+        } else handleSnackbar({ open: true, message: "Error: Committee could not be updated" });
     };
 
     const handleAddCommittee = async (data) => {
@@ -147,28 +154,31 @@ export default function CommitteeWrapper({
 
         console.log(isSuccessful);
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Committee/member successfully added"});
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Committee/member successfully added" });
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Committee/member could not be added"});
+        } else
+            handleSnackbar({ open: true, message: "Error: Committee/member could not be added" });
     };
 
     React.useEffect(async () => {
         await loadData();
-    }, [])
+    }, []);
 
     React.useEffect(async () => {
-        if(currentIndex > -1) {
-            setCommitteeYear({startYear: committees[currentIndex].data[0]["startYear"], endYear: committees[currentIndex].data[0]["endYear"]})
+        if (currentIndex > -1) {
+            setCommitteeYear({
+                startYear: committees[currentIndex].data[0]["startYear"],
+                endYear: committees[currentIndex].data[0]["endYear"],
+            });
+        } else {
+            setCommitteeYear({ startYear: "", endYear: "" });
         }
-        else {
-            setCommitteeYear({startYear: "", endYear: ""});
-        }
-    }, [currentIndex])
+    }, [currentIndex]);
 
     React.useEffect(async () => {
-        if(currentIndex > -1) {
-            for(let i = 0; i < committees[currentIndex].data.length; i++) {
+        if (currentIndex > -1) {
+            for (let i = 0; i < committees[currentIndex].data.length; i++) {
                 let committeeCopy = {
                     startYear: parseInt(committeeYear.startYear),
                     endYear: parseInt(committeeYear.endYear),
@@ -178,13 +188,16 @@ export default function CommitteeWrapper({
                     bio: committees[currentIndex].data[i].bio,
                     imageLink: committees[currentIndex].data[i].imageLink,
                     redirectLink: committees[currentIndex].data[i].redirectLink,
-                    openInSameTab: committees[currentIndex].data[i].openInSameTab
-                }
+                    openInSameTab: committees[currentIndex].data[i].openInSameTab,
+                };
 
-                await updateItemRequestCallback(committees[currentIndex].data[i]["id"], committeeCopy);
+                await updateItemRequestCallback(
+                    committees[currentIndex].data[i]["id"],
+                    committeeCopy
+                );
             }
         }
-    }, [committeeYear])
+    }, [committeeYear]);
 
     const handleNodeClick = (index) => {
         setCurrentIndex(index);
@@ -197,31 +210,38 @@ export default function CommitteeWrapper({
     const formatNodeTitle = (committee) => `${committee.startYear} - ${committee.endYear}`;
 
     const handleSnackClose = () => {
-        handleSnackbar({open: false});
+        handleSnackbar({ open: false });
     };
 
     const execMemberClick = (member, newCommittee, index) => {
-        if(committeeYear.startYear === undefined || committeeYear.endYear === undefined || committeeYear.startYear === "" || committeeYear.endYear === "") {
-            handleSnackbar({open: true, message: "\"Years Active\" must be set before members can be added"})
-        }
-        else {
+        if (
+            committeeYear.startYear === undefined ||
+            committeeYear.endYear === undefined ||
+            committeeYear.startYear === "" ||
+            committeeYear.endYear === ""
+        ) {
+            handleSnackbar({
+                open: true,
+                message: '"Years Active" must be set before members can be added',
+            });
+        } else {
             setAddExecutiveShowing(true);
             setNewCommittee(newCommittee);
             setSelectedIndex(index);
 
-            if(member !== null) setSelectedMember(member);
+            if (member !== null) setSelectedMember(member);
             else setSelectedMember(execTemplate);
         }
-    }
+    };
 
-    if(isLoading) {
+    if (isLoading) {
         return (
             <div className="committees-loader">
                 <Loader />
             </div>
-        )
+        );
     }
-    
+
     return (
         <div className="committees-container">
             <section className="stepper-section">
@@ -274,27 +294,25 @@ export default function CommitteeWrapper({
                 </div>
                 <div className="exec-members-container">
                     {console.log(committees)}
-                    {currentIndex > -1 ? (
-                        committees[currentIndex].data.map((committee, index) => {
-                            return (
-                                <div>
-                                    <ExecutiveMember     
-                                        content={committee} 
-                                        index={index}
-                                        execMemberClick={execMemberClick}
-                                        handleDeleteMember={handleDeleteMember}     
-                                    />
-                                </div>
-                            )
-                        })
-                    ) : (
-                        ""
-                    )}
+                    {currentIndex > -1
+                        ? committees[currentIndex].data.map((committee, index) => {
+                              return (
+                                  <div>
+                                      <ExecutiveMember
+                                          content={committee}
+                                          index={index}
+                                          execMemberClick={execMemberClick}
+                                          handleDeleteMember={handleDeleteMember}
+                                      />
+                                  </div>
+                              );
+                          })
+                        : ""}
                 </div>
             </section>
 
-            {addExecutiveShowing ? (    
-                <AddExecutive 
+            {addExecutiveShowing ? (
+                <AddExecutive
                     content={selectedMember}
                     showingBackground={setAddExecutiveShowing}
                     newCommittee={newCommittee}
@@ -313,6 +331,6 @@ export default function CommitteeWrapper({
                 onClose={handleSnackClose}
                 message={snackbar.message}
             />
-        </div>        
+        </div>
     );
 }

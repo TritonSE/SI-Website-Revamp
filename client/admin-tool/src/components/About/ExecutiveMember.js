@@ -1,6 +1,6 @@
 /**
  * Displays individual executive members on committee page.
- * 
+ *
  * @summary     Individual member display
  * @author      Navid Boloorian
  */
@@ -11,12 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "../../css/ExecutiveMember.css";
 
-export default function ExecutiveMember({
-    content,
-    handleDeleteMember,
-    index,
-    execMemberClick,
-}) {
+export default function ExecutiveMember({ content, handleDeleteMember, index, execMemberClick }) {
     const [data, setData] = React.useState({});
 
     React.useEffect(async () => {
@@ -25,11 +20,13 @@ export default function ExecutiveMember({
 
     return (
         <div className="executive-item-div">
-            <div style={{zIndex: 10000}} onClick={()=>{handleDeleteMember(index)}}>
-                <FontAwesomeIcon
-                    icon={faTrash}
-                    className="trash-icon"
-                />
+            <div
+                style={{ zIndex: 10000 }}
+                onClick={() => {
+                    handleDeleteMember(index);
+                }}
+            >
+                <FontAwesomeIcon icon={faTrash} className="trash-icon" />
             </div>
             <div onClick={() => execMemberClick(content, false, index)}>
                 <img src={data.imageLink} />
@@ -39,5 +36,5 @@ export default function ExecutiveMember({
                 </div>
             </div>
         </div>
-    )
+    );
 }

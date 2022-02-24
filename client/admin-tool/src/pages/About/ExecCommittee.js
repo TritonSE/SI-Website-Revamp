@@ -2,7 +2,7 @@ import React from "react";
 
 import CommitteeWrapper from "../../components/About/CommitteeWrapper";
 
-import { 
+import {
     fetchCommittees,
     addCommittee,
     updateCommittee,

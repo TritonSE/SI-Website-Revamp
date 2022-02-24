@@ -1,44 +1,44 @@
 .bg-shadow {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .add-exec-popup {
-    display: grid;
-    justify-content: center;
-    padding: 30px 25px;
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 1);
-    width: 500px;
-    height: min(100vh, 620px);
-    position: fixed;
-    z-index: 1001;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    overflow-y: auto;
-    overflow-x: hidden;
+  display: grid;
+  justify-content: center;
+  padding: 30px 25px;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 1);
+  width: 500px;
+  height: min(100vh, 620px);
+  position: fixed;
+  z-index: 1001;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .add-exec-popup h3 {
-    font-family: "Nunito";
-    font-weight: lighter;
-    margin: 0px;
-    font-size: 20px;
-    padding: 0px;
-    margin-bottom: -50px;
+  font-family: "Nunito";
+  font-weight: lighter;
+  margin: 0px;
+  font-size: 20px;
+  padding: 0px;
+  margin-bottom: -50px;
 }
 
 .add-exec-popup input {
-    margin: 0px;
-    width: 500px;
+  margin: 0px;
+  width: 500px;
 }

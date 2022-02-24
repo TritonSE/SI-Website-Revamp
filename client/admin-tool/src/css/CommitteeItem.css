@@ -1,10 +1,10 @@
 .committee-grid {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 30px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 30px;
 }
-  
+
 .committee-grid-right {
-    text-align: center;
-    padding-top: 60px;
+  text-align: center;
+  padding-top: 60px;
 }

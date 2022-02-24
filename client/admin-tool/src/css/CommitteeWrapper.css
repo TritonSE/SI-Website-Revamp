@@ -1,24 +1,24 @@
 .committees-loader {
-    display: grid;
-    height: 100vh;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
-  
+
 .committees-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .exec-members-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 25px;
 }
-  
+
 .orange-border {
-    border: 1px solid var(--darkorange);
+  border: 1px solid var(--darkorange);
 }

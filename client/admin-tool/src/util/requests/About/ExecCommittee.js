@@ -87,7 +87,7 @@ export const updateCommittee = async (id, content) => {
             },
             body: JSON.stringify(content),
         });
-        
+
         // successfull
         if (res.ok) {
             return true;
