@@ -5,7 +5,6 @@ import "./App.css";
 import { SITE_PAGES } from "./constants/links";
 import PageLayout from "./components/PageLayout";
 import NewsEventsSlider from "./pages/Home/NewsEventsSlider";
-import HomeIntro from "./pages/Home/Introduction";
 import BranchesChapters from "./pages/Home/BranchesChapters";
 import HomeAddSection from "./pages/Home/AddSection";
 import Newsletters from "./pages/Resources/Newsletters";
@@ -46,9 +45,6 @@ function App() {
                             {/* Home Page */}
                             <Route exact path={SITE_PAGES.HOME_NEWS_AND_EVENTS_SLIDER}>
                                 <NewsEventsSlider />
-                            </Route>
-                            <Route exact path={SITE_PAGES.HOME_INTRODUCTION}>
-                                <HomeIntro />
                             </Route>
                             <Route exact path={SITE_PAGES.HOME_BRANCHES_CHAPTERS}>
                                 <BranchesChapters />

@@ -8,9 +8,8 @@ export class SITE_PAGES {
 
     // Home Pages
     static HOME_NEWS_AND_EVENTS_SLIDER = "/admin/home/news-events";
-    static HOME_INTRODUCTION = "/admin/home/introduction";
     static HOME_BRANCHES_CHAPTERS = "/admin/home/branches-chapters";
-    static HOME_ADD_SECTION = "/admin/home/add-section";
+    static HOME_ADD_SECTION = "/admin/home/home-sections";
 
     // Conference Pages
     static CONFERENCES = "/admin/conferences";
@@ -22,6 +21,6 @@ export class SITE_PAGES {
     static RESOURCE_ORDINATION_ISSUE = "/admin/resources/ordination-issue";
 
     // About Us Pages
-    static ABOUT_EDIT_SECTION = "/admin/about/all";
+    static ABOUT_EDIT_SECTION = "/admin/about/about-sections";
     static ABOUT_EXEC_COMMITTEE = "/admin/about/exec-committee";
 }

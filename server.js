@@ -56,6 +56,7 @@ app.use("/contact", require("./routes/contact"));
 app.use("/branchesAndChapters", require("./routes/branchesAndChapters"));
 app.use("/execCommittees", require("./routes/execCommittees"));
 app.use("/newsAndEvents", require("./routes/newsAndEvents"));
+app.use("/sections", require("./routes/sections"));
 
 app.get("/", (req, res) => {
     res.status(200).json({ message: "Abandon All Hope Ye Who Enter Here..." });

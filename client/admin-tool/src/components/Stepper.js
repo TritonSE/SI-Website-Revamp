@@ -88,10 +88,10 @@ const Stepper = ({
             {/* The add button at the top of the stepper */}
             <AddButton
                 text={addButtonTitle}
-                className={indexButton === "button" ? "active-btn" : null}
+                className={indexButton === -1 ? "active-btn" : null}
                 onClickCallback={() => {
                     handleAddNodeClick();
-                    setIndexButton("button");
+                    setIndexButton(-1);
                 }}
             />
             <PaginatedList

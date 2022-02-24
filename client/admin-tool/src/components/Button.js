@@ -18,9 +18,15 @@ import "../css/Button.css";
  * @param {JSON} style - Any in-line css customizations on the button
  * @returns
  */
-export default function Button({ text, onClickCallback, style }) {
+export default function Button({ isDisabled = false, text, onClickCallback, style }) {
     return (
-        <button type="button" onClick={onClickCallback} className="site-button" style={style}>
+        <button
+            type="button"
+            onClick={onClickCallback}
+            className="site-button"
+            style={style}
+            disabled={isDisabled}
+        >
             {text}
         </button>
     );
