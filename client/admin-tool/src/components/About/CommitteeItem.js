@@ -155,7 +155,7 @@ export default function CommitteeItem({
                         );
                     })}
                     <Button
-                        text={newCommittee ? "Post" : "Update"}
+                        text={newCommittee ? "Add" : "Update"}
                         style={{
                             justifySelf: "center",
                             marginRight: "10px",
