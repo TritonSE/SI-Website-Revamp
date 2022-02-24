@@ -1,6 +1,6 @@
 /**
  * Individual "item" that has all input fields for branches and chapters page.
- * 
+ *
  * @summary     Component with all input fields
  * @author      Navid Boloorian
  */
@@ -11,7 +11,6 @@ import { Snackbar, TextField, makeStyles, MenuItem, Menu } from "@material-ui/co
 import Button from "../../Button";
 
 import "../../../css/BranchesChaptersItem.css";
-
 
 export default function BranchesChaptersItem({
     content,
@@ -31,11 +30,10 @@ export default function BranchesChaptersItem({
     React.useEffect(() => {
         if (!content) return;
 
-        if(content["isBranch"] !== "")
-            content["isBranch"] ? setDropdownValue("Branch") : setDropdownValue("Chapter")
-        else
-            setDropdownValue("")
- 
+        if (content["isBranch"] !== "")
+            content["isBranch"] ? setDropdownValue("Branch") : setDropdownValue("Chapter");
+        else setDropdownValue("");
+
         setData({
             name: content["name"] || "",
             isBranch: content["isBranch"] || "",
@@ -53,7 +51,7 @@ export default function BranchesChaptersItem({
             longitude: false,
             siteLink: false,
         });
-    }, [content])
+    }, [content]);
 
     const validateData = () => {
         setIsPageDisabled(true);
@@ -77,13 +75,13 @@ export default function BranchesChaptersItem({
             }
         });
 
-        if(isNaN(data["latitude"])) {
+        if (isNaN(data["latitude"])) {
             errors["latitude"] = true;
             hasErrors = true;
             errorString += "latitude must be a number; ";
         }
 
-        if(isNaN(data["longitude"])) {
+        if (isNaN(data["longitude"])) {
             errors["longitude"] = true;
             hasErrors = true;
             errorString += "longitude must be a number; ";
@@ -94,7 +92,7 @@ export default function BranchesChaptersItem({
 
         if (!hasErrors) onSaveCallback(data);
         else handleSnackbar({ open: true, message: errorString });
-    }
+    };
 
     const asterisk = () => <span className="asterisk">*</span>;
 
@@ -126,18 +124,15 @@ export default function BranchesChaptersItem({
     const classes = useHelperTextStyles();
 
     const inputLabels = [
-        {name: "name", label: "Name of branch/chapter"},
-        {name: "latitude", label: "Latitude"},
-        {name: "longitude", label: "Longitude"},
-        {name: "isBranch", label: "Branch or chapter" },
-        {name: "email", label: "Email" },
-        {name: "siteLink", label: "Insert site link" },
+        { name: "name", label: "Name of branch/chapter" },
+        { name: "latitude", label: "Latitude" },
+        { name: "longitude", label: "Longitude" },
+        { name: "isBranch", label: "Branch or chapter" },
+        { name: "email", label: "Email" },
+        { name: "siteLink", label: "Insert site link" },
     ];
 
-    const branchChapterOptions = [
-        "Branch",
-        "Chapter",
-    ]
+    const branchChapterOptions = ["Branch", "Chapter"];
 
     return (
         <div>
@@ -148,7 +143,11 @@ export default function BranchesChaptersItem({
                             <>
                                 <TextField
                                     margin="dense"
-                                    value={(input.name === "isBranch" ? dropdownValue : data[input.name]) || ""}
+                                    value={
+                                        (input.name === "isBranch"
+                                            ? dropdownValue
+                                            : data[input.name]) || ""
+                                    }
                                     disabled={isPageDisabled}
                                     label={input.label}
                                     error={dataErrors[input.name]}
@@ -156,22 +155,37 @@ export default function BranchesChaptersItem({
                                     className={classes.root}
                                     select={input.name === "isBranch" ? true : false}
                                     onChange={(event) => {
-                                        {console.log(event.target.key)}
-                                        input.name === "isBranch" ? (
-                                            setDropdownValue(event.target.value),
-                                            setData({ ...data, [input.name]: event.target.value === "Branch" ? true : false })
-                                        ): setData({ ...data, [input.name]: event.target.value });
+                                        {
+                                            console.log(event.target.key);
+                                        }
+                                        input.name === "isBranch"
+                                            ? (setDropdownValue(event.target.value),
+                                              setData({
+                                                  ...data,
+                                                  [input.name]:
+                                                      event.target.value === "Branch"
+                                                          ? true
+                                                          : false,
+                                              }))
+                                            : setData({
+                                                  ...data,
+                                                  [input.name]: event.target.value,
+                                              });
                                     }}
                                     style={{
                                         minWidth: 400,
                                     }}
                                 >
-                                <MenuItem key="" value="" disabled>Branch or Chapter</MenuItem>
-                                {
-                                    branchChapterOptions.map((branchChapter) => {
-                                        return <MenuItem key={branchChapter} value={branchChapter}>{branchChapter}</MenuItem>
-                                    })
-                                }
+                                    <MenuItem key="" value="" disabled>
+                                        Branch or Chapter
+                                    </MenuItem>
+                                    {branchChapterOptions.map((branchChapter) => {
+                                        return (
+                                            <MenuItem key={branchChapter} value={branchChapter}>
+                                                {branchChapter}
+                                            </MenuItem>
+                                        );
+                                    })}
                                 </TextField>
                                 {input.name !== "siteLink" ? asterisk() : ""}
                                 <br />
@@ -187,7 +201,7 @@ export default function BranchesChaptersItem({
                             <Button
                                 style={{ display: "inline", marginRight: 20 }}
                                 text="Update"
-                                onClickCallback={validateData} 
+                                onClickCallback={validateData}
                             />
                             <Button
                                 style={{ backgroundColor: "rgb(234, 68, 68)" }}
@@ -205,5 +219,5 @@ export default function BranchesChaptersItem({
                 message={snackbar.message}
             />
         </div>
-    )
+    );
 }

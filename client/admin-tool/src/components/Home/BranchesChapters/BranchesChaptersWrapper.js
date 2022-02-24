@@ -1,6 +1,6 @@
 /**
  * Manages the layout and the state variables for the branches and chapters page.
- * 
+ *
  * @summary     Layout/state variable manager
  * @author      Navid Boloorian
  */
@@ -29,7 +29,7 @@ export default function BranchesChaptersWrapper({
         latitude: "",
         longitude: "",
         siteLink: "",
-    }
+    };
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(-1);
@@ -52,36 +52,39 @@ export default function BranchesChaptersWrapper({
     const handleDeleteBranchesChapters = async () => {
         const isSuccessful = await deleteItemRequestCallback(branchesChapters[currentIndex]["id"]);
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Branch successfully deleted"});
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Branch successfully deleted" });
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Branch could not be deleted"});
-    }
+        } else handleSnackbar({ open: true, message: "Error: Branch could not be deleted" });
+    };
 
     const handleAddBranchesChapters = async (data) => {
         const isSuccessful = await addItemRequestCallback(data);
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Branch successfully added"});
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Branch successfully added" });
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Branch could not be added"});
-    }
+        } else handleSnackbar({ open: true, message: "Error: Branch could not be added" });
+    };
 
     const handleUpdateBranchesChapters = async (data) => {
-        const isSuccessful = await updateItemRequestCallback(branchesChapters[currentIndex]["id"], data);
+        const isSuccessful = await updateItemRequestCallback(
+            branchesChapters[currentIndex]["id"],
+            data
+        );
 
-        if(isSuccessful) {
-            handleSnackbar({open: true, message: "Branch successfully updated"});
+        if (isSuccessful) {
+            handleSnackbar({ open: true, message: "Branch successfully updated" });
             await loadData();
-        } else handleSnackbar({open: true, message: "Error: Branch could not be updated"});
-    }
+        } else handleSnackbar({ open: true, message: "Error: Branch could not be updated" });
+    };
 
     React.useEffect(async () => {
         await loadData();
-    }, [])
+    }, []);
 
     React.useEffect(() => {
-        if(currentIndex === -1) {
+        if (currentIndex === -1) {
             setTitle("Add Branch");
         } else {
             setTitle("Edit Branch");
@@ -99,7 +102,7 @@ export default function BranchesChaptersWrapper({
     const formatNodeTitle = (branchChapter) => `${branchChapter.name}`;
 
     const handleSnackClose = () => {
-        handleSnackbar({open: false});
+        handleSnackbar({ open: false });
     };
 
     if (isLoading) {
@@ -119,7 +122,7 @@ export default function BranchesChaptersWrapper({
                         marginTop: 40,
                     }}
                 >
-                    <Stepper 
+                    <Stepper
                         displayItems={branchesChapters}
                         handleNodeClick={handleNodeClick}
                         addButtonTitle="Add Branch/Chapter"
@@ -166,5 +169,5 @@ export default function BranchesChaptersWrapper({
                 message={snackbar.message}
             />
         </div>
-    )
+    );
 }

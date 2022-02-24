@@ -45,7 +45,7 @@ async function edit(index, body) {
  * @param {object} id - id to be deleted
  * @returns {[object]} - Array of objects/null.
  */
- async function deleteOne(id) {
+async function deleteOne(id) {
     return branchesAndChapters.destroy({
         where: {
             id,

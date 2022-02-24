@@ -27,7 +27,7 @@ export const putBranchChapters = async (id, content) => {
     } catch {
         return false;
     }
-}
+};
 
 /**
  * posts an existing Branch or Chapter Object tothe data base
@@ -54,7 +54,7 @@ export const postBranchChapters = async (content) => {
     } catch {
         return null;
     }
-}
+};
 
 /**
  * retrieves all the branches and chapters in a database and returns it as an array
@@ -79,11 +79,10 @@ export const getBranchChapters = async () => {
 
         // any server issue
         return [];
-
     } catch {
         return [];
     }
-}
+};
 
 /**
  * Delete an existing branch object from the database.
@@ -92,7 +91,7 @@ export const getBranchChapters = async () => {
  *
  * @returns { boolean } - True if successful, false otherwise
  */
- export const deleteBranchChapters = async (id) => {
+export const deleteBranchChapters = async (id) => {
     try {
         const res = await fetch(`${BACKEND_URL}branchesAndChapters/${id}`, {
             method: "delete",

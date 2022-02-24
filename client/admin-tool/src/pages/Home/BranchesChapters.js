@@ -27,5 +27,5 @@ export default function BranchesChapters() {
             updateItemRequestCallback={putBranchChapters}
             deleteItemRequestCallback={deleteBranchChapters}
         />
-    )
+    );
 }

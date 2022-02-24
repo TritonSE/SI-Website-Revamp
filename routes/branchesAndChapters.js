@@ -65,7 +65,7 @@ router.delete("/:id", [isValidated], async (req, res) => {
     } catch (err) {
         return res.status(500).json({ message: err });
     }
-})
+});
 
 /**
  * Gets all branches and chapters from DB.
