@@ -7,12 +7,15 @@
 const newsAndEvents = require("../models/newsAndEvents");
 
 /**
- * Returns all News and Events in DB.
+ * Returns all News and Events in DB, in descending order of last edit date (i.e., slides that
+ * were more recently updated will be near the front).
  *
  * @returns {[object]} - Array of objects.
  */
 async function getAll() {
-    return newsAndEvents.findAll();
+    return newsAndEvents.findAll({
+        order: [["updatedAt", "DESC"]],
+    });
 }
 
 /**

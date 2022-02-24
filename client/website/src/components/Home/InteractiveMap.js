@@ -27,15 +27,17 @@ const geoUrl =
 const mapWidth = 800;
 const mapHeight = 600;
 
-export default function InteractiveMap({ markers }) {
+export default function InteractiveMap({ markers, disableZooming = false }) {
     return (
         <div className="Interactive-Map">
             <ComposableMap>
                 {/* Makes map zoomable/pannable, with default zoom set as zoomed out as possible */}
                 <ZoomableGroup
                     zoom={1}
+                    maxZoom={disableZooming ? 1 : 3}
+                    center={[-5, 0]}
                     translateExtent={[
-                        [0, 0],
+                        [-10, 0],
                         [mapWidth, mapHeight],
                     ]}
                 >
@@ -59,15 +61,15 @@ export default function InteractiveMap({ markers }) {
                         }
                     </Geographies>
                     {/* Creates custom markers for all information passed */}
-                    {markers.map(({ name, coordinates, isBranch }, i) => (
+                    {markers.map(({ name, latitude, longitude, isBranch }, i) => (
                         <Marker
-                            data-for="soclose"
+                            data-for="tooltip"
                             data-tip={i}
                             data-event="click"
                             key={name}
                             className="marker"
                             // coordinates of marker
-                            coordinates={coordinates}
+                            coordinates={[longitude, latitude]}
                         >
                             {/* Outline/style of custom marker defined here */}
                             <g
@@ -79,7 +81,12 @@ export default function InteractiveMap({ markers }) {
                                 strokeLinejoin="round"
                                 transform="translate(-12, -24)"
                             >
-                                <circle cx="12" cy="10" r="4" fill="white" />
+                                <circle
+                                    cx="12"
+                                    cy="10"
+                                    r="4"
+                                    fill={isBranch ? "#d77a3d" : "#6652a0"}
+                                />
                                 <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
                             </g>
                         </Marker>

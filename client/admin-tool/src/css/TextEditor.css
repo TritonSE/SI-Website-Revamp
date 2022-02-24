@@ -9,7 +9,7 @@
 
 /* The editor component containing the blank space for input */
 .editor-class {
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(245, 245, 245);
   height: 50vh;
   border: 2px solid var(--lightpurple);
   border-top: none;
@@ -55,4 +55,26 @@
 
 .rdw-option-disabled {
   cursor: not-allowed;
+}
+
+/* Styling the scroll bar for the overview/theme */
+/* width */
+.editor-class::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.editor-class::-webkit-scrollbar-track {
+  background: rgb(240, 240, 240);
+}
+
+/* Handle */
+.editor-class::-webkit-scrollbar-thumb {
+  background: var(--lightpurple);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+.editor-class::-webkit-scrollbar-thumb:hover {
+  background: var(--darkpurple);
 }

@@ -62,7 +62,7 @@ export default function VerticalStepper(props) {
         step_label_root: {
             fontSize: "16px",
             color: `${props.color} !important`,
-            width: "calc(200px)",
+            width: "calc(150px)",
             textAlign: "left",
             marginLeft: "calc(15px)",
         },
@@ -144,17 +144,40 @@ export default function VerticalStepper(props) {
     const steps = getSteps();
 
     /**
-     * This is called when the page is rendered
+     * Update the stepper to render the 9 items depending on the page
+     * @param {number} index
      */
-    useEffect(() => {
-        // render only the first nine items
-        setSplitSteps(steps.slice(indices[0], indices[1]));
-    }, []);
+    const updatePage = (index) => {
+        setIndices([(index - 1) * 9, index * 9]);
+        setActiveIndex(0);
+        props.setParentIndex((index - 1) * 9);
+    };
 
-    // update the items on the stepper when the indices updates
+    /**
+     * Convert the location string to a shorter location string if
+     * it contains more than the format (city, state)
+     *
+     * @param {string} location - the location for the conference
+     * @returns a string
+     */
+    const determineLocationLabel = (location) => {
+        const splitLocation = location.split(",");
+        if (splitLocation.length > 2) {
+            splitLocation.shift();
+        }
+
+        return splitLocation.join(", ");
+    };
+
+    // set the active index and step to 0 upon loading
     useEffect(() => {
-        setSplitSteps(steps.slice(indices[0], indices[1]));
-    }, [indices]);
+        if (activeStep === -1) {
+            setActiveStep(0);
+        }
+        if (activeIndex === -1) {
+            setActiveIndex(0);
+        }
+    }, [activeStep, activeIndex]);
 
     /**
      * When an item in the stepper is clicked, it's parent
@@ -169,14 +192,31 @@ export default function VerticalStepper(props) {
     };
 
     /**
-     * Update the stepper to render the 9 items depending on the page
-     * @param {number} index
+     * This is called when the page is rendered
      */
-    const updatePage = (index) => {
-        setIndices([(index - 1) * 9, index * 9]);
-        setActiveIndex(0);
-        props.setParentIndex((index - 1) * 9);
-    };
+    useEffect(() => {
+        // render only the first nine items
+        setSplitSteps(steps.slice(indices[0], indices[1]));
+        if (props.location) {
+            const confNum = parseInt(props.location.search.split("=")[1], 10);
+            // find the index of the conference in the items list
+            const ind = props.items.findIndex((x) => x.confNum === confNum);
+            let i = ind;
+            // determine the page to change to
+            if (Math.floor(i / 9) > 0) {
+                const page = Math.floor(i / 9);
+                i %= 9;
+                updatePage(page + 1);
+            }
+
+            handleStep(i);
+        }
+    }, []);
+
+    // update the items on the stepper when the indices updates
+    useEffect(() => {
+        setSplitSteps(steps.slice(indices[0], indices[1]));
+    }, [indices]);
 
     return (
         <div className={classes.root}>
@@ -190,7 +230,7 @@ export default function VerticalStepper(props) {
                 >
                     {/* for each item in our splitSteps array */}
                     {splitSteps.map((step, index) => (
-                        <Step>
+                        <Step key={step.location}>
                             {/* add a step button that is clickable */}
                             <StepButton
                                 onClick={() => handleStep(index)}
@@ -209,7 +249,7 @@ export default function VerticalStepper(props) {
                                         active: classes.step_label_root,
                                     }}
                                 >
-                                    {step.location}
+                                    {determineLocationLabel(step.location)}
                                 </StepLabel>
                             </StepButton>
                         </Step>

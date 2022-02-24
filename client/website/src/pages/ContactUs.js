@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * The contact us page on the website.It displays contact information, including email,
  * phone number, and address (on click opens up google maps). It also includes a small form
@@ -16,7 +17,9 @@ import { TextField, Snackbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageHeader from "../components/Contact/ImageHeader";
 import CustomButton from "../components/CustomButton";
+import ResourcesHeader from "../components/ResourcesHeader";
 import Modal from "../components/Modal";
+import Header from "../media/lotus-header.svg";
 import "../css/ContactUs.css";
 import config from "../config";
 
@@ -24,7 +27,7 @@ const BACKEND_URL = config.backend.uri;
 
 const MAX_MOBILE_WIDTH = 1050;
 const MAIN_IMG_URL_LINK =
-    "https://s3-alpha-sig.figma.com/img/4e61/b804/4acb878c2ae9c962af57b61b9c0ce1e3?Expires=1623024000&Signature=SCONX7E-9B-btNQQ0a8fn1kh2A4i8I3-aZjQlNXgBZSJnw~N8fCz7YzTOmI6hq0iinH~f~2cTCB2mvuab1dM3sLLIqbF1ZwaOcYlCXMiOAkhAYMkzVbcbZgrN6s4X67Jq2fSmA7D-kgk9KzDjiXkLnxn0n8l~TMh6huoB18N5MbJrighV~Hl2YaoJrHmEWhjoBu8Jhm8TDPB99ghsGKIOR9xQMIuULa4STzVHCkoCtzWzWBLgd1-BDv2hhE67pH5PYqoIJnzZwEemddHpUtI-RMW2xHPaq6J8P1LnvRfL9Kuq00ULLl3h04474LC9EjWGr2cACW0lhgyX~ei0roR3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
+    "https://www.dropbox.com/s/lxjx5vmfvvnqmnd/Hong%20Kong%20Conference%20Video.jpeg?raw=1";
 
 // provides custom style/border colors for form fields
 const useStyles = makeStyles((theme) => ({
@@ -203,37 +206,43 @@ export default function ContactUs() {
                 {/* Main paragraph at top  */}
                 <h2>{isMobile ? "Thank you for your interest in Sakyadhita!" : "Contact Us"}</h2>
                 <p>
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis
-                    condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget
-                    arcu ut laoreet.{" "}
+                    Thank you for your interest in Sakyadhita International and our work to awaken
+                    women to their tremendous potential for social and spiritual transformation.
+                    Please contact us for general inquiries and comments, resource and women&apos;s
+                    initiative updates, Dharma offerings, questions about donations or sponsorships,
+                    or general correspondence. Sakyadhita is volunteer run, so please have patience
+                    with us as we answer your email. We always strive to answer in a timely manner.
                 </p>
                 {/* Contact Information */}
                 <h4>Reach us at: </h4>
                 {/* Email */}
                 <p>
                     {" "}
-                    <GoMail /> <a href="mailto:email@domain.org"> email@domain.org </a>{" "}
+                    <GoMail /> <a href="mailto:info@sakyadhita.org"> info@sakyadhita.org </a>{" "}
+                    (General Email Inquiries){" "}
+                </p>
+                {/* Email */}
+                <p>
+                    {" "}
+                    <GoMail />{" "}
+                    <a href="mailto:webmaster@sakyadhita.org"> webmaster@sakyadhita.org </a>{" "}
+                    (Webmaster){" "}
                 </p>
                 {/* Phone Number */}
                 <p>
                     {" "}
-                    <FaPhoneAlt /> 619-260-4600 x4921{" "}
+                    <FaPhoneAlt /> 619-260-4600 x4921*{" "}
                 </p>
                 {/* Address */}
                 <div className="address">
                     <BsHouseFill className="address-icon" />
-                    <p>
-                        <a
-                            href="https://goo.gl/maps/CKvzmNnzRsdtgLLE9"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                        >
-                            Sakyadhita International, 7331 Princess View Drive, <br /> San Diego, CA
-                            92120 U.S.A.
-                        </a>
-                    </p>
+                    <p>11474 McDowell Court, San Diego, CA 92131 USA</p>
                 </div>
+                <p>
+                    {" "}
+                    *Please note during academic breaks phone messages may not be returned in a
+                    timely manner. Please email for quicker assistance.
+                </p>
                 {/* Renders Form */}
                 <h4>Send us a message!</h4>
                 <form className={classes.form} autoComplete="off">
@@ -302,13 +311,19 @@ export default function ContactUs() {
                     </div>
                 </form>
             </section>
-            {/* Image Header */}
-            <ImageHeader
-                image={MAIN_IMG_URL_LINK}
-                width={isMobile ? "100%" : "50%"}
-                height={isMobile ? "400px" : "auto"}
-                title={isMobile ? "Contact Us" : null}
-            />
+
+            {isMobile || window.innerHeight <= 500 ? (
+                <ResourcesHeader
+                    image={MAIN_IMG_URL_LINK}
+                    title="Contact Us"
+                    height="max(40vh, 300px)"
+                    width="100%"
+                    showArrow={false}
+                />
+            ) : (
+                <ImageHeader image={MAIN_IMG_URL_LINK} width="50%" height="auto" />
+            )}
+
             {/* Thank You Modal Once Form Submitted */}
             <Modal
                 text="Thank you for contacting us. We will get in touch with you shortly."

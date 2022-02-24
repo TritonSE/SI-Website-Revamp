@@ -19,6 +19,7 @@ export const fetchSectionsForPage = async (page) => {
                 "content-type": "application/json",
             },
         });
+
         // successfull
         if (res.ok) {
             const data = await res.json();

@@ -17,6 +17,7 @@ import { Snackbar } from "@material-ui/core";
 import Stepper from "../Stepper";
 import SectionItem from "./SectionItem";
 import SectionPopover from "../PopOver";
+import Loader from "../Loader";
 
 import "../../css/SectionWrapper.css";
 
@@ -118,9 +119,21 @@ export default function SectionWrapper({
 
     // special layout for when the page is loading data
     if (isPageLoading) {
-        <div className="sections-main-wrapper">
-            <h1> Sections </h1>
-        </div>;
+        return(
+            <div className="section-loader" 
+                style={
+                    {
+                        height: "100vh",
+                        width: "100vw",
+                        display: "grid",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }
+                }
+            >
+                <Loader />
+            </div>
+        )
     }
     return (
         <div className="sections-main-wrapper">

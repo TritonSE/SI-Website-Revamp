@@ -41,7 +41,6 @@ const Stepper = ({
     handleAddNodeClick,
     formatNodeTitle,
     addSpecialNodeClass = (item) => {
-        console.log(item);
         return "";
     },
     numItemsPerPage = 10,
@@ -57,11 +56,10 @@ const Stepper = ({
     // Calls whenever the prop for items changes in the parent
     useEffect(() => {
         setItems(displayItems);
-        setIndexButton(-1);
-    }, [displayItems]);
+        setIndexButton("button");
+    }, []);
 
     const onPageChange = (itemList, currentPage) => {
-        console.log(itemList);
         setPageNumber(currentPage - 1);
     };
 
