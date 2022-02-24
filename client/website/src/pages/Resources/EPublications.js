@@ -16,7 +16,7 @@ import "../../css/EPublications.css";
 
 import Loader from "../../components/Main/Loader";
 
-import { fetchEpubs } from "../../util/requests";
+import { fetchEpubs, fetchFeaturedEpubs } from "../../util/requests";
 
 // renders selected section from state, including each card in that page,
 // and a button to go back to the main EPublications screen
@@ -105,6 +105,7 @@ const renderSelectedSection = (selectedSection, setSelectedSection, isMobile) =>
 // No props
 export default function EPublications() {
     const [epublications, setEpublications] = useState({});
+    const [featuredEpubs, setFeaturedEpubs] = useState([]);
 
     // enable loading by default and have
     const [loadingEpubs, setLoadingEpubs] = useState(true);
@@ -138,9 +139,13 @@ export default function EPublications() {
         await (async () => {
             // set value to the return object in fetchEpubs
             const returnVal = await fetchEpubs();
+            const featuredVal = await fetchFeaturedEpubs();
+
+            const featruedValJson = await featuredVal.json();
 
             // set state variable to the returned value
             setEpublications(returnVal);
+            setFeaturedEpubs(featruedValJson);
         })();
 
         // disable loading screen
@@ -176,59 +181,29 @@ export default function EPublications() {
                         width="100%"
                         isMobile={isMobile}
                     >
-                        {/* Temp Slides */}
-                        <div>
-                            <div className="EPub_Slide">
-                                <div className="EPub_Slide_body">
-                                    <h1>Publications</h1>
-                                    <h2>Author</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Maecenas facilisis condimentum massa, sit amet lacinia massa
-                                        commodo sed. Praesent vehicula eget arcu ut laoreet. Sed
-                                        porta, dui ut dapibus sodales, orci neque volutpat arcu, in
-                                        efficitur sem tortor vel lectus.{" "}
-                                    </p>
-                                    <button
-                                        type="button"
-                                        className="EPub_Slide_body_readMoreButton"
-                                    >
-                                        Read More
-                                    </button>
+                        {
+                            featuredEpubs.map(epub => 
+                                <div className="EPub_Slide">
+                                    <div className="EPub_Slide_body">
+                                        <h1>{epub.title}</h1>
+                                        <h2>{epub.author}</h2>
+                                        <p>{epub.description}</p>
+                                        <button
+                                            type="button"
+                                            className="EPub_Slide_body_readMoreButton"
+                                            onClick={() => {window.location.href=epub.pdfLink}}
+                                        >
+                                            Read More
+                                        </button>
+                                    </div>
+                                    <img
+                                        className="EPub_Slide_image"
+                                        src={epub.imageLink}
+                                        alt=""
+                                    />
                                 </div>
-                                <img
-                                    className="EPub_Slide_image"
-                                    src="https://m.media-amazon.com/images/I/41Ht+tl9cCL._AC_UY218_.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <div className="EPub_Slide">
-                                <div className="EPub_Slide_body">
-                                    <h1>Publications</h1>
-                                    <h2>Author</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Maecenas facilisis condimentum massa, sit amet lacinia massa
-                                        commodo sed. Praesent vehicula eget arcu ut laoreet. Sed
-                                        porta, dui ut dapibus sodales, orci neque volutpat arcu, in
-                                        efficitur sem tortor vel lectus.{" "}
-                                    </p>
-                                    <button
-                                        type="button"
-                                        className="EPub_Slide_body_readMoreButton"
-                                    >
-                                        Read More
-                                    </button>
-                                </div>
-                                <img
-                                    className="EPub_Slide_image"
-                                    src="https://m.media-amazon.com/images/I/41Ht+tl9cCL._AC_UY218_.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
+                            )
+                        }
                     </Slideshow>
                     {/* Render a new publications section for each section in data, pass in each card */}
                     <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>

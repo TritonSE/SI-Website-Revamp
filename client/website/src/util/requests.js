@@ -208,3 +208,18 @@ export const fetchEpubs = async () => {
         return [];
     }
 };
+
+export const fetchFeaturedEpubs = async () => {
+    try {
+        // fetch all of the filters in the database
+        return await fetch(`${BACKEND_URL}publications/featured`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        })
+    } catch {
+        // any server issue
+        return [];
+    }
+};
