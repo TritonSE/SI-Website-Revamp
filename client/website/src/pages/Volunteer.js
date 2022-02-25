@@ -18,7 +18,7 @@ import ResourcesHeader from "../components/ResourcesHeader";
 import VolunteerOption from "../components/VolunteerOption";
 import CustomButton from "../components/CustomButton";
 import config from "../config";
-import { fetchCommittees } from "../util/requests";
+import { fetchVolunteerCommittees } from "../util/requests";
 import Loader from "../components/Main/Loader";
 import Modal from "../components/Modal";
 // function to display asterisk for required fields
@@ -215,7 +215,7 @@ export default function Volunteer() {
     // fetch volunteer committees from backend
     useEffect(async () => {
         await (async () => {
-            const data = await fetchCommittees();
+            const data = await fetchVolunteerCommittees();
             setVolunteerCommittees(data);
         })();
         setLoadingCommittees(false);

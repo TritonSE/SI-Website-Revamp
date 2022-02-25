@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../css/OrdinationIssue.css";
 import ResourcesHeader from "../../components/ResourcesHeader";
 
-import { fetchOrdinationIssue } from "../../util/requests";
+import { fetchSection } from "../../util/requests";
 import Loader from "../../components/Main/Loader";
 
 import Header from "../../media/Lotus_Header.png";
@@ -24,7 +24,7 @@ export default function OrdinationIssue() {
         window.addEventListener("resize", handleResize);
         handleResize();
 
-        const data = await fetchOrdinationIssue("OrdinationIssue");
+        const data = await fetchSection("OrdinationIssue");
 
         setOrdinationIssues(data);
         setIsLoading(false);

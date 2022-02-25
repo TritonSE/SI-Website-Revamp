@@ -25,7 +25,7 @@ export const fetchNewsletters = async () => {
     }
 };
 
-export const fetchOrdinationIssue = async (page) => {
+export const fetchSection = async (page) => {
     try {
         const res = await fetch(`${BACKEND_URL}sections?page=${page}`, {
             method: "get",
@@ -48,7 +48,7 @@ export const fetchOrdinationIssue = async (page) => {
     }
 };
 
-export const fetchCommittees = async () => {
+export const fetchVolunteerCommittees = async () => {
     try {
         const res = await fetch(`${BACKEND_URL}volunteers/committees`, {
             method: "get",
