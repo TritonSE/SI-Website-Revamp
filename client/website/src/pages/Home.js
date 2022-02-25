@@ -21,7 +21,7 @@ import Loader from "../components/Main/Loader";
 import CustomButton from "../components/CustomButton";
 
 import { SITE_PAGES } from "../constants/links";
-import { fetchBranchesAndChapters, fetchNewsAndEvents } from "../util/requests";
+import { fetchBranchesAndChapters, fetchNewsAndEvents, fetchSection } from "../util/requests";
 
 import "../css/Home.css";
 
@@ -46,6 +46,8 @@ export default function Home() {
     const [isHorizontalMobile, setHorizontalMobile] = useState(false);
     const [isTabletVertical, setTebletVertical] = useState(false);
     const introTitle = React.createRef();
+
+    const [additionalSections, setAdditionalSections] = React.useState({});
 
     // handler to call on window resize
     useEffect(async () => {
@@ -82,6 +84,10 @@ export default function Home() {
         // backend calls to get page content
         setNewsAndEvents(await fetchNewsAndEvents());
         setBranchesAndChapters(await fetchBranchesAndChapters());
+
+        const data = await fetchSection("Home");
+
+        setAdditionalSections(data);
         setIsPageLoading(false);
 
         // add event listener
@@ -133,6 +139,10 @@ export default function Home() {
                 ))}
             </Slideshow>
         ) : null;
+
+    if(isPageLoading) {
+        return formatLoader
+    }
     return (
         <div className="Home">
             {/* Slideshow component */}
@@ -299,47 +309,18 @@ export default function Home() {
                     <div className=".divider-wrapper">
                         <hr className="divider" />
                     </div>
-
-                    <h1 className="home-section-title"> Sakyadhita: A Beacon of Inspiration </h1>
-                    <div>
-                        <h4>by Jetsunma Tenzin Palmo</h4>
-                        In 2014, I was elected as the president of Sakyadhita. Since I had been
-                        associated with Sakyadhita for many years and had already attended several
-                        Sakyadhita conferences, I was honored to be chosen to represent this unique
-                        and esteemed international association of Buddhist women.
-                        {"\n\n"}
-                        After the Hong Kong conference, in June 2017, several Asian groups suggested
-                        the possibility of holding the next conference in a non-Buddhist country to
-                        see what the Dharma looked like in the West. Sakyadhita Australia kindly
-                        agreed to help us host the event. We quickly assembled a small team with our
-                        vice president, Eun-su Cho from Korea, former president Christie Chang from
-                        Taiwan, Yeo May Ling from Singapore as treasurer, and Ven. Aileen Barry from
-                        India as secretary, plus myself as president. Later we also engaged Lynn
-                        Bain in Sydney, who had already organized a number of His Holiness the Dalai
-                        Lama’s visits to Australia.
-                        {"\n\n"}
-                        For the first time, I was closely involved in setting up a Sakyadhita
-                        conference with all the endless decisions that had to be made. Thank heaven
-                        for Zoom! Although the organizers lived in various countries, we managed to
-                        put together a conference in the Blue Mountains that was highly successful
-                        and enjoyed by over 800 Buddhist women, both monastic and lay, from all
-                        traditions. That is the wonder that is Sakyadhita!
-                        {"\n\n"}
-                        Now, it is time to pass on this position as president – with the hope that
-                        our future Sakyadhita presidents will bring a clear vision and direction to
-                        the role. With their dedication, Sakyadhita will continue to be a beacon of
-                        inspiration for countless Buddhist women around the world.
-                        <br />
-                        <br />
-                        <span style={{ textAlign: "center" }}>
-                            <img
-                                width={isMobile ? "100%" : "45%"}
-                                height="auto"
-                                alt="Org Members"
-                                src="https://www.dropbox.com/s/s114yzew1uxd2ic/Beacon_Of_Hope.jpeg?raw=1"
-                            />
-                        </span>
-                    </div>
+                    {
+                        additionalSections.map(section => 
+                            section.isPublished ? (
+                                <>
+                                    <h1 className="home-section-title">{section.title}</h1>
+                                    <div className="home-section-body" dangerouslySetInnerHTML={{ __html: `${section.content}` }} />
+                                </>    
+                            ) : (
+                                ""
+                            )
+                        )
+                    }
                 </section>
             </section>
         </div>
