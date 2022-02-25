@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, makeStyles, Snackbar } from "@material-ui/core";
-import Brand from "../../components/Accounts/Brand"
+import Brand from "../../components/Accounts/Brand";
 import Button from "../../components/Button";
 import { SITE_PAGES } from "../../constants/links";
 
@@ -19,26 +19,26 @@ export default function Login() {
 
     React.useEffect(async () => {
         localStorage.clear();
-        
+
         setForgotPasswordData({
             email: "",
-        })
+        });
 
         setForgotPasswordErrors({
             email: false,
-        })
-    }, [])
+        });
+    }, []);
 
     const handleFormSubmit = async () => {
         setPageDisabled(true);
 
         let finalForgotPasswordData = {
             email: forgotPasswordData.email,
-        }
+        };
 
         let finalForgotPasswordErrors = {
             email: false,
-        }
+        };
 
         let hasErrors = false;
         let errorString = "Error: ";
@@ -56,15 +56,13 @@ export default function Login() {
         if (!hasErrors) {
             const res = await sendForgotPasswordEmail(finalForgotPasswordData);
 
-            if(res.status !== 200)
+            if (res.status !== 200)
                 handleSnackbar({ open: true, message: "Error: email does not exist" });
-            else 
-                handleSnackbar({ open: true, message: "Email sent!" })
-        }
-        else handleSnackbar({ open: true, message: errorString });
+            else handleSnackbar({ open: true, message: "Email sent!" });
+        } else handleSnackbar({ open: true, message: errorString });
 
         setPageDisabled(false);
-    }
+    };
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -87,7 +85,7 @@ export default function Login() {
                 borderColor: "black",
                 borderRadius: "30px",
                 border: "0px",
-                height: "42px"
+                height: "42px",
             },
             // on focus rendering of field
             "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -95,7 +93,6 @@ export default function Login() {
             },
             "& .MuiInputLabel-outlined.Mui-focused": {
                 color: "#d77a3d",
-                
             },
             // on error rendering of field
             "& .Mui-error": {
@@ -105,47 +102,48 @@ export default function Login() {
             // on error rendering of field
             "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
                 borderColor: "red",
-                border: "1px solid"
+                border: "1px solid",
             },
         },
     }));
 
     const classes = useHelperTextStyles();
 
-    const inputValues = [
-        {placeholder: "Email", name: "email", type: "email"},
-    ]
+    const inputValues = [{ placeholder: "Email", name: "email", type: "email" }];
 
     return (
         <div className="forgot-password-wrapper">
             <div className="forgot-password-form">
                 <Brand />
-                {
-                    inputValues.map(input => {
-                        return (
-                            <>
-                                <TextField 
-                                    variant="outlined"
-                                    disabled={pageDisabled}
-                                    placeholder={input.placeholder}
-                                    className={classes.root}
-                                    InputProps={{ disableUnderline: true }}
-                                    type={input.type}
-                                    error={forgotPasswordErrors[input.name]}
-                                    onChange={(event) => {
-                                        setForgotPasswordData({ ...forgotPasswordData, [input.name]: event.target.value });
-                                    }}
-                                />
-                                <br />
-                            </>
-                        )
-                    })
-                }
+                {inputValues.map((input) => {
+                    return (
+                        <>
+                            <TextField
+                                variant="outlined"
+                                disabled={pageDisabled}
+                                placeholder={input.placeholder}
+                                className={classes.root}
+                                InputProps={{ disableUnderline: true }}
+                                type={input.type}
+                                error={forgotPasswordErrors[input.name]}
+                                onChange={(event) => {
+                                    setForgotPasswordData({
+                                        ...forgotPasswordData,
+                                        [input.name]: event.target.value,
+                                    });
+                                }}
+                            />
+                            <br />
+                        </>
+                    );
+                })}
                 <div className="redirect-links">
-                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>Go back</a>
+                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>
+                        Go back
+                    </a>
                 </div>
                 <br />
-                <Button 
+                <Button
                     text="Email me a recovery link"
                     onClickCallback={() => handleFormSubmit()}
                 />

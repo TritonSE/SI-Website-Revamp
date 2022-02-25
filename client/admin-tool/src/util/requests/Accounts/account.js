@@ -2,29 +2,29 @@
  * Contains any server calls made for the News & Events page on the admin tool.
  */
 
- const config = require("../../../config");
+const config = require("../../../config");
 
- const BACKEND_URL = config.backend.uri;
+const BACKEND_URL = config.backend.uri;
 
- export const registerUser = async (content) => {
-     try {
-         const res = await fetch(`${BACKEND_URL}adminAccounts/register/`, {
-             method: "post",
-             headers: {
-                 "content-type": "application/json",
-             },
-             body: JSON.stringify(content),
-         });
-         
-         return res;
- 
-         // fetch fails
-     } catch {
-         return false;
-     }
- };
+export const registerUser = async (content) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}adminAccounts/register/`, {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(content),
+        });
 
- export const loginUser = async (content) => {
+        return res;
+
+        // fetch fails
+    } catch {
+        return false;
+    }
+};
+
+export const loginUser = async (content) => {
     try {
         const res = await fetch(`${BACKEND_URL}adminAccounts/login/`, {
             method: "post",
@@ -33,7 +33,7 @@
             },
             body: JSON.stringify(content),
         });
-        
+
         return res;
 
         // fetch fails
@@ -51,7 +51,7 @@ export const sendForgotPasswordEmail = async (content) => {
             },
             body: JSON.stringify(content),
         });
-        
+
         return res;
 
         // fetch fails
@@ -69,7 +69,7 @@ export const changePassword = async (content) => {
             },
             body: JSON.stringify(content),
         });
-        
+
         return res;
 
         // fetch fails
@@ -79,7 +79,6 @@ export const changePassword = async (content) => {
 };
 
 export const getEmailByToken = async (token) => {
-    
     try {
         const res = await fetch(`${BACKEND_URL}adminAccounts/emailByToken/${token}`, {
             method: "get",
@@ -89,11 +88,11 @@ export const getEmailByToken = async (token) => {
         });
 
         const json = await res.json();
-        
+
         return json.email;
         // fetch fails
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return false;
     }
 };

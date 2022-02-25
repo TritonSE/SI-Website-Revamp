@@ -34,7 +34,7 @@ const AdminAccount = db.define(
         resetPasswordExpire: {
             type: Sequelize.DATE,
             allowNull: true,
-        }
+        },
     },
     {
         hooks: {

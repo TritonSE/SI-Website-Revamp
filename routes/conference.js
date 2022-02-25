@@ -9,7 +9,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const { create, getAll, edit, remove } = require("../db/services/conference");
 const { isValidated } = require("../middleware/validation");
-const { checkToken, verify } = require("../routes/services/jwt");
+const { checkToken, verify } = require("./services/jwt");
 
 const router = express.Router();
 
@@ -90,9 +90,9 @@ router.post(
     async (req, res) => {
         try {
             const verified = await verify(req.token);
-    
-            if(!verified) {
-                return res.status(403).json({message: "No access"});
+
+            if (!verified) {
+                return res.status(403).json({ message: "No access" });
             }
 
             const entries = await create(req.body);
@@ -196,11 +196,11 @@ router.put(
     async (req, res) => {
         try {
             const verified = await verify(req.token);
-    
-            if(!verified) {
-                return res.status(403).json({message: "No access"});
+
+            if (!verified) {
+                return res.status(403).json({ message: "No access" });
             }
-            
+
             const { id } = req.params;
             // index must be a number
             if (Number(id) < 0) return res.status(400).json({ message: "index must be a number" });
@@ -226,8 +226,8 @@ router.delete("/:id", [checkToken, isValidated], async (req, res) => {
         const { id } = req.params;
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         // checks that id is a number

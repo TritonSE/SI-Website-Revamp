@@ -1,6 +1,6 @@
 /**
  * Private router component that verifies login before granting access to admin pages.
- * 
+ *
  * @author Navid Boloorian
  */
 
@@ -12,9 +12,9 @@ const config = require("../config");
 const jwt = require("jsonwebtoken");
 
 /**
- * 
- * @param {*} props 
- * @returns 
+ *
+ * @param {*} props
+ * @returns
  */
 export default function PrivateRoute({ children, ...rest }) {
     let loggedIn = false;
@@ -25,14 +25,13 @@ export default function PrivateRoute({ children, ...rest }) {
             if (err) {
                 return false;
             }
-    
+
             return true;
         });
-    }
+    };
 
     loggedIn = verify(localStorage.getItem("token"));
 
-    if(loggedIn) return <Route {...rest}>{children}</Route>;
+    if (loggedIn) return <Route {...rest}>{children}</Route>;
     else return <Redirect to={SITE_PAGES.ACCOUNTS_LOGIN} />;
-
 }

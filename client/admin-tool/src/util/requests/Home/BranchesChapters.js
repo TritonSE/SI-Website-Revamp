@@ -13,7 +13,7 @@ export const putBranchChapters = async (id, content) => {
             method: "put",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify(content),
         });
@@ -41,7 +41,7 @@ export const postBranchChapters = async (content) => {
             method: "post",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify(content),
         });
@@ -99,7 +99,7 @@ export const deleteBranchChapters = async (id) => {
             method: "delete",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
         });
         // successfull

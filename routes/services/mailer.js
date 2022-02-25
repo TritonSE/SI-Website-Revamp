@@ -65,7 +65,7 @@ async function sendEmail(template, to_email, locals) {
             return false;
         }
         // log emails successfully sent
-        console.log(`Email ${template} has been sent to ${to_email}.`);
+
         return true;
     }
     console.error(`Error: Email ${template} could not be sent to ${to_email}. Null mailer.`);

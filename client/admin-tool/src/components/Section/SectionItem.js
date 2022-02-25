@@ -90,12 +90,10 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
         let tempData = {
             title: data["title"],
             content: data["content"],
-            isPublished: data["isPublished"]
-        }
+            isPublished: data["isPublished"],
+        };
 
-        tempData.content = draftToHtml(
-            convertToRaw(data["content"].getCurrentContent())
-        );
+        tempData.content = draftToHtml(convertToRaw(data["content"].getCurrentContent()));
 
         // check if all required fields are valid
         Object.keys(errors).forEach((key) => {
@@ -105,7 +103,7 @@ export default function SectionItem({ content, newSection, onDeleteCallback, onS
             }
         });
 
-        console.log(tempData)
+        console.log(tempData);
 
         // update section based on errors encountered
         setDataErrors(errors);

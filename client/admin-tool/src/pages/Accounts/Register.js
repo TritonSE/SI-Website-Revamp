@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, makeStyles, Snackbar } from "@material-ui/core";
-import Brand from "../../components/Accounts/Brand"
+import Brand from "../../components/Accounts/Brand";
 import Button from "../../components/Button";
 import { SITE_PAGES } from "../../constants/links";
 
@@ -19,14 +19,14 @@ export default function Register() {
 
     React.useEffect(async () => {
         localStorage.clear();
-        
+
         setRegisterData({
             name: "",
             email: "",
             password: "",
             confPassword: "",
             secret: "",
-        })
+        });
 
         setRegisterErrors({
             name: false,
@@ -34,8 +34,8 @@ export default function Register() {
             password: false,
             confPassword: false,
             secret: false,
-        })
-    }, [])
+        });
+    }, []);
 
     const handleFormSubmit = async () => {
         setPageDisabled(true);
@@ -45,7 +45,7 @@ export default function Register() {
             email: registerData.email,
             password: registerData.password,
             secret: registerData.secret,
-        }
+        };
 
         let finalRegisterErrors = {
             name: false,
@@ -53,7 +53,7 @@ export default function Register() {
             password: false,
             confPassword: false,
             secret: false,
-        }
+        };
 
         let hasErrors = false;
         let errorString = "Error: ";
@@ -66,14 +66,14 @@ export default function Register() {
             }
         });
 
-        if(registerData.password.length < 6 || registerData.password.length > 15) {
+        if (registerData.password.length < 6 || registerData.password.length > 15) {
             hasErrors = true;
             errorString += "password must be between 6 and 15 characters long";
             finalRegisterErrors["password"] = true;
             finalRegisterErrors["confPassword"] = true;
         }
 
-        if(registerData.password !== registerData.confPassword) {
+        if (registerData.password !== registerData.confPassword) {
             hasErrors = true;
             errorString += "passwords do not match; ";
             finalRegisterErrors["password"] = true;
@@ -85,14 +85,14 @@ export default function Register() {
         if (!hasErrors) {
             const res = await registerUser(finalRegisterData);
 
-            if(res.status === 401)
+            if (res.status === 401)
                 handleSnackbar({ open: true, message: "Error: secret key is invalid" });
-            else if(res.status === 409)
+            else if (res.status === 409)
                 handleSnackbar({ open: true, message: "Error: email already registered" });
             else {
-                handleSnackbar({ open: true, message: "Success! Redirecting..." })
+                handleSnackbar({ open: true, message: "Success! Redirecting..." });
 
-                const loginRes = await loginUser({ 
+                const loginRes = await loginUser({
                     email: registerData.email,
                     password: registerData.password,
                 });
@@ -102,11 +102,10 @@ export default function Register() {
 
                 window.location.href = SITE_PAGES.ABOUT_EXEC_COMMITTEE;
             }
-        }
-        else handleSnackbar({ open: true, message: errorString });
+        } else handleSnackbar({ open: true, message: errorString });
 
         setPageDisabled(false);
-    }
+    };
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -129,7 +128,7 @@ export default function Register() {
                 borderColor: "black",
                 borderRadius: "30px",
                 border: "0px",
-                height: "42px"
+                height: "42px",
             },
             // on focus rendering of field
             "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -137,7 +136,6 @@ export default function Register() {
             },
             "& .MuiInputLabel-outlined.Mui-focused": {
                 color: "#d77a3d",
-                
             },
             // on error rendering of field
             "& .Mui-error": {
@@ -147,7 +145,7 @@ export default function Register() {
             // on error rendering of field
             "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
                 borderColor: "red",
-                border: "1px solid"
+                border: "1px solid",
             },
         },
     }));
@@ -155,44 +153,44 @@ export default function Register() {
     const classes = useHelperTextStyles();
 
     const inputValues = [
-        {placeholder: "Sign-up code", name: "secret", type: "password"},
-        {placeholder: "Full name", name: "name", type: "text"},
-        {placeholder: "Email", name: "email", type: "email"},
-        {placeholder: "Password", name: "password", type: "password"},
-        {placeholder: "Re-enter password", name: "confPassword", type: "password"},
-    ]
+        { placeholder: "Sign-up code", name: "secret", type: "password" },
+        { placeholder: "Full name", name: "name", type: "text" },
+        { placeholder: "Email", name: "email", type: "email" },
+        { placeholder: "Password", name: "password", type: "password" },
+        { placeholder: "Re-enter password", name: "confPassword", type: "password" },
+    ];
 
     return (
         <div className="register-wrapper">
             <div className="register-form">
                 <Brand />
-                {
-                    inputValues.map(input => {
-                        return (
-                            <>
-                                <TextField 
-                                    variant="outlined"
-                                    disabled={pageDisabled}
-                                    placeholder={input.placeholder}
-                                    className={classes.root}
-                                    InputProps={{ disableUnderline: true }}
-                                    type={input.type}
-                                    error={registerErrors[input.name]}
-                                    onChange={(event) => {
-                                        setRegisterData({ ...registerData, [input.name]: event.target.value });
-                                    }}
-                                />
-                                <br />
-                            </>
-                        )
-                    })
-                }
-                <a className="login-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>Already registered?</a>
+                {inputValues.map((input) => {
+                    return (
+                        <>
+                            <TextField
+                                variant="outlined"
+                                disabled={pageDisabled}
+                                placeholder={input.placeholder}
+                                className={classes.root}
+                                InputProps={{ disableUnderline: true }}
+                                type={input.type}
+                                error={registerErrors[input.name]}
+                                onChange={(event) => {
+                                    setRegisterData({
+                                        ...registerData,
+                                        [input.name]: event.target.value,
+                                    });
+                                }}
+                            />
+                            <br />
+                        </>
+                    );
+                })}
+                <a className="login-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>
+                    Already registered?
+                </a>
                 <br />
-                <Button 
-                    text="Register and login"
-                    onClickCallback={() => handleFormSubmit()}
-                />
+                <Button text="Register and login" onClickCallback={() => handleFormSubmit()} />
             </div>
             <Snackbar
                 open={snackbar.open}

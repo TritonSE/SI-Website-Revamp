@@ -9,7 +9,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const { create, getAll, remove, edit } = require("../db/services/newsAndEvents");
 const { isValidated } = require("../middleware/validation");
-const { checkToken, verify } = require("../routes/services/jwt");
+const { checkToken, verify } = require("./services/jwt");
 
 const router = express.Router();
 
@@ -35,11 +35,11 @@ router.post(
     async (req, res) => {
         try {
             const verified = await verify(req.token);
-    
-            if(!verified) {
-                return res.status(403).json({message: "No access"});
+
+            if (!verified) {
+                return res.status(403).json({ message: "No access" });
             }
-            
+
             const addedEntry = await create(req.body);
             return res.status(200).json(addedEntry);
         } catch (err) {
@@ -72,8 +72,8 @@ router.delete("/:id", [checkToken, isValidated], async (req, res) => {
         const { id } = req.params;
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         // checks that id is a number
@@ -115,9 +115,9 @@ router.put(
         try {
             const { id } = req.params;
             const verified = await verify(req.token);
-    
-            if(!verified) {
-                return res.status(403).json({message: "No access"});
+
+            if (!verified) {
+                return res.status(403).json({ message: "No access" });
             }
 
             // checks that id is a number
@@ -126,15 +126,12 @@ router.put(
 
             const entries = await edit(Number(id), req.body);
 
-            console.log(entries);
-
             // success upon edit
             if (entries[0] === 1) return res.status(200).json({ message: "Success" });
 
             // failure upon edit
             return res.status(500).json({ message: "Unsuccessful edit" });
         } catch (err) {
-            console.log(err);
             return res.status(500).json({ message: err });
         }
     }

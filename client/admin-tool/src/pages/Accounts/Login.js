@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, makeStyles, Snackbar } from "@material-ui/core";
-import Brand from "../../components/Accounts/Brand"
+import Brand from "../../components/Accounts/Brand";
 import Button from "../../components/Button";
 import { SITE_PAGES } from "../../constants/links";
 
@@ -23,13 +23,13 @@ export default function Login() {
         setloginData({
             email: "",
             password: "",
-        })
+        });
 
         setloginErrors({
             email: false,
             password: false,
-        })
-    }, [])
+        });
+    }, []);
 
     const handleFormSubmit = async () => {
         setPageDisabled(true);
@@ -37,12 +37,12 @@ export default function Login() {
         let finalLoginData = {
             email: loginData.email,
             password: loginData.password,
-        }
+        };
 
         let finalLoginErrors = {
             email: false,
             password: false,
-        }
+        };
 
         let hasErrors = false;
         let errorString = "Error: ";
@@ -61,19 +61,21 @@ export default function Login() {
             const res = await loginUser(finalLoginData);
             const json = await res.json();
 
-            if(res.status !== 200)
-                handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });
+            if (res.status !== 200)
+                handleSnackbar({
+                    open: true,
+                    message: "Error: email and/or password is incorrect",
+                });
             else {
-                handleSnackbar({ open: true, message: "Success! Redirecting..." })
+                handleSnackbar({ open: true, message: "Success! Redirecting..." });
                 localStorage.setItem("token", json.token);
 
                 window.location.href = SITE_PAGES.ABOUT_EDIT_SECTION;
             }
-        }
-        else handleSnackbar({ open: true, message: errorString });
+        } else handleSnackbar({ open: true, message: errorString });
 
         setPageDisabled(false);
-    }
+    };
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -96,7 +98,7 @@ export default function Login() {
                 borderColor: "black",
                 borderRadius: "30px",
                 border: "0px",
-                height: "42px"
+                height: "42px",
             },
             // on focus rendering of field
             "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -104,7 +106,6 @@ export default function Login() {
             },
             "& .MuiInputLabel-outlined.Mui-focused": {
                 color: "#d77a3d",
-                
             },
             // on error rendering of field
             "& .Mui-error": {
@@ -114,7 +115,7 @@ export default function Login() {
             // on error rendering of field
             "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
                 borderColor: "red",
-                border: "1px solid"
+                border: "1px solid",
             },
         },
     }));
@@ -122,44 +123,46 @@ export default function Login() {
     const classes = useHelperTextStyles();
 
     const inputValues = [
-        {placeholder: "Email", name: "email", type: "email"},
-        {placeholder: "Password", name: "password", type: "password"},
-    ]
+        { placeholder: "Email", name: "email", type: "email" },
+        { placeholder: "Password", name: "password", type: "password" },
+    ];
 
     return (
         <div className="login-wrapper">
             <div className="login-form">
                 <Brand />
-                {
-                    inputValues.map(input => {
-                        return (
-                            <>
-                                <TextField 
-                                    variant="outlined"
-                                    disabled={pageDisabled}
-                                    placeholder={input.placeholder}
-                                    className={classes.root}
-                                    InputProps={{ disableUnderline: true }}
-                                    type={input.type}
-                                    error={loginErrors[input.name]}
-                                    onChange={(event) => {
-                                        setloginData({ ...loginData, [input.name]: event.target.value });
-                                    }}
-                                />
-                                <br />
-                            </>
-                        )
-                    })
-                }
+                {inputValues.map((input) => {
+                    return (
+                        <>
+                            <TextField
+                                variant="outlined"
+                                disabled={pageDisabled}
+                                placeholder={input.placeholder}
+                                className={classes.root}
+                                InputProps={{ disableUnderline: true }}
+                                type={input.type}
+                                error={loginErrors[input.name]}
+                                onChange={(event) => {
+                                    setloginData({
+                                        ...loginData,
+                                        [input.name]: event.target.value,
+                                    });
+                                }}
+                            />
+                            <br />
+                        </>
+                    );
+                })}
                 <div className="redirect-links">
-                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_REGISTER}>New user?</a>
-                    <a className="password-redirect" href={SITE_PAGES.ACCOUNTS_FORGOT_PASSWORD}>Forgot password</a>
+                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_REGISTER}>
+                        New user?
+                    </a>
+                    <a className="password-redirect" href={SITE_PAGES.ACCOUNTS_FORGOT_PASSWORD}>
+                        Forgot password
+                    </a>
                 </div>
                 <br />
-                <Button 
-                    text="Login"
-                    onClickCallback={() => handleFormSubmit()}
-                />
+                <Button text="Login" onClickCallback={() => handleFormSubmit()} />
             </div>
             <Snackbar
                 open={snackbar.open}

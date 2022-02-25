@@ -25,7 +25,30 @@ export const fetchNewsletters = async () => {
     }
 };
 
-export const fetchCommittees = async () => {
+export const fetchSection = async (page) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}sections?page=${page}`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        // successful
+        if (res.ok) {
+            const data = await res.json();
+            return data;
+        }
+
+        // any server issue
+        return [];
+
+        // fetch fails
+    } catch {
+        return [];
+    }
+};
+
+export const fetchVolunteerCommittees = async () => {
     try {
         const res = await fetch(`${BACKEND_URL}volunteers/committees`, {
             method: "get",
@@ -203,6 +226,21 @@ export const fetchEpubs = async () => {
                 return returnObj;
             })
             .catch(() => []);
+    } catch {
+        // any server issue
+        return [];
+    }
+};
+
+export const fetchFeaturedEpubs = async () => {
+    try {
+        // fetch all of the filters in the database
+        return await fetch(`${BACKEND_URL}publications/featured`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
     } catch {
         // any server issue
         return [];

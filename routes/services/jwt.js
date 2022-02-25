@@ -44,17 +44,16 @@ async function verify(token) {
 }
 
 /**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ *
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
 const checkToken = (req, res, next) => {
-
     const header = req.headers["autorization"];
 
-    if(typeof header !== 'undefined') {
-        const bearer = header.split(' ');
+    if (typeof header !== "undefined") {
+        const bearer = header.split(" ");
         const token = bearer[1];
 
         req.token = token;
@@ -62,7 +61,7 @@ const checkToken = (req, res, next) => {
     } else {
         res.sendStatus(403);
     }
-}
+};
 
 module.exports = {
     verify,

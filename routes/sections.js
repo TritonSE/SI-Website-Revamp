@@ -17,7 +17,7 @@ const {
 } = require("../db/services/sections");
 
 const router = express.Router();
-const { checkToken, verify } = require("../routes/services/jwt");
+const { checkToken, verify } = require("./services/jwt");
 
 /**
  * Adds an entry to the Newsletters table.
@@ -41,11 +41,11 @@ router.post(
     async (req, res) => {
         try {
             const verified = await verify(req.token);
-    
-            if(!verified) {
-                return res.status(403).json({message: "No access"});
+
+            if (!verified) {
+                return res.status(403).json({ message: "No access" });
             }
-            
+
             const section = await createSection(req.body);
             return res.status(200).json(section);
         } catch (err) {
@@ -79,8 +79,8 @@ router.put(
 
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         // checks if id is invalid and returns 400 status
@@ -110,11 +110,11 @@ router.put(
 router.delete("/:id", [checkToken, isValidated], async (req, res) => {
     try {
         const { id } = req.params;
-        
+
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         // checks that id is a number

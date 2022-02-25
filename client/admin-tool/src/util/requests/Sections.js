@@ -48,7 +48,7 @@ export const addSection = async (content) => {
             method: "post",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify(content),
         });
@@ -82,7 +82,7 @@ export const updateSection = async (id, content) => {
             method: "put",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify(content),
         });
@@ -113,7 +113,7 @@ export const deleteSection = async (id) => {
             method: "delete",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
         });
         // successfull
