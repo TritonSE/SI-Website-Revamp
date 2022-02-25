@@ -2,7 +2,12 @@
   width: 70.47vw;
   align-content: center;
   margin-left: 14.77vw;
-  margin-top: 7.81vw;
+  display: grid;
+}
+
+.page-content img {
+  justify-self: center;
+  max-width: 100%;
 }
 
 .ordination-text {

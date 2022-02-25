@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "../../css/OrdinationIssue.css";
 import ResourcesHeader from "../../components/ResourcesHeader";
-import OrdinationImageMobile from "../../media/Ordination_Image_Mobile.svg";
-import OrdinationImage from "../../media/OrdinationIssue_Image.png";
+
+import { fetchOrdinationIssue } from "../../util/requests";
+import Loader from "../../components/Main/Loader";
 
 import Header from "../../media/Lotus_Header.png";
 
 export default function OrdinationIssue() {
     const [isMobile, setIsMobile] = useState(false);
     const arrowScrollToRef = React.createRef();
+    const [isLoading, setIsLoading] = useState(false);
+    const [ordinationIssues, setOrdinationIssues] = useState([]);
 
     // modifies isMobile state when window resizes
-    useEffect(() => {
+    useEffect(async () => {
+        setIsLoading(true);
         function handleResize() {
             setIsMobile(window.innerWidth <= 600);
         }
@@ -19,6 +23,11 @@ export default function OrdinationIssue() {
         // event listener for resize
         window.addEventListener("resize", handleResize);
         handleResize();
+
+        const data = await fetchOrdinationIssue("OrdinationIssue");
+
+        setOrdinationIssues(data);
+        setIsLoading(false);
 
         // Removes event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
@@ -34,6 +43,24 @@ export default function OrdinationIssue() {
         }
     };
 
+    if(isLoading) {
+        return (
+            <div
+                style={
+                    {
+                        width: "100vw",
+                        height: "100vh",
+                        display: "grid",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }
+                }
+            >
+                <Loader />
+            </div>
+        )
+    }
+
     return (
         <div>
             {/* Renders mobile or desktop layout based on screen size */}
@@ -47,92 +74,38 @@ export default function OrdinationIssue() {
                         arrowClickCallback={scrollToRef}
                         showArrow={false}
                     />
-                    <div className="page-content">
-                        <p className="ordination-text" ref={arrowScrollToRef}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel
-                            lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel
-                            lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-                        <p className="ordination-text bottom-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel
-                            lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel
-                            lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-                    </div>
-                    <img
-                        src={OrdinationImageMobile}
-                        ima
-                        alt="Ordination Issue"
-                        className="ordination-image"
-                    />
+                    
+                    {ordinationIssues.map(ordinationIssue =>
+                        ordinationIssue.isPublished ? (
+                            <>
+                                <h2 className="page-content">{ordinationIssue.title}</h2>
+                                <div dangerouslySetInnerHTML={{ __html: `${ordinationIssue.content}` }} className="page-content" />
+                            </>
+                        ) : (
+                            ""
+                        )
+                    )}
                 </div>
             ) : (
                 <div>
                     <ResourcesHeader
                         image={Header}
                         title="The Ordination Issue"
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas facilisis condimentum massa, sit amet lacinia massa commodo sed. Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus. "
+                        text="Discussing the ordination issue "
                         height="max(75vh, 400px)"
                         width="100%"
                         arrowClickCallback={scrollToRef}
                     />
-                    <div className="page-content">
-                        <p className="ordination-text" ref={arrowScrollToRef}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel
-                            lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel
-                            lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-                        <img
-                            src={OrdinationImage}
-                            alt="Ordination Issue"
-                            className="ordination-image"
-                        />
-                        <p className="ordination-text bottom-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel lectus.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel
-                            lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                            facilisis condimentum massa, sit amet lacinia massa commodo sed.
-                            Praesent vehicula eget arcu ut laoreet. Sed porta, dui ut dapibus
-                            sodales, orci neque volutpat arcu, in efficitur sem tortor vel
-                            lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-                    </div>
+                    {ordinationIssues.map(ordinationIssue =>
+                        ordinationIssue.isPublished ? (
+                            <>
+                                <h2 className="page-content">{ordinationIssue.title}</h2>
+                                <div dangerouslySetInnerHTML={{ __html: `${ordinationIssue.content}` }} className="page-content" />
+                            </>
+                        ) : (
+                            ""
+                        )
+                    )}
                 </div>
             )}
         </div>

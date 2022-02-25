@@ -25,6 +25,29 @@ export const fetchNewsletters = async () => {
     }
 };
 
+export const fetchOrdinationIssue = async (page) => {
+    try {
+        const res = await fetch(`${BACKEND_URL}sections?page=${page}`, {
+            method: "get",
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        // successful
+        if (res.ok) {
+            const data = await res.json();
+            return data;
+        }
+
+        // any server issue
+        return [];
+
+        // fetch fails
+    } catch {
+        return [];
+    }
+};
+
 export const fetchCommittees = async () => {
     try {
         const res = await fetch(`${BACKEND_URL}volunteers/committees`, {
