@@ -223,16 +223,15 @@ export default function Conferences() {
         }
 
         const data = {};
-        
+
         Object.keys(conferenceItem).forEach((key) => {
             if (key === "theme") {
-                if(conferenceItem["theme"].value !== ""){
+                if (conferenceItem["theme"].value !== "") {
                     data[key] = draftToHtml(
                         convertToRaw(conferenceItem[key].value.getCurrentContent())
                     );
-                }
-                else {
-                    data[key] = "<p></p>"
+                } else {
+                    data[key] = "<p></p>";
                 }
             } else if (key === "confNum") {
                 data[key] = parseInt(conferenceItem[key].value, 10);

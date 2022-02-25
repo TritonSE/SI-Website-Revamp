@@ -42,7 +42,6 @@ router.post(
                     .json({ message: "Not added, possibly invalid id in interests" });
             return res.status(200).json({ message: "success" });
         } catch (err) {
-            console.log(err);
             return res.status(400).json({ message: err });
         }
     }
@@ -58,7 +57,6 @@ router.get("/committees", async (req, res) => {
         const entries = await getCommittees();
         return res.status(200).json(entries);
     } catch (err) {
-        console.log(err);
         return res.status(500).json({ message: err });
     }
 });

@@ -16,7 +16,7 @@ const {
     deleteCommittee,
 } = require("../db/services/execCommittee");
 const { isValidated } = require("../middleware/validation");
-const { checkToken, verify } = require("../routes/services/jwt");
+const { checkToken, verify } = require("./services/jwt");
 
 const router = express.Router();
 
@@ -46,15 +46,14 @@ router.post(
     async (req, res) => {
         try {
             const verified = await verify(req.token);
-    
-            if(!verified) {
-                return res.status(403).json({message: "No access"});
+
+            if (!verified) {
+                return res.status(403).json({ message: "No access" });
             }
 
             const entries = await addEntry(req.body);
             return res.status(200).json(entries);
         } catch (err) {
-            console.log(err);
             return res.status(400).json({ message: err });
         }
     }
@@ -70,7 +69,6 @@ router.get("/", async (req, res) => {
         const entries = await getAll();
         return res.status(200).json(entries);
     } catch (err) {
-        console.log(err);
         return res.status(500).json({ message: err });
     }
 });
@@ -89,7 +87,6 @@ router.get("/:startYear", async (req, res) => {
 
         return res.status(200).json(entries);
     } catch (err) {
-        console.log(err);
         return res.status(500).json({ message: err });
     }
 });
@@ -122,9 +119,9 @@ router.put(
         try {
             const { id } = req.params;
             const verified = await verify(req.token);
-    
-            if(!verified) {
-                return res.status(403).json({message: "No access"});
+
+            if (!verified) {
+                return res.status(403).json({ message: "No access" });
             }
 
             // checks that id is a number
@@ -139,7 +136,6 @@ router.put(
             // failure upon edit
             return res.status(500).json({ message: "Unsuccessful edit" });
         } catch (err) {
-            console.log(err);
             return res.status(500).json({ message: err });
         }
     }
@@ -155,8 +151,8 @@ router.delete("/:id", [checkToken, isValidated], async (req, res) => {
         const { id } = req.params;
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         const status = await deleteById(id);
@@ -166,7 +162,6 @@ router.delete("/:id", [checkToken, isValidated], async (req, res) => {
         // failure
         return res.status(500).json({ message: "Unsuccessful deletion" });
     } catch (err) {
-        console.log(err);
         return res.status(500).json({ message: err });
     }
 });
@@ -181,8 +176,8 @@ router.delete("/committee/:startYear", [checkToken, isValidated], async (req, re
         const { startYear } = req.params;
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         const status = await deleteCommittee(startYear);
@@ -190,12 +185,9 @@ router.delete("/committee/:startYear", [checkToken, isValidated], async (req, re
         // success
         if (status > 0) return res.status(200).json({ message: "Success" });
 
-        console.log(status);
-
         // failure
         return res.status(500).json({ message: "Unsuccessful committee deletion" });
     } catch (err) {
-        console.log(err);
         return res.status(500).json({ message: err });
     }
 });

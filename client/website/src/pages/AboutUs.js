@@ -137,12 +137,15 @@ export default function AboutUs() {
         handleResize();
 
         document.querySelector("#page-layout").addEventListener("scroll", () => {
-            for(let i = 0; i < committeesSections.length; i++) {
-                const idString = committeesSections[i].title.replace(/\s+/g, '-').replace(/:/g,'').replace(/[^a-z0-9]/gi, '').toLowerCase()
+            for (let i = 0; i < committeesSections.length; i++) {
+                const idString = committeesSections[i].title
+                    .replace(/\s+/g, "-")
+                    .replace(/:/g, "")
+                    .replace(/[^a-z0-9]/gi, "")
+                    .toLowerCase();
                 const selected = document.querySelector(`#${idString}`);
 
-                if(selected <= 1)
-                    setScrollLocation(committeesSections[i].title)
+                if (selected <= 1) setScrollLocation(committeesSections[i].title);
             }
         });
     }, [committeesSections]);
@@ -200,25 +203,27 @@ export default function AboutUs() {
     }
 
     function makeIdURLFriendly(idString) {
-        return idString.replace(/\s+/g, '-').replace(/:/g,'').replace(/[^a-z0-9-]/gi, '').toLowerCase()
+        return idString
+            .replace(/\s+/g, "-")
+            .replace(/:/g, "")
+            .replace(/[^a-z0-9-]/gi, "")
+            .toLowerCase();
     }
 
-    if(isLoading) {
+    if (isLoading) {
         return (
             <div
-                style={
-                    {
-                        width: "100vw",
-                        height: "100vh",
-                        display: "grid",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }
-                }
+                style={{
+                    width: "100vw",
+                    height: "100vh",
+                    display: "grid",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
             >
                 <Loader />
             </div>
-        )
+        );
     }
 
     return (
@@ -247,13 +252,14 @@ export default function AboutUs() {
             <div className="slider-wrapper">
                 <div className="slider">
                     <ul className="slider-nav">
-                        {
-                            committeesSections.map(section => 
-                                <li className={computeNavUnderline(makeIdURLFriendly(section.title))}>
-                                    <a href={`#${makeIdURLFriendly(section.title)}`}> {section.title} </a>
-                                </li>
-                            )
-                        }
+                        {committeesSections.map((section) => (
+                            <li className={computeNavUnderline(makeIdURLFriendly(section.title))}>
+                                <a href={`#${makeIdURLFriendly(section.title)}`}>
+                                    {" "}
+                                    {section.title}{" "}
+                                </a>
+                            </li>
+                        ))}
                         <li className={computeNavUnderline("exec")}>
                             <a href="#exec"> Excutive Committee </a>
                         </li>
@@ -264,15 +270,13 @@ export default function AboutUs() {
 
             {/* Contents of page */}
             <div className="contents">
-                {
-                    committeesSections.map(section => 
-                        <div className="section">
-                            <div className="scroll" id={makeIdURLFriendly(section.title)} />
-                            <h1>{section.title}</h1>
-                            <div dangerouslySetInnerHTML={{ __html: `${section.content}` }} />
-                        </div>
-                    )
-                }
+                {committeesSections.map((section) => (
+                    <div className="section">
+                        <div className="scroll" id={makeIdURLFriendly(section.title)} />
+                        <h1>{section.title}</h1>
+                        <div dangerouslySetInnerHTML={{ __html: `${section.content}` }} />
+                    </div>
+                ))}
 
                 <div className="divider" />
 

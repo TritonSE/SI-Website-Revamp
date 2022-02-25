@@ -11,7 +11,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const { isValidated } = require("../middleware/validation");
 const { addOne, getAll, editOne, deleteOne } = require("../db/services/newsletters");
-const { checkToken, verify } = require("../routes/services/jwt");
+const { checkToken, verify } = require("./services/jwt");
 
 const router = express.Router();
 
@@ -37,8 +37,8 @@ router.post(
     async (req, res) => {
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         try {
@@ -74,8 +74,8 @@ router.put(
         const verified = await verify(req.token);
         const { id } = req.params;
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         // checks if id is invalid and returns 400 status

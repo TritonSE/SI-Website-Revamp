@@ -13,9 +13,7 @@ const MembershipTypes = require("../models/membershipTypes");
  */
 async function getAll() {
     return MembershipTypes.findAll({
-        order: [
-            ["cost", "ASC"],
-        ],
+        order: [["cost", "ASC"]],
     });
 }
 

@@ -13,7 +13,7 @@ async function putConference(id, values) {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
                 title: values.title,
@@ -48,7 +48,7 @@ async function postConferences(values) {
             method: "POST",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
                 title: values.title,
@@ -67,7 +67,7 @@ async function postConferences(values) {
 
         return res.ok;
     } catch (err) {
-        console.log(err)
+        console.log(err);
         return false;
     }
 }
@@ -108,7 +108,7 @@ async function deleteConference(id) {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
         });
         // message sent

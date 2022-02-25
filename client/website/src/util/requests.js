@@ -240,7 +240,7 @@ export const fetchFeaturedEpubs = async () => {
             headers: {
                 "content-type": "application/json",
             },
-        })
+        });
     } catch {
         // any server issue
         return [];

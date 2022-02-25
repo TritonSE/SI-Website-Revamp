@@ -13,7 +13,7 @@ const { isValidated } = require("../middleware/validation");
 const pubMethods = require("../db/services/publications");
 const filteredMethods = require("../db/services/filteredPublications");
 const ePubMethods = require("../db/services/ePubFilters");
-const { checkToken, verify } = require("../routes/services/jwt");
+const { checkToken, verify } = require("./services/jwt");
 
 const router = express.Router();
 
@@ -67,8 +67,8 @@ router.post(
     async (req, res) => {
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         // -1 is passed in here because the value is not being edited
@@ -148,8 +148,8 @@ router.put(
         const { id } = req.params;
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         // counts the number of featured publications excluding the publication with id
@@ -196,7 +196,6 @@ router.put(
 
             return res.status(200).json({ message: "success" });
         } catch (err) {
-            console.log(req.body);
             return res.status(500).json({ message: err });
         }
     }
@@ -212,8 +211,6 @@ router.put(
 router.get("/", [isValidated], async (req, res) => {
     try {
         const filterId = req.query.filterId || null;
-
-        console.log("filterId");
 
         // default: get all publications
         let queryFilter = null;
@@ -335,8 +332,8 @@ router.delete("/:id", [checkToken, isValidated], async (req, res) => {
         const { id } = req.params;
         const verified = await verify(req.token);
 
-        if(!verified) {
-            return res.status(403).json({message: "No access"});
+        if (!verified) {
+            return res.status(403).json({ message: "No access" });
         }
 
         if (Number(id) < 0) return res.status(400).json({ message: "Id must be a number" });

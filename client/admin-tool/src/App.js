@@ -69,7 +69,7 @@ function App() {
 
                             {/* Resources Page */}
                             <Route exact path={SITE_PAGES.RESOURCE_NEWSLETTERS}>
-                                <PrivateRoute>        
+                                <PrivateRoute>
                                     <Newsletters />
                                 </PrivateRoute>
                             </Route>

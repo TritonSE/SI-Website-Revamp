@@ -140,8 +140,8 @@ export default function Home() {
             </Slideshow>
         ) : null;
 
-    if(isPageLoading) {
-        return formatLoader
+    if (isPageLoading) {
+        return formatLoader;
     }
     return (
         <div className="Home">
@@ -309,18 +309,19 @@ export default function Home() {
                     <div className=".divider-wrapper">
                         <hr className="divider" />
                     </div>
-                    {
-                        additionalSections.map(section => 
-                            section.isPublished ? (
-                                <>
-                                    <h1 className="home-section-title">{section.title}</h1>
-                                    <div className="home-section-body" dangerouslySetInnerHTML={{ __html: `${section.content}` }} />
-                                </>    
-                            ) : (
-                                ""
-                            )
+                    {additionalSections.map((section) =>
+                        section.isPublished ? (
+                            <>
+                                <h1 className="home-section-title">{section.title}</h1>
+                                <div
+                                    className="home-section-body"
+                                    dangerouslySetInnerHTML={{ __html: `${section.content}` }}
+                                />
+                            </>
+                        ) : (
+                            ""
                         )
-                    }
+                    )}
                 </section>
             </section>
         </div>

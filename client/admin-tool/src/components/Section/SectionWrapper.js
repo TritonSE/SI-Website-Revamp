@@ -129,21 +129,20 @@ export default function SectionWrapper({
 
     // special layout for when the page is loading data
     if (isPageLoading) {
-        return(
-            <div className="section-loader" 
-                style={
-                    {
-                        height: "100vh",
-                        width: "100vw",
-                        display: "grid",
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }
-                }
+        return (
+            <div
+                className="section-loader"
+                style={{
+                    height: "100vh",
+                    width: "100vw",
+                    display: "grid",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
             >
                 <Loader />
             </div>
-        )
+        );
     }
     return (
         <div className="sections-main-wrapper">

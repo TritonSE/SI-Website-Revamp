@@ -280,7 +280,15 @@ export default function NavBar() {
                 </Navbar.Collapse>
 
                 {/* Log Out Button */}
-                <Nav.Link onClick={()=>{localStorage.clear(); window.location.href = SITE_PAGES.ACCOUNTS_LOGIN}} className="logout_button">Log Out</Nav.Link>
+                <Nav.Link
+                    onClick={() => {
+                        localStorage.clear();
+                        window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;
+                    }}
+                    className="logout_button"
+                >
+                    Log Out
+                </Nav.Link>
             </Container>
         </Navbar>
     );

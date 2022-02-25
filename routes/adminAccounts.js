@@ -9,7 +9,12 @@
 const express = require("express");
 const { body } = require("express-validator");
 const crypto = require("crypto");
-const { addAdmin, findOneUser, updateOneUser, getEmailByResetToken } = require("../db/services/adminAccounts");
+const {
+    addAdmin,
+    findOneUser,
+    updateOneUser,
+    getEmailByResetToken,
+} = require("../db/services/adminAccounts");
 const { isValidated } = require("../middleware/validation");
 const { createJWT } = require("./services/jwt");
 const { sendEmail } = require("./services/mailer");
@@ -218,11 +223,11 @@ router.post(
         try {
             // check if user email exists
             const user = await findOneUser(email);
-            
-            let currentTime = new Date();
-            let expirationTime = new Date();
 
-            user.resetPasswordToken = crypto.randomBytes(32).toString('hex').slice(0, 32);
+            const currentTime = new Date();
+            const expirationTime = new Date();
+
+            user.resetPasswordToken = crypto.randomBytes(32).toString("hex").slice(0, 32);
             user.resetPasswordExpire = expirationTime.setTime(currentTime.getTime() + 30 * 60000);
 
             const updatedUser = await updateOneUser(user);
@@ -254,23 +259,20 @@ router.post(
     }
 );
 
-
 router.get("/emailByToken/:token", [isValidated], async (req, res) => {
+    try {
+        const { token } = req.params;
 
-        try {
-            const {token} = req.params;
+        const email = await getEmailByResetToken(token);
 
-            const email = await getEmailByResetToken(token);
-
-            if(!email) {
-                return res.status(401).json({msg: "Expired"});
-            }
-
-            return res.status(200).json({email: email.email});
-        } catch (err) {
-            return res.status(500).json({ msg: "Server Error" });
+        if (!email) {
+            return res.status(401).json({ msg: "Expired" });
         }
+
+        return res.status(200).json({ email: email.email });
+    } catch (err) {
+        return res.status(500).json({ msg: "Server Error" });
     }
-)
+});
 
 module.exports = router;

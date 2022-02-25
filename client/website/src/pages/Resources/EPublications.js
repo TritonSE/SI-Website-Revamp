@@ -181,29 +181,25 @@ export default function EPublications() {
                         width="100%"
                         isMobile={isMobile}
                     >
-                        {
-                            featuredEpubs.map(epub => 
-                                <div className="EPub_Slide">
-                                    <div className="EPub_Slide_body">
-                                        <h1>{epub.title}</h1>
-                                        <h2>{epub.author}</h2>
-                                        <p>{epub.description}</p>
-                                        <button
-                                            type="button"
-                                            className="EPub_Slide_body_readMoreButton"
-                                            onClick={() => {window.location.href=epub.pdfLink}}
-                                        >
-                                            Read More
-                                        </button>
-                                    </div>
-                                    <img
-                                        className="EPub_Slide_image"
-                                        src={epub.imageLink}
-                                        alt=""
-                                    />
+                        {featuredEpubs.map((epub) => (
+                            <div className="EPub_Slide">
+                                <div className="EPub_Slide_body">
+                                    <h1>{epub.title}</h1>
+                                    <h2>{epub.author}</h2>
+                                    <p>{epub.description}</p>
+                                    <button
+                                        type="button"
+                                        className="EPub_Slide_body_readMoreButton"
+                                        onClick={() => {
+                                            window.location.href = epub.pdfLink;
+                                        }}
+                                    >
+                                        Read More
+                                    </button>
                                 </div>
-                            )
-                        }
+                                <img className="EPub_Slide_image" src={epub.imageLink} alt="" />
+                            </div>
+                        ))}
                     </Slideshow>
                     {/* Render a new publications section for each section in data, pass in each card */}
                     <div className={!isMobile ? "EPub_body" : "EPub_body--mobile"}>

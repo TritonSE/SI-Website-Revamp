@@ -21,7 +21,7 @@ import "../css/CustomButton.css";
 export default function CustomButton({
     text,
     redirect_link,
-    openInSameTab=false,
+    openInSameTab = false,
     onClickCallback,
     style = null,
 }) {

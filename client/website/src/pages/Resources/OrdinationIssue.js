@@ -43,22 +43,20 @@ export default function OrdinationIssue() {
         }
     };
 
-    if(isLoading) {
+    if (isLoading) {
         return (
             <div
-                style={
-                    {
-                        width: "100vw",
-                        height: "100vh",
-                        display: "grid",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }
-                }
+                style={{
+                    width: "100vw",
+                    height: "100vh",
+                    display: "grid",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
             >
                 <Loader />
             </div>
-        )
+        );
     }
 
     return (
@@ -74,12 +72,17 @@ export default function OrdinationIssue() {
                         arrowClickCallback={scrollToRef}
                         showArrow={false}
                     />
-                    
-                    {ordinationIssues.map(ordinationIssue =>
+
+                    {ordinationIssues.map((ordinationIssue) =>
                         ordinationIssue.isPublished ? (
                             <>
                                 <h2 className="page-content">{ordinationIssue.title}</h2>
-                                <div dangerouslySetInnerHTML={{ __html: `${ordinationIssue.content}` }} className="page-content" />
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: `${ordinationIssue.content}`,
+                                    }}
+                                    className="page-content"
+                                />
                             </>
                         ) : (
                             ""
@@ -96,11 +99,16 @@ export default function OrdinationIssue() {
                         width="100%"
                         arrowClickCallback={scrollToRef}
                     />
-                    {ordinationIssues.map(ordinationIssue =>
+                    {ordinationIssues.map((ordinationIssue) =>
                         ordinationIssue.isPublished ? (
                             <>
                                 <h2 className="page-content">{ordinationIssue.title}</h2>
-                                <div dangerouslySetInnerHTML={{ __html: `${ordinationIssue.content}` }} className="page-content" />
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: `${ordinationIssue.content}`,
+                                    }}
+                                    className="page-content"
+                                />
                             </>
                         ) : (
                             ""

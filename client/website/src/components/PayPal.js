@@ -30,9 +30,8 @@ export default function PayPal({
     affiliatedOrgs,
     disable,
     transactionCompleted,
-    address
+    address,
 }) {
-
     // only add values to itemTotal and taxTotal if they are positive
     let itemTotal;
     itemTotal = membershipCost > 0 ? membershipCost : itemTotal;
@@ -153,7 +152,7 @@ export default function PayPal({
                             totalPaid: parseFloat(details.purchase_units[0].amount.value),
                             payPalTransactionId: details.purchase_units[0].payments.captures[0].id,
                         };
-                        console.log(membershipObject);
+
                         return fetch(`${BACKEND_URL}memberships/`, {
                             method: "post",
                             headers: {

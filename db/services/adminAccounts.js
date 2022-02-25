@@ -6,8 +6,8 @@
  * @author    Thomas Garry
  * @author    Navid Boloorian
  */
-const AdminAccounts = require("../models/adminAccounts");
 const crypto = require("crypto");
+const AdminAccounts = require("../models/adminAccounts");
 
 /**
  * Creates Admin data.
@@ -45,7 +45,7 @@ async function updateOneUser(updated_user) {
 }
 
 /**
- * 
+ *
  */
 async function getEmailByResetToken(resetToken) {
     return AdminAccounts.findOne({ where: { resetPasswordToken: resetToken } });
@@ -55,5 +55,5 @@ module.exports = {
     addAdmin,
     findOneUser,
     updateOneUser,
-    getEmailByResetToken
+    getEmailByResetToken,
 };

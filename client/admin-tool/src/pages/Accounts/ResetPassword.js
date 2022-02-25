@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField, makeStyles, Snackbar } from "@material-ui/core";
-import Brand from "../../components/Accounts/Brand"
+import Brand from "../../components/Accounts/Brand";
 import Button from "../../components/Button";
 import { SITE_PAGES } from "../../constants/links";
 import { useParams } from "react-router-dom";
@@ -23,24 +23,24 @@ export default function ResetPassword() {
 
     React.useEffect(async () => {
         localStorage.clear();
-        
+
         const email = await getEmailByToken(recoveryToken);
 
-        if(email == undefined) window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;
+        if (email == undefined) window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;
         else setEmail(email);
 
         setResetPasswordData({
             email: email,
             password: "",
             confPassword: "",
-        })
+        });
 
         setResetPasswordErrors({
             email: false,
             password: false,
             confPassword: false,
-        })
-    }, [])
+        });
+    }, []);
 
     const handleFormSubmit = async () => {
         setPageDisabled(true);
@@ -48,13 +48,13 @@ export default function ResetPassword() {
         let finalResetPasswordData = {
             email: resetPasswordData.email,
             password: resetPasswordData.password,
-        }
+        };
 
         let finalResetPasswordErrors = {
             email: false,
             password: false,
             confPassword: false,
-        }
+        };
 
         let hasErrors = false;
         let errorString = "Error: ";
@@ -67,14 +67,14 @@ export default function ResetPassword() {
             }
         });
 
-        if(resetPasswordData.password !== resetPasswordData.confPassword) {
+        if (resetPasswordData.password !== resetPasswordData.confPassword) {
             hasErrors = true;
             finalResetPasswordErrors["password"] = true;
             finalResetPasswordErrors["confPassword"] = true;
             errorString += "passwords do not match; ";
         }
 
-        if(resetPasswordData.password.length < 6 || resetPasswordData.password > 15 ) {
+        if (resetPasswordData.password.length < 6 || resetPasswordData.password > 15) {
             hasErrors = true;
             finalResetPasswordErrors["password"] = true;
             finalResetPasswordErrors["confPassword"] = true;
@@ -86,20 +86,25 @@ export default function ResetPassword() {
         if (!hasErrors) {
             const res = await changePassword(finalResetPasswordData);
 
-            if(res.status === 401)
-                handleSnackbar({ open: true, message: "Error: email and/or password is incorrect" });
+            if (res.status === 401)
+                handleSnackbar({
+                    open: true,
+                    message: "Error: email and/or password is incorrect",
+                });
             else {
-                handleSnackbar({ open: true, message: "New password set! Redirecting to login..." })
+                handleSnackbar({
+                    open: true,
+                    message: "New password set! Redirecting to login...",
+                });
 
                 setTimeout(function () {
-                    window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;   
+                    window.location.href = SITE_PAGES.ACCOUNTS_LOGIN;
                 }, 1000);
             }
-        }
-        else handleSnackbar({ open: true, message: errorString });
+        } else handleSnackbar({ open: true, message: errorString });
 
         setPageDisabled(false);
-    }
+    };
 
     const useHelperTextStyles = makeStyles(() => ({
         root: {
@@ -122,7 +127,7 @@ export default function ResetPassword() {
                 borderColor: "black",
                 borderRadius: "30px",
                 border: "0px",
-                height: "42px"
+                height: "42px",
             },
             // on focus rendering of field
             "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
@@ -130,7 +135,6 @@ export default function ResetPassword() {
             },
             "& .MuiInputLabel-outlined.Mui-focused": {
                 color: "#d77a3d",
-                
             },
             // on error rendering of field
             "& .Mui-error": {
@@ -140,7 +144,7 @@ export default function ResetPassword() {
             // on error rendering of field
             "& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline": {
                 borderColor: "red",
-                border: "1px solid"
+                border: "1px solid",
             },
         },
     }));
@@ -148,44 +152,46 @@ export default function ResetPassword() {
     const classes = useHelperTextStyles();
 
     const inputValues = [
-        {placeholder: "Password", name: "password", type: "password"},
-        {placeholder: "Confirm password", name: "confPassword", type: "password"},
-    ]
+        { placeholder: "Password", name: "password", type: "password" },
+        { placeholder: "Confirm password", name: "confPassword", type: "password" },
+    ];
 
     return (
         <div className="reset-password-wrapper">
             <div className="reset-password-form">
                 <Brand />
-                {
-                    inputValues.map(input => {
-                        return (
-                            <>
-                                <TextField 
-                                    variant="outlined"
-                                    disabled={pageDisabled}
-                                    placeholder={input.placeholder}
-                                    className={classes.root}
-                                    InputProps={{ disableUnderline: true }}
-                                    type={input.type}
-                                    error={resetPasswordErrors[input.name]}
-                                    onChange={(event) => {
-                                        setResetPasswordData({ ...resetPasswordData, [input.name]: event.target.value });
-                                    }}
-                                />
-                                <br />
-                            </>
-                        )
-                    })
-                }
+                {inputValues.map((input) => {
+                    return (
+                        <>
+                            <TextField
+                                variant="outlined"
+                                disabled={pageDisabled}
+                                placeholder={input.placeholder}
+                                className={classes.root}
+                                InputProps={{ disableUnderline: true }}
+                                type={input.type}
+                                error={resetPasswordErrors[input.name]}
+                                onChange={(event) => {
+                                    setResetPasswordData({
+                                        ...resetPasswordData,
+                                        [input.name]: event.target.value,
+                                    });
+                                }}
+                            />
+                            <br />
+                        </>
+                    );
+                })}
                 <div className="redirect-links">
-                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>Login</a>
-                    <a className="password-redirect" href={SITE_PAGES.ACCOUNTS_REGISTER}>Register</a>
+                    <a className="register-redirect" href={SITE_PAGES.ACCOUNTS_LOGIN}>
+                        Login
+                    </a>
+                    <a className="password-redirect" href={SITE_PAGES.ACCOUNTS_REGISTER}>
+                        Register
+                    </a>
                 </div>
                 <br />
-                <Button 
-                    text="Set new password"
-                    onClickCallback={() => handleFormSubmit()}
-                />
+                <Button text="Set new password" onClickCallback={() => handleFormSubmit()} />
             </div>
             <Snackbar
                 open={snackbar.open}

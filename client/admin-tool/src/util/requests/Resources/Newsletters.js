@@ -51,18 +51,14 @@ export const fetchNewsletters = async () => {
  */
 export const addNewsletter = async (content) => {
     try {
-        console.log(content);
-
         const res = await fetch(`${BACKEND_URL}newsletters/`, {
             method: "post",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify(content),
         });
-
-        console.log(res);
 
         // successfull
         if (res.ok) {
@@ -94,7 +90,7 @@ export const updateNewsletter = async (id, content) => {
             method: "put",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify(content),
         });
@@ -125,7 +121,7 @@ export const deleteNewsletter = async (id) => {
             method: "delete",
             headers: {
                 "content-type": "application/json",
-                "autorization": `Bearer: ${localStorage.getItem("token")}` 
+                autorization: `Bearer: ${localStorage.getItem("token")}`,
             },
         });
 

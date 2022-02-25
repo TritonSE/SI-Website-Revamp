@@ -7,21 +7,18 @@
  * @author      Aaron Kirk
  */
 
- import React from "react";
- import "../../css/Brand.css";
- import Logo from "../../media/logo.svg";
- 
- export default function Brand(props) {
-     return (
-         <a
-             className="brand"
-             href="#"
-         >
-             <img src={Logo} alt="Logo" id="logo" width="250px" />
-             <div className="branding">
-                 <h1 id="title">sakyadhita</h1>
-                 <span id="subtitle">international association of buddhist women</span>
-             </div>
-         </a>
-     );
- }
+import React from "react";
+import "../../css/Brand.css";
+import Logo from "../../media/logo.svg";
+
+export default function Brand(props) {
+    return (
+        <a className="brand" href="#">
+            <img src={Logo} alt="Logo" id="logo" width="250px" />
+            <div className="branding">
+                <h1 id="title">sakyadhita</h1>
+                <span id="subtitle">international association of buddhist women</span>
+            </div>
+        </a>
+    );
+}

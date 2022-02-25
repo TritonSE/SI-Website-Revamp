@@ -146,11 +146,7 @@ export default function CommitteeWrapper({
     };
 
     const handleAddCommittee = async (data) => {
-        console.log(data);
-
         const isSuccessful = await addItemRequestCallback(data);
-
-        console.log(isSuccessful);
 
         if (isSuccessful) {
             handleSnackbar({ open: true, message: "Committee/member successfully added" });

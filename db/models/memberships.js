@@ -7,7 +7,7 @@
 const Sequelize = require("sequelize");
 const db = require("../configDB");
 const MembershipType = require("./membershipTypes");
-const {PAYPAL_STATUS} = require("../services/paypal");
+const { PAYPAL_STATUS } = require("../services/paypal");
 
 const Memberships = db.define(
     "Memberships",
